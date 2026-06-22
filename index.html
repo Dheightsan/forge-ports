@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Forge 1.20.1 Mod Porting — dheightsan</title>
-  <meta name="description" content="Professional Minecraft mod backporting and porting to Forge 1.20.1. Fixed price $40–150, 48–72h turnaround, textures included. License-first.">
+  <meta name="description" content="Specialist Minecraft mod backporting to Forge 1.20.1. Fixed price from $40, 48–72h. Loader conversion, other versions and cross-mod compatibility patches also available. License-first.">
   <meta property="og:title" content="Forge 1.20.1 Mod Porting — dheightsan">
-  <meta property="og:description" content="Fixed price $40–150 · 48–72h · Textures included. The port work the big devs won't take.">
+  <meta property="og:description" content="1.20.1 specialist. Fixed price from $40 · 48–72h · Textures included. The port work the big devs won't take.">
   <meta property="og:type" content="website">
   <meta name="theme-color" content="#0d0d0d">
   <style>
@@ -59,7 +59,7 @@
     }
     .brand { font-weight: 700; font-size: 1rem; color: var(--text); letter-spacing: -0.02em; }
     .brand em { color: var(--accent-hi); font-style: normal; }
-    .nav-links { display: flex; gap: 1.75rem; list-style: none; }
+    .nav-links { display: flex; gap: 1.6rem; list-style: none; align-items: center; }
     .nav-links a { color: var(--text-soft); font-size: 0.875rem; transition: color 0.15s; }
     .nav-links a:hover { color: var(--text); text-decoration: none; }
     .btn-nav {
@@ -81,7 +81,7 @@
       font-size: clamp(1.6rem, 3vw, 2.1rem); font-weight: 800;
       letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 0.85rem;
     }
-    .sub { color: var(--text-soft); max-width: 520px; font-size: 0.95rem; }
+    .sub { color: var(--text-soft); max-width: 540px; font-size: 0.95rem; }
 
     /* ── HERO ───────────────────────────── */
     #hero {
@@ -110,12 +110,12 @@
     #hero h1 {
       font-size: clamp(2.4rem, 5.5vw, 3.8rem); font-weight: 900;
       letter-spacing: -0.035em; line-height: 1.08;
-      margin-bottom: 1.2rem; max-width: 700px;
+      margin-bottom: 1.2rem; max-width: 720px;
     }
     #hero h1 .g { color: var(--accent-hi); }
     .hero-desc {
       font-size: 1.1rem; color: var(--text-soft);
-      max-width: 480px; margin-bottom: 2rem; line-height: 1.7;
+      max-width: 500px; margin-bottom: 2rem; line-height: 1.7;
     }
     .pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2.25rem; }
     .pill {
@@ -132,6 +132,7 @@
       display: inline-flex; align-items: center; gap: 0.35rem;
       padding: 0.7rem 1.4rem; border-radius: var(--radius);
       font-weight: 600; font-size: 0.9rem; transition: all 0.15s; cursor: pointer;
+      border: none; font-family: inherit;
     }
     .btn-primary { background: var(--accent); color: #fff; }
     .btn-primary:hover { background: var(--accent-hi); text-decoration: none; }
@@ -144,22 +145,89 @@
     /* ── SERVICES ───────────────────────── */
     #services { background: var(--surface); }
     .cards {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 1px; margin-top: 2.75rem;
       border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden;
     }
     .card {
-      background: var(--bg); padding: 2rem 1.75rem;
-      transition: background 0.15s;
+      background: var(--bg); padding: 1.9rem 1.6rem;
+      transition: background 0.15s; position: relative;
     }
     .card:hover { background: #111; }
-    .card-icon { font-size: 1.6rem; margin-bottom: 1rem; }
-    .card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .card p { color: var(--text-soft); font-size: 0.875rem; line-height: 1.7; }
+    .card-icon { font-size: 1.6rem; margin-bottom: 0.9rem; }
+    .card h3 { font-size: 1.02rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .card p { color: var(--text-soft); font-size: 0.86rem; line-height: 1.65; margin-bottom: 0.9rem; }
+    .card-tag {
+      display: inline-block; font-size: 0.7rem; font-weight: 700;
+      padding: 0.2rem 0.6rem; border-radius: 999px; letter-spacing: 0.02em;
+    }
+    .tag-base { background: var(--accent-glow); color: var(--accent-hi); border: 1px solid var(--accent-ring); }
+    .tag-premium { background: var(--price-glow); color: var(--price); border: 1px solid rgba(245,158,11,0.3); }
+    .tag-custom { background: var(--surface2); color: var(--text-soft); border: 1px solid var(--border); }
+
+    /* ── ESTIMATOR ──────────────────────── */
+    .estimator {
+      margin-top: 2.75rem;
+      display: grid; grid-template-columns: 1.3fr 1fr; gap: 1.5rem;
+      align-items: start;
+    }
+    .est-form {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 1.75rem;
+    }
+    .est-group { margin-bottom: 1.5rem; }
+    .est-group:last-child { margin-bottom: 0; }
+    .est-group.hidden { display: none; }
+    .est-label {
+      font-size: 0.8rem; font-weight: 700; color: var(--text);
+      margin-bottom: 0.7rem; display: flex; align-items: center; gap: 0.4rem;
+    }
+    .est-hint { font-size: 0.72rem; color: var(--text-muted); font-weight: 400; }
+    .est-options { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .est-opt {
+      background: var(--surface2); border: 1px solid var(--border);
+      color: var(--text-soft); padding: 0.5rem 0.95rem; border-radius: var(--radius);
+      font-size: 0.83rem; font-weight: 600; cursor: pointer; transition: all 0.15s;
+      font-family: inherit;
+    }
+    .est-opt:hover { border-color: #404040; color: var(--text); }
+    .est-opt.active { background: var(--accent-glow); border-color: var(--accent-ring); color: var(--accent-hi); }
+    .est-opt small { display: block; font-size: 0.68rem; font-weight: 400; opacity: 0.7; margin-top: 0.1rem; }
+
+    .est-result {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 1.75rem;
+      position: sticky; top: 74px;
+    }
+    .est-result-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 0.5rem; }
+    .est-price {
+      font-size: 2.6rem; font-weight: 900; color: var(--price);
+      letter-spacing: -0.04em; line-height: 1; margin-bottom: 0.5rem;
+      font-variant-numeric: tabular-nums;
+    }
+    .est-note {
+      font-size: 0.8rem; color: var(--text-soft); line-height: 1.55;
+      min-height: 2.4em; margin-bottom: 1.25rem;
+      padding-bottom: 1.25rem; border-bottom: 1px solid var(--border);
+    }
+    .est-note .premium { color: var(--price); font-weight: 600; }
+    .est-summary {
+      background: var(--bg); border: 1px solid var(--border-soft);
+      border-radius: var(--radius); padding: 0.85rem 1rem;
+      font-size: 0.78rem; color: var(--text-soft); line-height: 1.7;
+      margin-bottom: 1rem; white-space: pre-wrap; font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+    }
+    .est-copy {
+      width: 100%; justify-content: center;
+      background: var(--accent); color: #fff;
+    }
+    .est-copy:hover { background: var(--accent-hi); }
+    .est-copy.done { background: var(--surface2); color: var(--accent-hi); border: 1px solid var(--accent-ring); }
+    .est-disclaimer { font-size: 0.72rem; color: var(--text-muted); margin-top: 0.85rem; text-align: center; line-height: 1.5; }
 
     /* ── HOW IT WORKS ───────────────────── */
     .steps {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
       gap: 2rem; margin-top: 2.75rem;
     }
     .step-n {
@@ -167,34 +235,37 @@
       line-height: 1; margin-bottom: 0.6rem; font-variant-numeric: tabular-nums;
     }
     .step h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.4rem; }
-    .step p { color: var(--text-soft); font-size: 0.845rem; line-height: 1.65; }
+    .step p { color: var(--text-soft); font-size: 0.835rem; line-height: 1.6; }
 
     /* ── PRICING ────────────────────────── */
     #pricing { background: var(--surface); }
-    .price-box {
-      margin-top: 2.75rem;
-      border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden;
+    .ptable {
+      margin-top: 2.75rem; border: 1px solid var(--border);
+      border-radius: var(--radius-lg); overflow: hidden;
     }
-    .price-top {
-      display: flex; flex-wrap: wrap; gap: 2rem;
-      padding: 2.25rem; border-bottom: 1px solid var(--border);
-      align-items: flex-start;
+    .prow {
+      display: grid; grid-template-columns: 1.4fr 0.8fr 1.3fr;
+      gap: 1rem; padding: 1.15rem 1.5rem; align-items: center;
+      border-bottom: 1px solid var(--border);
     }
-    .price-num { font-size: 2.9rem; font-weight: 900; color: var(--price); letter-spacing: -0.04em; }
-    .price-note { color: var(--text-muted); font-size: 0.8rem; margin-top: 0.2rem; }
-    .price-list { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; flex: 1; min-width: 220px; }
-    .price-list li { display: flex; gap: 0.5rem; font-size: 0.875rem; color: var(--text-soft); }
-    .price-list li::before { content: '✓'; color: var(--accent-hi); font-weight: 800; flex-shrink: 0; }
-    .price-bottom {
-      padding: 1.25rem 2.25rem; display: flex; align-items: center;
-      gap: 1.25rem; flex-wrap: wrap;
+    .prow:last-child { border-bottom: none; }
+    .prow-head {
+      background: var(--bg); font-size: 0.7rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted);
+    }
+    .prow.base { background: var(--accent-glow); }
+    .pservice { font-weight: 700; font-size: 0.92rem; }
+    .pservice small { display: block; font-weight: 400; font-size: 0.76rem; color: var(--text-muted); margin-top: 0.15rem; }
+    .pprice { font-weight: 800; font-size: 0.95rem; color: var(--price); font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .pwhy { font-size: 0.8rem; color: var(--text-soft); line-height: 1.5; }
+    .pfoot {
+      display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;
+      margin-top: 1.25rem; padding: 1rem 1.25rem;
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
     }
     .pay-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); }
     .pay-methods { display: flex; gap: 0.6rem; flex-wrap: wrap; }
-    .pay-tag {
-      background: var(--surface2); border: 1px solid var(--border);
-      padding: 0.25rem 0.65rem; border-radius: 999px; font-size: 0.775rem; color: var(--text-soft);
-    }
+    .pay-tag { background: var(--surface2); border: 1px solid var(--border); padding: 0.25rem 0.65rem; border-radius: 999px; font-size: 0.775rem; color: var(--text-soft); }
 
     /* ── LEGAL ──────────────────────────── */
     .legal-cards {
@@ -206,7 +277,7 @@
       border-radius: var(--radius); padding: 1.5rem;
     }
     .legal-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .legal-card p { color: var(--text-soft); font-size: 0.85rem; line-height: 1.65; }
+    .legal-card p { color: var(--text-soft); font-size: 0.85rem; line-height: 1.6; }
     .legal-quote {
       margin-top: 1.75rem;
       background: var(--accent-glow); border: 1px solid var(--accent-ring);
@@ -215,40 +286,54 @@
     }
     .legal-quote strong { color: var(--accent-hi); }
 
+    /* ── FAQ ────────────────────────────── */
+    .faq-list { margin-top: 2.5rem; border-top: 1px solid var(--border); }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-q {
+      width: 100%; text-align: left; background: none; border: none;
+      color: var(--text); font-family: inherit; font-size: 0.95rem; font-weight: 600;
+      padding: 1.2rem 0; cursor: pointer; display: flex; justify-content: space-between;
+      align-items: center; gap: 1rem;
+    }
+    .faq-q:hover { color: var(--accent-hi); }
+    .faq-icon { color: var(--accent-hi); font-size: 1.2rem; transition: transform 0.2s; flex-shrink: 0; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-a {
+      max-height: 0; overflow: hidden; transition: max-height 0.25s ease, padding 0.25s ease;
+      color: var(--text-soft); font-size: 0.875rem; line-height: 1.7;
+    }
+    .faq-item.open .faq-a { max-height: 240px; padding-bottom: 1.2rem; }
+
     /* ── PORTFOLIO ──────────────────────── */
+    #portfolio { background: var(--surface); }
     .portfolio-ph {
       margin-top: 2.75rem;
       border: 1px dashed var(--border); border-radius: var(--radius-lg);
-      padding: 4rem 2rem; text-align: center;
+      padding: 4rem 2rem; text-align: center; background: var(--bg);
     }
     .portfolio-ph .ph-icon { font-size: 2rem; margin-bottom: 0.75rem; }
     .portfolio-ph strong { display: block; color: var(--text); font-size: 1rem; margin-bottom: 0.4rem; }
-    .portfolio-ph p { color: var(--text-soft); font-size: 0.875rem; max-width: 380px; margin: 0 auto; }
+    .portfolio-ph p { color: var(--text-soft); font-size: 0.875rem; max-width: 400px; margin: 0 auto; }
 
     /* ── CONTACT ────────────────────────── */
-    #contact { background: var(--surface); }
     .contact-cards {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 1rem; margin-top: 2.75rem;
     }
     .contact-card {
-      background: var(--bg); border: 1px solid var(--border);
+      background: var(--surface); border: 1px solid var(--border);
       border-radius: var(--radius); padding: 1.5rem;
       display: flex; flex-direction: column; gap: 0.5rem;
     }
     .contact-card .ci { font-size: 1.4rem; }
     .contact-card h3 { font-size: 0.95rem; font-weight: 700; }
-    .contact-card p { color: var(--text-soft); font-size: 0.83rem; line-height: 1.6; flex: 1; }
+    .contact-card p { color: var(--text-soft); font-size: 0.83rem; line-height: 1.55; flex: 1; }
     .contact-link {
       display: inline-flex; align-items: center; gap: 0.3rem;
-      font-weight: 600; font-size: 0.875rem; color: var(--accent-hi);
-      margin-top: 0.4rem;
+      font-weight: 600; font-size: 0.875rem; color: var(--accent-hi); margin-top: 0.4rem;
     }
     .contact-link:after { content: ' →'; }
-    .contact-note {
-      margin-top: 2rem; text-align: center;
-      color: var(--text-muted); font-size: 0.8rem;
-    }
+    .contact-note { margin-top: 2rem; text-align: center; color: var(--text-muted); font-size: 0.8rem; }
 
     /* ── FOOTER ─────────────────────────── */
     footer {
@@ -261,10 +346,16 @@
     footer .sep { margin: 0 0.5rem; }
 
     /* ── RESPONSIVE ─────────────────────── */
+    @media (max-width: 760px) {
+      .estimator { grid-template-columns: 1fr; }
+      .est-result { position: static; }
+    }
     @media (max-width: 600px) {
       section { padding: 3.5rem 1.2rem; }
       .nav-links { display: none; }
-      .price-top { flex-direction: column; }
+      .prow { grid-template-columns: 1fr; gap: 0.4rem; padding: 1rem 1.2rem; }
+      .prow-head { display: none; }
+      .pprice { font-size: 1.1rem; }
     }
   </style>
 </head>
@@ -276,9 +367,9 @@
     <span class="brand">dheight<em>san</em></span>
     <ul class="nav-links">
       <li><a href="#services">Services</a></li>
+      <li><a href="#estimator">Estimate</a></li>
       <li><a href="#pricing">Pricing</a></li>
       <li><a href="#legal">Legal</a></li>
-      <li><a href="#portfolio">Portfolio</a></li>
       <li><a href="#contact" class="btn-nav">Get a quote</a></li>
     </ul>
   </div>
@@ -288,22 +379,21 @@
 <section id="hero">
   <div class="wrap hero-inner">
     <div class="badge"><span class="badge-dot"></span>Open for commissions</div>
-    <h1>Minecraft mod porting<br>to <span class="g">Forge 1.20.1</span></h1>
+    <h1>The <span class="g">Forge 1.20.1</span><br>mod porting specialist</h1>
     <p class="hero-desc">
-      Fixed price. Fast delivery. License-first.<br>
-      The port work the big devs won't take.
+      1.20.1 is all I do — so I do it fast, fixed-price, and license-first.
+      Other versions, loader conversions and cross-mod compatibility on request.
     </p>
     <div class="pills">
-      <span class="pill pill-price">$40 – $150 flat</span>
+      <span class="pill pill-price">From $40 flat</span>
       <span class="pill">48 – 72h turnaround</span>
-      <span class="pill">Backport 1.21+ mods</span>
-      <span class="pill">Loader conversion</span>
-      <span class="pill">Textures &amp; assets</span>
+      <span class="pill">1.20.1 specialist</span>
+      <span class="pill">Textures &amp; assets included</span>
       <span class="pill">7-day guarantee</span>
     </div>
     <div class="ctas">
-      <a href="#contact" class="btn btn-primary">Get a quote</a>
-      <a href="#how-it-works" class="btn btn-ghost">How it works</a>
+      <a href="#estimator" class="btn btn-primary">Estimate my commission</a>
+      <a href="#services" class="btn btn-ghost">See services</a>
     </div>
   </div>
 </section>
@@ -312,23 +402,98 @@
 <section id="services">
   <div class="wrap">
     <div class="eyebrow">What I do</div>
-    <h2>Forge 1.20.1 porting, three ways</h2>
-    <p class="sub">Need a mod that isn't on Forge 1.20.1? Send me the link. Whether it's a newer release, a different loader, or a broken pack — this is my niche.</p>
+    <h2>Four services, one specialty</h2>
+    <p class="sub">Forge 1.20.1 is my base rate because it's where I'm fastest. Everything that pulls me outside it — a different version, a loader change, cross-mod work — is priced as a premium.</p>
     <div class="cards">
       <div class="card">
-        <div class="card-icon">⬇️</div>
-        <h3>Backport</h3>
-        <p>Mod released for 1.21+ but your pack runs 1.20.1? I backport the full mod — items, blocks, mechanics, textures — to Forge 1.20.1. Complete, not a partial port.</p>
+        <div class="card-icon">🎯</div>
+        <h3>Backport to Forge 1.20.1</h3>
+        <p>A mod released for 1.21+ that your pack needs on 1.20.1. Full backport — items, blocks, mechanics, textures. This is my specialty and my base price.</p>
+        <span class="card-tag tag-base">Base rate</span>
+      </div>
+      <div class="card">
+        <div class="card-icon">⬆️</div>
+        <h3>Port to another version</h3>
+        <p>Need a mod on a version other than 1.20.1? I take it on, but since it's outside my core specialty it carries a premium over the base rate.</p>
+        <span class="card-tag tag-premium">Premium</span>
       </div>
       <div class="card">
         <div class="card-icon">🔄</div>
         <h3>Loader conversion</h3>
-        <p>Fabric or NeoForge mod you need on Forge? I convert it, adapting APIs, events and mixins to the Forge 1.20.1 ecosystem. Functional parity guaranteed.</p>
+        <p>Fabric or NeoForge mod you need on Forge. Translating APIs, events and mixins between loaders is extra work, so it's priced above a same-loader backport.</p>
+        <span class="card-tag tag-premium">Premium</span>
       </div>
       <div class="card">
-        <div class="card-icon">🔧</div>
-        <h3>Pack compatibility fix</h3>
-        <p>Crashes, mod conflicts, or broken content in your 1.20.1 pack? I diagnose and fix the issue so your pack runs clean without pulling mods out.</p>
+        <div class="card-icon">🧩</div>
+        <h3>Compatibility patches</h3>
+        <p>Making mods work together — no new content. Mob spawning in another mod's biomes, features that should coexist, conflicts resolved. Bespoke work, custom quote.</p>
+        <span class="card-tag tag-custom">Custom quote</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ESTIMATOR -->
+<section id="estimator">
+  <div class="wrap">
+    <div class="eyebrow">Instant estimate</div>
+    <h2>Build your commission</h2>
+    <p class="sub">Pick what you need and get a ballpark in real time. It builds a ready-to-send summary you can paste straight into a DM — the exact, final price comes once I see the mod.</p>
+
+    <div class="estimator">
+      <!-- FORM -->
+      <div class="est-form">
+        <div class="est-group" id="grp-service">
+          <div class="est-label">What do you need?</div>
+          <div class="est-options" data-group="service">
+            <button type="button" class="est-opt active" data-value="port">Port / Backport a mod</button>
+            <button type="button" class="est-opt" data-value="compat">Make mods compatible</button>
+          </div>
+        </div>
+
+        <div class="est-group" id="grp-target">
+          <div class="est-label">Target version <span class="est-hint">— 1.20.1 is the specialty</span></div>
+          <div class="est-options" data-group="target">
+            <button type="button" class="est-opt active" data-value="1201">Forge 1.20.1</button>
+            <button type="button" class="est-opt" data-value="other">Another version</button>
+          </div>
+        </div>
+
+        <div class="est-group" id="grp-loader">
+          <div class="est-label">Source mod loader</div>
+          <div class="est-options" data-group="loader">
+            <button type="button" class="est-opt active" data-value="same">Already Forge<small>same-loader backport</small></button>
+            <button type="button" class="est-opt" data-value="convert">Fabric / NeoForge<small>needs conversion</small></button>
+          </div>
+        </div>
+
+        <div class="est-group" id="grp-size">
+          <div class="est-label">How big is the mod?</div>
+          <div class="est-options" data-group="size">
+            <button type="button" class="est-opt" data-value="small">Small<small>items, blocks, config</small></button>
+            <button type="button" class="est-opt active" data-value="medium">Medium<small>mechanics, entities, GUI</small></button>
+            <button type="button" class="est-opt" data-value="large">Large<small>tech mod, worldgen</small></button>
+          </div>
+        </div>
+
+        <div class="est-group hidden" id="grp-scope">
+          <div class="est-label">Compatibility scope</div>
+          <div class="est-options" data-group="scope">
+            <button type="button" class="est-opt active" data-value="simple">Simple<small>config / datapack, 2 mods</small></button>
+            <button type="button" class="est-opt" data-value="moderate">Moderate<small>mixin / event patching</small></button>
+            <button type="button" class="est-opt" data-value="deep">Deep<small>several mods, complex</small></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- RESULT -->
+      <div class="est-result">
+        <div class="est-result-label">Estimated range</div>
+        <div class="est-price" id="est-price">$70 – $120</div>
+        <div class="est-note" id="est-note">Base rate — Forge 1.20.1 is my specialty.</div>
+        <div class="est-summary" id="est-summary"></div>
+        <button type="button" class="btn est-copy" id="est-copy">Copy summary for your DM</button>
+        <div class="est-disclaimer">Estimate only. The final flat price is locked in writing once I review the actual mod.</div>
       </div>
     </div>
   </div>
@@ -344,27 +509,27 @@
       <div class="step">
         <div class="step-n">01</div>
         <h3>Send me the mod</h3>
-        <p>DM with the mod link and what you need. Open-source or licensed — both work. Tell me your deadline if you have one.</p>
+        <p>DM the mod link and what you need. Open-source or licensed — both work. Use the estimator to pre-fill the details.</p>
       </div>
       <div class="step">
         <div class="step-n">02</div>
         <h3>Flat quote</h3>
-        <p>I review the mod and come back with a fixed price and timeline. No hourly rate, no scope creep after the fact.</p>
+        <p>I review the mod and reply with a fixed price and timeline. No hourly billing, no scope creep after we agree.</p>
       </div>
       <div class="step">
         <div class="step-n">03</div>
         <h3>50% deposit</h3>
-        <p>You pay half upfront via PayPal G&amp;S, crypto USDT, or BuiltByBit escrow. Work starts immediately after payment.</p>
+        <p>Half upfront via PayPal G&amp;S, crypto USDT, or BuiltByBit escrow. Work starts as soon as it lands.</p>
       </div>
       <div class="step">
         <div class="step-n">04</div>
-        <h3>I port it</h3>
-        <p>Typically 48–72h. I handle the code, fix any dependency issues, and include all textures and assets.</p>
+        <h3>I build it</h3>
+        <p>Ports typically 48–72h. Compatibility work on an agreed timeline. Textures and assets always included.</p>
       </div>
       <div class="step">
         <div class="step-n">05</div>
         <h3>Delivery + final 50%</h3>
-        <p>You receive the working .jar and test it. Final payment before the file is released. Open-source ports get published on CurseForge &amp; Modrinth.</p>
+        <p>You receive and test the .jar. Final payment before release. Open-source ports get published with author credit.</p>
       </div>
     </div>
   </div>
@@ -374,31 +539,43 @@
 <section id="pricing">
   <div class="wrap">
     <div class="eyebrow">Pricing</div>
-    <h2>Fixed price, not hourly</h2>
-    <p class="sub">You know the full cost before any work starts. No invoices creeping up mid-project.</p>
-    <div class="price-box">
-      <div class="price-top">
-        <div>
-          <div class="price-num">$40 – $150</div>
-          <div class="price-note">flat quote · exact price after I see the mod</div>
-        </div>
-        <ul class="price-list">
-          <li>Price locked in writing before work starts</li>
-          <li>50% upfront · 50% on delivery</li>
-          <li>Textures and assets always included</li>
-          <li>7-day bug fix guarantee at no extra charge</li>
-          <li>Open-source ports: published on CF &amp; Modrinth</li>
-          <li>Licensed mods: private delivery to you only</li>
-        </ul>
+    <h2>Fixed price, built on one base rate</h2>
+    <p class="sub">Forge 1.20.1 sets the base. Each thing that takes me outside it stacks a premium. You always get one flat number before any work begins.</p>
+
+    <div class="ptable">
+      <div class="prow prow-head">
+        <div>Service</div><div>Price</div><div>Why</div>
       </div>
-      <div class="price-bottom">
-        <span class="pay-label">Payment</span>
-        <div class="pay-methods">
-          <span class="pay-tag">PayPal G&amp;S</span>
-          <span class="pay-tag">Crypto USDT</span>
-          <span class="pay-tag">BBB escrow</span>
-        </div>
+      <div class="prow base">
+        <div class="pservice">Backport to Forge 1.20.1 <small>my specialty</small></div>
+        <div class="pprice">$40 – $150</div>
+        <div class="pwhy">The base rate. Where I'm fastest and most efficient.</div>
       </div>
+      <div class="prow">
+        <div class="pservice">Port to another version</div>
+        <div class="pprice">+50%</div>
+        <div class="pwhy">Outside the 1.20.1 specialty — slower, so priced higher.</div>
+      </div>
+      <div class="prow">
+        <div class="pservice">Loader conversion <small>Fabric / NeoForge → Forge</small></div>
+        <div class="pprice">+40%</div>
+        <div class="pwhy">Translating APIs, events and mixins between loaders is real extra work.</div>
+      </div>
+      <div class="prow">
+        <div class="pservice">Compatibility patch <small>make mods coexist</small></div>
+        <div class="pprice">Custom</div>
+        <div class="pwhy">Bespoke per case — quoted after I see which mods and what conflict.</div>
+      </div>
+    </div>
+
+    <div class="pfoot">
+      <span class="pay-label">Payment</span>
+      <div class="pay-methods">
+        <span class="pay-tag">PayPal G&amp;S</span>
+        <span class="pay-tag">Crypto USDT</span>
+        <span class="pay-tag">BBB escrow</span>
+      </div>
+      <span class="pay-label" style="margin-left:auto">50% upfront · 50% on delivery</span>
     </div>
   </div>
 </section>
@@ -416,7 +593,7 @@
       </div>
       <div class="legal-card">
         <h3>🔒 Private commissions</h3>
-        <p>You bring a mod you have the right to use. I port it and deliver privately — only to you. You decide if and how to distribute it. I never publish it without your instruction.</p>
+        <p>You bring a mod you have the right to use. I port it and deliver privately — to you only. You decide if and how to distribute it. I never publish it without your instruction.</p>
       </div>
       <div class="legal-card">
         <h3>✋ What I won't do</h3>
@@ -424,7 +601,41 @@
       </div>
     </div>
     <div class="legal-quote">
-      <strong>The principle:</strong> You pay for my time writing the port — not for distribution rights. The right to publish always belongs to whoever holds the license. That's the only clean, legally sound way to run a porting service.
+      <strong>The principle:</strong> You pay for my time writing the work — not for distribution rights. The right to publish always belongs to whoever holds the license. That's the only clean, legally sound way to run a porting service.
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="eyebrow">FAQ</div>
+    <h2>Before you ask</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button type="button" class="faq-q">Why is 1.20.1 cheaper than other versions? <span class="faq-icon">+</span></button>
+        <div class="faq-a">It's my specialty. I know the 1.20.1 Forge ecosystem deeply, so I'm faster and can pass that efficiency on as a lower price. Other versions take me longer, so they carry a premium.</div>
+      </div>
+      <div class="faq-item">
+        <button type="button" class="faq-q">What exactly is a compatibility patch? <span class="faq-icon">+</span></button>
+        <div class="faq-a">Making two or more mods work together without creating new content — for example, getting one mod's mobs to spawn in another mod's biomes, or resolving a conflict that breaks a feature. It's bespoke work, so it's always a custom quote.</div>
+      </div>
+      <div class="faq-item">
+        <button type="button" class="faq-q">Is this legal? <span class="faq-icon">+</span></button>
+        <div class="faq-a">Yes. You pay for my time writing the port, not for distribution rights. I publish only open-source mods or mods with written permission; anything else is delivered privately to whoever holds the right to use it. See the Licenses section above.</div>
+      </div>
+      <div class="faq-item">
+        <button type="button" class="faq-q">How do I pay safely? <span class="faq-icon">+</span></button>
+        <div class="faq-a">50% upfront, 50% on delivery, via PayPal Goods &amp; Services (buyer-protected), crypto USDT, or BuiltByBit's escrow/middleman. For first-time clients I recommend BuiltByBit escrow so we're both covered.</div>
+      </div>
+      <div class="faq-item">
+        <button type="button" class="faq-q">How long does it take? <span class="faq-icon">+</span></button>
+        <div class="faq-a">Most 1.20.1 ports land in 48–72 hours. Larger mods, other versions, loader conversions and compatibility work run on a timeline we agree on before starting.</div>
+      </div>
+      <div class="faq-item">
+        <button type="button" class="faq-q">What if the port doesn't work? <span class="faq-icon">+</span></button>
+        <div class="faq-a">Every commission includes a 7-day bug-fix guarantee at no extra charge. You test before final payment is released, so you're never paying for something that doesn't run.</div>
+      </div>
     </div>
   </div>
 </section>
@@ -437,7 +648,7 @@
     <div class="portfolio-ph">
       <div class="ph-icon">🔨</div>
       <strong>First open-source ports in progress</strong>
-      <p>Backports in progress — will appear on CurseForge &amp; Modrinth soon. Have a specific mod in mind? DM me now and we can discuss it before the portfolio is up.</p>
+      <p>Backports in progress — they'll appear here on CurseForge &amp; Modrinth soon. Have a specific mod in mind? DM me now; we can talk before the portfolio is live.</p>
     </div>
   </div>
 </section>
@@ -447,26 +658,27 @@
   <div class="wrap">
     <div class="eyebrow">Contact</div>
     <h2>Get a quote</h2>
-    <p class="sub">Written and async — BuiltByBit or Discord preferred. Send me the mod link and what you need; I'll come back with a flat price.</p>
+    <p class="sub">Written and async — BuiltByBit or Discord preferred. Use the estimator to build your request, then paste it here.</p>
     <div class="contact-cards">
       <div class="contact-card">
         <div class="ci">🏪</div>
         <h3>BuiltByBit</h3>
-        <p>Best for commissions. Escrow protection available. Preferred channel for first-time clients — keeps both sides safe.</p>
+        <p>Best for commissions. Escrow protection available — the safe default for first-time clients.</p>
         <!-- TODO: replace href with your BBB profile URL once the account is created -->
         <a href="https://builtbybit.com" target="_blank" rel="noopener" class="contact-link">Open profile</a>
       </div>
       <div class="contact-card">
         <div class="ci">💬</div>
         <h3>Discord</h3>
-        <p>Fast replies. DM with the mod link and what you're after. Typical response under 24h.</p>
+        <p>Fast replies. DM the mod link and what you're after. Typical response under 24h.</p>
         <!-- TODO: replace href with your Discord invite/profile link -->
         <a href="#contact" class="contact-link">dheightsan</a>
       </div>
       <div class="contact-card">
         <div class="ci">📧</div>
         <h3>Email</h3>
-        <p>For longer inquiries, licensing questions, or if Discord and BBB don't work for you.</p>
+        <p>For longer inquiries, licensing questions, or if Discord and BBB don't suit you.</p>
+        <!-- TODO: consider a dedicated business email to keep your personal inbox spam-free -->
         <a href="mailto:josdansanpes2005@gmail.com" class="contact-link">Send email</a>
       </div>
     </div>
@@ -485,6 +697,149 @@
     <a href="mailto:josdansanpes2005@gmail.com">Contact</a>
   </div>
 </footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var state = {
+    service: 'port',
+    target: '1201',
+    loader: 'same',
+    size: 'medium',
+    scope: 'simple'
+  };
+
+  var LABELS = {
+    service: { port: 'Port / Backport', compat: 'Compatibility patch' },
+    target:  { '1201': 'Forge 1.20.1', other: 'Another version' },
+    loader:  { same: 'Already Forge (same loader)', convert: 'Fabric / NeoForge → Forge' },
+    size:    { small: 'Small', medium: 'Medium', large: 'Large' },
+    scope:   { simple: 'Simple', moderate: 'Moderate', deep: 'Deep' }
+  };
+
+  function round5(n) { return Math.round(n / 5) * 5; }
+
+  function compute() {
+    if (state.service === 'compat') {
+      var sMap = { simple: [50, 100], moderate: [100, 200], deep: [200, 400] };
+      var r = sMap[state.scope] || sMap.simple;
+      return { lo: r[0], hi: r[1], custom: true };
+    }
+    var baseMap = { small: [40, 70], medium: [70, 120], large: [120, 200] };
+    var b = baseMap[state.size] || baseMap.medium;
+    var lo = b[0], hi = b[1], mult = 1;
+    if (state.target === 'other') mult *= 1.5;
+    if (state.loader === 'convert') mult *= 1.4;
+    return { lo: round5(lo * mult), hi: round5(hi * mult), custom: false };
+  }
+
+  function buildNote() {
+    if (state.service === 'compat') {
+      return 'Compatibility work is <span class="premium">always a custom quote</span> — this is a ballpark until I see which mods are involved.';
+    }
+    var prem = [];
+    if (state.target === 'other') prem.push('a non-1.20.1 version');
+    if (state.loader === 'convert') prem.push('a loader conversion');
+    if (prem.length === 0) {
+      return 'Base rate — Forge 1.20.1 is my specialty, so this is as low as it gets.';
+    }
+    return '<span class="premium">Premium applied</span> for ' + prem.join(' and ') + ' — outside the 1.20.1 base.';
+  }
+
+  function buildSummary(est) {
+    var lines = ['Hi! I\'d like a quote for a commission.', ''];
+    lines.push('• Service: ' + LABELS.service[state.service]);
+    if (state.service === 'port') {
+      lines.push('• Target version: ' + LABELS.target[state.target]);
+      lines.push('• Source loader: ' + LABELS.loader[state.loader]);
+      lines.push('• Mod size: ' + LABELS.size[state.size]);
+    } else {
+      lines.push('• Scope: ' + LABELS.scope[state.scope]);
+    }
+    lines.push('• Ballpark from your site: $' + est.lo + '–$' + est.hi + (est.custom ? ' (custom)' : ''));
+    lines.push('');
+    lines.push('Mod link(s): ');
+    lines.push('What I need: ');
+    return lines.join('\n');
+  }
+
+  var priceEl = document.getElementById('est-price');
+  var noteEl = document.getElementById('est-note');
+  var summaryEl = document.getElementById('est-summary');
+  var copyBtn = document.getElementById('est-copy');
+
+  function render() {
+    // conditional groups
+    var isPort = state.service === 'port';
+    document.getElementById('grp-target').classList.toggle('hidden', !isPort);
+    document.getElementById('grp-loader').classList.toggle('hidden', !isPort);
+    document.getElementById('grp-size').classList.toggle('hidden', !isPort);
+    document.getElementById('grp-scope').classList.toggle('hidden', isPort);
+
+    var est = compute();
+    priceEl.textContent = '$' + est.lo + ' – $' + est.hi;
+    noteEl.innerHTML = buildNote();
+    summaryEl.textContent = buildSummary(est);
+
+    // reset copy button label if it was in "done" state
+    copyBtn.classList.remove('done');
+    copyBtn.textContent = 'Copy summary for your DM';
+  }
+
+  // event delegation on all option groups
+  var groups = document.querySelectorAll('.est-options');
+  for (var i = 0; i < groups.length; i++) {
+    groups[i].addEventListener('click', function (e) {
+      var btn = e.target.closest('.est-opt');
+      if (!btn) return;
+      var group = this.getAttribute('data-group');
+      var value = btn.getAttribute('data-value');
+      state[group] = value;
+      // update active styling within this group
+      var opts = this.querySelectorAll('.est-opt');
+      for (var j = 0; j < opts.length; j++) opts[j].classList.remove('active');
+      btn.classList.add('active');
+      render();
+    });
+  }
+
+  // copy to clipboard with fallback
+  copyBtn.addEventListener('click', function () {
+    var text = summaryEl.textContent;
+    var done = function () {
+      copyBtn.classList.add('done');
+      copyBtn.textContent = '✓ Copied — paste it in your DM';
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done).catch(function () { fallback(text, done); });
+    } else {
+      fallback(text, done);
+    }
+  });
+
+  function fallback(text, done) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); done(); } catch (err) {}
+    document.body.removeChild(ta);
+  }
+
+  // FAQ accordion
+  var faqs = document.querySelectorAll('.faq-q');
+  for (var k = 0; k < faqs.length; k++) {
+    faqs[k].addEventListener('click', function () {
+      this.parentElement.classList.toggle('open');
+    });
+  }
+
+  render();
+})();
+</script>
 
 </body>
 </html>
