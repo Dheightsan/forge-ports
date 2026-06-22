@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forge 1.20.1 Mod Porting — dheightsan</title>
+  <meta name="description" content="Professional Minecraft mod backporting and porting to Forge 1.20.1. Fixed price $40–150, 48–72h turnaround, textures included. License-first.">
+  <meta property="og:title" content="Forge 1.20.1 Mod Porting — dheightsan">
+  <meta property="og:description" content="Fixed price $40–150 · 48–72h · Textures included. The port work the big devs won't take.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#0d0d0d">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #0d0d0d;
+      --surface:      #141414;
+      --surface2:     #1c1c1c;
+      --border:       #262626;
+      --border-soft:  #1e1e1e;
+      --accent:       #16a34a;
+      --accent-hi:    #22c55e;
+      --accent-glow:  rgba(34, 197, 94, 0.12);
+      --accent-ring:  rgba(34, 197, 94, 0.28);
+      --price:        #f59e0b;
+      --price-glow:   rgba(245, 158, 11, 0.12);
+      --text:         #e2e8f0;
+      --text-soft:    #94a3b8;
+      --text-muted:   #4b5563;
+      --radius:       8px;
+      --radius-lg:    12px;
+      --max:          1080px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--accent-hi); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ── NAV ────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(13,13,13,0.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-soft);
+    }
+    .nav-inner {
+      max-width: var(--max); margin: 0 auto; padding: 0 1.5rem;
+      height: 58px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .brand { font-weight: 700; font-size: 1rem; color: var(--text); letter-spacing: -0.02em; }
+    .brand em { color: var(--accent-hi); font-style: normal; }
+    .nav-links { display: flex; gap: 1.75rem; list-style: none; }
+    .nav-links a { color: var(--text-soft); font-size: 0.875rem; transition: color 0.15s; }
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+    .btn-nav {
+      background: var(--accent); color: #fff !important;
+      padding: 0.38rem 1rem; border-radius: var(--radius);
+      font-size: 0.825rem; font-weight: 600;
+      transition: background 0.15s; white-space: nowrap;
+    }
+    .btn-nav:hover { background: var(--accent-hi) !important; text-decoration: none; }
+
+    /* ── SHARED ─────────────────────────── */
+    .wrap { max-width: var(--max); margin: 0 auto; }
+    section { padding: 5.5rem 1.5rem; }
+    .eyebrow {
+      font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.14em; color: var(--accent-hi); margin-bottom: 0.6rem;
+    }
+    h2 {
+      font-size: clamp(1.6rem, 3vw, 2.1rem); font-weight: 800;
+      letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 0.85rem;
+    }
+    .sub { color: var(--text-soft); max-width: 520px; font-size: 0.95rem; }
+
+    /* ── HERO ───────────────────────────── */
+    #hero {
+      min-height: calc(100vh - 58px);
+      display: flex; align-items: center;
+      padding: 4rem 1.5rem;
+      position: relative; overflow: hidden;
+    }
+    #hero::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse 70% 60% at 30% 40%, rgba(34,197,94,0.055) 0%, transparent 70%);
+    }
+    #hero::after {
+      content: ''; position: absolute; right: -120px; top: 10%;
+      width: 480px; height: 480px; pointer-events: none;
+      background: radial-gradient(circle, rgba(34,197,94,0.04) 0%, transparent 65%);
+    }
+    .hero-inner { position: relative; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      background: var(--accent-glow); border: 1px solid var(--accent-ring);
+      color: var(--accent-hi); font-size: 0.75rem; font-weight: 600;
+      padding: 0.3rem 0.8rem; border-radius: 999px; margin-bottom: 1.5rem;
+    }
+    .badge-dot { width: 6px; height: 6px; background: var(--accent-hi); border-radius: 50%; }
+    #hero h1 {
+      font-size: clamp(2.4rem, 5.5vw, 3.8rem); font-weight: 900;
+      letter-spacing: -0.035em; line-height: 1.08;
+      margin-bottom: 1.2rem; max-width: 700px;
+    }
+    #hero h1 .g { color: var(--accent-hi); }
+    .hero-desc {
+      font-size: 1.1rem; color: var(--text-soft);
+      max-width: 480px; margin-bottom: 2rem; line-height: 1.7;
+    }
+    .pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2.25rem; }
+    .pill {
+      background: var(--surface2); border: 1px solid var(--border);
+      padding: 0.3rem 0.75rem; border-radius: 999px;
+      font-size: 0.8rem; color: var(--text-soft);
+    }
+    .pill-price {
+      background: var(--price-glow); border-color: rgba(245,158,11,0.3);
+      color: var(--price); font-weight: 700;
+    }
+    .ctas { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      padding: 0.7rem 1.4rem; border-radius: var(--radius);
+      font-weight: 600; font-size: 0.9rem; transition: all 0.15s; cursor: pointer;
+    }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: var(--accent-hi); text-decoration: none; }
+    .btn-ghost {
+      background: transparent; color: var(--text-soft);
+      border: 1px solid var(--border);
+    }
+    .btn-ghost:hover { border-color: #404040; color: var(--text); text-decoration: none; }
+
+    /* ── SERVICES ───────────────────────── */
+    #services { background: var(--surface); }
+    .cards {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1px; margin-top: 2.75rem;
+      border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden;
+    }
+    .card {
+      background: var(--bg); padding: 2rem 1.75rem;
+      transition: background 0.15s;
+    }
+    .card:hover { background: #111; }
+    .card-icon { font-size: 1.6rem; margin-bottom: 1rem; }
+    .card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .card p { color: var(--text-soft); font-size: 0.875rem; line-height: 1.7; }
+
+    /* ── HOW IT WORKS ───────────────────── */
+    .steps {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 2rem; margin-top: 2.75rem;
+    }
+    .step-n {
+      font-size: 2.25rem; font-weight: 900; color: var(--border);
+      line-height: 1; margin-bottom: 0.6rem; font-variant-numeric: tabular-nums;
+    }
+    .step h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .step p { color: var(--text-soft); font-size: 0.845rem; line-height: 1.65; }
+
+    /* ── PRICING ────────────────────────── */
+    #pricing { background: var(--surface); }
+    .price-box {
+      margin-top: 2.75rem;
+      border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden;
+    }
+    .price-top {
+      display: flex; flex-wrap: wrap; gap: 2rem;
+      padding: 2.25rem; border-bottom: 1px solid var(--border);
+      align-items: flex-start;
+    }
+    .price-num { font-size: 2.9rem; font-weight: 900; color: var(--price); letter-spacing: -0.04em; }
+    .price-note { color: var(--text-muted); font-size: 0.8rem; margin-top: 0.2rem; }
+    .price-list { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; flex: 1; min-width: 220px; }
+    .price-list li { display: flex; gap: 0.5rem; font-size: 0.875rem; color: var(--text-soft); }
+    .price-list li::before { content: '✓'; color: var(--accent-hi); font-weight: 800; flex-shrink: 0; }
+    .price-bottom {
+      padding: 1.25rem 2.25rem; display: flex; align-items: center;
+      gap: 1.25rem; flex-wrap: wrap;
+    }
+    .pay-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); }
+    .pay-methods { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+    .pay-tag {
+      background: var(--surface2); border: 1px solid var(--border);
+      padding: 0.25rem 0.65rem; border-radius: 999px; font-size: 0.775rem; color: var(--text-soft);
+    }
+
+    /* ── LEGAL ──────────────────────────── */
+    .legal-cards {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem; margin-top: 2.75rem;
+    }
+    .legal-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.5rem;
+    }
+    .legal-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .legal-card p { color: var(--text-soft); font-size: 0.85rem; line-height: 1.65; }
+    .legal-quote {
+      margin-top: 1.75rem;
+      background: var(--accent-glow); border: 1px solid var(--accent-ring);
+      border-radius: var(--radius); padding: 1.25rem 1.5rem;
+      font-size: 0.875rem; color: var(--text); line-height: 1.65;
+    }
+    .legal-quote strong { color: var(--accent-hi); }
+
+    /* ── PORTFOLIO ──────────────────────── */
+    .portfolio-ph {
+      margin-top: 2.75rem;
+      border: 1px dashed var(--border); border-radius: var(--radius-lg);
+      padding: 4rem 2rem; text-align: center;
+    }
+    .portfolio-ph .ph-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+    .portfolio-ph strong { display: block; color: var(--text); font-size: 1rem; margin-bottom: 0.4rem; }
+    .portfolio-ph p { color: var(--text-soft); font-size: 0.875rem; max-width: 380px; margin: 0 auto; }
+
+    /* ── CONTACT ────────────────────────── */
+    #contact { background: var(--surface); }
+    .contact-cards {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem; margin-top: 2.75rem;
+    }
+    .contact-card {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.5rem;
+      display: flex; flex-direction: column; gap: 0.5rem;
+    }
+    .contact-card .ci { font-size: 1.4rem; }
+    .contact-card h3 { font-size: 0.95rem; font-weight: 700; }
+    .contact-card p { color: var(--text-soft); font-size: 0.83rem; line-height: 1.6; flex: 1; }
+    .contact-link {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      font-weight: 600; font-size: 0.875rem; color: var(--accent-hi);
+      margin-top: 0.4rem;
+    }
+    .contact-link:after { content: ' →'; }
+    .contact-note {
+      margin-top: 2rem; text-align: center;
+      color: var(--text-muted); font-size: 0.8rem;
+    }
+
+    /* ── FOOTER ─────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border-soft);
+      padding: 1.75rem 1.5rem; text-align: center;
+      color: var(--text-muted); font-size: 0.775rem;
+    }
+    footer a { color: var(--text-muted); }
+    footer a:hover { color: var(--text-soft); }
+    footer .sep { margin: 0 0.5rem; }
+
+    /* ── RESPONSIVE ─────────────────────── */
+    @media (max-width: 600px) {
+      section { padding: 3.5rem 1.2rem; }
+      .nav-links { display: none; }
+      .price-top { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner wrap">
+    <span class="brand">dheight<em>san</em></span>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#legal">Legal</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#contact" class="btn-nav">Get a quote</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="wrap hero-inner">
+    <div class="badge"><span class="badge-dot"></span>Open for commissions</div>
+    <h1>Minecraft mod porting<br>to <span class="g">Forge 1.20.1</span></h1>
+    <p class="hero-desc">
+      Fixed price. Fast delivery. License-first.<br>
+      The port work the big devs won't take.
+    </p>
+    <div class="pills">
+      <span class="pill pill-price">$40 – $150 flat</span>
+      <span class="pill">48 – 72h turnaround</span>
+      <span class="pill">Backport 1.21+ mods</span>
+      <span class="pill">Loader conversion</span>
+      <span class="pill">Textures &amp; assets</span>
+      <span class="pill">7-day guarantee</span>
+    </div>
+    <div class="ctas">
+      <a href="#contact" class="btn btn-primary">Get a quote</a>
+      <a href="#how-it-works" class="btn btn-ghost">How it works</a>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="wrap">
+    <div class="eyebrow">What I do</div>
+    <h2>Forge 1.20.1 porting, three ways</h2>
+    <p class="sub">Need a mod that isn't on Forge 1.20.1? Send me the link. Whether it's a newer release, a different loader, or a broken pack — this is my niche.</p>
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">⬇️</div>
+        <h3>Backport</h3>
+        <p>Mod released for 1.21+ but your pack runs 1.20.1? I backport the full mod — items, blocks, mechanics, textures — to Forge 1.20.1. Complete, not a partial port.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔄</div>
+        <h3>Loader conversion</h3>
+        <p>Fabric or NeoForge mod you need on Forge? I convert it, adapting APIs, events and mixins to the Forge 1.20.1 ecosystem. Functional parity guaranteed.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔧</div>
+        <h3>Pack compatibility fix</h3>
+        <p>Crashes, mod conflicts, or broken content in your 1.20.1 pack? I diagnose and fix the issue so your pack runs clean without pulling mods out.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how-it-works">
+  <div class="wrap">
+    <div class="eyebrow">Process</div>
+    <h2>Simple, async, no surprises</h2>
+    <p class="sub">Everything written. Price locked before I start. No calls, no ambiguity.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-n">01</div>
+        <h3>Send me the mod</h3>
+        <p>DM with the mod link and what you need. Open-source or licensed — both work. Tell me your deadline if you have one.</p>
+      </div>
+      <div class="step">
+        <div class="step-n">02</div>
+        <h3>Flat quote</h3>
+        <p>I review the mod and come back with a fixed price and timeline. No hourly rate, no scope creep after the fact.</p>
+      </div>
+      <div class="step">
+        <div class="step-n">03</div>
+        <h3>50% deposit</h3>
+        <p>You pay half upfront via PayPal G&amp;S, crypto USDT, or BuiltByBit escrow. Work starts immediately after payment.</p>
+      </div>
+      <div class="step">
+        <div class="step-n">04</div>
+        <h3>I port it</h3>
+        <p>Typically 48–72h. I handle the code, fix any dependency issues, and include all textures and assets.</p>
+      </div>
+      <div class="step">
+        <div class="step-n">05</div>
+        <h3>Delivery + final 50%</h3>
+        <p>You receive the working .jar and test it. Final payment before the file is released. Open-source ports get published on CurseForge &amp; Modrinth.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="wrap">
+    <div class="eyebrow">Pricing</div>
+    <h2>Fixed price, not hourly</h2>
+    <p class="sub">You know the full cost before any work starts. No invoices creeping up mid-project.</p>
+    <div class="price-box">
+      <div class="price-top">
+        <div>
+          <div class="price-num">$40 – $150</div>
+          <div class="price-note">flat quote · exact price after I see the mod</div>
+        </div>
+        <ul class="price-list">
+          <li>Price locked in writing before work starts</li>
+          <li>50% upfront · 50% on delivery</li>
+          <li>Textures and assets always included</li>
+          <li>7-day bug fix guarantee at no extra charge</li>
+          <li>Open-source ports: published on CF &amp; Modrinth</li>
+          <li>Licensed mods: private delivery to you only</li>
+        </ul>
+      </div>
+      <div class="price-bottom">
+        <span class="pay-label">Payment</span>
+        <div class="pay-methods">
+          <span class="pay-tag">PayPal G&amp;S</span>
+          <span class="pay-tag">Crypto USDT</span>
+          <span class="pay-tag">BBB escrow</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEGAL -->
+<section id="legal">
+  <div class="wrap">
+    <div class="eyebrow">Licenses &amp; rights</div>
+    <h2>I only port what I have rights to port</h2>
+    <p class="sub">Most devs in this space ignore licensing. I don't — because a DMCA takedown or account ban hurts you, not just me.</p>
+    <div class="legal-cards">
+      <div class="legal-card">
+        <h3>🌐 Public commissions</h3>
+        <p>Open-source mods (MIT · Apache · LGPL) or mods with written author permission. I port and publish to CurseForge &amp; Modrinth with full credit to the original author.</p>
+      </div>
+      <div class="legal-card">
+        <h3>🔒 Private commissions</h3>
+        <p>You bring a mod you have the right to use. I port it and deliver privately — only to you. You decide if and how to distribute it. I never publish it without your instruction.</p>
+      </div>
+      <div class="legal-card">
+        <h3>✋ What I won't do</h3>
+        <p>Publicly redistribute All Rights Reserved mods without written author permission. This protects your accounts on CurseForge, Modrinth and BuiltByBit from takedowns and bans.</p>
+      </div>
+    </div>
+    <div class="legal-quote">
+      <strong>The principle:</strong> You pay for my time writing the port — not for distribution rights. The right to publish always belongs to whoever holds the license. That's the only clean, legally sound way to run a porting service.
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="wrap">
+    <div class="eyebrow">Portfolio</div>
+    <h2>Published ports</h2>
+    <div class="portfolio-ph">
+      <div class="ph-icon">🔨</div>
+      <strong>First open-source ports in progress</strong>
+      <p>Backports in progress — will appear on CurseForge &amp; Modrinth soon. Have a specific mod in mind? DM me now and we can discuss it before the portfolio is up.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <div class="eyebrow">Contact</div>
+    <h2>Get a quote</h2>
+    <p class="sub">Written and async — BuiltByBit or Discord preferred. Send me the mod link and what you need; I'll come back with a flat price.</p>
+    <div class="contact-cards">
+      <div class="contact-card">
+        <div class="ci">🏪</div>
+        <h3>BuiltByBit</h3>
+        <p>Best for commissions. Escrow protection available. Preferred channel for first-time clients — keeps both sides safe.</p>
+        <!-- TODO: replace href with your BBB profile URL once the account is created -->
+        <a href="https://builtbybit.com" target="_blank" rel="noopener" class="contact-link">Open profile</a>
+      </div>
+      <div class="contact-card">
+        <div class="ci">💬</div>
+        <h3>Discord</h3>
+        <p>Fast replies. DM with the mod link and what you're after. Typical response under 24h.</p>
+        <!-- TODO: replace href with your Discord invite/profile link -->
+        <a href="#contact" class="contact-link">dheightsan</a>
+      </div>
+      <div class="contact-card">
+        <div class="ci">📧</div>
+        <h3>Email</h3>
+        <p>For longer inquiries, licensing questions, or if Discord and BBB don't work for you.</p>
+        <a href="mailto:josdansanpes2005@gmail.com" class="contact-link">Send email</a>
+      </div>
+    </div>
+    <p class="contact-note">Async and written only — no voice calls. Response time: typically under 24h.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    dheightsan · Forge 1.20.1 Mod Porting
+    <span class="sep">·</span>
+    <!-- TODO: add CF/Modrinth profile links when accounts are created -->
+    <a href="https://builtbybit.com" target="_blank" rel="noopener">BuiltByBit</a>
+    <span class="sep">·</span>
+    <a href="mailto:josdansanpes2005@gmail.com">Contact</a>
+  </div>
+</footer>
+
+</body>
+</html>
