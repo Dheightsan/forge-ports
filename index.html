@@ -582,9 +582,14 @@
         <div class="pwhy">Forge↔NeoForge is light; Fabric→Forge is a near-rewrite, priced highest.</div>
       </div>
       <div class="prow">
+        <div class="pservice">Closed-source (ARR) mod <small>private delivery only</small></div>
+        <div class="pprice">+50%</div>
+        <div class="pwhy">No public listing, no portfolio entry. You pay for my time on your private copy. Stacks on top of all other premiums.</div>
+      </div>
+      <div class="prow">
         <div class="pservice">Compatibility patch <small>make mods coexist</small></div>
         <div class="pprice">from $50</div>
-        <div class="pwhy">Publishable add-on (my own code). Quoted by how many mods and how deep.</div>
+        <div class="pwhy">Publishable add-on (my own code). Quoted by scope and mod count. Closed-source mods add +25%.</div>
       </div>
     </div>
 
@@ -747,7 +752,8 @@
     if (state.service === 'compat') {
       var sMap = { simple: [50, 110], moderate: [110, 220], deep: [220, 450] };
       var r = sMap[state.scope] || sMap.simple;
-      return { lo: r[0], hi: r[1], custom: true };
+      var cm = state.openSource === 'closed' ? 1.25 : 1;
+      return { lo: round5(r[0] * cm), hi: round5(r[1] * cm), custom: true };
     }
     var baseMap = { small: [40, 80], medium: [80, 140], large: [140, 220] };
     var b = baseMap[state.size] || baseMap.medium;
@@ -755,6 +761,7 @@
     if (state.target === 'other') mult *= 1.5;
     if (state.loader === 'fabric') mult *= 1.8;
     if (state.service === 'forward') mult *= 1.25;
+    if (state.openSource === 'closed') mult *= 1.5;
     return { lo: round5(lo * mult), hi: round5(hi * mult), custom: false };
   }
 
@@ -767,12 +774,15 @@
 
   function buildNote() {
     if (state.service === 'compat') {
-      return 'Compatibility is <span class="premium">always a custom quote</span> until I see the mods. ' + delivery();
+      var cn = 'Compatibility is <span class="premium">always a custom quote</span> until I see the mods. ';
+      if (state.openSource === 'closed') cn += '<span class="premium">+25% ARR surcharge</span> — working on closed source. ';
+      return cn + delivery();
     }
     var prem = [];
     if (state.target === 'other') prem.push('a non-1.20.1 version');
     if (state.loader === 'fabric') prem.push('a Fabric&rarr;Forge rewrite');
     if (state.service === 'forward') prem.push('forward-porting across versions');
+    if (state.openSource === 'closed') prem.push('closed-source private delivery (+50%)');
     var base = prem.length === 0
       ? 'Base rate — Forge 1.20.1, same loader, is as low as it gets. '
       : '<span class="premium">Premium</span> for ' + prem.join(' and ') + '. ';
