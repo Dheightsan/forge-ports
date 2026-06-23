@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Forge 1.20.1 Mod Porting — dheightsan</title>
-  <meta name="description" content="Specialist Minecraft mod backporting to Forge 1.20.1. Fixed price from $40, 48–72h. Loader conversion, other versions and cross-mod compatibility patches also available. License-first.">
-  <meta property="og:title" content="Forge 1.20.1 Mod Porting — dheightsan">
-  <meta property="og:description" content="1.20.1 specialist. Fixed price from $40 · 48–72h · Textures included. The port work the big devs won't take.">
+  <meta name="description" content="Minecraft mod porting, backporting &amp; reviving — any version, any loader. Forge 1.20.1 specialist. Fixed price from $40, 48–72h, 7-day guarantee. License-first, escrow payment.">
+  <meta property="og:title" content="Minecraft Mod Porting — dheightsan">
+  <meta property="og:description" content="Port, backport &amp; revive Minecraft mods · Any version, any loader · From $40 flat · 48–72h · License-first.">
   <meta property="og:type" content="website">
   <meta name="theme-color" content="#0d0d0d">
   <link rel="canonical" href="https://dheightsan.github.io/forge-ports/">
@@ -355,6 +355,13 @@
     footer a:hover { color: var(--text-soft); }
     footer .sep { margin: 0 0.5rem; }
 
+    /* ── ABOUT ─────────────────────────── */
+    .about-body { margin-top: 2rem; max-width: 680px; }
+    .about-body p { color: var(--text-soft); font-size: 0.925rem; line-height: 1.78; }
+    .about-body p + p { margin-top: 1rem; }
+    .about-gh { display: inline-flex; align-items: center; gap: 0.3rem; margin-top: 1.4rem; font-weight: 700; font-size: 0.9rem; color: var(--accent-hi); }
+    .about-gh:after { content: ' →'; }
+
     /* ── RESPONSIVE ─────────────────────── */
     @media (max-width: 760px) {
       .estimator { grid-template-columns: 1fr; }
@@ -405,7 +412,7 @@
       <a href="#estimator" class="btn btn-primary">Estimate my commission</a>
       <a href="#services" class="btn btn-ghost">See services</a>
     </div>
-    <p class="hero-trust">Free quote · No payment until we agree · BuiltByBit escrow available</p>
+    <p class="hero-trust">Free quote · No payment until we agree · BuiltByBit escrow available · Replies within 24h</p>
   </div>
 </section>
 
@@ -676,8 +683,23 @@
     <h2>Published ports</h2>
     <div class="portfolio-ph">
       <div class="ph-icon">🔨</div>
-      <strong>First open-source ports shipping now</strong>
-      <p>I'm publishing my first backports to CurseForge &amp; Modrinth — full source on GitHub, licenses respected, original authors credited. Links land here as each one goes live. Want a specific mod? DM me now and we'll talk before the queue fills.</p>
+      <strong>First ports arriving soon</strong>
+      <p>Open-source ports underway — links appear here with CurseForge &amp; Modrinth pages as each one ships. <strong>Early clients get a discounted rate in exchange for an honest verified review</strong> — this window won't last. DM now to lock your spot before the portfolio fills.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="eyebrow">Who I am</div>
+    <h2>One dev. Full accountability.</h2>
+    <p class="sub">No team, no outsourcing — whoever takes your commission is the person who writes and debugs every line.</p>
+    <div class="about-body">
+      <p>Like most pack builders, I spent years chasing mods that never got updated. I started porting them myself — and after enough of them on Forge 1.20.1, I know the API cold: every event handler, every Gradle quirk, every mapping gap between versions.</p>
+      <p>I built this service because the market sits between two extremes: established devs who won't touch small commissions, and cheap alternatives that skip the license work until a DMCA takedown hits your CurseForge account. Fixed price, license-first, everything in writing.</p>
+      <p>My code is on GitHub. You can verify it before you pay anything.</p>
+      <a href="https://github.com/Dheightsan" class="about-gh" target="_blank" rel="noopener noreferrer">Verify on GitHub</a>
     </div>
   </div>
 </section>
