@@ -22,9 +22,9 @@
   </g>
 
   <text x="76" y="318" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="82" font-weight="900" letter-spacing="-3" fill="#e2e8f0">Minecraft mod porting</text>
-  <text x="76" y="404" font-family="system-ui, sans-serif" font-size="82" font-weight="900" letter-spacing="-3" fill="#e2e8f0">to <tspan fill="#22c55e">Forge 1.20.1</tspan></text>
+  <text x="76" y="404" font-family="system-ui, sans-serif" font-size="72" font-weight="900" letter-spacing="-2" fill="#e2e8f0">any version, <tspan fill="#22c55e">any loader</tspan></text>
 
-  <text x="80" y="478" font-family="system-ui, sans-serif" font-size="30" font-weight="500" fill="#94a3b8">The port work the big devs won't take.</text>
+  <text x="80" y="478" font-family="system-ui, sans-serif" font-size="30" font-weight="500" fill="#94a3b8">Forge 1.20.1 specialist · the work big devs won't take.</text>
 
   <g font-family="system-ui, sans-serif" font-size="24" font-weight="700">
     <g transform="translate(80,516)">
