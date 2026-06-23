@@ -9,6 +9,11 @@
   <meta property="og:description" content="1.20.1 specialist. Fixed price from $40 · 48–72h · Textures included. The port work the big devs won't take.">
   <meta property="og:type" content="website">
   <meta name="theme-color" content="#0d0d0d">
+  <link rel="canonical" href="https://dheightsan.github.io/forge-ports/">
+  <meta property="og:url" content="https://dheightsan.github.io/forge-ports/">
+  <meta property="og:image" content="https://dheightsan.github.io/forge-ports/og.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='13' font-size='13'>🔨</text></svg>">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -26,7 +31,7 @@
       --price-glow:   rgba(245, 158, 11, 0.12);
       --text:         #e2e8f0;
       --text-soft:    #94a3b8;
-      --text-muted:   #4b5563;
+      --text-muted:   #6b7280;
       --radius:       8px;
       --radius-lg:    12px;
       --max:          1080px;
@@ -45,6 +50,9 @@
 
     a { color: var(--accent-hi); text-decoration: none; }
     a:hover { text-decoration: underline; }
+    a:focus-visible, button:focus-visible, .est-opt:focus-visible, .faq-q:focus-visible {
+      outline: 2px solid var(--accent-hi); outline-offset: 2px; border-radius: 4px;
+    }
 
     /* ── NAV ────────────────────────────── */
     nav {
@@ -63,7 +71,7 @@
     .nav-links a { color: var(--text-soft); font-size: 0.875rem; transition: color 0.15s; }
     .nav-links a:hover { color: var(--text); text-decoration: none; }
     .btn-nav {
-      background: var(--accent); color: #fff !important;
+      background: var(--accent); color: #052e16 !important;
       padding: 0.38rem 1rem; border-radius: var(--radius);
       font-size: 0.825rem; font-weight: 600;
       transition: background 0.15s; white-space: nowrap;
@@ -134,7 +142,7 @@
       font-weight: 600; font-size: 0.9rem; transition: all 0.15s; cursor: pointer;
       border: none; font-family: inherit;
     }
-    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary { background: var(--accent); color: #052e16; }
     .btn-primary:hover { background: var(--accent-hi); text-decoration: none; }
     .btn-ghost {
       background: transparent; color: var(--text-soft);
@@ -186,7 +194,7 @@
     .est-options { display: flex; flex-wrap: wrap; gap: 0.5rem; }
     .est-opt {
       background: var(--surface2); border: 1px solid var(--border);
-      color: var(--text-soft); padding: 0.5rem 0.95rem; border-radius: var(--radius);
+      color: var(--text-soft); padding: 0.6rem 1rem; min-height: 40px; border-radius: var(--radius);
       font-size: 0.83rem; font-weight: 600; cursor: pointer; transition: all 0.15s;
       font-family: inherit;
     }
@@ -215,11 +223,11 @@
       background: var(--bg); border: 1px solid var(--border-soft);
       border-radius: var(--radius); padding: 0.85rem 1rem;
       font-size: 0.78rem; color: var(--text-soft); line-height: 1.7;
-      margin-bottom: 1rem; white-space: pre-wrap; font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+      margin-bottom: 1rem; white-space: pre-wrap; overflow-wrap: anywhere; font-family: ui-monospace, 'SF Mono', Menlo, monospace;
     }
     .est-copy {
       width: 100%; justify-content: center;
-      background: var(--accent); color: #fff;
+      background: var(--accent); color: #052e16;
     }
     .est-copy:hover { background: var(--accent-hi); }
     .est-copy.done { background: var(--surface2); color: var(--accent-hi); border: 1px solid var(--accent-ring); }
@@ -302,7 +310,7 @@
       max-height: 0; overflow: hidden; transition: max-height 0.25s ease, padding 0.25s ease;
       color: var(--text-soft); font-size: 0.875rem; line-height: 1.7;
     }
-    .faq-item.open .faq-a { max-height: 240px; padding-bottom: 1.2rem; }
+    .faq-item.open .faq-a { max-height: 600px; padding-bottom: 1.2rem; }
 
     /* ── PORTFOLIO ──────────────────────── */
     #portfolio { background: var(--surface); }
@@ -333,6 +341,8 @@
       font-weight: 600; font-size: 0.875rem; color: var(--accent-hi); margin-top: 0.4rem;
     }
     .contact-link:after { content: ' →'; }
+    .contact-soon { display: inline-block; margin-top: 0.4rem; font-size: 0.83rem; color: var(--text-muted); font-weight: 600; }
+    .hero-trust { margin-top: 1.1rem; font-size: 0.82rem; color: var(--text-muted); }
     .contact-note { margin-top: 2rem; text-align: center; color: var(--text-muted); font-size: 0.8rem; }
 
     /* ── FOOTER ─────────────────────────── */
@@ -352,7 +362,7 @@
     }
     @media (max-width: 600px) {
       section { padding: 3.5rem 1.2rem; }
-      .nav-links { display: none; }
+      .nav-links li:not(.nav-cta) { display: none; }
       .prow { grid-template-columns: 1fr; gap: 0.4rem; padding: 1rem 1.2rem; }
       .prow-head { display: none; }
       .pprice { font-size: 1.1rem; }
@@ -370,7 +380,7 @@
       <li><a href="#estimator">Estimate</a></li>
       <li><a href="#pricing">Pricing</a></li>
       <li><a href="#legal">Legal</a></li>
-      <li><a href="#contact" class="btn-nav">Get a quote</a></li>
+      <li class="nav-cta"><a href="#contact" class="btn-nav">Get a quote</a></li>
     </ul>
   </div>
 </nav>
@@ -395,6 +405,7 @@
       <a href="#estimator" class="btn btn-primary">Estimate my commission</a>
       <a href="#services" class="btn btn-ghost">See services</a>
     </div>
+    <p class="hero-trust">Free quote · No payment until we agree · BuiltByBit escrow available</p>
   </div>
 </section>
 
@@ -518,8 +529,8 @@
       </div>
       <div class="step">
         <div class="step-n">03</div>
-        <h3>50% deposit</h3>
-        <p>Half upfront via PayPal G&amp;S, crypto USDT, or BuiltByBit escrow. Work starts as soon as it lands.</p>
+        <h3>Fund escrow</h3>
+        <p>Pay through BuiltByBit escrow — your money is held by BBB and only released once the working mod is in your hands. (Returning clients can use a simple 50% deposit instead.)</p>
       </div>
       <div class="step">
         <div class="step-n">04</div>
@@ -571,11 +582,11 @@
     <div class="pfoot">
       <span class="pay-label">Payment</span>
       <div class="pay-methods">
+        <span class="pay-tag">BuiltByBit escrow</span>
         <span class="pay-tag">PayPal G&amp;S</span>
         <span class="pay-tag">Crypto USDT</span>
-        <span class="pay-tag">BBB escrow</span>
       </div>
-      <span class="pay-label" style="margin-left:auto">50% upfront · 50% on delivery</span>
+      <span class="pay-label" style="margin-left:auto">Escrow-protected · pay on delivery</span>
     </div>
   </div>
 </section>
@@ -613,28 +624,32 @@
     <h2>Before you ask</h2>
     <div class="faq-list">
       <div class="faq-item">
-        <button type="button" class="faq-q">Why is 1.20.1 cheaper than other versions? <span class="faq-icon">+</span></button>
+        <button type="button" class="faq-q">Why is 1.20.1 cheaper than other versions? <span class="faq-icon" aria-hidden="true">+</span></button>
         <div class="faq-a">It's my specialty. I know the 1.20.1 Forge ecosystem deeply, so I'm faster and can pass that efficiency on as a lower price. Other versions take me longer, so they carry a premium.</div>
       </div>
       <div class="faq-item">
-        <button type="button" class="faq-q">What exactly is a compatibility patch? <span class="faq-icon">+</span></button>
+        <button type="button" class="faq-q">What exactly is a compatibility patch? <span class="faq-icon" aria-hidden="true">+</span></button>
         <div class="faq-a">Making two or more mods work together without creating new content — for example, getting one mod's mobs to spawn in another mod's biomes, or resolving a conflict that breaks a feature. It's bespoke work, so it's always a custom quote.</div>
       </div>
       <div class="faq-item">
-        <button type="button" class="faq-q">Is this legal? <span class="faq-icon">+</span></button>
+        <button type="button" class="faq-q">Is this legal? <span class="faq-icon" aria-hidden="true">+</span></button>
         <div class="faq-a">Yes. You pay for my time writing the port, not for distribution rights. I publish only open-source mods or mods with written permission; anything else is delivered privately to whoever holds the right to use it. See the Licenses section above.</div>
       </div>
       <div class="faq-item">
-        <button type="button" class="faq-q">How do I pay safely? <span class="faq-icon">+</span></button>
-        <div class="faq-a">50% upfront, 50% on delivery, via PayPal Goods &amp; Services (buyer-protected), crypto USDT, or BuiltByBit's escrow/middleman. For first-time clients I recommend BuiltByBit escrow so we're both covered.</div>
+        <button type="button" class="faq-q">How do I pay safely? <span class="faq-icon" aria-hidden="true">+</span></button>
+        <div class="faq-a">BuiltByBit escrow is the default: BBB holds your payment and only releases it once you have the working mod — I can't touch it until you're satisfied, which removes the "pay and they vanish" risk entirely. PayPal Goods &amp; Services (buyer-protected) and crypto USDT are also available; a simple 50% deposit is reserved for returning clients.</div>
       </div>
       <div class="faq-item">
-        <button type="button" class="faq-q">How long does it take? <span class="faq-icon">+</span></button>
+        <button type="button" class="faq-q">How long does it take? <span class="faq-icon" aria-hidden="true">+</span></button>
         <div class="faq-a">Most 1.20.1 ports land in 48–72 hours. Larger mods, other versions, loader conversions and compatibility work run on a timeline we agree on before starting.</div>
       </div>
       <div class="faq-item">
-        <button type="button" class="faq-q">What if the port doesn't work? <span class="faq-icon">+</span></button>
-        <div class="faq-a">Every commission includes a 7-day bug-fix guarantee at no extra charge. You test before final payment is released, so you're never paying for something that doesn't run.</div>
+        <button type="button" class="faq-q">What if the port doesn't work? <span class="faq-icon" aria-hidden="true">+</span></button>
+        <div class="faq-a">If I can't get the port working, you don't pay — simple as that. Every delivered commission also carries a 7-day guarantee: if it crashes or breaks, I fix it free or refund you. With escrow you test the working mod before any money is released, so you never pay for something that doesn't run.</div>
+      </div>
+      <div class="faq-item">
+        <button type="button" class="faq-q" aria-expanded="false">What's out of scope? <span class="faq-icon" aria-hidden="true">+</span></button>
+        <div class="faq-a">I write code. Textures, 3D models and animations, full gameplay/balance redesigns, and ongoing maintenance across future Minecraft versions are each a separate quote — not part of a standard port. Tell me upfront if you need any of these and I'll fold it into the price.</div>
       </div>
     </div>
   </div>
@@ -647,8 +662,8 @@
     <h2>Published ports</h2>
     <div class="portfolio-ph">
       <div class="ph-icon">🔨</div>
-      <strong>First open-source ports in progress</strong>
-      <p>Backports in progress — they'll appear here on CurseForge &amp; Modrinth soon. Have a specific mod in mind? DM me now; we can talk before the portfolio is live.</p>
+      <strong>First open-source ports shipping now</strong>
+      <p>I'm publishing my first backports to CurseForge &amp; Modrinth — full source on GitHub, licenses respected, original authors credited. Links land here as each one goes live. Want a specific mod? DM me now and we'll talk before the queue fills.</p>
     </div>
   </div>
 </section>
@@ -663,16 +678,16 @@
       <div class="contact-card">
         <div class="ci">🏪</div>
         <h3>BuiltByBit</h3>
-        <p>Best for commissions. Escrow protection available — the safe default for first-time clients.</p>
-        <!-- TODO: replace href with your BBB profile URL once the account is created -->
-        <a href="https://builtbybit.com" target="_blank" rel="noopener" class="contact-link">Open profile</a>
+        <p>Best for commissions — escrow-protected, the safe default for first-time clients.</p>
+        <!-- TODO: swap in your BBB profile link with class "contact-link" once the account exists -->
+        <span class="contact-soon">Profile coming soon</span>
       </div>
       <div class="contact-card">
         <div class="ci">💬</div>
         <h3>Discord</h3>
         <p>Fast replies. DM the mod link and what you're after. Typical response under 24h.</p>
-        <!-- TODO: replace href with your Discord invite/profile link -->
-        <a href="#contact" class="contact-link">dheightsan</a>
+        <!-- TODO: swap in your Discord invite link with class "contact-link" once set up -->
+        <span class="contact-soon">DM coming soon</span>
       </div>
       <div class="contact-card">
         <div class="ci">📧</div>
@@ -690,9 +705,6 @@
 <footer>
   <div>
     dheightsan · Forge 1.20.1 Mod Porting
-    <span class="sep">·</span>
-    <!-- TODO: add CF/Modrinth profile links when accounts are created -->
-    <a href="https://builtbybit.com" target="_blank" rel="noopener">BuiltByBit</a>
     <span class="sep">·</span>
     <a href="mailto:josdansanpes2005@gmail.com">Contact</a>
   </div>
@@ -798,8 +810,9 @@
       state[group] = value;
       // update active styling within this group
       var opts = this.querySelectorAll('.est-opt');
-      for (var j = 0; j < opts.length; j++) opts[j].classList.remove('active');
+      for (var j = 0; j < opts.length; j++) { opts[j].classList.remove('active'); opts[j].setAttribute('aria-pressed', 'false'); }
       btn.classList.add('active');
+      btn.setAttribute('aria-pressed', 'true');
       render();
     });
   }
@@ -832,9 +845,17 @@
   // FAQ accordion
   var faqs = document.querySelectorAll('.faq-q');
   for (var k = 0; k < faqs.length; k++) {
+    faqs[k].setAttribute('aria-expanded', 'false');
     faqs[k].addEventListener('click', function () {
-      this.parentElement.classList.toggle('open');
+      var open = this.parentElement.classList.toggle('open');
+      this.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
+  }
+
+  // init ARIA pressed-state on estimator options
+  var allOpts = document.querySelectorAll('.est-opt');
+  for (var m = 0; m < allOpts.length; m++) {
+    allOpts[m].setAttribute('aria-pressed', allOpts[m].classList.contains('active') ? 'true' : 'false');
   }
 
   render();
