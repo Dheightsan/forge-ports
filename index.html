@@ -389,16 +389,16 @@
 <section id="hero">
   <div class="wrap hero-inner">
     <div class="badge"><span class="badge-dot"></span>Open for commissions</div>
-    <h1>The <span class="g">Forge 1.20.1</span><br>mod porting specialist</h1>
+    <h1>Port, backport &amp; revive<br>Minecraft mods — <span class="g">any version, any loader</span></h1>
     <p class="hero-desc">
-      1.20.1 is all I do — so I do it fast, fixed-price, and license-first.
-      Other versions, loader conversions and cross-mod compatibility on request.
+      Forge 1.20.1 is my specialty and base rate — but I move mods up, down, and across loaders.
+      Fast, fixed-price, license-first.
     </p>
     <div class="pills">
       <span class="pill pill-price">From $40 flat</span>
       <span class="pill">48 – 72h turnaround</span>
-      <span class="pill">1.20.1 specialist</span>
-      <span class="pill">Textures &amp; assets included</span>
+      <span class="pill">Forge 1.20.1 specialist</span>
+      <span class="pill">Backport · forward-port · revive</span>
       <span class="pill">7-day guarantee</span>
     </div>
     <div class="ctas">
@@ -413,32 +413,32 @@
 <section id="services">
   <div class="wrap">
     <div class="eyebrow">What I do</div>
-    <h2>Four services, one specialty</h2>
-    <p class="sub">Forge 1.20.1 is my base rate because it's where I'm fastest. Everything that pulls me outside it — a different version, a loader change, cross-mod work — is priced as a premium.</p>
+    <h2>Any direction, any loader</h2>
+    <p class="sub">Forge 1.20.1 is my base rate because it's where I'm fastest. Bringing a mod up to a newer version, down to an older one, across loaders, or making mods coexist — each is priced by how much real work it takes.</p>
     <div class="cards">
       <div class="card">
         <div class="card-icon">🎯</div>
-        <h3>Backport to Forge 1.20.1</h3>
-        <p>A mod released for 1.21+ that your pack needs on 1.20.1. Full backport — items, blocks, mechanics, textures. This is my specialty and my base price.</p>
+        <h3>Backport</h3>
+        <p>A newer mod (1.21+) that your pack needs on an older version like Forge 1.20.1. Full backport — items, blocks, mechanics, textures. 1.20.1 is my specialty and base price.</p>
         <span class="card-tag tag-base">Base rate</span>
       </div>
       <div class="card">
-        <div class="card-icon">⬆️</div>
-        <h3>Port to another version</h3>
-        <p>Need a mod on a version other than 1.20.1? I take it on, but since it's outside my core specialty it carries a premium over the base rate.</p>
-        <span class="card-tag tag-premium">Premium</span>
+        <div class="card-icon">⏫</div>
+        <h3>Forward-port &amp; revive</h3>
+        <p>A beloved old or abandoned mod stuck on 1.12 / 1.16 / 1.18 that you want on a modern version. The biggest, most underserved kind of port — priced by how many version walls it crosses.</p>
+        <span class="card-tag tag-premium">By complexity</span>
       </div>
       <div class="card">
         <div class="card-icon">🔄</div>
         <h3>Loader conversion</h3>
-        <p>Fabric or NeoForge mod you need on Forge. Translating APIs, events and mixins between loaders is extra work, so it's priced above a same-loader backport.</p>
-        <span class="card-tag tag-premium">Premium</span>
+        <p>Fabric, NeoForge or Forge — moved to the loader you need. Forge↔NeoForge is light; <strong>Fabric→Forge is a near-rewrite</strong> (different events, registries, mixins) and priced accordingly.</p>
+        <span class="card-tag tag-premium">By complexity</span>
       </div>
       <div class="card">
         <div class="card-icon">🧩</div>
         <h3>Compatibility patches</h3>
-        <p>Making mods work together — no new content. Mob spawning in another mod's biomes, features that should coexist, conflicts resolved. Bespoke work, custom quote.</p>
-        <span class="card-tag tag-custom">Custom quote</span>
+        <p>Make any mods coexist — two native mods, a ported mod and a native one, mob spawning across mods, conflicts resolved. Works <strong>even for closed-source mods</strong> and ships as a publishable add-on.</p>
+        <span class="card-tag tag-base">Publishable</span>
       </div>
     </div>
   </div>
@@ -457,8 +457,9 @@
         <div class="est-group" id="grp-service">
           <div class="est-label">What do you need?</div>
           <div class="est-options" data-group="service">
-            <button type="button" class="est-opt active" data-value="port">Port / Backport a mod</button>
-            <button type="button" class="est-opt" data-value="compat">Make mods compatible</button>
+            <button type="button" class="est-opt active" data-value="backport">Backport<small>newer → older</small></button>
+            <button type="button" class="est-opt" data-value="forward">Forward-port / revive<small>old → modern</small></button>
+            <button type="button" class="est-opt" data-value="compat">Compatibility<small>make mods coexist</small></button>
           </div>
         </div>
 
@@ -473,8 +474,8 @@
         <div class="est-group" id="grp-loader">
           <div class="est-label">Source mod loader</div>
           <div class="est-options" data-group="loader">
-            <button type="button" class="est-opt active" data-value="same">Already Forge<small>same-loader backport</small></button>
-            <button type="button" class="est-opt" data-value="convert">Fabric / NeoForge<small>needs conversion</small></button>
+            <button type="button" class="est-opt active" data-value="sameforge">Forge / NeoForge<small>same family — light</small></button>
+            <button type="button" class="est-opt" data-value="fabric">From Fabric<small>near-rewrite</small></button>
           </div>
         </div>
 
@@ -484,6 +485,14 @@
             <button type="button" class="est-opt" data-value="small">Small<small>items, blocks, config</small></button>
             <button type="button" class="est-opt active" data-value="medium">Medium<small>mechanics, entities, GUI</small></button>
             <button type="button" class="est-opt" data-value="large">Large<small>tech mod, worldgen</small></button>
+          </div>
+        </div>
+
+        <div class="est-group" id="grp-license">
+          <div class="est-label">Mod license <span class="est-hint">— sets how it's delivered</span></div>
+          <div class="est-options" data-group="openSource">
+            <button type="button" class="est-opt active" data-value="open">Open-source / I have permission<small>publishable</small></button>
+            <button type="button" class="est-opt" data-value="closed">Closed-source (ARR)<small>private delivery</small></button>
           </div>
         </div>
 
@@ -563,19 +572,19 @@
         <div class="pwhy">The base rate. Where I'm fastest and most efficient.</div>
       </div>
       <div class="prow">
-        <div class="pservice">Port to another version</div>
-        <div class="pprice">+50%</div>
-        <div class="pwhy">Outside the 1.20.1 specialty — slower, so priced higher.</div>
+        <div class="pservice">Other version / forward-port <small>old → modern</small></div>
+        <div class="pprice">by complexity</div>
+        <div class="pwhy">Priced by how many version "walls" the jump crosses (1.18 worldgen, 1.21 data components…).</div>
       </div>
       <div class="prow">
-        <div class="pservice">Loader conversion <small>Fabric / NeoForge → Forge</small></div>
-        <div class="pprice">+40%</div>
-        <div class="pwhy">Translating APIs, events and mixins between loaders is real extra work.</div>
+        <div class="pservice">Loader conversion <small>Fabric ↔ Forge ↔ NeoForge</small></div>
+        <div class="pprice">+40–80%</div>
+        <div class="pwhy">Forge↔NeoForge is light; Fabric→Forge is a near-rewrite, priced highest.</div>
       </div>
       <div class="prow">
         <div class="pservice">Compatibility patch <small>make mods coexist</small></div>
-        <div class="pprice">Custom</div>
-        <div class="pwhy">Bespoke per case — quoted after I see which mods and what conflict.</div>
+        <div class="pprice">from $50</div>
+        <div class="pwhy">Publishable add-on (my own code). Quoted by how many mods and how deep.</div>
       </div>
     </div>
 
@@ -599,16 +608,16 @@
     <p class="sub">Most devs in this space ignore licensing. I don't — because a DMCA takedown or account ban hurts you, not just me.</p>
     <div class="legal-cards">
       <div class="legal-card">
-        <h3>🌐 Public commissions</h3>
-        <p>Open-source mods (MIT · Apache · LGPL) or mods with written author permission. I port and publish to CurseForge &amp; Modrinth with full credit to the original author.</p>
+        <h3>🌐 Public — open-source &amp; compatibility</h3>
+        <p>Open-source mods (MIT · Apache · LGPL), mods with written permission, and compatibility add-ons (my own code, depending on mods you install yourself) get published to CurseForge &amp; Modrinth — full credit to original authors.</p>
       </div>
       <div class="legal-card">
-        <h3>🔒 Private commissions</h3>
-        <p>You bring a mod you have the right to use. I port it and deliver privately — to you only. You decide if and how to distribute it. I never publish it without your instruction.</p>
+        <h3>🔒 Private — closed-source mods</h3>
+        <p>Most requested mods are closed-source. You bring one you have the right to use; I modify it for you and deliver privately — to you only, never published. You pay for my time, not for redistribution.</p>
       </div>
       <div class="legal-card">
         <h3>✋ What I won't do</h3>
-        <p>Publicly redistribute All Rights Reserved mods without written author permission. This protects your accounts on CurseForge, Modrinth and BuiltByBit from takedowns and bans.</p>
+        <p>Publicly redistribute a closed-source (All Rights Reserved) mod without written author permission. That's the one line I never cross — it protects your accounts from takedowns and bans.</p>
       </div>
     </div>
     <div class="legal-quote">
@@ -715,18 +724,20 @@
   'use strict';
 
   var state = {
-    service: 'port',
+    service: 'backport',
     target: '1201',
-    loader: 'same',
+    loader: 'sameforge',
     size: 'medium',
+    openSource: 'open',
     scope: 'simple'
   };
 
   var LABELS = {
-    service: { port: 'Port / Backport', compat: 'Compatibility patch' },
+    service: { backport: 'Backport (newer → older)', forward: 'Forward-port / revive (old → modern)', compat: 'Compatibility patch' },
     target:  { '1201': 'Forge 1.20.1', other: 'Another version' },
-    loader:  { same: 'Already Forge (same loader)', convert: 'Fabric / NeoForge → Forge' },
+    loader:  { sameforge: 'Forge / NeoForge (same family)', fabric: 'From Fabric (near-rewrite)' },
     size:    { small: 'Small', medium: 'Medium', large: 'Large' },
+    openSource: { open: 'Open-source / permission', closed: 'Closed-source (ARR)' },
     scope:   { simple: 'Simple', moderate: 'Moderate', deep: 'Deep' }
   };
 
@@ -734,38 +745,48 @@
 
   function compute() {
     if (state.service === 'compat') {
-      var sMap = { simple: [50, 100], moderate: [100, 200], deep: [200, 400] };
+      var sMap = { simple: [50, 110], moderate: [110, 220], deep: [220, 450] };
       var r = sMap[state.scope] || sMap.simple;
       return { lo: r[0], hi: r[1], custom: true };
     }
-    var baseMap = { small: [40, 70], medium: [70, 120], large: [120, 200] };
+    var baseMap = { small: [40, 80], medium: [80, 140], large: [140, 220] };
     var b = baseMap[state.size] || baseMap.medium;
     var lo = b[0], hi = b[1], mult = 1;
     if (state.target === 'other') mult *= 1.5;
-    if (state.loader === 'convert') mult *= 1.4;
+    if (state.loader === 'fabric') mult *= 1.8;
+    if (state.service === 'forward') mult *= 1.25;
     return { lo: round5(lo * mult), hi: round5(hi * mult), custom: false };
+  }
+
+  function delivery() {
+    if (state.service === 'compat') return 'Ships as a publishable add-on — my own code, so it works even for closed-source mods.';
+    return state.openSource === 'open'
+      ? 'Open-source / permitted → publishable on CurseForge and Modrinth, author credited.'
+      : 'Closed-source → delivered privately to you only; never published.';
   }
 
   function buildNote() {
     if (state.service === 'compat') {
-      return 'Compatibility work is <span class="premium">always a custom quote</span> — this is a ballpark until I see which mods are involved.';
+      return 'Compatibility is <span class="premium">always a custom quote</span> until I see the mods. ' + delivery();
     }
     var prem = [];
     if (state.target === 'other') prem.push('a non-1.20.1 version');
-    if (state.loader === 'convert') prem.push('a loader conversion');
-    if (prem.length === 0) {
-      return 'Base rate — Forge 1.20.1 is my specialty, so this is as low as it gets.';
-    }
-    return '<span class="premium">Premium applied</span> for ' + prem.join(' and ') + ' — outside the 1.20.1 base.';
+    if (state.loader === 'fabric') prem.push('a Fabric&rarr;Forge rewrite');
+    if (state.service === 'forward') prem.push('forward-porting across versions');
+    var base = prem.length === 0
+      ? 'Base rate — Forge 1.20.1, same loader, is as low as it gets. '
+      : '<span class="premium">Premium</span> for ' + prem.join(' and ') + '. ';
+    return base + delivery();
   }
 
   function buildSummary(est) {
     var lines = ['Hi! I\'d like a quote for a commission.', ''];
     lines.push('• Service: ' + LABELS.service[state.service]);
-    if (state.service === 'port') {
+    if (state.service !== 'compat') {
       lines.push('• Target version: ' + LABELS.target[state.target]);
       lines.push('• Source loader: ' + LABELS.loader[state.loader]);
       lines.push('• Mod size: ' + LABELS.size[state.size]);
+      lines.push('• License: ' + LABELS.openSource[state.openSource]);
     } else {
       lines.push('• Scope: ' + LABELS.scope[state.scope]);
     }
@@ -783,10 +804,11 @@
 
   function render() {
     // conditional groups
-    var isPort = state.service === 'port';
+    var isPort = state.service !== 'compat';
     document.getElementById('grp-target').classList.toggle('hidden', !isPort);
     document.getElementById('grp-loader').classList.toggle('hidden', !isPort);
     document.getElementById('grp-size').classList.toggle('hidden', !isPort);
+    document.getElementById('grp-license').classList.toggle('hidden', !isPort);
     document.getElementById('grp-scope').classList.toggle('hidden', isPort);
 
     var est = compute();
