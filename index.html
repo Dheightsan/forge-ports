@@ -3,374 +3,247 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Forge 1.20.1 Mod Porting — dheightsan</title>
-  <meta name="description" content="Minecraft mod porting, backporting &amp; reviving — any version, any loader. Forge 1.20.1 specialist. Fixed price from $40, 48–72h, 7-day guarantee. License-first, escrow payment.">
-  <meta property="og:title" content="Minecraft Mod Porting — dheightsan">
-  <meta property="og:description" content="Port, backport &amp; revive Minecraft mods · Any version, any loader · From $40 flat · 48–72h · License-first.">
+  <title>Port, backport &amp; revive Minecraft mods — any version, any loader</title>
+  <meta name="description" content="Port, backport &amp; revive Minecraft mods — any version, any loader. Forge 1.20.1 specialist. Boot-tested, license-checked. Fixed price from $75, 7-day guarantee, escrow payment.">
+  <meta property="og:title" content="Port, backport &amp; revive Minecraft mods">
+  <meta property="og:description" content="Port, backport &amp; revive Minecraft mods · Any version, any loader · Boot-tested · License-checked · From $75.">
   <meta property="og:type" content="website">
-  <meta name="theme-color" content="#0d0d0d">
+  <meta name="theme-color" content="#1a1410">
   <link rel="canonical" href="https://dheightsan.github.io/forge-ports/">
   <meta property="og:url" content="https://dheightsan.github.io/forge-ports/">
   <meta property="og:image" content="https://dheightsan.github.io/forge-ports/og.svg">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='13' font-size='13'>🔨</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' rx='3' fill='%23b3713c'/><rect x='4' y='4' width='8' height='8' rx='1.5' fill='%231a1410'/></svg>">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:           #0d0d0d;
-      --surface:      #141414;
-      --surface2:     #1c1c1c;
-      --border:       #262626;
-      --border-soft:  #1e1e1e;
-      --accent:       #16a34a;
-      --accent-hi:    #22c55e;
-      --accent-glow:  rgba(34, 197, 94, 0.12);
-      --accent-ring:  rgba(34, 197, 94, 0.28);
-      --price:        #f59e0b;
-      --price-glow:   rgba(245, 158, 11, 0.12);
-      --text:         #e2e8f0;
-      --text-soft:    #94a3b8;
-      --text-muted:   #6b7280;
-      --radius:       8px;
-      --radius-lg:    12px;
-      --max:          1080px;
+      /* ── GitHub emerald green (primary) + No Man's Land brown (accent) ── */
+      --bg:        #0e0d0b;   /* near-black, GitHub-style */
+      --surface:   #161513;
+      --surface2:  #1e1c18;
+      --border:    #2a2823;
+      --border-lt: #3c382f;
+      /* GREEN = primary — the original GitHub emerald */
+      --green:     #16a34a;
+      --green-hi:  #22c55e;
+      --green-glow:rgba(34, 197, 94, 0.12);
+      --green-ring:rgba(34, 197, 94, 0.30);
+      /* No Man's Land brown = accent (richer, less orange). Swap this one line for the exact logo hex. */
+      --brown:     #8f6a4c;
+      --brown-hi:  #c0986f;
+      --brown-glow:rgba(143, 106, 76, 0.16);
+      --brown-ring:rgba(143, 106, 76, 0.42);
+      --text:      #eae4d6;   /* warm cream */
+      --text-soft: #b0a896;
+      --text-mute: #7b7263;
+      --radius:    8px;
+      --radius-lg: 12px;
+      --max:       1060px;
+      --font:      'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
     }
 
     html { scroll-behavior: smooth; }
-
     body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-      font-size: 16px;
-      line-height: 1.65;
-      -webkit-font-smoothing: antialiased;
+      background: var(--bg); color: var(--text); font-family: var(--font);
+      font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased;
     }
-
-    a { color: var(--accent-hi); text-decoration: none; }
+    a { color: var(--green-hi); text-decoration: none; }
     a:hover { text-decoration: underline; }
     a:focus-visible, button:focus-visible, .est-opt:focus-visible, .faq-q:focus-visible {
-      outline: 2px solid var(--accent-hi); outline-offset: 2px; border-radius: 4px;
+      outline: 2px solid var(--green-hi); outline-offset: 2px; border-radius: 4px;
     }
 
-    /* ── NAV ────────────────────────────── */
-    nav {
-      position: sticky; top: 0; z-index: 100;
-      background: rgba(13,13,13,0.88);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border-soft);
-    }
-    .nav-inner {
-      max-width: var(--max); margin: 0 auto; padding: 0 1.5rem;
-      height: 58px; display: flex; align-items: center; justify-content: space-between;
-    }
-    .brand { font-weight: 700; font-size: 1rem; color: var(--text); letter-spacing: -0.02em; }
-    .brand em { color: var(--accent-hi); font-style: normal; }
-    .nav-links { display: flex; gap: 1.6rem; list-style: none; align-items: center; }
-    .nav-links a { color: var(--text-soft); font-size: 0.875rem; transition: color 0.15s; }
-    .nav-links a:hover { color: var(--text); text-decoration: none; }
-    .btn-nav {
-      background: var(--accent); color: #052e16 !important;
-      padding: 0.38rem 1rem; border-radius: var(--radius);
-      font-size: 0.825rem; font-weight: 600;
-      transition: background 0.15s; white-space: nowrap;
-    }
-    .btn-nav:hover { background: var(--accent-hi) !important; text-decoration: none; }
-
-    /* ── SHARED ─────────────────────────── */
     .wrap { max-width: var(--max); margin: 0 auto; }
     section { padding: 5.5rem 1.5rem; }
+
     .eyebrow {
-      font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 0.14em; color: var(--accent-hi); margin-bottom: 0.6rem;
+      font-size: 0.74rem; font-weight: 700; letter-spacing: 0.14em;
+      color: var(--green-hi); margin-bottom: 0.9rem; text-transform: uppercase;
     }
-    h2 {
-      font-size: clamp(1.6rem, 3vw, 2.1rem); font-weight: 800;
-      letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 0.85rem;
-    }
-    .sub { color: var(--text-soft); max-width: 540px; font-size: 0.95rem; }
+    h2 { font-size: clamp(1.6rem, 3vw, 2.15rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 0.85rem; }
+    .sub { color: var(--text-soft); max-width: 560px; font-size: 0.96rem; }
 
-    /* ── HERO ───────────────────────────── */
-    #hero {
-      min-height: calc(100vh - 58px);
-      display: flex; align-items: center;
-      padding: 4rem 1.5rem;
-      position: relative; overflow: hidden;
-    }
-    #hero::before {
-      content: ''; position: absolute; inset: 0; pointer-events: none;
-      background: radial-gradient(ellipse 70% 60% at 30% 40%, rgba(34,197,94,0.055) 0%, transparent 70%);
-    }
-    #hero::after {
-      content: ''; position: absolute; right: -120px; top: 10%;
-      width: 480px; height: 480px; pointer-events: none;
-      background: radial-gradient(circle, rgba(34,197,94,0.04) 0%, transparent 65%);
-    }
-    .hero-inner { position: relative; }
-    .badge {
-      display: inline-flex; align-items: center; gap: 0.45rem;
-      background: var(--accent-glow); border: 1px solid var(--accent-ring);
-      color: var(--accent-hi); font-size: 0.75rem; font-weight: 600;
-      padding: 0.3rem 0.8rem; border-radius: 999px; margin-bottom: 1.5rem;
-    }
-    .badge-dot { width: 6px; height: 6px; background: var(--accent-hi); border-radius: 50%; }
-    #hero h1 {
-      font-size: clamp(2.4rem, 5.5vw, 3.8rem); font-weight: 900;
-      letter-spacing: -0.035em; line-height: 1.08;
-      margin-bottom: 1.2rem; max-width: 720px;
-    }
-    #hero h1 .g { color: var(--accent-hi); }
-    .hero-desc {
-      font-size: 1.1rem; color: var(--text-soft);
-      max-width: 500px; margin-bottom: 2rem; line-height: 1.7;
-    }
-    .pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2.25rem; }
-    .pill {
-      background: var(--surface2); border: 1px solid var(--border);
-      padding: 0.3rem 0.75rem; border-radius: 999px;
-      font-size: 0.8rem; color: var(--text-soft);
-    }
-    .pill-price {
-      background: var(--price-glow); border-color: rgba(245,158,11,0.3);
-      color: var(--price); font-weight: 700;
-    }
-    .ctas { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    /* ── buttons ── */
     .btn {
-      display: inline-flex; align-items: center; gap: 0.35rem;
-      padding: 0.7rem 1.4rem; border-radius: var(--radius);
-      font-weight: 600; font-size: 0.9rem; transition: all 0.15s; cursor: pointer;
-      border: none; font-family: inherit;
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      padding: 0.74rem 1.4rem; cursor: pointer; font-family: inherit;
+      font-size: 0.92rem; font-weight: 700; line-height: 1.2;
+      border: 1px solid transparent; border-radius: var(--radius); transition: all 0.15s;
     }
-    .btn-primary { background: var(--accent); color: #052e16; }
-    .btn-primary:hover { background: var(--accent-hi); text-decoration: none; }
-    .btn-ghost {
-      background: transparent; color: var(--text-soft);
-      border: 1px solid var(--border);
-    }
-    .btn-ghost:hover { border-color: #404040; color: var(--text); text-decoration: none; }
+    .btn-primary { background: var(--green); color: #1a1410; }
+    .btn-primary:hover { background: var(--green-hi); text-decoration: none; transform: translateY(-1px); }
+    .btn-ghost { background: transparent; color: var(--text); border-color: var(--border-lt); }
+    .btn-ghost:hover { border-color: var(--green); color: var(--green-hi); text-decoration: none; }
 
-    /* ── SERVICES ───────────────────────── */
-    #services { background: var(--surface); }
-    .cards {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1px; margin-top: 2.75rem;
-      border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden;
-    }
-    .card {
-      background: var(--bg); padding: 1.9rem 1.6rem;
-      transition: background 0.15s; position: relative;
-    }
-    .card:hover { background: #111; }
-    .card-icon { font-size: 1.6rem; margin-bottom: 0.9rem; }
-    .card h3 { font-size: 1.02rem; font-weight: 700; margin-bottom: 0.5rem; }
+    /* ── NAV ── */
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(26, 20, 16, 0.88); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+    .nav-inner { max-width: var(--max); margin: 0 auto; padding: 0 1.5rem; height: 62px; display: flex; align-items: center; justify-content: space-between; }
+    .brand { display: inline-flex; align-items: center; gap: 0.6rem; font-weight: 800; font-size: 1.05rem; letter-spacing: -0.01em; color: var(--text); }
+    .brand-mark { width: 22px; height: 22px; border-radius: 6px; background: var(--green); display: grid; place-items: center; flex-shrink: 0; }
+    .brand-mark span { width: 9px; height: 9px; border-radius: 2px; background: var(--bg); }
+    .brand .ph { color: var(--text-mute); font-weight: 600; font-size: 0.95rem; }
+    .nav-links { display: flex; gap: 1.6rem; list-style: none; align-items: center; }
+    .nav-links a { color: var(--text-soft); font-size: 0.88rem; transition: color 0.15s; }
+    .nav-links a:hover { color: var(--text); text-decoration: none; }
+    .btn-nav { background: var(--green); color: #1a1410 !important; font-weight: 700; font-size: 0.85rem; padding: 0.48rem 1rem; border-radius: var(--radius); white-space: nowrap; transition: background 0.15s; }
+    .btn-nav:hover { background: var(--green-hi) !important; text-decoration: none; }
+
+    /* ── HERO ── */
+    #hero { min-height: calc(100vh - 62px); display: flex; align-items: center; padding: 4rem 1.5rem; position: relative; overflow: hidden; }
+    #hero::before { content: ''; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 55% 50% at 22% 32%, var(--green-glow) 0%, transparent 70%); }
+    .hero-inner { position: relative; max-width: 760px; }
+    .badge { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--green-glow); border: 1px solid var(--green-ring); color: var(--green-hi); font-size: 0.78rem; font-weight: 600; padding: 0.4rem 0.85rem; border-radius: 999px; margin-bottom: 1.6rem; }
+    .badge-dot { width: 7px; height: 7px; background: var(--green-hi); border-radius: 50%; }
+    #hero h1 { font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 900; letter-spacing: -0.03em; line-height: 1.07; margin-bottom: 1.2rem; max-width: 730px; }
+    #hero h1 .g { color: var(--green-hi); }
+    .hero-tagline { font-size: 1.28rem; font-weight: 600; color: var(--text); max-width: 560px; margin-bottom: 1.1rem; line-height: 1.4; }
+    .hero-tagline .b { color: var(--brown-hi); }
+    .hero-desc { font-size: 1.05rem; color: var(--text-soft); max-width: 545px; margin-bottom: 2rem; line-height: 1.7; }
+    .hero-desc strong { color: var(--text); font-weight: 600; }
+    .pills { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-bottom: 2.25rem; }
+    .pill { background: var(--surface2); color: var(--text-soft); border: 1px solid var(--border); border-radius: 999px; padding: 0.38rem 0.85rem; font-size: 0.82rem; }
+    .pill-price { background: var(--brown-glow); border-color: var(--brown-ring); color: var(--brown-hi); font-weight: 700; }
+    .ctas { display: flex; gap: 0.85rem; flex-wrap: wrap; }
+    .hero-trust { margin-top: 1.4rem; font-size: 0.85rem; color: var(--text-mute); }
+
+    /* ── SERVICES ── */
+    #services { background: var(--surface); border-top: 1px solid var(--border); }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(238px, 1fr)); gap: 1.1rem; margin-top: 2.75rem; }
+    .card { background: var(--bg); padding: 1.8rem 1.55rem; border: 1px solid var(--border); border-radius: var(--radius-lg); transition: border-color 0.15s, transform 0.1s; }
+    .card:hover { border-color: var(--green-ring); transform: translateY(-3px); }
+    .icon-wrap { width: 44px; height: 44px; display: grid; place-items: center; background: var(--green-glow); border-radius: var(--radius); margin-bottom: 1rem; color: var(--green-hi); }
+    .icon-wrap svg { width: 24px; height: 24px; stroke: currentColor; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .card h3 { font-size: 1.04rem; font-weight: 800; margin-bottom: 0.5rem; }
     .card p { color: var(--text-soft); font-size: 0.86rem; line-height: 1.65; margin-bottom: 0.9rem; }
-    .card-tag {
-      display: inline-block; font-size: 0.7rem; font-weight: 700;
-      padding: 0.2rem 0.6rem; border-radius: 999px; letter-spacing: 0.02em;
-    }
-    .tag-base { background: var(--accent-glow); color: var(--accent-hi); border: 1px solid var(--accent-ring); }
-    .tag-premium { background: var(--price-glow); color: var(--price); border: 1px solid rgba(245,158,11,0.3); }
-    .tag-custom { background: var(--surface2); color: var(--text-soft); border: 1px solid var(--border); }
+    .card p strong { color: var(--text); font-weight: 600; }
+    .card-tag { display: inline-block; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; padding: 0.25rem 0.6rem; border-radius: 999px; }
+    .tag-base { background: var(--green-glow); color: var(--green-hi); border: 1px solid var(--green-ring); }
+    .tag-premium { background: var(--brown-glow); color: var(--brown-hi); border: 1px solid var(--brown-ring); }
 
-    /* ── ESTIMATOR ──────────────────────── */
-    .estimator {
-      margin-top: 2.75rem;
-      display: grid; grid-template-columns: 1.3fr 1fr; gap: 1.5rem;
-      align-items: start;
-    }
-    .est-form {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius-lg); padding: 1.75rem;
-    }
+    /* ── ESTIMATOR ── */
+    #estimator { border-top: 1px solid var(--border); }
+    .estimator { margin-top: 2.75rem; display: grid; grid-template-columns: 1.3fr 1fr; gap: 1.5rem; align-items: start; }
+    .est-form { background: var(--surface); padding: 1.75rem; border: 1px solid var(--border); border-radius: var(--radius-lg); }
     .est-group { margin-bottom: 1.5rem; }
     .est-group:last-child { margin-bottom: 0; }
     .est-group.hidden { display: none; }
-    .est-label {
-      font-size: 0.8rem; font-weight: 700; color: var(--text);
-      margin-bottom: 0.7rem; display: flex; align-items: center; gap: 0.4rem;
-    }
-    .est-hint { font-size: 0.72rem; color: var(--text-muted); font-weight: 400; }
-    .est-options { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-    .est-opt {
-      background: var(--surface2); border: 1px solid var(--border);
-      color: var(--text-soft); padding: 0.6rem 1rem; min-height: 40px; border-radius: var(--radius);
-      font-size: 0.83rem; font-weight: 600; cursor: pointer; transition: all 0.15s;
-      font-family: inherit;
-    }
-    .est-opt:hover { border-color: #404040; color: var(--text); }
-    .est-opt.active { background: var(--accent-glow); border-color: var(--accent-ring); color: var(--accent-hi); }
-    .est-opt small { display: block; font-size: 0.68rem; font-weight: 400; opacity: 0.7; margin-top: 0.1rem; }
+    .est-label { font-size: 0.96rem; font-weight: 700; color: var(--text); margin-bottom: 0.7rem; display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; }
+    .est-hint { font-size: 0.78rem; color: var(--text-mute); font-weight: 400; }
+    .est-options { display: flex; flex-wrap: wrap; gap: 0.55rem; }
+    .est-opt { background: var(--surface2); color: var(--text-soft); border: 1px solid var(--border); padding: 0.7rem 1.05rem; min-height: 48px; border-radius: var(--radius); font-size: 0.95rem; font-weight: 600; cursor: pointer; font-family: inherit; transition: all 0.13s; }
+    .est-opt:hover { border-color: var(--green-ring); color: var(--text); }
+    .est-opt.active { background: var(--green-hi); color: #052e16; border-color: var(--green-hi); font-weight: 700; box-shadow: 0 0 0 3px var(--green-glow); }
+    .est-opt small { display: block; font-size: 0.8rem; font-weight: 400; opacity: 0.82; margin-top: 0.15rem; }
+    .est-result { background: var(--bg); padding: 1.75rem; position: sticky; top: 80px; border: 1px solid var(--border); border-radius: var(--radius-lg); }
+    .est-result-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-mute); margin-bottom: 0.5rem; }
+    .est-price { font-size: 2.5rem; font-weight: 800; color: var(--brown-hi); line-height: 1; margin-bottom: 0.55rem; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+    .est-note { font-size: 0.9rem; color: var(--text-soft); line-height: 1.55; min-height: 2.4em; margin-bottom: 1.1rem; padding-bottom: 1.1rem; border-bottom: 1px solid var(--border); }
+    .est-note .premium { color: var(--brown-hi); font-weight: 600; }
+    .est-summary { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.85rem 1rem; font-size: 0.76rem; color: var(--text-soft); line-height: 1.7; margin-bottom: 1rem; white-space: pre-wrap; overflow-wrap: anywhere; font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace; }
+    .est-copy { width: 100%; justify-content: center; }
+    .est-copy.done { background: var(--surface2); color: var(--green-hi); }
+    .est-disclaimer { font-size: 0.74rem; color: var(--text-mute); margin-top: 0.85rem; text-align: center; line-height: 1.5; }
+    .est-disclaimer a { color: var(--green-hi); }
 
-    .est-result {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius-lg); padding: 1.75rem;
-      position: sticky; top: 74px;
-    }
-    .est-result-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 0.5rem; }
-    .est-price {
-      font-size: 2.6rem; font-weight: 900; color: var(--price);
-      letter-spacing: -0.04em; line-height: 1; margin-bottom: 0.5rem;
-      font-variant-numeric: tabular-nums;
-    }
-    .est-note {
-      font-size: 0.8rem; color: var(--text-soft); line-height: 1.55;
-      min-height: 2.4em; margin-bottom: 1.25rem;
-      padding-bottom: 1.25rem; border-bottom: 1px solid var(--border);
-    }
-    .est-note .premium { color: var(--price); font-weight: 600; }
-    .est-summary {
-      background: var(--bg); border: 1px solid var(--border-soft);
-      border-radius: var(--radius); padding: 0.85rem 1rem;
-      font-size: 0.78rem; color: var(--text-soft); line-height: 1.7;
-      margin-bottom: 1rem; white-space: pre-wrap; overflow-wrap: anywhere; font-family: ui-monospace, 'SF Mono', Menlo, monospace;
-    }
-    .est-copy {
-      width: 100%; justify-content: center;
-      background: var(--accent); color: #052e16;
-    }
-    .est-copy:hover { background: var(--accent-hi); }
-    .est-copy.done { background: var(--surface2); color: var(--accent-hi); border: 1px solid var(--accent-ring); }
-    .est-disclaimer { font-size: 0.72rem; color: var(--text-muted); margin-top: 0.85rem; text-align: center; line-height: 1.5; }
+    /* ── HOW IT WORKS ── */
+    #how-it-works { background: var(--surface); border-top: 1px solid var(--border); }
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(165px, 1fr)); gap: 1.8rem; margin-top: 2.75rem; }
+    .step-n { font-size: 1.9rem; font-weight: 800; color: var(--green); line-height: 1; margin-bottom: 0.6rem; font-variant-numeric: tabular-nums; }
+    .step h3 { font-size: 0.96rem; font-weight: 800; margin-bottom: 0.4rem; }
+    .step p { color: var(--text-soft); font-size: 0.84rem; line-height: 1.6; }
 
-    /* ── HOW IT WORKS ───────────────────── */
-    .steps {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 2rem; margin-top: 2.75rem;
-    }
-    .step-n {
-      font-size: 2.25rem; font-weight: 900; color: var(--border);
-      line-height: 1; margin-bottom: 0.6rem; font-variant-numeric: tabular-nums;
-    }
-    .step h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.4rem; }
-    .step p { color: var(--text-soft); font-size: 0.835rem; line-height: 1.6; }
-
-    /* ── PRICING ────────────────────────── */
-    #pricing { background: var(--surface); }
-    .ptable {
-      margin-top: 2.75rem; border: 1px solid var(--border);
-      border-radius: var(--radius-lg); overflow: hidden;
-    }
-    .prow {
-      display: grid; grid-template-columns: 1.4fr 0.8fr 1.3fr;
-      gap: 1rem; padding: 1.15rem 1.5rem; align-items: center;
-      border-bottom: 1px solid var(--border);
-    }
+    /* ── PRICING ── */
+    #pricing { border-top: 1px solid var(--border); }
+    .ptable { margin-top: 2.75rem; border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+    .prow { display: grid; grid-template-columns: 1.5fr 0.9fr 1.3fr; gap: 1rem; padding: 1.15rem 1.5rem; align-items: center; border-bottom: 1px solid var(--border); }
     .prow:last-child { border-bottom: none; }
-    .prow-head {
-      background: var(--bg); font-size: 0.7rem; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted);
-    }
-    .prow.base { background: var(--accent-glow); }
-    .pservice { font-weight: 700; font-size: 0.92rem; }
-    .pservice small { display: block; font-weight: 400; font-size: 0.76rem; color: var(--text-muted); margin-top: 0.15rem; }
-    .pprice { font-weight: 800; font-size: 0.95rem; color: var(--price); font-variant-numeric: tabular-nums; white-space: nowrap; }
-    .pwhy { font-size: 0.8rem; color: var(--text-soft); line-height: 1.5; }
-    .pfoot {
-      display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;
-      margin-top: 1.25rem; padding: 1rem 1.25rem;
-      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-    }
-    .pay-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); }
+    .prow-head { background: var(--surface); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-mute); }
+    .prow.base { background: var(--green-glow); }
+    .pservice { font-weight: 700; font-size: 0.94rem; }
+    .pservice small { display: block; font-weight: 400; font-size: 0.78rem; color: var(--text-mute); margin-top: 0.15rem; }
+    .pprice { font-size: 1.02rem; font-weight: 800; color: var(--brown-hi); white-space: nowrap; font-variant-numeric: tabular-nums; }
+    .pwhy { font-size: 0.82rem; color: var(--text-soft); line-height: 1.5; }
+    .pnote { margin-top: 1.1rem; font-size: 0.84rem; color: var(--text-mute); line-height: 1.7; }
+    .pnote strong { color: var(--text-soft); }
+    .pfoot { display: flex; flex-wrap: wrap; gap: 1rem 1.4rem; align-items: center; margin-top: 1.4rem; padding: 1.1rem 1.4rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+    .pay-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-mute); }
     .pay-methods { display: flex; gap: 0.6rem; flex-wrap: wrap; }
-    .pay-tag { background: var(--surface2); border: 1px solid var(--border); padding: 0.25rem 0.65rem; border-radius: 999px; font-size: 0.775rem; color: var(--text-soft); }
+    .pay-tag { background: var(--surface2); border: 1px solid var(--border); border-radius: 999px; padding: 0.3rem 0.7rem; font-size: 0.8rem; color: var(--text-soft); }
 
-    /* ── LEGAL ──────────────────────────── */
-    .legal-cards {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1rem; margin-top: 2.75rem;
-    }
-    .legal-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 1.5rem;
-    }
-    .legal-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .legal-card p { color: var(--text-soft); font-size: 0.85rem; line-height: 1.6; }
-    .legal-quote {
-      margin-top: 1.75rem;
-      background: var(--accent-glow); border: 1px solid var(--accent-ring);
-      border-radius: var(--radius); padding: 1.25rem 1.5rem;
-      font-size: 0.875rem; color: var(--text); line-height: 1.65;
-    }
-    .legal-quote strong { color: var(--accent-hi); }
+    /* ── LEGAL ── */
+    #legal { background: var(--surface); border-top: 1px solid var(--border); }
+    .legal-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.1rem; margin-top: 2.75rem; }
+    .legal-card { background: var(--bg); padding: 1.65rem; border: 1px solid var(--border); border-radius: var(--radius-lg); }
+    .legal-card h3 { font-size: 0.98rem; font-weight: 800; margin-bottom: 0.6rem; }
+    .legal-card p { color: var(--text-soft); font-size: 0.86rem; line-height: 1.6; }
+    .legal-quote { margin-top: 1.6rem; padding: 1.2rem 1.4rem; background: var(--green-glow); border-left: 3px solid var(--green); border-radius: var(--radius); font-size: 0.92rem; color: var(--text); }
 
-    /* ── FAQ ────────────────────────────── */
-    .faq-list { margin-top: 2.5rem; border-top: 1px solid var(--border); }
-    .faq-item { border-bottom: 1px solid var(--border); }
-    .faq-q {
-      width: 100%; text-align: left; background: none; border: none;
-      color: var(--text); font-family: inherit; font-size: 0.95rem; font-weight: 600;
-      padding: 1.2rem 0; cursor: pointer; display: flex; justify-content: space-between;
-      align-items: center; gap: 1rem;
-    }
-    .faq-q:hover { color: var(--accent-hi); }
-    .faq-icon { color: var(--accent-hi); font-size: 1.2rem; transition: transform 0.2s; flex-shrink: 0; }
-    .faq-item.open .faq-icon { transform: rotate(45deg); }
-    .faq-a {
-      max-height: 0; overflow: hidden; transition: max-height 0.25s ease, padding 0.25s ease;
-      color: var(--text-soft); font-size: 0.875rem; line-height: 1.7;
-    }
-    .faq-item.open .faq-a { max-height: 600px; padding-bottom: 1.2rem; }
+    /* ── FAQ ── */
+    #faq { border-top: 1px solid var(--border); }
+    .faq-list { margin-top: 2.5rem; }
+    .faq-item { border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 0.7rem; background: var(--surface); overflow: hidden; }
+    .faq-q { width: 100%; text-align: left; background: none; border: none; color: var(--text); font-family: inherit; font-size: 0.94rem; font-weight: 700; padding: 1.1rem 1.3rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+    .faq-icon { font-size: 1.3rem; font-weight: 400; color: var(--green-hi); line-height: 1; }
+    .faq-a { padding: 0 1.3rem; max-height: 0; overflow: hidden; transition: max-height 0.25s, padding 0.25s; color: var(--text-soft); font-size: 0.88rem; line-height: 1.65; }
+    .faq-a.open { max-height: 360px; padding: 0 1.3rem 1.2rem; }
 
-    /* ── PORTFOLIO ──────────────────────── */
-    #portfolio { background: var(--surface); }
-    .portfolio-ph {
-      margin-top: 2.75rem;
-      border: 1px dashed var(--border); border-radius: var(--radius-lg);
-      padding: 4rem 2rem; text-align: center; background: var(--bg);
-    }
-    .portfolio-ph .ph-icon { font-size: 2rem; margin-bottom: 0.75rem; }
-    .portfolio-ph strong { display: block; color: var(--text); font-size: 1rem; margin-bottom: 0.4rem; }
-    .portfolio-ph p { color: var(--text-soft); font-size: 0.875rem; max-width: 400px; margin: 0 auto; }
+    /* ── PORTFOLIO ── */
+    #portfolio { background: var(--surface); border-top: 1px solid var(--border); }
+    .port-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(252px, 1fr)); gap: 1.1rem; margin-top: 2.75rem; }
+    .port-card { background: var(--bg); padding: 1.55rem; border: 1px solid var(--border); border-radius: var(--radius-lg); }
+    .port-card-head { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.9rem; flex-wrap: wrap; }
+    .port-badges { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+    .badge--lic-mit, .badge--loader { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em; padding: 0.22rem 0.55rem; border-radius: 999px; }
+    .badge--lic-mit { background: var(--green-glow); color: var(--green-hi); border: 1px solid var(--green-ring); }
+    .badge--loader { background: var(--surface2); color: var(--text-soft); border: 1px solid var(--border); }
+    .port-status { margin-left: auto; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--brown-hi); }
+    .port-name { font-size: 1.1rem; font-weight: 800; margin-bottom: 0.5rem; }
+    .port-desc { color: var(--text-soft); font-size: 0.84rem; line-height: 1.6; margin-bottom: 0.9rem; }
+    .port-meta { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.9rem; }
+    .port-ver, .port-origin { font-size: 0.72rem; color: var(--text-mute); background: var(--surface2); border: 1px solid var(--border); border-radius: 999px; padding: 0.2rem 0.55rem; }
+    .port-links { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+    .port-link-ph { font-size: 0.74rem; color: var(--text-mute); }
+    .port-card--cta { display: flex; flex-direction: column; gap: 0.8rem; justify-content: center; background: var(--green-glow); border-color: var(--green-ring); }
+    .port-cta-text strong { display: block; font-size: 1.04rem; margin-bottom: 0.3rem; }
+    .port-cta-text p { font-size: 0.83rem; color: var(--text-soft); line-height: 1.55; }
+    .btn-sm { align-self: flex-start; font-size: 0.85rem; padding: 0.56rem 1.1rem; }
+    .port-footer-note { margin-top: 1.6rem; font-size: 0.85rem; color: var(--text-mute); }
+    .port-footer-note strong { color: var(--text-soft); }
 
-    /* ── CONTACT ────────────────────────── */
-    .contact-cards {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1rem; margin-top: 2.75rem;
-    }
-    .contact-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 1.5rem;
-      display: flex; flex-direction: column; gap: 0.5rem;
-    }
-    .contact-card .ci { font-size: 1.4rem; }
-    .contact-card h3 { font-size: 0.95rem; font-weight: 700; }
-    .contact-card p { color: var(--text-soft); font-size: 0.83rem; line-height: 1.55; flex: 1; }
-    .contact-link {
-      display: inline-flex; align-items: center; gap: 0.3rem;
-      font-weight: 600; font-size: 0.875rem; color: var(--accent-hi); margin-top: 0.4rem;
-    }
-    .contact-link:after { content: ' →'; }
-    .contact-soon { display: inline-block; margin-top: 0.4rem; font-size: 0.83rem; color: var(--text-muted); font-weight: 600; }
-    .hero-trust { margin-top: 1.1rem; font-size: 0.82rem; color: var(--text-muted); }
-    .contact-note { margin-top: 2rem; text-align: center; color: var(--text-muted); font-size: 0.8rem; }
-
-    /* ── FOOTER ─────────────────────────── */
-    footer {
-      border-top: 1px solid var(--border-soft);
-      padding: 1.75rem 1.5rem; text-align: center;
-      color: var(--text-muted); font-size: 0.775rem;
-    }
-    footer a { color: var(--text-muted); }
-    footer a:hover { color: var(--text-soft); }
-    footer .sep { margin: 0 0.5rem; }
-
-    /* ── ABOUT ─────────────────────────── */
+    /* ── ABOUT ── */
+    #about { border-top: 1px solid var(--border); }
     .about-body { margin-top: 2rem; max-width: 680px; }
-    .about-body p { color: var(--text-soft); font-size: 0.925rem; line-height: 1.78; }
+    .about-body p { color: var(--text-soft); font-size: 0.94rem; line-height: 1.78; }
     .about-body p + p { margin-top: 1rem; }
-    .about-gh { display: inline-flex; align-items: center; gap: 0.3rem; margin-top: 1.4rem; font-weight: 700; font-size: 0.9rem; color: var(--accent-hi); }
-    .about-gh:after { content: ' →'; }
+    .about-body strong { color: var(--text); font-weight: 600; }
 
-    /* ── RESPONSIVE ─────────────────────── */
+    /* ── CONTACT ── */
+    #contact { background: var(--surface); border-top: 1px solid var(--border); }
+    .contact-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.1rem; margin-top: 2.5rem; }
+    .contact-card { background: var(--bg); padding: 1.55rem; border: 1px solid var(--border); border-radius: var(--radius-lg); }
+    .ci { width: 40px; height: 40px; display: grid; place-items: center; background: var(--green-glow); border-radius: var(--radius); margin-bottom: 0.9rem; color: var(--green-hi); }
+    .ci svg { width: 22px; height: 22px; stroke: currentColor; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .contact-card h3 { font-size: 0.98rem; font-weight: 800; margin-bottom: 0.4rem; }
+    .contact-card p { color: var(--text-soft); font-size: 0.85rem; line-height: 1.55; }
+    .contact-link { display: inline-block; margin-top: 0.55rem; font-size: 0.88rem; font-weight: 700; color: var(--green-hi); }
+    .contact-link:after { content: ' →'; }
+    .contact-soon { display: inline-block; margin-top: 0.55rem; font-size: 0.82rem; font-weight: 600; color: var(--text-mute); }
+    .contact-note { margin-top: 2rem; text-align: center; color: var(--text-mute); font-size: 0.82rem; }
+
+    footer { border-top: 1px solid var(--border); padding: 2rem 1.5rem; text-align: center; color: var(--text-mute); font-size: 0.84rem; }
+    footer .sep { margin: 0 0.5rem; color: var(--border-lt); }
+    footer a { color: var(--text-soft); }
+
     @media (max-width: 760px) {
       .estimator { grid-template-columns: 1fr; }
       .est-result { position: static; }
     }
     @media (max-width: 600px) {
-      section { padding: 3.5rem 1.2rem; }
+      section { padding: 3.75rem 1.2rem; }
       .nav-links li:not(.nav-cta) { display: none; }
-      .prow { grid-template-columns: 1fr; gap: 0.4rem; padding: 1rem 1.2rem; }
+      #hero h1 { font-size: clamp(1.95rem, 8vw, 2.6rem); }
+      .prow { grid-template-columns: 1fr; gap: 0.35rem; padding: 1rem 1.2rem; }
       .prow-head { display: none; }
       .pprice { font-size: 1.1rem; }
     }
@@ -381,9 +254,13 @@
 <!-- NAV -->
 <nav>
   <div class="nav-inner wrap">
-    <span class="brand">dheight<em>san</em></span>
+    <span class="brand">
+      <span class="brand-mark"><span></span></span>
+      <span class="ph">no name</span>
+    </span>
     <ul class="nav-links">
       <li><a href="#services">Services</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
       <li><a href="#estimator">Estimate</a></li>
       <li><a href="#pricing">Pricing</a></li>
       <li><a href="#legal">Legal</a></li>
@@ -396,16 +273,15 @@
 <section id="hero">
   <div class="wrap hero-inner">
     <div class="badge"><span class="badge-dot"></span>Open for commissions</div>
-    <h1>Port, backport &amp; revive<br>Minecraft mods — <span class="g">any version, any loader</span></h1>
+    <h1>Port, backport &amp; revive Minecraft mods —<br><span class="g">any version, any loader</span></h1>
     <p class="hero-desc">
-      Forge 1.20.1 is my specialty and base rate — but I move mods up, down, and across loaders.
-      Fast, fixed-price, license-first.
+      Forge 1.20.1 is my specialty and base rate — but I move mods up, down, and across loaders. Fast, fixed-price, license-first.
     </p>
     <div class="pills">
-      <span class="pill pill-price">From $40 flat</span>
-      <span class="pill">48 – 72h turnaround</span>
+      <span class="pill pill-price">Fixed price from $75</span>
+      <span class="pill">Boot-tested, not just compiled</span>
       <span class="pill">Forge 1.20.1 specialist</span>
-      <span class="pill">Backport · forward-port · revive</span>
+      <span class="pill">Every port license-checked</span>
       <span class="pill">7-day guarantee</span>
     </div>
     <div class="ctas">
@@ -421,30 +297,30 @@
   <div class="wrap">
     <div class="eyebrow">What I do</div>
     <h2>Any direction, any loader</h2>
-    <p class="sub">Forge 1.20.1 is my base rate because it's where I'm fastest. Bringing a mod up to a newer version, down to an older one, across loaders, or making mods coexist — each is priced by how much real work it takes.</p>
+    <p class="sub">Forge 1.20.1 is my base rate because it sits just below every recent version wall — it's where I'm fastest. Each thing that takes the job further out is priced by the real work it adds, not a vague percentage.</p>
     <div class="cards">
       <div class="card">
-        <div class="card-icon">🎯</div>
+        <div class="icon-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v13"/><path d="M6 11l6 6 6-6"/></svg></div>
         <h3>Backport</h3>
-        <p>A newer mod (1.21+) that your pack needs on an older version like Forge 1.20.1. Full backport — items, blocks, mechanics, textures. 1.20.1 is my specialty and base price.</p>
+        <p>A newer mod (1.21+) your pack needs on an older version like Forge 1.20.1. Full backport — items, blocks, mechanics, textures. 1.20.1 is my specialty and base price.</p>
         <span class="card-tag tag-base">Base rate</span>
       </div>
       <div class="card">
-        <div class="card-icon">⏫</div>
+        <div class="icon-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V7"/><path d="M6 13l6-6 6 6"/></svg></div>
         <h3>Forward-port &amp; revive</h3>
-        <p>A beloved old or abandoned mod stuck on 1.12 / 1.16 / 1.18 that you want on a modern version. The biggest, most underserved kind of port — priced by how many version walls it crosses.</p>
+        <p>A beloved old or abandoned mod stuck on 1.12 / 1.16 / 1.18 you want on a modern version. The biggest, most underserved kind of port — priced by how many version walls it crosses.</p>
         <span class="card-tag tag-premium">By complexity</span>
       </div>
       <div class="card">
-        <div class="card-icon">🔄</div>
+        <div class="icon-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h13l-3-3"/><path d="M20 16H7l3 3"/></svg></div>
         <h3>Loader conversion</h3>
         <p>Fabric, NeoForge or Forge — moved to the loader you need. Forge↔NeoForge is light; <strong>Fabric→Forge is a near-rewrite</strong> (different events, registries, mixins) and priced accordingly.</p>
         <span class="card-tag tag-premium">By complexity</span>
       </div>
       <div class="card">
-        <div class="card-icon">🧩</div>
+        <div class="icon-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7h5a4 4 0 0 1 0 8h-1"/><path d="M15 17h-5a4 4 0 0 1 0-8h1"/></svg></div>
         <h3>Compatibility patches</h3>
-        <p>Make any mods coexist — two native mods, a ported mod and a native one, mob spawning across mods, conflicts resolved. Works <strong>even for closed-source mods</strong> and ships as a publishable add-on.</p>
+        <p>Make any mods coexist — two native mods, a ported and a native one, mob spawning across mods, conflicts resolved. Works <strong>even for closed-source mods</strong> and ships as a publishable add-on.</p>
         <span class="card-tag tag-base">Publishable</span>
       </div>
     </div>
@@ -456,10 +332,9 @@
   <div class="wrap">
     <div class="eyebrow">Instant estimate</div>
     <h2>Build your commission</h2>
-    <p class="sub">Pick what you need and get a ballpark in real time. It builds a ready-to-send summary you can paste straight into a DM — the exact, final price comes once I see the mod.</p>
+    <p class="sub">Pick what you need and get a ballpark in real time. It builds a ready-to-send summary you can paste straight into a message — the exact, final price comes once I see the mod.</p>
 
     <div class="estimator">
-      <!-- FORM -->
       <div class="est-form">
         <div class="est-group" id="grp-service">
           <div class="est-label">What do you need?</div>
@@ -469,23 +344,6 @@
             <button type="button" class="est-opt" data-value="compat">Compatibility<small>make mods coexist</small></button>
           </div>
         </div>
-
-        <div class="est-group" id="grp-target">
-          <div class="est-label">Target version <span class="est-hint">— 1.20.1 is the specialty</span></div>
-          <div class="est-options" data-group="target">
-            <button type="button" class="est-opt active" data-value="1201">Forge 1.20.1</button>
-            <button type="button" class="est-opt" data-value="other">Another version</button>
-          </div>
-        </div>
-
-        <div class="est-group" id="grp-loader">
-          <div class="est-label">Source mod loader</div>
-          <div class="est-options" data-group="loader">
-            <button type="button" class="est-opt active" data-value="sameforge">Forge / NeoForge<small>same family — light</small></button>
-            <button type="button" class="est-opt" data-value="fabric">From Fabric<small>near-rewrite</small></button>
-          </div>
-        </div>
-
         <div class="est-group" id="grp-size">
           <div class="est-label">How big is the mod?</div>
           <div class="est-options" data-group="size">
@@ -494,33 +352,55 @@
             <button type="button" class="est-opt" data-value="large">Large<small>tech mod, worldgen</small></button>
           </div>
         </div>
-
+        <div class="est-group" id="grp-wall">
+          <div class="est-label">Version jump <span class="est-hint">— the biggest cost driver</span></div>
+          <div class="est-options" data-group="wall">
+            <button type="button" class="est-opt active" data-value="none">None / tiny<small>e.g. 1.19.2 ↔ 1.20.1</small></button>
+            <button type="button" class="est-opt" data-value="moderate">Moderate<small>crosses 1.20.2</small></button>
+            <button type="button" class="est-opt" data-value="hard">Hard<small>crosses 1.21</small></button>
+            <button type="button" class="est-opt" data-value="brutal">Brutal<small>crosses 1.13 / 1.18 worldgen</small></button>
+          </div>
+        </div>
+        <div class="est-group" id="grp-loader">
+          <div class="est-label">Source mod loader</div>
+          <div class="est-options" data-group="loader">
+            <button type="button" class="est-opt active" data-value="same">Forge / NeoForge<small>same family — light</small></button>
+            <button type="button" class="est-opt" data-value="fabric">From Fabric<small>near-rewrite</small></button>
+          </div>
+        </div>
         <div class="est-group" id="grp-license">
           <div class="est-label">Mod license <span class="est-hint">— sets how it's delivered</span></div>
-          <div class="est-options" data-group="openSource">
+          <div class="est-options" data-group="license">
             <button type="button" class="est-opt active" data-value="open">Open-source / I have permission<small>publishable</small></button>
             <button type="button" class="est-opt" data-value="closed">Closed-source (ARR)<small>private delivery</small></button>
           </div>
         </div>
-
         <div class="est-group hidden" id="grp-scope">
           <div class="est-label">Compatibility scope</div>
           <div class="est-options" data-group="scope">
-            <button type="button" class="est-opt active" data-value="simple">Simple<small>config / datapack, 2 mods</small></button>
-            <button type="button" class="est-opt" data-value="moderate">Moderate<small>mixin / event patching</small></button>
-            <button type="button" class="est-opt" data-value="deep">Deep<small>several mods, complex</small></button>
+            <button type="button" class="est-opt active" data-value="small">Simple<small>config / datapack, 2 mods</small></button>
+            <button type="button" class="est-opt" data-value="medium">Moderate<small>mixin / event patching</small></button>
+            <button type="button" class="est-opt" data-value="large">Deep<small>several mods, complex</small></button>
+          </div>
+        </div>
+        <div class="est-group" id="grp-rush">
+          <div class="est-label">Timeline</div>
+          <div class="est-options" data-group="rush">
+            <button type="button" class="est-opt active" data-value="standard">Standard<small>agreed deadline</small></button>
+            <button type="button" class="est-opt" data-value="r72">Rush &lt;72h<small>+30%</small></button>
+            <button type="button" class="est-opt" data-value="r24">Rush &lt;24h<small>+50%</small></button>
           </div>
         </div>
       </div>
 
-      <!-- RESULT -->
       <div class="est-result">
         <div class="est-result-label">Estimated range</div>
-        <div class="est-price" id="est-price">$70 – $120</div>
+        <div class="est-price" id="est-price">$144 – $184</div>
         <div class="est-note" id="est-note">Base rate — Forge 1.20.1 is my specialty.</div>
         <div class="est-summary" id="est-summary"></div>
-        <button type="button" class="btn est-copy" id="est-copy">Copy summary for your DM</button>
-        <div class="est-disclaimer">Estimate only. The final flat price is locked in writing once I review the actual mod.</div>
+        <button type="button" class="btn btn-primary est-copy" id="est-copy">Copy summary</button>
+        <div class="est-disclaimer">Estimate only. The final flat price is locked in writing once I review the actual mod. $75 minimum on any job.</div>
+        <div class="est-disclaimer" style="margin-top:0.5rem">Then <a href="mailto:josdansanpes2005@gmail.com">send it by email</a> — or paste it on Discord once the server opens.</div>
       </div>
     </div>
   </div>
@@ -533,31 +413,11 @@
     <h2>Simple, async, no surprises</h2>
     <p class="sub">Everything written. Price locked before I start. No calls, no ambiguity.</p>
     <div class="steps">
-      <div class="step">
-        <div class="step-n">01</div>
-        <h3>Send me the mod</h3>
-        <p>DM the mod link and what you need. Open-source or licensed — both work. Use the estimator to pre-fill the details.</p>
-      </div>
-      <div class="step">
-        <div class="step-n">02</div>
-        <h3>Flat quote</h3>
-        <p>I review the mod and reply with a fixed price and timeline. No hourly billing, no scope creep after we agree.</p>
-      </div>
-      <div class="step">
-        <div class="step-n">03</div>
-        <h3>Fund escrow</h3>
-        <p>Pay through BuiltByBit escrow — your money is held by BBB and only released once the working mod is in your hands. (Returning clients can use a simple 50% deposit instead.)</p>
-      </div>
-      <div class="step">
-        <div class="step-n">04</div>
-        <h3>I build it</h3>
-        <p>Ports typically 48–72h. Compatibility work on an agreed timeline. Textures and assets always included.</p>
-      </div>
-      <div class="step">
-        <div class="step-n">05</div>
-        <h3>Delivery + final 50%</h3>
-        <p>You receive and test the .jar. Final payment before release. Open-source ports get published with author credit.</p>
-      </div>
+      <div class="step"><div class="step-n">01</div><h3>Send me the mod</h3><p>Message the mod link and what you need. Open-source or licensed — both work. Use the estimator to pre-fill the details.</p></div>
+      <div class="step"><div class="step-n">02</div><h3>Flat quote</h3><p>I review the mod and reply with a fixed price and timeline. No hourly billing, no scope creep after we agree.</p></div>
+      <div class="step"><div class="step-n">03</div><h3>Fund escrow</h3><p>Pay through BuiltByBit escrow — your money is held by BBB and only released once the working mod is in your hands. (Returning clients can use a simple 50% deposit instead.)</p></div>
+      <div class="step"><div class="step-n">04</div><h3>I build it</h3><p>Timeline agreed in writing before any work begins. Standard ports land in a few days; complex conversions get an explicit deadline. Textures and assets always included.</p></div>
+      <div class="step"><div class="step-n">05</div><h3>Delivery + final 50%</h3><p>You receive and test the .jar. Final payment before release. Open-source ports get published with author credit.</p></div>
     </div>
   </div>
 </section>
@@ -567,44 +427,44 @@
   <div class="wrap">
     <div class="eyebrow">Pricing</div>
     <h2>Fixed price, built on one base rate</h2>
-    <p class="sub">Forge 1.20.1 sets the base. Each thing that takes me outside it stacks a premium. You always get one flat number before any work begins.</p>
+    <p class="sub">Forge 1.20.1 sets the base. Each thing that takes me outside it adds a flat amount for the real work it takes — version walls crossed, loader rewrites, private delivery. You always get one number before any work begins.</p>
 
     <div class="ptable">
-      <div class="prow prow-head">
-        <div>Service</div><div>Price</div><div>Why</div>
-      </div>
+      <div class="prow prow-head"><div>Service</div><div>Price</div><div>Why</div></div>
       <div class="prow base">
         <div class="pservice">Backport to Forge 1.20.1 <small>my specialty</small></div>
-        <div class="pprice">$40 – $150</div>
-        <div class="pwhy">The base rate. Where I'm fastest and most efficient.</div>
+        <div class="pprice">$90 – $280</div>
+        <div class="pwhy">The base rate by mod size (small / medium / large). Where I'm fastest — 1.20.1 sits below every recent wall.</div>
       </div>
       <div class="prow">
-        <div class="pservice">Other version / forward-port <small>old → modern</small></div>
-        <div class="pprice">by complexity</div>
-        <div class="pwhy">Priced by how many version "walls" the jump crosses (1.18 worldgen, 1.21 data components…).</div>
+        <div class="pservice">Version wall crossed <small>forward-port / other version</small></div>
+        <div class="pprice">+$80 / +$180 / +$300</div>
+        <div class="pwhy">Added per wall: moderate (1.20.2 networking), hard (1.21 data components), brutal (1.13 flattening or 1.18 worldgen).</div>
       </div>
       <div class="prow">
-        <div class="pservice">Loader conversion <small>Fabric ↔ Forge ↔ NeoForge</small></div>
-        <div class="pprice">+40–80%</div>
-        <div class="pwhy">Forge↔NeoForge is light; Fabric→Forge is a near-rewrite, priced highest.</div>
+        <div class="pservice">Loader conversion <small>by direction</small></div>
+        <div class="pprice">+$40 … +$500</div>
+        <div class="pwhy">Forge↔NeoForge +$40 (a rename). Fabric→Forge +$350–500 — a near-rewrite, and the one most porters won't touch.</div>
       </div>
       <div class="prow">
         <div class="pservice">Closed-source (ARR) mod <small>private delivery only</small></div>
-        <div class="pprice">+50%</div>
-        <div class="pwhy">No public listing, no portfolio entry. You pay for my time on your private copy. Stacks on top of all other premiums.</div>
+        <div class="pprice">+40% (min +$120)</div>
+        <div class="pwhy">No public listing, no portfolio entry. You pay for my time on your private copy.</div>
       </div>
       <div class="prow">
         <div class="pservice">Compatibility patch <small>make mods coexist</small></div>
-        <div class="pprice">from $50</div>
-        <div class="pwhy">Publishable add-on (my own code). Quoted by scope and mod count. Closed-source mods add +25%.</div>
+        <div class="pprice">$90 – $350</div>
+        <div class="pwhy">Publishable add-on (my own code). Quoted by scope and mod count. Closed-source mods add the ARR rate.</div>
       </div>
     </div>
+
+    <p class="pnote"><strong>Minimum $75 on any job.</strong> &nbsp;Rush available: +30% (&lt;72h) / +50% (&lt;24h). &nbsp;Re-port your own prior work to a new version: 40–50% of the original.</p>
 
     <div class="pfoot">
       <span class="pay-label">Payment</span>
       <div class="pay-methods">
         <span class="pay-tag">BuiltByBit escrow</span>
-        <span class="pay-tag">PayPal G&amp;S</span>
+        <span class="pay-tag">Wise</span>
         <span class="pay-tag">Crypto USDT</span>
       </div>
       <span class="pay-label" style="margin-left:auto">Escrow-protected · pay on delivery</span>
@@ -619,22 +479,11 @@
     <h2>I only port what I have rights to port</h2>
     <p class="sub">Most devs in this space ignore licensing. I don't — because a DMCA takedown or account ban hurts you, not just me.</p>
     <div class="legal-cards">
-      <div class="legal-card">
-        <h3>🌐 Public — open-source &amp; compatibility</h3>
-        <p>Open-source mods (MIT · Apache · LGPL), mods with written permission, and compatibility add-ons (my own code, depending on mods you install yourself) get published to CurseForge &amp; Modrinth — full credit to original authors.</p>
-      </div>
-      <div class="legal-card">
-        <h3>🔒 Private — closed-source mods</h3>
-        <p>Most requested mods are closed-source. You bring one you have the right to use; I modify it for you and deliver privately — to you only, never published. You pay for my time, not for redistribution.</p>
-      </div>
-      <div class="legal-card">
-        <h3>✋ What I won't do</h3>
-        <p>Publicly redistribute a closed-source (All Rights Reserved) mod without written author permission. That's the one line I never cross — it protects your accounts from takedowns and bans.</p>
-      </div>
+      <div class="legal-card"><h3>Public — open-source &amp; compatibility</h3><p>Open-source mods (MIT · Apache · LGPL), mods with written permission, and compatibility add-ons (my own code, depending on mods you install yourself) get published to CurseForge &amp; Modrinth — full credit to original authors.</p></div>
+      <div class="legal-card"><h3>Private — closed-source mods</h3><p>Most requested mods are closed-source. You bring one you have the right to use; I modify it for you and deliver privately — to you only, never published. You pay for my time, not for redistribution.</p></div>
+      <div class="legal-card"><h3>What I won't do</h3><p>Publicly redistribute a closed-source (All Rights Reserved) mod without written author permission. That's the one line I never cross — it protects your accounts from takedowns and bans.</p></div>
     </div>
-    <div class="legal-quote">
-      <strong>The principle:</strong> You pay for my time writing the work — not for distribution rights. The right to publish always belongs to whoever holds the license. That's the only clean, legally sound way to run a porting service.
-    </div>
+    <div class="legal-quote"><strong>The principle:</strong> You pay for my time writing the work — not for distribution rights. The right to publish always belongs to whoever holds the license. That's the only clean, legally sound way to run a porting service.</div>
   </div>
 </section>
 
@@ -644,34 +493,13 @@
     <div class="eyebrow">FAQ</div>
     <h2>Before you ask</h2>
     <div class="faq-list">
-      <div class="faq-item">
-        <button type="button" class="faq-q">Why is 1.20.1 cheaper than other versions? <span class="faq-icon" aria-hidden="true">+</span></button>
-        <div class="faq-a">It's my specialty. I know the 1.20.1 Forge ecosystem deeply, so I'm faster and can pass that efficiency on as a lower price. Other versions take me longer, so they carry a premium.</div>
-      </div>
-      <div class="faq-item">
-        <button type="button" class="faq-q">What exactly is a compatibility patch? <span class="faq-icon" aria-hidden="true">+</span></button>
-        <div class="faq-a">Making two or more mods work together without creating new content — for example, getting one mod's mobs to spawn in another mod's biomes, or resolving a conflict that breaks a feature. It's bespoke work, so it's always a custom quote.</div>
-      </div>
-      <div class="faq-item">
-        <button type="button" class="faq-q">Is this legal? <span class="faq-icon" aria-hidden="true">+</span></button>
-        <div class="faq-a">Yes. You pay for my time writing the port, not for distribution rights. I publish only open-source mods or mods with written permission; anything else is delivered privately to whoever holds the right to use it. See the Licenses section above.</div>
-      </div>
-      <div class="faq-item">
-        <button type="button" class="faq-q">How do I pay safely? <span class="faq-icon" aria-hidden="true">+</span></button>
-        <div class="faq-a">BuiltByBit escrow is the default: BBB holds your payment and only releases it once you have the working mod — I can't touch it until you're satisfied, which removes the "pay and they vanish" risk entirely. PayPal Goods &amp; Services (buyer-protected) and crypto USDT are also available; a simple 50% deposit is reserved for returning clients.</div>
-      </div>
-      <div class="faq-item">
-        <button type="button" class="faq-q">How long does it take? <span class="faq-icon" aria-hidden="true">+</span></button>
-        <div class="faq-a">Most 1.20.1 ports land in 48–72 hours. Larger mods, other versions, loader conversions and compatibility work run on a timeline we agree on before starting.</div>
-      </div>
-      <div class="faq-item">
-        <button type="button" class="faq-q">What if the port doesn't work? <span class="faq-icon" aria-hidden="true">+</span></button>
-        <div class="faq-a">If I can't get the port working, you don't pay — simple as that. Every delivered commission also carries a 7-day guarantee: if it crashes or breaks, I fix it free or refund you. With escrow you test the working mod before any money is released, so you never pay for something that doesn't run.</div>
-      </div>
-      <div class="faq-item">
-        <button type="button" class="faq-q" aria-expanded="false">What's out of scope? <span class="faq-icon" aria-hidden="true">+</span></button>
-        <div class="faq-a">I write code. Textures, 3D models and animations, full gameplay/balance redesigns, and ongoing maintenance across future Minecraft versions are each a separate quote — not part of a standard port. Tell me upfront if you need any of these and I'll fold it into the price.</div>
-      </div>
+      <div class="faq-item"><button type="button" class="faq-q">Why is 1.20.1 the cheapest lane? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a">It's my specialty and it sits just below every recent version wall, so it takes the least work — I pass that on as the lowest add-ons. Other versions cross walls (networking, data components, worldgen) that genuinely take longer, so they carry a flat premium per wall.</div></div>
+      <div class="faq-item"><button type="button" class="faq-q">What exactly is a compatibility patch? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a">Making two or more mods work together without creating new content — for example, getting one mod's mobs to spawn in another mod's biomes, or resolving a conflict that breaks a feature. It's bespoke work, quoted by scope.</div></div>
+      <div class="faq-item"><button type="button" class="faq-q">Is this legal? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a">Yes. You pay for my time writing the port, not for distribution rights. I publish only open-source mods or mods with written permission; anything else is delivered privately to whoever holds the right to use it. See the Licenses section above.</div></div>
+      <div class="faq-item"><button type="button" class="faq-q">How do I pay safely? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a">BuiltByBit escrow is the default: BBB holds your payment and only releases it once you have the working mod — I can't touch it until you're satisfied, which removes the "pay and they vanish" risk entirely. Wise and crypto USDT are also available for returning clients. I never take Friends &amp; Family payments.</div></div>
+      <div class="faq-item"><button type="button" class="faq-q">How long does it take? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a">It depends on complexity — and the timeline is always agreed in writing before I start. Simple Forge 1.20.1 ports land in a few days. Larger mods, other versions, loader conversions and compatibility work get an explicit deadline at the quote stage. Need it faster? A rush fee gets you to the front of the queue.</div></div>
+      <div class="faq-item"><button type="button" class="faq-q">What if the port doesn't work? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a">If I can't get it working, you don't pay — simple. Every delivered commission carries a 7-day guarantee: if it crashes or breaks, I fix it free or refund you. With escrow you test the working mod before any money is released.</div></div>
+      <div class="faq-item"><button type="button" class="faq-q">What's out of scope? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a">I write code. Textures, 3D models and animations, full gameplay/balance redesigns, and ongoing maintenance across future Minecraft versions are each a separate quote — not part of a standard port. Tell me upfront and I'll fold it into the price.</div></div>
     </div>
   </div>
 </section>
@@ -680,12 +508,31 @@
 <section id="portfolio">
   <div class="wrap">
     <div class="eyebrow">Portfolio</div>
-    <h2>Published ports</h2>
-    <div class="portfolio-ph">
-      <div class="ph-icon">🔨</div>
-      <strong>First ports arriving soon</strong>
-      <p>Open-source ports underway — links appear here with CurseForge &amp; Modrinth pages as each one ships. <strong>Early clients get a discounted rate in exchange for an honest verified review</strong> — this window won't last. DM now to lock your spot before the portfolio fills.</p>
+    <h2>Open-source ports, published as proof</h2>
+    <p class="sub">Open-source mods ported and published on CurseForge &amp; Modrinth — license-verified, boot-tested, code you can read before you hire me. Your own mod stays private; these are just proof I can do the job.</p>
+
+    <div class="port-grid">
+      <div class="port-card port-card--pending">
+        <div class="port-card-head">
+          <div class="port-badges"><span class="badge--lic-mit">MIT</span><span class="badge--loader">NeoForge → Forge</span></div>
+          <span class="port-status">Queued</span>
+        </div>
+        <div class="port-name">Just Dire Things</div>
+        <p class="port-desc">Direwolf20's QoL utilities and tools — 19M+ downloads on NeoForge with no Forge 1.20.1 build. One of the biggest gaps on the backport list right now.</p>
+        <div class="port-meta"><span class="port-ver">Forge 1.20.1</span><span class="port-origin">NeoForge 1.20.4+ upstream</span></div>
+        <div class="port-links"><span class="port-link-ph">CurseForge (soon)</span><span class="port-link-ph">Modrinth (soon)</span></div>
+      </div>
+
+      <div class="port-card port-card--cta">
+        <div class="port-cta-text">
+          <strong>Your mod here?</strong>
+          <p>First clients get a discounted rate in exchange for an honest verified review — this window closes once the queue fills.</p>
+        </div>
+        <a href="#contact" class="btn btn-primary btn-sm">Get a quote</a>
+      </div>
     </div>
+
+    <p class="port-footer-note">More open-source proof ports in progress — shortlist includes <strong>Decorative</strong> (MIT) and <strong>ScalableLux</strong> (LGPL-3.0, 9M downloads). <a href="#contact">Commission yours now</a> while the queue is short.</p>
   </div>
 </section>
 
@@ -697,9 +544,8 @@
     <p class="sub">No team, no outsourcing — whoever takes your commission is the person who writes and debugs every line.</p>
     <div class="about-body">
       <p>Like most pack builders, I spent years chasing mods that never got updated. I started porting them myself — and after enough of them on Forge 1.20.1, I know the API cold: every event handler, every Gradle quirk, every mapping gap between versions.</p>
-      <p>I built this service because the market sits between two extremes: established devs who won't touch small commissions, and cheap alternatives that skip the license work until a DMCA takedown hits your CurseForge account. Fixed price, license-first, everything in writing.</p>
-      <p>My code is on GitHub. You can verify it before you pay anything.</p>
-      <a href="https://github.com/Dheightsan" class="about-gh" target="_blank" rel="noopener noreferrer">Verify on GitHub</a>
+      <p>I built this service because the market sits between two extremes: established devs who won't touch small commissions, and cheap alternatives that skip the license work until a DMCA takedown hits your CurseForge account. Fixed price, license-first, <strong>everything in writing</strong>.</p>
+      <p>You never pay on trust alone: BuiltByBit escrow holds your payment until the working mod is in your hands, and every commission carries a 7-day guarantee. If it doesn't run, you don't pay.</p>
     </div>
   </div>
 </section>
@@ -709,27 +555,26 @@
   <div class="wrap">
     <div class="eyebrow">Contact</div>
     <h2>Get a quote</h2>
-    <p class="sub">Written and async — BuiltByBit or Discord preferred. Use the estimator to build your request, then paste it here.</p>
+    <p class="sub">Written and async — email works now. Use the estimator above to build your request, copy the summary, and send it over. Discord and BuiltByBit escrow opening soon.</p>
     <div class="contact-cards">
       <div class="contact-card">
-        <div class="ci">🏪</div>
+        <div class="ci"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v5c0 4.5-3.4 7.7-8 9-4.6-1.3-8-4.5-8-9V6l8-3z"/></svg></div>
         <h3>BuiltByBit</h3>
         <p>Best for commissions — escrow-protected, the safe default for first-time clients.</p>
         <!-- TODO: swap in your BBB profile link with class "contact-link" once the account exists -->
         <span class="contact-soon">Profile coming soon</span>
       </div>
       <div class="contact-card">
-        <div class="ci">💬</div>
+        <div class="ci"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4V5z"/><circle cx="9.5" cy="10.5" r="0.6" fill="currentColor" stroke="none"/><circle cx="14.5" cy="10.5" r="0.6" fill="currentColor" stroke="none"/></svg></div>
         <h3>Discord</h3>
-        <p>Fast replies. DM the mod link and what you're after. Typical response under 24h.</p>
+        <p>Fast replies. Message the mod link and what you're after. Typical response under 24h.</p>
         <!-- TODO: swap in your Discord invite link with class "contact-link" once set up -->
         <span class="contact-soon">DM coming soon</span>
       </div>
       <div class="contact-card">
-        <div class="ci">📧</div>
+        <div class="ci"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg></div>
         <h3>Email</h3>
         <p>For longer inquiries, licensing questions, or if Discord and BBB don't suit you.</p>
-        <!-- TODO: consider a dedicated business email to keep your personal inbox spam-free -->
         <a href="mailto:josdansanpes2005@gmail.com" class="contact-link">Send email</a>
       </div>
     </div>
@@ -737,182 +582,104 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
-  <div>
-    dheightsan · Forge 1.20.1 Mod Porting
-    <span class="sep">·</span>
-    <a href="mailto:josdansanpes2005@gmail.com">Contact</a>
-  </div>
+  <div>Forge 1.20.1 Mod Porting <span class="sep">·</span> <a href="mailto:josdansanpes2005@gmail.com">Contact</a></div>
 </footer>
 
 <script>
 (function () {
   'use strict';
-
-  var state = {
-    service: 'backport',
-    target: '1201',
-    loader: 'sameforge',
-    size: 'medium',
-    openSource: 'open',
-    scope: 'simple'
-  };
-
-  var LABELS = {
-    service: { backport: 'Backport (newer → older)', forward: 'Forward-port / revive (old → modern)', compat: 'Compatibility patch' },
-    target:  { '1201': 'Forge 1.20.1', other: 'Another version' },
-    loader:  { sameforge: 'Forge / NeoForge (same family)', fabric: 'From Fabric (near-rewrite)' },
-    size:    { small: 'Small', medium: 'Medium', large: 'Large' },
-    openSource: { open: 'Open-source / permission', closed: 'Closed-source (ARR)' },
-    scope:   { simple: 'Simple', moderate: 'Moderate', deep: 'Deep' }
-  };
-
-  function round5(n) { return Math.round(n / 5) * 5; }
-
-  function compute() {
-    if (state.service === 'compat') {
-      var sMap = { simple: [50, 110], moderate: [110, 220], deep: [220, 450] };
-      var r = sMap[state.scope] || sMap.simple;
-      var cm = state.openSource === 'closed' ? 1.25 : 1;
-      return { lo: round5(r[0] * cm), hi: round5(r[1] * cm), custom: true };
-    }
-    var baseMap = { small: [40, 80], medium: [80, 140], large: [140, 220] };
-    var b = baseMap[state.size] || baseMap.medium;
-    var lo = b[0], hi = b[1], mult = 1;
-    if (state.target === 'other') mult *= 1.5;
-    if (state.loader === 'fabric') mult *= 1.8;
-    if (state.service === 'forward') mult *= 1.25;
-    if (state.openSource === 'closed') mult *= 1.5;
-    return { lo: round5(lo * mult), hi: round5(hi * mult), custom: false };
-  }
-
-  function delivery() {
-    if (state.service === 'compat') return 'Ships as a publishable add-on — my own code, so it works even for closed-source mods.';
-    return state.openSource === 'open'
-      ? 'Open-source / permitted → publishable on CurseForge and Modrinth, author credited.'
-      : 'Closed-source → delivered privately to you only; never published.';
-  }
-
-  function buildNote() {
-    if (state.service === 'compat') {
-      var cn = 'Compatibility is <span class="premium">always a custom quote</span> until I see the mods. ';
-      if (state.openSource === 'closed') cn += '<span class="premium">+25% ARR surcharge</span> — working on closed source. ';
-      return cn + delivery();
-    }
-    var prem = [];
-    if (state.target === 'other') prem.push('a non-1.20.1 version');
-    if (state.loader === 'fabric') prem.push('a Fabric&rarr;Forge rewrite');
-    if (state.service === 'forward') prem.push('forward-porting across versions');
-    if (state.openSource === 'closed') prem.push('closed-source private delivery (+50%)');
-    var base = prem.length === 0
-      ? 'Base rate — Forge 1.20.1, same loader, is as low as it gets. '
-      : '<span class="premium">Premium</span> for ' + prem.join(' and ') + '. ';
-    return base + delivery();
-  }
-
-  function buildSummary(est) {
-    var lines = ['Hi! I\'d like a quote for a commission.', ''];
-    lines.push('• Service: ' + LABELS.service[state.service]);
-    if (state.service !== 'compat') {
-      lines.push('• Target version: ' + LABELS.target[state.target]);
-      lines.push('• Source loader: ' + LABELS.loader[state.loader]);
-      lines.push('• Mod size: ' + LABELS.size[state.size]);
-      lines.push('• License: ' + LABELS.openSource[state.openSource]);
-    } else {
-      lines.push('• Scope: ' + LABELS.scope[state.scope]);
-    }
-    lines.push('• Ballpark from your site: $' + est.lo + '–$' + est.hi + (est.custom ? ' (custom)' : ''));
-    lines.push('');
-    lines.push('Mod link(s): ');
-    lines.push('What I need: ');
-    return lines.join('\n');
-  }
-
+  var state = { service: 'backport', size: 'medium', wall: 'none', loader: 'same', license: 'open', scope: 'small', rush: 'standard' };
+  var BASE = { small: 90, medium: 160, large: 280 };
+  var COMPAT = { small: 90, medium: 180, large: 350 };
+  var WALL = { none: 0, moderate: 80, hard: 180, brutal: 300 };
+  var LOADER = { same: 0, fabric: 400 };
+  var RUSH = { standard: 1, r72: 1.3, r24: 1.5 };
+  var MIN = 75;
   var priceEl = document.getElementById('est-price');
   var noteEl = document.getElementById('est-note');
   var summaryEl = document.getElementById('est-summary');
   var copyBtn = document.getElementById('est-copy');
-
-  function render() {
-    // conditional groups
-    var isPort = state.service !== 'compat';
-    document.getElementById('grp-target').classList.toggle('hidden', !isPort);
-    document.getElementById('grp-loader').classList.toggle('hidden', !isPort);
-    document.getElementById('grp-size').classList.toggle('hidden', !isPort);
-    document.getElementById('grp-license').classList.toggle('hidden', !isPort);
-    document.getElementById('grp-scope').classList.toggle('hidden', isPort);
-
-    var est = compute();
-    priceEl.textContent = '$' + est.lo + ' – $' + est.hi;
-    noteEl.innerHTML = buildNote();
-    summaryEl.textContent = buildSummary(est);
-
-    // reset copy button label if it was in "done" state
-    copyBtn.classList.remove('done');
-    copyBtn.textContent = 'Copy summary for your DM';
+  function money(n) { return '$' + Math.round(n); }
+  function compute() {
+    var isCompat = state.service === 'compat';
+    var sub = isCompat ? COMPAT[state.scope] : (BASE[state.size] + WALL[state.wall] + LOADER[state.loader]);
+    if (state.license === 'closed') sub = Math.max(sub * 1.4, sub + 120);
+    sub = sub * RUSH[state.rush];
+    sub = Math.max(sub, MIN);
+    return { low: Math.max(Math.round(sub * 0.9), MIN), high: Math.round(sub * 1.15), isCompat: isCompat };
   }
-
-  // event delegation on all option groups
-  var groups = document.querySelectorAll('.est-options');
-  for (var i = 0; i < groups.length; i++) {
-    groups[i].addEventListener('click', function (e) {
+  function buildNote(r) {
+    var bits = [];
+    if (r.isCompat) { bits.push('Compatibility patch — my own publishable code.'); }
+    else {
+      if (state.wall !== 'none') bits.push('<span class="premium">' + state.wall + ' version wall</span> crossed');
+      if (state.loader === 'fabric') bits.push('<span class="premium">Fabric→Forge</span> rewrite');
+      if (bits.length === 0) bits.push('Forge 1.20.1 — my specialty, lowest lane.');
+    }
+    if (state.license === 'closed') bits.push('private ARR delivery');
+    if (state.rush === 'r72') bits.push('<span class="premium">rush &lt;72h</span>');
+    if (state.rush === 'r24') bits.push('<span class="premium">rush &lt;24h</span>');
+    return bits.join(' · ');
+  }
+  function buildSummary(r) {
+    var L = ['--- COMMISSION REQUEST ---'];
+    L.push('Service: ' + ({ backport: 'Backport (newer -> older)', forward: 'Forward-port / revive', compat: 'Compatibility patch' })[state.service]);
+    if (state.service === 'compat') { L.push('Scope: ' + ({ small: 'simple (2 mods)', medium: 'moderate (mixin/event)', large: 'deep (several mods)' })[state.scope]); }
+    else {
+      L.push('Mod size: ' + state.size);
+      L.push('Version jump: ' + ({ none: 'none / tiny', moderate: 'moderate (1.20.2)', hard: 'hard (1.21)', brutal: 'brutal (1.13/1.18)' })[state.wall]);
+      L.push('Source loader: ' + (state.loader === 'fabric' ? 'Fabric' : 'Forge/NeoForge'));
+    }
+    L.push('License: ' + (state.license === 'closed' ? 'closed-source (ARR, private)' : 'open / permission'));
+    L.push('Timeline: ' + ({ standard: 'standard', r72: 'rush <72h', r24: 'rush <24h' })[state.rush]);
+    L.push('Ballpark: ' + money(r.low) + ' - ' + money(r.high) + ' (min $75)');
+    L.push('Mod link: <paste here>');
+    return L.join('\n');
+  }
+  function render() {
+    var r = compute();
+    priceEl.textContent = money(r.low) + ' – ' + money(r.high);
+    noteEl.innerHTML = buildNote(r);
+    summaryEl.textContent = buildSummary(r);
+    copyBtn.classList.remove('done'); copyBtn.textContent = 'Copy summary';
+  }
+  function syncGroups() {
+    var compat = state.service === 'compat';
+    document.getElementById('grp-size').classList.toggle('hidden', compat);
+    document.getElementById('grp-wall').classList.toggle('hidden', compat);
+    document.getElementById('grp-loader').classList.toggle('hidden', compat);
+    document.getElementById('grp-scope').classList.toggle('hidden', !compat);
+  }
+  document.querySelectorAll('.est-options').forEach(function (grp) {
+    var key = grp.getAttribute('data-group');
+    grp.addEventListener('click', function (e) {
       var btn = e.target.closest('.est-opt');
       if (!btn) return;
-      var group = this.getAttribute('data-group');
-      var value = btn.getAttribute('data-value');
-      state[group] = value;
-      // update active styling within this group
-      var opts = this.querySelectorAll('.est-opt');
-      for (var j = 0; j < opts.length; j++) { opts[j].classList.remove('active'); opts[j].setAttribute('aria-pressed', 'false'); }
+      grp.querySelectorAll('.est-opt').forEach(function (b) { b.classList.remove('active'); });
       btn.classList.add('active');
-      btn.setAttribute('aria-pressed', 'true');
+      state[key] = btn.getAttribute('data-value');
+      if (key === 'service') syncGroups();
       render();
     });
+  });
+  function fallbackCopy(text, done) {
+    var ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); done(); } catch (e) {} document.body.removeChild(ta);
   }
-
-  // copy to clipboard with fallback
   copyBtn.addEventListener('click', function () {
     var text = summaryEl.textContent;
-    var done = function () {
-      copyBtn.classList.add('done');
-      copyBtn.textContent = '✓ Copied — paste it in your DM';
-    };
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).then(done).catch(function () { fallback(text, done); });
-    } else {
-      fallback(text, done);
-    }
+    var done = function () { copyBtn.classList.add('done'); copyBtn.textContent = 'Copied — paste it in your message'; };
+    if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(done).catch(function () { fallbackCopy(text, done); }); }
+    else { fallbackCopy(text, done); }
   });
-
-  function fallback(text, done) {
-    var ta = document.createElement('textarea');
-    ta.value = text;
-    ta.style.position = 'fixed';
-    ta.style.opacity = '0';
-    document.body.appendChild(ta);
-    ta.select();
-    try { document.execCommand('copy'); done(); } catch (err) {}
-    document.body.removeChild(ta);
-  }
-
-  // FAQ accordion
-  var faqs = document.querySelectorAll('.faq-q');
-  for (var k = 0; k < faqs.length; k++) {
-    faqs[k].setAttribute('aria-expanded', 'false');
-    faqs[k].addEventListener('click', function () {
-      var open = this.parentElement.classList.toggle('open');
-      this.setAttribute('aria-expanded', open ? 'true' : 'false');
+  document.querySelectorAll('.faq-q').forEach(function (q) {
+    q.addEventListener('click', function () {
+      var a = q.nextElementSibling; var icon = q.querySelector('.faq-icon');
+      var open = a.classList.toggle('open'); if (icon) icon.textContent = open ? '–' : '+';
     });
-  }
-
-  // init ARIA pressed-state on estimator options
-  var allOpts = document.querySelectorAll('.est-opt');
-  for (var m = 0; m < allOpts.length; m++) {
-    allOpts[m].setAttribute('aria-pressed', allOpts[m].classList.contains('active') ? 'true' : 'false');
-  }
-
-  render();
+  });
+  syncGroups(); render();
 })();
 </script>
 
