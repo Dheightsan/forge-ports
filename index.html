@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>document.documentElement.classList.add('js')</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Port, backport &amp; revive Minecraft mods — any version, any loader</title>
-  <meta name="description" content="Port, backport &amp; revive Minecraft mods — any version, any loader. Forge 1.20.1 specialist. Boot-tested, license-checked. Fixed price from $35, 7-day guarantee, escrow payment.">
-  <meta property="og:title" content="Port, backport &amp; revive Minecraft mods">
+  <title>Modwright — Minecraft mod porting &amp; backporting · Forge 1.20.1</title>
+  <meta name="description" content="Modwright — port, backport &amp; revive Minecraft mods across Forge, Fabric &amp; NeoForge. Forge 1.20.1 specialist. Boot-tested, license-checked. Fixed price from $35, 7-day guarantee, escrow payment.">
+  <meta property="og:title" content="Modwright — Minecraft mod porting &amp; backporting">
   <meta property="og:description" content="Port, backport &amp; revive Minecraft mods · Any version, any loader · Boot-tested · License-checked · From $35.">
   <meta property="og:type" content="website">
   <meta name="theme-color" content="#1a1410">
@@ -13,27 +14,55 @@
   <meta property="og:url" content="https://dheightsan.github.io/forge-ports/">
   <meta property="og:image" content="https://dheightsan.github.io/forge-ports/og.svg">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><defs><clipPath id='h'><path d='M16 2.5 L27.7 9.25 L27.7 22.75 L16 29.5 L4.3 22.75 L4.3 9.25 Z'/></clipPath></defs><g clip-path='url(%23h)'><rect width='32' height='32' fill='%2316a34a'/><path d='M32 0V32H0Z' fill='%2382583a'/></g><path d='M16 2.5 L27.7 9.25 L27.7 22.75 L16 29.5 L4.3 22.75 L4.3 9.25 Z' fill='none' stroke='%230b0a07' stroke-width='1.4'/></svg>">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Modwright — Minecraft mod porting",
+    "serviceType": "Minecraft mod porting, backporting and revival",
+    "description": "Port, backport and revive Minecraft mods across Forge, Fabric and NeoForge. Forge 1.20.1 specialist. Fixed price from $35, boot-tested, license-checked, 7-day guarantee, escrow payment.",
+    "url": "https://dheightsan.github.io/forge-ports/",
+    "areaServed": "Worldwide",
+    "provider": {
+      "@type": "Person",
+      "name": "josda",
+      "alternateName": "Modwright",
+      "url": "https://dheightsan.github.io/forge-ports/"
+    },
+    "offers": {
+      "@type": "Offer",
+      "priceCurrency": "USD",
+      "price": "35",
+      "description": "Fixed-price Minecraft mod porting from $35, with a 7-day guarantee."
+    }
+  }
+  </script>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><defs><clipPath id='h'><path d='M16 2.5 L27.7 9.25 L27.7 22.75 L16 29.5 L4.3 22.75 L4.3 9.25 Z'/></clipPath></defs><g clip-path='url(%23h)'><rect width='32' height='32' fill='%23b9742f'/><path d='M32 0V32H0Z' fill='%2382583a'/></g><path d='M16 2.5 L27.7 9.25 L27.7 22.75 L16 29.5 L4.3 22.75 L4.3 9.25 Z' fill='none' stroke='%230b0a07' stroke-width='1.4'/></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    ::selection { background: rgba(203,161,74,0.32); color: #fff8ec; }
+    :focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; border-radius: 2px; }
+    html.js .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s cubic-bezier(.2,.8,.2,1), transform 0.6s cubic-bezier(.2,.8,.2,1); }
+    html.js .reveal.in-view { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) { html.js .reveal { opacity: 1; transform: none; transition: none; } }
 
     :root {
       /* ── GitHub emerald green (primary) + No Man's Land brown (accent) ── */
-      --bg:        #0e0d0b;   /* near-black, GitHub-style */
-      --surface:   #161513;
-      --surface2:  #1e1c18;
+      --bg:        #14100c;   /* warm espresso near-black */
+      --surface:   #211812;
+      --surface2:  #2a1f15;
       --border:    #2a2823;
       --border-lt: #3c382f;
       /* GREEN = primary — the original GitHub emerald */
-      --green:     #1a9565;   /* deep jade-teal — refined to match josda's reference images (was GitHub emerald) */
-      --green-hi:  #2eb583;
-      --green-glow:rgba(46, 181, 131, 0.12);
-      --green-ring:rgba(46, 181, 131, 0.30);
+      --green:     #c07e3c;   /* COPPER — warm primary/positive (replaced jade; josda: no green). Token name kept to limit churn. */
+      --green-hi:  #d49a55;
+      --green-glow:rgba(192, 126, 60, 0.14);
+      --green-ring:rgba(192, 126, 60, 0.32);
       /* SKY BLUE = accent for the "Get a quote" CTA only (eye-catching contrast). Green stays primary; brown = price. */
-      --sky:       #0c4a6e;   /* deep navy-blue — primary CTA fill (darkened per josda, white text) */
+      --sky:       #14506b;   /* deep navy-blue — primary CTA fill (desaturated for harmony, white text) */
       --sky-hi:    #38bdf8;
       --sky-mid:   #0ea5e9;
       --sky-glow:  rgba(14, 90, 133, 0.34);
@@ -46,6 +75,14 @@
       /* GOLD = warm metallic accent (from the reference images) for decorative bits that complement the cream text */
       --gold:      #cba14a;
       --gold-glow: rgba(203, 161, 74, 0.13);
+      /* HOT ACCENTS — one source of truth (consolidated from drifting one-off hexes) */
+      --amber:      #d99a2b;   /* tier-medium / caution */
+      --terracotta: #d2703f;   /* premium / heat — reused: tier-hard, NeoForge, ac-rust glyph */
+      --brick:      #c14a3c;   /* max difficulty (tier-brutal) */
+      --rust:       #b8542f;   /* urgency (ac-rust active) */
+      /* card padding — two values only */
+      --pad-card:    1.65rem;
+      --pad-card-lg: 1.85rem;
       --text:      #eae4d6;   /* warm cream */
       --text-soft: #b0a896;
       --text-mute: #8d8372;   /* lifted for WCAG AA contrast */
@@ -53,24 +90,23 @@
       --radius-lg: 12px;
       --max:       1060px;
       --font:      'Space Grotesk', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      --font-display: 'Space Grotesk', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
     }
 
     html { scroll-behavior: smooth; }
     body {
-      background:
-        radial-gradient(ellipse 100% 48% at 50% -10%, rgba(46,181,131,0.045), transparent 62%),
-        var(--bg);
+      background: var(--bg);
       color: var(--text); font-family: var(--font);
       font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased;
     }
-    body::after { content: ''; position: fixed; inset: 0; z-index: 100; pointer-events: none; opacity: 0.05;
+    body::after { content: ''; position: fixed; inset: 0; z-index: 100; pointer-events: none; opacity: 0.045;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E"); }
     a { color: var(--green-hi); text-decoration: none; }
     a:hover { text-decoration: underline; }
     a:focus-visible, button:focus-visible, .est-opt:focus-visible, .faq-q:focus-visible, .skip:focus {
       outline: 3px solid var(--green-hi); outline-offset: 2px; border-radius: 4px;
     }
-    .skip { position: absolute; left: -9999px; top: 0; z-index: 200; background: var(--green); color: #052e16; padding: 0.6rem 1.1rem; font-weight: 700; border-radius: 0 0 var(--radius) 0; }
+    .skip { position: absolute; left: -9999px; top: 0; z-index: 200; background: var(--green); color: #2a1808; padding: 0.6rem 1.1rem; font-weight: 700; border-radius: 0 0 var(--radius) 0; }
     .skip:focus { left: 0; }
     @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; scroll-behavior: auto !important; } }
 
@@ -86,12 +122,15 @@
     .ls-logos { display: flex; gap: 1.6rem; flex-wrap: wrap; }
     .ls-item { display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 700; font-size: 0.92rem; color: var(--text-soft); }
     .ls-item svg { width: 24px; height: 24px; }
+    a.ls-item { text-decoration: none; transition: color 0.15s, transform 0.15s; }
+    a.ls-item:hover { color: var(--text); transform: translateY(-1px); }
+    .loaders-strip .ls-inner + .ls-inner { margin-top: 0.85rem; padding-top: 0.85rem; border-top: 1px dashed var(--border); }
 
     .eyebrow {
       font-size: 0.74rem; font-weight: 700; letter-spacing: 0.14em;
       color: var(--green-hi); margin-bottom: 0.9rem; text-transform: uppercase;
     }
-    h2 { font-size: clamp(1.6rem, 3vw, 2.15rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 0.85rem; }
+    h2 { font-family: var(--font-display); font-size: clamp(1.65rem, 3vw, 2.2rem); font-weight: 600; letter-spacing: 0; line-height: 1.18; margin-bottom: 0.85rem; }
     .sub { color: var(--text-soft); max-width: 560px; font-size: 0.96rem; }
 
     /* ── buttons ── */
@@ -111,7 +150,7 @@
     /* ── NAV ── */
     nav { position: sticky; top: 0; z-index: 100; background: rgba(26, 20, 16, 0.88); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
     .nav-inner { max-width: var(--max); margin: 0 auto; padding: 0 1.5rem; height: 62px; display: flex; align-items: center; justify-content: space-between; }
-    .brand { display: inline-flex; align-items: center; gap: 0.6rem; font-weight: 800; font-size: 1.05rem; letter-spacing: -0.01em; color: var(--text); }
+    .brand { display: inline-flex; align-items: center; gap: 0.6rem; font-family: var(--font-display); font-weight: 600; font-size: 1.12rem; letter-spacing: 0; color: var(--text); }
     .brand-mark { width: 27px; height: 27px; flex-shrink: 0; }
     .brand .ph { color: var(--text-mute); font-weight: 600; font-size: 0.95rem; }
     .nav-links { display: flex; gap: 1.6rem; list-style: none; align-items: center; }
@@ -122,20 +161,22 @@
 
     /* ── HERO ── */
     #hero { min-height: calc(100vh - 62px); display: flex; align-items: center; padding: 4rem 1.5rem; position: relative; overflow: hidden;
-      background:
-        radial-gradient(ellipse 65% 70% at 50% 26%, rgba(26,149,101,0.18), transparent 68%),
-        radial-gradient(ellipse 130% 55% at 50% 118%, rgba(46,181,131,0.10), transparent 60%),
-        linear-gradient(180deg, #0a0f0d 0%, #0c120f 55%, #090c0a 100%); }
+      background: linear-gradient(180deg, #100e0b, #0b0a08); }
     #hero::before { content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 0;
-      box-shadow: inset 0 -130px 150px -60px #060807, inset 0 80px 110px -70px rgba(0,0,0,0.55);
-      background: radial-gradient(ellipse 50% 42% at 50% 28%, rgba(120,210,170,0.06), transparent 70%); }
-    .hero-scene { position: absolute; left: 0; right: 0; bottom: 0; height: 46%; z-index: 0; pointer-events: none; }
+      box-shadow: inset 0 -120px 140px -70px #07060a, inset 0 70px 100px -70px rgba(0,0,0,0.45); }
+    .hero-scene { display: none; }
     .hero-scene svg { width: 100%; height: 100%; display: block; }
     .hero-inner { position: relative; z-index: 1; max-width: 760px; }
+    .hero-inner::before { content: none; }
     .badge { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--green-glow); border: 1px solid var(--green-ring); color: var(--green-hi); font-size: 0.78rem; font-weight: 600; padding: 0.4rem 0.85rem; border-radius: 999px; margin-bottom: 1.6rem; }
     .badge-dot { width: 7px; height: 7px; background: var(--green-hi); border-radius: 50%; }
-    #hero h1 { font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 900; letter-spacing: -0.03em; line-height: 1.07; margin-bottom: 1.2rem; max-width: 730px; text-shadow: 0 2px 30px rgba(0,0,0,0.5); }
-    #hero h1 .g { color: var(--green-hi); }
+    #hero h1 { font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 700; letter-spacing: -0.005em; line-height: 1.1; margin-bottom: 1.2rem; max-width: 730px; text-shadow: 0 1px 2px rgba(0,0,0,0.6), 0 2px 32px rgba(0,0,0,0.55); }
+    #hero h1 .g { color: #95d6a6; }
+    #hero h1 .cf { color: #f16436; }
+    #hero h1 .md { color: #34cf73; }
+    #hero h1 .fb { color: #d8b67e; }
+    #hero h1 .fg { color: #9fb0c2; }
+    #hero h1 .nf { color: #f0843f; }
     .hero-tagline { font-size: 1.28rem; font-weight: 600; color: var(--text); max-width: 560px; margin-bottom: 1.1rem; line-height: 1.4; }
     .hero-tagline .b { color: var(--brown-hi); }
     .hero-desc { font-size: 1.05rem; color: var(--text-soft); max-width: 545px; margin-bottom: 2rem; line-height: 1.7; }
@@ -143,17 +184,30 @@
     .pills { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-bottom: 2.25rem; }
     .pill { background: var(--surface2); color: var(--text-soft); border: 1px solid var(--border); border-radius: 999px; padding: 0.38rem 0.85rem; font-size: 0.82rem; }
     .pill-price { background: var(--brown-glow); border-color: var(--brown-ring); color: var(--brown-hi); font-weight: 700; }
+    .pill-trust { background: rgba(102,172,128,0.12); border-color: rgba(102,172,128,0.34); color: #8fd0a0; font-weight: 600; }
+    .hero-who { font-size: 0.95rem; color: var(--text-mute); margin-bottom: 0.85rem; max-width: 560px; }
+    .hero-who strong { color: var(--text-soft); font-weight: 700; }
+    .price-hl { color: var(--gold); font-weight: 700; }
+    .port-card--guarantee { background: rgba(102,172,128,0.08); border-color: rgba(102,172,128,0.28); display: flex; flex-direction: column; gap: 0.75rem; }
+    .contact-card--primary { border-color: rgba(102,172,128,0.40); box-shadow: 0 0 0 1px rgba(102,172,128,0.14); }
+    .contact-card--soon { opacity: 0.6; }
     .ctas { display: flex; gap: 0.85rem; flex-wrap: wrap; }
     .hero-trust { margin-top: 1.4rem; font-size: 0.85rem; color: var(--text-mute); }
 
     /* ── SERVICES ── */
     #services { background: var(--surface); border-top: 1px solid var(--border); }
     .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(238px, 1fr)); gap: 1.1rem; margin-top: 2.75rem; }
-    .card { background: var(--bg); padding: 1.8rem 1.55rem; border: 1px solid var(--border); border-radius: var(--radius-lg); transition: border-color 0.15s, transform 0.1s; }
+    .card { background: linear-gradient(180deg, #1a1814, #131210); padding: var(--pad-card-lg); border: 1px solid var(--border); border-radius: var(--radius-lg); transition: border-color 0.15s, transform 0.1s; position: relative; overflow: hidden; box-shadow: inset 0 1px 0 rgba(234,228,214,0.04), 0 8px 24px -16px rgba(0,0,0,0.7); }
     .card:hover { border-color: var(--green-ring); transform: translateY(-3px); }
+    .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--green); }
+    .card--premium::before { background: var(--gold); }
+    .card-stats { display: flex; flex-wrap: wrap; gap: 0.5rem 1.3rem; margin: 0.2rem 0 1rem; padding-top: 0.85rem; border-top: 1px solid var(--border); }
+    .card-stats > div { display: flex; flex-direction: column; gap: 0.1rem; }
+    .card-stats .k { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-mute); }
+    .card-stats .v { font-size: 0.8rem; font-weight: 700; color: var(--text); }
     .icon-wrap { width: 44px; height: 44px; display: grid; place-items: center; background: var(--brown-glow); border-radius: var(--radius); margin-bottom: 1rem; color: var(--brown-hi); }
     .icon-wrap svg { width: 24px; height: 24px; stroke: currentColor; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
-    .card h3 { font-size: 1.04rem; font-weight: 800; margin-bottom: 0.5rem; }
+    .card h3 { font-size: 1.04rem; font-weight: 700; margin-bottom: 0.5rem; }
     .card p { color: var(--text-soft); font-size: 0.86rem; line-height: 1.65; margin-bottom: 0.9rem; }
     .card p strong { color: var(--text); font-weight: 600; }
     .card-tag { display: inline-block; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; padding: 0.25rem 0.6rem; border-radius: 999px; }
@@ -163,66 +217,94 @@
     /* ── ESTIMATOR ── */
     #estimator { border-top: 1px solid var(--border); }
     .estimator { margin-top: 2.75rem; display: grid; grid-template-columns: 1.3fr 1fr; gap: 1.5rem; align-items: start; }
-    .est-form { background: var(--surface); padding: 1.75rem; border: 1px solid var(--border); border-radius: var(--radius-lg); }
+    .est-form { background: linear-gradient(180deg, #1a1814, #131210); padding: var(--pad-card); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: inset 0 1px 0 rgba(234,228,214,0.04), 0 8px 24px -16px rgba(0,0,0,0.7); }
     .est-group { margin-bottom: 1.5rem; }
     .est-group:last-child { margin-bottom: 0; }
     .est-group.hidden { display: none; }
+    .est-adv-toggle { display: inline-flex; align-items: center; gap: 0.4rem; background: transparent; border: 1px dashed var(--border-lt); color: var(--text-soft); font-family: inherit; font-size: 0.86rem; font-weight: 600; padding: 0.55rem 0.95rem; border-radius: var(--radius); cursor: pointer; transition: all 0.15s; margin-bottom: 1.5rem; }
+    .est-adv-toggle:hover { border-color: var(--green-ring); color: var(--text); }
+    .est-adv-toggle .adv-caret { transition: transform 0.18s; font-size: 0.78rem; }
+    .est-adv-toggle[aria-expanded="true"] .adv-caret { transform: rotate(180deg); }
+    .est-advanced.hidden { display: none; }
     .est-label { font-size: 0.96rem; font-weight: 700; color: var(--text); margin-bottom: 0.7rem; display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; }
     .est-hint { font-size: 0.78rem; color: var(--text-mute); font-weight: 400; }
     .est-options { display: flex; flex-wrap: wrap; gap: 0.55rem; }
     .est-opt { background: var(--surface2); color: var(--text-soft); border: 1px solid var(--border); padding: 0.7rem 1.05rem; min-height: 48px; border-radius: var(--radius); font-size: 0.95rem; font-weight: 600; cursor: pointer; font-family: inherit; transition: all 0.13s; }
     .est-opt:hover { border-color: var(--green-ring); color: var(--text); }
-    .est-opt.active { background: var(--green-hi); color: #052e16; border-color: var(--green-hi); font-weight: 700; box-shadow: 0 0 0 3px var(--green-glow); }
+    .est-opt.active { background: var(--green-hi); color: #2a1808; border-color: var(--green-hi); font-weight: 700; box-shadow: 0 0 0 3px var(--green-glow); }
     .est-opt small { display: block; font-size: 0.8rem; font-weight: 400; opacity: 0.82; margin-top: 0.15rem; }
     /* tier colour-coding — green (easy/cheap) → red (brutal) */
     .est-opt .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 0.5rem; vertical-align: middle; background: var(--text-mute); }
-    .est-opt.t1 .dot { background: #2eb583; }
-    .est-opt.t2 .dot { background: #eab308; }
-    .est-opt.t3 .dot { background: #f97316; }
-    .est-opt.t4 .dot { background: #ef4444; }
-    .est-opt.t1.active { background: #2eb583; color: #052e16; border-color: #2eb583; box-shadow: 0 0 0 3px rgba(46,181,131,0.20); }
-    .est-opt.t2.active { background: #eab308; color: #2a1f02; border-color: #eab308; box-shadow: 0 0 0 3px rgba(234,179,8,0.20); }
-    .est-opt.t3.active { background: #f97316; color: #2a1302; border-color: #f97316; box-shadow: 0 0 0 3px rgba(249,115,22,0.20); }
-    .est-opt.t4.active { background: #ef4444; color: #2e0606; border-color: #ef4444; box-shadow: 0 0 0 3px rgba(239,68,68,0.20); }
+    .est-opt.t1 .dot { background: #66ac80; }
+    .est-opt.t2 .dot { background: var(--amber); }
+    .est-opt.t3 .dot { background: var(--terracotta); }
+    .est-opt.t4 .dot { background: var(--brick); }
+    .est-opt.t1 .optglyph { color: #66ac80; }
+    .est-opt.t2 .optglyph { color: var(--amber); }
+    .est-opt.t3 .optglyph { color: var(--terracotta); }
+    .est-opt.t4 .optglyph { color: var(--brick); }
+    .est-opt.t1.active { background: #66ac80; color: #11261a; border-color: #66ac80; box-shadow: 0 0 0 3px rgba(102,172,128,0.22); }
+    .est-opt.t2.active { background: var(--amber); color: #2a1f02; border-color: var(--amber); box-shadow: 0 0 0 3px rgba(217,154,43,0.22); }
+    .est-opt.t3.active { background: var(--terracotta); color: #2a1302; border-color: var(--terracotta); box-shadow: 0 0 0 3px rgba(210,112,63,0.22); }
+    .est-opt.t4.active { background: var(--brick); color: #fff; border-color: var(--brick); box-shadow: 0 0 0 3px rgba(193,74,60,0.24); }
+    .est-opt.t1.active .optglyph { color: #11261a; }
+    .est-opt.t2.active .optglyph { color: #2a1f02; }
+    .est-opt.t3.active .optglyph { color: #2a1302; }
+    .est-opt.t4.active .optglyph { color: #fff; }
     .est-opt.active .dot { background: rgba(0,0,0,0.5); }
     /* loader brand options — Forge/NeoForge = gray anvil + NeoForge orange · Fabric = signature paper */
     .est-opt .loglyph { width: 16px; height: 16px; margin-right: 0.5rem; vertical-align: middle; }
     .est-opt.brand-forge .loglyph { color: #b9b3a7; }
-    .est-opt.brand-neoforge .loglyph { color: #ee6a3a; }
+    .est-opt.brand-neoforge .loglyph { color: var(--terracotta); }
     .est-opt.brand-fabric .loglyph { color: #cdae7e; }
     .est-opt.brand-forge:hover { border-color: #9097a1; color: var(--text); }
-    .est-opt.brand-neoforge:hover { border-color: #ee6a3a; color: var(--text); }
+    .est-opt.brand-neoforge:hover { border-color: var(--terracotta); color: var(--text); }
     .est-opt.brand-fabric:hover { border-color: #cdae7e; color: var(--text); }
     .est-opt.brand-forge.active { background: #8b9099; color: #15171a; border-color: #8b9099; box-shadow: 0 0 0 3px rgba(139,144,153,0.24); }
-    .est-opt.brand-neoforge.active { background: #ee6a3a; color: #2a1302; border-color: #ee6a3a; box-shadow: 0 0 0 3px rgba(238,106,58,0.22); }
+    .est-opt.brand-neoforge.active { background: var(--terracotta); color: #2a1302; border-color: var(--terracotta); box-shadow: 0 0 0 3px rgba(210,112,63,0.24); }
     .est-opt.brand-fabric.active { background: #cdae7e; color: #34260f; border-color: #cdae7e; box-shadow: 0 0 0 3px rgba(205,174,126,0.26); }
     .est-opt.brand-forge.active .loglyph { color: #15171a; }
     .est-opt.brand-neoforge.active .loglyph { color: #2a1302; }
     .est-opt.brand-fabric.active .loglyph { color: #34260f; }
     /* multicolour option accents — meaning-based (service / license / priority) */
     .est-opt .optglyph { width: 17px; height: 17px; margin-right: 0.5rem; vertical-align: middle; }
-    .est-opt.ac-jade  .optglyph { color: #2eb583; }
+    .est-opt.ac-jade  .optglyph { color: #66ac80; }
     .est-opt.ac-gold  .optglyph { color: #cba14a; }
     .est-opt.ac-brown .optglyph { color: #bb9168; }
-    .est-opt.ac-rust  .optglyph { color: #d2703f; }
-    .est-opt.ac-jade.active  .optglyph { color: #04241a; }
+    .est-opt.ac-rust  .optglyph { color: var(--terracotta); }
+    .est-opt.ac-amber .optglyph { color: var(--amber); }
+    .est-opt.ac-slate .optglyph { color: #7ea7c6; }
+    .est-opt.ac-jade.active  .optglyph { color: #11261a; }
     .est-opt.ac-gold.active  .optglyph { color: #2a2008; }
     .est-opt.ac-brown.active .optglyph { color: #fff; }
     .est-opt.ac-rust.active  .optglyph { color: #fff; }
-    .est-opt.ac-jade:hover  { border-color: #2eb583; color: var(--text); }
+    .est-opt.ac-amber.active .optglyph { color: #2a1f02; }
+    .est-opt.ac-slate.active .optglyph { color: #eaf4fb; }
+    .est-opt.ac-jade:hover  { border-color: #66ac80; color: var(--text); }
     .est-opt.ac-gold:hover  { border-color: #cba14a; color: var(--text); }
-    .est-opt.ac-brown:hover { border-color: #a06a44; color: var(--text); }
-    .est-opt.ac-rust:hover  { border-color: #b8542f; color: var(--text); }
-    .est-opt.ac-jade.active  { background: #2eb583; color: #04241a; border-color: #2eb583; box-shadow: 0 0 0 3px rgba(46,181,131,0.22); }
+    .est-opt.ac-brown:hover { border-color: var(--brown-hi); color: var(--text); }
+    .est-opt.ac-rust:hover  { border-color: var(--rust); color: var(--text); }
+    .est-opt.ac-amber:hover { border-color: var(--amber); color: var(--text); }
+    .est-opt.ac-slate:hover { border-color: #7ea7c6; color: var(--text); }
+    .est-opt.ac-jade.active  { background: #66ac80; color: #11261a; border-color: #66ac80; box-shadow: 0 0 0 3px rgba(102,172,128,0.24); }
     .est-opt.ac-gold.active  { background: #cba14a; color: #2a2008; border-color: #cba14a; box-shadow: 0 0 0 3px rgba(203,161,74,0.22); }
-    .est-opt.ac-brown.active { background: #a06a44; color: #fff; border-color: #a06a44; box-shadow: 0 0 0 3px rgba(160,106,68,0.28); }
-    .est-opt.ac-rust.active  { background: #b8542f; color: #fff; border-color: #b8542f; box-shadow: 0 0 0 3px rgba(184,84,47,0.28); }
-    .est-result { background: var(--bg); padding: 1.75rem; position: sticky; top: 80px; border: 1px solid var(--border); border-radius: var(--radius-lg); }
+    .est-opt.ac-brown.active { background: var(--brown); color: #fff; border-color: var(--brown); box-shadow: 0 0 0 3px rgba(130,88,58,0.32); }
+    .est-opt.ac-rust.active  { background: var(--rust); color: #fff; border-color: var(--rust); box-shadow: 0 0 0 3px rgba(184,84,47,0.30); }
+    .est-opt.ac-amber.active { background: var(--amber); color: #2a1f02; border-color: var(--amber); box-shadow: 0 0 0 3px rgba(217,154,43,0.22); }
+    .est-opt.ac-slate.active { background: #5a87a6; color: #eaf4fb; border-color: #5a87a6; box-shadow: 0 0 0 3px rgba(90,135,166,0.28); }
+    .est-result { background: linear-gradient(180deg, rgba(203,161,74,0.06), var(--bg)); padding: var(--pad-card); position: sticky; top: 80px; border: 1px solid rgba(203,161,74,0.22); border-radius: var(--radius-lg); box-shadow: 0 0 0 1px rgba(203,161,74,0.10), 0 12px 30px -18px rgba(0,0,0,0.8); }
     .est-result-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-mute); margin-bottom: 0.5rem; }
-    .est-price { font-size: 3.1rem; font-weight: 800; color: var(--gold); line-height: 1; margin-bottom: 0.55rem; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+    .est-price { font-size: clamp(3.1rem, 6vw, 3.8rem); font-weight: 700; color: var(--gold); line-height: 1; margin-bottom: 0.55rem; font-variant-numeric: tabular-nums; letter-spacing: -0.01em; text-shadow: 0 0 24px rgba(203,161,74,0.25); }
+    @keyframes estpulse { 0% { color: #ffe6ab; text-shadow: 0 0 30px rgba(203,161,74,0.55); } 100% { color: var(--gold); text-shadow: 0 0 24px rgba(203,161,74,0.25); } }
+    .est-price.pulse { animation: estpulse 0.5s ease-out; }
+    @media (prefers-reduced-motion: reduce) { .est-price.pulse { animation: none; } }
     .est-note { font-size: 0.9rem; color: var(--text-soft); line-height: 1.55; min-height: 2.4em; margin-bottom: 1.1rem; padding-bottom: 1.1rem; border-bottom: 1px solid var(--border); }
     .est-note .premium { color: var(--brown-hi); font-weight: 600; }
-    .est-summary { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius); padding: 0.85rem 1rem; font-size: 0.76rem; color: var(--text-soft); line-height: 1.7; margin-bottom: 1rem; white-space: pre-wrap; overflow-wrap: anywhere; font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace; }
+    .est-summary { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: var(--radius); padding: 0.95rem 1.1rem; font-size: 0.86rem; color: var(--text-soft); line-height: 1.7; margin-bottom: 1rem; white-space: pre-wrap; overflow-wrap: anywhere; }
+    .est-breakdown { font-size: 0.78rem; color: var(--text-mute); margin-bottom: 0.85rem; font-variant-numeric: tabular-nums; line-height: 1.5; }
+    .est-skip { font-size: 0.82rem; color: var(--text-mute); margin-top: 0.7rem; text-align: center; }
+    .pexample { margin-top: 1rem; padding: 0.8rem 1.1rem; background: rgba(102,172,128,0.08); border-left: 3px solid #66ac80; border-radius: var(--radius); font-size: 0.86rem; color: var(--text-soft); line-height: 1.6; }
+    .pexample strong { color: var(--text); }
     .est-copy { width: 100%; justify-content: center; }
     .est-copy.done { background: var(--surface2); color: var(--green-hi); }
     .est-email { width: 100%; justify-content: center; margin-top: 0.6rem; }
@@ -230,16 +312,16 @@
     .est-disclaimer a { color: var(--green-hi); }
 
     /* ── HOW IT WORKS ── */
-    #how-it-works { background: var(--surface); border-top: 1px solid var(--border); }
+    #how-it-works { background: linear-gradient(180deg, #15140f, #100e0b); border-top: 1px solid var(--border); }
     .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(165px, 1fr)); gap: 1.8rem; margin-top: 2.75rem; }
-    .step-n { font-size: 1.9rem; font-weight: 800; color: var(--gold); line-height: 1; margin-bottom: 0.6rem; font-variant-numeric: tabular-nums; }
-    .step h3 { font-size: 0.96rem; font-weight: 800; margin-bottom: 0.4rem; }
+    .step-n { font-size: 1.9rem; font-weight: 700; color: var(--gold); line-height: 1; margin-bottom: 0.6rem; font-variant-numeric: tabular-nums; }
+    .step h3 { font-size: 0.96rem; font-weight: 700; margin-bottom: 0.4rem; }
     .step p { color: var(--text-soft); font-size: 0.84rem; line-height: 1.6; }
 
     /* ── PRICING ── */
     #pricing { border-top: 1px solid var(--border); }
-    .price-promo { display: flex; align-items: center; gap: 0.85rem; flex-wrap: wrap; margin-top: 1.6rem; padding: 0.9rem 1.2rem; background: linear-gradient(90deg, rgba(46,181,131,0.13), rgba(203,161,74,0.10)); border: 1px solid var(--green-ring); border-radius: var(--radius); font-size: 0.9rem; color: var(--text); line-height: 1.5; }
-    .price-promo-tag { font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; background: var(--green); color: #04241a; padding: 0.32rem 0.62rem; border-radius: 999px; white-space: nowrap; }
+    .price-promo { display: flex; align-items: center; gap: 0.85rem; flex-wrap: wrap; margin-top: 1.6rem; padding: 0.9rem 1.2rem; background: linear-gradient(90deg, rgba(192,126,60,0.13), rgba(203,161,74,0.10)); border: 1px solid var(--green-ring); border-radius: var(--radius); font-size: 0.9rem; color: var(--text); line-height: 1.5; }
+    .price-promo-tag { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; background: var(--green); color: #2a1808; padding: 0.32rem 0.62rem; border-radius: 999px; white-space: nowrap; }
     .price-promo strong { color: var(--gold); font-weight: 700; }
     .ptable { margin-top: 1.4rem; border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
     .prow { display: grid; grid-template-columns: 1.5fr 0.9fr 1.3fr; gap: 1rem; padding: 1.15rem 1.5rem; align-items: center; border-bottom: 1px solid var(--border); }
@@ -248,7 +330,7 @@
     .prow.base { background: var(--green-glow); }
     .pservice { font-weight: 700; font-size: 0.94rem; }
     .pservice small { display: block; font-weight: 400; font-size: 0.78rem; color: var(--text-mute); margin-top: 0.15rem; }
-    .pprice { font-size: 1.24rem; font-weight: 800; color: var(--gold); white-space: nowrap; font-variant-numeric: tabular-nums; }
+    .pprice { font-size: 1.24rem; font-weight: 700; color: var(--gold); white-space: nowrap; font-variant-numeric: tabular-nums; }
     .pwhy { font-size: 0.82rem; color: var(--text-soft); line-height: 1.5; }
     .pnote { margin-top: 1.1rem; font-size: 0.84rem; color: var(--text-mute); line-height: 1.7; }
     .pnote strong { color: var(--text-soft); }
@@ -258,10 +340,11 @@
     .pay-tag { background: var(--surface2); border: 1px solid var(--border); border-radius: 999px; padding: 0.3rem 0.7rem; font-size: 0.8rem; color: var(--text-soft); }
 
     /* ── LEGAL ── */
-    #legal { background: var(--surface); border-top: 1px solid var(--border); }
+    #legal { background: linear-gradient(180deg, #15130e, #0f0e0b); border-top: 1px solid var(--border); }
     .legal-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.1rem; margin-top: 2.75rem; }
-    .legal-card { background: var(--bg); padding: 1.65rem; border: 1px solid var(--border); border-radius: var(--radius-lg); }
-    .legal-card h3 { font-size: 0.98rem; font-weight: 800; margin-bottom: 0.6rem; }
+    .legal-card { background: linear-gradient(180deg, #1a1814, #131210); padding: var(--pad-card); border: 1px solid var(--border); border-radius: var(--radius-lg); position: relative; overflow: hidden; box-shadow: inset 0 1px 0 rgba(234,228,214,0.04), 0 8px 24px -16px rgba(0,0,0,0.7); }
+    .legal-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--gold); }
+    .legal-card h3 { font-size: 0.98rem; font-weight: 700; margin-bottom: 0.6rem; }
     .legal-card p { color: var(--text-soft); font-size: 0.86rem; line-height: 1.6; }
     .legal-quote { margin-top: 1.6rem; padding: 1.2rem 1.4rem; background: var(--green-glow); border-left: 3px solid var(--green); border-radius: var(--radius); font-size: 0.92rem; color: var(--text); }
 
@@ -277,7 +360,7 @@
     /* ── PORTFOLIO ── */
     #portfolio { background: var(--surface); border-top: 1px solid var(--border); }
     .port-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(252px, 1fr)); gap: 1.1rem; margin-top: 2.75rem; }
-    .port-card { background: var(--bg); padding: 1.55rem; border: 1px solid var(--border); border-radius: var(--radius-lg); position: relative; overflow: hidden; }
+    .port-card { background: linear-gradient(180deg, #1a1814, #131210); padding: var(--pad-card); border: 1px solid var(--border); border-radius: var(--radius-lg); position: relative; overflow: hidden; box-shadow: inset 0 1px 0 rgba(234,228,214,0.04), 0 8px 24px -16px rgba(0,0,0,0.7); }
     .port-img { height: 132px; border-radius: var(--radius); margin-bottom: 1rem; display: grid; place-items: center; text-align: center; padding: 0.5rem 1rem; background: linear-gradient(135deg, var(--surface2), var(--bg)); border: 1px dashed var(--border-lt); }
     .port-img span { color: var(--text-mute); font-size: 0.78rem; }
     .port-card-head { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.9rem; flex-wrap: wrap; }
@@ -286,7 +369,7 @@
     .badge--lic-mit { background: var(--green-glow); color: var(--green-hi); border: 1px solid var(--green-ring); }
     .badge--loader { background: var(--surface2); color: var(--text-soft); border: 1px solid var(--border); }
     .port-status { margin-left: auto; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--brown-hi); }
-    .port-name { font-size: 1.1rem; font-weight: 800; margin-bottom: 0.5rem; }
+    .port-name { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
     .port-desc { color: var(--text-soft); font-size: 0.84rem; line-height: 1.6; margin-bottom: 0.9rem; }
     .port-meta { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.9rem; }
     .port-ver, .port-origin { font-size: 0.72rem; color: var(--text-mute); background: var(--surface2); border: 1px solid var(--border); border-radius: 999px; padding: 0.2rem 0.55rem; }
@@ -300,7 +383,7 @@
     .port-footer-note strong { color: var(--text-soft); }
     /* ── entity-card stats (champion/mob-card style from refs) ── */
     .port-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--green), var(--gold)); }
-    .port-card--cta::before { background: linear-gradient(90deg, var(--green), var(--sky-mid)); }
+    .port-card--cta::before { background: linear-gradient(90deg, var(--green), var(--gold)); }
     .port-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 0.55rem 1rem; margin: 0.1rem 0 1rem; padding-top: 0.9rem; border-top: 1px solid var(--border); }
     .port-stats > div { display: flex; flex-direction: column; gap: 0.12rem; }
     .port-stats dt { font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-mute); }
@@ -309,14 +392,15 @@
     .quote-band { position: relative; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: linear-gradient(180deg, var(--surface), var(--bg)); padding: 3.6rem 1.5rem; }
     .q-rule { width: 100px; height: 8px; display: block; margin: 0 auto 1.5rem; }
     .q-rule path { fill: none; stroke: var(--gold); stroke-width: 1.4; stroke-linecap: round; opacity: 0.7; }
-    .big-quote { max-width: 760px; margin: 0 auto; text-align: center; font-size: clamp(1.25rem, 2.8vw, 1.8rem); font-weight: 500; line-height: 1.5; color: var(--text); }
+    /* torn-paper section divider */
+    .torn-sep { line-height: 0; position: relative; z-index: 1; margin: -1px 0; pointer-events: none; }
+    .torn-sep svg { display: block; width: 100%; height: 22px; }
+    .torn-sep path { fill: #13110d; stroke: rgba(203,161,74,0.22); stroke-width: 1.2; }
+    .big-quote { max-width: 760px; margin: 0 auto; text-align: center; font-size: clamp(1.25rem, 2.8vw, 1.8rem); font-weight: 500; line-height: 1.55; color: var(--text); }
     .big-quote .q-em { color: var(--gold); font-weight: 700; }
     .big-quote cite { display: block; margin-top: 1.3rem; font-size: 0.78rem; font-weight: 700; font-style: normal; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-mute); }
     /* ── per-section atmosphere (depth + colour variety) ── */
-    #services { background: radial-gradient(ellipse 70% 55% at 16% 0%, rgba(46,181,131,0.05), transparent 55%); }
-    #estimator { background: radial-gradient(ellipse 75% 60% at 84% 0%, rgba(203,161,74,0.055), transparent 55%); }
-    #pricing { background: radial-gradient(ellipse 70% 55% at 18% 0%, rgba(130,88,58,0.06), transparent 55%); }
-    #portfolio { background: radial-gradient(ellipse 75% 60% at 82% 0%, rgba(46,181,131,0.045), transparent 55%); }
+    /* section backgrounds: neutral espresso (warm radial atmospheres removed) */
 
     /* ── ABOUT ── */
     #about { border-top: 1px solid var(--border); }
@@ -326,16 +410,17 @@
     .about-body strong { color: var(--text); font-weight: 600; }
 
     /* ── CONTACT ── */
-    #contact { background: var(--surface); border-top: 1px solid var(--border); }
+    #contact { background: radial-gradient(ellipse 95% 75% at 50% -8%, rgba(130,88,58,0.06), transparent 55%), linear-gradient(180deg, #141210, #0f0d0b); border-top: 1px solid var(--border); }
     .contact-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.1rem; margin-top: 2.5rem; }
-    .contact-card { background: var(--bg); padding: 1.55rem; border: 1px solid var(--border); border-radius: var(--radius-lg); }
+    .contact-card { background: linear-gradient(180deg, #1a1814, #131210); padding: var(--pad-card); border: 1px solid var(--border); border-radius: var(--radius-lg); position: relative; overflow: hidden; box-shadow: inset 0 1px 0 rgba(234,228,214,0.04), 0 8px 24px -16px rgba(0,0,0,0.7); }
+    .contact-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--brown-hi); }
     .ci { width: 40px; height: 40px; display: grid; place-items: center; background: var(--gold-glow); border-radius: var(--radius); margin-bottom: 0.9rem; color: var(--gold); }
     .ci svg { width: 22px; height: 22px; stroke: currentColor; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
     /* contact icons use each service's real brand colour (not gold) */
-    .ci--bbb     { background: rgba(47,128,237,0.14); color: #5fa0ff; }
-    .ci--discord { background: rgba(88,101,242,0.16); color: #8b95f8; }
-    .ci--gmail   { background: rgba(234,67,53,0.14);  color: #f3897e; }
-    .contact-card h3 { font-size: 0.98rem; font-weight: 800; margin-bottom: 0.4rem; }
+    .ci--bbb     { background: rgba(79,147,196,0.14);  color: #4f93c4; }
+    .ci--discord { background: rgba(125,134,207,0.14); color: #7d86cf; }
+    .ci--gmail   { background: rgba(217,107,88,0.14);  color: #d96b58; }
+    .contact-card h3 { font-size: 0.98rem; font-weight: 700; margin-bottom: 0.4rem; }
     .contact-card p { color: var(--text-soft); font-size: 0.85rem; line-height: 1.55; }
     .contact-link { display: inline-block; margin-top: 0.55rem; font-size: 0.88rem; font-weight: 700; color: var(--green-hi); }
     .contact-link:after { content: ' →'; }
@@ -373,15 +458,7 @@
 <nav aria-label="Primary">
   <div class="nav-inner wrap">
     <span class="brand">
-      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
-        <defs><clipPath id="hexmark"><path d="M16 2.5 L27.7 9.25 L27.7 22.75 L16 29.5 L4.3 22.75 L4.3 9.25 Z"/></clipPath></defs>
-        <g clip-path="url(#hexmark)">
-          <rect width="32" height="32" fill="#1a9565"/>
-          <path d="M32 0V32H0Z" fill="var(--brown)"/>
-        </g>
-        <path d="M16 2.5 L27.7 9.25 L27.7 22.75 L16 29.5 L4.3 22.75 L4.3 9.25 Z" fill="none" stroke="#0b0a07" stroke-width="1.4"/>
-      </svg>
-      <span class="ph">no name</span>
+      <span class="wordmark" style="font-weight:700;font-size:1.2rem;letter-spacing:-0.01em">Modwright</span>
     </span>
     <ul class="nav-links">
       <li><a href="#services">Services</a></li>
@@ -397,23 +474,99 @@
 <!-- HERO -->
 <section id="hero">
   <div class="hero-scene" aria-hidden="true">
-    <svg viewBox="0 0 1440 300" preserveAspectRatio="xMidYMax slice">
-      <path fill="#0d1714" d="M0 150 C 240 110 420 140 620 158 C 820 176 980 130 1180 150 C 1320 164 1390 158 1440 150 V300 H0 Z"/>
-      <path fill="#080e0c" d="M0 210 C 260 178 520 210 760 214 C 1000 218 1220 192 1440 214 V300 H0 Z"/>
-    </svg>
+  <svg viewBox="0 0 1440 820" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6c9fb8"/><stop offset="0.32" stop-color="#92c0bf"/>
+      <stop offset="0.58" stop-color="#e7c6a1"/><stop offset="0.80" stop-color="#d8e1c4"/><stop offset="1" stop-color="#bdcfa3"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#f7bd86" stop-opacity="0.9"/><stop offset="0.5" stop-color="#ef9f6a" stop-opacity="0.35"/><stop offset="1" stop-color="#ef9f6a" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="lwash" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#143438" stop-opacity="0.64"/><stop offset="0.6" stop-color="#143438" stop-opacity="0.34"/><stop offset="1" stop-color="#143438" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="hF" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#bcd3a6"/><stop offset="1" stop-color="#a7c391"/></linearGradient>
+    <linearGradient id="hM" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#94b277"/><stop offset="1" stop-color="#789a5b"/></linearGradient>
+    <linearGradient id="gN" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#618849"/><stop offset="1" stop-color="#3f6630"/></linearGradient>
+    <linearGradient id="erth" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8b5c38"/><stop offset="1" stop-color="#6a4327"/></linearGradient>
+    <linearGradient id="bfade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0b0a08" stop-opacity="0"/><stop offset="1" stop-color="#0b0a08" stop-opacity="1"/></linearGradient>
+    <filter id="cb" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="14"/></filter>
+    <filter id="hb" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="5"/></filter>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
+  </defs>
+  <rect width="1440" height="820" fill="url(#sky)"/>
+  <circle cx="1180" cy="150" r="250" fill="url(#sun)"/>
+  <g opacity="0.5" filter="url(#cb)">
+    <circle cx="1230" cy="120" r="34" fill="#ef925c"/><circle cx="1300" cy="180" r="22" fill="#ef925c"/>
+    <circle cx="1120" cy="90" r="18" fill="#6f9fc0"/><circle cx="1350" cy="120" r="26" fill="#f0aa78"/>
+  </g>
+  <g opacity="0.2" stroke="#e98c5a" fill="none" stroke-width="3"><circle cx="1300" cy="150" r="60"/><circle cx="1300" cy="150" r="84"/><circle cx="1300" cy="150" r="110"/></g>
+  <g filter="url(#cb)">
+    <ellipse cx="480" cy="170" rx="240" ry="60" fill="#f3e2cf" opacity="0.55"/><ellipse cx="820" cy="120" rx="200" ry="46" fill="#f7ead9" opacity="0.5"/>
+    <ellipse cx="300" cy="250" rx="180" ry="48" fill="#e9cdb0" opacity="0.45"/><ellipse cx="1000" cy="240" rx="220" ry="52" fill="#f5e6d4" opacity="0.4"/>
+  </g>
+  <ellipse cx="430" cy="250" rx="560" ry="330" fill="url(#lwash)"/>
+  <g transform="translate(1066,452) scale(1.15)" opacity="0.42" filter="url(#hb)">
+    <rect x="86" y="42" width="7" height="22" rx="2.5" fill="#5a6448"/><rect x="34" y="43" width="7" height="21" rx="2.5" fill="#5a6448"/>
+    <path d="M9,48 C5,41 9,34 17,32 C19,24 26,20 34,21 C38,14 48,12 54,18 C67,15 83,19 97,26 C107,30 113,35 113,42 C113,47 108,48 103,47 C92,45 78,44 64,45 C50,45 34,46 24,47 C18,48 13,51 9,48 Z" fill="#67704f"/>
+    <rect x="78" y="44" width="8" height="21" rx="2.5" fill="#67704f"/><rect x="26" y="45" width="8" height="20" rx="2.5" fill="#67704f"/>
+    <path d="M20,30 C16,27 13,28 15,31 C17,33 20,33 20,30 Z" fill="#4a5239"/><path d="M10,47 C8,54 9,60 13,60 C15,55 14,50 13,47 Z" fill="#4a5239"/>
+    <path d="M112,42 C116,46 117,53 113,57 L110,56 C112,51 110,46 109,43 Z" fill="#5a6448"/>
+  </g>
+  <path filter="url(#hb)" d="M0,500 C200,470 380,486 560,476 C760,464 980,490 1200,470 C1320,461 1410,478 1440,472 L1440,560 L0,560 Z" fill="url(#hF)"/>
+  <path d="M0,562 C220,527 420,549 640,536 C880,522 1100,553 1320,533 C1390,527 1440,539 1440,536 L1440,660 L0,660 Z" fill="url(#hM)"/>
+  <path d="M0,648 C260,616 520,636 760,624 C1000,612 1240,638 1440,618 L1440,820 L0,820 Z" fill="url(#gN)"/>
+  <path d="M812,694 C884,670 1110,670 1156,696 C1182,714 1116,734 980,736 C854,738 792,716 812,694 Z" fill="url(#erth)" opacity="0.92"/>
+  <g>
+    <path d="M892,566 L892,652 C892,672 1072,672 1072,652 L1072,566 Z" fill="#6f4a2b"/>
+    <g stroke="#5a3a22" stroke-width="3" opacity="0.5" fill="none"><path d="M918,576 L915,648"/><path d="M962,578 L960,652"/><path d="M1006,578 L1008,652"/><path d="M1050,576 L1052,646"/></g>
+    <ellipse cx="982" cy="566" rx="92" ry="32" fill="#caa069"/>
+    <g fill="none" stroke="#a87f4c" stroke-width="2.5" opacity="0.7"><ellipse cx="982" cy="566" rx="64" ry="22"/><ellipse cx="982" cy="566" rx="40" ry="13"/><ellipse cx="982" cy="566" rx="18" ry="6"/></g>
+    <path d="M1004,556 L948,452" stroke="#5a3a22" stroke-width="11" stroke-linecap="round" fill="none"/>
+    <path d="M946,458 C930,452 918,440 922,428 C936,424 956,432 966,446 Z" fill="#c2c9cd" stroke="#7d868c" stroke-width="2"/>
+    <path d="M946,458 L966,446" stroke="#9aa2a7" stroke-width="2" fill="none"/>
+  </g>
+  <g transform="translate(700,584) scale(1.4)">
+    <path d="M15,46 C10,32 24,17 45,16 C65,15 84,21 90,38 C95,51 91,64 76,68 C57,72 33,72 21,66 C13,62 11,53 15,46 Z" fill="#ece3d4" stroke="#3a2718" stroke-width="2.4" stroke-linejoin="round"/>
+    <path d="M17,44 C13,33 25,19 45,18 C64,17 82,22 88,38 C90,45 89,51 85,55 C80,46 70,41 56,41 C45,41 36,45 31,53 C25,52 19,50 17,44 Z" fill="#b06a32"/>
+    <path d="M42,18 C37,9 30,10 31,17 C32,21 38,21 42,18 Z" fill="#8a5226" stroke="#3a2718" stroke-width="1.6" stroke-linejoin="round"/>
+    <circle cx="28" cy="39" r="2.6" fill="#241910"/><circle cx="15.5" cy="46" r="1.8" fill="#6e4630"/>
+    <ellipse cx="35" cy="69" rx="4.5" ry="3" fill="#c8a571"/><ellipse cx="59" cy="70" rx="4.8" ry="3" fill="#c8a571"/>
+  </g>
+  <g>
+    <g transform="translate(240,664) scale(1.7)"><path d="M15,22 C13,31 12,39 16,43 C19,45 25,45 27,43 C31,39 28,31 27,22 Z" fill="#e7dcc8" stroke="#3a2718" stroke-width="2" stroke-linejoin="round"/><path d="M2,20 C2,7 13,1 21,1 C29,1 40,7 40,20 C40,23 37,24 33,24 L8,24 C4,24 2,23 2,20 Z" fill="#cf6a3a" stroke="#3a2718" stroke-width="2.2" stroke-linejoin="round"/><circle cx="14" cy="12" r="2.6" fill="#f0e4cf"/><circle cx="24" cy="9" r="3" fill="#f0e4cf"/><circle cx="31" cy="15" r="2.2" fill="#f0e4cf"/></g>
+    <g transform="translate(188,704) scale(1.1)"><path d="M15,22 C13,31 12,39 16,43 C19,45 25,45 27,43 C31,39 28,31 27,22 Z" fill="#e7dcc8" stroke="#3a2718" stroke-width="2" stroke-linejoin="round"/><path d="M2,20 C2,7 13,1 21,1 C29,1 40,7 40,20 C40,23 37,24 33,24 L8,24 C4,24 2,23 2,20 Z" fill="#d98a4a" stroke="#3a2718" stroke-width="2.2" stroke-linejoin="round"/><circle cx="20" cy="10" r="2.6" fill="#f0e4cf"/><circle cx="30" cy="15" r="2" fill="#f0e4cf"/></g>
+    <g transform="translate(316,690) scale(1.3)"><path d="M15,22 C13,31 12,39 16,43 C19,45 25,45 27,43 C31,39 28,31 27,22 Z" fill="#e7dcc8" stroke="#3a2718" stroke-width="2" stroke-linejoin="round"/><path d="M2,20 C2,7 13,1 21,1 C29,1 40,7 40,20 C40,23 37,24 33,24 L8,24 C4,24 2,23 2,20 Z" fill="#c25f33" stroke="#3a2718" stroke-width="2.2" stroke-linejoin="round"/><circle cx="15" cy="12" r="2.4" fill="#f0e4cf"/><circle cx="26" cy="9" r="2.8" fill="#f0e4cf"/></g>
+  </g>
+  <path d="M0,742 C300,722 700,744 1000,730 C1200,721 1360,740 1440,732 L1440,820 L0,820 Z" fill="#33532a"/>
+  <g fill="none" stroke-linecap="round" stroke-width="3">
+    <path d="M90,786 q-7,-30 -3,-50 M90,786 q5,-26 16,-44 M90,786 q12,-18 5,-40" stroke="#4f7a3a"/>
+    <path d="M250,792 q-7,-30 -3,-50 M250,792 q5,-26 16,-44 M250,792 q12,-18 5,-40" stroke="#6e9a4f"/>
+    <path d="M430,784 q-7,-30 -3,-50 M430,784 q5,-26 16,-44 M430,784 q12,-18 5,-40" stroke="#82b061"/>
+    <path d="M600,794 q-7,-30 -3,-50 M600,794 q5,-26 16,-44 M600,794 q12,-18 5,-40" stroke="#4f7a3a"/>
+    <path d="M780,786 q-7,-30 -3,-50 M780,786 q5,-26 16,-44 M780,786 q12,-18 5,-40" stroke="#6e9a4f"/>
+    <path d="M960,792 q-7,-30 -3,-50 M960,792 q5,-26 16,-44 M960,792 q12,-18 5,-40" stroke="#82b061"/>
+    <path d="M1140,784 q-7,-30 -3,-50 M1140,784 q5,-26 16,-44 M1140,784 q12,-18 5,-40" stroke="#4f7a3a"/>
+    <path d="M1300,792 q-7,-30 -3,-50 M1300,792 q5,-26 16,-44 M1300,792 q12,-18 5,-40" stroke="#6e9a4f"/>
+  </g>
+  <rect x="0" y="690" width="1440" height="130" fill="url(#bfade)"/>
+  <rect width="1440" height="820" filter="url(#grain)" opacity="0.1" style="mix-blend-mode:overlay"/>
+  </svg>
   </div>
   <div class="wrap hero-inner">
     <div class="badge"><span class="badge-dot"></span>Open for commissions</div>
-    <h1>Port, backport &amp; revive Minecraft mods —<br><span class="g">any version, any loader</span></h1>
+    <h1><span class="cf">Port,</span> <span class="md">backport</span> &amp; <span class="fb">revive</span> Minecraft mods —<br><span class="fg">any version,</span> <span class="nf">any loader</span></h1>
+    <p class="hero-who">I'm <strong>josda</strong> — a pack builder who got tired of dead mods, so I started porting them myself.</p>
     <p class="hero-desc">
-      Forge 1.20.1 is my specialty and base rate — but I move mods up, down, and across loaders. Fixed-price, license-first, boot-tested.
+      Forge 1.20.1 is my specialty and base rate — <strong class="price-hl">from $50, fixed</strong>. I move mods up, down, and across loaders. License-first, boot-tested.
     </p>
     <div class="pills">
       <span class="pill pill-price">Fixed price from $35</span>
-      <span class="pill">Boot-tested, not just compiled</span>
-      <span class="pill">Forge 1.20.1 specialist</span>
-      <span class="pill">Every port license-checked</span>
+      <span class="pill pill-trust">Escrow-protected via BuiltByBit</span>
+      <span class="pill pill-trust">If it doesn't run, you don't pay</span>
       <span class="pill">7-day guarantee</span>
+      <span class="pill">Every port license-checked</span>
     </div>
     <div class="ctas">
       <a href="#estimator" class="btn btn-primary">Estimate my commission</a>
@@ -428,18 +581,39 @@
   <div class="ls-inner">
     <span class="ls-label">Built across every loader —</span>
     <div class="ls-logos">
-      <span class="ls-item">
+      <a class="ls-item" href="https://minecraftforge.net/" target="_blank" rel="noopener noreferrer">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#9a9a9a" d="M2 8h10l-1.2 2.4H15v2h-1.9L12 17H8L6.2 12.4H2z"/><rect x="6" y="18.4" width="9" height="2" rx="0.4" fill="#777"/></svg>
         Forge
-      </span>
-      <span class="ls-item">
+      </a>
+      <a class="ls-item" href="https://fabricmc.net/" target="_blank" rel="noopener noreferrer">
         <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2" fill="#cdae7e"/><path stroke="#a98a5a" stroke-width="1.3" d="M4 9.3h16M4 14.6h16M9.3 4v16M14.6 4v16"/></svg>
         Fabric
-      </span>
-      <span class="ls-item">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4" fill="#ee6a3a"/><path d="M8.5 16.5V7.5l7 9v-9" stroke="#fff" stroke-width="2" fill="none" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="ls-item" href="https://neoforged.net/" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4" fill="#d2703f"/><path d="M8.5 16.5V7.5l7 9v-9" stroke="#fff" stroke-width="2" fill="none" stroke-linejoin="round"/></svg>
         NeoForge
-      </span>
+      </a>
+    </div>
+  </div>
+  <div class="ls-inner">
+    <span class="ls-label">Published &amp; found on —</span>
+    <div class="ls-logos">
+      <a class="ls-item" href="https://www.curseforge.com/minecraft" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#f16436" d="M12 2c3 4 5 6 5 10a5 5 0 0 1-10 0c0-2 1-3.6 2.3-4.7C8.8 9 10.4 6.4 12 2z"/><path fill="#ffd9c2" opacity="0.55" d="M12 12.2c1.1 1 1.7 1.9 1.7 3a1.7 1.7 0 0 1-3.4 0c0-1 .6-2 1.7-3z"/></svg>
+        CurseForge
+      </a>
+      <a class="ls-item" href="https://modrinth.com/" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="#1bd96a"/><path d="M7.5 13.2a4.6 4.6 0 0 1 7.4-3.3l1.8-1" stroke="#0c1c12" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="16.7" cy="8.9" r="1.15" fill="#0c1c12"/></svg>
+        Modrinth
+      </a>
+      <a class="ls-item" href="https://builtbybit.com/" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v5c0 4.5-3.4 7.7-8 9-4.6-1.3-8-4.5-8-9V6l8-3z" fill="#4f93c4"/><path d="M9 12l2 2 4-4" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        BuiltByBit
+      </a>
+      <a class="ls-item" href="https://github.com/Dheightsan" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#cdbfa8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.3"/><circle cx="6" cy="18" r="2.3"/><circle cx="17" cy="8.3" r="2.3"/><path d="M6 8.3v7.4"/><path d="M8.3 6H12a3 3 0 0 1 3 3v.5"/><path d="M17 10.6v.4a4 4 0 0 1-4 4H8.5"/></svg>
+        GitHub
+      </a>
     </div>
   </div>
 </div>
@@ -450,30 +624,66 @@
     <div class="eyebrow">What I do</div>
     <h2>Any direction, any loader</h2>
     <p class="sub">Forge 1.20.1 is my base rate because it sits just below every recent version wall — it's where I'm fastest. Each thing that takes the job further out is priced by the real work it adds, not a vague percentage.</p>
-    <div class="cards">
-      <div class="card">
+    <div class="cards reveal">
+      <div class="card card--base">
         <div class="icon-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v13"/><path d="M6 11l6 6 6-6"/></svg></div>
         <h3>Backport</h3>
         <p>A newer mod (1.21+) your pack needs on an older version like Forge 1.20.1. Full backport — items, blocks, mechanics, textures. 1.20.1 is my specialty and base price.</p>
+        <div class="card-stats">
+          <div><span class="k">Target</span><span class="v">Forge 1.20.1</span></div>
+          <div><span class="k">From</span><span class="v">$50</span></div>
+        </div>
         <span class="card-tag tag-base">Base rate</span>
       </div>
-      <div class="card">
+      <div class="card card--premium">
         <div class="icon-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V7"/><path d="M6 13l6-6 6 6"/></svg></div>
         <h3>Forward-port &amp; revive</h3>
         <p>A beloved old or abandoned mod stuck on 1.12 / 1.16 / 1.18 you want on a modern version. The biggest, most underserved kind of port — priced by how many version walls it crosses.</p>
+        <div class="card-stats">
+          <div><span class="k">Range</span><span class="v">1.12 → modern</span></div>
+          <div><span class="k">Driver</span><span class="v">Version walls</span></div>
+        </div>
         <span class="card-tag tag-premium">By complexity</span>
       </div>
-      <div class="card">
+      <div class="card card--premium">
         <div class="icon-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h13l-3-3"/><path d="M20 16H7l3 3"/></svg></div>
         <h3>Loader conversion</h3>
         <p>Fabric, NeoForge or Forge — moved to the loader you need. Forge↔NeoForge is light; <strong>Fabric→Forge is a near-rewrite</strong> (different events, registries, mixins) and priced accordingly.</p>
+        <div class="card-stats">
+          <div><span class="k">Forge↔Neo</span><span class="v">+$30</span></div>
+          <div><span class="k">Fabric→Forge</span><span class="v">+$200–400</span></div>
+        </div>
         <span class="card-tag tag-premium">By complexity</span>
       </div>
-      <div class="card">
+      <div class="card card--base">
         <div class="icon-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7h5a4 4 0 0 1 0 8h-1"/><path d="M15 17h-5a4 4 0 0 1 0-8h1"/></svg></div>
         <h3>Compatibility patches</h3>
         <p>Make any mods coexist — two native mods, a ported and a native one, mob spawning across mods, conflicts resolved. Works <strong>even for closed-source mods</strong> and ships as a publishable add-on.</p>
+        <div class="card-stats">
+          <div><span class="k">Works with</span><span class="v">Closed-source too</span></div>
+          <div><span class="k">From</span><span class="v">$40</span></div>
+        </div>
         <span class="card-tag tag-base">Publishable</span>
+      </div>
+      <div class="card card--base">
+        <div class="icon-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.6 5.6L3 18l3 3 6.1-6.1a4 4 0 0 0 5.6-5.6l-2.9 2.9a1.5 1.5 0 0 1-2-2l2.9-2.9z"/></svg></div>
+        <h3>Mod maintenance</h3>
+        <p>A mod that broke after an update — failing <strong>mixins</strong>, crashes, dependency or mapping breaks, deprecated APIs. I find the fault and get it loading clean again on your version.</p>
+        <div class="card-stats">
+          <div><span class="k">Fixes</span><span class="v">Mixins · crashes · deps</span></div>
+          <div><span class="k">From</span><span class="v">$35</span></div>
+        </div>
+        <span class="card-tag tag-base">By scope</span>
+      </div>
+      <div class="card card--premium">
+        <div class="icon-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+        <h3>Mod optimization</h3>
+        <p>A mod or pack that <strong>eats TPS and FPS</strong>. I profile the hot paths and cut the cost — async work, caching, smarter ticking, lighter worldgen — so it runs lighter without changing what it does.</p>
+        <div class="card-stats">
+          <div><span class="k">Cuts</span><span class="v">Lag · RAM · tick time</span></div>
+          <div><span class="k">From</span><span class="v">$60</span></div>
+        </div>
+        <span class="card-tag tag-premium">By scope</span>
       </div>
     </div>
   </div>
@@ -486,7 +696,7 @@
     <h2>Build your commission</h2>
     <p class="sub">Pick what you need and get a ballpark in real time. It builds a ready-to-send summary you can paste straight into a message — the exact, final price comes once I see the mod.</p>
 
-    <div class="estimator">
+    <div class="estimator reveal">
       <div class="est-form">
         <div class="est-group" id="grp-service">
           <div class="est-label">What do you need?</div>
@@ -494,27 +704,39 @@
             <button type="button" class="est-opt ac-jade active" data-value="backport"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v13"/><path d="M6 12l6 6 6-6"/></svg>Backport<small>newer → older</small></button>
             <button type="button" class="est-opt ac-gold" data-value="forward"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V6"/><path d="M6 12l6-6 6 6"/></svg>Forward-port / revive<small>old → modern</small></button>
             <button type="button" class="est-opt ac-brown" data-value="compat"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7h4a4 4 0 0 1 0 8h-1"/><path d="M15 17h-4a4 4 0 0 1 0-8h1"/></svg>Compatibility<small>make mods coexist</small></button>
+            <button type="button" class="est-opt ac-slate" data-value="maintain"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.6 5.6L3 18l3 3 6.1-6.1a4 4 0 0 0 5.6-5.6l-2.9 2.9a1.5 1.5 0 0 1-2-2l2.9-2.9z"/></svg>Maintenance<small>fix mixins / crashes</small></button>
+            <button type="button" class="est-opt ac-rust" data-value="optimize"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Optimization<small>less lag / resources</small></button>
           </div>
         </div>
         <div class="est-group" id="grp-size">
           <div class="est-label">How big is the mod?</div>
           <div class="est-options" data-group="size">
-            <button type="button" class="est-opt t1" data-value="small"><span class="dot"></span>Small<small>items, blocks, recipes</small></button>
-            <button type="button" class="est-opt t2 active" data-value="medium"><span class="dot"></span>Medium<small>mechanics, entities, GUI</small></button>
-            <button type="button" class="est-opt t3" data-value="large"><span class="dot"></span>Large<small>tech mod, worldgen</small></button>
+            <button type="button" class="est-opt t1" data-value="small"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3.5" y="14" width="4" height="6" rx="0.9"/><rect x="9.5" y="9" width="4" height="11" rx="0.9" opacity="0.22"/><rect x="15.5" y="4" width="4" height="16" rx="0.9" opacity="0.22"/></svg>Small<small>items, blocks, recipes</small></button>
+            <button type="button" class="est-opt t2 active" data-value="medium"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3.5" y="14" width="4" height="6" rx="0.9"/><rect x="9.5" y="9" width="4" height="11" rx="0.9"/><rect x="15.5" y="4" width="4" height="16" rx="0.9" opacity="0.22"/></svg>Medium<small>mechanics, entities, GUI</small></button>
+            <button type="button" class="est-opt t3" data-value="large"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3.5" y="14" width="4" height="6" rx="0.9"/><rect x="9.5" y="9" width="4" height="11" rx="0.9"/><rect x="15.5" y="4" width="4" height="16" rx="0.9"/></svg>Large<small>tech mod, worldgen</small></button>
           </div>
         </div>
         <div class="est-group" id="grp-wall">
-          <div class="est-label">Version jump <span class="est-hint">— the biggest cost driver</span></div>
+          <div class="est-label" title="Each Minecraft version boundary (1.20.2, 1.21, 1.13) adds work. Most jobs cross none or one.">Version jump <span class="est-hint">— the biggest cost driver</span></div>
           <div class="est-options" data-group="wall">
-            <button type="button" class="est-opt t1 active" data-value="none"><span class="dot"></span>None / tiny<small>e.g. 1.19.2 ↔ 1.20.1</small></button>
-            <button type="button" class="est-opt t2" data-value="moderate"><span class="dot"></span>Moderate<small>crosses 1.20.2</small></button>
-            <button type="button" class="est-opt t3" data-value="hard"><span class="dot"></span>Hard<small>crosses 1.21</small></button>
-            <button type="button" class="est-opt t4" data-value="brutal"><span class="dot"></span>Brutal<small>crosses 1.13 / 1.18</small></button>
+            <button type="button" class="est-opt t1 active" data-value="none"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="2.8" y="15" width="3.2" height="5" rx="0.8"/><rect x="7.6" y="11" width="3.2" height="9" rx="0.8" opacity="0.22"/><rect x="12.4" y="7" width="3.2" height="13" rx="0.8" opacity="0.22"/><rect x="17.2" y="3" width="3.2" height="17" rx="0.8" opacity="0.22"/></svg>None / tiny<small>e.g. 1.19.2 ↔ 1.20.1</small></button>
+            <button type="button" class="est-opt t2" data-value="moderate"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="2.8" y="15" width="3.2" height="5" rx="0.8"/><rect x="7.6" y="11" width="3.2" height="9" rx="0.8"/><rect x="12.4" y="7" width="3.2" height="13" rx="0.8" opacity="0.22"/><rect x="17.2" y="3" width="3.2" height="17" rx="0.8" opacity="0.22"/></svg>Moderate<small>crosses 1.20.2</small></button>
+            <button type="button" class="est-opt t3" data-value="hard"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="2.8" y="15" width="3.2" height="5" rx="0.8"/><rect x="7.6" y="11" width="3.2" height="9" rx="0.8"/><rect x="12.4" y="7" width="3.2" height="13" rx="0.8"/><rect x="17.2" y="3" width="3.2" height="17" rx="0.8" opacity="0.22"/></svg>Hard<small>crosses 1.21</small></button>
+            <button type="button" class="est-opt t4" data-value="brutal"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="2.8" y="15" width="3.2" height="5" rx="0.8"/><rect x="7.6" y="11" width="3.2" height="9" rx="0.8"/><rect x="12.4" y="7" width="3.2" height="13" rx="0.8"/><rect x="17.2" y="3" width="3.2" height="17" rx="0.8"/></svg>Brutal<small>crosses 1.13 / 1.18</small></button>
           </div>
         </div>
+        <div class="est-group hidden" id="grp-scope">
+          <div class="est-label" id="scope-label">Compatibility scope</div>
+          <div class="est-options" data-group="scope">
+            <button type="button" class="est-opt t1 active" data-value="small"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3.5" y="14" width="4" height="6" rx="0.9"/><rect x="9.5" y="9" width="4" height="11" rx="0.9" opacity="0.22"/><rect x="15.5" y="4" width="4" height="16" rx="0.9" opacity="0.22"/></svg>Simple<small>small · one fix</small></button>
+            <button type="button" class="est-opt t2" data-value="medium"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3.5" y="14" width="4" height="6" rx="0.9"/><rect x="9.5" y="9" width="4" height="11" rx="0.9"/><rect x="15.5" y="4" width="4" height="16" rx="0.9" opacity="0.22"/></svg>Moderate<small>a few systems</small></button>
+            <button type="button" class="est-opt t3" data-value="large"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3.5" y="14" width="4" height="6" rx="0.9"/><rect x="9.5" y="9" width="4" height="11" rx="0.9"/><rect x="15.5" y="4" width="4" height="16" rx="0.9"/></svg>Deep<small>deep · complex</small></button>
+          </div>
+        </div>
+        <button type="button" class="est-adv-toggle" id="est-adv-toggle" aria-expanded="false" aria-controls="est-advanced">Advanced — loader, license &amp; priority <span class="adv-caret" aria-hidden="true">▾</span></button>
+        <div class="est-advanced hidden" id="est-advanced">
         <div class="est-group" id="grp-loader">
-          <div class="est-label">Source mod loader</div>
+          <div class="est-label" title="The mod's current loader. Forge↔NeoForge is a quick rename; Fabric→Forge is a near-rewrite.">Source mod loader</div>
           <div class="est-options" data-group="loader">
             <button type="button" class="est-opt brand-forge active" data-value="forge"><svg class="loglyph" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M2 8h10l-1.2 2.4H15v2h-1.9L12 17H8L6.2 12.4H2z"/><rect x="6" y="18" width="9" height="2" rx="0.4" fill="currentColor"/></svg>Forge<small>same loader — base</small></button>
             <button type="button" class="est-opt brand-neoforge" data-value="neoforge"><svg class="loglyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 16.5V7.5l7 9v-9" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>NeoForge<small>rename — +$30</small></button>
@@ -522,43 +744,39 @@
           </div>
         </div>
         <div class="est-group" id="grp-license">
-          <div class="est-label">Mod license <span class="est-hint">— sets how it's delivered</span></div>
+          <div class="est-label" title="Open-source or permitted mods can be published; closed-source (ARR) is delivered privately to you only.">Mod license <span class="est-hint">— sets how it's delivered</span></div>
           <div class="est-options" data-group="license">
             <button type="button" class="est-opt ac-jade active" data-value="open"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a13 13 0 0 1 0 18"/><path d="M12 3a13 13 0 0 0 0 18"/></svg>Open-source / I have permission<small>publishable</small></button>
-            <button type="button" class="est-opt ac-gold" data-value="closed"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Closed-source (ARR)<small>private delivery</small></button>
-          </div>
-        </div>
-        <div class="est-group hidden" id="grp-scope">
-          <div class="est-label">Compatibility scope</div>
-          <div class="est-options" data-group="scope">
-            <button type="button" class="est-opt t1 active" data-value="small"><span class="dot"></span>Simple<small>config / datapack, 2 mods</small></button>
-            <button type="button" class="est-opt t2" data-value="medium"><span class="dot"></span>Moderate<small>mixin / event patching</small></button>
-            <button type="button" class="est-opt t3" data-value="large"><span class="dot"></span>Deep<small>several mods, complex</small></button>
+            <button type="button" class="est-opt ac-slate" data-value="closed"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Closed-source (ARR)<small>private delivery</small></button>
           </div>
         </div>
         <div class="est-group" id="grp-rush">
           <div class="est-label">Priority <span class="est-hint">— optional, jump the queue</span></div>
           <div class="est-options" data-group="rush">
             <button type="button" class="est-opt ac-jade active" data-value="standard"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 8v4.2l2.6 1.6"/></svg>Standard<small>normal queue</small></button>
-            <button type="button" class="est-opt ac-gold" data-value="r72"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 15l7-6 7 6"/></svg>Priority<small>+25%</small></button>
+            <button type="button" class="est-opt ac-amber" data-value="r72"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 15l7-6 7 6"/></svg>Priority<small>+25%</small></button>
             <button type="button" class="est-opt ac-rust" data-value="r24"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l7-5 7 5"/><path d="M5 18l7-5 7 5"/></svg>Top priority<small>+50%</small></button>
           </div>
+        </div>
         </div>
       </div>
 
       <div class="est-result">
-        <div class="est-result-label">Estimated range</div>
-        <div class="est-price" id="est-price">$81 – $104</div>
+        <div class="est-result-label">Your quick quote</div>
+        <div class="est-price" id="est-price" aria-live="polite">$81 – $104</div>
         <div class="est-note" id="est-note">Base rate — Forge 1.20.1 is my specialty.</div>
+        <div class="est-breakdown" id="est-breakdown"></div>
         <div class="est-summary" id="est-summary"></div>
-        <button type="button" class="btn btn-primary est-copy" id="est-copy">Copy summary</button>
-        <a class="btn btn-ghost est-email" id="est-email" href="mailto:josdansanpes2005@gmail.com">Send this request by email →</a>
-        <div class="est-disclaimer">Estimate only. The final flat price is locked in writing once I review the actual mod. $35 minimum on any job.</div>
-        <div class="est-disclaimer" style="margin-top:0.5rem">No account needed — the email button fills in everything for you. Discord opening soon.</div>
+        <a class="btn btn-quote est-email" id="est-email" href="mailto:josdansanpes2005@gmail.com?subject=Mod%20porting%20commission">Email my request now →</a>
+        <button type="button" class="btn btn-ghost est-copy" id="est-copy">Copy summary</button>
+        <div class="est-disclaimer">Your starting point — I'll confirm the final fixed price in writing within 24h after I review the mod. $35 minimum on any job; no account needed, the button fills everything in for you.</div>
+        <p class="est-skip">Prefer not to fill this in? <a href="mailto:josdansanpes2005@gmail.com?subject=Mod%20commission">Just email me directly →</a></p>
       </div>
     </div>
   </div>
 </section>
+
+<div class="torn-sep" aria-hidden="true"><svg viewBox="0 0 1440 24" preserveAspectRatio="none"><path d="M0 24 L0 12 L48 16 L96 8 L150 17 L210 7 L280 15 L356 9 L432 17 L510 7 L590 15 L676 9 L760 17 L846 7 L932 15 L1018 9 L1104 17 L1190 7 L1276 15 L1356 10 L1440 14 L1440 24 Z"/></svg></div>
 
 <!-- HOW IT WORKS -->
 <section id="how-it-works">
@@ -598,7 +816,7 @@
       <span>First clients get a <strong>discount on their first port</strong> in exchange for an honest review — lock in a low rate before prices settle.</span>
     </div>
 
-    <div class="ptable">
+    <div class="ptable reveal">
       <div class="prow prow-head"><div>Service</div><div>Price</div><div>What it covers</div></div>
       <div class="prow base">
         <div class="pservice">Quick fix / recompile <small>simplest job</small></div>
@@ -626,6 +844,16 @@
         <div class="pwhy">Simple (config/datapack, 2 mods) · Moderate (mixin/event patching) · Deep (several mods). My own publishable code — works even with closed-source mods.</div>
       </div>
       <div class="prow">
+        <div class="pservice">Mod maintenance <small>fix mixins / crashes</small></div>
+        <div class="pprice">$35 / $70 / $130</div>
+        <div class="pwhy"><strong>By scope:</strong> Small (one mixin / crash / dependency fix) · Moderate (several systems) · Deep (broken across the mod). Get it loading clean again on your version.</div>
+      </div>
+      <div class="prow">
+        <div class="pservice">Mod optimization <small>less lag / resources</small></div>
+        <div class="pprice">$60 / $120 / $220</div>
+        <div class="pwhy"><strong>By scope:</strong> Targeted lag fix · async / caching pass · deep profiling of hot paths. Cuts TPS/FPS cost and RAM without changing what the mod does.</div>
+      </div>
+      <div class="prow">
         <div class="pservice">Closed-source (ARR) — private <small>add-on</small></div>
         <div class="pprice">+35%</div>
         <div class="pwhy">Any of the above delivered privately to you only, never published. Covers the extra care and the no-portfolio trade-off.</div>
@@ -633,6 +861,7 @@
     </div>
 
     <p class="pnote"><strong>$35 minimum on any job — pay only when we've agreed a fixed price.</strong> &nbsp;Priority queue (jump ahead): +25% / +50%. &nbsp;Re-port your own prior work to a new version later: 40% of the original.</p>
+    <p class="pexample"><strong>Worked example —</strong> backport a medium mod across one hard wall (1.21 → Forge 1.20.1), open-source: $90 base + $100 wall = <strong>~$190</strong>. Most jobs land $50–150.</p>
 
     <div class="pfoot">
       <span class="pay-label">Payment</span>
@@ -652,7 +881,7 @@
     <div class="eyebrow">Licenses &amp; rights</div>
     <h2>I only port what I have rights to port</h2>
     <p class="sub">Most devs in this space ignore licensing. I don't — because a DMCA takedown or account ban hurts you, not just me.</p>
-    <div class="legal-cards">
+    <div class="legal-cards reveal">
       <div class="legal-card"><h3>Public — open-source &amp; compatibility</h3><p>Open-source mods (MIT · Apache · LGPL), mods with written permission, and compatibility add-ons (my own code, depending on mods you install yourself) get published to CurseForge &amp; Modrinth — full credit to original authors.</p></div>
       <div class="legal-card"><h3>Private — closed-source mods</h3><p>Most requested mods are closed-source. You bring one you have the right to use; I modify it for you and deliver privately — to you only, never published. You pay for my time, not for redistribution.</p></div>
       <div class="legal-card"><h3>What I won't do</h3><p>Publicly redistribute a closed-source (All Rights Reserved) mod without written author permission. That's the one line I never cross — it protects your accounts from takedowns and bans.</p></div>
@@ -678,6 +907,8 @@
   </div>
 </section>
 
+<div class="torn-sep" aria-hidden="true"><svg viewBox="0 0 1440 24" preserveAspectRatio="none"><path d="M0 24 L0 13 L60 8 L120 16 L186 7 L256 15 L330 9 L408 17 L486 8 L566 15 L648 9 L730 17 L812 8 L894 15 L976 10 L1058 17 L1140 8 L1222 15 L1304 9 L1386 16 L1440 12 L1440 24 Z"/></svg></div>
+
 <!-- PORTFOLIO -->
 <section id="portfolio">
   <div class="wrap">
@@ -685,21 +916,17 @@
     <h2>Open-source proof ports</h2>
     <p class="sub">I publish open-source ports on CurseForge &amp; Modrinth as living proof — license-verified, boot-tested, code you can read before you hire me. The first ones are landing now; your own mod always stays private.</p>
 
-    <div class="port-grid">
-      <div class="port-card port-card--pending">
-        <div class="port-img"><span>Real in-game screenshot lands here on release</span></div>
-        <div class="port-card-head">
-          <div class="port-name">First proof port</div>
-          <span class="port-status">Publishing soon</span>
-        </div>
-        <p class="port-desc">An open-source mod, ported and published in the open — code you can read before you hire me. In the pipeline now.</p>
+    <div class="port-grid reveal">
+      <div class="port-card port-card--guarantee">
+        <h3 class="port-name">No published port yet — every commission is still guaranteed</h3>
+        <p class="port-desc">I'm a solo dev building a track record port by port. Your protection isn't a star rating — it's <strong>escrow</strong> (BuiltByBit holds your payment until the working mod is in your hands) plus a <strong>7-day guarantee</strong>. If it doesn't run, you don't pay. Be an early client at the intro rate, and your open-source port becomes the first proof here — code you can read on CurseForge &amp; Modrinth.</p>
         <dl class="port-stats">
-          <div><dt>Loader</dt><dd>Forge 1.20.1</dd></div>
-          <div><dt>Direction</dt><dd>Backport / revive</dd></div>
-          <div><dt>License</dt><dd>Open-source · verified</dd></div>
-          <div><dt>Tested</dt><dd>Boot-to-world</dd></div>
+          <div><dt>Escrow</dt><dd>BuiltByBit-held</dd></div>
+          <div><dt>Guarantee</dt><dd>7-day, full refund</dd></div>
+          <div><dt>License</dt><dd>Verified first</dd></div>
+          <div><dt>Code</dt><dd>Open &amp; readable</dd></div>
         </dl>
-        <div class="port-badges"><span class="badge--lic-mit">Open-source</span><span class="badge--loader">CurseForge + Modrinth</span></div>
+        <a href="#estimator" class="btn btn-primary btn-sm">Get a quote now</a>
       </div>
 
       <div class="port-card port-card--cta">
@@ -729,32 +956,30 @@
   </div>
 </section>
 
+<div class="torn-sep" aria-hidden="true"><svg viewBox="0 0 1440 24" preserveAspectRatio="none"><path d="M0 24 L0 11 L52 16 L108 8 L168 17 L232 7 L304 15 L380 9 L456 17 L536 7 L618 15 L702 9 L786 17 L870 8 L952 15 L1036 9 L1120 17 L1204 8 L1286 15 L1366 10 L1440 14 L1440 24 Z"/></svg></div>
+
 <!-- CONTACT -->
 <section id="contact">
   <div class="wrap">
     <div class="eyebrow">Contact</div>
     <h2>Get a quote</h2>
-    <p class="sub">Written and async — email works now. Use the estimator above to build your request, copy the summary, and send it over. Discord and BuiltByBit escrow opening soon.</p>
-    <div class="contact-cards">
-      <div class="contact-card">
-        <div class="ci ci--bbb"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v5c0 4.5-3.4 7.7-8 9-4.6-1.3-8-4.5-8-9V6l8-3z"/></svg></div>
-        <h3>BuiltByBit</h3>
-        <p>Best for commissions — escrow-protected, the safe default for first-time clients.</p>
-        <!-- TODO: swap in your BBB profile link with class "contact-link" once the account exists -->
-        <span class="contact-soon">Profile coming soon</span>
+    <p class="sub">Written and async. <strong>Email works right now</strong> — build your request in the estimator above, hit "Email my request now," and you'll get a fixed quote in writing within 24h. BuiltByBit escrow &amp; Discord are being set up.</p>
+    <div class="contact-cards reveal">
+      <div class="contact-card contact-card--primary">
+        <div class="ci ci--gmail"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg></div>
+        <h3>Email — live now</h3>
+        <p>The fastest way to reach me today. Send the mod link plus what you want (or the estimator summary) and I reply within a day.</p>
+        <a href="mailto:josdansanpes2005@gmail.com?subject=Mod%20porting%20commission" class="contact-link">josdansanpes2005@gmail.com</a>
       </div>
-      <div class="contact-card">
+      <div class="contact-card contact-card--soon">
+        <div class="ci ci--bbb"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v5c0 4.5-3.4 7.7-8 9-4.6-1.3-8-4.5-8-9V6l8-3z"/></svg></div>
+        <h3>BuiltByBit · escrow</h3>
+        <p>Escrow-protected commissions, being set up now. Email me meanwhile — same protection via invoice.</p>
+      </div>
+      <div class="contact-card contact-card--soon">
         <div class="ci ci--discord"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4V5z"/><circle cx="9.5" cy="10.5" r="0.6" fill="currentColor" stroke="none"/><circle cx="14.5" cy="10.5" r="0.6" fill="currentColor" stroke="none"/></svg></div>
         <h3>Discord</h3>
-        <p>Fast replies. Send the mod link and what you're after — usually answered within a day.</p>
-        <!-- TODO: swap in your Discord invite link with class "contact-link" once set up -->
-        <span class="contact-soon">DM coming soon</span>
-      </div>
-      <div class="contact-card">
-        <div class="ci ci--gmail"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg></div>
-        <h3>Email</h3>
-        <p>For longer inquiries, licensing questions, or if Discord and BBB don't suit you.</p>
-        <a href="mailto:josdansanpes2005@gmail.com" class="contact-link">Send email</a>
+        <p>Coming soon for fast async chat. Email gets you an instant reply right now.</p>
       </div>
     </div>
     <p class="contact-note">Async and written only — no voice calls. I reply fast, usually within a day.</p>
@@ -763,14 +988,14 @@
 
 <div class="weave" aria-hidden="true">
   <svg viewBox="0 0 72 44" fill="none">
-    <circle cx="36" cy="16" r="13" stroke="#2eb583" stroke-width="2.6"/>
+    <circle cx="36" cy="16" r="13" stroke="#d49a55" stroke-width="2.6"/>
     <circle cx="26" cy="28" r="13" stroke="#cba14a" stroke-width="2.6"/>
     <circle cx="46" cy="28" r="13" stroke="#bb9168" stroke-width="2.6"/>
   </svg>
 </div>
 
 <footer>
-  <div>Forge 1.20.1 Mod Porting <span class="sep">·</span> <a href="mailto:josdansanpes2005@gmail.com">Contact</a></div>
+  <div><strong style="color:var(--text-soft)">Modwright</strong> <span class="sep">·</span> Forge 1.20.1 mod porting <span class="sep">·</span> <a href="mailto:josdansanpes2005@gmail.com">Contact</a></div>
 </footer>
 
 <script>
@@ -782,24 +1007,51 @@
   var WALL = { none: 0, moderate: 40, hard: 100, brutal: 180 };
   var LOADER = { forge: 0, neoforge: 30, fabric: 300 };
   var RUSH = { standard: 1, r72: 1.25, r24: 1.5 };
+  var MAINT = { small: 35, medium: 70, large: 130 };
+  var OPT = { small: 60, medium: 120, large: 220 };
   var MIN = 35;
   var priceEl = document.getElementById('est-price');
   var noteEl = document.getElementById('est-note');
   var summaryEl = document.getElementById('est-summary');
   var copyBtn = document.getElementById('est-copy');
   var emailBtn = document.getElementById('est-email');
+  var breakdownEl = document.getElementById('est-breakdown');
+  var advToggle = document.getElementById('est-adv-toggle');
+  var advPanel = document.getElementById('est-advanced');
+  if (advToggle && advPanel) {
+    advToggle.addEventListener('click', function () {
+      var nowHidden = advPanel.classList.toggle('hidden');
+      advToggle.setAttribute('aria-expanded', nowHidden ? 'false' : 'true');
+    });
+  }
+  var rmReveal = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!rmReveal && 'IntersectionObserver' in window) {
+    var revIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in-view'); revIO.unobserve(en.target); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(function (el) { revIO.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in-view'); });
+  }
   function money(n) { return '$' + Math.round(n); }
   function compute() {
-    var isCompat = state.service === 'compat';
-    var sub = isCompat ? COMPAT[state.scope] : (BASE[state.size] + WALL[state.wall] + LOADER[state.loader]);
+    var svc = state.service;
+    var scopeMode = (svc === 'compat' || svc === 'maintain' || svc === 'optimize');
+    var sub;
+    if (svc === 'compat') sub = COMPAT[state.scope];
+    else if (svc === 'maintain') sub = MAINT[state.scope];
+    else if (svc === 'optimize') sub = OPT[state.scope];
+    else sub = BASE[state.size] + WALL[state.wall] + LOADER[state.loader];
     if (state.license === 'closed') sub = sub * 1.35;
     sub = sub * RUSH[state.rush];
     sub = Math.max(sub, MIN);
-    return { low: Math.max(Math.round(sub * 0.9), MIN), high: Math.round(sub * 1.15), isCompat: isCompat };
+    return { low: Math.max(Math.round(sub * 0.9), MIN), high: Math.round(sub * 1.15), scopeMode: scopeMode };
   }
   function buildNote(r) {
     var bits = [];
-    if (r.isCompat) { bits.push('Compatibility patch — my own publishable code.'); }
+    if (state.service === 'compat') { bits.push('Compatibility patch — my own publishable code.'); }
+    else if (state.service === 'maintain') { bits.push('Mod maintenance — mixin / crash / dependency fixes.'); }
+    else if (state.service === 'optimize') { bits.push('Mod optimization — less lag, lighter on resources.'); }
     else {
       if (state.wall !== 'none') bits.push('<span class="premium">' + state.wall + ' version wall</span> crossed');
       if (state.loader === 'fabric') bits.push('<span class="premium">Fabric→Forge</span> rewrite');
@@ -812,34 +1064,77 @@
     return bits.join(' · ');
   }
   function buildSummary(r) {
-    var L = ['--- COMMISSION REQUEST ---'];
-    L.push('Service: ' + ({ backport: 'Backport (newer -> older)', forward: 'Forward-port / revive', compat: 'Compatibility patch' })[state.service]);
-    if (state.service === 'compat') { L.push('Scope: ' + ({ small: 'simple (2 mods)', medium: 'moderate (mixin/event)', large: 'deep (several mods)' })[state.scope]); }
-    else {
-      L.push('Mod size: ' + state.size);
-      L.push('Version jump: ' + ({ none: 'none / tiny', moderate: 'moderate (1.20.2)', hard: 'hard (1.21)', brutal: 'brutal (1.13/1.18)' })[state.wall]);
-      L.push('Source loader: ' + ({ forge: 'Forge', neoforge: 'NeoForge', fabric: 'Fabric' })[state.loader]);
+    var svc = ({ backport: 'Backport — adapt a newer mod down to an older version', forward: 'Forward-port / revive — bring an old or abandoned mod to a modern version', compat: 'Compatibility patch — make mods coexist', maintain: 'Mod maintenance — fix mixins / crashes / dependencies', optimize: 'Mod optimization — reduce lag and resource use' })[state.service];
+    var L = [];
+    L.push("Hi! I'd like to commission a mod job.");
+    L.push('');
+    L.push('What I need: ' + svc);
+    L.push('Mod: <paste the mod name + link here>');
+    if (r.scopeMode) {
+      L.push('Scope: ' + ({ small: 'small — one fix', medium: 'moderate — a few systems', large: 'deep — complex' })[state.scope]);
+    } else {
+      L.push('Details: ' + ({ small: 'small mod', medium: 'medium mod', large: 'large mod' })[state.size] + ' · ' + ({ none: 'no version wall', moderate: 'crosses 1.20.2', hard: 'crosses 1.21', brutal: 'crosses 1.13/1.18' })[state.wall] + ' · ' + ({ forge: 'Forge', neoforge: 'NeoForge', fabric: 'Fabric' })[state.loader] + ' source');
     }
-    L.push('License: ' + (state.license === 'closed' ? 'closed-source (ARR, private)' : 'open / permission'));
-    L.push('Priority: ' + ({ standard: 'standard queue', r72: 'priority (+25%)', r24: 'top priority (+50%)' })[state.rush]);
-    L.push('Ballpark: ' + money(r.low) + ' - ' + money(r.high) + ' (min $35)');
-    L.push('Mod link: <paste here>');
+    L.push('Delivery: ' + (state.license === 'closed' ? 'private — closed-source / ARR, to me only' : 'open-source or I have permission (publishable)'));
+    if (state.rush !== 'standard') L.push('Priority: ' + (state.rush === 'r72' ? 'priority (+25%)' : 'top priority (+50%)'));
+    L.push('Quick quote: ' + money(r.low) + '–' + money(r.high) + ' (min $35 — you confirm the exact fixed price after a look)');
+    L.push('');
+    L.push('Thanks!');
     return L.join('\n');
+  }
+  function buildBreakdown(r) {
+    var sw = ({ small: 'simple', medium: 'moderate', large: 'deep' })[state.scope];
+    var parts = [];
+    if (state.service === 'compat') parts.push('Compatibility · ' + sw + ' $' + COMPAT[state.scope]);
+    else if (state.service === 'maintain') parts.push('Maintenance · ' + sw + ' $' + MAINT[state.scope]);
+    else if (state.service === 'optimize') parts.push('Optimization · ' + sw + ' $' + OPT[state.scope]);
+    else {
+      parts.push('Forge 1.20.1 base $' + BASE[state.size]);
+      if (WALL[state.wall] > 0) parts.push('+$' + WALL[state.wall] + ' ' + state.wall + ' wall');
+      if (LOADER[state.loader] > 0) parts.push('+$' + LOADER[state.loader] + ' ' + (state.loader === 'fabric' ? 'Fabric' : 'NeoForge'));
+    }
+    if (state.license === 'closed') parts.push('×1.35 private');
+    if (state.rush === 'r72') parts.push('×1.25 priority');
+    if (state.rush === 'r24') parts.push('×1.5 top priority');
+    return parts.join('   ·   ');
+  }
+  var prefersReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var shownLow = 0, shownHigh = 0, firstPrice = true, priceRaf = null;
+  function setPriceText(lo, hi) { priceEl.textContent = money(lo) + ' – ' + money(hi); }
+  function pulsePrice() { priceEl.classList.remove('pulse'); void priceEl.offsetWidth; priceEl.classList.add('pulse'); }
+  function tweenPrice(lo, hi) {
+    if (priceRaf) cancelAnimationFrame(priceRaf);
+    if (prefersReduce) { shownLow = lo; shownHigh = hi; setPriceText(lo, hi); pulsePrice(); return; }
+    var fromLo = shownLow, fromHi = shownHigh, start = null;
+    function step(ts) {
+      if (start === null) start = ts;
+      var t = Math.min((ts - start) / 360, 1), e = 1 - Math.pow(1 - t, 3);
+      setPriceText(fromLo + (lo - fromLo) * e, fromHi + (hi - fromHi) * e);
+      if (t < 1) { priceRaf = requestAnimationFrame(step); }
+      else { shownLow = lo; shownHigh = hi; setPriceText(lo, hi); }
+    }
+    priceRaf = requestAnimationFrame(step);
+    pulsePrice();
   }
   function render() {
     var r = compute();
-    priceEl.textContent = money(r.low) + ' – ' + money(r.high);
+    if (firstPrice) { firstPrice = false; shownLow = r.low; shownHigh = r.high; setPriceText(r.low, r.high); }
+    else { tweenPrice(r.low, r.high); }
     noteEl.innerHTML = buildNote(r);
+    breakdownEl.textContent = buildBreakdown(r);
     summaryEl.textContent = buildSummary(r);
     copyBtn.classList.remove('done'); copyBtn.textContent = 'Copy summary';
     emailBtn.href = 'mailto:josdansanpes2005@gmail.com?subject=' + encodeURIComponent('Mod port commission — ' + money(r.low) + '-' + money(r.high)) + '&body=' + encodeURIComponent(buildSummary(r));
   }
   function syncGroups() {
-    var compat = state.service === 'compat';
-    document.getElementById('grp-size').classList.toggle('hidden', compat);
-    document.getElementById('grp-wall').classList.toggle('hidden', compat);
-    document.getElementById('grp-loader').classList.toggle('hidden', compat);
-    document.getElementById('grp-scope').classList.toggle('hidden', !compat);
+    var svc = state.service;
+    var scopeMode = (svc === 'compat' || svc === 'maintain' || svc === 'optimize');
+    document.getElementById('grp-size').classList.toggle('hidden', scopeMode);
+    document.getElementById('grp-wall').classList.toggle('hidden', scopeMode);
+    document.getElementById('grp-loader').classList.toggle('hidden', scopeMode);
+    document.getElementById('grp-scope').classList.toggle('hidden', !scopeMode);
+    var sl = document.getElementById('scope-label');
+    if (sl) sl.textContent = svc === 'maintain' ? 'Maintenance scope' : (svc === 'optimize' ? 'Optimization scope' : 'Compatibility scope');
   }
   document.querySelectorAll('.est-options').forEach(function (grp) {
     var key = grp.getAttribute('data-group');
