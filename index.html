@@ -4,9 +4,9 @@
   <script>document.documentElement.classList.add('js')</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Minecraft mod porting &amp; backporting — Forge · Fabric · NeoForge | Modwright</title>
-  <meta name="description" content="Modwright — port, backport &amp; revive Minecraft mods across Forge, Fabric &amp; NeoForge. Forge 1.20.1 specialist. Boot-tested, license-checked. Fixed price from $35, 7-day guarantee, escrow payment.">
-  <meta property="og:title" content="Modwright — Minecraft mod porting &amp; backporting">
+  <title>Minecraft mod porting &amp; backporting for Forge, Fabric &amp; NeoForge | Modwright</title>
+  <meta name="description" content="Modwright. I port, backport &amp; revive Minecraft mods across Forge, Fabric &amp; NeoForge. Forge 1.20.1 specialist. Boot-tested, license-checked. Fixed price from $35, 7-day guarantee, escrow payment.">
+  <meta property="og:title" content="Modwright: Minecraft mod porting &amp; backporting">
   <meta property="og:description" content="Port, backport &amp; revive Minecraft mods · Any version, any loader · Boot-tested · License-checked · From $35.">
   <meta property="og:type" content="website">
   <meta name="theme-color" content="#1a1410">
@@ -18,7 +18,7 @@
   {
     "@context": "https://schema.org",
     "@type": "Service",
-    "name": "Modwright — Minecraft mod porting",
+    "name": "Modwright Minecraft mod porting",
     "serviceType": "Minecraft mod porting, backporting, revival, loader conversion, maintenance and optimization",
     "description": "Port, backport and revive Minecraft mods across Forge, Fabric and NeoForge. Forge 1.20.1 specialist. Fixed price from $35, boot-tested, license-checked, 7-day guarantee, escrow payment.",
     "url": "https://dheightsan.github.io/forge-ports/",
@@ -45,11 +45,11 @@
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      {"@type":"Question","name":"Why is 1.20.1 the cheapest lane?","acceptedAnswer":{"@type":"Answer","text":"It's my specialty and it sits just below every recent version wall, so it takes the least work — I pass that on as the lowest add-ons. Other versions cross walls (networking, data components, worldgen) that take longer, so they carry a flat premium per wall."}},
-      {"@type":"Question","name":"What exactly is a compatibility patch?","acceptedAnswer":{"@type":"Answer","text":"Making two or more mods work together without creating new content — for example, getting one mod's mobs to spawn in another mod's biomes, or resolving a conflict that breaks a feature. It's bespoke work, quoted by scope."}},
+      {"@type":"Question","name":"Why is 1.20.1 the cheapest lane?","acceptedAnswer":{"@type":"Answer","text":"It's my specialty and it sits just below every recent version wall, so it takes the least work, and I pass that on as the lowest add-ons. Other versions cross walls (networking, data components, worldgen) that take longer, so they carry a flat premium per wall."}},
+      {"@type":"Question","name":"What exactly is a compatibility patch?","acceptedAnswer":{"@type":"Answer","text":"Making two or more mods work together without adding new content. For example: getting one mod's mobs to spawn in another mod's biomes, or fixing a conflict that breaks a feature. Each one is custom, so I quote it by scope."}},
       {"@type":"Question","name":"Is this legal?","acceptedAnswer":{"@type":"Answer","text":"Yes. You pay for my time writing the port, not for distribution rights. I publish only open-source mods or mods with written permission; anything else is delivered privately to whoever holds the right to use it."}},
       {"@type":"Question","name":"How do I pay safely?","acceptedAnswer":{"@type":"Answer","text":"BuiltByBit escrow is the default: it holds your payment and only releases it once you have the working mod. Wise and crypto USDT are also available for returning clients."}},
-      {"@type":"Question","name":"How long does it take?","acceptedAnswer":{"@type":"Answer","text":"It depends on the mod — every one is different, so I don't quote a fixed turnaround. We agree a realistic timeline in writing before I start; a priority fee moves your job to the front of the queue."}},
+      {"@type":"Question","name":"How long does it take?","acceptedAnswer":{"@type":"Answer","text":"It depends on the mod. Every one is different, so I don't quote a fixed turnaround. We agree a realistic timeline in writing before I start; a priority fee moves your job to the front of the queue."}},
       {"@type":"Question","name":"What if the port doesn't work?","acceptedAnswer":{"@type":"Answer","text":"If I can't get it working, you don't pay. Every delivered commission carries a 7-day guarantee: if it crashes or breaks, I fix it free or refund you."}},
       {"@type":"Question","name":"What's out of scope?","acceptedAnswer":{"@type":"Answer","text":"I write code. Textures, 3D models and animations, full gameplay or balance redesigns, and ongoing maintenance across future Minecraft versions are each a separate quote."}}
     ]
@@ -74,13 +74,13 @@
       --surface2:  #2a1f15;
       --border:    #2a2823;
       --border-lt: #3c382f;
-      /* GREEN = primary — the original GitHub emerald */
-      --green:     #c07e3c;   /* COPPER — warm primary/positive (replaced jade; josda: no green). Token name kept to limit churn. */
+      /* primary accent */
+      --green:     #c07e3c;   /* copper: warm primary accent */
       --green-hi:  #d49a55;
       --green-glow:rgba(192, 126, 60, 0.14);
       --green-ring:rgba(192, 126, 60, 0.32);
       /* SKY BLUE = accent for the "Get a quote" CTA only (eye-catching contrast). Green stays primary; brown = price. */
-      --sky:       #14506b;   /* deep navy-blue — primary CTA fill (desaturated for harmony, white text) */
+      --sky:       #14506b;   /* deep navy: primary CTA fill, white text */
       --sky-hi:    #38bdf8;
       --sky-mid:   #0ea5e9;
       --sky-glow:  rgba(14, 90, 133, 0.34);
@@ -93,12 +93,12 @@
       /* GOLD = warm metallic accent (from the reference images) for decorative bits that complement the cream text */
       --gold:      #cba14a;
       --gold-glow: rgba(203, 161, 74, 0.13);
-      /* HOT ACCENTS — one source of truth (consolidated from drifting one-off hexes) */
+      /* hot accents */
       --amber:      #d99a2b;   /* tier-medium / caution */
-      --terracotta: #d2703f;   /* premium / heat — reused: tier-hard, NeoForge, ac-rust glyph */
+      --terracotta: #d2703f;   /* premium / heat: tier-hard, NeoForge, ac-rust glyph */
       --brick:      #c14a3c;   /* max difficulty (tier-brutal) */
       --rust:       #b8542f;   /* urgency (ac-rust active) */
-      /* card padding — two values only */
+      /* card padding */
       --pad-card:    1.65rem;
       --pad-card-lg: 1.85rem;
       --text:      #eae4d6;   /* warm cream */
@@ -265,7 +265,7 @@
     .est-opt:hover { border-color: var(--green-ring); color: var(--text); }
     .est-opt.active { background: var(--green-hi); color: #2a1808; border-color: var(--green-hi); font-weight: 700; box-shadow: 0 0 0 3px var(--green-glow); }
     .est-opt small { display: block; font-size: 0.8rem; font-weight: 400; opacity: 0.82; margin-top: 0.15rem; }
-    /* tier colour-coding — green (easy/cheap) → red (brutal) */
+    /* tier colour-coding: easy/cheap up to brutal */
     .est-opt .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 0.5rem; vertical-align: middle; background: var(--text-mute); }
     .est-opt.t1 .dot { background: #66ac80; }
     .est-opt.t2 .dot { background: var(--amber); }
@@ -284,7 +284,7 @@
     .est-opt.t3.active .optglyph { color: #2a1302; }
     .est-opt.t4.active .optglyph { color: #fff; }
     .est-opt.active .dot { background: rgba(0,0,0,0.5); }
-    /* loader brand options — Forge/NeoForge = gray anvil + NeoForge orange · Fabric = signature paper */
+    /* loader brand options: Forge/NeoForge anvil, Fabric paper */
     .est-opt .loglyph { width: 16px; height: 16px; margin-right: 0.5rem; vertical-align: middle; }
     .est-opt.brand-forge .loglyph { color: #b9b3a7; }
     .est-opt.brand-neoforge .loglyph { color: var(--terracotta); }
@@ -298,7 +298,7 @@
     .est-opt.brand-forge.active .loglyph { color: #15171a; }
     .est-opt.brand-neoforge.active .loglyph { color: #2a1302; }
     .est-opt.brand-fabric.active .loglyph { color: #34260f; }
-    /* multicolour option accents — meaning-based (service / license / priority) */
+    /* multicolour option accents: service / license / priority */
     .est-opt .optglyph { width: 17px; height: 17px; margin-right: 0.5rem; vertical-align: middle; }
     .est-opt.ac-jade  .optglyph { color: #66ac80; }
     .est-opt.ac-gold  .optglyph { color: #cba14a; }
@@ -490,7 +490,7 @@
 <nav aria-label="Primary">
   <div class="nav-inner wrap">
     <span class="brand">
-      <span class="brand-cuy" role="img" aria-label="Modwright — cuy logo"></span>
+      <span class="brand-cuy" role="img" aria-label="Modwright logo"></span>
       <span class="wordmark" style="font-weight:700;font-size:1.2rem;letter-spacing:-0.01em">Modwright</span>
     </span>
     <ul class="nav-links">
@@ -589,32 +589,32 @@
   </div>
   <div class="wrap hero-inner">
     <div class="badge"><span class="badge-dot"></span>Open for commissions</div>
-    <h1><span class="cf">Port,</span> <span class="md">backport</span> &amp; <span class="fb">revive</span> Minecraft mods —<br><span class="fg">any version,</span> <span class="nf">any loader</span></h1>
-    <p class="hero-who">I'm <strong>josda</strong> — a pack builder who got tired of dead mods, so I started porting them myself.</p>
+    <h1><span class="cf">Port,</span> <span class="md">backport</span> &amp; <span class="fb">revive</span> Minecraft mods,<br><span class="fg">any version,</span> <span class="nf">any loader</span></h1>
+    <p class="hero-who">I'm <strong>josda</strong>. I build modpacks, got tired of mods dying on old versions, and started porting them myself.</p>
     <p class="hero-desc">
-      Forge 1.20.1 is my specialty and base rate — <strong class="price-hl">from $50, fixed</strong>. I move mods up, down, and across loaders — Forge, Fabric and NeoForge. License-first, boot-tested.
+      Forge 1.20.1 is what I do best, and it's my base rate: <strong class="price-hl">from $50, fixed</strong>. I move mods up a version, down a version, and between Forge, Fabric and NeoForge. I check the licence first and boot-test every build before it goes out.
     </p>
     <div class="pills">
       <span class="pill pill-price">Fixed price · $35 minimum</span>
       <span class="pill pill-trust">Escrow-protected via BuiltByBit</span>
       <span class="pill pill-trust">If it doesn't run, you don't pay</span>
       <span class="pill">7-day guarantee</span>
-      <span class="pill">Every port license-checked</span>
+      <span class="pill">Licence checked on every port</span>
     </div>
     <div class="ctas">
       <a href="#estimator" class="btn btn-primary">Estimate my commission</a>
       <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20commission" class="btn btn-quote">Email me →</a>
       <a href="#services" class="btn btn-ghost">See services</a>
     </div>
-    <p class="hero-contact">Fastest way to reach me — <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20commission">modwrightstudios@gmail.com</a></p>
-    <p class="hero-trust">Free quote · No payment until we agree · BuiltByBit escrow available · I reply fast</p>
+    <p class="hero-contact">Fastest way to reach me: <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20commission">modwrightstudios@gmail.com</a></p>
+    <p class="hero-trust">Quotes are free. You don't pay until we've agreed a price. BuiltByBit escrow available, and I usually reply the same day.</p>
   </div>
 </section>
 
 <!-- LOADERS -->
 <div class="loaders-strip">
   <div class="ls-inner">
-    <span class="ls-label">Built across every loader —</span>
+    <span class="ls-label">I build across every loader:</span>
     <div class="ls-logos">
       <a class="ls-item" href="https://minecraftforge.net/" target="_blank" rel="noopener noreferrer">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#9a9a9a" d="M2 8h10l-1.2 2.4H15v2h-1.9L12 17H8L6.2 12.4H2z"/><rect x="6" y="18.4" width="9" height="2" rx="0.4" fill="#777"/></svg>
@@ -631,7 +631,7 @@
     </div>
   </div>
   <div class="ls-inner">
-    <span class="ls-label">Published &amp; found on —</span>
+    <span class="ls-label">Find my work on:</span>
     <div class="ls-logos">
       <a class="ls-item" href="https://www.curseforge.com/minecraft" target="_blank" rel="noopener noreferrer">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#f16436" d="M12 2c3 4 5 6 5 10a5 5 0 0 1-10 0c0-2 1-3.6 2.3-4.7C8.8 9 10.4 6.4 12 2z"/><path fill="#ffd9c2" opacity="0.55" d="M12 12.2c1.1 1 1.7 1.9 1.7 3a1.7 1.7 0 0 1-3.4 0c0-1 .6-2 1.7-3z"/></svg>
@@ -658,12 +658,12 @@
   <div class="wrap">
     <div class="eyebrow">Instant estimate</div>
     <h2>Build your commission</h2>
-    <p class="sub">Pick what you need and get a ballpark in real time. It builds a ready-to-send summary you can paste straight into a message — the exact, final price comes once I see the mod.</p>
+    <p class="sub">Pick what you need and the ballpark updates as you go. It also writes a summary you can paste straight into a message, and I confirm the exact price once I've actually seen the mod.</p>
 
     <div class="estimator reveal">
       <div class="est-form">
         <div class="est-group" id="grp-service">
-          <div class="est-label">What do you need?</div>
+          <div class="est-label">What kind of job is it?</div>
           <div class="est-options" data-group="service">
             <button type="button" class="est-opt ac-jade active" data-value="backport"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v13"/><path d="M6 12l6 6 6-6"/></svg>Backport<small>newer → older</small></button>
             <button type="button" class="est-opt ac-gold" data-value="forward"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V6"/><path d="M6 12l6-6 6 6"/></svg>Forward-port / revive<small>old → modern</small></button>
@@ -681,7 +681,7 @@
           </div>
         </div>
         <div class="est-group" id="grp-wall">
-          <div class="est-label" title="Each Minecraft version boundary (1.20.2, 1.21, 1.13) adds work. Most jobs cross none or one.">Version jump <span class="est-hint">— the biggest cost driver</span></div>
+          <div class="est-label" title="Each Minecraft version boundary (1.20.2, 1.21, 1.13) adds work. Most jobs cross none or one.">Version jump <span class="est-hint">(the biggest cost driver)</span></div>
           <div class="est-options" data-group="wall">
             <button type="button" class="est-opt t1 active" data-value="none"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="2.8" y="15" width="3.2" height="5" rx="0.8"/><rect x="7.6" y="11" width="3.2" height="9" rx="0.8" opacity="0.22"/><rect x="12.4" y="7" width="3.2" height="13" rx="0.8" opacity="0.22"/><rect x="17.2" y="3" width="3.2" height="17" rx="0.8" opacity="0.22"/></svg>None / tiny<small>e.g. 1.19.2 ↔ 1.20.1</small></button>
             <button type="button" class="est-opt t2" data-value="moderate"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="2.8" y="15" width="3.2" height="5" rx="0.8"/><rect x="7.6" y="11" width="3.2" height="9" rx="0.8"/><rect x="12.4" y="7" width="3.2" height="13" rx="0.8" opacity="0.22"/><rect x="17.2" y="3" width="3.2" height="17" rx="0.8" opacity="0.22"/></svg>Moderate<small>crosses 1.20.2</small></button>
@@ -697,25 +697,25 @@
             <button type="button" class="est-opt t3" data-value="large"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3.5" y="14" width="4" height="6" rx="0.9"/><rect x="9.5" y="9" width="4" height="11" rx="0.9"/><rect x="15.5" y="4" width="4" height="16" rx="0.9"/></svg>Deep<small>deep · complex</small></button>
           </div>
         </div>
-        <button type="button" class="est-adv-toggle" id="est-adv-toggle" aria-expanded="false" aria-controls="est-advanced">Advanced — loader, license &amp; priority <span class="adv-caret" aria-hidden="true">▾</span></button>
+        <button type="button" class="est-adv-toggle" id="est-adv-toggle" aria-expanded="false" aria-controls="est-advanced">Advanced: loader, license &amp; priority <span class="adv-caret" aria-hidden="true">▾</span></button>
         <div class="est-advanced hidden" id="est-advanced">
         <div class="est-group" id="grp-loader">
           <div class="est-label" title="The mod's current loader. Forge↔NeoForge is a quick rename; Fabric→Forge is a near-rewrite.">Source mod loader</div>
           <div class="est-options" data-group="loader">
-            <button type="button" class="est-opt brand-forge active" data-value="forge"><svg class="loglyph" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M2 8h10l-1.2 2.4H15v2h-1.9L12 17H8L6.2 12.4H2z"/><rect x="6" y="18" width="9" height="2" rx="0.4" fill="currentColor"/></svg>Forge<small>same loader — base</small></button>
-            <button type="button" class="est-opt brand-neoforge" data-value="neoforge"><svg class="loglyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 16.5V7.5l7 9v-9" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>NeoForge<small>rename — +$30</small></button>
+            <button type="button" class="est-opt brand-forge active" data-value="forge"><svg class="loglyph" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M2 8h10l-1.2 2.4H15v2h-1.9L12 17H8L6.2 12.4H2z"/><rect x="6" y="18" width="9" height="2" rx="0.4" fill="currentColor"/></svg>Forge<small>same loader, base rate</small></button>
+            <button type="button" class="est-opt brand-neoforge" data-value="neoforge"><svg class="loglyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 16.5V7.5l7 9v-9" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>NeoForge<small>rename, +$30</small></button>
             <button type="button" class="est-opt brand-fabric" data-value="fabric"><svg class="loglyph" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="3" fill="currentColor"/><g stroke="#0e0d0b" stroke-width="1.2" opacity="0.32"><path d="M3.5 9.7h17M3.5 14.3h17M9.7 3.5v17M14.3 3.5v17"/></g></svg>From Fabric<small>near-rewrite</small></button>
           </div>
         </div>
         <div class="est-group" id="grp-license">
-          <div class="est-label" title="Open-source or permitted mods can be published; closed-source (ARR) is delivered privately to you only.">Mod license <span class="est-hint">— sets how it's delivered</span></div>
+          <div class="est-label" title="Open-source or permitted mods can be published; closed-source (ARR) is delivered privately to you only.">Mod license <span class="est-hint">(sets how it's delivered)</span></div>
           <div class="est-options" data-group="license">
             <button type="button" class="est-opt ac-jade active" data-value="open"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a13 13 0 0 1 0 18"/><path d="M12 3a13 13 0 0 0 0 18"/></svg>Open-source / I have permission<small>publishable</small></button>
             <button type="button" class="est-opt ac-slate" data-value="closed"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Closed-source (ARR)<small>private delivery</small></button>
           </div>
         </div>
         <div class="est-group" id="grp-rush">
-          <div class="est-label">Priority <span class="est-hint">— optional, jump the queue</span></div>
+          <div class="est-label">Priority <span class="est-hint">(optional, jump the queue)</span></div>
           <div class="est-options" data-group="rush">
             <button type="button" class="est-opt ac-jade active" data-value="standard"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 8v4.2l2.6 1.6"/></svg>Standard<small>normal queue</small></button>
             <button type="button" class="est-opt ac-amber" data-value="r72"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 15l7-6 7 6"/></svg>Priority<small>+25%</small></button>
@@ -728,12 +728,12 @@
       <div class="est-result">
         <div class="est-result-label">Your quick quote</div>
         <div class="est-price" id="est-price" aria-live="polite">$81 – $104</div>
-        <div class="est-note" id="est-note">Base rate — Forge 1.20.1 is my specialty.</div>
+        <div class="est-note" id="est-note">Base rate. Forge 1.20.1 is what I do best.</div>
         <div class="est-breakdown" id="est-breakdown"></div>
         <div class="est-summary" id="est-summary"></div>
         <a class="btn btn-quote est-email" id="est-email" href="mailto:modwrightstudios@gmail.com?subject=Mod%20porting%20commission">Email my request now →</a>
         <button type="button" class="btn btn-ghost est-copy" id="est-copy">Copy summary</button>
-        <div class="est-disclaimer">Your starting point — I'll confirm the final fixed price in writing within 24h after I review the mod. $35 minimum on any job; no account needed, the button fills everything in for you.</div>
+        <div class="est-disclaimer">Treat this as a starting point. I'll confirm the final fixed price in writing within 24h of reviewing the mod. $35 minimum on any job. No account needed; the button fills everything in for you.</div>
         <p class="est-skip">Prefer not to fill this in? <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20commission">Just email me directly →</a></p>
       </div>
     </div>
@@ -745,12 +745,12 @@
   <div class="wrap">
     <div class="eyebrow">What I do</div>
     <h2>Any direction, any loader</h2>
-    <p class="sub">Forge 1.20.1 is my base rate because it sits just below every recent version wall — it's where I'm fastest. Each thing that takes the job further out is priced by the real work it adds, not a vague percentage.</p>
+    <p class="sub">Forge 1.20.1 is my base rate because it sits just below every recent version wall, so it's where I'm fastest. Anything harder is priced by the real work it adds, not some made-up percentage.</p>
     <div class="cards reveal">
       <div class="card card--base">
         <div class="icon-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v13"/><path d="M6 11l6 6 6-6"/></svg></div>
         <h3>Backport</h3>
-        <p>A newer mod (1.21+) your pack needs on an older version like Forge 1.20.1. Full backport — items, blocks, mechanics, textures. 1.20.1 is my specialty and base price.</p>
+        <p>A newer mod (1.21+) your pack needs running on something older like Forge 1.20.1. That means porting the items, blocks, mechanics and textures across. It's what I do best, so it's the base price.</p>
         <div class="card-stats">
           <div><span class="k">Target</span><span class="v">Forge 1.20.1</span></div>
           <div><span class="k">From</span><span class="v">$50</span></div>
@@ -760,7 +760,7 @@
       <div class="card card--premium">
         <div class="icon-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V7"/><path d="M6 13l6-6 6 6"/></svg></div>
         <h3>Forward-port &amp; revive</h3>
-        <p>A beloved old or abandoned mod stuck on 1.12 / 1.16 / 1.18 you want on a modern version. The biggest, most underserved kind of port — priced by how many version walls it crosses.</p>
+        <p>An old or abandoned mod you love, stuck on 1.12 / 1.16 / 1.18, that you want running on a modern version. It's the hardest kind of port, which is exactly why most porters won't take it. The price scales with how many version walls it has to cross.</p>
         <div class="card-stats">
           <div><span class="k">Range</span><span class="v">1.12 → modern</span></div>
           <div><span class="k">Driver</span><span class="v">Version walls</span></div>
@@ -770,17 +770,17 @@
       <div class="card card--premium">
         <div class="icon-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h13l-3-3"/><path d="M20 16H7l3 3"/></svg></div>
         <h3>Loader conversion</h3>
-        <p>Fabric, NeoForge or Forge — moved to the loader you need. Forge↔NeoForge is light; <strong>Fabric→Forge is a near-rewrite</strong> (different events, registries, mixins) and priced accordingly.</p>
+        <p>Moving a mod between Fabric, NeoForge and Forge. Forge↔NeoForge is light work, but <strong>Fabric→Forge is close to a rewrite</strong> because the events, registries and mixins are all different. It's priced to match.</p>
         <div class="card-stats">
           <div><span class="k">Forge↔Neo</span><span class="v">+$30</span></div>
-          <div><span class="k">Fabric→Forge</span><span class="v">+$200–400</span></div>
+          <div><span class="k">Fabric→Forge</span><span class="v">+$200-400</span></div>
         </div>
         <span class="card-tag tag-premium">By complexity</span>
       </div>
       <div class="card card--base">
         <div class="icon-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7h5a4 4 0 0 1 0 8h-1"/><path d="M15 17h-5a4 4 0 0 1 0-8h1"/></svg></div>
         <h3>Compatibility patches</h3>
-        <p>Make any mods coexist — two native mods, a ported and a native one, mob spawning across mods, conflicts resolved. Works <strong>even for closed-source mods</strong> and ships as a publishable add-on.</p>
+        <p>Getting mods to coexist: two native mods, a ported one alongside a native one, mobs spawning across mods, or a conflict that breaks a feature. This works <strong>even for closed-source mods</strong>, and it ships as a publishable add-on.</p>
         <div class="card-stats">
           <div><span class="k">Works with</span><span class="v">Closed-source too</span></div>
           <div><span class="k">From</span><span class="v">$40</span></div>
@@ -790,7 +790,7 @@
       <div class="card card--base">
         <div class="icon-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.6 5.6L3 18l3 3 6.1-6.1a4 4 0 0 0 5.6-5.6l-2.9 2.9a1.5 1.5 0 0 1-2-2l2.9-2.9z"/></svg></div>
         <h3>Mod maintenance</h3>
-        <p>A mod that broke after an update — failing <strong>mixins</strong>, crashes, dependency or mapping breaks, deprecated APIs. I find the fault and get it loading clean again on your version.</p>
+        <p>A mod that broke after an update: failing <strong>mixins</strong>, crashes, dependency or mapping breaks, deprecated APIs. I track down the fault and get it loading clean again on your version.</p>
         <div class="card-stats">
           <div><span class="k">Fixes</span><span class="v">Mixins · crashes · deps</span></div>
           <div><span class="k">From</span><span class="v">$35</span></div>
@@ -800,7 +800,7 @@
       <div class="card card--premium">
         <div class="icon-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
         <h3>Mod optimization</h3>
-        <p>A mod or pack that <strong>eats TPS and FPS</strong>. I profile the hot paths and cut the cost — async work, caching, smarter ticking, lighter worldgen — so it runs lighter without changing what it does.</p>
+        <p>A mod or pack that <strong>eats TPS and FPS</strong>. I profile the hot paths and bring the cost down: async work, caching, smarter ticking, lighter worldgen. It ends up running leaner without changing what it actually does.</p>
         <div class="card-stats">
           <div><span class="k">Cuts</span><span class="v">Lag · RAM · tick time</span></div>
           <div><span class="k">From</span><span class="v">$60</span></div>
@@ -817,13 +817,13 @@
 <section id="how-it-works">
   <div class="wrap">
     <div class="eyebrow">Process</div>
-    <h2>Simple, async, no surprises</h2>
-    <p class="sub">Everything written. Price locked before I start. No calls, no ambiguity.</p>
+    <h2>How a commission works</h2>
+    <p class="sub">It's all done in writing, async, no calls. The price is locked before I start, so there's nothing to surprise you halfway through.</p>
     <div class="steps">
-      <div class="step"><div class="step-n">01</div><h3>Send me the mod</h3><p>Message the mod link and what you need. Open-source or licensed — both work. Use the estimator to pre-fill the details.</p></div>
-      <div class="step"><div class="step-n">02</div><h3>Flat quote</h3><p>I review the mod and reply with a fixed price and timeline. No hourly billing, no scope creep after we agree.</p></div>
-      <div class="step"><div class="step-n">03</div><h3>Fund escrow</h3><p>Pay through BuiltByBit escrow — your money is held by BBB and only released once the working mod is in your hands. (Returning clients can use a simple 50% deposit instead.)</p></div>
-      <div class="step"><div class="step-n">04</div><h3>I build it</h3><p>Every job gets its own timeline, agreed in writing before any work begins — each mod is different, so I never promise a deadline I can't keep. Textures and assets always included.</p></div>
+      <div class="step"><div class="step-n">01</div><h3>Send me the mod</h3><p>Message the mod link and what you need. Open-source or licensed, both work. Use the estimator to pre-fill the details.</p></div>
+      <div class="step"><div class="step-n">02</div><h3>Flat quote</h3><p>I look over the mod and reply with a fixed price and a timeline. No hourly billing, and no scope creep once we've agreed.</p></div>
+      <div class="step"><div class="step-n">03</div><h3>Fund escrow</h3><p>Pay through BuiltByBit escrow. BBB holds your money and only releases it once the working mod is in your hands. (Returning clients can use a simple 50% deposit instead.)</p></div>
+      <div class="step"><div class="step-n">04</div><h3>I build it</h3><p>Every job gets its own timeline, agreed in writing before I touch anything. Each mod is different, so I won't promise a deadline I can't keep. Textures and assets are always included.</p></div>
       <div class="step"><div class="step-n">05</div><h3>Delivery + final 50%</h3><p>You receive and test the .jar. Final payment before release. Open-source ports get published with author credit.</p></div>
     </div>
   </div>
@@ -833,8 +833,8 @@
   <div class="wrap">
     <blockquote class="big-quote">
       <svg class="q-rule" viewBox="0 0 120 8" aria-hidden="true"><path d="M2 4 Q 20 1 40 4 T 80 4 T 118 4"/></svg>
-      I never publicly redistribute a closed-source mod without written permission — <span class="q-em">that's the one line I never cross.</span>
-      <cite>License-first, every single job</cite>
+      I won't publicly redistribute a closed-source mod without written permission. <span class="q-em">That's the one rule I don't bend, ever.</span>
+      <cite>Licence checked before I start work</cite>
     </blockquote>
   </div>
 </section>
@@ -844,11 +844,11 @@
   <div class="wrap">
     <div class="eyebrow">Pricing</div>
     <h2>Fixed price, built on one base rate</h2>
-    <p class="sub">Forge 1.20.1 sets the base. Each thing that takes me outside it adds a flat amount for the real work it takes — version walls crossed, loader rewrites, private delivery. You always get one number before any work begins.</p>
+    <p class="sub">Forge 1.20.1 sets the base. Anything that takes me outside it (a version wall to cross, a loader rewrite, private delivery) adds a flat amount for the work it actually takes. Either way, you get one number before I start.</p>
 
     <div class="price-promo">
       <span class="price-promo-tag">🎉 Intro offer</span>
-      <span>First clients get a <strong>discount on their first port</strong> in exchange for an honest review — lock in a low rate before prices settle.</span>
+      <span>First clients get a <strong>discount on their first port</strong> in exchange for an honest review. Lock in a low rate before prices settle.</span>
     </div>
 
     <div class="ptable reveal">
@@ -856,27 +856,27 @@
       <div class="prow base">
         <div class="pservice">Quick fix / recompile <small>simplest job</small></div>
         <div class="pprice">from $35</div>
-        <div class="pwhy">Same loader, a neighbouring version (e.g. 1.20.1 ↔ 1.19.2), or a config / recipe / small tweak. The cheapest way in.</div>
+        <div class="pwhy">Same loader, a neighbouring version (e.g. 1.20.1 ↔ 1.19.2), or a config / recipe / small tweak. The cheapest way to work with me.</div>
       </div>
       <div class="prow base">
         <div class="pservice">Backport to Forge 1.20.1 <small>my specialty</small></div>
         <div class="pprice">$50 / $90 / $150</div>
-        <div class="pwhy"><strong>By mod size:</strong> Small (items, blocks, recipes) · Medium (mechanics, entities, GUI) · Large (tech, worldgen). 1.20.1 is the cheapest lane — it sits below every recent version wall.</div>
+        <div class="pwhy"><strong>By mod size:</strong> Small (items, blocks, recipes) · Medium (mechanics, entities, GUI) · Large (tech, worldgen). 1.20.1 is the cheapest lane because it sits below every recent version wall.</div>
       </div>
       <div class="prow">
-        <div class="pservice">Other version — cross a "wall" <small>forward-port / revive</small></div>
+        <div class="pservice">Other version, cross a "wall" <small>forward-port / revive</small></div>
         <div class="pprice">+$40 / +$100 / +$180</div>
         <div class="pwhy"><strong>Added per wall crossed:</strong> Moderate (1.20.2 networking) · Hard (1.21 data components) · Brutal (1.13 flattening or 1.18 worldgen). Most jobs cross none or one.</div>
       </div>
       <div class="prow">
         <div class="pservice">Loader change <small>Fabric · Forge · NeoForge</small></div>
-        <div class="pprice">+$30 / +$200–400</div>
-        <div class="pwhy">Forge ↔ NeoForge is a quick rename (<strong>+$30</strong>). Fabric → Forge is a near-rewrite (<strong>+$200–400</strong>) — the one most porters won't touch.</div>
+        <div class="pprice">+$30 / +$200-400</div>
+        <div class="pwhy">Forge ↔ NeoForge is a quick rename (<strong>+$30</strong>). Fabric → Forge is close to a rewrite (<strong>+$200-400</strong>), which is why a lot of porters won't take it.</div>
       </div>
       <div class="prow">
         <div class="pservice">Compatibility patch <small>make mods coexist</small></div>
         <div class="pprice">$40 / $90 / $180</div>
-        <div class="pwhy">Simple (config/datapack, 2 mods) · Moderate (mixin/event patching) · Deep (several mods). My own publishable code — works even with closed-source mods.</div>
+        <div class="pwhy">Simple (config/datapack, 2 mods) · Moderate (mixin/event patching) · Deep (several mods). It's my own publishable code, so it works even with closed-source mods.</div>
       </div>
       <div class="prow">
         <div class="pservice">Mod maintenance <small>fix mixins / crashes</small></div>
@@ -889,14 +889,14 @@
         <div class="pwhy"><strong>By scope:</strong> Targeted lag fix · async / caching pass · deep profiling of hot paths. Cuts TPS/FPS cost and RAM without changing what the mod does.</div>
       </div>
       <div class="prow">
-        <div class="pservice">Closed-source (ARR) — private <small>add-on</small></div>
+        <div class="pservice">Closed-source (ARR), private <small>add-on</small></div>
         <div class="pprice">+35%</div>
         <div class="pwhy">Any of the above delivered privately to you only, never published. Covers the extra care and the no-portfolio trade-off.</div>
       </div>
     </div>
 
-    <p class="pnote"><strong>$35 minimum on any job — pay only when we've agreed a fixed price.</strong> &nbsp;Priority queue (jump ahead): +25% / +50%. &nbsp;Re-port your own prior work to a new version later: 40% of the original.</p>
-    <p class="pexample"><strong>Worked example —</strong> backport a medium mod across one hard wall (1.21 → Forge 1.20.1), open-source: $90 base + $100 wall = <strong>~$190</strong>. Most jobs land $50–150.</p>
+    <p class="pnote"><strong>$35 minimum on any job, and you only pay once we've agreed a fixed price.</strong> &nbsp;Priority queue (jump ahead): +25% / +50%. &nbsp;Re-port your own prior work to a new version later: 40% of the original.</p>
+    <p class="pexample"><strong>Worked example.</strong> Backport a medium mod across one hard wall (1.21 → Forge 1.20.1), open-source: $90 base + $100 wall = <strong>~$190</strong>. Most jobs land between $50 and $150.</p>
 
     <div class="pfoot">
       <span class="pay-label">Payment</span>
@@ -915,38 +915,38 @@
   <div class="wrap">
     <div class="eyebrow">Licenses &amp; rights</div>
     <h2>I only port what I have rights to port</h2>
-    <p class="sub">Most devs in this space ignore licensing. I don't — because a DMCA takedown or account ban hurts you, not just me.</p>
+    <p class="sub">Most devs in this space ignore licensing. I don't, because a DMCA takedown or account ban hits your account harder than it hits me.</p>
     <div class="legal-cards reveal">
-      <div class="legal-card"><h3>Public — open-source &amp; compatibility</h3><p>Open-source mods (MIT · Apache · LGPL), mods with written permission, and compatibility add-ons (my own code, depending on mods you install yourself) get published to CurseForge &amp; Modrinth — full credit to original authors.</p></div>
-      <div class="legal-card"><h3>Private — closed-source mods</h3><p>Most requested mods are closed-source. You bring one you have the right to use; I modify it for you and deliver privately — to you only, never published. You pay for my time, not for redistribution.</p></div>
-      <div class="legal-card"><h3>What I won't do</h3><p>Publicly redistribute a closed-source (All Rights Reserved) mod without written author permission. That's the one line I never cross — it protects your accounts from takedowns and bans.</p></div>
+      <div class="legal-card"><h3>Public: open-source &amp; compatibility</h3><p>Open-source mods (MIT · Apache · LGPL), mods with written permission, and compatibility add-ons (my own code, depending on mods you install yourself) get published to CurseForge &amp; Modrinth, with full credit to the original authors.</p></div>
+      <div class="legal-card"><h3>Private: closed-source mods</h3><p>Most requested mods are closed-source. You bring one you have the right to use; I modify it for you and deliver privately, to you only, never published. You pay for my time, not for redistribution.</p></div>
+      <div class="legal-card"><h3>What I won't do</h3><p>Publicly redistribute a closed-source (All Rights Reserved) mod without written permission from the author. I don't bend on this. It's what keeps your accounts safe from takedowns and bans.</p></div>
     </div>
-    <div class="legal-quote"><strong>The principle:</strong> You pay for my time writing the work — not for distribution rights. The right to publish always belongs to whoever holds the license. That's the only clean, legally sound way to run a porting service.</div>
+    <div class="legal-quote"><strong>The principle:</strong> you're paying for my time writing the work, not for the right to distribute it. The right to publish stays with whoever holds the licence. As far as I can tell, that's the only way to run a porting service that won't get someone banned.</div>
 
     <div class="legal-docs">
       <details class="legal-doc" id="terms">
         <summary>Terms of Service</summary>
         <div class="legal-doc-body">
-          <p><strong>Service.</strong> Modwright provides Minecraft mod commission work — porting, backporting, reviving, loader conversion, compatibility patches, maintenance and optimization — carried out by one developer.</p>
+          <p><strong>Service.</strong> Modwright provides Minecraft mod commission work: porting, backporting, reviving, loader conversion, compatibility patches, maintenance and optimization, all carried out by one developer.</p>
           <p><strong>Quotes &amp; pricing.</strong> The estimator gives a non-binding ballpark. The final price is fixed and agreed in writing before any work begins. A deposit may be requested for larger jobs; a $35 minimum applies.</p>
           <p><strong>Payment.</strong> Through BuiltByBit escrow, Wise, or USDT, as agreed. With escrow, funds release on delivery.</p>
-          <p><strong>Delivery &amp; timelines.</strong> You receive a working, boot-tested build. Timelines are good-faith estimates, not guarantees — I don't promise hard deadlines.</p>
+          <p><strong>Delivery &amp; timelines.</strong> You receive a working, boot-tested build. Timelines are honest estimates, not promises, and I don't commit to hard deadlines.</p>
           <p><strong>Guarantee &amp; refunds.</strong> 7-day guarantee: if the delivered work doesn't run as agreed, I fix it free or refund you. Refunds cover undelivered or non-working work, not a change of mind after correct delivery.</p>
-          <p><strong>Your responsibilities.</strong> You must have the right to commission work on the mod you submit — it is open-source, your own, or you have the author's permission. You are responsible for how you use the delivered files.</p>
+          <p><strong>Your responsibilities.</strong> You must have the right to commission work on the mod you submit: it's open-source, your own, or you have the author's permission. You are responsible for how you use the delivered files.</p>
           <p><strong>Rights &amp; redistribution.</strong> You pay for my time, not for distribution rights. Closed-source (ARR) work is delivered privately to you only and is never published. I will not publicly redistribute an ARR mod without the author's written permission.</p>
           <p><strong>Liability.</strong> Work is provided "as is." To the extent permitted by law, I am not liable for indirect or consequential damages, and total liability is limited to the amount paid for the job in question.</p>
           <p><strong>Changes.</strong> These terms may be updated; the version shown here when you commission applies.</p>
-          <p class="legal-doc-note">Plain-language summary for a small commission service — not formal legal advice. Last updated June 2026.</p>
+          <p class="legal-doc-note">Plain-language summary for a small commission service, not formal legal advice. Last updated June 2026.</p>
         </div>
       </details>
       <details class="legal-doc" id="privacy">
         <summary>Privacy Policy</summary>
         <div class="legal-doc-body">
           <p><strong>Short version:</strong> this is a static page with no accounts and no tracking cookies. I only ever see what you choose to send me.</p>
-          <p><strong>What I collect.</strong> Only the information you include when you contact me — your email address and the commission details you provide. The price estimator runs entirely in your browser; nothing you enter there leaves your device until you click to email it.</p>
+          <p><strong>What I collect.</strong> Only the information you include when you contact me: your email address and the commission details you provide. The price estimator runs entirely in your browser; nothing you enter there leaves your device until you click to email it.</p>
           <p><strong>How I use it.</strong> Solely to reply to you and carry out the work you ask for. I never sell, rent, or share your information.</p>
           <p><strong>Third parties.</strong> If you pay, the payment runs through your chosen provider (BuiltByBit, Wise, etc.) under their own policies. Email is handled through Gmail.</p>
-          <p><strong>Analytics.</strong> No tracking cookies are used. If privacy-friendly, cookieless analytics are ever added, they will not collect personal data.</p>
+          <p><strong>Analytics.</strong> I don't use tracking cookies. If I ever add analytics, it'll be cookieless and won't collect personal data.</p>
           <p><strong>Retention &amp; your choices.</strong> I keep commission correspondence only as long as needed for the work and records, and you can ask me to delete your data at any time.</p>
           <p class="legal-doc-note">Questions? Email modwrightstudios@gmail.com. Last updated June 2026.</p>
         </div>
@@ -954,10 +954,10 @@
       <details class="legal-doc" id="licenses">
         <summary>Licenses &amp; attributions</summary>
         <div class="legal-doc-body">
-          <p><strong>Mods.</strong> I only work on mods you have the right to modify — open-source, your own, or with the author's permission. Open-source ports I publish keep the original licence and credit the original author; closed-source work stays private.</p>
+          <p><strong>Mods.</strong> I only work on mods you have the right to modify: open-source, your own, or with the author's permission. Open-source ports I publish keep the original licence and credit the original author; closed-source work stays private.</p>
           <p><strong>This website.</strong> Design, copy and graphics are original work © Modwright. Illustrations and icons are hand-built inline SVG; no third-party images are used.</p>
           <p><strong>Fonts.</strong> "Space Grotesk" is used under the SIL Open Font License.</p>
-          <p><strong>Trademarks.</strong> Minecraft is a trademark of Mojang Studios. Forge, NeoForge, Fabric, CurseForge, Modrinth and BuiltByBit belong to their respective owners. Their names are used here for identification only — this is an independent service with no affiliation or endorsement.</p>
+          <p><strong>Trademarks.</strong> Minecraft is a trademark of Mojang Studios. Forge, NeoForge, Fabric, CurseForge, Modrinth and BuiltByBit belong to their respective owners. Their names are used here for identification only. This is an independent service with no affiliation or endorsement.</p>
           <p class="legal-doc-note">Last updated June 2026.</p>
         </div>
       </details>
@@ -971,13 +971,13 @@
     <div class="eyebrow">FAQ</div>
     <h2>Before you ask</h2>
     <div class="faq-list">
-      <div class="faq-item"><button type="button" class="faq-q">Why is 1.20.1 the cheapest lane? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a">It's my specialty and it sits just below every recent version wall, so it takes the least work — I pass that on as the lowest add-ons. Other versions cross walls (networking, data components, worldgen) that genuinely take longer, so they carry a flat premium per wall.</div></div>
-      <div class="faq-item"><button type="button" class="faq-q">What exactly is a compatibility patch? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a">Making two or more mods work together without creating new content — for example, getting one mod's mobs to spawn in another mod's biomes, or resolving a conflict that breaks a feature. It's bespoke work, quoted by scope.</div></div>
+      <div class="faq-item"><button type="button" class="faq-q">Why is 1.20.1 the cheapest lane? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a">It's what I do best, and it sits just below every recent version wall, so it takes the least work. I pass that saving on as the lowest add-ons. Other versions have to cross walls (networking, data components, worldgen) that genuinely take longer, so they carry a flat premium per wall.</div></div>
+      <div class="faq-item"><button type="button" class="faq-q">What exactly is a compatibility patch? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a">Making two or more mods work together without adding new content. For example: getting one mod's mobs to spawn in another mod's biomes, or fixing a conflict that breaks a feature. Each one is custom, so I quote it by scope.</div></div>
       <div class="faq-item"><button type="button" class="faq-q">Is this legal? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a">Yes. You pay for my time writing the port, not for distribution rights. I publish only open-source mods or mods with written permission; anything else is delivered privately to whoever holds the right to use it. See the Licenses section above.</div></div>
-      <div class="faq-item"><button type="button" class="faq-q">How do I pay safely? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a">BuiltByBit escrow is the default: BBB holds your payment and only releases it once you have the working mod — I can't touch it until you're satisfied, which removes the "pay and they vanish" risk entirely. Wise and crypto USDT are also available for returning clients. I never take Friends &amp; Family payments.</div></div>
-      <div class="faq-item"><button type="button" class="faq-q">How long does it take? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a">It depends entirely on the mod — every one is different, so I don't quote a fixed turnaround. We agree a realistic timeline in writing before I start, and I'd rather under-promise and deliver than miss a deadline. Need it sooner? A priority fee moves your job to the front of the queue.</div></div>
-      <div class="faq-item"><button type="button" class="faq-q">What if the port doesn't work? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a">If I can't get it working, you don't pay — simple. Every delivered commission carries a 7-day guarantee: if it crashes or breaks, I fix it free or refund you. With escrow you test the working mod before any money is released.</div></div>
-      <div class="faq-item"><button type="button" class="faq-q">What's out of scope? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a">I write code. Textures, 3D models and animations, full gameplay/balance redesigns, and ongoing maintenance across future Minecraft versions are each a separate quote — not part of a standard port. Tell me upfront and I'll fold it into the price.</div></div>
+      <div class="faq-item"><button type="button" class="faq-q">How do I pay safely? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a">BuiltByBit escrow is the default. BBB holds your payment and only releases it once you have the working mod, so I can't touch a cent until you're happy. That takes the "pay and they vanish" risk off the table. Wise and crypto USDT are also available for returning clients. I never take Friends &amp; Family payments.</div></div>
+      <div class="faq-item"><button type="button" class="faq-q">How long does it take? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a">It depends entirely on the mod. Every one is different, so I won't quote a fixed turnaround I can't stand behind. We agree a realistic timeline in writing before I start, and I'd rather under-promise and actually deliver than miss a date. Need it sooner? A priority fee moves your job to the front of the queue.</div></div>
+      <div class="faq-item"><button type="button" class="faq-q">What if the port doesn't work? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a">If I can't get it working, you don't pay. Every delivered commission carries a 7-day guarantee: if it crashes or breaks in that window, I fix it for free, or I refund you. With escrow you test the working mod before any money is released.</div></div>
+      <div class="faq-item"><button type="button" class="faq-q">What's out of scope? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a">I write code. Textures, 3D models and animations, full gameplay or balance redesigns, and ongoing maintenance across future Minecraft versions all sit outside a standard port and get quoted separately. Tell me upfront and I'll fold it into the price.</div></div>
     </div>
   </div>
 </section>
@@ -989,12 +989,12 @@
   <div class="wrap">
     <div class="eyebrow">Portfolio</div>
     <h2>Open-source proof ports</h2>
-    <p class="sub">I publish open-source ports on CurseForge &amp; Modrinth as living proof — license-verified, boot-tested, code you can read before you hire me. The first ones are landing now; your own mod always stays private.</p>
+    <p class="sub">I publish my open-source ports on CurseForge &amp; Modrinth so you can read the actual code before you hire me. Each one is licence-verified and boot-tested. The first few are landing now, and your own mod always stays private.</p>
 
     <div class="port-grid reveal">
       <div class="port-card port-card--guarantee">
-        <h3 class="port-name">No published port yet — every commission is still guaranteed</h3>
-        <p class="port-desc">I'm a solo dev building a track record port by port. Your protection isn't a star rating — it's <strong>escrow</strong> (BuiltByBit holds your payment until the working mod is in your hands) plus a <strong>7-day guarantee</strong>. If it doesn't run, you don't pay. Be an early client at the intro rate, and your open-source port becomes the first proof here — code you can read on CurseForge &amp; Modrinth.</p>
+        <h3 class="port-name">No published port here yet, but every commission is still guaranteed</h3>
+        <p class="port-desc">I'm a solo dev building up a track record one port at a time. There's no star rating to lean on yet, so your protection is <strong>escrow</strong> (BuiltByBit holds your payment until the working mod is in your hands) plus a <strong>7-day guarantee</strong>. If it doesn't run, you don't pay. Come in as an early client at the intro rate and, if your mod is open-source, your port becomes the first one shown here, with code you can read on CurseForge &amp; Modrinth.</p>
         <dl class="port-stats">
           <div><dt>Escrow</dt><dd>BuiltByBit-held</dd></div>
           <div><dt>Guarantee</dt><dd>7-day, full refund</dd></div>
@@ -1006,14 +1006,14 @@
 
       <div class="port-card port-card--cta">
         <div class="port-cta-text">
-          <strong>Be the first showcase</strong>
-          <p>First clients get an intro discount in exchange for an honest verified review — and if your mod is open-source, the port becomes the first piece in this gallery.</p>
+          <strong>Be the first example</strong>
+          <p>First clients get an intro discount for an honest, verified review. If your mod is open-source, your port also becomes the first one in this gallery.</p>
         </div>
         <a href="#contact" class="btn btn-quote btn-sm">Get a quote</a>
       </div>
     </div>
 
-    <p class="port-footer-note">I lead with proof, not promises — this gallery fills with real, published ports as they ship. <a href="#contact">Commission one now</a> for the early-client rate while the queue is short.</p>
+    <p class="port-footer-note">I'd rather show you working code than make promises, so this gallery fills up with real published ports as they ship. <a href="#contact">Commission one now</a> to get the early-client rate before the queue gets longer.</p>
   </div>
 </section>
 
@@ -1021,12 +1021,12 @@
 <section id="about">
   <div class="wrap">
     <div class="eyebrow">Who I am</div>
-    <h2>One dev. Full accountability.</h2>
-    <p class="sub">No team, no outsourcing — whoever takes your commission is the person who writes and debugs every line.</p>
+    <h2>It's just me</h2>
+    <p class="sub">There's no team and nothing gets outsourced. The person who takes your commission is the person who writes and debugs every line of it.</p>
     <div class="about-body">
-      <p>Like most pack builders, I spent years chasing mods that never got updated. I started porting them myself — and after enough of them on Forge 1.20.1, I know the API cold: every event handler, every Gradle quirk, every mapping gap between versions.</p>
-      <p>I built this service because the market sits between two extremes: established devs who won't touch small commissions, and cheap alternatives that skip the license work until a DMCA takedown hits your CurseForge account. Fixed price, license-first, <strong>everything in writing</strong>.</p>
-      <p>You never pay on trust alone: BuiltByBit escrow holds your payment until the working mod is in your hands, and every commission carries a 7-day guarantee. If it doesn't run, you don't pay.</p>
+      <p>Like a lot of pack builders, I spent years waiting on mods that never got updated. Eventually I started porting them myself, and after enough of them on Forge 1.20.1 I know the API cold: the event handlers, the Gradle quirks, the mapping gaps between versions.</p>
+      <p>I started doing this for other people because the market has a hole in the middle. The established devs won't touch small commissions, and the cheap shops skip the licence work until a DMCA takedown lands on your CurseForge account. So I quote a fixed price, check the licence first, and put everything <strong>all in writing</strong>.</p>
+      <p>You don't have to take that on trust. BuiltByBit escrow holds your payment until the working mod is in your hands, and every commission carries a 7-day guarantee. If it doesn't run, you don't pay.</p>
     </div>
   </div>
 </section>
@@ -1038,26 +1038,26 @@
   <div class="wrap">
     <div class="eyebrow">Contact</div>
     <h2>Get a quote</h2>
-    <p class="sub">Written and async. <strong>Email works right now</strong> — build your request in the estimator above, hit "Email my request now," and you'll get a fixed quote in writing within 24h. BuiltByBit escrow &amp; Discord are being set up.</p>
+    <p class="sub">Everything's done in writing and async. <strong>Email works right now</strong>: build your request in the estimator above, hit "Email my request now," and you'll have a fixed quote in writing within 24h. BuiltByBit escrow and Discord are coming soon.</p>
     <div class="contact-cards reveal">
       <div class="contact-card contact-card--primary">
         <div class="ci ci--gmail"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg></div>
-        <h3>Email — live now</h3>
-        <p>The fastest way to reach me today. Send the mod link plus what you want (or the estimator summary) and I reply within a day.</p>
+        <h3>Email (live now)</h3>
+        <p>Quickest way to reach me right now. Send the mod link and what you want done, or just the estimator summary, and I'll reply within a day.</p>
         <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20porting%20commission" class="contact-link">modwrightstudios@gmail.com</a>
       </div>
       <div class="contact-card contact-card--soon">
         <div class="ci ci--bbb"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v5c0 4.5-3.4 7.7-8 9-4.6-1.3-8-4.5-8-9V6l8-3z"/></svg></div>
         <h3>BuiltByBit · escrow</h3>
-        <p>Escrow-protected commissions, being set up now. Email me meanwhile — same protection via invoice.</p>
+        <p>Escrow-protected commissions are coming soon. For now, email me and I'll give you the same protection through an invoice.</p>
       </div>
       <div class="contact-card contact-card--soon">
         <div class="ci ci--discord"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4V5z"/><circle cx="9.5" cy="10.5" r="0.6" fill="currentColor" stroke="none"/><circle cx="14.5" cy="10.5" r="0.6" fill="currentColor" stroke="none"/></svg></div>
         <h3>Discord</h3>
-        <p>Coming soon for fast async chat. Email gets you an instant reply right now.</p>
+        <p>Coming soon for quick async chat. Email's still the fastest way to reach me for now.</p>
       </div>
     </div>
-    <p class="contact-note">Async and written only — no voice calls. I reply fast, usually within a day.</p>
+    <p class="contact-note">Written and async only, no voice calls. I usually reply the same day.</p>
   </div>
 </section>
 
@@ -1124,14 +1124,14 @@
   }
   function buildNote(r) {
     var bits = [];
-    if (state.service === 'compat') { bits.push('Compatibility patch — my own publishable code.'); }
-    else if (state.service === 'maintain') { bits.push('Mod maintenance — mixin / crash / dependency fixes.'); }
-    else if (state.service === 'optimize') { bits.push('Mod optimization — less lag, lighter on resources.'); }
+    if (state.service === 'compat') { bits.push('Compatibility patch (my own publishable code).'); }
+    else if (state.service === 'maintain') { bits.push('Mod maintenance (mixin / crash / dependency fixes).'); }
+    else if (state.service === 'optimize') { bits.push('Mod optimization (less lag, lighter on resources).'); }
     else {
       if (state.wall !== 'none') bits.push('<span class="premium">' + state.wall + ' version wall</span> crossed');
       if (state.loader === 'fabric') bits.push('<span class="premium">Fabric→Forge</span> rewrite');
       else if (state.loader === 'neoforge') bits.push('NeoForge→Forge rename');
-      if (bits.length === 0) bits.push('Forge 1.20.1 — my specialty, lowest lane.');
+      if (bits.length === 0) bits.push('Forge 1.20.1, what I do best and the lowest lane.');
     }
     if (state.license === 'closed') bits.push('private ARR delivery');
     if (state.rush === 'r72') bits.push('<span class="premium">priority</span>');
@@ -1139,20 +1139,20 @@
     return bits.join(' · ');
   }
   function buildSummary(r) {
-    var svc = ({ backport: 'Backport — adapt a newer mod down to an older version', forward: 'Forward-port / revive — bring an old or abandoned mod to a modern version', compat: 'Compatibility patch — make mods coexist', maintain: 'Mod maintenance — fix mixins / crashes / dependencies', optimize: 'Mod optimization — reduce lag and resource use' })[state.service];
+    var svc = ({ backport: 'Backport: adapt a newer mod down to an older version', forward: 'Forward-port / revive: bring an old or abandoned mod to a modern version', compat: 'Compatibility patch: make mods coexist', maintain: 'Mod maintenance: fix mixins / crashes / dependencies', optimize: 'Mod optimization: reduce lag and resource use' })[state.service];
     var L = [];
     L.push("Hi! I'd like to commission a mod job.");
     L.push('');
     L.push('What I need: ' + svc);
     L.push('Mod: <paste the mod name + link here>');
     if (r.scopeMode) {
-      L.push('Scope: ' + ({ small: 'small — one fix', medium: 'moderate — a few systems', large: 'deep — complex' })[state.scope]);
+      L.push('Scope: ' + ({ small: 'small, one fix', medium: 'moderate, a few systems', large: 'deep, complex' })[state.scope]);
     } else {
       L.push('Details: ' + ({ small: 'small mod', medium: 'medium mod', large: 'large mod' })[state.size] + ' · ' + ({ none: 'no version wall', moderate: 'crosses 1.20.2', hard: 'crosses 1.21', brutal: 'crosses 1.13/1.18' })[state.wall] + ' · ' + ({ forge: 'Forge', neoforge: 'NeoForge', fabric: 'Fabric' })[state.loader] + ' source');
     }
-    L.push('Delivery: ' + (state.license === 'closed' ? 'private — closed-source / ARR, to me only' : 'open-source or I have permission (publishable)'));
+    L.push('Delivery: ' + (state.license === 'closed' ? 'private (closed-source / ARR, to me only)' : 'open-source or I have permission (publishable)'));
     if (state.rush !== 'standard') L.push('Priority: ' + (state.rush === 'r72' ? 'priority (+25%)' : 'top priority (+50%)'));
-    L.push('Quick quote: ' + money(r.low) + '–' + money(r.high) + ' (min $35 — you confirm the exact fixed price after a look)');
+    L.push('Quick quote: ' + money(r.low) + ' to ' + money(r.high) + ' (min $35, you confirm the exact fixed price after a look)');
     L.push('');
     L.push('Thanks!');
     return L.join('\n');
@@ -1199,7 +1199,7 @@
     breakdownEl.textContent = buildBreakdown(r);
     summaryEl.textContent = buildSummary(r);
     copyBtn.classList.remove('done'); copyBtn.textContent = 'Copy summary';
-    emailBtn.href = 'mailto:modwrightstudios@gmail.com?subject=' + encodeURIComponent('Mod port commission — ' + money(r.low) + '-' + money(r.high)) + '&body=' + encodeURIComponent(buildSummary(r));
+    emailBtn.href = 'mailto:modwrightstudios@gmail.com?subject=' + encodeURIComponent('Mod port commission ' + money(r.low) + '-' + money(r.high)) + '&body=' + encodeURIComponent(buildSummary(r));
   }
   function syncGroups() {
     var svc = state.service;
@@ -1230,7 +1230,7 @@
   }
   copyBtn.addEventListener('click', function () {
     var text = summaryEl.textContent;
-    var done = function () { copyBtn.classList.add('done'); copyBtn.textContent = 'Copied — paste it in your message'; };
+    var done = function () { copyBtn.classList.add('done'); copyBtn.textContent = 'Copied! Paste it in your message'; };
     if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(done).catch(function () { fallbackCopy(text, done); }); }
     else { fallbackCopy(text, done); }
   });
