@@ -4,7 +4,7 @@
   <script>document.documentElement.classList.add('js')</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Modwright — Minecraft mod porting &amp; backporting · Forge 1.20.1</title>
+  <title>Minecraft mod porting &amp; backporting — Forge · Fabric · NeoForge | Modwright</title>
   <meta name="description" content="Modwright — port, backport &amp; revive Minecraft mods across Forge, Fabric &amp; NeoForge. Forge 1.20.1 specialist. Boot-tested, license-checked. Fixed price from $35, 7-day guarantee, escrow payment.">
   <meta property="og:title" content="Modwright — Minecraft mod porting &amp; backporting">
   <meta property="og:description" content="Port, backport &amp; revive Minecraft mods · Any version, any loader · Boot-tested · License-checked · From $35.">
@@ -19,7 +19,7 @@
     "@context": "https://schema.org",
     "@type": "Service",
     "name": "Modwright — Minecraft mod porting",
-    "serviceType": "Minecraft mod porting, backporting and revival",
+    "serviceType": "Minecraft mod porting, backporting, revival, loader conversion, maintenance and optimization",
     "description": "Port, backport and revive Minecraft mods across Forge, Fabric and NeoForge. Forge 1.20.1 specialist. Fixed price from $35, boot-tested, license-checked, 7-day guarantee, escrow payment.",
     "url": "https://dheightsan.github.io/forge-ports/",
     "areaServed": "Worldwide",
@@ -27,14 +27,32 @@
       "@type": "Person",
       "name": "josda",
       "alternateName": "Modwright",
-      "url": "https://dheightsan.github.io/forge-ports/"
+      "url": "https://dheightsan.github.io/forge-ports/",
+      "sameAs": ["https://github.com/Dheightsan"]
     },
     "offers": {
-      "@type": "Offer",
+      "@type": "AggregateOffer",
       "priceCurrency": "USD",
-      "price": "35",
-      "description": "Fixed-price Minecraft mod porting from $35, with a 7-day guarantee."
+      "lowPrice": "35",
+      "highPrice": "220",
+      "offerCount": "6",
+      "description": "Fixed-price Minecraft mod commissions from $35 (most ports $50-$190), with a 7-day guarantee and escrow payment."
     }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type":"Question","name":"Why is 1.20.1 the cheapest lane?","acceptedAnswer":{"@type":"Answer","text":"It's my specialty and it sits just below every recent version wall, so it takes the least work — I pass that on as the lowest add-ons. Other versions cross walls (networking, data components, worldgen) that take longer, so they carry a flat premium per wall."}},
+      {"@type":"Question","name":"What exactly is a compatibility patch?","acceptedAnswer":{"@type":"Answer","text":"Making two or more mods work together without creating new content — for example, getting one mod's mobs to spawn in another mod's biomes, or resolving a conflict that breaks a feature. It's bespoke work, quoted by scope."}},
+      {"@type":"Question","name":"Is this legal?","acceptedAnswer":{"@type":"Answer","text":"Yes. You pay for my time writing the port, not for distribution rights. I publish only open-source mods or mods with written permission; anything else is delivered privately to whoever holds the right to use it."}},
+      {"@type":"Question","name":"How do I pay safely?","acceptedAnswer":{"@type":"Answer","text":"BuiltByBit escrow is the default: it holds your payment and only releases it once you have the working mod. Wise and crypto USDT are also available for returning clients."}},
+      {"@type":"Question","name":"How long does it take?","acceptedAnswer":{"@type":"Answer","text":"It depends on the mod — every one is different, so I don't quote a fixed turnaround. We agree a realistic timeline in writing before I start; a priority fee moves your job to the front of the queue."}},
+      {"@type":"Question","name":"What if the port doesn't work?","acceptedAnswer":{"@type":"Answer","text":"If I can't get it working, you don't pay. Every delivered commission carries a 7-day guarantee: if it crashes or breaks, I fix it free or refund you."}},
+      {"@type":"Question","name":"What's out of scope?","acceptedAnswer":{"@type":"Answer","text":"I write code. Textures, 3D models and animations, full gameplay or balance redesigns, and ongoing maintenance across future Minecraft versions are each a separate quote."}}
+    ]
   }
   </script>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><defs><clipPath id='h'><path d='M16 2.5 L27.7 9.25 L27.7 22.75 L16 29.5 L4.3 22.75 L4.3 9.25 Z'/></clipPath></defs><g clip-path='url(%23h)'><rect width='32' height='32' fill='%23b9742f'/><path d='M32 0V32H0Z' fill='%2382583a'/></g><path d='M16 2.5 L27.7 9.25 L27.7 22.75 L16 29.5 L4.3 22.75 L4.3 9.25 Z' fill='none' stroke='%230b0a07' stroke-width='1.4'/></svg>">
@@ -127,7 +145,7 @@
     .loaders-strip .ls-inner + .ls-inner { margin-top: 0.85rem; padding-top: 0.85rem; border-top: 1px dashed var(--border); }
 
     .eyebrow {
-      font-size: 0.74rem; font-weight: 700; letter-spacing: 0.14em;
+      font-size: 0.8rem; font-weight: 700; letter-spacing: 0.13em;
       color: var(--green-hi); margin-bottom: 0.9rem; text-transform: uppercase;
     }
     h2 { font-family: var(--font-display); font-size: clamp(1.65rem, 3vw, 2.2rem); font-weight: 600; letter-spacing: 0; line-height: 1.18; margin-bottom: 0.85rem; }
@@ -193,6 +211,19 @@
     .contact-card--soon { opacity: 0.6; }
     .ctas { display: flex; gap: 0.85rem; flex-wrap: wrap; }
     .hero-trust { margin-top: 1.4rem; font-size: 0.85rem; color: var(--text-mute); }
+    .hero-contact { margin-top: 1.05rem; font-size: 1.02rem; color: var(--text-soft); }
+    .hero-contact a { color: var(--text); font-weight: 700; text-decoration: underline; text-decoration-color: var(--text-mute); text-underline-offset: 3px; }
+    .hero-contact a:hover { text-decoration-color: var(--text); }
+    .legal-docs { margin-top: 2rem; display: flex; flex-direction: column; gap: 0.6rem; max-width: 820px; }
+    .legal-doc { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+    .legal-doc > summary { cursor: pointer; padding: 0.9rem 1.1rem; font-weight: 700; font-size: 0.95rem; color: var(--text); list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+    .legal-doc > summary::-webkit-details-marker { display: none; }
+    .legal-doc > summary::after { content: '+'; color: var(--text-mute); font-weight: 700; font-size: 1.15rem; }
+    .legal-doc[open] > summary::after { content: '\2212'; }
+    .legal-doc-body { padding: 0 1.1rem 1.1rem; color: var(--text-soft); font-size: 0.9rem; line-height: 1.65; }
+    .legal-doc-body p { margin-bottom: 0.7rem; }
+    .legal-doc-body strong { color: var(--text); }
+    .legal-doc-note { font-size: 0.8rem; color: var(--text-mute); margin-top: 0.4rem; }
 
     /* ── SERVICES ── */
     #services { background: var(--surface); border-top: 1px solid var(--border); }
@@ -203,7 +234,7 @@
     .card--premium::before { background: var(--gold); }
     .card-stats { display: flex; flex-wrap: wrap; gap: 0.5rem 1.3rem; margin: 0.2rem 0 1rem; padding-top: 0.85rem; border-top: 1px solid var(--border); }
     .card-stats > div { display: flex; flex-direction: column; gap: 0.1rem; }
-    .card-stats .k { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-mute); }
+    .card-stats .k { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-mute); }
     .card-stats .v { font-size: 0.8rem; font-weight: 700; color: var(--text); }
     .icon-wrap { width: 44px; height: 44px; display: grid; place-items: center; background: var(--brown-glow); border-radius: var(--radius); margin-bottom: 1rem; color: var(--brown-hi); }
     .icon-wrap svg { width: 24px; height: 24px; stroke: currentColor; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
@@ -293,7 +324,7 @@
     .est-opt.ac-amber.active { background: var(--amber); color: #2a1f02; border-color: var(--amber); box-shadow: 0 0 0 3px rgba(217,154,43,0.22); }
     .est-opt.ac-slate.active { background: #5a87a6; color: #eaf4fb; border-color: #5a87a6; box-shadow: 0 0 0 3px rgba(90,135,166,0.28); }
     .est-result { background: linear-gradient(180deg, rgba(203,161,74,0.06), var(--bg)); padding: var(--pad-card); position: sticky; top: 80px; border: 1px solid rgba(203,161,74,0.22); border-radius: var(--radius-lg); box-shadow: 0 0 0 1px rgba(203,161,74,0.10), 0 12px 30px -18px rgba(0,0,0,0.8); }
-    .est-result-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-mute); margin-bottom: 0.5rem; }
+    .est-result-label { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.09em; color: var(--text-mute); margin-bottom: 0.5rem; }
     .est-price { font-size: clamp(3.1rem, 6vw, 3.8rem); font-weight: 700; color: var(--gold); line-height: 1; margin-bottom: 0.55rem; font-variant-numeric: tabular-nums; letter-spacing: -0.01em; text-shadow: 0 0 24px rgba(203,161,74,0.25); }
     @keyframes estpulse { 0% { color: #ffe6ab; text-shadow: 0 0 30px rgba(203,161,74,0.55); } 100% { color: var(--gold); text-shadow: 0 0 24px rgba(203,161,74,0.25); } }
     .est-price.pulse { animation: estpulse 0.5s ease-out; }
@@ -321,7 +352,7 @@
     /* ── PRICING ── */
     #pricing { border-top: 1px solid var(--border); }
     .price-promo { display: flex; align-items: center; gap: 0.85rem; flex-wrap: wrap; margin-top: 1.6rem; padding: 0.9rem 1.2rem; background: linear-gradient(90deg, rgba(192,126,60,0.13), rgba(203,161,74,0.10)); border: 1px solid var(--green-ring); border-radius: var(--radius); font-size: 0.9rem; color: var(--text); line-height: 1.5; }
-    .price-promo-tag { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; background: var(--green); color: #2a1808; padding: 0.32rem 0.62rem; border-radius: 999px; white-space: nowrap; }
+    .price-promo-tag { font-size: 0.74rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; background: var(--green); color: #2a1808; padding: 0.32rem 0.62rem; border-radius: 999px; white-space: nowrap; }
     .price-promo strong { color: var(--gold); font-weight: 700; }
     .ptable { margin-top: 1.4rem; border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
     .prow { display: grid; grid-template-columns: 1.5fr 0.9fr 1.3fr; gap: 1rem; padding: 1.15rem 1.5rem; align-items: center; border-bottom: 1px solid var(--border); }
@@ -386,7 +417,7 @@
     .port-card--cta::before { background: linear-gradient(90deg, var(--green), var(--gold)); }
     .port-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 0.55rem 1rem; margin: 0.1rem 0 1rem; padding-top: 0.9rem; border-top: 1px solid var(--border); }
     .port-stats > div { display: flex; flex-direction: column; gap: 0.12rem; }
-    .port-stats dt { font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-mute); }
+    .port-stats dt { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-mute); }
     .port-stats dd { font-size: 0.82rem; font-weight: 700; color: var(--text); }
     /* ── editorial pull-quote band + hand-inked rule (textured divider) ── */
     .quote-band { position: relative; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: linear-gradient(180deg, var(--surface), var(--bg)); padding: 3.6rem 1.5rem; }
@@ -559,10 +590,10 @@
     <h1><span class="cf">Port,</span> <span class="md">backport</span> &amp; <span class="fb">revive</span> Minecraft mods —<br><span class="fg">any version,</span> <span class="nf">any loader</span></h1>
     <p class="hero-who">I'm <strong>josda</strong> — a pack builder who got tired of dead mods, so I started porting them myself.</p>
     <p class="hero-desc">
-      Forge 1.20.1 is my specialty and base rate — <strong class="price-hl">from $50, fixed</strong>. I move mods up, down, and across loaders. License-first, boot-tested.
+      Forge 1.20.1 is my specialty and base rate — <strong class="price-hl">from $50, fixed</strong>. I move mods up, down, and across loaders — Forge, Fabric and NeoForge. License-first, boot-tested.
     </p>
     <div class="pills">
-      <span class="pill pill-price">Fixed price from $35</span>
+      <span class="pill pill-price">Fixed price · $35 minimum</span>
       <span class="pill pill-trust">Escrow-protected via BuiltByBit</span>
       <span class="pill pill-trust">If it doesn't run, you don't pay</span>
       <span class="pill">7-day guarantee</span>
@@ -570,8 +601,10 @@
     </div>
     <div class="ctas">
       <a href="#estimator" class="btn btn-primary">Estimate my commission</a>
+      <a href="mailto:josdansanpes2005@gmail.com?subject=Mod%20commission" class="btn btn-quote">Email me →</a>
       <a href="#services" class="btn btn-ghost">See services</a>
     </div>
+    <p class="hero-contact">Fastest way to reach me — <a href="mailto:josdansanpes2005@gmail.com?subject=Mod%20commission">josdansanpes2005@gmail.com</a></p>
     <p class="hero-trust">Free quote · No payment until we agree · BuiltByBit escrow available · I reply fast</p>
   </div>
 </section>
@@ -617,77 +650,6 @@
     </div>
   </div>
 </div>
-
-<!-- SERVICES -->
-<section id="services">
-  <div class="wrap">
-    <div class="eyebrow">What I do</div>
-    <h2>Any direction, any loader</h2>
-    <p class="sub">Forge 1.20.1 is my base rate because it sits just below every recent version wall — it's where I'm fastest. Each thing that takes the job further out is priced by the real work it adds, not a vague percentage.</p>
-    <div class="cards reveal">
-      <div class="card card--base">
-        <div class="icon-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v13"/><path d="M6 11l6 6 6-6"/></svg></div>
-        <h3>Backport</h3>
-        <p>A newer mod (1.21+) your pack needs on an older version like Forge 1.20.1. Full backport — items, blocks, mechanics, textures. 1.20.1 is my specialty and base price.</p>
-        <div class="card-stats">
-          <div><span class="k">Target</span><span class="v">Forge 1.20.1</span></div>
-          <div><span class="k">From</span><span class="v">$50</span></div>
-        </div>
-        <span class="card-tag tag-base">Base rate</span>
-      </div>
-      <div class="card card--premium">
-        <div class="icon-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V7"/><path d="M6 13l6-6 6 6"/></svg></div>
-        <h3>Forward-port &amp; revive</h3>
-        <p>A beloved old or abandoned mod stuck on 1.12 / 1.16 / 1.18 you want on a modern version. The biggest, most underserved kind of port — priced by how many version walls it crosses.</p>
-        <div class="card-stats">
-          <div><span class="k">Range</span><span class="v">1.12 → modern</span></div>
-          <div><span class="k">Driver</span><span class="v">Version walls</span></div>
-        </div>
-        <span class="card-tag tag-premium">By complexity</span>
-      </div>
-      <div class="card card--premium">
-        <div class="icon-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h13l-3-3"/><path d="M20 16H7l3 3"/></svg></div>
-        <h3>Loader conversion</h3>
-        <p>Fabric, NeoForge or Forge — moved to the loader you need. Forge↔NeoForge is light; <strong>Fabric→Forge is a near-rewrite</strong> (different events, registries, mixins) and priced accordingly.</p>
-        <div class="card-stats">
-          <div><span class="k">Forge↔Neo</span><span class="v">+$30</span></div>
-          <div><span class="k">Fabric→Forge</span><span class="v">+$200–400</span></div>
-        </div>
-        <span class="card-tag tag-premium">By complexity</span>
-      </div>
-      <div class="card card--base">
-        <div class="icon-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7h5a4 4 0 0 1 0 8h-1"/><path d="M15 17h-5a4 4 0 0 1 0-8h1"/></svg></div>
-        <h3>Compatibility patches</h3>
-        <p>Make any mods coexist — two native mods, a ported and a native one, mob spawning across mods, conflicts resolved. Works <strong>even for closed-source mods</strong> and ships as a publishable add-on.</p>
-        <div class="card-stats">
-          <div><span class="k">Works with</span><span class="v">Closed-source too</span></div>
-          <div><span class="k">From</span><span class="v">$40</span></div>
-        </div>
-        <span class="card-tag tag-base">Publishable</span>
-      </div>
-      <div class="card card--base">
-        <div class="icon-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.6 5.6L3 18l3 3 6.1-6.1a4 4 0 0 0 5.6-5.6l-2.9 2.9a1.5 1.5 0 0 1-2-2l2.9-2.9z"/></svg></div>
-        <h3>Mod maintenance</h3>
-        <p>A mod that broke after an update — failing <strong>mixins</strong>, crashes, dependency or mapping breaks, deprecated APIs. I find the fault and get it loading clean again on your version.</p>
-        <div class="card-stats">
-          <div><span class="k">Fixes</span><span class="v">Mixins · crashes · deps</span></div>
-          <div><span class="k">From</span><span class="v">$35</span></div>
-        </div>
-        <span class="card-tag tag-base">By scope</span>
-      </div>
-      <div class="card card--premium">
-        <div class="icon-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
-        <h3>Mod optimization</h3>
-        <p>A mod or pack that <strong>eats TPS and FPS</strong>. I profile the hot paths and cut the cost — async work, caching, smarter ticking, lighter worldgen — so it runs lighter without changing what it does.</p>
-        <div class="card-stats">
-          <div><span class="k">Cuts</span><span class="v">Lag · RAM · tick time</span></div>
-          <div><span class="k">From</span><span class="v">$60</span></div>
-        </div>
-        <span class="card-tag tag-premium">By scope</span>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ESTIMATOR -->
 <section id="estimator">
@@ -771,6 +733,77 @@
         <button type="button" class="btn btn-ghost est-copy" id="est-copy">Copy summary</button>
         <div class="est-disclaimer">Your starting point — I'll confirm the final fixed price in writing within 24h after I review the mod. $35 minimum on any job; no account needed, the button fills everything in for you.</div>
         <p class="est-skip">Prefer not to fill this in? <a href="mailto:josdansanpes2005@gmail.com?subject=Mod%20commission">Just email me directly →</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="wrap">
+    <div class="eyebrow">What I do</div>
+    <h2>Any direction, any loader</h2>
+    <p class="sub">Forge 1.20.1 is my base rate because it sits just below every recent version wall — it's where I'm fastest. Each thing that takes the job further out is priced by the real work it adds, not a vague percentage.</p>
+    <div class="cards reveal">
+      <div class="card card--base">
+        <div class="icon-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v13"/><path d="M6 11l6 6 6-6"/></svg></div>
+        <h3>Backport</h3>
+        <p>A newer mod (1.21+) your pack needs on an older version like Forge 1.20.1. Full backport — items, blocks, mechanics, textures. 1.20.1 is my specialty and base price.</p>
+        <div class="card-stats">
+          <div><span class="k">Target</span><span class="v">Forge 1.20.1</span></div>
+          <div><span class="k">From</span><span class="v">$50</span></div>
+        </div>
+        <span class="card-tag tag-base">Base rate</span>
+      </div>
+      <div class="card card--premium">
+        <div class="icon-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V7"/><path d="M6 13l6-6 6 6"/></svg></div>
+        <h3>Forward-port &amp; revive</h3>
+        <p>A beloved old or abandoned mod stuck on 1.12 / 1.16 / 1.18 you want on a modern version. The biggest, most underserved kind of port — priced by how many version walls it crosses.</p>
+        <div class="card-stats">
+          <div><span class="k">Range</span><span class="v">1.12 → modern</span></div>
+          <div><span class="k">Driver</span><span class="v">Version walls</span></div>
+        </div>
+        <span class="card-tag tag-premium">By complexity</span>
+      </div>
+      <div class="card card--premium">
+        <div class="icon-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h13l-3-3"/><path d="M20 16H7l3 3"/></svg></div>
+        <h3>Loader conversion</h3>
+        <p>Fabric, NeoForge or Forge — moved to the loader you need. Forge↔NeoForge is light; <strong>Fabric→Forge is a near-rewrite</strong> (different events, registries, mixins) and priced accordingly.</p>
+        <div class="card-stats">
+          <div><span class="k">Forge↔Neo</span><span class="v">+$30</span></div>
+          <div><span class="k">Fabric→Forge</span><span class="v">+$200–400</span></div>
+        </div>
+        <span class="card-tag tag-premium">By complexity</span>
+      </div>
+      <div class="card card--base">
+        <div class="icon-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7h5a4 4 0 0 1 0 8h-1"/><path d="M15 17h-5a4 4 0 0 1 0-8h1"/></svg></div>
+        <h3>Compatibility patches</h3>
+        <p>Make any mods coexist — two native mods, a ported and a native one, mob spawning across mods, conflicts resolved. Works <strong>even for closed-source mods</strong> and ships as a publishable add-on.</p>
+        <div class="card-stats">
+          <div><span class="k">Works with</span><span class="v">Closed-source too</span></div>
+          <div><span class="k">From</span><span class="v">$40</span></div>
+        </div>
+        <span class="card-tag tag-base">Publishable</span>
+      </div>
+      <div class="card card--base">
+        <div class="icon-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.6 5.6L3 18l3 3 6.1-6.1a4 4 0 0 0 5.6-5.6l-2.9 2.9a1.5 1.5 0 0 1-2-2l2.9-2.9z"/></svg></div>
+        <h3>Mod maintenance</h3>
+        <p>A mod that broke after an update — failing <strong>mixins</strong>, crashes, dependency or mapping breaks, deprecated APIs. I find the fault and get it loading clean again on your version.</p>
+        <div class="card-stats">
+          <div><span class="k">Fixes</span><span class="v">Mixins · crashes · deps</span></div>
+          <div><span class="k">From</span><span class="v">$35</span></div>
+        </div>
+        <span class="card-tag tag-base">By scope</span>
+      </div>
+      <div class="card card--premium">
+        <div class="icon-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+        <h3>Mod optimization</h3>
+        <p>A mod or pack that <strong>eats TPS and FPS</strong>. I profile the hot paths and cut the cost — async work, caching, smarter ticking, lighter worldgen — so it runs lighter without changing what it does.</p>
+        <div class="card-stats">
+          <div><span class="k">Cuts</span><span class="v">Lag · RAM · tick time</span></div>
+          <div><span class="k">From</span><span class="v">$60</span></div>
+        </div>
+        <span class="card-tag tag-premium">By scope</span>
       </div>
     </div>
   </div>
@@ -887,6 +920,46 @@
       <div class="legal-card"><h3>What I won't do</h3><p>Publicly redistribute a closed-source (All Rights Reserved) mod without written author permission. That's the one line I never cross — it protects your accounts from takedowns and bans.</p></div>
     </div>
     <div class="legal-quote"><strong>The principle:</strong> You pay for my time writing the work — not for distribution rights. The right to publish always belongs to whoever holds the license. That's the only clean, legally sound way to run a porting service.</div>
+
+    <div class="legal-docs">
+      <details class="legal-doc" id="terms">
+        <summary>Terms of Service</summary>
+        <div class="legal-doc-body">
+          <p><strong>Service.</strong> Modwright provides Minecraft mod commission work — porting, backporting, reviving, loader conversion, compatibility patches, maintenance and optimization — carried out by one developer.</p>
+          <p><strong>Quotes &amp; pricing.</strong> The estimator gives a non-binding ballpark. The final price is fixed and agreed in writing before any work begins. A deposit may be requested for larger jobs; a $35 minimum applies.</p>
+          <p><strong>Payment.</strong> Through BuiltByBit escrow, Wise, or USDT, as agreed. With escrow, funds release on delivery.</p>
+          <p><strong>Delivery &amp; timelines.</strong> You receive a working, boot-tested build. Timelines are good-faith estimates, not guarantees — I don't promise hard deadlines.</p>
+          <p><strong>Guarantee &amp; refunds.</strong> 7-day guarantee: if the delivered work doesn't run as agreed, I fix it free or refund you. Refunds cover undelivered or non-working work, not a change of mind after correct delivery.</p>
+          <p><strong>Your responsibilities.</strong> You must have the right to commission work on the mod you submit — it is open-source, your own, or you have the author's permission. You are responsible for how you use the delivered files.</p>
+          <p><strong>Rights &amp; redistribution.</strong> You pay for my time, not for distribution rights. Closed-source (ARR) work is delivered privately to you only and is never published. I will not publicly redistribute an ARR mod without the author's written permission.</p>
+          <p><strong>Liability.</strong> Work is provided "as is." To the extent permitted by law, I am not liable for indirect or consequential damages, and total liability is limited to the amount paid for the job in question.</p>
+          <p><strong>Changes.</strong> These terms may be updated; the version shown here when you commission applies.</p>
+          <p class="legal-doc-note">Plain-language summary for a small commission service — not formal legal advice. Last updated June 2026.</p>
+        </div>
+      </details>
+      <details class="legal-doc" id="privacy">
+        <summary>Privacy Policy</summary>
+        <div class="legal-doc-body">
+          <p><strong>Short version:</strong> this is a static page with no accounts and no tracking cookies. I only ever see what you choose to send me.</p>
+          <p><strong>What I collect.</strong> Only the information you include when you contact me — your email address and the commission details you provide. The price estimator runs entirely in your browser; nothing you enter there leaves your device until you click to email it.</p>
+          <p><strong>How I use it.</strong> Solely to reply to you and carry out the work you ask for. I never sell, rent, or share your information.</p>
+          <p><strong>Third parties.</strong> If you pay, the payment runs through your chosen provider (BuiltByBit, Wise, etc.) under their own policies. Email is handled through Gmail.</p>
+          <p><strong>Analytics.</strong> No tracking cookies are used. If privacy-friendly, cookieless analytics are ever added, they will not collect personal data.</p>
+          <p><strong>Retention &amp; your choices.</strong> I keep commission correspondence only as long as needed for the work and records, and you can ask me to delete your data at any time.</p>
+          <p class="legal-doc-note">Questions? Email josdansanpes2005@gmail.com. Last updated June 2026.</p>
+        </div>
+      </details>
+      <details class="legal-doc" id="licenses">
+        <summary>Licenses &amp; attributions</summary>
+        <div class="legal-doc-body">
+          <p><strong>Mods.</strong> I only work on mods you have the right to modify — open-source, your own, or with the author's permission. Open-source ports I publish keep the original licence and credit the original author; closed-source work stays private.</p>
+          <p><strong>This website.</strong> Design, copy and graphics are original work © Modwright. Illustrations and icons are hand-built inline SVG; no third-party images are used.</p>
+          <p><strong>Fonts.</strong> "Space Grotesk" is used under the SIL Open Font License.</p>
+          <p><strong>Trademarks.</strong> Minecraft is a trademark of Mojang Studios. Forge, NeoForge, Fabric, CurseForge, Modrinth and BuiltByBit belong to their respective owners. Their names are used here for identification only — this is an independent service with no affiliation or endorsement.</p>
+          <p class="legal-doc-note">Last updated June 2026.</p>
+        </div>
+      </details>
+    </div>
   </div>
 </section>
 
@@ -995,7 +1068,7 @@
 </div>
 
 <footer>
-  <div><strong style="color:var(--text-soft)">Modwright</strong> <span class="sep">·</span> Forge 1.20.1 mod porting <span class="sep">·</span> <a href="mailto:josdansanpes2005@gmail.com">Contact</a></div>
+  <div><strong style="color:var(--text-soft)">Modwright</strong> <span class="sep">·</span> Forge 1.20.1 mod porting <span class="sep">·</span> <a href="#terms">Terms</a> <span class="sep">·</span> <a href="#privacy">Privacy</a> <span class="sep">·</span> <a href="#licenses">Licenses</a> <span class="sep">·</span> <a href="mailto:josdansanpes2005@gmail.com">Contact</a></div>
 </footer>
 
 <script>
