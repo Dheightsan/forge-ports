@@ -235,11 +235,11 @@
     .badge-dot { width: 7px; height: 7px; background: var(--green-hi); border-radius: 50%; }
     #hero h1 { font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 700; letter-spacing: -0.005em; line-height: 1.1; margin-bottom: 1.2rem; max-width: 730px; text-shadow: 0 1px 2px rgba(0,0,0,0.6), 0 2px 32px rgba(0,0,0,0.55); }
     #hero h1 .g { color: #95d6a6; }
-    #hero h1 .cf { color: #f16436; }
-    #hero h1 .md { color: #34cf73; }
-    #hero h1 .fb { color: #d8b67e; }
-    #hero h1 .fg { color: #9fb0c2; }
-    #hero h1 .nf { color: #f0843f; }
+    #hero h1 .cf { color: #d2703f; }
+    #hero h1 .md { color: #c07e3c; }
+    #hero h1 .fb { color: #cba14a; }
+    #hero h1 .fg { color: var(--text); }
+    #hero h1 .nf { color: #d2703f; }
     .hero-tagline { font-size: 1.28rem; font-weight: 600; color: var(--text); max-width: 560px; margin-bottom: 1.1rem; line-height: 1.4; }
     .hero-tagline .b { color: var(--brown-hi); }
     .hero-desc { font-size: 1.05rem; color: var(--text-soft); max-width: 545px; margin-bottom: 2rem; line-height: 1.7; }
@@ -494,6 +494,13 @@
     .about-body p { color: var(--text-soft); font-size: 0.94rem; line-height: 1.78; }
     .about-body p + p { margin-top: 1rem; }
     .about-body strong { color: var(--text); font-weight: 600; }
+    details.more { margin-top: 1rem; }
+    details.more > summary { display: inline-flex; align-items: center; gap: 0.4rem; cursor: pointer; color: var(--green-hi); font-weight: 600; font-size: 0.9rem; list-style: none; }
+    details.more > summary::-webkit-details-marker { display: none; }
+    details.more > summary::after { content: '\25be'; font-size: 0.8em; transition: transform 0.15s; }
+    details.more[open] > summary::after { transform: rotate(180deg); }
+    details.more > summary:hover { text-decoration: underline; }
+    details.more > p { margin-top: 1rem; }
 
     /* ── CONTACT ── */
     #contact { background: radial-gradient(ellipse 95% 75% at 50% -8%, rgba(130,88,58,0.06), transparent 55%), linear-gradient(180deg, #141210, #0f0d0b); border-top: 1px solid var(--border); }
@@ -687,15 +694,15 @@
     <span class="ls-label">I build across every loader:</span>
     <div class="ls-logos">
       <a class="ls-item" href="https://minecraftforge.net/" target="_blank" rel="noopener noreferrer">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#9a9a9a" d="M2 8h10l-1.2 2.4H15v2h-1.9L12 17H8L6.2 12.4H2z"/><rect x="6" y="18.4" width="9" height="2" rx="0.4" fill="#777"/></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" fill="#6f6f6f"/><path fill="#fff" d="M6 9h7l-0.8 1.7H15v1.5h-1.3L12.3 15H9l-1.2-2.8H6z"/><rect x="8" y="16" width="6" height="1.6" rx="0.4" fill="#fff"/></svg>
         Forge
       </a>
       <a class="ls-item" href="https://fabricmc.net/" target="_blank" rel="noopener noreferrer">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2" fill="#cdae7e"/><path stroke="#a98a5a" stroke-width="1.3" d="M4 9.3h16M4 14.6h16M9.3 4v16M14.6 4v16"/></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" fill="#cdae7e"/><path stroke="#85673c" stroke-width="1.3" d="M4 9.5h16M4 14.5h16M9.5 4v16M14.5 4v16"/></svg>
         Fabric
       </a>
       <a class="ls-item" href="https://neoforged.net/" target="_blank" rel="noopener noreferrer">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4" fill="#d2703f"/><path d="M8.5 16.5V7.5l7 9v-9" stroke="#fff" stroke-width="2" fill="none" stroke-linejoin="round"/></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" fill="#d2703f"/><path d="M8 16.3V7.7l8 8.6V7.7" stroke="#fff" stroke-width="2.2" fill="none" stroke-linejoin="round" stroke-linecap="round"/></svg>
         NeoForge
       </a>
     </div>
@@ -704,19 +711,19 @@
     <span class="ls-label">Find my work on:</span>
     <div class="ls-logos">
       <a class="ls-item" href="https://www.curseforge.com/minecraft" target="_blank" rel="noopener noreferrer">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#f16436" d="M12 2c3 4 5 6 5 10a5 5 0 0 1-10 0c0-2 1-3.6 2.3-4.7C8.8 9 10.4 6.4 12 2z"/><path fill="#ffd9c2" opacity="0.55" d="M12 12.2c1.1 1 1.7 1.9 1.7 3a1.7 1.7 0 0 1-3.4 0c0-1 .6-2 1.7-3z"/></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" fill="#1a1208"/><path fill="#f16436" d="M12 5.2c2.1 2.7 3.5 4.2 3.5 6.8a3.5 3.5 0 0 1-7 0c0-1.3.6-2.5 1.6-3.3C11 8 11.4 6.6 12 5.2z"/></svg>
         CurseForge
       </a>
       <a class="ls-item" href="https://modrinth.com/" target="_blank" rel="noopener noreferrer">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="#1bd96a"/><path d="M7.5 13.2a4.6 4.6 0 0 1 7.4-3.3l1.8-1" stroke="#0c1c12" stroke-width="1.7" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="16.7" cy="8.9" r="1.15" fill="#0c1c12"/></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" fill="#1bd96a"/><path d="M7 13.4a5 5 0 0 1 8-4l1.9-1.1" stroke="#0c1c12" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="17" cy="8.2" r="1.2" fill="#0c1c12"/></svg>
         Modrinth
       </a>
       <a class="ls-item" href="https://builtbybit.com/" target="_blank" rel="noopener noreferrer">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v5c0 4.5-3.4 7.7-8 9-4.6-1.3-8-4.5-8-9V6l8-3z" fill="#4f93c4"/><path d="M9 12l2 2 4-4" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" fill="#4f93c4"/><path d="M8 11.8l2.4 2.4 4.4-4.6" stroke="#fff" stroke-width="2.1" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
         BuiltByBit
       </a>
       <a class="ls-item" href="https://github.com/Dheightsan" target="_blank" rel="noopener noreferrer">
-        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#cdbfa8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.3"/><circle cx="6" cy="18" r="2.3"/><circle cx="17" cy="8.3" r="2.3"/><path d="M6 8.3v7.4"/><path d="M8.3 6H12a3 3 0 0 1 3 3v.5"/><path d="M17 10.6v.4a4 4 0 0 1-4 4H8.5"/></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" fill="#1a1208"/><g fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="1.7"/><circle cx="8" cy="16" r="1.7"/><circle cx="16" cy="9.6" r="1.7"/><path d="M8 9.7v4.6"/><path d="M9.7 8H12a2.4 2.4 0 0 1 2.4 2.4v.3"/><path d="M16 11.3a3.8 3.8 0 0 1-3.6 3.9H9.6"/></g></svg>
         GitHub
       </a>
     </div>
@@ -1108,8 +1115,11 @@
     <p class="sub">There's no team and nothing gets outsourced. The person who takes your commission is the person who writes and debugs every line of it.</p>
     <div class="about-body">
       <p>Like a lot of pack builders, I spent years waiting on mods that never got updated. Eventually I started porting them myself, and after enough of them on Forge 1.20.1 I know the API cold: the event handlers, the Gradle quirks, the mapping gaps between versions.</p>
-      <p>I started doing this for other people because the market has a hole in the middle. The established devs won't touch small commissions, and the cheap shops skip the licence work until a DMCA takedown lands on your CurseForge account. So I quote a fixed price, check the licence first, and put everything <strong>all in writing</strong>.</p>
-      <p>You don't have to take that on trust. BuiltByBit escrow holds your payment until the working mod is in your hands, and every commission carries a 7-day guarantee. If it doesn't run, you don't pay.</p>
+      <details class="more">
+        <summary>Read more about how I work</summary>
+        <p>I started doing this for other people because the market has a hole in the middle. The established devs won't touch small commissions, and the cheap shops skip the licence work until a DMCA takedown lands on your CurseForge account. So I quote a fixed price, check the licence first, and put everything <strong>all in writing</strong>.</p>
+        <p>You don't have to take that on trust. BuiltByBit escrow holds your payment until the working mod is in your hands, and every commission carries a 7-day guarantee. If it doesn't run, you don't pay.</p>
+      </details>
     </div>
   </div>
 </section>
