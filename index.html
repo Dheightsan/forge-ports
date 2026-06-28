@@ -174,11 +174,12 @@
     .ls-inner { max-width: var(--max); margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 1.3rem 2rem; flex-wrap: wrap; }
     .ls-label { color: var(--text-mute); font-size: 0.86rem; font-weight: 600; }
     .ls-logos { display: flex; gap: 1.6rem; flex-wrap: wrap; }
-    .ls-item { display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 700; font-size: 0.92rem; color: var(--text-soft); }
+    .ls-item { display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 700; font-size: 0.92rem; color: var(--text); }
     .ls-item svg { width: 24px; height: 24px; }
     a.ls-item { text-decoration: none; transition: color 0.15s, transform 0.15s; }
-    a.ls-item:hover { color: var(--text); transform: translateY(-1px); }
+    a.ls-item:hover { color: var(--green-hi); transform: translateY(-1px); }
     .loaders-strip .ls-inner + .ls-inner { margin-top: 0.85rem; padding-top: 0.85rem; border-top: 1px dashed var(--border); }
+    .ls-disclaimer { margin-top: 0.9rem; padding-top: 0.85rem; border-top: 1px dashed var(--border); font-size: 0.74rem; color: var(--text-mute); line-height: 1.55; max-width: 80ch; }
 
     .eyebrow {
       font-size: 0.8rem; font-weight: 700; letter-spacing: 0.13em;
@@ -720,6 +721,7 @@
       </a>
     </div>
   </div>
+  <p class="ls-disclaimer">Built for <a href="https://www.minecraft.net/" target="_blank" rel="noopener noreferrer nofollow">Minecraft</a>. All names and logos belong to their owners. Modwright is an independent service, not affiliated with or endorsed by Mojang, Forge, Fabric, NeoForge, CurseForge, Modrinth or BuiltByBit.</p>
 </div>
 
 <!-- ESTIMATOR -->
