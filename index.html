@@ -224,7 +224,7 @@
     .nav-inner { max-width: var(--max); margin: 0 auto; padding: 0 1.5rem; height: 62px; display: flex; align-items: center; justify-content: space-between; }
     .brand { display: inline-flex; align-items: center; gap: 0.6rem; font-family: var(--font-display); font-weight: 600; font-size: 1.12rem; letter-spacing: 0; color: var(--text); }
     .brand-mark { width: 27px; height: 27px; flex-shrink: 0; }
-    .brand-cuy { width: 38px; height: 38px; flex-shrink: 0; background-image: url('logo-cuy.png'); background-repeat: no-repeat; background-size: 200%; background-position: 50% 40%; border-radius: 50%; border: 1px solid var(--border-lt); }
+    .brand-cuy { width: 54px; height: 32px; flex-shrink: 0; background-image: url('logo-cuy.png'); background-repeat: no-repeat; background-size: contain; background-position: center; }
     .brand .ph { color: var(--text-mute); font-weight: 600; font-size: 0.95rem; }
     .nav-links { display: flex; gap: 1.6rem; list-style: none; align-items: center; }
     .nav-links a { color: var(--text-soft); font-size: 0.88rem; transition: color 0.15s; }
@@ -936,10 +936,13 @@
     <h2>Fixed price, built on one base rate</h2>
     <p class="sub">Forge 1.20.1 sets the base. Anything that takes me outside it (a version wall to cross, a loader rewrite, private delivery) adds a flat amount for the work it actually takes. Either way, you get one number before I start.</p>
 
+    <!-- intro offer disabled for now (no customers yet) — re-enable this block when ready
     <div class="price-promo">
-      <span class="price-promo-tag">🎉 Intro offer</span>
+      <span class="price-promo-tag">Intro offer</span>
       <span>First clients get a <strong>discount on their first port</strong> in exchange for an honest review. Lock in a low rate before prices settle.</span>
     </div>
+    -->
+    <p class="pnote" style="margin-top:1.4rem">Built for clarity: one fixed price before I start, escrow-protected, and you only pay once the working mod is in your hands.</p>
 
     <div class="ptable reveal">
       <div class="prow prow-head"><div>Service</div><div>Price</div><div>What it covers</div></div>
@@ -1096,7 +1099,7 @@
     <div class="port-grid reveal">
       <div class="port-card port-card--guarantee">
         <h3 class="port-name">No published port here yet, but every commission is still guaranteed</h3>
-        <p class="port-desc">I'm a solo dev building up a track record one port at a time. There's no star rating to lean on yet, so your protection is <strong>escrow</strong> (BuiltByBit holds your payment until the working mod is in your hands) plus a <strong>7-day guarantee</strong>. If it doesn't run, you don't pay. Come in as an early client at the intro rate and, if your mod is open-source, your port becomes the first one shown here, with code you can read on CurseForge &amp; Modrinth.</p>
+        <p class="port-desc">I'm a solo dev building up a track record one port at a time. There's no star rating to lean on yet, so your protection is <strong>escrow</strong> (BuiltByBit holds your payment until the working mod is in your hands) plus a <strong>7-day guarantee</strong>. If it doesn't run, you don't pay. Come in as an early client and, if your mod is open-source, your port becomes the first one shown here, with code you can read on CurseForge &amp; Modrinth.</p>
         <dl class="port-stats">
           <div><dt>Escrow</dt><dd>BuiltByBit-held</dd></div>
           <div><dt>Guarantee</dt><dd>7-day, full refund</dd></div>
@@ -1109,13 +1112,13 @@
       <div class="port-card port-card--cta">
         <div class="port-cta-text">
           <strong>Be the first example</strong>
-          <p>First clients get an intro discount for an honest, verified review. If your mod is open-source, your port also becomes the first one in this gallery.</p>
+          <p>Be one of my first clients. If your mod is open-source, your port also becomes the first one in this gallery.</p>
         </div>
         <a href="#contact" class="btn btn-quote btn-sm">Price my mod</a>
       </div>
     </div>
 
-    <p class="port-footer-note">I'd rather show you working code than make promises, so this gallery fills up with real published ports as they ship. <a href="#contact">Commission one now</a> to get the early-client rate before the queue gets longer.</p>
+    <p class="port-footer-note">I'd rather show you working code than make promises, so this gallery fills up with real published ports as they ship. <a href="#contact">Commission one now</a> while the queue is short.</p>
   </div>
 </section>
 
