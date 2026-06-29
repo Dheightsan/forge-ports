@@ -246,10 +246,12 @@
     #hero h1 { font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 700; letter-spacing: -0.005em; line-height: 1.1; margin-bottom: 1.2rem; max-width: 730px; text-shadow: 0 1px 2px rgba(0,0,0,0.6), 0 2px 32px rgba(0,0,0,0.55); }
     #hero h1 .g { color: #95d6a6; }
     #hero h1 .cf { color: #d2703f; }
-    #hero h1 .md { color: #c07e3c; }
-    #hero h1 .fb { color: #cba14a; }
+    #hero h1 .md { color: #d2703f; }
+    #hero h1 .fb { color: #d2703f; }
     #hero h1 .fg { color: var(--text); }
     #hero h1 .nf { color: #d2703f; }
+    /* grass-block two-tone on "Minecraft": grass green on top, dirt brown on bottom */
+    #hero h1 .mc { background: linear-gradient(180deg, #79bd45 0%, #79bd45 50%, #9a6a38 50%, #9a6a38 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
     .hero-tagline { font-size: 1.28rem; font-weight: 600; color: var(--text); max-width: 560px; margin-bottom: 1.1rem; line-height: 1.4; }
     .hero-tagline .b { color: var(--brown-hi); }
     .hero-desc { font-size: 1.05rem; color: var(--text-soft); max-width: 545px; margin-bottom: 2rem; line-height: 1.7; }
@@ -678,7 +680,7 @@
   </div>
   <div class="wrap hero-inner">
     <div class="badge"><span class="badge-dot"></span>Open for commissions</div>
-    <h1><span class="cf">Port,</span> <span class="md">backport</span> &amp; <span class="fb">revive</span> Minecraft mods,<br><span class="fg">any version,</span> <span class="nf">any loader</span></h1>
+    <h1><span class="cf">Port,</span> <span class="md">backport</span> &amp; <span class="fb">revive</span> <span class="mc">Minecraft</span> mods,<br><span class="fg">any version,</span> <span class="nf">any loader</span></h1>
     <p class="hero-who">I'm <strong>josda</strong>. I build modpacks, got tired of mods dying on old versions, and started porting them myself.</p>
     <p class="hero-desc">
       Forge 1.20.1 is what I do best, and it's my base rate: <strong class="price-hl">from $50, fixed</strong>. I move mods up a version, down a version, and between Forge, Fabric and NeoForge. I check the licence first and boot-test every build before it goes out.
