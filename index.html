@@ -148,6 +148,14 @@
     html[data-theme="light"] .legal-card,
     html[data-theme="light"] .port-card,
     html[data-theme="light"] .contact-card { background: linear-gradient(180deg, #fdfaf4, #f3ead9); box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), 0 8px 22px -18px rgba(120,90,50,0.30); }
+    /* light-mode: deepen hero word colours so they hold contrast on cream */
+    html[data-theme="light"] #hero h1 .cf { color: #46688f; }
+    html[data-theme="light"] #hero h1 .md { color: #8a6a2a; }
+    html[data-theme="light"] #hero h1 .fb,
+    html[data-theme="light"] #hero h1 .nf { color: #bd5a28; }
+    html[data-theme="light"] #hero h1 .fg { color: #a87d16; }
+    html[data-theme="light"] #hero h1 .mc { background: linear-gradient(180deg, #5aa033 0%, #5aa033 50%, #7a5226 50%, #7a5226 100%); -webkit-background-clip: text; background-clip: text; }
+    html[data-theme="light"] .pill-price { background: rgba(192,126,60,0.12); border-color: rgba(192,126,60,0.36); color: #9a5d22; }
 
     /* theme toggle */
     .theme-toggle { display: inline-grid; place-items: center; width: 34px; height: 34px; border-radius: var(--radius); background: var(--surface2); border: 1px solid var(--border-lt); color: var(--text-soft); cursor: pointer; transition: color 0.15s, border-color 0.15s; }
@@ -577,7 +585,7 @@
   <div class="nav-inner wrap">
     <span class="brand">
       <span class="brand-cuy" role="img" aria-label="Modwright logo"></span>
-      <span class="wordmark" style="font-weight:700;font-size:1.2rem;letter-spacing:-0.01em">Modwright</span>
+      <span class="wordmark" style="font-weight:700;font-size:1.2rem;letter-spacing:-0.01em" translate="no">Modwright</span>
     </span>
     <ul class="nav-links">
       <li><a href="#services">Services</a></li>
@@ -676,7 +684,7 @@
   </div>
   <div class="wrap hero-inner">
     <div class="badge"><span class="badge-dot"></span>Open for commissions</div>
-    <h1><span class="cf">Port,</span> <span class="md">backport</span> &amp; <span class="fb">revive</span> <span class="mc">Minecraft</span> mods,<br><span class="fg">any version,</span> <span class="nf">any loader</span></h1>
+    <h1><span class="cf">Port,</span> <span class="md">backport</span> &amp; <span class="fb">revive</span> <span class="mc" translate="no">Minecraft</span> mods,<br><span class="fg">any version,</span> <span class="nf">any loader</span></h1>
     <p class="hero-who">I'm <strong>josda</strong>. I build modpacks, got tired of mods dying on old versions, and started porting them myself.</p>
     <p class="hero-desc">
       Forge 1.20.1 is what I do best, and where I'm fastest. I move mods up a version, down a version, and between Forge, Fabric and NeoForge. I check the licence first and boot-test every build before it goes out, and you always get a fixed quote in writing before you pay a thing.
@@ -703,7 +711,7 @@
 <div class="loaders-strip">
   <div class="ls-inner">
     <span class="ls-label">I build across every loader:</span>
-    <div class="ls-logos">
+    <div class="ls-logos" translate="no">
       <a class="ls-item" href="https://minecraftforge.net/" target="_blank" rel="noopener noreferrer">
         <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" fill="#6f6f6f"/><path fill="#fff" d="M6 9h7l-0.8 1.7H15v1.5h-1.3L12.3 15H9l-1.2-2.8H6z"/><rect x="8" y="16" width="6" height="1.6" rx="0.4" fill="#fff"/></svg>
         Forge
@@ -720,7 +728,7 @@
   </div>
   <div class="ls-inner">
     <span class="ls-label">Find my work on:</span>
-    <div class="ls-logos">
+    <div class="ls-logos" translate="no">
       <a class="ls-item" href="https://www.curseforge.com/minecraft" target="_blank" rel="noopener noreferrer">
         <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" fill="#f16436"/><path fill="#fff" d="M12 5.2c2.1 2.7 3.5 4.2 3.5 6.8a3.5 3.5 0 0 1-7 0c0-1.3.6-2.5 1.6-3.3C11 8 11.4 6.6 12 5.2z"/></svg>
         CurseForge
@@ -764,9 +772,9 @@
         <div class="est-group" id="grp-loader">
           <div class="est-label" title="The mod's current loader. Forge↔NeoForge is a quick rename; Fabric→Forge is a near-rewrite.">Source mod loader</div>
           <div class="est-options" data-group="loader">
-            <button type="button" class="est-opt brand-forge active" data-value="forge"><svg class="loglyph" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M2 8h10l-1.2 2.4H15v2h-1.9L12 17H8L6.2 12.4H2z"/><rect x="6" y="18" width="9" height="2" rx="0.4" fill="currentColor"/></svg>Forge<small>same loader, lowest rate</small></button>
-            <button type="button" class="est-opt brand-neoforge" data-value="neoforge"><svg class="loglyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 16.5V7.5l7 9v-9" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>NeoForge<small>rename, +$20</small></button>
-            <button type="button" class="est-opt brand-fabric" data-value="fabric"><svg class="loglyph" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="3" fill="currentColor"/><g stroke="#0e0d0b" stroke-width="1.2" opacity="0.32"><path d="M3.5 9.7h17M3.5 14.3h17M9.7 3.5v17M14.3 3.5v17"/></g></svg>From Fabric<small>near-rewrite</small></button>
+            <button type="button" class="est-opt brand-forge active" data-value="forge"><svg class="loglyph" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M2 8h10l-1.2 2.4H15v2h-1.9L12 17H8L6.2 12.4H2z"/><rect x="6" y="18" width="9" height="2" rx="0.4" fill="currentColor"/></svg><span translate="no">Forge</span><small>same loader, lowest rate</small></button>
+            <button type="button" class="est-opt brand-neoforge" data-value="neoforge"><svg class="loglyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 16.5V7.5l7 9v-9" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span translate="no">NeoForge</span><small>rename, +$20</small></button>
+            <button type="button" class="est-opt brand-fabric" data-value="fabric"><svg class="loglyph" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="3" fill="currentColor"/><g stroke="#0e0d0b" stroke-width="1.2" opacity="0.32"><path d="M3.5 9.7h17M3.5 14.3h17M9.7 3.5v17M14.3 3.5v17"/></g></svg>From <span translate="no">Fabric</span><small>near-rewrite</small></button>
           </div>
         </div>
         <div class="est-group" id="grp-size">
