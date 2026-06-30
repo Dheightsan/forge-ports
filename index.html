@@ -314,6 +314,13 @@
     .card-stats .v { font-size: 0.8rem; font-weight: 700; color: var(--text); }
     .icon-wrap { width: 44px; height: 44px; display: grid; place-items: center; background: var(--brown-glow); border-radius: var(--radius); margin-bottom: 1rem; color: var(--brown-hi); }
     .icon-wrap svg { width: 24px; height: 24px; stroke: currentColor; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    /* per-service representative icon colours (matches the estimator's accent system) */
+    .icon-wrap.svc-copper { color: #cc8049; background: rgba(204,128,73,0.13); }
+    .icon-wrap.svc-life   { color: #5aa83f; background: rgba(90,168,63,0.13); }
+    .icon-wrap.svc-loom   { color: #cdae7e; background: rgba(205,174,126,0.15); }
+    .icon-wrap.svc-bridge { color: #6f93b8; background: rgba(111,147,184,0.15); }
+    .icon-wrap.svc-steel  { color: #9aa0a8; background: rgba(154,160,168,0.15); }
+    .icon-wrap.svc-spark  { color: #e0b441; background: rgba(224,180,65,0.13); }
     .card h3 { font-size: 1.04rem; font-weight: 700; margin-bottom: 0.5rem; }
     .card p { color: var(--text-soft); font-size: 0.86rem; line-height: 1.65; margin-bottom: 0.9rem; }
     .card p strong { color: var(--text); font-weight: 600; }
@@ -839,11 +846,11 @@
         <div class="est-note" id="est-note">Lowest rate. Forge 1.20.1 is what I do best.</div>
         <div class="est-breakdown" id="est-breakdown"></div>
         <div class="est-summary" id="est-summary"></div>
-        <a class="btn btn-gmail est-email" id="est-email" href="mailto:modwrightstudios@gmail.com?subject=Mod%20porting%20commission"><svg class="bicon" viewBox="0 0 52 40" width="20" height="15" aria-hidden="true"><path fill="#4285F4" d="M3.55 40h9.1V18.2L0 8.4v28c0 1.96 1.6 3.6 3.55 3.6z"/><path fill="#34A853" d="M39.35 40h9.1c1.96 0 3.55-1.64 3.55-3.6v-28L39.35 18.2z"/><path fill="#FBBC04" d="M39.35 3.6v14.6L52 8.4V5.45c0-4.4-5-6.9-8.5-4.25z"/><path fill="#EA4335" d="M12.65 18.2V3.6L26 13.6 39.35 3.6v14.6L26 28.15z"/><path fill="#C5221F" d="M0 5.45V8.4l12.65 9.8V3.6L8.5 1.2C5-1.45 0 1.05 0 5.45z"/></svg>Email my request now</a>
-        <a class="btn btn-discord est-discord" href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener"><svg class="bicon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M20.317 4.369a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.249a18.27 18.27 0 0 0-5.487 0 12.6 12.6 0 0 0-.617-1.25.077.077 0 0 0-.079-.036A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.009c.12.099.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.891.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.331c-1.182 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>Chat on Discord</a>
+        <a class="btn btn-discord est-discord" id="est-discord" href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener"><svg class="bicon" viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M20.317 4.369a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.249a18.27 18.27 0 0 0-5.487 0 12.6 12.6 0 0 0-.617-1.25.077.077 0 0 0-.079-.036A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.009c.12.099.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.891.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.331c-1.182 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>Chat on Discord</a>
         <button type="button" class="btn btn-ghost est-copy" id="est-copy">Copy summary</button>
-        <div class="est-disclaimer">Treat this as a starting point. I'll confirm the final fixed price in writing within 24h of reviewing the mod. $20 minimum on any job. No account needed; the button fills everything in for you.</div>
-        <p class="est-skip">Prefer not to fill this in? <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20commission">Just email me directly →</a></p>
+        <a class="btn btn-gmail est-email" id="est-email" href="mailto:modwrightstudios@gmail.com?subject=Mod%20porting%20commission"><svg class="bicon" viewBox="0 0 52 40" width="20" height="15" aria-hidden="true"><path fill="#4285F4" d="M3.55 40h9.1V18.2L0 8.4v28c0 1.96 1.6 3.6 3.55 3.6z"/><path fill="#34A853" d="M39.35 40h9.1c1.96 0 3.55-1.64 3.55-3.6v-28L39.35 18.2z"/><path fill="#FBBC04" d="M39.35 3.6v14.6L52 8.4V5.45c0-4.4-5-6.9-8.5-4.25z"/><path fill="#EA4335" d="M12.65 18.2V3.6L26 13.6 39.35 3.6v14.6L26 28.15z"/><path fill="#C5221F" d="M0 5.45V8.4l12.65 9.8V3.6L8.5 1.2C5-1.45 0 1.05 0 5.45z"/></svg>Email it instead</a>
+        <div class="est-disclaimer">Treat this as a starting point; I'll confirm the final fixed price in writing within 24h of seeing the mod. $20 minimum on any job. Tip: "Chat on Discord" copies this quote so you can paste it straight into a ticket.</div>
+        <p class="est-skip">Prefer to just talk? <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener">Message me on Discord</a> or <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20commission">email</a>.</p>
       </div>
     </div>
   </div>
@@ -857,7 +864,7 @@
     <p class="sub">Forge 1.20.1 is my lowest rate because it sits just below every recent version wall, so it's where I'm fastest. Anything harder is priced by the real work it adds, not some made-up percentage.</p>
     <div class="cards reveal">
       <div class="card card--base">
-        <div class="icon-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v13"/><path d="M6 11l6 6 6-6"/></svg></div>
+        <div class="icon-wrap svc-copper"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v13"/><path d="M6 11l6 6 6-6"/></svg></div>
         <h3>Backport</h3>
         <p>A newer mod (1.21+) your pack needs running on something older like Forge 1.20.1. That means porting the items, blocks, mechanics and textures across. It's what I do best, so it's my lowest rate.</p>
         <div class="card-stats">
@@ -867,7 +874,7 @@
         <span class="card-tag tag-base">Lowest rate</span>
       </div>
       <div class="card card--premium">
-        <div class="icon-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V7"/><path d="M6 13l6-6 6 6"/></svg></div>
+        <div class="icon-wrap svc-life"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V7"/><path d="M6 13l6-6 6 6"/></svg></div>
         <h3>Forward-port &amp; revive</h3>
         <p>An old or abandoned mod you love, stuck on 1.12 / 1.16 / 1.18, that you want running on a modern version. It's the hardest kind of port, which is exactly why most porters won't take it. The price scales with how many version walls it has to cross.</p>
         <div class="card-stats">
@@ -877,7 +884,7 @@
         <span class="card-tag tag-premium">By complexity</span>
       </div>
       <div class="card card--premium">
-        <div class="icon-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h13l-3-3"/><path d="M20 16H7l3 3"/></svg></div>
+        <div class="icon-wrap svc-loom"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h13l-3-3"/><path d="M20 16H7l3 3"/></svg></div>
         <h3>Loader conversion</h3>
         <p>Moving a mod between Fabric, NeoForge and Forge. Forge↔NeoForge is light work, but <strong>Fabric→Forge is close to a rewrite</strong> because the events, registries and mixins are all different. It's priced to match.</p>
         <div class="card-stats">
@@ -887,7 +894,7 @@
         <span class="card-tag tag-premium">By complexity</span>
       </div>
       <div class="card card--base">
-        <div class="icon-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7h5a4 4 0 0 1 0 8h-1"/><path d="M15 17h-5a4 4 0 0 1 0-8h1"/></svg></div>
+        <div class="icon-wrap svc-bridge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7h5a4 4 0 0 1 0 8h-1"/><path d="M15 17h-5a4 4 0 0 1 0-8h1"/></svg></div>
         <h3>Compatibility patches</h3>
         <p>Getting mods to coexist: two native mods, a ported one alongside a native one, mobs spawning across mods, or a conflict that breaks a feature. This works <strong>even for closed-source mods</strong>, and it ships as a publishable add-on.</p>
         <div class="card-stats">
@@ -897,7 +904,7 @@
         <span class="card-tag tag-base">Publishable</span>
       </div>
       <div class="card card--base">
-        <div class="icon-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.6 5.6L3 18l3 3 6.1-6.1a4 4 0 0 0 5.6-5.6l-2.9 2.9a1.5 1.5 0 0 1-2-2l2.9-2.9z"/></svg></div>
+        <div class="icon-wrap svc-steel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.6 5.6L3 18l3 3 6.1-6.1a4 4 0 0 0 5.6-5.6l-2.9 2.9a1.5 1.5 0 0 1-2-2l2.9-2.9z"/></svg></div>
         <h3>Mod maintenance</h3>
         <p>A mod that broke after an update: failing <strong>mixins</strong>, crashes, dependency or mapping breaks, deprecated APIs. I track down the fault and get it loading clean again on your version.</p>
         <div class="card-stats">
@@ -907,7 +914,7 @@
         <span class="card-tag tag-base">By scope</span>
       </div>
       <div class="card card--premium">
-        <div class="icon-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+        <div class="icon-wrap svc-spark"><svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
         <h3>Mod optimization</h3>
         <p>A mod or pack that <strong>eats TPS and FPS</strong>. I profile the hot paths and bring the cost down: async work, caching, smarter ticking, lighter worldgen. It ends up running leaner without changing what it actually does.</p>
         <div class="card-stats">
@@ -1085,19 +1092,19 @@
   <div class="wrap">
     <div class="eyebrow">Contact</div>
     <h2>Get your fixed price</h2>
-    <p class="sub">Everything's in writing and async. <strong>Discord and email work right now</strong>: message me or build your request in the estimator above, and you'll have a fixed quote in writing within 24h. BuiltByBit escrow is coming soon.</p>
+    <p class="sub">Everything's in writing and async. <strong>Discord is the fastest way to reach me</strong> (email works too): message me or build your request in the estimator above, and you'll have a fixed quote in writing within 24h. BuiltByBit escrow is coming soon.</p>
     <div class="contact-cards reveal">
       <div class="contact-card contact-card--primary">
-        <div class="ci ci--gmail"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg></div>
-        <h3>Email (live now)</h3>
-        <p>Quickest way to reach me right now. Send the mod link and what you want done, or just the estimator summary, and I'll reply within a day.</p>
-        <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20porting%20commission" class="contact-link">modwrightstudios@gmail.com</a>
+        <div class="ci ci--discord"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4V5z"/><circle cx="9.5" cy="10.5" r="0.6" fill="currentColor" stroke="none"/><circle cx="14.5" cy="10.5" r="0.6" fill="currentColor" stroke="none"/></svg></div>
+        <h3>Discord (best way to reach me)</h3>
+        <p>Message me or open a ticket on my server. Drop the mod link and what you need, and we scope it together. This is where I'm quickest to reply.</p>
+        <a href="https://discord.gg/EV8F84fheJ" class="contact-link" target="_blank" rel="noopener">discord.gg/EV8F84fheJ</a>
       </div>
       <div class="contact-card">
-        <div class="ci ci--discord"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4V5z"/><circle cx="9.5" cy="10.5" r="0.6" fill="currentColor" stroke="none"/><circle cx="14.5" cy="10.5" r="0.6" fill="currentColor" stroke="none"/></svg></div>
-        <h3>Discord (live now)</h3>
-        <p>Join my server to chat about your commission. Drop the mod link and what you need, and we scope it together.</p>
-        <a href="https://discord.gg/EV8F84fheJ" class="contact-link" target="_blank" rel="noopener">discord.gg/EV8F84fheJ</a>
+        <div class="ci ci--gmail"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg></div>
+        <h3>Email (backup)</h3>
+        <p>Prefer email? Send the mod link and what you want done, or just the estimator summary, and I'll reply within a day.</p>
+        <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20porting%20commission" class="contact-link">modwrightstudios@gmail.com</a>
       </div>
       <div class="contact-card contact-card--soon">
         <div class="ci ci--bbb"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v5c0 4.5-3.4 7.7-8 9-4.6-1.3-8-4.5-8-9V6l8-3z"/></svg></div>
@@ -1329,6 +1336,15 @@
     if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(done).catch(function () { fallbackCopy(text, done); }); }
     else { fallbackCopy(text, done); }
   });
+  var discordBtn = document.getElementById('est-discord');
+  if (discordBtn) {
+    discordBtn.addEventListener('click', function () {
+      var text = summaryEl.textContent;
+      var noop = function () {};
+      if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).catch(function () { fallbackCopy(text, noop); }); }
+      else { fallbackCopy(text, noop); }
+    });
+  }
   document.querySelectorAll('.faq-q').forEach(function (q) {
     q.setAttribute('aria-expanded', 'false');
     q.addEventListener('click', function () {
