@@ -842,7 +842,7 @@
 
       <div class="est-result">
         <div class="est-result-label">Your quick quote</div>
-        <div class="est-price" id="est-price" aria-live="polite">$59 – $75</div>
+        <div class="est-price" id="est-price" aria-live="polite">$65 – $75</div>
         <div class="est-note" id="est-note">Lowest rate. Forge 1.20.1 is what I do best.</div>
         <div class="est-breakdown" id="est-breakdown"></div>
         <div class="est-summary" id="est-summary"></div>
@@ -1222,7 +1222,7 @@
     if (state.license === 'closed') sub = sub * 1.35;
     sub = sub * RUSH[state.rush];
     sub = Math.max(sub, MIN);
-    return { low: Math.max(Math.round(sub * 0.9), MIN), high: Math.round(sub * 1.15), scopeMode: scopeMode };
+    return { low: Math.max(Math.round(sub), MIN), high: Math.round(sub * 1.15), scopeMode: scopeMode };
   }
   function buildNote(r) {
     var bits = [];
