@@ -5,9 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Minecraft mod porting &amp; backporting for Forge, Fabric &amp; NeoForge | Modwright</title>
-  <meta name="description" content="Modwright. I port, backport &amp; revive Minecraft mods across Forge, Fabric &amp; NeoForge. Forge 1.20.1 specialist. Boot-tested, license-checked. Fixed price from $45, 7-day guarantee, escrow payment.">
+  <meta name="description" content="Modwright. I port, backport &amp; revive Minecraft mods across Forge, Fabric &amp; NeoForge. Forge 1.20.1 specialist. Boot-tested, license-checked. Fixed price from $20, fix-it-free guarantee, escrow payment.">
   <meta property="og:title" content="Modwright: Minecraft mod porting &amp; backporting">
-  <meta property="og:description" content="Port, backport &amp; revive Minecraft mods · Any version, any loader · Boot-tested · License-checked · From $35.">
+  <meta property="og:description" content="Port, backport &amp; revive Minecraft mods · Any version, any loader · Boot-tested · License-checked · From $20.">
   <meta property="og:type" content="website">
   <meta name="theme-color" content="#1a1410">
   <link rel="canonical" href="https://dheightsan.github.io/forge-ports/">
@@ -20,7 +20,7 @@
     "@type": "Service",
     "name": "Modwright Minecraft mod porting",
     "serviceType": "Minecraft mod porting, backporting, revival, loader conversion, maintenance and optimization",
-    "description": "Port, backport and revive Minecraft mods across Forge, Fabric and NeoForge. Forge 1.20.1 specialist. Fixed price from $45, boot-tested, license-checked, 7-day guarantee, escrow payment.",
+    "description": "Port, backport and revive Minecraft mods across Forge, Fabric and NeoForge. Forge 1.20.1 specialist. Fixed price from $20, boot-tested, license-checked, fix-it-free guarantee, escrow payment.",
     "url": "https://dheightsan.github.io/forge-ports/",
     "areaServed": "Worldwide",
     "provider": {
@@ -36,7 +36,7 @@
       "lowPrice": "35",
       "highPrice": "220",
       "offerCount": "6",
-      "description": "Fixed-price Minecraft mod commissions from $45 (most ports $55-$220), with a 7-day guarantee and escrow payment."
+      "description": "Fixed-price Minecraft mod commissions from $20 (most jobs $20-$120), with a fix-it-free guarantee and escrow payment."
     }
   }
   </script>
@@ -50,7 +50,7 @@
       {"@type":"Question","name":"Is this legal?","acceptedAnswer":{"@type":"Answer","text":"Yes. You pay for my time writing the port, not for distribution rights. I publish only open-source mods or mods with written permission; anything else is delivered privately to whoever holds the right to use it."}},
       {"@type":"Question","name":"How do I pay safely?","acceptedAnswer":{"@type":"Answer","text":"BuiltByBit escrow is the default: it holds your payment and only releases it once you have the working mod. Wise and PayPal also work for clients worldwide."}},
       {"@type":"Question","name":"How long does it take?","acceptedAnswer":{"@type":"Answer","text":"It depends on the mod. Every one is different, so I don't quote a fixed turnaround. We agree a realistic timeline in writing before I start; a priority fee moves your job to the front of the queue."}},
-      {"@type":"Question","name":"What if the port doesn't work?","acceptedAnswer":{"@type":"Answer","text":"If I can't get it working, you don't pay. Every delivered commission carries a 7-day guarantee: if it crashes or breaks, I fix it free or refund you."}},
+      {"@type":"Question","name":"What if the port doesn't work?","acceptedAnswer":{"@type":"Answer","text":"If I can't get it working, you don't pay. If a delivered build crashes or doesn't run, I fix it free or refund you."}},
       {"@type":"Question","name":"What's out of scope?","acceptedAnswer":{"@type":"Answer","text":"I write code. Textures, 3D models and animations, full gameplay or balance redesigns, and ongoing maintenance across future Minecraft versions are each a separate quote."}}
     ]
   }
@@ -245,11 +245,11 @@
     .badge-dot { width: 7px; height: 7px; background: var(--green-hi); border-radius: 50%; }
     #hero h1 { font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 700; letter-spacing: -0.005em; line-height: 1.1; margin-bottom: 1.2rem; max-width: 730px; text-shadow: 0 1px 2px rgba(0,0,0,0.6), 0 2px 32px rgba(0,0,0,0.55); }
     #hero h1 .g { color: #95d6a6; }
-    #hero h1 .cf { color: #a05ce0; }
-    #hero h1 .md { color: #d9a531; }
-    #hero h1 .fb { color: #5fb84a; }
-    #hero h1 .fg { color: #4ec3d6; }
-    #hero h1 .nf { color: #d2703f; }
+    #hero h1 .cf { color: #6b8fb5; }   /* Port: forged steel/iron blue (Forge), legible, not washed-out grey */
+    #hero h1 .md { color: #cdae7e; }   /* backport: Fabric loom tan */
+    #hero h1 .fb { color: #d2703f; }   /* revive: NeoForge terracotta */
+    #hero h1 .fg { color: #d9a531; }   /* any version: gold, spans every version */
+    #hero h1 .nf { color: #d2703f; }   /* any loader: NeoForge terracotta */
     /* grass-block two-tone on "Minecraft": grass green on top, dirt brown on bottom */
     #hero h1 .mc { background: linear-gradient(180deg, #79bd45 0%, #79bd45 50%, #9a6a38 50%, #9a6a38 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
     .hero-tagline { font-size: 1.28rem; font-weight: 600; color: var(--text); max-width: 560px; margin-bottom: 1.1rem; line-height: 1.4; }
@@ -323,19 +323,19 @@
     .est-opt small { display: block; font-size: 0.8rem; font-weight: 400; opacity: 0.82; margin-top: 0.15rem; }
     /* tier colour-coding: easy/cheap up to brutal */
     .est-opt .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 0.5rem; vertical-align: middle; background: var(--text-mute); }
-    .est-opt.t1 .dot { background: #d49a55; }
+    .est-opt.t1 .dot { background: #5aa83f; }
     .est-opt.t2 .dot { background: var(--amber); }
     .est-opt.t3 .dot { background: var(--terracotta); }
     .est-opt.t4 .dot { background: var(--brick); }
-    .est-opt.t1 .optglyph { color: #d49a55; }
+    .est-opt.t1 .optglyph { color: #5aa83f; }
     .est-opt.t2 .optglyph { color: var(--amber); }
     .est-opt.t3 .optglyph { color: var(--terracotta); }
     .est-opt.t4 .optglyph { color: var(--brick); }
-    .est-opt.t1.active { background: #d49a55; color: #2a1808; border-color: #d49a55; box-shadow: 0 0 0 3px rgba(192,126,60,0.22); }
+    .est-opt.t1.active { background: #5aa83f; color: #0e1f0a; border-color: #5aa83f; box-shadow: 0 0 0 3px rgba(90,168,63,0.22); }
     .est-opt.t2.active { background: var(--amber); color: #2a1f02; border-color: var(--amber); box-shadow: 0 0 0 3px rgba(217,154,43,0.22); }
     .est-opt.t3.active { background: var(--terracotta); color: #2a1302; border-color: var(--terracotta); box-shadow: 0 0 0 3px rgba(210,112,63,0.22); }
     .est-opt.t4.active { background: var(--brick); color: #fff; border-color: var(--brick); box-shadow: 0 0 0 3px rgba(193,74,60,0.24); }
-    .est-opt.t1.active .optglyph { color: #2a1808; }
+    .est-opt.t1.active .optglyph { color: #0e1f0a; }
     .est-opt.t2.active .optglyph { color: #2a1f02; }
     .est-opt.t3.active .optglyph { color: #2a1302; }
     .est-opt.t4.active .optglyph { color: #fff; }
@@ -354,32 +354,28 @@
     .est-opt.brand-forge.active .loglyph { color: #15171a; }
     .est-opt.brand-neoforge.active .loglyph { color: #2a1302; }
     .est-opt.brand-fabric.active .loglyph { color: #34260f; }
-    /* multicolour option accents: service / license / priority */
+    /* representative option accents: each service / state carries a meaningful hue */
     .est-opt .optglyph { width: 17px; height: 17px; margin-right: 0.5rem; vertical-align: middle; }
-    .est-opt.ac-jade  .optglyph { color: #d49a55; }
-    .est-opt.ac-gold  .optglyph { color: #cba14a; }
-    .est-opt.ac-brown .optglyph { color: #bb9168; }
-    .est-opt.ac-rust  .optglyph { color: var(--terracotta); }
-    .est-opt.ac-amber .optglyph { color: var(--amber); }
-    .est-opt.ac-slate .optglyph { color: #7ea7c6; }
-    .est-opt.ac-jade.active  .optglyph { color: #2a1808; }
-    .est-opt.ac-gold.active  .optglyph { color: #2a2008; }
-    .est-opt.ac-brown.active .optglyph { color: #fff; }
-    .est-opt.ac-rust.active  .optglyph { color: #fff; }
-    .est-opt.ac-amber.active .optglyph { color: #2a1f02; }
-    .est-opt.ac-slate.active .optglyph { color: #eaf4fb; }
-    .est-opt.ac-jade:hover  { border-color: #d49a55; color: var(--text); }
-    .est-opt.ac-gold:hover  { border-color: #cba14a; color: var(--text); }
-    .est-opt.ac-brown:hover { border-color: var(--brown-hi); color: var(--text); }
-    .est-opt.ac-rust:hover  { border-color: var(--rust); color: var(--text); }
-    .est-opt.ac-amber:hover { border-color: var(--amber); color: var(--text); }
-    .est-opt.ac-slate:hover { border-color: #7ea7c6; color: var(--text); }
-    .est-opt.ac-jade.active  { background: #d49a55; color: #2a1808; border-color: #d49a55; box-shadow: 0 0 0 3px rgba(192,126,60,0.24); }
-    .est-opt.ac-gold.active  { background: #cba14a; color: #2a2008; border-color: #cba14a; box-shadow: 0 0 0 3px rgba(203,161,74,0.22); }
-    .est-opt.ac-brown.active { background: var(--brown); color: #fff; border-color: var(--brown); box-shadow: 0 0 0 3px rgba(130,88,58,0.32); }
-    .est-opt.ac-rust.active  { background: var(--rust); color: #fff; border-color: var(--rust); box-shadow: 0 0 0 3px rgba(184,84,47,0.30); }
-    .est-opt.ac-amber.active { background: var(--amber); color: #2a1f02; border-color: var(--amber); box-shadow: 0 0 0 3px rgba(217,154,43,0.22); }
-    .est-opt.ac-slate.active { background: #5a87a6; color: #eaf4fb; border-color: #5a87a6; box-shadow: 0 0 0 3px rgba(90,135,166,0.28); }
+    .est-opt.ac-copper .optglyph { color: #cc8049; }   /* backport: copper, bring it across */
+    .est-opt.ac-life   .optglyph { color: #5aa83f; }   /* revive / open: green, life and freedom */
+    .est-opt.ac-bridge .optglyph { color: #6f93b8; }   /* compatibility: blue, two sides linked */
+    .est-opt.ac-steel  .optglyph { color: #9aa0a8; }   /* maintenance / closed: steel, tools and locks */
+    .est-opt.ac-spark  .optglyph { color: #e0b441; }   /* optimization: amber, energy and speed */
+    .est-opt.ac-copper.active .optglyph { color: #2a1302; }
+    .est-opt.ac-life.active   .optglyph { color: #0e1f0a; }
+    .est-opt.ac-bridge.active .optglyph { color: #eaf2fb; }
+    .est-opt.ac-steel.active  .optglyph { color: #15171a; }
+    .est-opt.ac-spark.active  .optglyph { color: #2a2008; }
+    .est-opt.ac-copper:hover { border-color: #cc8049; color: var(--text); }
+    .est-opt.ac-life:hover   { border-color: #5aa83f; color: var(--text); }
+    .est-opt.ac-bridge:hover { border-color: #6f93b8; color: var(--text); }
+    .est-opt.ac-steel:hover  { border-color: #9aa0a8; color: var(--text); }
+    .est-opt.ac-spark:hover  { border-color: #e0b441; color: var(--text); }
+    .est-opt.ac-copper.active { background: #cc8049; color: #2a1302; border-color: #cc8049; box-shadow: 0 0 0 3px rgba(204,128,73,0.24); }
+    .est-opt.ac-life.active   { background: #5aa83f; color: #0e1f0a; border-color: #5aa83f; box-shadow: 0 0 0 3px rgba(90,168,63,0.24); }
+    .est-opt.ac-bridge.active { background: #5f86ad; color: #eaf2fb; border-color: #5f86ad; box-shadow: 0 0 0 3px rgba(95,134,173,0.28); }
+    .est-opt.ac-steel.active  { background: #8b9099; color: #15171a; border-color: #8b9099; box-shadow: 0 0 0 3px rgba(139,144,153,0.26); }
+    .est-opt.ac-spark.active  { background: #e0b441; color: #2a2008; border-color: #e0b441; box-shadow: 0 0 0 3px rgba(224,180,65,0.24); }
     .est-result { background: linear-gradient(180deg, rgba(203,161,74,0.06), var(--bg)); padding: var(--pad-card); position: sticky; top: 80px; border: 1px solid rgba(203,161,74,0.22); border-radius: var(--radius-lg); box-shadow: 0 0 0 1px rgba(203,161,74,0.10), 0 12px 30px -18px rgba(0,0,0,0.8); }
     .est-result-label { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.09em; color: var(--text-mute); margin-bottom: 0.5rem; }
     .est-price { font-size: clamp(3.1rem, 6vw, 3.8rem); font-weight: 700; color: var(--gold); line-height: 1; margin-bottom: 0.55rem; font-variant-numeric: tabular-nums; letter-spacing: -0.01em; text-shadow: 0 0 24px rgba(203,161,74,0.25); }
@@ -683,13 +679,13 @@
     <h1><span class="cf">Port,</span> <span class="md">backport</span> &amp; <span class="fb">revive</span> <span class="mc">Minecraft</span> mods,<br><span class="fg">any version,</span> <span class="nf">any loader</span></h1>
     <p class="hero-who">I'm <strong>josda</strong>. I build modpacks, got tired of mods dying on old versions, and started porting them myself.</p>
     <p class="hero-desc">
-      Forge 1.20.1 is what I do best, and it's my base rate: <strong class="price-hl">from $50, fixed</strong>. I move mods up a version, down a version, and between Forge, Fabric and NeoForge. I check the licence first and boot-test every build before it goes out.
+      Forge 1.20.1 is what I do best, and where I'm fastest. I move mods up a version, down a version, and between Forge, Fabric and NeoForge. I check the licence first and boot-test every build before it goes out, and you always get a fixed quote in writing before you pay a thing.
     </p>
     <div class="pills">
       <span class="pill pill-price">Fixed price, one flat quote</span>
       <span class="pill pill-trust">Escrow-protected via BuiltByBit</span>
       <span class="pill pill-trust">If it doesn't run, you don't pay</span>
-      <span class="pill">7-day guarantee</span>
+      <span class="pill">If it breaks, I fix it free</span>
       <span class="pill">Hand-written, tested code</span>
       <span class="pill">Licence checked on every port</span>
     </div>
@@ -698,8 +694,8 @@
       <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20commission" class="btn btn-gmail">Email me →</a>
       <a href="#services" class="btn btn-fabric">See services</a>
     </div>
-    <p class="hero-contact">Fastest way to reach me: <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20commission">modwrightstudios@gmail.com</a></p>
-    <p class="hero-trust">Quotes are free. You don't pay until we've agreed a price. BuiltByBit escrow available, and I usually reply the same day.</p>
+    <p class="hero-contact">Fastest way to reach me: <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener">my Discord</a> or <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20commission">email</a></p>
+    <p class="hero-trust">Quotes are free. You don't pay until we've agreed a price. Escrow available on request, and I usually reply the same day.</p>
   </div>
 </section>
 
@@ -758,11 +754,19 @@
         <div class="est-group" id="grp-service">
           <div class="est-label">What kind of job is it?</div>
           <div class="est-options" data-group="service">
-            <button type="button" class="est-opt ac-jade active" data-value="backport"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v13"/><path d="M6 12l6 6 6-6"/></svg>Backport<small>newer → older</small></button>
-            <button type="button" class="est-opt ac-gold" data-value="forward"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V6"/><path d="M6 12l6-6 6 6"/></svg>Forward-port / revive<small>old → modern</small></button>
-            <button type="button" class="est-opt ac-brown" data-value="compat"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7h4a4 4 0 0 1 0 8h-1"/><path d="M15 17h-4a4 4 0 0 1 0-8h1"/></svg>Compatibility<small>make mods coexist</small></button>
-            <button type="button" class="est-opt ac-slate" data-value="maintain"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.6 5.6L3 18l3 3 6.1-6.1a4 4 0 0 0 5.6-5.6l-2.9 2.9a1.5 1.5 0 0 1-2-2l2.9-2.9z"/></svg>Maintenance<small>fix mixins / crashes</small></button>
-            <button type="button" class="est-opt ac-rust" data-value="optimize"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Optimization<small>less lag / resources</small></button>
+            <button type="button" class="est-opt ac-copper active" data-value="backport"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v13"/><path d="M6 12l6 6 6-6"/></svg>Backport<small>newer → older</small></button>
+            <button type="button" class="est-opt ac-life" data-value="forward"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V6"/><path d="M6 12l6-6 6 6"/></svg>Forward-port / revive<small>old → modern</small></button>
+            <button type="button" class="est-opt ac-bridge" data-value="compat"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7h4a4 4 0 0 1 0 8h-1"/><path d="M15 17h-4a4 4 0 0 1 0-8h1"/></svg>Compatibility<small>make mods coexist</small></button>
+            <button type="button" class="est-opt ac-steel" data-value="maintain"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.6 5.6L3 18l3 3 6.1-6.1a4 4 0 0 0 5.6-5.6l-2.9 2.9a1.5 1.5 0 0 1-2-2l2.9-2.9z"/></svg>Maintenance<small>fix mixins / crashes</small></button>
+            <button type="button" class="est-opt ac-spark" data-value="optimize"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Optimization<small>less lag / resources</small></button>
+          </div>
+        </div>
+        <div class="est-group" id="grp-loader">
+          <div class="est-label" title="The mod's current loader. Forge↔NeoForge is a quick rename; Fabric→Forge is a near-rewrite.">Source mod loader</div>
+          <div class="est-options" data-group="loader">
+            <button type="button" class="est-opt brand-forge active" data-value="forge"><svg class="loglyph" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M2 8h10l-1.2 2.4H15v2h-1.9L12 17H8L6.2 12.4H2z"/><rect x="6" y="18" width="9" height="2" rx="0.4" fill="currentColor"/></svg>Forge<small>same loader, lowest rate</small></button>
+            <button type="button" class="est-opt brand-neoforge" data-value="neoforge"><svg class="loglyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 16.5V7.5l7 9v-9" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>NeoForge<small>rename, +$20</small></button>
+            <button type="button" class="est-opt brand-fabric" data-value="fabric"><svg class="loglyph" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="3" fill="currentColor"/><g stroke="#0e0d0b" stroke-width="1.2" opacity="0.32"><path d="M3.5 9.7h17M3.5 14.3h17M9.7 3.5v17M14.3 3.5v17"/></g></svg>From Fabric<small>near-rewrite</small></button>
           </div>
         </div>
         <div class="est-group" id="grp-size">
@@ -790,29 +794,21 @@
             <button type="button" class="est-opt t3" data-value="large"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3.5" y="14" width="4" height="6" rx="0.9"/><rect x="9.5" y="9" width="4" height="11" rx="0.9"/><rect x="15.5" y="4" width="4" height="16" rx="0.9"/></svg>Deep<small>deep · complex</small></button>
           </div>
         </div>
-        <button type="button" class="est-adv-toggle" id="est-adv-toggle" aria-expanded="false" aria-controls="est-advanced">Advanced: loader, license &amp; priority <span class="adv-caret" aria-hidden="true">▾</span></button>
+        <button type="button" class="est-adv-toggle" id="est-adv-toggle" aria-expanded="false" aria-controls="est-advanced">Advanced: license &amp; priority <span class="adv-caret" aria-hidden="true">▾</span></button>
         <div class="est-advanced hidden" id="est-advanced">
-        <div class="est-group" id="grp-loader">
-          <div class="est-label" title="The mod's current loader. Forge↔NeoForge is a quick rename; Fabric→Forge is a near-rewrite.">Source mod loader</div>
-          <div class="est-options" data-group="loader">
-            <button type="button" class="est-opt brand-forge active" data-value="forge"><svg class="loglyph" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M2 8h10l-1.2 2.4H15v2h-1.9L12 17H8L6.2 12.4H2z"/><rect x="6" y="18" width="9" height="2" rx="0.4" fill="currentColor"/></svg>Forge<small>same loader, base rate</small></button>
-            <button type="button" class="est-opt brand-neoforge" data-value="neoforge"><svg class="loglyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 16.5V7.5l7 9v-9" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>NeoForge<small>rename, +$30</small></button>
-            <button type="button" class="est-opt brand-fabric" data-value="fabric"><svg class="loglyph" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="3" fill="currentColor"/><g stroke="#0e0d0b" stroke-width="1.2" opacity="0.32"><path d="M3.5 9.7h17M3.5 14.3h17M9.7 3.5v17M14.3 3.5v17"/></g></svg>From Fabric<small>near-rewrite</small></button>
-          </div>
-        </div>
         <div class="est-group" id="grp-license">
           <div class="est-label" title="Open-source or permitted mods can be published; closed-source (ARR) is delivered privately to you only.">Mod license <span class="est-hint">(sets how it's delivered)</span></div>
           <div class="est-options" data-group="license">
-            <button type="button" class="est-opt ac-jade active" data-value="open"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a13 13 0 0 1 0 18"/><path d="M12 3a13 13 0 0 0 0 18"/></svg>Open-source / I have permission<small>publishable</small></button>
-            <button type="button" class="est-opt ac-slate" data-value="closed"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Closed-source (ARR)<small>private delivery</small></button>
+            <button type="button" class="est-opt ac-life active" data-value="open"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a13 13 0 0 1 0 18"/><path d="M12 3a13 13 0 0 0 0 18"/></svg>Open-source / I have permission<small>publishable</small></button>
+            <button type="button" class="est-opt ac-steel" data-value="closed"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Closed-source (ARR)<small>private delivery</small></button>
           </div>
         </div>
         <div class="est-group" id="grp-rush">
           <div class="est-label">Priority <span class="est-hint">(optional, jump the queue)</span></div>
           <div class="est-options" data-group="rush">
-            <button type="button" class="est-opt ac-jade active" data-value="standard"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 8v4.2l2.6 1.6"/></svg>Standard<small>normal queue</small></button>
-            <button type="button" class="est-opt ac-amber" data-value="r72"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 15l7-6 7 6"/></svg>Priority<small>+25%</small></button>
-            <button type="button" class="est-opt ac-rust" data-value="r24"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l7-5 7 5"/><path d="M5 18l7-5 7 5"/></svg>Top priority<small>+50%</small></button>
+            <button type="button" class="est-opt t1 active" data-value="standard"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 8v4.2l2.6 1.6"/></svg>Standard<small>normal queue</small></button>
+            <button type="button" class="est-opt t2" data-value="r72"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 15l7-6 7 6"/></svg>Priority<small>+25%</small></button>
+            <button type="button" class="est-opt t3" data-value="r24"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l7-5 7 5"/><path d="M5 18l7-5 7 5"/></svg>Top priority<small>+50%</small></button>
           </div>
         </div>
         </div>
@@ -820,13 +816,13 @@
 
       <div class="est-result">
         <div class="est-result-label">Your quick quote</div>
-        <div class="est-price" id="est-price" aria-live="polite">$81 – $104</div>
-        <div class="est-note" id="est-note">Base rate. Forge 1.20.1 is what I do best.</div>
+        <div class="est-price" id="est-price" aria-live="polite">$59 – $75</div>
+        <div class="est-note" id="est-note">Lowest rate. Forge 1.20.1 is what I do best.</div>
         <div class="est-breakdown" id="est-breakdown"></div>
         <div class="est-summary" id="est-summary"></div>
         <a class="btn btn-gmail est-email" id="est-email" href="mailto:modwrightstudios@gmail.com?subject=Mod%20porting%20commission">Email my request now →</a>
         <button type="button" class="btn btn-ghost est-copy" id="est-copy">Copy summary</button>
-        <div class="est-disclaimer">Treat this as a starting point. I'll confirm the final fixed price in writing within 24h of reviewing the mod. $35 minimum on any job. No account needed; the button fills everything in for you.</div>
+        <div class="est-disclaimer">Treat this as a starting point. I'll confirm the final fixed price in writing within 24h of reviewing the mod. $20 minimum on any job. No account needed; the button fills everything in for you.</div>
         <p class="est-skip">Prefer not to fill this in? <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20commission">Just email me directly →</a></p>
       </div>
     </div>
@@ -838,17 +834,17 @@
   <div class="wrap">
     <div class="eyebrow">What I do</div>
     <h2>Any direction, any loader</h2>
-    <p class="sub">Forge 1.20.1 is my base rate because it sits just below every recent version wall, so it's where I'm fastest. Anything harder is priced by the real work it adds, not some made-up percentage.</p>
+    <p class="sub">Forge 1.20.1 is my lowest rate because it sits just below every recent version wall, so it's where I'm fastest. Anything harder is priced by the real work it adds, not some made-up percentage.</p>
     <div class="cards reveal">
       <div class="card card--base">
         <div class="icon-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v13"/><path d="M6 11l6 6 6-6"/></svg></div>
         <h3>Backport</h3>
-        <p>A newer mod (1.21+) your pack needs running on something older like Forge 1.20.1. That means porting the items, blocks, mechanics and textures across. It's what I do best, so it's the base price.</p>
+        <p>A newer mod (1.21+) your pack needs running on something older like Forge 1.20.1. That means porting the items, blocks, mechanics and textures across. It's what I do best, so it's my lowest rate.</p>
         <div class="card-stats">
           <div><span class="k">Target</span><span class="v">Forge 1.20.1</span></div>
-          <div><span class="k">From</span><span class="v">$50</span></div>
+          <div><span class="k">From</span><span class="v">$35</span></div>
         </div>
-        <span class="card-tag tag-base">Base rate</span>
+        <span class="card-tag tag-base">Lowest rate</span>
       </div>
       <div class="card card--premium">
         <div class="icon-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V7"/><path d="M6 13l6-6 6 6"/></svg></div>
@@ -865,7 +861,7 @@
         <h3>Loader conversion</h3>
         <p>Moving a mod between Fabric, NeoForge and Forge. Forge↔NeoForge is light work, but <strong>Fabric→Forge is close to a rewrite</strong> because the events, registries and mixins are all different. It's priced to match.</p>
         <div class="card-stats">
-          <div><span class="k">Forge↔Neo</span><span class="v">+$30</span></div>
+          <div><span class="k">Forge↔Neo</span><span class="v">+$20</span></div>
           <div><span class="k">Fabric→Forge</span><span class="v">by quote</span></div>
         </div>
         <span class="card-tag tag-premium">By complexity</span>
@@ -876,7 +872,7 @@
         <p>Getting mods to coexist: two native mods, a ported one alongside a native one, mobs spawning across mods, or a conflict that breaks a feature. This works <strong>even for closed-source mods</strong>, and it ships as a publishable add-on.</p>
         <div class="card-stats">
           <div><span class="k">Works with</span><span class="v">Closed-source too</span></div>
-          <div><span class="k">From</span><span class="v">$40</span></div>
+          <div><span class="k">From</span><span class="v">$25</span></div>
         </div>
         <span class="card-tag tag-base">Publishable</span>
       </div>
@@ -886,7 +882,7 @@
         <p>A mod that broke after an update: failing <strong>mixins</strong>, crashes, dependency or mapping breaks, deprecated APIs. I track down the fault and get it loading clean again on your version.</p>
         <div class="card-stats">
           <div><span class="k">Fixes</span><span class="v">Mixins · crashes · deps</span></div>
-          <div><span class="k">From</span><span class="v">$35</span></div>
+          <div><span class="k">From</span><span class="v">$25</span></div>
         </div>
         <span class="card-tag tag-base">By scope</span>
       </div>
@@ -896,7 +892,7 @@
         <p>A mod or pack that <strong>eats TPS and FPS</strong>. I profile the hot paths and bring the cost down: async work, caching, smarter ticking, lighter worldgen. It ends up running leaner without changing what it actually does.</p>
         <div class="card-stats">
           <div><span class="k">Cuts</span><span class="v">Lag · RAM · tick time</span></div>
-          <div><span class="k">From</span><span class="v">$60</span></div>
+          <div><span class="k">From</span><span class="v">$45</span></div>
         </div>
         <span class="card-tag tag-premium">By scope</span>
       </div>
@@ -926,8 +922,8 @@
 <section id="pricing">
   <div class="wrap">
     <div class="eyebrow">Pricing</div>
-    <h2>Fixed price, built on one base rate</h2>
-    <p class="sub">Forge 1.20.1 sets the base. Anything that takes me outside it (a version wall to cross, a loader rewrite, private delivery) adds a flat amount for the work it actually takes. Either way, you get one number before I start.</p>
+    <h2>Fixed price, agreed before we start</h2>
+    <p class="sub">These are starting points. Tell me about your mod on Discord or by email and you get one fixed price for the whole job, agreed in writing before I begin. No hourly billing, no surprise add-ons.</p>
 
     <!-- intro offer disabled for now (no customers yet); re-enable this block when ready
     <div class="price-promo">
@@ -938,36 +934,36 @@
     <p class="pnote" style="margin-top:1.4rem">Built for clarity: one fixed price before I start, escrow-protected, and you only pay once the working mod is in your hands.</p>
 
     <div class="ptable reveal">
-      <div class="prow prow-head"><div>Service</div><div>Price</div><div>What it covers</div></div>
-      <div class="prow">
-        <div class="pservice">Mod optimization <small>less lag / resources</small></div>
-        <div class="pprice">$60 / $120 / $220</div>
-        <div class="pwhy"><strong>By scope:</strong> Targeted lag fix · async / caching pass · deep profiling of hot paths. Cuts TPS/FPS cost and RAM without changing what the mod does.</div>
+      <div class="prow prow-head"><div>Service</div><div>Starts at</div><div>What it covers</div></div>
+      <div class="prow base">
+        <div class="pservice">Quick fix / recompile <small>simplest job</small></div>
+        <div class="pprice">from $20</div>
+        <div class="pwhy">Same loader, a neighbouring version (e.g. 1.20.1 ↔ 1.19.2), or a config / recipe / small tweak. The easiest way to start working with me.</div>
       </div>
       <div class="prow base">
         <div class="pservice">Backport to Forge 1.20.1 <small>my specialty</small></div>
-        <div class="pprice">$55 / $95 / $160</div>
-        <div class="pwhy"><strong>By mod size:</strong> Small (items, blocks, recipes) · Medium (mechanics, entities, GUI) · Large (tech, worldgen). 1.20.1 is the lane I do best.</div>
+        <div class="pprice">from $35</div>
+        <div class="pwhy"><strong>By mod size:</strong> small (items, blocks, recipes), medium (mechanics, entities, GUI), large (tech, worldgen). 1.20.1 is the lane I do best.</div>
       </div>
       <div class="prow">
         <div class="pservice">Compatibility patch <small>make mods coexist</small></div>
-        <div class="pprice">$40 / $90 / $180</div>
-        <div class="pwhy">Simple (config/datapack, 2 mods) · Moderate (mixin/event patching) · Deep (several mods). It's my own publishable code, so it works even with closed-source mods.</div>
+        <div class="pprice">from $25</div>
+        <div class="pwhy">Config or datapack fixes, mixin and event patching, multi-mod conflicts. It's my own publishable code, so it works even with closed-source mods.</div>
       </div>
       <div class="prow">
         <div class="pservice">Mod maintenance <small>fix mixins / crashes</small></div>
-        <div class="pprice">$35 / $70 / $130</div>
-        <div class="pwhy"><strong>By scope:</strong> Small (one mixin / crash / dependency fix) · Moderate (several systems) · Deep (broken across the mod). Get it loading clean again on your version.</div>
+        <div class="pprice">from $25</div>
+        <div class="pwhy">A failing mixin, a crash, a dependency or mapping break. I get it loading clean again on your version.</div>
       </div>
-      <div class="prow base">
-        <div class="pservice">Quick fix / recompile <small>simplest job</small></div>
+      <div class="prow">
+        <div class="pservice">Mod optimization <small>less lag / resources</small></div>
         <div class="pprice">from $45</div>
-        <div class="pwhy">Same loader, a neighbouring version (e.g. 1.20.1 ↔ 1.19.2), or a config / recipe / small tweak. The cheapest way to work with me.</div>
+        <div class="pwhy">Targeted lag fix, an async or caching pass, or deeper profiling of hot paths. Cuts TPS/FPS cost and RAM without changing what the mod does.</div>
       </div>
     </div>
 
-    <p class="pnote"><strong>Reviving an old mod, converting Fabric to Forge, or private closed-source work?</strong> &nbsp;Those are quoted as one flat number for your specific mod, never a stack of surcharges. Send me the mod and you get a single fixed price before I start. Returning clients re-port their own prior work to a new version for 40% of the original.</p>
-    <p class="pexample"><strong>Worked example.</strong> A medium backport to Forge 1.20.1, open-source, lands around <strong>$95</strong>. A revival from an older version is quoted as one flat number, usually <strong>$150-260</strong>. Most first jobs land between $55 and $160.</p>
+    <p class="pnote"><strong>Reviving an old mod, converting Fabric to Forge, or private closed-source work?</strong> &nbsp;Those are quoted as one flat number for your specific mod, never a stack of surcharges. Open a ticket or email me the mod and you get a single fixed price before I start. Returning clients re-port their own prior work to a new version for 40% of the original.</p>
+    <p class="pexample"><strong>Worked example.</strong> A medium backport to Forge 1.20.1, open-source, lands around <strong>$65</strong>. Most first jobs land between <strong>$20 and $120</strong>. Bigger revivals and Fabric→Forge rewrites are quoted per job, so you always get one number up front.</p>
 
     <div class="paystrip">
       <div class="paystrip-head">How you pay</div>
@@ -1011,10 +1007,10 @@
         <summary>Terms of Service</summary>
         <div class="legal-doc-body">
           <p><strong>Service.</strong> Modwright provides Minecraft mod commission work: porting, backporting, reviving, loader conversion, compatibility patches, maintenance and optimization, all carried out by one developer.</p>
-          <p><strong>Quotes &amp; pricing.</strong> The estimator gives a non-binding ballpark. The final price is fixed and agreed in writing before any work begins. A deposit may be requested for larger jobs; a $35 minimum applies.</p>
+          <p><strong>Quotes &amp; pricing.</strong> The estimator gives a non-binding ballpark. The final price is fixed and agreed in writing before any work begins. A deposit may be requested for larger jobs; a $20 minimum applies.</p>
           <p><strong>Payment.</strong> Through BuiltByBit escrow, Wise, or PayPal, as agreed. With escrow, funds release on delivery.</p>
           <p><strong>Delivery &amp; timelines.</strong> You receive a working, boot-tested build. Timelines are honest estimates, not promises, and I don't commit to hard deadlines.</p>
-          <p><strong>Guarantee &amp; refunds.</strong> 7-day guarantee: if the delivered work doesn't run as agreed, I fix it free or refund you. Refunds cover undelivered or non-working work, not a change of mind after correct delivery.</p>
+          <p><strong>Guarantee &amp; refunds.</strong> If the delivered work doesn't run as agreed, I fix it free or refund you. Refunds cover undelivered or non-working work, not a change of mind after correct delivery.</p>
           <p><strong>Your responsibilities.</strong> You must have the right to commission work on the mod you submit: it's open-source, your own, or you have the author's permission. You are responsible for how you use the delivered files.</p>
           <p><strong>Rights &amp; redistribution.</strong> You pay for my time, not for distribution rights. Closed-source (ARR) work is delivered privately to you only and is never published. I will not publicly redistribute an ARR mod without the author's written permission.</p>
           <p><strong>Liability.</strong> Work is provided "as is." To the extent permitted by law, I am not liable for indirect or consequential damages, and total liability is limited to the amount paid for the job in question.</p>
@@ -1059,7 +1055,7 @@
       <div class="faq-item"><button type="button" class="faq-q">Is this legal? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a">Yes. You pay for my time writing the port, not for distribution rights. I publish only open-source mods or mods with written permission; anything else is delivered privately to whoever holds the right to use it. See the Licenses section above.</div></div>
       <div class="faq-item"><button type="button" class="faq-q">How do I pay safely? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a">BuiltByBit escrow is the default. BBB holds your payment and only releases it once you have the working mod, so I can't touch a cent until you're happy. That takes the "pay and they vanish" risk off the table. Wise and PayPal (Goods &amp; Services) also work for clients worldwide. I never take Friends &amp; Family payments.</div></div>
       <div class="faq-item"><button type="button" class="faq-q">How long does it take? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a">It depends entirely on the mod. Every one is different, so I won't quote a fixed turnaround I can't stand behind. We agree a realistic timeline in writing before I start, and I'd rather under-promise and actually deliver than miss a date. Need it sooner? A priority fee moves your job to the front of the queue.</div></div>
-      <div class="faq-item"><button type="button" class="faq-q">What if the port doesn't work? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a">If I can't get it working, you don't pay. Every delivered commission carries a 7-day guarantee: if it crashes or breaks in that window, I fix it for free, or I refund you. With escrow you test the working mod before any money is released.</div></div>
+      <div class="faq-item"><button type="button" class="faq-q">What if the port doesn't work? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a">If I can't get it working, you don't pay. If a delivered build crashes or doesn't run as agreed, I fix it free, or I refund you. With escrow you test the working mod before any money is released.</div></div>
       <div class="faq-item"><button type="button" class="faq-q">What's out of scope? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a">I write code. Textures, 3D models and animations, full gameplay or balance redesigns, and ongoing maintenance across future Minecraft versions all sit outside a standard port and get quoted separately. Tell me upfront and I'll fold it into the price.</div></div>
     </div>
   </div>
@@ -1077,10 +1073,10 @@
     <div class="port-grid reveal">
       <div class="port-card port-card--guarantee">
         <h3 class="port-name">No published port here yet, but every commission is still guaranteed</h3>
-        <p class="port-desc">I'm a solo dev building up a track record one port at a time. There's no star rating to lean on yet, so your protection is <strong>escrow</strong> (BuiltByBit holds your payment until the working mod is in your hands) plus a <strong>7-day guarantee</strong>. If it doesn't run, you don't pay. Come in as an early client and, if your mod is open-source, your port becomes the first one shown here, with code you can read on CurseForge &amp; Modrinth.</p>
+        <p class="port-desc">I'm a solo dev building up a track record one port at a time. There's no star rating to lean on yet, so your protection is <strong>escrow</strong> (BuiltByBit holds your payment until the working mod is in your hands) plus my promise to <strong>fix any delivery problem free</strong>. If it doesn't run, you don't pay. Come in as an early client and, if your mod is open-source, your port becomes the first one shown here, with code you can read on CurseForge &amp; Modrinth.</p>
         <dl class="port-stats">
           <div><dt>Escrow</dt><dd>BuiltByBit-held</dd></div>
-          <div><dt>Guarantee</dt><dd>7-day, full refund</dd></div>
+          <div><dt>Guarantee</dt><dd>Fix free or refund</dd></div>
           <div><dt>License</dt><dd>Verified first</dd></div>
           <div><dt>Code</dt><dd>Open &amp; readable</dd></div>
         </dl>
@@ -1111,7 +1107,7 @@
       <details class="more">
         <summary>Read more about how I work</summary>
         <p>I started doing this for other people because the market has a hole in the middle. The established devs won't touch small commissions, and the cheap shops skip the licence work until a DMCA takedown lands on your CurseForge account. So I quote a fixed price, check the licence first, and put everything <strong>all in writing</strong>.</p>
-        <p>You don't have to take that on trust. BuiltByBit escrow holds your payment until the working mod is in your hands, and every commission carries a 7-day guarantee. If it doesn't run, you don't pay.</p>
+        <p>You don't have to take that on trust. BuiltByBit escrow holds your payment until the working mod is in your hands, and if a delivered build doesn't run as agreed, I fix it free or refund you.</p>
       </details>
     </div>
   </div>
@@ -1124,7 +1120,7 @@
   <div class="wrap">
     <div class="eyebrow">Contact</div>
     <h2>Get your fixed price</h2>
-    <p class="sub">Everything's done in writing and async. <strong>Email works right now</strong>: build your request in the estimator above, hit "Email my request now," and you'll have a fixed quote in writing within 24h. BuiltByBit escrow and Discord are coming soon.</p>
+    <p class="sub">Everything's in writing and async. <strong>Discord and email work right now</strong>: message me or build your request in the estimator above, and you'll have a fixed quote in writing within 24h. BuiltByBit escrow is coming soon.</p>
     <div class="contact-cards reveal">
       <div class="contact-card contact-card--primary">
         <div class="ci ci--gmail"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg></div>
@@ -1132,18 +1128,19 @@
         <p>Quickest way to reach me right now. Send the mod link and what you want done, or just the estimator summary, and I'll reply within a day.</p>
         <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20porting%20commission" class="contact-link">modwrightstudios@gmail.com</a>
       </div>
+      <div class="contact-card">
+        <div class="ci ci--discord"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4V5z"/><circle cx="9.5" cy="10.5" r="0.6" fill="currentColor" stroke="none"/><circle cx="14.5" cy="10.5" r="0.6" fill="currentColor" stroke="none"/></svg></div>
+        <h3>Discord (live now)</h3>
+        <p>Join my server to chat about your commission. Drop the mod link and what you need, and we scope it together.</p>
+        <a href="https://discord.gg/EV8F84fheJ" class="contact-link" target="_blank" rel="noopener">discord.gg/EV8F84fheJ</a>
+      </div>
       <div class="contact-card contact-card--soon">
         <div class="ci ci--bbb"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v5c0 4.5-3.4 7.7-8 9-4.6-1.3-8-4.5-8-9V6l8-3z"/></svg></div>
         <h3>BuiltByBit · escrow</h3>
-        <p>Escrow-protected commissions are coming soon. For now, email me and I'll give you the same protection through an invoice.</p>
-      </div>
-      <div class="contact-card contact-card--soon">
-        <div class="ci ci--discord"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4V5z"/><circle cx="9.5" cy="10.5" r="0.6" fill="currentColor" stroke="none"/><circle cx="14.5" cy="10.5" r="0.6" fill="currentColor" stroke="none"/></svg></div>
-        <h3>Discord</h3>
-        <p>Coming soon for quick async chat. Email's still the fastest way to reach me for now.</p>
+        <p>Escrow-protected commissions are coming soon. For now, message me and I'll give you the same protection through an invoice.</p>
       </div>
     </div>
-    <p class="contact-note">Written and async only, no voice calls. I usually reply the same day.</p>
+    <p class="contact-note">Written and async, on Discord or email. I usually reply the same day.</p>
   </div>
 </section>
 
@@ -1155,14 +1152,14 @@
 (function () {
   'use strict';
   var state = { service: 'backport', size: 'medium', wall: 'none', loader: 'forge', license: 'open', scope: 'small', rush: 'standard' };
-  var BASE = { small: 55, medium: 95, large: 160 };
-  var COMPAT = { small: 40, medium: 90, large: 180 };
-  var WALL = { none: 0, moderate: 40, hard: 100, brutal: 180 };
-  var LOADER = { forge: 0, neoforge: 30, fabric: 300 };
+  var BASE = { small: 35, medium: 65, large: 120 };
+  var COMPAT = { small: 25, medium: 60, large: 130 };
+  var WALL = { none: 0, moderate: 25, hard: 60, brutal: 110 };
+  var LOADER = { forge: 0, neoforge: 20, fabric: 250 };
   var RUSH = { standard: 1, r72: 1.25, r24: 1.5 };
-  var MAINT = { small: 35, medium: 70, large: 130 };
-  var OPT = { small: 60, medium: 120, large: 220 };
-  var MIN = 35;
+  var MAINT = { small: 25, medium: 50, large: 95 };
+  var OPT = { small: 45, medium: 85, large: 150 };
+  var MIN = 20;
   var priceEl = document.getElementById('est-price');
   var noteEl = document.getElementById('est-note');
   var summaryEl = document.getElementById('est-summary');
@@ -1230,7 +1227,7 @@
     }
     L.push('Delivery: ' + (state.license === 'closed' ? 'private (closed-source / ARR, to me only)' : 'open-source or I have permission (publishable)'));
     if (state.rush !== 'standard') L.push('Priority: ' + (state.rush === 'r72' ? 'priority (+25%)' : 'top priority (+50%)'));
-    L.push('Quick quote: ' + money(r.low) + ' to ' + money(r.high) + ' (min $35, you confirm the exact fixed price after a look)');
+    L.push('Quick quote: ' + money(r.low) + ' to ' + money(r.high) + ' (min $20, you confirm the exact fixed price after a look)');
     L.push('');
     L.push('Thanks!');
     return L.join('\n');
