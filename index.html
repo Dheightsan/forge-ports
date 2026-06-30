@@ -153,7 +153,9 @@
     html[data-theme="light"] #hero h1 .md { color: #8a6a2a; }
     html[data-theme="light"] #hero h1 .fb,
     html[data-theme="light"] #hero h1 .nf { color: #bd5a28; }
-    html[data-theme="light"] #hero h1 .fg { color: #a87d16; }
+    html[data-theme="light"] #hero h1 .fg { color: #46688f; }
+    html[data-theme="light"] #hero h1 .mods { color: #a85f28; }
+    html[data-theme="light"] #hero h1 .amp { color: #9a6a12; }
     html[data-theme="light"] #hero h1 .mc { background: linear-gradient(180deg, #5aa033 0%, #5aa033 50%, #7a5226 50%, #7a5226 100%); -webkit-background-clip: text; background-clip: text; }
     html[data-theme="light"] .pill-price { background: rgba(192,126,60,0.12); border-color: rgba(192,126,60,0.36); color: #9a5d22; }
 
@@ -260,8 +262,10 @@
     #hero h1 .cf { color: #6b8fb5; }   /* Port: forged steel/iron blue (Forge), legible, not washed-out grey */
     #hero h1 .md { color: #cdae7e; }   /* backport: Fabric loom tan */
     #hero h1 .fb { color: #d2703f; }   /* revive: NeoForge terracotta */
-    #hero h1 .fg { color: #d9a531; }   /* any version: gold, spans every version */
+    #hero h1 .fg { color: #6b8fb5; }   /* any version: steel blue, echoes Port (was loud gold) */
     #hero h1 .nf { color: #d2703f; }   /* any loader: NeoForge terracotta */
+    #hero h1 .mods { color: #c8814c; }   /* mods: copper, the object (was plain white) */
+    #hero h1 .amp { font-family: Georgia, 'Times New Roman', serif; font-style: italic; font-weight: 600; color: #d9a531; padding: 0 0.03em; }   /* the "&" (Spanish "y"): elegant italic-serif ampersand, the only gold accent */
     /* grass-block two-tone on "Minecraft": grass green on top, dirt brown on bottom */
     #hero h1 .mc { background: linear-gradient(180deg, #79bd45 0%, #79bd45 50%, #9a6a38 50%, #9a6a38 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
     .hero-tagline { font-size: 1.28rem; font-weight: 600; color: var(--text); max-width: 560px; margin-bottom: 1.1rem; line-height: 1.4; }
@@ -688,7 +692,7 @@
   </div>
   <div class="wrap hero-inner">
     <div class="badge"><span class="badge-dot"></span>Open for commissions</div>
-    <h1><span class="cf">Port,</span> <span class="md">backport</span> &amp; <span class="fb">revive</span> <span class="mc" translate="no">Minecraft</span> mods,<br><span class="fg">any version,</span> <span class="nf">any loader</span></h1>
+    <h1><span class="cf">Port,</span> <span class="md">backport</span> <span class="amp">&amp;</span> <span class="fb">revive</span> <span class="mc" translate="no">Minecraft</span> <span class="mods">mods,</span><br><span class="fg">any version,</span> <span class="nf">any loader</span></h1>
     <p class="hero-who">I'm <strong>josda</strong>. I build modpacks, got tired of mods dying on old versions, and started porting them myself.</p>
     <p class="hero-desc">
       Forge 1.20.1 is what I do best, and where I'm fastest. I move mods up a version, down a version, and between Forge, Fabric and NeoForge. I check the licence first and boot-test every build before it goes out, and you always get a fixed quote in writing before you pay a thing.
