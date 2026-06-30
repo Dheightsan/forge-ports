@@ -149,13 +149,13 @@
     html[data-theme="light"] .port-card,
     html[data-theme="light"] .contact-card { background: linear-gradient(180deg, #fdfaf4, #f3ead9); box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), 0 8px 22px -18px rgba(120,90,50,0.30); }
     /* light-mode: deepen hero word colours so they hold contrast on cream */
-    html[data-theme="light"] #hero h1 .cf { color: #46688f; }
-    html[data-theme="light"] #hero h1 .md { color: #8a6a2a; }
+    html[data-theme="light"] #hero h1 .cf,
+    html[data-theme="light"] #hero h1 .md,
     html[data-theme="light"] #hero h1 .fb,
-    html[data-theme="light"] #hero h1 .nf { color: #bd5a28; }
-    html[data-theme="light"] #hero h1 .fg { color: #46688f; }
-    html[data-theme="light"] #hero h1 .mods { color: #a85f28; }
-    html[data-theme="light"] #hero h1 .amp { color: #9a6a12; }
+    html[data-theme="light"] #hero h1 .amp { color: #bd5a28; }
+    html[data-theme="light"] #hero h1 .nf { color: #3e7a1f; }
+    html[data-theme="light"] #hero h1 .fg,
+    html[data-theme="light"] #hero h1 .mods { color: #2b2117; }
     html[data-theme="light"] #hero h1 .mc { background: linear-gradient(180deg, #5aa033 0%, #5aa033 50%, #7a5226 50%, #7a5226 100%); -webkit-background-clip: text; background-clip: text; }
     html[data-theme="light"] .pill-price { background: rgba(192,126,60,0.12); border-color: rgba(192,126,60,0.36); color: #9a5d22; }
 
@@ -261,13 +261,13 @@
     .badge-dot { width: 7px; height: 7px; background: var(--green-hi); border-radius: 50%; }
     #hero h1 { font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 700; letter-spacing: -0.005em; line-height: 1.1; margin-bottom: 1.2rem; max-width: 730px; text-shadow: 0 1px 2px rgba(0,0,0,0.6), 0 2px 32px rgba(0,0,0,0.55); }
     #hero h1 .g { color: #95d6a6; }
-    #hero h1 .cf { color: #6b8fb5; }   /* Port: forged steel/iron blue (Forge), legible, not washed-out grey */
-    #hero h1 .md { color: #cdae7e; }   /* backport: Fabric loom tan */
-    #hero h1 .fb { color: #d2703f; }   /* revive: NeoForge terracotta */
-    #hero h1 .fg { color: #6b8fb5; }   /* any version: steel blue, echoes Port (was loud gold) */
-    #hero h1 .nf { color: #d2703f; }   /* any loader: NeoForge terracotta */
-    #hero h1 .mods { color: #c8814c; }   /* mods: copper, the object (was plain white) */
-    #hero h1 .amp { font-family: Georgia, 'Times New Roman', serif; font-style: italic; font-weight: 600; color: #d9a531; padding: 0 0.03em; }   /* the "&" (Spanish "y"): elegant italic-serif ampersand, the only gold accent */
+    #hero h1 .cf,
+    #hero h1 .md,
+    #hero h1 .fb { color: #d2703f; }   /* Port / backport / revive = the service: ONE strong brand accent (terracotta, highest-attention) so the eye lands on what's sold */
+    #hero h1 .fg { color: #efe6d4; }   /* any version: high-contrast cream, recedes so the accent pops (contrast hierarchy) */
+    #hero h1 .nf { color: #79bd45; }   /* any loader: grass-green, ties to the Minecraft ecosystem */
+    #hero h1 .mods { color: #efe6d4; }   /* mods: cream */
+    #hero h1 .amp { font-family: Georgia, 'Times New Roman', serif; font-style: italic; font-weight: 600; color: #d2703f; padding: 0 0.03em; }   /* the "&": elegant italic-serif ampersand, terracotta with the verbs */
     /* grass-block two-tone on "Minecraft": grass green on top, dirt brown on bottom */
     #hero h1 .mc { background: linear-gradient(180deg, #79bd45 0%, #79bd45 50%, #9a6a38 50%, #9a6a38 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
     .hero-tagline { font-size: 1.28rem; font-weight: 600; color: var(--text); max-width: 560px; margin-bottom: 1.1rem; line-height: 1.4; }
