@@ -148,20 +148,12 @@
     html[data-theme="light"] .legal-card,
     html[data-theme="light"] .port-card,
     html[data-theme="light"] .contact-card { background: linear-gradient(180deg, #fdfaf4, #f3ead9); box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), 0 8px 22px -18px rgba(120,90,50,0.30); }
-    /* light-mode: deepen hero word colours so they hold contrast on cream */
-    html[data-theme="light"] #hero h1 { text-shadow: 0.06em 0.07em 0 rgba(120,88,48,0.28); }
-    html[data-theme="light"] .hero-services { text-shadow: 0.04em 0.05em 0 rgba(120,88,48,0.24); }
+    /* light-mode: hero words hold contrast on cream */
     html[data-theme="light"] #hero h1 .hl-bring,
     html[data-theme="light"] #hero h1 .hl-mods { color: #2b2117; }
-    html[data-theme="light"] #hero h1 .hl-life { color: #1a8f56; }
-    html[data-theme="light"] .hero-services .s-port { color: #1f8a93; }
-    html[data-theme="light"] .hero-services .s-back { color: #9a7416; }
-    html[data-theme="light"] .hero-services .s-compat { color: #3a55a0; }
-    html[data-theme="light"] .hero-services .s-maint { color: #5f6670; }
-    html[data-theme="light"] .hero-services .s-opt { color: #b04f28; }
-    html[data-theme="light"] .hero-services .s-ver { color: #4a4030; }
-    html[data-theme="light"] .hero-services .s-load { color: #3e7a1f; }
-    html[data-theme="light"] #hero h1 .mc { background: linear-gradient(180deg, #5aa033 0%, #5aa033 50%, #7a5226 50%, #7a5226 100%); -webkit-background-clip: text; background-clip: text; filter: drop-shadow(0.05em 0.06em 0 rgba(120,88,48,0.3)); }
+    html[data-theme="light"] #hero h1 .hl-life { color: #3e7a1f; }
+    html[data-theme="light"] .hero-services { color: #6f6350; }
+    html[data-theme="light"] #hero h1 .mc { background: linear-gradient(180deg, #5aa033 0%, #5aa033 50%, #7a5226 50%, #7a5226 100%); -webkit-background-clip: text; background-clip: text; }
     html[data-theme="light"] .pill-price { background: rgba(192,126,60,0.12); border-color: rgba(192,126,60,0.36); color: #9a5d22; }
 
     /* theme toggle */
@@ -264,22 +256,14 @@
     .hero-inner::before { content: none; }
     .badge { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--green-glow); border: 1px solid var(--green-ring); color: var(--green-hi); font-size: 0.78rem; font-weight: 600; padding: 0.4rem 0.85rem; border-radius: 999px; margin-bottom: 1.6rem; }
     .badge-dot { width: 7px; height: 7px; background: var(--green-hi); border-radius: 50%; }
-    /* Minecraft-style hard drop shadow (offset down-right, no blur) on the hero title */
-    #hero h1 { font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 700; letter-spacing: -0.005em; line-height: 1.12; margin-bottom: 0.9rem; max-width: 730px; text-shadow: 0.07em 0.085em 0 rgba(8,5,2,0.6); }
+    #hero h1 { font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 700; letter-spacing: -0.005em; line-height: 1.12; margin-bottom: 1.1rem; max-width: 730px; text-shadow: 0 1px 2px rgba(0,0,0,0.55); }
     #hero h1 .hl-bring,
     #hero h1 .hl-mods { color: #e8dcc4; }   /* cream, high contrast */
-    #hero h1 .hl-life { color: #2ec27a; }   /* "back to life": emerald green = revival (Minecraft emerald) */
-    /* service line: a harmonious Minecraft-block palette, one fitting colour per service, same hard shadow */
-    .hero-services { font-size: 1.12rem; font-weight: 700; line-height: 1.5; margin-bottom: 1.2rem; max-width: 600px; letter-spacing: -0.005em; text-shadow: 0.045em 0.06em 0 rgba(8,5,2,0.5); }
-    .hero-services .s-port   { color: #4ec4cf; }   /* diamond aqua */
-    .hero-services .s-back   { color: #d2a23f; }   /* gold */
-    .hero-services .s-compat { color: #5b7fd0; }   /* lapis blue */
-    .hero-services .s-maint  { color: #aab0b8; }   /* iron */
-    .hero-services .s-opt    { color: #d2683f; }   /* redstone */
-    .hero-services .s-ver    { color: #cdbfa6; }   /* muted cream */
-    .hero-services .s-load   { color: #79bd45; }   /* grass green */
+    #hero h1 .hl-life { color: #79bd45; }   /* "back to life": grass-green, one calm accent (life) */
+    /* service line: clean, readable, secondary (no rainbow, normal size) */
+    .hero-services { font-size: 1.05rem; font-weight: 600; line-height: 1.5; color: var(--text-soft); margin-bottom: 1.2rem; max-width: 560px; }
     /* grass-block two-tone on "Minecraft": grass green on top, dirt brown on bottom */
-    #hero h1 .mc { background: linear-gradient(180deg, #79bd45 0%, #79bd45 50%, #9a6a38 50%, #9a6a38 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; filter: drop-shadow(0.05em 0.06em 0 rgba(8,5,2,0.55)); }
+    #hero h1 .mc { background: linear-gradient(180deg, #79bd45 0%, #79bd45 50%, #9a6a38 50%, #9a6a38 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
     .hero-tagline { font-size: 1.28rem; font-weight: 600; color: var(--text); max-width: 560px; margin-bottom: 1.1rem; line-height: 1.4; }
     .hero-tagline .b { color: var(--brown-hi); }
     .hero-desc { font-size: 1.05rem; color: var(--text-soft); max-width: 545px; margin-bottom: 2rem; line-height: 1.7; }
