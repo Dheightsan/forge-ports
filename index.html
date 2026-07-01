@@ -149,9 +149,13 @@
     html[data-theme="light"] .port-card,
     html[data-theme="light"] .contact-card { background: linear-gradient(180deg, #fdfaf4, #f3ead9); box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), 0 8px 22px -18px rgba(120,90,50,0.30); }
     /* light-mode: hero words hold contrast on cream */
-    html[data-theme="light"] #hero h1 .hl-bring,
-    html[data-theme="light"] #hero h1 .hl-mods { color: #2b2117; }
-    html[data-theme="light"] #hero h1 .hl-life { color: #3e7a1f; }
+    html[data-theme="light"] #hero h1 .w-port,
+    html[data-theme="light"] #hero h1 .w-back,
+    html[data-theme="light"] #hero h1 .w-amp,
+    html[data-theme="light"] #hero h1 .w-mods,
+    html[data-theme="light"] #hero h1 .w-ver { color: #2b2117; }
+    html[data-theme="light"] #hero h1 .w-rev,
+    html[data-theme="light"] #hero h1 .w-load { color: #3e7a1f; }
     html[data-theme="light"] .hero-services { color: #6f6350; }
     html[data-theme="light"] #hero h1 .mc { color: #4f8a2a; }
     html[data-theme="light"] .pill-price { background: rgba(192,126,60,0.12); border-color: rgba(192,126,60,0.36); color: #9a5d22; }
@@ -257,9 +261,13 @@
     .badge { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--green-glow); border: 1px solid var(--green-ring); color: var(--green-hi); font-size: 0.78rem; font-weight: 600; padding: 0.4rem 0.85rem; border-radius: 999px; margin-bottom: 1.6rem; }
     .badge-dot { width: 7px; height: 7px; background: var(--green-hi); border-radius: 50%; }
     #hero h1 { font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 700; letter-spacing: -0.005em; line-height: 1.12; margin-bottom: 1.1rem; max-width: 730px; text-shadow: 0 1px 2px rgba(0,0,0,0.55); }
-    #hero h1 .hl-bring,
-    #hero h1 .hl-mods { color: #e8dcc4; }   /* cream, high contrast */
-    #hero h1 .hl-life { color: #79bd45; }   /* "back to life": grass-green, one calm accent (life) */
+    #hero h1 .w-port,
+    #hero h1 .w-back,
+    #hero h1 .w-amp,
+    #hero h1 .w-mods,
+    #hero h1 .w-ver { color: #e8dcc4; }   /* cream, high contrast */
+    #hero h1 .w-rev { color: #5fb84a; }   /* revive = life (green) */
+    #hero h1 .w-load { color: #79bd45; }   /* any loader = the Minecraft ecosystem (grass green) */
     /* service line: clean, readable, secondary (no rainbow, normal size) */
     .hero-services { font-size: 1.05rem; font-weight: 600; line-height: 1.5; color: var(--text-soft); margin-bottom: 1.2rem; max-width: 560px; }
     /* grass-block two-tone on "Minecraft": grass green on top, dirt brown on bottom */
@@ -695,8 +703,8 @@
   </div>
   <div class="wrap hero-inner">
     <div class="badge"><span class="badge-dot"></span>Open for commissions</div>
-    <h1><span class="hl-bring">Bring your</span> <span class="mc" translate="no">Minecraft</span> <span class="hl-mods">mods</span> <span class="hl-life">back to life</span></h1>
-    <p class="hero-services"><span class="s-port">Ports</span>, <span class="s-back">backports</span>, <span class="s-compat">compatibility</span>, <span class="s-maint">maintenance</span>, <span class="s-opt">optimisation</span>. <span class="s-ver">Any version</span>, <span class="s-load">any loader</span>.</p>
+    <h1><span class="w-port">Port,</span> <span class="w-back">backport</span> <span class="w-amp">&amp;</span> <span class="w-rev">revive</span> <span class="mc" translate="no">Minecraft</span> <span class="w-mods">mods,</span><br><span class="w-ver">any version,</span> <span class="w-load">any loader</span></h1>
+    <p class="hero-services">Plus compatibility patches, maintenance and optimisation.</p>
     <p class="hero-who">I'm <strong>josda</strong>. I build modpacks; I got fed up with mods dying off on old versions, so I started porting them myself.</p>
     <p class="hero-desc">
       Forge 1.20.1 is what I do best, and where I'm quickest. I move mods up a version or down a version, and work across Forge, Fabric and NeoForge. I check the licence first and boot-test every build before it's released, and I always give a fixed written quote before you pay anything.
