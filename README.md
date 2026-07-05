@@ -1,47 +1,40 @@
-# Minecraft Mod Porting — dheightsan
+# Modwright: Minecraft mod porting & backporting
 
-**Commission specialist for Minecraft mod ports, backports, and revives — any version, any loader.**
+**I port, backport and revive Minecraft mods across Forge, Fabric and NeoForge. Forge 1.20.1 specialist.**
 
-👉 **Full service page & instant price estimator:** [dheightsan.github.io/forge-ports](https://dheightsan.github.io/forge-ports/)
+👉 **Full service page and instant price estimator:** [dheightsan.github.io/forge-ports](https://dheightsan.github.io/forge-ports/)
 
 ---
 
 ## Services
 
-| Service | Description | Price |
-|---------|-------------|-------|
-| 🎯 **Backport** | Newer mod → older version (1.20.1 specialty) | From $40 flat |
-| ⏫ **Forward-port / revive** | Old or abandoned mod → modern version | By complexity |
-| 🔄 **Loader conversion** | Fabric ↔ Forge ↔ NeoForge | +40–80% |
-| 🧩 **Compatibility patch** | Make mods coexist without new content | From $50 |
+| Service | Description | Starts at |
+|---------|-------------|-----------|
+| 🔧 **Quick fix / recompile** | Same loader, neighbouring version, small tweaks | $20 |
+| 🎯 **Backport** | Newer mod running on an older version (Forge 1.20.1 specialty) | $35 |
+| 🧩 **Compatibility patch** | Make mods coexist, works even with closed-source mods | $25 |
+| 🛠️ **Maintenance** | Fix mixins, crashes, dependency breaks | $25 |
+| ⚡ **Optimization** | Less lag, lighter on resources | $45 |
+| ⏫ **Revive / loader conversion** | Abandoned mods, Fabric to Forge | Quoted per job |
 
-**Forge 1.20.1 is the base rate** — it's my specialty. Other versions, Fabric→Forge conversions, and closed-source mods carry premiums; the [estimator](https://dheightsan.github.io/forge-ports/#estimator) shows your range in real time.
-
----
+These are starting points. The exact price is scoped privately and agreed in writing before any work begins. $20 minimum. The [estimator](https://dheightsan.github.io/forge-ports/#estimator) shows your ballpark in real time.
 
 ## How to commission
 
-1. **Open a Discussion** ([Q&A tab](../../discussions)) with the mod link and what you need — or use the [estimator](https://dheightsan.github.io/forge-ports/#estimator) to pre-fill a quote summary.
-2. I reply with a **fixed flat price** and timeline. No hourly billing, no surprises.
-3. Pay via **BuiltByBit escrow** (default), PayPal G&S, or crypto USDT. Money held until you have the working mod.
-
-**7-day guarantee:** if it crashes, I fix it free or refund you. If I can't complete it, you don't pay.
-
----
+1. **Message me on [Discord](https://discord.gg/EV8F84fheJ)** (fastest) or email **modwrightstudios@gmail.com** with the mod link and what you need. The estimator writes a summary you can paste.
+2. I reply with a fixed price and a realistic timeline, in writing. No hourly billing, no surprise add-ons.
+3. Pay via Wise or PayPal (Goods & Services). On bigger jobs a 50% deposit starts the work; you see the build working before final payment. BuiltByBit escrow is coming soon.
 
 ## Legal
 
-- **Open-source mods** (MIT / Apache / LGPL) and **compatibility add-ons** → published to CurseForge & Modrinth, full author credit.
-- **Closed-source (ARR) mods** → delivered privately to you only, never published. You pay for my time, not redistribution rights.
-- I won't publicly redistribute a closed-source mod without written author permission — that's the one line I never cross.
-
----
+- **Open-source mods** (MIT / Apache / LGPL) and **compatibility add-ons** get published to CurseForge and Modrinth with full author credit.
+- **Closed-source (ARR) mods** are delivered privately to you only, never published. You pay for my time, not redistribution rights.
+- I won't publicly redistribute a closed-source mod without written author permission. That's the one line I never cross.
 
 ## Contact
 
 | Channel | Link |
 |---------|------|
-| 💬 GitHub Discussions | [Open a thread](../../discussions) |
-| 📧 Email | josdansanpes2005@gmail.com |
-| 🏪 BuiltByBit | *Profile coming soon* |
-| 💬 Discord | *Coming soon* |
+| 💬 Discord (fastest) | [discord.gg/EV8F84fheJ](https://discord.gg/EV8F84fheJ) |
+| 📧 Email | modwrightstudios@gmail.com |
+| 🏪 BuiltByBit | Profile coming soon |
