@@ -58,7 +58,7 @@
       {"@type":"Question","name":"Is this legal?","acceptedAnswer":{"@type":"Answer","text":"Yes. You pay for my time writing the port, not for distribution rights. I publish only open-source mods or mods with written permission; anything else is delivered privately to whoever holds the right to use it. See the Licenses section below."}},
       {"@type":"Question","name":"How do I pay safely?","acceptedAnswer":{"@type":"Answer","text":"You pay once we've agreed the scope and price in writing and you've seen the build working. Wise and PayPal (Goods & Services) work for clients worldwide, and I never take Friends & Family payments. BuiltByBit escrow is coming soon; once it's live it will hold your payment until you have the working mod."}},
       {"@type":"Question","name":"How long does it take?","acceptedAnswer":{"@type":"Answer","text":"It depends entirely on the mod. Every one is different, so I won't quote a fixed turnaround I can't stand behind. We agree a realistic timeline in writing before I start, and I'd rather under-promise and actually deliver than miss a date. Need it sooner? A priority fee moves your job to the front of the queue."}},
-      {"@type":"Question","name":"What if the port doesn't work?","acceptedAnswer":{"@type":"Answer","text":"You see the build working before you make final payment, so you're never paying for something you haven't seen run. The deliverable is whatever we agree in writing up front, and that's the standard I hold it to. Problems introduced later by Minecraft updates, other mods, or server changes are separate work, not part of the original job."}},
+      {"@type":"Question","name":"What if the port doesn't work?","acceptedAnswer":{"@type":"Answer","text":"You see the build working before you make final payment, so you're never paying for something you haven't seen run. The deliverable is whatever we agree in writing up front, and if a bug inside that agreed scope shows up within 30 days of delivery, I fix it at no charge. After that, or for problems caused by Minecraft updates, other mods, or server changes, it becomes a maintenance job."}},
       {"@type":"Question","name":"What's out of scope?","acceptedAnswer":{"@type":"Answer","text":"I write code. Textures, 3D models and animations, full gameplay or balance redesigns, and ongoing maintenance across future Minecraft versions all sit outside a standard port and get quoted separately. Tell me upfront and I'll fold it into the price."}}
     ]
   }
@@ -197,7 +197,7 @@
     .wrap { max-width: var(--max); margin: 0 auto; }
     section { padding: 5.5rem 1.5rem; }
     /* perf: skip rendering off-screen sections until needed (auto remembers size → no jank) */
-    #legal, #faq, #portfolio, #about, #contact { content-visibility: auto; contain-intrinsic-size: auto 700px; }
+    #legal, #faq, #about, #contact { content-visibility: auto; contain-intrinsic-size: auto 700px; }
 
     /* loaders strip */
     .loaders-strip { padding: 1.4rem 1.5rem; background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
@@ -617,7 +617,6 @@
     </span>
     <ul class="nav-links">
       <li><a href="#services">Services</a></li>
-      <li><a href="#portfolio">Portfolio</a></li>
       <li><a href="#estimator">Estimate</a></li>
       <li><a href="#pricing">Pricing</a></li>
       <li><a href="#legal">Legal</a></li>
@@ -951,8 +950,9 @@
       <div class="step"><div class="step-n">02</div><h3>Flat quote</h3><p>I look over the mod and reply with a fixed price and a timeline. No hourly billing, and no scope creep once we've agreed.</p></div>
       <div class="step"><div class="step-n">03</div><h3>Agree &amp; start</h3><p>We lock the scope and price in writing. On bigger jobs a 50% deposit starts the work; smaller jobs can pay on delivery. BuiltByBit escrow is coming soon for added peace of mind.</p></div>
       <div class="step"><div class="step-n">04</div><h3>I build it</h3><p>Every job gets its own timeline, agreed in writing before I touch anything. Each mod is different, so I won't promise a deadline I can't keep. Textures and assets are always included.</p></div>
-      <div class="step"><div class="step-n">05</div><h3>Delivery + final 50%</h3><p>You receive and test the .jar. Final payment before release. Open-source ports get published with author credit.</p></div>
+      <div class="step"><div class="step-n">05</div><h3>Delivery + final 50%</h3><p>You receive and test the .jar. Final payment before release. Scope bugs are free to fix for 30 days. Open-source ports get published with author credit.</p></div>
     </div>
+    <div class="legal-quote reveal"><strong>No published port to show yet.</strong> I'm a solo dev building a track record one port at a time, so here's how I keep it straight while the gallery fills up: the scope and price are agreed in writing first, the licence is checked before I quote, and you see the working build before final payment. If your mod is open-source, your port gets published to CurseForge &amp; Modrinth with code anyone can read, and it becomes the first work shown on this site.</div>
   </div>
 </section>
 
@@ -1043,46 +1043,13 @@
       <div class="faq-item"><button type="button" class="faq-q">Is this legal? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a">Yes. You pay for my time writing the port, not for distribution rights. I publish only open-source mods or mods with written permission; anything else is delivered privately to whoever holds the right to use it. See the Licenses section below.</div></div>
       <div class="faq-item"><button type="button" class="faq-q">How do I pay safely? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a">You pay once we've agreed the scope and price in writing and you've seen the build working. Wise and PayPal (Goods &amp; Services) work for clients worldwide, and I never take Friends &amp; Family payments. BuiltByBit escrow is coming soon; once it's live it will hold your payment until you have the working mod.</div></div>
       <div class="faq-item"><button type="button" class="faq-q">How long does it take? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a">It depends entirely on the mod. Every one is different, so I won't quote a fixed turnaround I can't stand behind. We agree a realistic timeline in writing before I start, and I'd rather under-promise and actually deliver than miss a date. Need it sooner? A priority fee moves your job to the front of the queue.</div></div>
-      <div class="faq-item"><button type="button" class="faq-q">What if the port doesn't work? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a">You see the build working before you make final payment, so you're never paying for something you haven't seen run. The deliverable is whatever we agree in writing up front, and that's the standard I hold it to. Problems introduced later by Minecraft updates, other mods, or server changes are separate work, not part of the original job.</div></div>
+      <div class="faq-item"><button type="button" class="faq-q">What if the port doesn't work? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a">You see the build working before you make final payment, so you're never paying for something you haven't seen run. The deliverable is whatever we agree in writing up front, and if a bug inside that agreed scope shows up within 30 days of delivery, I fix it at no charge. After that, or for problems caused by Minecraft updates, other mods, or server changes, it becomes a maintenance job.</div></div>
       <div class="faq-item"><button type="button" class="faq-q">What's out of scope? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a">I write code. Textures, 3D models and animations, full gameplay or balance redesigns, and ongoing maintenance across future Minecraft versions all sit outside a standard port and get quoted separately. Tell me upfront and I'll fold it into the price.</div></div>
     </div>
   </div>
 </section>
 
 <div class="torn-sep" aria-hidden="true"><svg viewBox="0 0 1440 24" preserveAspectRatio="none"><path d="M0 24 L0 13 L60 8 L120 16 L186 7 L256 15 L330 9 L408 17 L486 8 L566 15 L648 9 L730 17 L812 8 L894 15 L976 10 L1058 17 L1140 8 L1222 15 L1304 9 L1386 16 L1440 12 L1440 24 Z"/></svg></div>
-
-<!-- PORTFOLIO -->
-<section id="portfolio">
-  <div class="wrap">
-    <div class="eyebrow">Portfolio</div>
-    <h2>Open-source proof ports</h2>
-    <p class="sub">I publish my open-source ports on CurseForge &amp; Modrinth so you can read the actual code before you hire me. Each one is licence-verified and boot-tested. The first few are landing now, and your own mod always stays private.</p>
-
-    <div class="port-grid reveal">
-      <div class="port-card port-card--guarantee">
-        <h3 class="port-name">No published port here yet, but here's how every commission is handled</h3>
-        <p class="port-desc">I'm a solo dev building up a track record one port at a time. There's no star rating to lean on yet, so here's how I keep it straight: the scope and price are agreed in writing first, the licence is checked before I quote, and you see the working build before you make final payment. Come in as an early client and, if your mod is open-source, your port becomes the first one shown here, with code you can read on CurseForge &amp; Modrinth.</p>
-        <dl class="port-stats">
-          <div><dt>Quote</dt><dd>In writing first</dd></div>
-          <div><dt>Payment</dt><dd>You see it work first</dd></div>
-          <div><dt>License</dt><dd>Checked first</dd></div>
-          <div><dt>Code</dt><dd>Open &amp; readable</dd></div>
-        </dl>
-        <a href="#estimator" class="btn btn-primary btn-sm">Price my mod</a>
-      </div>
-
-      <div class="port-card port-card--cta">
-        <div class="port-cta-text">
-          <strong>Be the first example</strong>
-          <p>Be one of my first clients. If your mod is open-source, your port also becomes the first one in this gallery.</p>
-        </div>
-        <a href="#contact" class="btn btn-quote btn-sm">Price my mod</a>
-      </div>
-    </div>
-
-    <p class="port-footer-note">I'd rather show you working code than make promises, so this gallery fills up with real published ports as they ship. <a href="#contact">Commission one now</a> while the queue is short.</p>
-  </div>
-</section>
 
 <!-- ABOUT -->
 <section id="about">
@@ -1153,7 +1120,7 @@
           <p><strong>Quotes &amp; pricing.</strong> The estimator gives a non-binding ballpark. The final price is fixed and agreed in writing before any work begins. A deposit may be requested for larger jobs; a $20 minimum applies.</p>
           <p><strong>Payment.</strong> Through Wise or PayPal, or BuiltByBit escrow where available, as agreed. With escrow, funds release on delivery.</p>
           <p><strong>Delivery &amp; timelines.</strong> You receive a working, boot-tested build. Timelines are honest estimates, not promises, and I don't commit to hard deadlines.</p>
-          <p><strong>Scope &amp; corrections.</strong> The deliverable is the working build described in our written agreement, which you review before final payment. If a delivered build does not match that agreed scope, I will correct it; where a correction is not possible, I refund the affected amount. This does not cover later breakage from Minecraft updates, other mods, server setup, or changes beyond the agreed scope, which are treated as new work.</p>
+          <p><strong>Scope &amp; corrections.</strong> The deliverable is the working build described in our written agreement, which you review before final payment. If a bug inside that agreed scope shows up within 30 days of delivery, I fix it at no charge; where a correction is not possible, I refund the affected amount. After 30 days, or for breakage caused by Minecraft updates, other mods, server setup, or changes beyond the agreed scope, fixes are quoted as maintenance work.</p>
           <p><strong>Your responsibilities.</strong> You must have the right to commission work on the mod you submit: it's open-source, your own, or you have the author's permission. You are responsible for how you use the delivered files.</p>
           <p><strong>Rights &amp; redistribution.</strong> You pay for my time, not for distribution rights. Closed-source (ARR) work is delivered privately to you only and is never published. I will not publicly redistribute an ARR mod without the author's written permission.</p>
           <p><strong>Liability.</strong> Work is provided "as is." To the extent permitted by law, I am not liable for indirect or consequential damages, and total liability is limited to the amount paid for the job in question.</p>
