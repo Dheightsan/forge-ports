@@ -169,6 +169,69 @@
     html[data-theme="light"] #hero h1 .mc { color: #4f8a2a; }
     html[data-theme="light"] .pill-price { background: rgba(192,126,60,0.12); border-color: rgba(192,126,60,0.36); color: #9a5d22; }
 
+    /* ===== GREEN ACCENT (Modrinth-style), combinable with light/dark ===== */
+    html[data-accent="green"] {
+      --bg: #0e1310; --surface: #151d17; --surface2: #1b271e;
+      --border: #243028; --border-lt: #35443a;
+      --green: #3fbf6f; --green-hi: #5fe08d;
+      --green-glow: rgba(63,191,111,0.14); --green-ring: rgba(63,191,111,0.34);
+      --brown: #2e6b4f; --brown-hi: #6fcf9a;
+      --brown-glow: rgba(63,191,111,0.10); --brown-ring: rgba(63,191,111,0.32);
+      --gold: #7ee2a8; --gold-glow: rgba(126,226,168,0.12);
+      --text: #e2ece4; --text-soft: #a8bcae; --text-mute: #87998b;
+    }
+    html[data-accent="green"]:not([data-theme="light"]) nav { background: rgba(14,19,16,0.88); }
+    html[data-accent="green"]:not([data-theme="light"]) #hero { background: linear-gradient(180deg, #0c120e, #0a0f0b); }
+    html[data-accent="green"]:not([data-theme="light"]) #how-it-works,
+    html[data-accent="green"]:not([data-theme="light"]) #legal { background: linear-gradient(180deg, #121a14, #0e1310); }
+    html[data-accent="green"]:not([data-theme="light"]) #contact { background: radial-gradient(ellipse 95% 75% at 50% -8%, rgba(63,191,111,0.07), transparent 55%), linear-gradient(180deg, #111a13, #0d120f); }
+    html[data-accent="green"]:not([data-theme="light"]) .card,
+    html[data-accent="green"]:not([data-theme="light"]) .est-form,
+    html[data-accent="green"]:not([data-theme="light"]) .legal-card,
+    html[data-accent="green"]:not([data-theme="light"]) .port-card,
+    html[data-accent="green"]:not([data-theme="light"]) .contact-card { background: linear-gradient(180deg, #18211a, #111812); box-shadow: inset 0 1px 0 rgba(226,236,228,0.04), 0 8px 24px -16px rgba(0,0,0,0.7); }
+    html[data-accent="green"] .torn-sep path { fill: #10160f; stroke: rgba(126,226,168,0.20); }
+    html[data-accent="green"] .btn-nav { background: var(--green); color: #08170d !important; box-shadow: 0 0 0 2px var(--green-ring); }
+    html[data-accent="green"] .btn-nav:hover { background: var(--green-hi) !important; box-shadow: 0 0 0 3px var(--green-ring); }
+    html[data-accent="green"]:not([data-theme="light"]) #hero h1 .w-port,
+    html[data-accent="green"]:not([data-theme="light"]) #hero h1 .w-back,
+    html[data-accent="green"]:not([data-theme="light"]) #hero h1 .w-amp,
+    html[data-accent="green"]:not([data-theme="light"]) #hero h1 .w-mods,
+    html[data-accent="green"]:not([data-theme="light"]) #hero h1 .w-ver { color: #e9f2e9; }
+    /* light + green */
+    html[data-accent="green"][data-theme="light"] {
+      --bg: #eef4ec; --surface: #f8fbf6; --surface2: #e3efe0;
+      --border: #d4e3cf; --border-lt: #c0d5ba;
+      --text: #1e2a20; --text-soft: #405245; --text-mute: #5d705f;
+      --green: #2f9e57; --green-hi: #1f8443;
+      --gold: #1f7a3f; --gold-glow: rgba(31,122,63,0.10);
+      --brown: #2f8a5c; --brown-hi: #256b48;
+    }
+    html[data-accent="green"][data-theme="light"] nav { background: rgba(248,251,246,0.9); }
+    html[data-accent="green"][data-theme="light"] #hero { background: linear-gradient(180deg, #f2f8ef, #e8f1e4); }
+    html[data-accent="green"][data-theme="light"] #how-it-works,
+    html[data-accent="green"][data-theme="light"] #legal { background: linear-gradient(180deg, #e8f1e4, #eef4ec); }
+    html[data-accent="green"][data-theme="light"] #contact { background: radial-gradient(ellipse 95% 75% at 50% -8%, rgba(47,158,87,0.08), transparent 55%), linear-gradient(180deg, #e9f2e5, #eef4ec); }
+    html[data-accent="green"][data-theme="light"] .card,
+    html[data-accent="green"][data-theme="light"] .est-form,
+    html[data-accent="green"][data-theme="light"] .legal-card,
+    html[data-accent="green"][data-theme="light"] .port-card,
+    html[data-accent="green"][data-theme="light"] .contact-card { background: linear-gradient(180deg, #fbfdf9, #ecf4e7); box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), 0 8px 22px -18px rgba(50,90,60,0.30); }
+    html[data-accent="green"][data-theme="light"] a { color: #1f8443; }
+    html[data-accent="green"][data-theme="light"] .eyebrow,
+    html[data-accent="green"][data-theme="light"] .faq-icon,
+    html[data-accent="green"][data-theme="light"] .contact-link,
+    html[data-accent="green"][data-theme="light"] .est-copy.done { color: #1f8443; }
+    html[data-accent="green"][data-theme="light"] .badge { color: #1f8443; background: rgba(47,158,87,0.10); }
+    html[data-accent="green"][data-theme="light"] .pill-trust { color: #1f8443; background: rgba(47,158,87,0.12); }
+    html[data-accent="green"][data-theme="light"] .pill-price { background: rgba(47,158,87,0.10); border-color: rgba(47,158,87,0.34); color: #1f8443; }
+    html[data-accent="green"][data-theme="light"] #hero h1 .w-port,
+    html[data-accent="green"][data-theme="light"] #hero h1 .w-back,
+    html[data-accent="green"][data-theme="light"] #hero h1 .w-amp,
+    html[data-accent="green"][data-theme="light"] #hero h1 .w-mods,
+    html[data-accent="green"][data-theme="light"] #hero h1 .w-ver { color: #1e2a20; }
+    html[data-accent="green"][data-theme="light"] .hero-services { color: #52655a; }
+
     /* theme toggle */
     .theme-toggle { display: inline-grid; place-items: center; width: 34px; height: 34px; border-radius: var(--radius); background: var(--surface2); border: 1px solid var(--border-lt); color: var(--text-soft); cursor: pointer; transition: color 0.15s, border-color 0.15s; }
     .theme-toggle:hover { color: var(--text); border-color: var(--green-ring); }
@@ -591,16 +654,23 @@
   </style>
   <script>
     (function(){
-      var root=document.documentElement, KEY='mw-theme';
+      var root=document.documentElement, KEY='mw-theme', KEYA='mw-accent';
       function apply(t){ if(t==='light'){ root.setAttribute('data-theme','light'); } else { root.removeAttribute('data-theme'); } }
-      var s=null; try{ s=localStorage.getItem(KEY); }catch(e){}
+      function applyA(a){ if(a==='green'){ root.setAttribute('data-accent','green'); } else { root.removeAttribute('data-accent'); } }
+      var s=null, sa=null; try{ s=localStorage.getItem(KEY); sa=localStorage.getItem(KEYA); }catch(e){}
       if(s){ apply(s); } else if(window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches){ apply('light'); }
+      if(sa){ applyA(sa); }
       document.addEventListener('DOMContentLoaded',function(){
-        var b=document.getElementById('theme-toggle'); if(!b) return;
-        b.addEventListener('click',function(){
+        var b=document.getElementById('theme-toggle');
+        if(b){ b.addEventListener('click',function(){
           var n = root.getAttribute('data-theme')==='light' ? 'dark' : 'light';
           apply(n); try{ localStorage.setItem(KEY,n); }catch(e){}
-        });
+        }); }
+        var ba=document.getElementById('accent-toggle');
+        if(ba){ ba.addEventListener('click',function(){
+          var na = root.getAttribute('data-accent')==='green' ? 'warm' : 'green';
+          applyA(na); try{ localStorage.setItem(KEYA,na); }catch(e){}
+        }); }
       });
     })();
   </script>
@@ -621,6 +691,7 @@
       <li><a href="#pricing">Pricing</a></li>
       <li><a href="#legal">Legal</a></li>
       <li class="nav-cta"><a href="#contact" class="btn-nav">Price my mod</a></li>
+      <li class="nav-tog"><button type="button" id="accent-toggle" class="theme-toggle" aria-label="Toggle green accent" title="Warm / green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19c0-7 4.5-12.5 13-13-0.5 8.5-6 13-13 13z"/><path d="M5 19c3-4.5 6.5-8 10.5-10.5"/></svg></button></li>
       <li class="nav-tog"><button type="button" id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema claro u oscuro" title="Light / dark"><svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button></li>
     </ul>
   </div>
