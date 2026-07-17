@@ -260,7 +260,7 @@
     .wrap { max-width: var(--max); margin: 0 auto; }
     section { padding: 5.5rem 1.5rem; }
     /* perf: skip rendering off-screen sections until needed (auto remembers size → no jank) */
-    #legal, #faq, #about, #contact { content-visibility: auto; contain-intrinsic-size: auto 700px; }
+    #legal, #faq, #portfolio, #about, #contact { content-visibility: auto; contain-intrinsic-size: auto 700px; }
 
     /* loaders strip */
     .loaders-strip { padding: 1.4rem 1.5rem; background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
@@ -687,6 +687,7 @@
     </span>
     <ul class="nav-links">
       <li><a href="#services">Services</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
       <li><a href="#estimator">Estimate</a></li>
       <li><a href="#pricing">Pricing</a></li>
       <li><a href="#legal">Legal</a></li>
@@ -1023,7 +1024,6 @@
       <div class="step"><div class="step-n">04</div><h3>I build it</h3><p>Every job gets its own timeline, agreed in writing before I touch anything. Each mod is different, so I won't promise a deadline I can't keep. Textures and assets are always included.</p></div>
       <div class="step"><div class="step-n">05</div><h3>Delivery + final 50%</h3><p>You receive and test the .jar. Final payment before release. Scope bugs are free to fix for 30 days. Open-source ports get published with author credit.</p></div>
     </div>
-    <div class="legal-quote reveal"><strong>No published port to show yet.</strong> I'm a solo dev building a track record one port at a time, so here's how I keep it straight while the gallery fills up: the scope and price are agreed in writing first, the licence is checked before I quote, and you see the working build before final payment. If your mod is open-source, your port gets published to CurseForge &amp; Modrinth with code anyone can read, and it becomes the first work shown on this site.</div>
   </div>
 </section>
 
@@ -1121,6 +1121,44 @@
 </section>
 
 <div class="torn-sep" aria-hidden="true"><svg viewBox="0 0 1440 24" preserveAspectRatio="none"><path d="M0 24 L0 13 L60 8 L120 16 L186 7 L256 15 L330 9 L408 17 L486 8 L566 15 L648 9 L730 17 L812 8 L894 15 L976 10 L1058 17 L1140 8 L1222 15 L1304 9 L1386 16 L1440 12 L1440 24 Z"/></svg></div>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="wrap">
+    <div class="eyebrow">Portfolio</div>
+    <h2>Recent ports</h2>
+    <p class="sub">Real, in-game-tested work. Client commissions stay private unless you want yours shown here.</p>
+
+    <div class="port-grid reveal">
+      <div class="port-card">
+        <div class="port-card-head">
+          <div class="port-badges">
+            <span class="badge--lic-mit" translate="no">LGPL-2.1</span>
+            <span class="badge--loader" translate="no">NeoForge 1.21.1</span>
+          </div>
+          <span class="port-status">Publication pending</span>
+        </div>
+        <h3 class="port-name" translate="no">Mindful Eating</h3>
+        <p class="port-desc">Forward-port of camcam_burger's food-variety mod, from Forge 1.20.1 up to NeoForge 1.21.1. Rebuilt the per-player data system on native data attachments (dropping the Blueprint dependency at the creator's suggestion) and moved the food-stat tweaks to the 1.21 component system. Boot-tested in-game and delivered to the original creator for the mod's official CurseForge page.</p>
+        <dl class="port-stats">
+          <div><dt>Jump</dt><dd>1.20.1 → 1.21.1</dd></div>
+          <div><dt>Loader</dt><dd>Forge → NeoForge</dd></div>
+          <div><dt>Dependencies</dt><dd>Cut from 2 to 1</dd></div>
+          <div><dt>Tested</dt><dd>In-game, survival</dd></div>
+        </dl>
+        <p class="port-link-ph">The official page link lands here once the creator publishes it.</p>
+      </div>
+
+      <div class="port-card port-card--cta">
+        <div class="port-cta-text">
+          <strong>Your mod could be next</strong>
+          <p>Backports, revivals, compat patches and fixes, priced from $20 with a fixed written quote first.</p>
+        </div>
+        <a href="#estimator" class="btn btn-quote btn-sm">Price my mod</a>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ABOUT -->
 <section id="about">
