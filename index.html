@@ -318,7 +318,9 @@
     .nav-inner { max-width: var(--max); margin: 0 auto; padding: 0 1.5rem; height: 62px; display: flex; align-items: center; justify-content: space-between; }
     .brand { display: inline-flex; align-items: center; gap: 0.6rem; font-family: var(--font-display); font-weight: 600; font-size: 1.12rem; letter-spacing: 0; color: var(--text); }
     .brand-mark { width: 27px; height: 27px; flex-shrink: 0; }
-    .brand-cuy { width: 54px; height: 32px; flex-shrink: 0; background-image: url('logo-cuy.webp'); background-repeat: no-repeat; background-size: contain; background-position: center; }
+    /* el badge del cuy es circular: caja cuadrada, no el 54x32 del logo anterior,
+       que dejaba 22px de aire muerto a los lados. */
+    .brand-cuy { width: 46px; height: 46px; flex-shrink: 0; background-image: url('logo-cuy-v2.webp'); background-repeat: no-repeat; background-size: contain; background-position: center; }
     .brand .ph { color: var(--text-mute); font-weight: 600; font-size: 0.95rem; }
     .nav-links { display: flex; gap: 1.6rem; list-style: none; align-items: center; }
     .nav-links a { color: var(--text-soft); font-size: 0.88rem; transition: color 0.15s; }
