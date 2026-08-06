@@ -304,7 +304,7 @@
       display: inline-flex; align-items: center; gap: 0.45rem;
       padding: 0.74rem 1.4rem; cursor: pointer; font-family: inherit;
       font-size: 0.92rem; font-weight: 700; line-height: 1.2;
-      border: 1px solid transparent; border-radius: var(--radius); transition: all 0.15s;
+      border: 1px solid transparent; border-radius: var(--radius); transition: background-color 0.15s, color 0.15s, border-color 0.15s, box-shadow 0.15s;
     }
     .btn-primary { background: var(--green); color: #1a1410; }
     .btn-primary:hover { background: var(--green-hi); text-decoration: none; transform: translateY(-1px); }
@@ -435,7 +435,7 @@
     .est-group { margin-bottom: 1.5rem; }
     .est-group:last-child { margin-bottom: 0; }
     .est-group.hidden { display: none; }
-    .est-adv-toggle { display: inline-flex; align-items: center; gap: 0.4rem; background: transparent; border: 1px dashed var(--border-lt); color: var(--text-soft); font-family: inherit; font-size: 0.86rem; font-weight: 600; padding: 0.55rem 0.95rem; border-radius: var(--radius); cursor: pointer; transition: all 0.15s; margin-bottom: 1.5rem; }
+    .est-adv-toggle { display: inline-flex; align-items: center; gap: 0.4rem; background: transparent; border: 1px dashed var(--border-lt); color: var(--text-soft); font-family: inherit; font-size: 0.86rem; font-weight: 600; padding: 0.55rem 0.95rem; border-radius: var(--radius); cursor: pointer; transition: background-color 0.15s, color 0.15s, border-color 0.15s; margin-bottom: 1.5rem; }
     .est-adv-toggle:hover { border-color: var(--green-ring); color: var(--text); }
     .est-adv-toggle .adv-caret { transition: transform 0.18s; font-size: 0.78rem; }
     .est-adv-toggle[aria-expanded="true"] .adv-caret { transform: rotate(180deg); }
@@ -443,7 +443,7 @@
     .est-label { font-size: 0.96rem; font-weight: 700; color: var(--text); margin-bottom: 0.7rem; display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; }
     .est-hint { font-size: 0.78rem; color: var(--text-mute); font-weight: 400; }
     .est-options { display: flex; flex-wrap: wrap; gap: 0.55rem; }
-    .est-opt { background: var(--surface2); color: var(--text-soft); border: 1px solid var(--border); padding: 0.7rem 1.05rem; min-height: 48px; border-radius: var(--radius); font-size: 0.95rem; font-weight: 600; cursor: pointer; font-family: inherit; transition: all 0.13s; }
+    .est-opt { background: var(--surface2); color: var(--text-soft); border: 1px solid var(--border); padding: 0.7rem 1.05rem; min-height: 48px; border-radius: var(--radius); font-size: 0.95rem; font-weight: 600; cursor: pointer; font-family: inherit; transition: background-color 0.13s, color 0.13s, border-color 0.13s; }
     .est-opt:hover { border-color: var(--green-ring); color: var(--text); }
     .est-opt.active { background: var(--green-hi); color: #2a1808; border-color: var(--green-hi); font-weight: 700; box-shadow: 0 0 0 3px var(--green-glow); }
     .est-opt small { display: block; font-size: 0.8rem; font-weight: 400; opacity: 0.82; margin-top: 0.15rem; }
@@ -546,7 +546,7 @@
     .pnote strong { color: var(--text-soft); }
     .paystrip { margin-top: 1.6rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.4rem 1.5rem; }
     .paystrip-head { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-mute); margin-bottom: 1rem; }
-    .paycards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.9rem; }
+    .paycards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.9rem; }
     .paycard { display: flex; flex-direction: column; gap: 0.45rem; background: var(--surface2); border: 1px solid var(--border-lt); border-radius: var(--radius); padding: 1rem 1.1rem; transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s; }
     .paycard:hover { transform: translateY(-2px); border-color: var(--green-ring); box-shadow: 0 6px 20px rgba(0,0,0,0.18); }
     .paycard svg { width: 26px; height: 26px; }
@@ -986,10 +986,9 @@
 <!-- SERVICES -->
 <section id="services">
   <div class="wrap">
-    <div class="eyebrow">What I do</div>
-    <h2>Any direction, any loader</h2>
+        <h2>Any direction, any loader</h2>
     <p class="sub">Forge 1.20.1 is my lowest rate because it sits just below every recent version wall, so it's where I'm fastest. Anything harder is priced by the real work it adds, not some made-up percentage. The full reasoning is written up in <a href="mod-porting-cost.html">what a port costs, and why</a>.</p>
-    <div class="cards reveal">
+    <div class="cards">
       <div class="card card--base">
         <div class="icon-wrap svc-copper"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v13"/><path d="M6 11l6 6 6-6"/></svg></div>
         <h3>Backport</h3>
@@ -1059,8 +1058,7 @@
 <!-- HOW IT WORKS -->
 <section id="how-it-works">
   <div class="wrap">
-    <div class="eyebrow">Process</div>
-    <h2>How a mod commission works</h2>
+        <h2>How a mod commission works</h2>
     <p class="sub">It's all done in writing, async, no calls. The price is locked before I start, so there's nothing to surprise you halfway through.</p>
     <div class="steps">
       <div class="step"><div class="step-n">01</div><h3>Send me the mod</h3><p>Message the mod link and what you need. Open-source or licensed, both work. Use the estimator to pre-fill the details.</p></div>
@@ -1075,8 +1073,7 @@
 <!-- PRICING -->
 <section id="pricing">
   <div class="wrap">
-    <div class="eyebrow">Pricing</div>
-    <h2>Fixed price, agreed before we start</h2>
+        <h2>Fixed price, agreed before we start</h2>
     <p class="sub">These are starting points. Tell me about your mod on Discord or by email and you get one fixed price for the whole job, agreed in writing before I begin. No hourly billing, no surprise add-ons.</p>
 
     <!-- intro offer: parked. re-enable this block when ready
@@ -1087,7 +1084,7 @@
     -->
     <p class="pnote" style="margin-top:1.4rem">Built for clarity: one fixed price agreed in writing before I start, and you see the working build before final payment.</p>
 
-    <div class="ptable reveal">
+    <div class="ptable">
       <div class="prow prow-head"><div>Service</div><div>Starts at</div><div>What it covers</div></div>
       <div class="prow base">
         <div class="pservice">Quick fix / recompile <small>simplest job</small></div>
@@ -1151,8 +1148,7 @@
 <!-- FAQ -->
 <section id="faq">
   <div class="wrap">
-    <div class="eyebrow">FAQ</div>
-    <h2>Before you ask</h2>
+        <h2>Before you ask</h2>
     <div class="faq-list">
       <div class="faq-item"><button type="button" class="faq-q">Why is 1.20.1 the cheapest lane? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a">It's what I do best, and it sits just below every recent version wall, so it takes the least work. I pass that saving on as the lowest add-ons. Other versions have to cross walls (networking, data components, worldgen) that genuinely take longer, so they carry a flat premium per wall.</div></div>
       <div class="faq-item"><button type="button" class="faq-q">What exactly is a compatibility patch? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a">Making two or more mods work together without adding new content. For example: getting one mod's mobs to spawn in another mod's biomes, or fixing a conflict that breaks a feature. Each one is custom, so I quote it by scope.</div></div>
@@ -1170,11 +1166,10 @@
 <!-- PORTFOLIO -->
 <section id="portfolio">
   <div class="wrap">
-    <div class="eyebrow">Portfolio</div>
-    <h2>Recent ports</h2>
+        <h2>Recent ports</h2>
     <p class="sub">Real, in-game-tested work. Client commissions stay private unless you want yours shown here.</p>
 
-    <div class="port-grid reveal">
+    <div class="port-grid">
       <div class="port-card">
         <div class="port-card-head">
           <div class="port-badges">
@@ -1208,8 +1203,7 @@
 <!-- ABOUT -->
 <section id="about">
   <div class="wrap">
-    <div class="eyebrow">Who I am</div>
-    <h2>It's just me</h2>
+        <h2>It's just me</h2>
     <p class="sub">There's no team and nothing gets outsourced. The person who takes your commission is the person who writes and debugs every line of it.</p>
     <div class="about-body">
       <p>Like a lot of pack builders, I spent years waiting on mods that never got updated. Eventually I started porting them myself, and after enough of them on Forge 1.20.1 I know the API cold: the event handlers, the Gradle quirks, the mapping gaps between versions. Most of the people who write to me run a private SMP with friends, or keep a modpack alive that one dead mod is holding hostage.</p>
@@ -1227,10 +1221,9 @@
 <!-- CONTACT -->
 <section id="contact">
   <div class="wrap">
-    <div class="eyebrow">Contact</div>
-    <h2>Get your fixed price</h2>
+        <h2>Get your fixed price</h2>
     <p class="sub">Everything's in writing and async. <strong>Discord is the fastest way to reach me</strong> (email works too): message me or build your request in the estimator above, and you'll have a fixed quote in writing, usually within a day. BuiltByBit escrow is coming soon.</p>
-    <div class="contact-cards reveal">
+    <div class="contact-cards">
       <div class="contact-card contact-card--primary">
         <div class="ci ci--discord"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4V5z"/><circle cx="9.5" cy="10.5" r="0.6" fill="currentColor" stroke="none"/><circle cx="14.5" cy="10.5" r="0.6" fill="currentColor" stroke="none"/></svg></div>
         <h3>Discord (best way to reach me)</h3>
@@ -1256,10 +1249,9 @@
 <!-- LEGAL -->
 <section id="legal">
   <div class="wrap">
-    <div class="eyebrow">Licenses &amp; rights</div>
-    <h2>I only port what I have rights to port</h2>
+        <h2>I only port what I have rights to port</h2>
     <p class="sub">Most devs in this space ignore licensing. I don't, because a DMCA takedown or account ban hits your account harder than it hits me.</p>
-    <div class="legal-cards reveal">
+    <div class="legal-cards">
       <div class="legal-card"><h3>Public: open-source &amp; compatibility</h3><p>Open-source mods (MIT · Apache · LGPL), mods with written permission, and compatibility add-ons (my own code, depending on mods you install yourself) get published to CurseForge &amp; Modrinth, with full credit to the original authors.</p></div>
       <div class="legal-card"><h3>Private: closed-source mods</h3><p>Most requested mods are closed-source. You bring one you have the right to use; I modify it for you and deliver privately, to you only, never published. You pay for my time, not for redistribution.</p></div>
       <div class="legal-card"><h3>What I won't do</h3><p>Publicly redistribute a closed-source (All Rights Reserved) mod without written permission from the author. I don't bend on this. It's what keeps your accounts safe from takedowns and bans.</p></div>
@@ -1277,7 +1269,7 @@
           <p><strong>Scope &amp; corrections.</strong> The deliverable is the working build described in our written agreement, which you review before final payment. If a bug inside that agreed scope shows up within 30 days of delivery, I fix it at no charge; where a correction is not possible, I refund the affected amount. After 30 days, or for breakage caused by Minecraft updates, other mods, server setup, or changes beyond the agreed scope, fixes are quoted as maintenance work.</p>
           <p><strong>Your responsibilities.</strong> You must have the right to commission work on the mod you submit: it's open-source, your own, or you have the author's permission. You are responsible for how you use the delivered files.</p>
           <p><strong>Rights &amp; redistribution.</strong> You pay for my time, not for distribution rights. Closed-source (ARR) work is delivered privately to you only and is never published. I will not publicly redistribute an ARR mod without the author's written permission.</p>
-          <p><strong>Liability.</strong> Work is provided "as is." To the extent permitted by law, I am not liable for indirect or consequential damages, and total liability is limited to the amount paid for the job in question.</p>
+          <p><strong>Liability.</strong> Work is provided “as is.” To the extent permitted by law, I am not liable for indirect or consequential damages, and total liability is limited to the amount paid for the job in question.</p>
           <p><strong>Changes.</strong> These terms may be updated; the version shown here when you commission applies.</p>
           <p class="legal-doc-note">Plain-language summary for a small commission service, not formal legal advice. Last updated June 2026.</p>
         </div>
@@ -1299,7 +1291,7 @@
         <div class="legal-doc-body">
           <p><strong>Mods.</strong> I only work on mods you have the right to modify: open-source, your own, or with the author's permission. Open-source ports I publish keep the original licence and credit the original author; closed-source work stays private.</p>
           <p><strong>This website.</strong> Design, copy and graphics are original work © Modwright. Illustrations and icons are hand-built inline SVG; no third-party images are used.</p>
-          <p><strong>Fonts.</strong> "Space Grotesk" is used under the SIL Open Font License.</p>
+          <p><strong>Fonts.</strong> “Space Grotesk” is used under the SIL Open Font License.</p>
           <p><strong>Trademarks.</strong> Minecraft is a trademark of Mojang Studios. Forge, NeoForge, Fabric, CurseForge, Modrinth and BuiltByBit belong to their respective owners. Their names are used here for identification only. This is an independent service with no affiliation or endorsement.</p>
           <p class="legal-doc-note">Last updated June 2026.</p>
         </div>
