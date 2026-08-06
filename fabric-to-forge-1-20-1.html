@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; frame-src 'none'">
+<title>Porting a Fabric mod to Forge 1.20.1: what actually breaks | Modwright</title>
+<meta name="description" content="A practical account of what breaks when you move a Fabric mod to Forge 1.20.1: registries, entrypoints, mixins, spawns, bundled libraries, and the four failures that produce no error at all.">
+<link rel="canonical" href="https://dheightsan.github.io/forge-ports/fabric-to-forge-1-20-1.html">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon-180.png">
+<meta property="og:title" content="Porting a Fabric mod to Forge 1.20.1: what actually breaks">
+<meta property="og:description" content="Registries, entrypoints, mixins, spawns and the four failures that produce no error at all.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://dheightsan.github.io/forge-ports/fabric-to-forge-1-20-1.html">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"TechArticle",
+"headline":"Porting a Fabric mod to Forge 1.20.1: what actually breaks",
+"description":"A practical account of what breaks when moving a Fabric mod to Forge 1.20.1, including the failures that produce no error message.",
+"author":{"@type":"Person","name":"josda"},
+"publisher":{"@type":"Organization","name":"Modwright"},
+"inLanguage":"en",
+"about":["Minecraft modding","Fabric","Forge","mod porting"],
+"mainEntityOfPage":"https://dheightsan.github.io/forge-ports/fabric-to-forge-1-20-1.html"}
+</script>
+<style>
+  @font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 400; font-display: swap; src: url('fonts/space-grotesk-400-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  @font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 600; font-display: swap; src: url('fonts/space-grotesk-600-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  @font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 700; font-display: swap; src: url('fonts/space-grotesk-700-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+  :root {
+    --bg: #14100c; --surface: #211812; --surface2: #2a1f15;
+    --border: #2a2823; --border-lt: #3c382f;
+    --copper: #c07e3c; --gold: #cba14a; --brick: #c14a3c;
+    --text: #eae4d6; --text-soft: #b0a896; --text-mute: #8d8372;
+    --radius: 8px; --max: 760px;
+    --font: 'Space Grotesk', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  }
+  html[data-theme="light"] {
+    --bg: #faf7f1; --surface: #fff; --surface2: #f3ede2;
+    --border: #e2dccf; --border-lt: #cfc7b5;
+    --text: #241c14; --text-soft: #4f463a; --text-mute: #6d6355;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { overflow-x: clip; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font); font-size: 1rem; line-height: 1.72; -webkit-font-smoothing: antialiased; }
+  :focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; border-radius: 2px; }
+  a { color: var(--copper); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .skip { position: absolute; left: -9999px; }
+  .skip:focus { left: 1rem; top: 1rem; background: var(--surface2); padding: 0.6rem 1rem; border-radius: var(--radius); z-index: 10; }
+
+  header.bar { border-bottom: 1px solid var(--border); background: var(--bg); }
+  .bar-in { max-width: var(--max); margin: 0 auto; padding: 0.9rem 1.4rem; display: flex; align-items: center; gap: 0.65rem; }
+  .cuy { width: 46px; height: 46px; flex-shrink: 0; background: url('logo-cuy-v2.webp') center/contain no-repeat; }
+  .bar-in strong { font-weight: 600; font-size: 1.1rem; }
+  .bar-in .back { margin-left: auto; font-size: 0.9rem; color: var(--text-soft); }
+
+  main { max-width: var(--max); margin: 0 auto; padding: 3rem 1.4rem 4rem; }
+  .kicker { color: var(--text-mute); font-size: 0.82rem; letter-spacing: 0.09em; text-transform: uppercase; margin-bottom: 0.9rem; }
+  h1 { font-size: clamp(1.9rem, 5.5vw, 2.7rem); font-weight: 700; line-height: 1.14; letter-spacing: -0.01em; overflow-wrap: anywhere; min-width: 0; margin-bottom: 1.1rem; }
+  h2 { font-size: clamp(1.25rem, 3.4vw, 1.55rem); font-weight: 600; line-height: 1.25; margin: 2.9rem 0 0.85rem; overflow-wrap: anywhere; }
+  h3 { font-size: 1.05rem; font-weight: 600; margin: 1.7rem 0 0.5rem; }
+  p { margin-bottom: 1.05rem; color: var(--text-soft); }
+  p.lede { font-size: 1.1rem; color: var(--text); }
+  strong { color: var(--text); font-weight: 600; }
+  ul, ol { margin: 0 0 1.05rem 1.15rem; color: var(--text-soft); }
+  li { margin-bottom: 0.5rem; }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.9em; background: var(--surface2); border: 1px solid var(--border); border-radius: 4px; padding: 0.1em 0.38em; color: var(--text); overflow-wrap: anywhere; }
+  .tablewrap { overflow-x: auto; margin-bottom: 1.3rem; border: 1px solid var(--border); border-radius: var(--radius); }
+  table { border-collapse: collapse; width: 100%; min-width: 420px; font-size: 0.93rem; }
+  th, td { text-align: left; padding: 0.7rem 0.9rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { color: var(--text); font-weight: 600; background: var(--surface2); }
+  tr:last-child td { border-bottom: none; }
+  td { color: var(--text-soft); }
+  .note { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--copper); border-radius: var(--radius); padding: 1.1rem 1.3rem; margin: 1.5rem 0; }
+  .note p:last-child { margin-bottom: 0; }
+  .silent { border-left-color: var(--brick); }
+  .cta { background: var(--surface); border: 1px solid var(--border-lt); border-radius: var(--radius); padding: 1.6rem; margin-top: 3rem; }
+  .cta p:last-child { margin-bottom: 0; }
+  .btn { display: inline-block; background: var(--copper); color: #17110b; font-weight: 600; padding: 0.72rem 1.25rem; border-radius: var(--radius); margin-top: 0.4rem; }
+  .btn:hover { text-decoration: none; filter: brightness(1.08); }
+  footer { border-top: 1px solid var(--border); margin-top: 3.5rem; padding: 1.8rem 1.4rem; text-align: center; color: var(--text-mute); font-size: 0.85rem; }
+  @media (max-width: 480px) { .bar-in strong { display: none; } main { padding-top: 2.2rem; } }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="bar">
+  <div class="bar-in">
+    <span class="cuy" role="img" aria-label="Modwright logo"></span>
+    <strong translate="no">Modwright</strong>
+    <a class="back" href="./">Services and pricing</a>
+  </div>
+</header>
+
+<main id="main">
+  <div class="kicker">Field notes</div>
+  <h1>Porting a <span translate="no">Fabric</span> mod to <span translate="no">Forge</span> 1.20.1: what actually breaks</h1>
+
+  <p class="lede">Most of a small mod moves over in an afternoon. What eats the week is a short list of things that behave differently, plus four failures that produce no error message at all. This is what I hit repeatedly, written down so you can judge the job before you start it.</p>
+
+  <p>Everything below comes from real ports, not from reading documentation: <span translate="no">Boids</span> and its <span translate="no">Birds</span> addon, a rideable capybara mod with <span translate="no">GeckoLib</span> animations, and a dog mod with five variants.</p>
+
+  <h2>1. Registration is the easy part, and it is most of the diff</h2>
+  <p><span translate="no">Fabric</span> registers things by calling <code>Registry.register</code> during initialisation. <span translate="no">Forge</span> wants a <code>DeferredRegister</code> per registry type, created up front and bound to the mod event bus. Mechanical work: items, blocks, entities, sounds, the creative tab, spawn eggs.</p>
+  <p>It is boring and it is safe, because the compiler catches you. Expect this to be sixty per cent of the changed lines and almost none of the risk. If someone quotes a port by counting files, this is what they are counting, and it is the wrong thing to count.</p>
+
+  <h2>2. Entrypoints and lifecycle</h2>
+  <p>The <code>fabric.mod.json</code> entrypoints become a <code>@Mod</code> class plus event listeners, and <code>mods.toml</code> replaces the manifest. Client-only code moves from a separate entrypoint to a <code>DistExecutor</code> call or a client-side event subscriber.</p>
+  <p>Config is the part people forget: a mod reading its own JSON from the config directory keeps working, but the directory resolution changes. In <span translate="no">Boids</span> the config stayed as the same <code>boids.json5</code> file with the same options, and only the loading path and the reload command moved.</p>
+
+  <div class="note">
+    <p><strong>Version ranges bite here.</strong> If your addon depends on the main mod, check the range against the sibling's real version string. <span translate="no">Forge</span> parses <code>1.20.1-2.0.3</code> as major 1, so a dependency declared as <code>[2.0,)</code> excludes it and you get the red dependency screen on first boot. It looks like a broken build; it is a string comparison.</p>
+  </div>
+
+  <h2>3. Mixins: separate the accessors from the real ones</h2>
+  <p>This is the single most useful distinction when estimating a port, and the one most often got wrong.</p>
+  <p>An <code>@Accessor</code> or <code>@Invoker</code> mixin exists only to expose a private field or method. On <span translate="no">Forge</span> you usually delete it and write <strong>one line of an access transformer</strong> instead. It costs minutes.</p>
+  <p>A behavioural mixin, an <code>@Inject</code> or <code>@Redirect</code> into a vanilla class, is different. It has to be re-checked against the target class, and injection points that were valid on one mapping may not exist on the other. That is where the hours go.</p>
+  <p>A mod with thirty mixin files where twenty-five are accessors is a small job. A mod with eight mixins that are all injections into rendering or world generation is not. Counting them together produces an estimate that is wrong in both directions.</p>
+
+  <h2>4. Spawns move from tags to biome modifiers</h2>
+  <p><span translate="no">Fabric</span> mods usually add natural spawns in code against a biome tag. On <span translate="no">Forge</span> 1.20.1 that becomes a data file: a biome modifier JSON of type <code>forge:add_spawns</code>, with the same biome set and the same weights.</p>
+  <div class="note silent">
+    <p><strong>These decode at world creation, not at boot.</strong> A malformed biome modifier will not stop the game from starting. You find it when a new world has no mobs, which is a long way from the file you edited. Always create a fresh world when testing spawns.</p>
+  </div>
+
+  <h2>5. Bundled libraries</h2>
+  <p>A <span translate="no">Fabric</span> build that shades a small library needs the equivalent on <span translate="no">Forge</span>, which is <code>jarJar</code>. <span translate="no">Boids</span> bundles a config library this way, and the practical consequence is that the shipped artifact is the fat jar, not the thin one. Ship the wrong file and the mod fails at class load with an error that names the library, not your mod.</p>
+
+  <h2>6. Libraries with no direct equivalent</h2>
+  <p>This is the honest cost driver. Some are a swap; some mean reimplementing a feature.</p>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Fabric library</th><th>On Forge 1.20.1</th></tr></thead>
+      <tbody>
+        <tr><td translate="no">GeckoLib</td><td>Exists. Usually a rebuild against the Forge artifact, and the explicit init call goes away</td></tr>
+        <tr><td translate="no">Cloth Config</td><td>Exists, but the API differs enough that config screens get rewritten</td></tr>
+        <tr><td translate="no">Trinkets</td><td>Closest equivalent is <span translate="no">Curios</span>. Different model, so slot logic is rewritten</td></tr>
+        <tr><td translate="no">Mod Menu</td><td>No equivalent. Config screens hook into the Forge screen instead</td></tr>
+        <tr><td translate="no">Cardinal Components</td><td>No direct equivalent. Per-entity data is reimplemented on capabilities</td></tr>
+        <tr><td>Kotlin via the Fabric language adapter</td><td>Workable, but the mod entry and the build both change shape</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>A mod already built on <span translate="no">Architectury</span>, with a <code>forge/src</code> directory in the tree, is a different conversation entirely. Much of the work is done and the job is often closer to a version bump.</p>
+
+  <h2>7. The four failures that produce no error</h2>
+  <p>Compiling is not the finish line. These are the ones that cost real time, because there is nothing in the log to search for.</p>
+
+  <h3>An access transformer that did not make it across</h3>
+  <p>A field that was public in your development mappings can be private at runtime. The result is an <code>IllegalAccessError</code> thrown inside world generation, where it is swallowed by the generation thread. The game does not crash. It hangs, or the chunk simply arrives empty.</p>
+
+  <h3>A missing block colour handler</h3>
+  <p>Biome-tinted foliage on <span translate="no">Forge</span> needs a colour handler registered on the client. Without it the plants render grey. There is no warning, no exception, and the model and texture are both correct. It looks like an art bug and it is a registration bug.</p>
+
+  <h3>Resources dropped from the jar</h3>
+  <p>A parity check that compares classes will happily report that nothing was lost while the licence file is missing from the built jar. For an MIT mod that is not cosmetic: shipping the copyright notice is the one obligation the licence imposes, so a jar without it is a licence violation, not an oversight.</p>
+
+  <h3>Testing a stale artifact</h3>
+  <p>The oldest one and still the most common. The build succeeded, the instance is running the previous jar, and you spend an hour debugging a fix that was never loaded. Compare file sizes or hashes before concluding anything about behaviour.</p>
+
+  <h2>8. Knowing when it is actually done</h2>
+  <p>Compiling proves the syntax. What proves the port is starting the game, creating a fresh world, and confirming that each thing the mod adds is present: items in the creative tab, entities spawning naturally rather than only by command, animations playing, config reload responding, and a clean exit.</p>
+  <p>The command <code>/summon</code> is not a substitute for a natural spawn. It skips part of the spawn path, so a mob that appears when summoned can still be absent from every world you generate.</p>
+
+  <h2>9. So how long does it take</h2>
+  <p>Honest ranges, assuming source is available and the licence permits it:</p>
+  <ul>
+    <li><strong>Small content mod</strong>, a few entities or items, no behavioural mixins: an afternoon.</li>
+    <li><strong>Medium mod</strong>, natural spawns, an animation library, a handful of injections: a couple of days, most of it in testing rather than typing.</li>
+    <li><strong>Anything reimplementing a missing library</strong>: the library, not the mod, is now the job. Estimate it separately.</li>
+  </ul>
+  <p>The variance is not in the code volume. It is in how much of the mod reaches into vanilla behaviour, and in how much of it fails quietly.</p>
+
+  <div class="cta">
+    <p><strong>If you would rather not do this yourself.</strong></p>
+    <p>I port, backport and revive Minecraft mods, and <span translate="no">Forge</span> 1.20.1 is where I work most. I check the licence before quoting, give a fixed price in writing before any payment, and boot test every build in a real instance before it goes out.</p>
+    <p><a class="btn" href="./#estimator">Price your mod</a></p>
+  </div>
+</main>
+
+<footer>
+  <span translate="no">Modwright</span> &middot; <a href="./">Services and pricing</a> &middot; <a href="./#legal">Terms</a>
+</footer>
+</body>
+</html>
