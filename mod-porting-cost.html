@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; frame-src 'none'">
+<title>What a Minecraft mod port costs, and why | Modwright</title>
+<meta name="description" content="What drives the price of a Minecraft mod port: the version walls it crosses, the loader direction, the subsystems it touches and the licence. With the actual numbers I quote from.">
+<link rel="canonical" href="https://dheightsan.github.io/forge-ports/mod-porting-cost.html">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon-180.png">
+<meta property="og:title" content="What a Minecraft mod port costs, and why">
+<meta property="og:description" content="Version walls, loader direction, subsystems and licence. The four things that actually set the price of a mod port.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://dheightsan.github.io/forge-ports/mod-porting-cost.html">
+<meta property="og:image" content="https://dheightsan.github.io/forge-ports/og.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"TechArticle",
+"headline":"What a Minecraft mod port costs, and why",
+"description":"The four drivers behind the price of a Minecraft mod port: version walls crossed, loader direction, subsystems touched and licence terms.",
+"author":{"@type":"Person","name":"josda"},
+"publisher":{"@type":"Organization","name":"Modwright"},
+"inLanguage":"en",
+"about":["Minecraft modding","mod porting","backporting","commission pricing"],
+"mainEntityOfPage":"https://dheightsan.github.io/forge-ports/mod-porting-cost.html"}
+</script>
+<style>
+  @font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 400; font-display: swap; src: url('fonts/space-grotesk-400-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  @font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 600; font-display: swap; src: url('fonts/space-grotesk-600-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  @font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 700; font-display: swap; src: url('fonts/space-grotesk-700-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+  :root {
+    --bg: #14100c; --surface: #211812; --surface2: #2a1f15;
+    --border: #2a2823; --border-lt: #3c382f;
+    --copper: #c07e3c; --gold: #cba14a; --brick: #c14a3c;
+    --text: #eae4d6; --text-soft: #b0a896; --text-mute: #8d8372;
+    --radius: 8px; --max: 760px;
+    --font: 'Space Grotesk', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  }
+  html[data-theme="light"] {
+    --bg: #faf7f1; --surface: #fff; --surface2: #f3ede2;
+    --border: #e2dccf; --border-lt: #cfc7b5;
+    --text: #241c14; --text-soft: #4f463a; --text-mute: #6d6355;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { overflow-x: clip; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font); font-size: 1rem; line-height: 1.72; -webkit-font-smoothing: antialiased; }
+  :focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; border-radius: 2px; }
+  a { color: var(--copper); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .skip { position: absolute; left: -9999px; }
+  .skip:focus { left: 1rem; top: 1rem; background: var(--surface2); padding: 0.6rem 1rem; border-radius: var(--radius); z-index: 10; }
+
+  header.bar { border-bottom: 1px solid var(--border); background: var(--bg); }
+  .bar-in { max-width: var(--max); margin: 0 auto; padding: 0.9rem 1.4rem; display: flex; align-items: center; gap: 0.65rem; }
+  .cuy { width: 46px; height: 46px; flex-shrink: 0; background: url('logo-cuy-v2.webp') center/contain no-repeat; }
+  .bar-in strong { font-weight: 600; font-size: 1.1rem; }
+  .bar-in .back { margin-left: auto; font-size: 0.9rem; color: var(--text-soft); }
+
+  main { max-width: var(--max); margin: 0 auto; padding: 3rem 1.4rem 4rem; }
+  .kicker { color: var(--text-mute); font-size: 0.82rem; letter-spacing: 0.09em; text-transform: uppercase; margin-bottom: 0.9rem; }
+  h1 { font-size: clamp(1.9rem, 5.5vw, 2.7rem); font-weight: 700; line-height: 1.14; letter-spacing: -0.01em; overflow-wrap: anywhere; min-width: 0; margin-bottom: 1.1rem; }
+  h2 { font-size: clamp(1.25rem, 3.4vw, 1.55rem); font-weight: 600; line-height: 1.25; margin: 2.9rem 0 0.85rem; overflow-wrap: anywhere; }
+  h3 { font-size: 1.05rem; font-weight: 600; margin: 1.7rem 0 0.5rem; }
+  p { margin-bottom: 1.05rem; color: var(--text-soft); }
+  p.lede { font-size: 1.1rem; color: var(--text); }
+  strong { color: var(--text); font-weight: 600; }
+  ul, ol { margin: 0 0 1.05rem 1.15rem; color: var(--text-soft); }
+  li { margin-bottom: 0.5rem; }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.9em; background: var(--surface2); border: 1px solid var(--border); border-radius: 4px; padding: 0.1em 0.38em; color: var(--text); overflow-wrap: anywhere; }
+  .tablewrap { overflow-x: auto; margin-bottom: 1.3rem; border: 1px solid var(--border); border-radius: var(--radius); }
+  table { border-collapse: collapse; width: 100%; min-width: 420px; font-size: 0.93rem; }
+  th, td { text-align: left; padding: 0.7rem 0.9rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { color: var(--text); font-weight: 600; background: var(--surface2); }
+  tr:last-child td { border-bottom: none; }
+  td { color: var(--text-soft); }
+  td.num { color: var(--text); font-weight: 600; white-space: nowrap; }
+  .note { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--copper); border-radius: var(--radius); padding: 1.1rem 1.3rem; margin: 1.5rem 0; }
+  .note p:last-child { margin-bottom: 0; }
+  .silent { border-left-color: var(--brick); }
+  .cta { background: var(--surface); border: 1px solid var(--border-lt); border-radius: var(--radius); padding: 1.6rem; margin-top: 3rem; }
+  .cta p:last-child { margin-bottom: 0; }
+  .btn { display: inline-block; background: var(--copper); color: #17110b; font-weight: 600; padding: 0.72rem 1.25rem; border-radius: var(--radius); margin-top: 0.4rem; }
+  .btn:hover { text-decoration: none; filter: brightness(1.08); }
+  footer { border-top: 1px solid var(--border); margin-top: 3.5rem; padding: 1.8rem 1.4rem; text-align: center; color: var(--text-mute); font-size: 0.85rem; }
+  @media (max-width: 480px) { .bar-in strong { display: none; } main { padding-top: 2.2rem; } }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="bar">
+  <div class="bar-in">
+    <span class="cuy" role="img" aria-label="Modwright logo"></span>
+    <strong translate="no">Modwright</strong>
+    <a class="back" href="./">Services and pricing</a>
+  </div>
+</header>
+
+<main id="main">
+  <div class="kicker">Field notes</div>
+  <h1>What a <span translate="no">Minecraft</span> mod port costs, and why</h1>
+
+  <p class="lede">Almost every quote you will get for a mod port is a number with no reasoning attached, which makes it impossible to tell a fair one from a guess. Four things actually set the price, and only one of them has anything to do with how big the mod is.</p>
+
+  <p>This is the model I quote from, written out in full. You can use it to sanity check my price, or anyone else's.</p>
+
+  <h2>The thing that does not drive the price: file count</h2>
+
+  <p>Moving registrations, item classes and recipes across is the bulk of the changed lines in most ports. It is also the safest part of the job, because the compiler refuses to build until you have finished it. Work the compiler catches is cheap work.</p>
+
+  <p>What costs money is the work the compiler cannot see: behaviour that silently changed between versions, a mixin that still applies but now targets the wrong thing, a registry that moved phase. So a quote built by counting files is measuring the safe sixty per cent and ignoring the risky forty.</p>
+
+  <h2>1. Version walls, the dominant factor</h2>
+
+  <p>Version distance is not linear. Two versions apart can be a recompile, or it can be a rewrite, depending entirely on whether the gap contains one of four structural breaks. If a port crosses one of these, the wall sets the floor no matter how small the mod is.</p>
+
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Wall</th><th>Where</th><th>What it does to the code</th></tr></thead>
+    <tbody>
+      <tr><td><strong>The Flattening</strong></td><td>1.12 to 1.13</td><td>Numeric IDs and metadata are gone, so every block variant becomes its own block. LWJGL 2 to 3, assets restructured into data. Effectively a rewrite.</td></tr>
+      <tr><td><strong>Worldgen to datapack</strong></td><td>crossing 1.18</td><td>Biomes, dimensions and structures move to JSON and codecs. Brutal for a worldgen mod, barely noticeable for a content mod.</td></tr>
+      <tr><td><strong>Networking and config phase</strong></td><td>crossing 1.20.2</td><td><code>SimpleChannel</code> becomes <code>CustomPacketPayload</code>, plus a new connection phase. This is also the line where <span translate="no">Forge</span> and <span translate="no">NeoForge</span> diverge.</td></tr>
+      <tr><td><strong>Data components</strong></td><td>crossing 1.20.5 and 1.21</td><td>Item NBT becomes <code>DataComponentMap</code>, with <code>StreamCodec</code> and Java 21. Anything that touches <code>ItemStack</code> data gets rewritten.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="note">
+    <p><strong>Why 1.20.1 is the cheap destination.</strong> It is the last <span translate="no">Forge</span> long term support version, it sits underneath every recent wall, and it still carries an enormous modpack base. A port <em>to</em> 1.20.1 from a neighbouring version crosses nothing, which is why it is the cheapest work on the list and the version I specialise in.</p>
+  </div>
+
+  <p>Some jumps that look large are trivial: 1.19.2 to 1.20.1, 1.20 to 1.20.1, and 1.20.2 to 1.20.4 are mostly recompiles. Some jumps that look small are not: 1.20.4 to 1.21 crosses data components.</p>
+
+  <h2>2. Loader direction, which is not symmetric</h2>
+
+  <p>People tend to price a loader change as one flat surcharge in either direction. That is wrong by an order of magnitude, because the six possible directions are nothing like each other.</p>
+
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Direction</th><th>Difficulty</th><th>Why</th></tr></thead>
+    <tbody>
+      <tr><td><span translate="no">Fabric</span> to <span translate="no">Forge</span></td><td><strong>Hardest</strong></td><td>Different events and registries, different mappings, and a weaker mixin surface, so mixins get re-derived and <span translate="no">Fabric</span> API calls get reimplemented. Close to a rewrite.</td></tr>
+      <tr><td><span translate="no">NeoForge</span> to <span translate="no">Fabric</span></td><td>Very hard</td><td>Same cross family wall, with no robust compatibility layer.</td></tr>
+      <tr><td><span translate="no">Forge</span> to <span translate="no">Fabric</span></td><td>Hard</td><td>Cross family rewrite, but onto a lighter target.</td></tr>
+      <tr><td><span translate="no">Fabric</span> to <span translate="no">NeoForge</span></td><td>Hard</td><td>Same shape as the first row, with better tooling.</td></tr>
+      <tr><td><span translate="no">Forge</span> to <span translate="no">NeoForge</span></td><td><strong>Easy</strong></td><td>Same forked codebase. Mostly a rename.</td></tr>
+      <tr><td><span translate="no">NeoForge</span> to <span translate="no">Forge</span></td><td><strong>Easiest</strong></td><td>The reverse of that rename.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p>If you have been quoted the same premium for <span translate="no">Forge</span> to <span translate="no">NeoForge</span> as for <span translate="no">Fabric</span> to <span translate="no">Forge</span>, one of those two numbers is wrong. I wrote a separate piece on <a href="fabric-to-forge-1-20-1.html">what actually breaks in a <span translate="no">Fabric</span> to <span translate="no">Forge</span> port</a> if you want to see where the hours go.</p>
+
+  <h2>3. What the mod touches</h2>
+
+  <p>Effort scales by subsystem crossed with wall, not by size. The same wall lands very differently depending on what the mod does:</p>
+
+  <ul>
+    <li><strong>Items, blocks, recipes, creative tabs.</strong> Cheap almost everywhere, except across data components.</li>
+    <li><strong>Worldgen, biomes, structures.</strong> Cheap now, brutal across 1.18.</li>
+    <li><strong>Entities with custom rendering or animation.</strong> Mid, and it is where silent breakage lives. Animation libraries have initialisation order rules that produce no error when you get them wrong.</li>
+    <li><strong>Anything storing data on an <code>ItemStack</code>.</strong> Cheap below 1.20.5, expensive above it.</li>
+    <li><strong>Heavy networking.</strong> Cheap below 1.20.2, expensive above it.</li>
+  </ul>
+
+  <p>This is why I ask what the mod does before I quote, rather than just how many files it has.</p>
+
+  <h2>4. Licence, which decides whether the job exists at all</h2>
+
+  <p>Before any of the above matters, the mod has to be legally portable. I check the <code>LICENSE</code> file in the source repository, not the licence field on the mod page, because the two disagree more often than you would expect and only one of them is the actual grant.</p>
+
+  <ul>
+    <li><strong>Permissive licences</strong> such as MIT and Apache mean a public port with credit to the original author is fine.</li>
+    <li><strong>Copyleft licences</strong> such as GPL and LGPL allow the port, but it inherits the same licence, so the ported source has to stay open. That is a decision you should make on purpose, not discover afterwards.</li>
+    <li><strong>No licence file at all</strong> means all rights reserved by default. It is not a grey area and it is not an oversight you can rely on. That job needs written permission from the author first.</li>
+    <li><strong>All rights reserved with permission</strong> is billable, delivered privately to you, and priced higher, because it cannot be reused and it carries the paperwork.</li>
+  </ul>
+
+  <p>I would rather lose a job at this step than hand you something that gets taken down later.</p>
+
+  <h2>The actual numbers</h2>
+
+  <p>These are the figures the <a href="./#estimator">estimator on the front page</a> runs on, so the two always agree. Everything stacks additively rather than as a chain of percentages, which is what makes it checkable.</p>
+
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Component</th><th>Small</th><th>Medium</th><th>Large</th></tr></thead>
+    <tbody>
+      <tr><td><strong><span translate="no">Forge</span> 1.20.1 port, base</strong></td><td class="num">$35</td><td class="num">$65</td><td class="num">$120</td></tr>
+      <tr><td>Compatibility patch between two mods</td><td class="num">$25</td><td class="num">$60</td><td class="num">$130</td></tr>
+      <tr><td>Maintenance on an existing port</td><td class="num">$25</td><td class="num">$50</td><td class="num">$95</td></tr>
+      <tr><td>Performance work</td><td class="num">$45</td><td class="num">$85</td><td class="num">$150</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Added on top</th><th>Amount</th></tr></thead>
+    <tbody>
+      <tr><td>No wall crossed</td><td class="num">$0</td></tr>
+      <tr><td>Moderate wall, crossing 1.20.2 networking</td><td class="num">+$25</td></tr>
+      <tr><td>Hard wall, crossing 1.21 data components</td><td class="num">+$60</td></tr>
+      <tr><td>Brutal wall, the Flattening or worldgen across 1.18</td><td class="num">+$110</td></tr>
+      <tr><td><span translate="no">Forge</span> to <span translate="no">NeoForge</span> in either direction</td><td class="num">+$20</td></tr>
+      <tr><td><span translate="no">Fabric</span> to <span translate="no">Forge</span></td><td class="num">+$250</td></tr>
+      <tr><td>Private delivery, all rights reserved source</td><td class="num">&times;1.35</td></tr>
+      <tr><td>Priority in the queue</td><td class="num">&times;1.25</td></tr>
+      <tr><td>Top of the queue</td><td class="num">&times;1.5</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p><strong>Minimum of $20 on any job</strong>, including the one line fixes, because every job carries the same intake, licence check, build and boot test regardless of how small the change is.</p>
+
+  <div class="note silent">
+    <p><strong>The estimate is a range, and the range is honest about what it is.</strong> It is built from the mod as you describe it. The fixed price comes in writing after I have actually opened the source, and it is the number you pay. If what I find makes the job bigger than described, you get told before any work starts, not after.</p>
+  </div>
+
+  <h2>What is not in the price</h2>
+
+  <ul>
+    <li><strong>New artwork.</strong> The mod's original assets travel with the port at no extra cost. Textures or models drawn from scratch are quoted separately, because that is a different craft.</li>
+    <li><strong>Features that did not exist in the original.</strong> A port makes the mod run on the new target. Adding to it is commission work with its own quote.</li>
+    <li><strong>Hosting or publishing on your behalf.</strong> Public listings are yours to control, unless you ask me to handle it.</li>
+    <li><strong>Support past the correction window.</strong> Corrections against the written scope are included for thirty days. After that it is maintenance, and maintenance has its own line in the table above.</li>
+  </ul>
+
+  <h2>How to get a number you can trust</h2>
+
+  <p>Whoever you hire, ask them three questions. They are cheap to ask and the answers separate people who have done this from people who are about to find out.</p>
+
+  <ol>
+    <li><strong>Which walls does this port cross?</strong> If the answer is not one of the four above, they have not looked at the version pair.</li>
+    <li><strong>What is the licence, and where did you read it?</strong> The correct answer names the <code>LICENSE</code> file in the repository.</li>
+    <li><strong>How will you know it works?</strong> Compiling is not evidence. The answer should involve the mod loaded in an actual game.</li>
+  </ol>
+
+  <div class="cta">
+    <p><strong>Want the number for your mod?</strong> The estimator asks for the version pair, the loader direction, the rough size and the licence, and gives you a range immediately. No email required to see it.</p>
+    <p><a class="btn" href="./#estimator">Price my port</a></p>
+  </div>
+</main>
+
+<footer>
+  <span translate="no">Modwright</span> &middot; <span translate="no">Forge</span> 1.20.1 mod porting &middot; <a href="./">Services and pricing</a> &middot; <a href="fabric-to-forge-1-20-1.html"><span translate="no">Fabric</span> to <span translate="no">Forge</span>: what breaks</a>
+</footer>
+</body>
+</html>
