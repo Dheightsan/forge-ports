@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script>document.documentElement.classList.add('js')</script>
   <meta charset="UTF-8">
+  <!-- CSP: defensa en profundidad. Va ANTES de cualquier script para cubrirlo.
+       GitHub Pages no permite cabeceras HTTP, asi que solo valen las directivas de fetch
+       (frame-ancestors y X-Frame-Options NO funcionan via meta: el navegador las ignora). -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; frame-src 'none'">
+  <script>document.documentElement.classList.add('js')</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Minecraft Mod Porting &amp; Backporting Service | Modwright</title>
   <meta name="description" content="I port, backport and revive Minecraft mods across Forge, Fabric &amp; NeoForge. Forge 1.20.1 specialist. Fixed price agreed in writing before you pay. From $20.">
@@ -652,6 +656,14 @@
       .prow-head { display: none; }
       .pprice { font-size: 1.1rem; }
     }
+    /* moviles muy estrechos (<=400px): sin esto, los 2 toggles del nav quedaban FUERA de pantalla
+       y eran inalcanzables. El logo del cuy se mantiene; solo se oculta el wordmark de texto. */
+    @media (max-width: 400px) {
+      .nav-inner { padding: 0 0.9rem; }
+      .nav-links { gap: 0.55rem; }
+      .brand .wordmark { display: none; }
+      .btn-nav { padding: 0.48rem 0.72rem; font-size: 0.8rem; }
+    }
   </style>
   <script>
     (function(){
@@ -1035,7 +1047,7 @@
     <h2>Fixed price, agreed before we start</h2>
     <p class="sub">These are starting points. Tell me about your mod on Discord or by email and you get one fixed price for the whole job, agreed in writing before I begin. No hourly billing, no surprise add-ons.</p>
 
-    <!-- intro offer disabled for now (no customers yet); re-enable this block when ready
+    <!-- intro offer: parked. re-enable this block when ready
     <div class="price-promo">
       <span class="price-promo-tag">Intro offer</span>
       <span>First clients get a <strong>discount on their first port</strong> in exchange for an honest review. Lock in a low rate before prices settle.</span>
