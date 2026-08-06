@@ -67,8 +67,10 @@
     ]
   }
   </script>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><defs><clipPath id='h'><path d='M16 2.5 L27.7 9.25 L27.7 22.75 L16 29.5 L4.3 22.75 L4.3 9.25 Z'/></clipPath></defs><g clip-path='url(%23h)'><rect width='32' height='32' fill='%23b9742f'/><path d='M32 0V32H0Z' fill='%2382583a'/></g><path d='M16 2.5 L27.7 9.25 L27.7 22.75 L16 29.5 L4.3 22.75 L4.3 9.25 Z' fill='none' stroke='%230b0a07' stroke-width='1.4'/></svg>">
-  <link rel="icon" type="image/png" sizes="96x96" href="favicon.png">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon-180.png">
   <style>
     /* Space Grotesk servida desde este mismo dominio (SIL OFL). Antes se pedia a
        Google en cada visita, lo que entregaba la IP del visitante a un tercero y
@@ -325,12 +327,12 @@
 
     /* ── NAV ── */
     nav { position: sticky; top: 0; z-index: 100; background: rgba(26, 20, 16, 0.88); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
-    .nav-inner { max-width: var(--max); margin: 0 auto; padding: 0 1.5rem; height: 62px; display: flex; align-items: center; justify-content: space-between; }
-    .brand { display: inline-flex; align-items: center; gap: 0.6rem; font-family: var(--font-display); font-weight: 600; font-size: 1.12rem; letter-spacing: 0; color: var(--text); }
+    .nav-inner { max-width: var(--max); margin: 0 auto; padding: 0 1.5rem; height: 74px; display: flex; align-items: center; justify-content: space-between; }
+    .brand { display: inline-flex; align-items: center; gap: 0.65rem; font-family: var(--font-display); font-weight: 600; font-size: 1.2rem; letter-spacing: 0; color: var(--text); }
     .brand-mark { width: 27px; height: 27px; flex-shrink: 0; }
     /* el badge del cuy es circular: caja cuadrada, no el 54x32 del logo anterior,
        que dejaba 22px de aire muerto a los lados. */
-    .brand-cuy { width: 46px; height: 46px; flex-shrink: 0; background-image: url('logo-cuy-v2.webp'); background-repeat: no-repeat; background-size: contain; background-position: center; }
+    .brand-cuy { width: 60px; height: 60px; flex-shrink: 0; background-image: url('logo-cuy-v2.webp'); background-repeat: no-repeat; background-size: contain; background-position: center; }
     .brand .ph { color: var(--text-mute); font-weight: 600; font-size: 0.95rem; }
     .nav-links { display: flex; gap: 1.6rem; list-style: none; align-items: center; }
     .nav-links a { color: var(--text-soft); font-size: 0.88rem; transition: color 0.15s; }
@@ -660,9 +662,15 @@
       .estimator { grid-template-columns: 1fr; }
       .est-result { position: static; }
     }
+    /* La cabecera completa (marca + 5 enlaces + CTA + 2 toggles) necesita unos
+       850px. Por debajo de eso los enlaces se colapsan y quedan CTA y toggles.
+       Sin esta regla, entre 601 y 850px el boton "Price my mod" se salia de la
+       pantalla y era inalcanzable, y el overflow-x: clip impedia verlo. */
+    @media (max-width: 880px) {
+      .nav-links li:not(.nav-cta):not(.nav-tog) { display: none; }
+    }
     @media (max-width: 600px) {
       section { padding: 3.75rem 1.2rem; }
-      .nav-links li:not(.nav-cta):not(.nav-tog) { display: none; }
       #hero h1 { font-size: clamp(1.95rem, 8vw, 2.6rem); }
       .prow { grid-template-columns: 1fr; gap: 0.35rem; padding: 1rem 1.2rem; }
       .prow-head { display: none; }
@@ -671,9 +679,12 @@
     /* moviles muy estrechos (<=400px): sin esto, los 2 toggles del nav quedaban FUERA de pantalla
        y eran inalcanzables. El logo del cuy se mantiene; solo se oculta el wordmark de texto. */
     @media (max-width: 400px) {
-      .nav-inner { padding: 0 0.9rem; }
+      .nav-inner { padding: 0 0.9rem; height: 66px; }
       .nav-links { gap: 0.55rem; }
       .brand .wordmark { display: none; }
+      /* Logo algo mas contenido aqui: por debajo de 400px los dos toggles ya
+         se salieron de pantalla una vez, y el ancho es el recurso escaso. */
+      .brand-cuy { width: 48px; height: 48px; }
       .btn-nav { padding: 0.48rem 0.72rem; font-size: 0.8rem; }
     }
   </style>
