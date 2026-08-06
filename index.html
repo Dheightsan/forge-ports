@@ -277,6 +277,10 @@
 
     .wrap { max-width: var(--max); margin: 0 auto; }
     section { padding: 5.5rem 1.5rem; }
+    /* per-section rhythm: the estimator gets extra air, reference sections sit tighter */
+    #estimator { padding-top: 6.5rem; }
+    #faq, #legal { padding-top: 4.25rem; padding-bottom: 4.5rem; }
+    #about { padding-top: 4.75rem; }
     /* perf: skip rendering off-screen sections until needed (auto remembers size → no jank) */
     #legal, #faq, #portfolio, #about, #contact { content-visibility: auto; contain-intrinsic-size: auto 700px; }
 
