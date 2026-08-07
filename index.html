@@ -170,7 +170,6 @@
     html[data-theme="light"] #contact { background: radial-gradient(ellipse 95% 75% at 50% -8%, rgba(192,126,60,0.08), transparent 55%), linear-gradient(180deg, #f0e6d5, #f3ebdd); }
     html[data-theme="light"] .card,
     html[data-theme="light"] .est-form,
-    html[data-theme="light"] .legal-card,
     html[data-theme="light"] .port-card,
     html[data-theme="light"] .contact-card { background: linear-gradient(180deg, #fdfaf4, #f3ead9); box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), 0 8px 22px -18px rgba(120,90,50,0.30); }
     /* light-mode: hero words hold contrast on cream */
@@ -204,7 +203,6 @@
     html[data-accent="green"]:not([data-theme="light"]) #contact { background: radial-gradient(ellipse 95% 75% at 50% -8%, rgba(63,191,111,0.07), transparent 55%), linear-gradient(180deg, #111a13, #0d120f); }
     html[data-accent="green"]:not([data-theme="light"]) .card,
     html[data-accent="green"]:not([data-theme="light"]) .est-form,
-    html[data-accent="green"]:not([data-theme="light"]) .legal-card,
     html[data-accent="green"]:not([data-theme="light"]) .port-card,
     html[data-accent="green"]:not([data-theme="light"]) .contact-card { background: linear-gradient(180deg, #18211a, #111812); box-shadow: inset 0 1px 0 rgba(226,236,228,0.04), 0 8px 24px -16px rgba(0,0,0,0.7); }
     html[data-accent="green"] .torn-sep path { fill: #10160f; stroke: rgba(126,226,168,0.20); }
@@ -231,7 +229,6 @@
     html[data-accent="green"][data-theme="light"] #contact { background: radial-gradient(ellipse 95% 75% at 50% -8%, rgba(47,158,87,0.08), transparent 55%), linear-gradient(180deg, #e9f2e5, #eef4ec); }
     html[data-accent="green"][data-theme="light"] .card,
     html[data-accent="green"][data-theme="light"] .est-form,
-    html[data-accent="green"][data-theme="light"] .legal-card,
     html[data-accent="green"][data-theme="light"] .port-card,
     html[data-accent="green"][data-theme="light"] .contact-card { background: linear-gradient(180deg, #fbfdf9, #ecf4e7); box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), 0 8px 22px -18px rgba(50,90,60,0.30); }
     html[data-accent="green"][data-theme="light"] a { color: #1f8443; }
@@ -416,7 +413,6 @@
     .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(238px, 1fr)); gap: 1.1rem; margin-top: 2.75rem; }
     .card { background: linear-gradient(180deg, #1a1814, #131210); padding: var(--pad-card-lg); border: 1px solid var(--border); border-radius: var(--radius-lg); transition: border-color 0.15s, transform 0.1s; position: relative; overflow: hidden; box-shadow: inset 0 1px 0 rgba(234,228,214,0.04), 0 8px 24px -16px rgba(0,0,0,0.7); }
     .card:hover { border-color: var(--green-ring); transform: translateY(-3px); }
-    .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--green); }
     .card--premium::before { background: var(--gold); }
     .card-stats { display: flex; flex-wrap: wrap; gap: 0.5rem 1.3rem; margin: 0.2rem 0 1rem; padding-top: 0.85rem; border-top: 1px solid var(--border); }
     .card-stats > div { display: flex; flex-direction: column; gap: 0.1rem; }
@@ -623,7 +619,6 @@
     .port-footer-note { margin-top: 1.6rem; font-size: 0.85rem; color: var(--text-mute); }
     .port-footer-note strong { color: var(--text-soft); }
     /* ── entity-card stats (champion/mob-card style from refs) ── */
-    .port-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--green), var(--gold)); }
     .port-card--cta::before { background: linear-gradient(90deg, var(--green), var(--gold)); }
     .port-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 0.55rem 1rem; margin: 0.1rem 0 1rem; padding-top: 0.9rem; border-top: 1px solid var(--border); }
     .port-stats > div { display: flex; flex-direction: column; gap: 0.12rem; }
@@ -662,6 +657,8 @@
     /* Contacto asimetrico: la pagina dice que Discord es la via rapida, asi que
        la jerarquia tiene que verse. Tres tarjetas iguales contradicen el texto
        y ademas son la rejilla de tres columnas de manual. */
+    .card { border-top-color: var(--border-lt); }
+    .port-card { border-top-color: var(--border-lt); }
     .contact-cards { display: grid; grid-template-columns: 1.32fr 1fr; gap: 1.1rem; margin-top: 2.5rem; align-items: start; }
     .contact-card--primary { grid-row: span 2; }
     /* Secundarias: icono en linea con el titulo, no encima. Rompe la ficha
