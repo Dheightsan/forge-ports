@@ -339,11 +339,17 @@
        que dejaba 22px de aire muerto a los lados. */
     .brand-cuy { width: 60px; height: 60px; flex-shrink: 0; background-image: url('logo-cuy-v2.webp'); background-repeat: no-repeat; background-size: contain; background-position: center; }
     .brand .ph { color: var(--text-mute); font-weight: 600; font-size: 0.95rem; }
-    .nav-links { display: flex; gap: 1.6rem; list-style: none; align-items: center; margin-left: 2rem; }
+    .nav-links { display: flex; gap: 1.6rem; list-style: none; align-items: center; margin-left: clamp(0rem, calc((100vw - 880px) * 1), 2rem); }
     .nav-links a { color: var(--text-soft); font-size: 0.88rem; transition: color 0.15s; }
     .nav-links a:hover { color: var(--text); text-decoration: none; }
     .btn-nav { background: var(--terracotta); color: #2a1302 !important; font-weight: 700; font-size: 0.85rem; padding: 0.48rem 1rem; border-radius: var(--radius); white-space: nowrap; box-shadow: 0 0 0 2px rgba(210,112,63,0.30); transition: background 0.15s, box-shadow 0.15s; }
     .nav-free { font-size: 0.62em; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; border: 1.4px solid currentColor; border-radius: 999px; padding: 0.12em 0.5em; margin-left: 0.5em; vertical-align: 0.12em; opacity: 0.85; }
+    /* El chip se retira cuando el nav no tiene sitio: su trabajo es persuadir
+       en escritorio, y a 414px cuesta 33px de un presupuesto que no da. */
+    @media (max-width: 520px) { .nav-free { display: none; } }
+    /* El wordmark se retiraba solo por debajo de 400px, y a 414 la marca ocupa
+       170px: el nav no cabia. El logo solo ya identifica la marca a ese ancho. */
+    @media (max-width: 430px) { .brand .wordmark { display: none; } }
     .btn-nav:hover { background: #e27d44 !important; text-decoration: none; box-shadow: 0 0 0 3px rgba(210,112,63,0.36); }
 
     /* ── HERO ── */
@@ -653,9 +659,21 @@
 
     /* ── CONTACT ── */
     #contact { background: radial-gradient(ellipse 95% 75% at 50% -8%, rgba(130,88,58,0.06), transparent 55%), linear-gradient(180deg, #141210, #0f0d0b); border-top: 1px solid var(--border); }
-    .contact-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.1rem; margin-top: 2.5rem; }
+    /* Contacto asimetrico: la pagina dice que Discord es la via rapida, asi que
+       la jerarquia tiene que verse. Tres tarjetas iguales contradicen el texto
+       y ademas son la rejilla de tres columnas de manual. */
+    .contact-cards { display: grid; grid-template-columns: 1.32fr 1fr; gap: 1.1rem; margin-top: 2.5rem; align-items: start; }
+    .contact-card--primary { grid-row: span 2; }
+    /* Secundarias: icono en linea con el titulo, no encima. Rompe la ficha
+       icono-arriba-titulo-debajo que se repite en toda la pagina. */
+    .contact-card:not(.contact-card--primary) { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0.35rem 0.7rem; align-items: center; padding: 1.1rem 1.25rem; }
+    .contact-card:not(.contact-card--primary) .ci { width: 30px; height: 30px; margin-bottom: 0; }
+    .contact-card:not(.contact-card--primary) .ci svg { width: 17px; height: 17px; }
+    .contact-card:not(.contact-card--primary) h3 { margin-bottom: 0; }
+    .contact-card:not(.contact-card--primary) > p,
+    .contact-card:not(.contact-card--primary) > a { grid-column: 1 / -1; }
+    @media (max-width: 780px) { .contact-cards { grid-template-columns: minmax(0, 1fr); } .contact-card--primary { grid-row: auto; } }
     .contact-card { background: linear-gradient(180deg, #1a1814, #131210); padding: var(--pad-card); border: 1px solid var(--border); border-radius: var(--radius-lg); position: relative; overflow: hidden; box-shadow: inset 0 1px 0 rgba(234,228,214,0.04), 0 8px 24px -16px rgba(0,0,0,0.7); }
-    .contact-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--brown-hi); }
     .ci { width: 40px; height: 40px; display: grid; place-items: center; background: var(--gold-glow); border-radius: var(--radius); margin-bottom: 0.9rem; color: var(--gold); }
     .ci svg { width: 22px; height: 22px; stroke: currentColor; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
     /* contact icons use each service's real brand colour (not gold) */
