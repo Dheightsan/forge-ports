@@ -563,6 +563,16 @@
     .paycard svg { width: 26px; height: 26px; }
     .paycard-name { font-weight: 700; font-size: 0.98rem; color: var(--text); }
     .paycard-sub { font-size: 0.8rem; color: var(--text-soft); line-height: 1.45; }
+    /* Puerta pequena: hasta ahora TODOS los CTA pedian lo mismo y era lo mas
+       comprometido (pedir presupuesto). Quien no estaba listo hoy no tenia nada
+       que hacer, y se iba. Esta banda ofrece el paso barato: mandar el link y
+       que le digan si se puede. No es tarjeta a proposito; la pagina ya tiene
+       tres rejillas y una cuarta la volveria uniforme. */
+    .softcta { max-width: 640px; margin: 3rem auto 0; padding-top: 2rem; border-top: 1px solid var(--border); text-align: center; }
+    .softcta p { color: var(--text-soft); font-size: 1rem; line-height: 1.6; margin: 0 0 1.1rem; }
+    .softcta strong { color: var(--text); }
+    .softcta-row { display: flex; flex-wrap: wrap; gap: 0.7rem; justify-content: center; }
+    @media (max-width: 520px) { .softcta-row .btn { width: 100%; } }
     .paystrip-foot { margin-top: 1.05rem; font-size: 0.82rem; font-weight: 600; color: var(--text-mute); text-align: center; letter-spacing: 0.02em; }
     @media (max-width: 640px) { .paycards { grid-template-columns: 1fr; } }
     .pfoot { display: flex; flex-wrap: wrap; gap: 1rem 1.4rem; align-items: center; margin-top: 1.4rem; padding: 1.1rem 1.4rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
@@ -696,6 +706,16 @@
     .weave::before { background: linear-gradient(to right, transparent, var(--border-lt)); }
     .weave::after { background: linear-gradient(to left, transparent, var(--border-lt)); }
     .weave svg { width: 60px; height: 38px; display: block; }
+    /* Dos erizos: firma del pie. Redibujados como SVG para que sigan la paleta
+       del sitio y no arrastren acabado de ilustracion generada. */
+    .sig-hogs { display: block; width: 138px; height: auto; margin: 0 auto 1.1rem; opacity: 0.92; }
+    .sig-hogs .hog-a { fill: var(--text-soft); }
+    .sig-hogs .hog-b { fill: var(--brown); }
+    .sig-hogs .hog-line { stroke: var(--brown); stroke-width: 2.4; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .sig-hogs .hog-eye { fill: var(--surface); }
+    .sig-hogs .hog-sprout { stroke: var(--gold); stroke-width: 2.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .sig-hogs .hog-ground { stroke: var(--border-lt); stroke-width: 2.2; stroke-linecap: round; }
+    @media (max-width: 520px) { .sig-hogs { width: 112px; } }
     footer { border-top: 1px solid var(--border); padding: 2rem 1.5rem; text-align: center; color: var(--text-mute); font-size: 0.84rem; }
     footer .sep { margin: 0 0.5rem; color: var(--border-lt); }
     footer a { color: var(--text-soft); }
@@ -1176,6 +1196,13 @@
       </div>
       <div class="paystrip-foot">Clients worldwide · quoted in writing first · pay as agreed</div>
     </div>
+    <div class="softcta">
+      <p><strong>Not sure it can even be done?</strong> Send me the mod link and I will tell you whether it is possible and what gets in the way. No charge, and no obligation to take it further.</p>
+      <div class="softcta-row">
+        <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" class="btn btn-discord">Ask me on Discord</a>
+        <a href="#estimator" class="btn btn-ghost">Or price it yourself</a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1191,6 +1218,13 @@
       <div class="faq-item"><button type="button" class="faq-q">How long does it take? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a">It depends entirely on the mod. Every one is different, so I won't quote a fixed turnaround I can't stand behind. We agree a realistic timeline in writing before I start, and I'd rather under-promise and actually deliver than miss a date. Need it sooner? A priority fee moves your job to the front of the queue.</div></div>
       <div class="faq-item"><button type="button" class="faq-q">What if the port doesn't work? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a">You see the build working before you make final payment, so you're never paying for something you haven't seen run. The deliverable is whatever we agree in writing up front, and if a bug inside that agreed scope shows up within 30 days of delivery, I fix it at no charge. After that, or for problems caused by Minecraft updates, other mods, or server changes, it becomes a maintenance job.</div></div>
       <div class="faq-item"><button type="button" class="faq-q">What's out of scope? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a">I write code, and porting the mod's original textures and assets across is always part of the job. Creating brand-new textures, 3D models or animations, full gameplay or balance redesigns, and ongoing maintenance across future Minecraft versions all sit outside a standard port and get quoted separately. Tell me upfront and I'll fold it into the price.</div></div>
+    </div>
+    <div class="softcta">
+      <p>Still unsure whether your case fits? That is the normal state of things. <strong>Send the mod link and I will look at it before either of us talks about money.</strong></p>
+      <div class="softcta-row">
+        <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" class="btn btn-discord">Ask me on Discord</a>
+        <a href="https://wa.me/56936375703" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">WhatsApp</a>
+      </div>
     </div>
   </div>
 </section>
@@ -1341,6 +1375,19 @@
 </section>
 
 <footer>
+  <svg class="sig-hogs" viewBox="0 0 240 80" aria-hidden="true">
+    <defs><path id="hog" d="M24 62 C21 45, 32 29, 48 27 L53 36 L58 25 L63 35 L68 26 L73 36 L78 29 L82 39 C86 33, 93 37, 97 45 L106 50 C101 55, 95 57, 88 58 L34 62 Z"/></defs>
+    <use href="#hog" class="hog-a"/><use href="#hog" class="hog-line"/>
+    <circle cx="93" cy="46" r="1.9" class="hog-eye"/>
+    <path class="hog-line" d="M46 62v5M72 62v5"/>
+    <g transform="translate(240,0) scale(-1,1)">
+      <use href="#hog" class="hog-b"/><use href="#hog" class="hog-line"/>
+      <circle cx="93" cy="46" r="1.9" class="hog-eye"/>
+      <path class="hog-line" d="M46 62v5M72 62v5"/>
+    </g>
+    <path class="hog-sprout" d="M120 62V34M120 40c-5 0-8-3-8-7 4 0 8 2 8 7zM120 40c5 0 8-3 8-7-4 0-8 2-8 7zM120 50c-4 0-6-3-6-6 3 0 6 2 6 6zM120 50c4 0 6-3 6-6-3 0-6 2-6 6z"/>
+    <path class="hog-ground" d="M18 68h204"/>
+  </svg>
   <div><strong style="color:var(--text-soft)">Modwright</strong> <span class="sep">·</span> Forge 1.20.1 mod porting <span class="sep">·</span> <a href="mod-porting-cost.html">What a port costs</a> <span class="sep">·</span> <a href="fabric-to-forge-1-20-1.html">Fabric to Forge: what breaks</a> <span class="sep">·</span> <a href="#terms">Terms</a> <span class="sep">·</span> <a href="#privacy">Privacy</a> <span class="sep">·</span> <a href="#licenses">Licenses</a> <span class="sep">·</span> <a href="mailto:modwrightstudios@gmail.com">Contact</a></div>
 </footer>
 
