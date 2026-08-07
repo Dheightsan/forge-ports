@@ -155,7 +155,11 @@
     }
     html[data-theme="light"] nav { background: rgba(253,249,242,0.9); }
     html[data-theme="light"] body::after { opacity: 0.02; }
-    html[data-theme="light"] a { color: #9a5d22; }
+    /* Terracota de tema claro. Estaba en #9a5d22: 4.2:1 sobre el fondo del badge
+       y 4.48 sobre la crema, por debajo del 4.5 que pide AA en texto pequeno.
+       Bajado un escalon de luminosidad, misma tinta -> 5.0 y 5.3. Medido sobre
+       los pixeles del render, no calculado sobre el CSS. */
+    html[data-theme="light"] a { color: #89531e; }
     /* La regla de arriba (a { color }) pisa el texto de los botones de color en
        tema claro: texto marron sobre indigo/verde/rojo, cazado en render 08-07.
        Se reafirma el color propio de cada variante con la misma especificidad. */
@@ -169,10 +173,10 @@
     html[data-theme="light"] .eyebrow,
     html[data-theme="light"] .faq-icon,
     html[data-theme="light"] .contact-link,
-    html[data-theme="light"] .est-copy.done { color: #9a5d22; }
-    html[data-theme="light"] .badge { color: #9a5d22; background: rgba(192,126,60,0.10); }
-    html[data-theme="light"] .pill-trust { color: #9a5d22; background: rgba(192,126,60,0.14); }
-    html[data-theme="light"] .btn-ghost:hover { color: #9a5d22; }
+    html[data-theme="light"] .est-copy.done { color: #89531e; }
+    html[data-theme="light"] .badge { color: #89531e; background: rgba(192,126,60,0.10); }
+    html[data-theme="light"] .pill-trust { color: #89531e; background: rgba(192,126,60,0.14); }
+    html[data-theme="light"] .btn-ghost:hover { color: #89531e; }
     /* light-mode: re-theme hardcoded dark gradient backgrounds */
     html[data-theme="light"] #hero { background: linear-gradient(180deg, #f7f0e4, #efe5d4); }
     html[data-theme="light"] #how-it-works,
@@ -193,7 +197,18 @@
     html[data-theme="light"] .hero-services { color: #6f6350; }
     html[data-theme="light"] #hero h1 .mc { color: #4f8a2a; }
     html[data-theme="light"] #hero h1 .mc::before { color: #7a5738; }
-    html[data-theme="light"] .pill-price { background: rgba(192,126,60,0.12); border-color: rgba(192,126,60,0.36); color: #9a5d22; }
+    html[data-theme="light"] .pill-price { background: rgba(192,126,60,0.12); border-color: rgba(192,126,60,0.36); color: #89531e; }
+    /* El vineteado del hero es negro puro: sobre el espresso no se ve, sobre la
+       crema pinta una mancha gris en el borde de arriba y otra mas oscura abajo.
+       Se cambia por una sombra calida y muy floja, que es lo que hace el mismo
+       trabajo (asentar el hero) sin ensuciar. Medido en render 08-07: el borde
+       superior bajaba a 193 de luminancia contra 245 del centro. */
+    html[data-theme="light"] #hero::before {
+      box-shadow: inset 0 -90px 110px -80px rgba(120,90,50,0.28), inset 0 50px 80px -70px rgba(120,90,50,0.14);
+    }
+    /* La sombra de texto del titular es negra al 55%: en oscuro da cuerpo, en
+       claro emborrona el marron sobre la crema y parece un JPEG mal guardado. */
+    html[data-theme="light"] #hero h1 { text-shadow: 0 1px 0 rgba(255,255,255,0.5); }
 
     /* ===== GREEN ACCENT (Modrinth-style), combinable with light/dark ===== */
     html[data-accent="green"] {
@@ -246,14 +261,21 @@
     html[data-accent="green"][data-theme="light"] .est-form,
     html[data-accent="green"][data-theme="light"] .port-card,
     html[data-accent="green"][data-theme="light"] .contact-card { background: linear-gradient(180deg, #fbfdf9, #ecf4e7); box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), 0 8px 22px -18px rgba(50,90,60,0.30); }
-    html[data-accent="green"][data-theme="light"] a { color: #1f8443; }
+    /* Mismo caso que la terracota: #1f8443 daba 3.75-4.23:1 sobre los fondos
+       claros del acento verde, por debajo de AA. Un escalon mas oscuro -> 4.7-5.3.
+       El token --green-hi NO se toca: lo usan fondos de boton, y oscurecerlo ahi
+       empeoraria el texto oscuro que va encima. */
+    html[data-accent="green"][data-theme="light"] a { color: #1b733b; }
+    /* El hover del CTA oscurecia el fondo manteniendo texto oscuro (3.9:1).
+       En claro el hover tiene que ACLARAR para que el texto siga leyendose. */
+    html[data-accent="green"][data-theme="light"] .btn-nav:hover { background: #35ab5f !important; }
     html[data-accent="green"][data-theme="light"] .eyebrow,
     html[data-accent="green"][data-theme="light"] .faq-icon,
     html[data-accent="green"][data-theme="light"] .contact-link,
-    html[data-accent="green"][data-theme="light"] .est-copy.done { color: #1f8443; }
-    html[data-accent="green"][data-theme="light"] .badge { color: #1f8443; background: rgba(47,158,87,0.10); }
-    html[data-accent="green"][data-theme="light"] .pill-trust { color: #1f8443; background: rgba(47,158,87,0.12); }
-    html[data-accent="green"][data-theme="light"] .pill-price { background: rgba(47,158,87,0.10); border-color: rgba(47,158,87,0.34); color: #1f8443; }
+    html[data-accent="green"][data-theme="light"] .est-copy.done { color: #1b733b; }
+    html[data-accent="green"][data-theme="light"] .badge { color: #1b733b; background: rgba(47,158,87,0.10); }
+    html[data-accent="green"][data-theme="light"] .pill-trust { color: #1b733b; background: rgba(47,158,87,0.12); }
+    html[data-accent="green"][data-theme="light"] .pill-price { background: rgba(47,158,87,0.10); border-color: rgba(47,158,87,0.34); color: #1b733b; }
     html[data-accent="green"][data-theme="light"] #hero h1 .w-port,
     html[data-accent="green"][data-theme="light"] #hero h1 .w-back,
     html[data-accent="green"][data-theme="light"] #hero h1 .w-amp,
@@ -366,6 +388,11 @@
        170px: el nav no cabia. El logo solo ya identifica la marca a ese ancho. */
     @media (max-width: 430px) { .brand .wordmark { display: none; } }
     .btn-nav:hover { background: #e27d44 !important; text-decoration: none; box-shadow: 0 0 0 3px rgba(210,112,63,0.36); }
+    /* En movil el boton mide 33px de alto: pasa el minimo de accesibilidad pero
+       se falla con el pulgar, y es el unico camino al estimador. Se agranda el
+       area de toque a 44px sin tocar el aspecto, igual que en .theme-toggle. */
+    .btn-nav { position: relative; }
+    .btn-nav::after { content: ''; position: absolute; left: 0; right: 0; top: 50%; height: 44px; transform: translateY(-50%); }
 
     /* ── HERO ── */
     #hero { min-height: calc(100vh - 62px); display: flex; align-items: center; padding: 4rem 1.5rem; position: relative; overflow: hidden;
