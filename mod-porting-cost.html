@@ -4,6 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; frame-src 'none'">
+<script>
+/* El tema claro de esta pagina existia en el CSS pero era inalcanzable: el
+   <html> traia data-theme="dark" fijo y nada lo cambiaba nunca. Quien elige
+   claro en la portada aterrizaba aqui en oscuro. Se lee la misma clave que
+   guarda la portada y, si no hay eleccion, la preferencia del sistema. Va en
+   el <head> y sin defer para que no haya parpadeo antes de pintar. */
+(function(){try{var r=document.documentElement,s=null;
+try{s=localStorage.getItem('mw-theme');}catch(e){}
+if(!s&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches){s='light';}
+r.setAttribute('data-theme',s==='light'?'light':'dark');}catch(e){}})();
+</script>
 <title>What a Minecraft mod port costs, and why | Modwright</title>
 <meta name="description" content="What drives the price of a Minecraft mod port: the version walls it crosses, the loader direction, the subsystems it touches and the licence. With the actual numbers I quote from.">
 <link rel="canonical" href="https://dheightsan.github.io/forge-ports/mod-porting-cost.html">
