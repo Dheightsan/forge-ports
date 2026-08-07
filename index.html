@@ -156,6 +156,14 @@
     html[data-theme="light"] nav { background: rgba(253,249,242,0.9); }
     html[data-theme="light"] body::after { opacity: 0.02; }
     html[data-theme="light"] a { color: #9a5d22; }
+    /* La regla de arriba (a { color }) pisa el texto de los botones de color en
+       tema claro: texto marron sobre indigo/verde/rojo, cazado en render 08-07.
+       Se reafirma el color propio de cada variante con la misma especificidad. */
+    html[data-theme="light"] a.btn-go { color: #102506; }
+    html[data-theme="light"] a.btn-discord { color: #fff; }
+    html[data-theme="light"] a.btn-gmail { color: #fff; }
+    html[data-theme="light"] a.btn-quote { color: #2a1302; }
+    html[data-theme="light"] a.btn-ghost { color: var(--text); }
     html[data-theme="light"] .nav-links a { color: var(--text-soft); }
     html[data-theme="light"] .nav-links a:hover { color: var(--text); }
     html[data-theme="light"] .eyebrow,
