@@ -714,16 +714,10 @@
     .weave::before { background: linear-gradient(to right, transparent, var(--border-lt)); }
     .weave::after { background: linear-gradient(to left, transparent, var(--border-lt)); }
     .weave svg { width: 60px; height: 38px; display: block; }
-    /* Dos erizos: firma del pie. Redibujados como SVG para que sigan la paleta
-       del sitio y no arrastren acabado de ilustracion generada. */
-    .sig-hogs { display: block; width: 138px; height: auto; margin: 0 auto 1.1rem; opacity: 0.92; }
-    .sig-hogs .hog-a { fill: var(--text-soft); }
-    .sig-hogs .hog-b { fill: var(--brown); }
-    .sig-hogs .hog-line { stroke: var(--brown); stroke-width: 2.4; fill: none; stroke-linecap: round; stroke-linejoin: round; }
-    .sig-hogs .hog-eye { fill: var(--surface); }
-    .sig-hogs .hog-sprout { stroke: var(--gold); stroke-width: 2.2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
-    .sig-hogs .hog-ground { stroke: var(--border-lt); stroke-width: 2.2; stroke-linecap: round; }
-    @media (max-width: 520px) { .sig-hogs { width: 112px; } }
+    /* Dos erizos: firma del pie. Imagen original de josda (simbolizan a un
+       amigo y su implicacion), fondo recortado para integrarse en ambos temas. */
+    .sig-hogs { display: block; width: 260px; height: auto; margin: 0 auto 1.1rem; }
+    @media (max-width: 520px) { .sig-hogs { width: 200px; } }
     footer { border-top: 1px solid var(--border); padding: 2rem 1.5rem; text-align: center; color: var(--text-mute); font-size: 0.84rem; }
     footer .sep { margin: 0 0.5rem; color: var(--border-lt); }
     footer a { color: var(--text-soft); }
@@ -1383,19 +1377,7 @@
 </section>
 
 <footer>
-  <svg class="sig-hogs" viewBox="0 0 240 80" aria-hidden="true">
-    <defs><path id="hog" d="M24 62 C21 45, 32 29, 48 27 L53 36 L58 25 L63 35 L68 26 L73 36 L78 29 L82 39 C86 33, 93 37, 97 45 L106 50 C101 55, 95 57, 88 58 L34 62 Z"/></defs>
-    <use href="#hog" class="hog-a"/><use href="#hog" class="hog-line"/>
-    <circle cx="93" cy="46" r="1.9" class="hog-eye"/>
-    <path class="hog-line" d="M46 62v5M72 62v5"/>
-    <g transform="translate(240,0) scale(-1,1)">
-      <use href="#hog" class="hog-b"/><use href="#hog" class="hog-line"/>
-      <circle cx="93" cy="46" r="1.9" class="hog-eye"/>
-      <path class="hog-line" d="M46 62v5M72 62v5"/>
-    </g>
-    <path class="hog-sprout" d="M120 62V34M120 40c-5 0-8-3-8-7 4 0 8 2 8 7zM120 40c5 0 8-3 8-7-4 0-8 2-8 7zM120 50c-4 0-6-3-6-6 3 0 6 2 6 6zM120 50c4 0 6-3 6-6-3 0-6 2-6 6z"/>
-    <path class="hog-ground" d="M18 68h204"/>
-  </svg>
+  <img class="sig-hogs" src="hogs.png" width="260" height="131" alt="" loading="lazy" decoding="async">
   <div><strong style="color:var(--text-soft)">Modwright</strong> <span class="sep">·</span> Forge 1.20.1 mod porting <span class="sep">·</span> <a href="mod-porting-cost.html">What a port costs</a> <span class="sep">·</span> <a href="fabric-to-forge-1-20-1.html">Fabric to Forge: what breaks</a> <span class="sep">·</span> <a href="#terms">Terms</a> <span class="sep">·</span> <a href="#privacy">Privacy</a> <span class="sep">·</span> <a href="#licenses">Licenses</a> <span class="sep">·</span> <a href="mailto:modwrightstudios@gmail.com">Contact</a></div>
 </footer>
 
