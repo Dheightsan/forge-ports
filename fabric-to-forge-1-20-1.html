@@ -4,6 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; frame-src 'none'">
+<script>
+/* El tema claro de esta pagina existia en el CSS pero era inalcanzable: el
+   <html> traia data-theme="dark" fijo y nada lo cambiaba nunca. Quien elige
+   claro en la portada aterrizaba aqui en oscuro. Se lee la misma clave que
+   guarda la portada y, si no hay eleccion, la preferencia del sistema. Va en
+   el <head> y sin defer para que no haya parpadeo antes de pintar. */
+(function(){try{var r=document.documentElement,s=null;
+try{s=localStorage.getItem('mw-theme');}catch(e){}
+if(!s&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches){s='light';}
+r.setAttribute('data-theme',s==='light'?'light':'dark');}catch(e){}})();
+</script>
 <title>Porting a Fabric mod to Forge 1.20.1: what actually breaks | Modwright</title>
 <meta name="description" content="A practical account of what breaks when you move a Fabric mod to Forge 1.20.1: registries, entrypoints, mixins, spawns, bundled libraries, and the four failures that produce no error at all.">
 <link rel="canonical" href="https://dheightsan.github.io/forge-ports/fabric-to-forge-1-20-1.html">
