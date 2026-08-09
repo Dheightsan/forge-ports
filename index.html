@@ -319,7 +319,7 @@
     #faq, #legal { padding-top: 4.25rem; padding-bottom: 4.5rem; }
     #about { padding-top: 4.75rem; }
     /* perf: skip rendering off-screen sections until needed (auto remembers size → no jank) */
-    #legal, #faq, #portfolio, #about, #contact { content-visibility: auto; contain-intrinsic-size: auto 700px; }
+    #legal, #faq, #portfolio, #proof, #about, #contact { content-visibility: auto; contain-intrinsic-size: auto 700px; }
 
     /* loaders strip */
     .loaders-strip { padding: 1.4rem 1.5rem; background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
@@ -1269,7 +1269,7 @@
 <section id="portfolio">
   <div class="wrap">
         <h2>Recent ports</h2>
-    <p class="sub">Real, in-game-tested work. Client commissions stay private unless you want yours shown here.</p>
+    <p class="sub">Real, in-game-tested work. Anything I build for you stays private unless you want it shown here.</p>
 
     <div class="port-grid">
       <div class="port-card">
@@ -1285,7 +1285,7 @@
         <dl class="port-stats">
           <div><dt>Jump</dt><dd>1.20.1 → 1.21.1</dd></div>
           <div><dt>Loader</dt><dd>Forge → NeoForge</dd></div>
-          <div><dt>Dependencies</dt><dd>Cut from 2 to 1</dd></div>
+          <div><dt>Library mods</dt><dd>Cut from 2 to 1</dd></div>
           <div><dt>Tested</dt><dd>In-game, survival</dd></div>
         </dl>
         <p class="port-link-ph">The official page link lands here once the creator publishes it.</p>
@@ -1297,6 +1297,46 @@
           <p>Backports, revivals, compat patches and fixes, priced from $20 with a fixed written quote first.</p>
         </div>
         <a href="#estimator" class="btn btn-quote btn-sm">Price my mod</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF -->
+<section id="proof">
+  <div class="wrap">
+        <h2>It compiles. That proves nothing.</h2>
+    <p class="sub">None of this is client work. It is my own porting. These are five failures that pass every automatic gate: the build succeeds, the log stays clean, and the mod is still wrong. For each one, what actually causes it, and what now runs before a jar leaves my machine.</p>
+
+    <div class="port-grid">
+      <div class="port-card">
+        <h3 class="port-name">A crash the compiler cannot see</h3>
+        <p class="port-desc">In my own port of <span translate="no">Capybara</span> (<span translate="no">39Choko</span>, MIT) the model asked for a bone called <span translate="no">saddleParts</span>. In the model file that bone is called <span translate="no">saddle</span>. The name lives inside a text string, so nothing checked it. The build passed. The resource diff passed. It crashed the first time a capybara was drawn, in my own test instance. <span translate="no">GeckoLib</span>'s <span translate="no">AnimationProcessor.getBone</span> returns null for a name the model does not have, and the renderer runs every frame.</p>
+        <p class="port-footer-note"><strong>Proof.</strong> I kept the broken jar. The check now reads bone names straight out of the compiled bytecode with <span translate="no">javap</span> and compares them against the model file. On the fixed jar: one bone found, zero failures. On the broken jar: it fails, names <span translate="no">saddleParts</span>, and prints the 11 bones that do exist.</p>
+      </div>
+
+      <div class="port-card">
+        <h3 class="port-name">Files that vanish in the repack</h3>
+        <p class="port-desc">A port is a rebuild, not a copy. Recipes, loot tables and textures can go missing when the jar is repackaged, and nothing errors. The mod loads and quietly does less than it did before.</p>
+        <p class="port-footer-note"><strong>Proof.</strong> Every asset, data and licence file is diffed against the jar the original author published. Across <span translate="no">Boids</span> and <span translate="no">Birds</span> (<span translate="no">Tomate0613</span>, MIT) and <span translate="no">Capybara</span> (<span translate="no">39Choko</span>, MIT): 28 files, none missing. 22 are byte identical. 6 are <span translate="no">JSON</span> the build reformatted, and they parse to exactly the same data. Two files are added, both <span translate="no">Forge</span> biome modifiers so spawns work on this loader. Loader metadata is replaced on purpose, <span translate="no">mods.toml</span> where <span translate="no">Fabric</span> had <span translate="no">fabric.mod.json</span>. Unzip both jars and run the same diff.</p>
+      </div>
+
+      <div class="port-card">
+        <h3 class="port-name"><span translate="no">Yarn</span> names and <span translate="no">Mojang</span> names do not line up</h3>
+        <p class="port-desc"><span translate="no">Fabric</span> source is written in <span translate="no">Yarn</span> names. <span translate="no">Forge</span> builds against <span translate="no">Mojang</span>'s. I bridge them in two hops through intermediary mappings, and the translator only rewrites a name when it has exactly one possible target. Anything ambiguous is left for the compiler to reject.</p>
+        <p class="port-footer-note"><strong>Proof.</strong> It still gets things wrong, and those mistakes compile. On <span translate="no">Capybara</span> the jungle spawn biome came out of the translator as <span translate="no">JUNGLE_PLANKS</span>. That is why translated output is read back against the original source before it goes into a build. The jungle, mangrove swamp and sparse jungle spawns in that port came from the original, not from the translated text.</p>
+      </div>
+
+      <div class="port-card">
+        <h3 class="port-name">Fine in singleplayer, dead on the server</h3>
+        <p class="port-desc">A clientbound packet handler written as a method reference is resolved where it is registered. A dedicated server has no client class to resolve, so registration can take the server down at startup while singleplayer never complains. Nobody testing solo will ever see it.</p>
+        <p class="port-footer-note"><strong>Proof.</strong> On a network layer backport from 1.21 to <span translate="no">Forge</span> 1.20.1, on my own modpack, I rebuilt 41 packet payloads: 22 serverbound, 19 clientbound. All 19 clientbound handlers are explicit lambdas with the client call behind a <span translate="no">Dist.CLIENT</span> guard, and all 41 register from one shared method with sequential IDs, so the two sides cannot drift. That is how the code is written, not a test result. I do not name the mod here: it is a personal-use port and I have no written permission from the author to put its name on a commercial page.</p>
+      </div>
+
+      <div class="port-card">
+        <h3 class="port-name">Mixins that quietly do not load</h3>
+        <p class="port-desc">Repackaging a jar can drop the manifest entry that declares its mixin configs. <span translate="no">Forge</span> then loads the mod without complaint and none of the mixins apply. The mod is installed, part of its behaviour is missing, and nothing in the log says so.</p>
+        <p class="port-footer-note"><strong>Proof.</strong> Same class of bug, same answer: it became a check. Five structural checks now run against every jar I build, before anything is launched: mod metadata, pack format, bytecode version, mixin declarations in the manifest, and model bones. They are a colander, not a proof. The bone check only sees literal names, and it needs a <span translate="no">JDK</span> to read the bytecode.</p>
       </div>
     </div>
   </div>
