@@ -7,7 +7,35 @@
        (frame-ancestors y X-Frame-Options NO funcionan via meta: el navegador las ignora). -->
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; frame-src 'none'">
-  <script>document.documentElement.classList.add('js')</script>
+  <script>
+    document.documentElement.classList.add('js');
+    /* El fade oculta el contenido con CSS colgado de html.js, y quien lo revela es el
+       script grande del final. Si ese script muriera, la pagina se quedaria en blanco
+       para siempre. Esta red vive en el MISMO script que enciende el ocultado y en su
+       propio bloque, asi que un error alli abajo no puede alcanzarla. */
+    addEventListener('load', function () {
+      var SEL = '.reveal, section > .wrap > h2, section > .wrap > .sub, .card, .port-card,' +
+        ' .contact-card, .legal-row, .faq-item, .step, .paycard, .softcta, .big-quote';
+      var ticking = false;
+      // Revela lo que YA esta en pantalla y sigue oculto. Si el observador funciona
+      // nunca encuentra nada; si falla, hace su mismo trabajo y nadie ve una pagina
+      // en blanco. Se desengancha cuando ya no queda nada oculto.
+      function rescue() {
+        ticking = false;
+        var left = document.querySelectorAll(SEL), pending = 0;
+        for (var i = 0; i < left.length; i++) {
+          var e = left[i];
+          if (e.classList.contains('in-view')) continue;
+          var r = e.getBoundingClientRect();
+          if (r.top < innerHeight && r.bottom > 0) { e.classList.add('in-view'); } else { pending++; }
+        }
+        if (!pending) removeEventListener('scroll', onScroll);
+      }
+      function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(rescue); } }
+      addEventListener('scroll', onScroll, { passive: true });
+      setTimeout(rescue, 2500);
+    });
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Minecraft Mod Porting &amp; Backporting Service | Modwright</title>
   <meta name="description" content="I port, backport and revive Minecraft mods across Forge, Fabric &amp; NeoForge. Forge 1.20.1 specialist. Fixed price agreed in writing before you pay. From $20.">
@@ -36,7 +64,6 @@
     "description": "Port, backport and revive Minecraft mods across Forge, Fabric and NeoForge. Forge 1.20.1 specialist. Fixed price from $20, boot-tested, license-checked, agreed in writing before work begins.",
     "url": "https://dheightsan.github.io/forge-ports/",
     "areaServed": "Worldwide",
-    "telephone": "+56936375703",
     "provider": {
       "@type": "Person",
       "name": "josda",
@@ -93,6 +120,33 @@
     html.js .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s cubic-bezier(.2,.8,.2,1), transform 0.6s cubic-bezier(.2,.8,.2,1); }
     html.js .reveal.in-view { opacity: 1; transform: none; }
     @media (prefers-reduced-motion: reduce) { html.js .reveal { opacity: 1; transform: none; transition: none; } }
+    /* La maquinaria de arriba existia desde el principio pero SOLO la usaba el
+       estimador, asi que la pagina entera aparecia de golpe. Se declara aqui en CSS
+       y no con clases en el HTML para que el estado inicial exista ya en el primer
+       pintado: si las clases se anadieran por JS, el contenido parpadearia visible
+       antes de ocultarse. La lista va escrita dos veces a proposito, para que la
+       regla .in-view sea mas especifica sin recurrir a !important. */
+    html.js :is(section > .wrap > h2, section > .wrap > .sub, .card, .port-card,
+      .contact-card, .legal-row, .faq-item, .step, .paycard, .softcta, .big-quote) {
+      opacity: 0; transform: translateY(16px);
+      transition: opacity 0.55s cubic-bezier(.2,.8,.2,1), transform 0.55s cubic-bezier(.2,.8,.2,1);
+    }
+    html.js :is(section > .wrap > h2, section > .wrap > .sub, .card, .port-card,
+      .contact-card, .legal-row, .faq-item, .step, .paycard, .softcta, .big-quote).in-view {
+      opacity: 1; transform: none;
+    }
+    /* Escalonado dentro de cada rejilla: las tarjetas entran una detras de otra en
+       vez de todas a la vez, que es lo que hace que se note vivo y no un parpadeo. */
+    html.js :is(.card, .port-card, .contact-card, .legal-row, .faq-item, .step, .paycard):nth-child(2) { transition-delay: 0.07s; }
+    html.js :is(.card, .port-card, .contact-card, .legal-row, .faq-item, .step, .paycard):nth-child(3) { transition-delay: 0.14s; }
+    html.js :is(.card, .port-card, .contact-card, .legal-row, .faq-item, .step, .paycard):nth-child(4) { transition-delay: 0.21s; }
+    html.js :is(.card, .port-card, .contact-card, .legal-row, .faq-item, .step, .paycard):nth-child(n+5) { transition-delay: 0.28s; }
+    @media (prefers-reduced-motion: reduce) {
+      html.js :is(section > .wrap > h2, section > .wrap > .sub, .card, .port-card,
+        .contact-card, .legal-row, .faq-item, .step, .paycard, .softcta, .big-quote) {
+        opacity: 1; transform: none; transition: none; transition-delay: 0s;
+      }
+    }
 
     :root {
       /* ── GitHub emerald green (primary) + No Man's Land brown (accent) ── */
@@ -172,7 +226,6 @@
     html[data-theme="light"] .nav-links a:hover { color: var(--text); }
     html[data-theme="light"] .eyebrow,
     html[data-theme="light"] .faq-icon,
-    html[data-theme="light"] .contact-link,
     html[data-theme="light"] .est-copy.done { color: #89531e; }
     html[data-theme="light"] .badge { color: #89531e; background: rgba(192,126,60,0.10); }
     html[data-theme="light"] .pill-trust { color: #89531e; background: rgba(192,126,60,0.14); }
@@ -271,7 +324,6 @@
     html[data-accent="green"][data-theme="light"] .btn-nav:hover { background: #35ab5f !important; }
     html[data-accent="green"][data-theme="light"] .eyebrow,
     html[data-accent="green"][data-theme="light"] .faq-icon,
-    html[data-accent="green"][data-theme="light"] .contact-link,
     html[data-accent="green"][data-theme="light"] .est-copy.done { color: #1b733b; }
     html[data-accent="green"][data-theme="light"] .badge { color: #1b733b; background: rgba(47,158,87,0.10); }
     html[data-accent="green"][data-theme="light"] .pill-trust { color: #1b733b; background: rgba(47,158,87,0.12); }
@@ -331,7 +383,9 @@
     a.ls-item { text-decoration: none; transition: color 0.15s, transform 0.15s; }
     a.ls-item:hover { color: var(--green-hi); transform: translateY(-1px); }
     .loaders-strip .ls-inner + .ls-inner { margin-top: 0.85rem; padding-top: 0.85rem; border-top: 1px dashed var(--border); }
-    .ls-disclaimer { margin-top: 0.9rem; padding-top: 0.85rem; border-top: 1px dashed var(--border); font-size: 0.74rem; color: var(--text-mute); line-height: 1.55; max-width: 80ch; }
+    /* Las dos filas de arriba van centradas; este aviso caia a la izquierda y
+       cruzaba de borde a borde. Centrado, la franja entera lee como un bloque. */
+    .ls-disclaimer { margin: 0.9rem auto 0; padding-top: 0.85rem; border-top: 1px dashed var(--border); font-size: 0.74rem; color: var(--text-mute); line-height: 1.55; max-width: 36em; text-align: center; }
 
     .eyebrow {
       font-size: 0.8rem; font-weight: 700; letter-spacing: 0.13em;
@@ -344,7 +398,7 @@
     .btn {
       display: inline-flex; align-items: center; gap: 0.45rem;
       padding: 0.74rem 1.4rem; cursor: pointer; font-family: inherit;
-      font-size: 0.92rem; font-weight: 700; line-height: 1.2;
+      font-size: 0.92rem; font-weight: 700; line-height: 1.25;
       border: 1px solid transparent; border-radius: var(--radius); transition: background-color 0.15s, color 0.15s, border-color 0.15s, box-shadow 0.15s;
     }
     .btn-primary { background: var(--green); color: #1a1410; }
@@ -356,6 +410,9 @@
     .btn-gmail:hover { background: #d33a2d; border-color: #d33a2d; text-decoration: none; transform: translateY(-1px); box-shadow: 0 0 0 4px rgba(234,67,53,0.34); }
     .btn-discord { background: #5865f2; color: #fff; border: 1px solid #5865f2; box-shadow: 0 0 0 3px rgba(88,101,242,0.30); }
     .btn-discord:hover { background: #4752c4; border-color: #4752c4; text-decoration: none; transform: translateY(-1px); box-shadow: 0 0 0 4px rgba(88,101,242,0.36); }
+    /* el icono marcaba el alto de la fila, asi que un boton con icono salia 2px
+       mas alto que el de al lado sin icono. Atado a la linea de texto, todos igual. */
+    .btn .bicon { width: 1.25em; height: 1.25em; }
     .btn .bicon, .btn .bicon-eyes { flex-shrink: 0; }
     .btn-fabric { background: #cdae7e; color: #2a2014; border: 1px solid #cdae7e; box-shadow: 0 0 0 3px rgba(205,174,126,0.26); }
     .btn-fabric:hover { background: #dbc095; border-color: #dbc095; text-decoration: none; transform: translateY(-1px); box-shadow: 0 0 0 4px rgba(205,174,126,0.32); }
@@ -438,6 +495,13 @@
     .contact-card--primary { border-color: rgba(192,126,60,0.40); box-shadow: 0 0 0 1px rgba(192,126,60,0.14); }
     .contact-card--soon { opacity: 0.6; }
     .ctas { display: flex; gap: 0.85rem; flex-wrap: wrap; }
+    /* En movil los cuatro CTA envolvian en tres filas de cinco anchos distintos y
+       el borde derecho quedaba en escalera. Apilados a ancho completo van rectos. */
+    @media (max-width: 520px) {
+      .ctas { gap: 0.6rem; }
+      .ctas > .btn, .ctas > .cta-with-eyes { width: 100%; justify-content: center; }
+      .cta-with-eyes .btn { flex: 1 1 auto; justify-content: center; }
+    }
     .hero-trust { margin-top: 1.4rem; font-size: 0.85rem; color: var(--text-mute); }
     .hero-contact { margin-top: 1.05rem; font-size: 1.02rem; color: var(--text-soft); }
     .hero-contact a { color: var(--text); font-weight: 700; text-decoration: underline; text-decoration-color: var(--text-mute); text-underline-offset: 3px; }
@@ -566,9 +630,10 @@
     .est-skip { font-size: 0.82rem; color: var(--text-mute); margin-top: 0.7rem; text-align: center; }
     .pexample { margin-top: 1rem; padding: 0.8rem 1.1rem; background: rgba(192,126,60,0.08); border-left: 3px solid #d49a55; border-radius: var(--radius); font-size: 0.86rem; color: var(--text-soft); line-height: 1.6; }
     .pexample strong { color: var(--text); }
-    .est-copy { width: 100%; justify-content: center; }
+    /* las tres acciones del presupuesto son UNA pila: mismo ancho y mismo hueco.
+       El de Discord no tenia regla y salia a ancho de contenido, 186px contra 297px. */
+    .est-discord, .est-copy, .est-email { display: flex; width: 100%; justify-content: center; margin-top: 0.6rem; }
     .est-copy.done { background: var(--surface2); color: var(--green-hi); }
-    .est-email { width: 100%; justify-content: center; margin-top: 0.6rem; }
     .est-disclaimer { font-size: 0.74rem; color: var(--text-mute); margin-top: 0.85rem; text-align: center; line-height: 1.5; }
     .est-disclaimer a { color: var(--green-hi); }
 
@@ -593,7 +658,9 @@
     .pservice small { display: block; font-weight: 400; font-size: 0.78rem; color: var(--text-mute); margin-top: 0.15rem; }
     .pprice { font-size: 1.24rem; font-weight: 700; color: var(--gold); white-space: nowrap; font-variant-numeric: tabular-nums; }
     .pwhy { font-size: 0.82rem; color: var(--text-soft); line-height: 1.5; }
-    .pnote { margin-top: 1.1rem; font-size: 0.84rem; color: var(--text-mute); line-height: 1.7; }
+    /* Medido: estas notas corrian a 129 caracteres por linea, casi el doble del
+       maximo comodo de lectura. No sobran palabras, sobraba ancho. */
+    .pnote { margin-top: 1.1rem; font-size: 0.84rem; color: var(--text-mute); line-height: 1.7; max-width: 36em; }
     .pnote strong { color: var(--text-soft); }
     .paystrip { margin-top: 1.6rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.4rem 1.5rem; }
     .paystrip-head { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-mute); margin-bottom: 1rem; }
@@ -613,7 +680,8 @@
     .softcta strong { color: var(--text); }
     .softcta-row { display: flex; flex-wrap: wrap; gap: 0.7rem; justify-content: center; }
     @media (max-width: 520px) { .softcta-row .btn { width: 100%; } }
-    .paystrip-foot { margin-top: 1.05rem; font-size: 0.82rem; font-weight: 600; color: var(--text-mute); text-align: center; letter-spacing: 0.02em; }
+    /* Iba centrado bajo un encabezado alineado a la izquierda, dentro de la misma caja. */
+    .paystrip-foot { margin-top: 1.05rem; font-size: 0.82rem; font-weight: 600; color: var(--text-mute); letter-spacing: 0.02em; }
     @media (max-width: 640px) { .paycards { grid-template-columns: 1fr; } }
     .pfoot { display: flex; flex-wrap: wrap; gap: 1rem 1.4rem; align-items: center; margin-top: 1.4rem; padding: 1.1rem 1.4rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
     .pay-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-mute); }
@@ -628,7 +696,7 @@
     .legal-rows { margin-top: 2.6rem; border-top: 1px solid var(--border); }
     .legal-row { border-bottom: 1px solid var(--border); padding: 1.45rem 0; display: grid; grid-template-columns: minmax(0, 14rem) minmax(0, 1fr); gap: 0.5rem 2.6rem; align-items: baseline; }
     .legal-row h3 { font-size: 1rem; font-weight: 700; margin: 0; }
-    .legal-row p { color: var(--text-soft); font-size: 0.9rem; line-height: 1.65; margin: 0; }
+    .legal-row p { color: var(--text-soft); font-size: 0.9rem; line-height: 1.65; margin: 0; max-width: 36em; }
     @media (max-width: 720px) { .legal-row { grid-template-columns: minmax(0, 1fr); gap: 0.45rem; padding: 1.2rem 0; } }
     /* Ritmo de seccion: espaciados deliberadamente distintos. Todas las secciones
        con el mismo padding es la firma visual de una plantilla. */
@@ -647,6 +715,9 @@
     .faq-q { width: 100%; text-align: left; background: none; border: none; color: var(--text); font-family: inherit; font-size: 0.94rem; font-weight: 700; padding: 1.1rem 1.3rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
     .faq-icon { display: inline-grid; place-items: center; flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--green-glow); font-size: 1.15rem; font-weight: 400; color: var(--green-hi); line-height: 1; }
     .faq-a { padding: 0 1.3rem; max-height: 0; overflow: hidden; transition: max-height 0.25s, padding 0.25s; color: var(--text-soft); font-size: 0.88rem; line-height: 1.65; }
+    /* Medido: 129 caracteres por linea, lo mas ilegible de la pagina. El borde y la
+       flecha los pone .faq-item, asi que limitar aqui no rompe la caja. */
+    .faq-a { max-width: 36em; }
     .faq-a.open { max-height: 360px; padding: 0 1.3rem 1.2rem; }
 
     /* ── PORTFOLIO ── */
@@ -662,6 +733,11 @@
     .badge--loader { background: var(--surface2); color: var(--text-soft); border: 1px solid var(--border); }
     .port-status { margin-left: auto; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--brown-hi); }
     .port-name { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+    /* El icono que viaja dentro del jar del mod. Pixel art de 9x9: se pinta a un
+       multiplo exacto y sin suavizar, o los pixeles salen de anchos distintos. */
+    .port-title { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem; }
+    .port-title .port-name { margin-bottom: 0; }
+    .port-icon { width: 45px; height: 45px; flex-shrink: 0; image-rendering: pixelated; }
     .port-desc { color: var(--text-soft); font-size: 0.84rem; line-height: 1.6; margin-bottom: 0.9rem; }
     .port-meta { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.9rem; }
     .port-ver, .port-origin { font-size: 0.72rem; color: var(--text-mute); background: var(--surface2); border: 1px solid var(--border); border-radius: 999px; padding: 0.2rem 0.55rem; }
@@ -696,7 +772,7 @@
     /* ── ABOUT ── */
     #about { border-top: 1px solid var(--border); }
     .about-body { margin-top: 2rem; max-width: 680px; }
-    .about-body p { color: var(--text-soft); font-size: 0.94rem; line-height: 1.78; }
+    .about-body p { color: var(--text-soft); font-size: 0.94rem; line-height: 1.78; max-width: 36em; }
     .about-body p + p { margin-top: 1rem; }
     .about-body strong { color: var(--text); font-weight: 600; }
     details.more { margin-top: 1rem; }
@@ -715,7 +791,7 @@
     .card { border-top-color: var(--border-lt); }
     .port-card { border-top-color: var(--border-lt); }
     .contact-cards { display: grid; grid-template-columns: 1.32fr 1fr; gap: 1.1rem; margin-top: 2.5rem; align-items: start; }
-    .contact-card--primary { grid-row: span 3; }
+    .contact-card--primary { grid-row: span 2; }
     /* Secundarias: icono en linea con el titulo, no encima. Rompe la ficha
        icono-arriba-titulo-debajo que se repite en toda la pagina. */
     .contact-card:not(.contact-card--primary) { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0.35rem 0.7rem; align-items: center; padding: 1.1rem 1.25rem; }
@@ -732,13 +808,16 @@
     .ci--bbb     { background: rgba(79,147,196,0.14);  color: #4f93c4; }
     .ci--discord { background: rgba(125,134,207,0.14); color: #7d86cf; }
     .ci--gmail   { background: rgba(217,107,88,0.14);  color: #d96b58; }
-    .ci--wa      { background: rgba(37,211,102,0.14);  color: #37b26d; }
     .contact-card h3 { font-size: 0.98rem; font-weight: 700; margin-bottom: 0.4rem; }
     .contact-card p { color: var(--text-soft); font-size: 0.85rem; line-height: 1.55; }
-    .contact-link { display: inline-block; margin-top: 0.55rem; font-size: 0.88rem; font-weight: 700; color: var(--green-hi); }
-    .contact-link:after { content: ' →'; }
+    /* Antes se enseñaba la URL cruda como texto ("discord.gg/EV8F84fheJ →"). Ahora es
+       un boton con el color de la marca y nuestro propio icono, que es como lo resuelve
+       cualquier web seria. La direccion sigue viva en el href. */
+    /* justify-self: la tarjeta de email es una rejilla y sin esto el boton se estiraria
+       a todo el ancho mientras el de Discord, que va en flujo normal, no. */
+    .contact-btn { margin-top: 0.95rem; justify-self: start; }
     .contact-soon { display: inline-block; margin-top: 0.55rem; font-size: 0.82rem; font-weight: 600; color: var(--text-mute); }
-    .contact-note { margin-top: 2rem; text-align: center; color: var(--text-mute); font-size: 0.82rem; }
+    .contact-note { margin-top: 2rem; color: var(--text-mute); font-size: 0.82rem; max-width: 36em; }
 
     /* 3-strand interlace emblem (concept from josda's reference images: woven versions/loaders) */
     .weave { display: flex; align-items: center; justify-content: center; gap: 1.1rem; margin: 0 0 0.25rem; }
@@ -748,8 +827,18 @@
     .weave svg { width: 60px; height: 38px; display: block; }
     /* Dos erizos: firma del pie. Imagen original de josda (simbolizan a un
        amigo y su implicacion), fondo recortado para integrarse en ambos temas. */
-    .sig-hogs { display: block; width: 260px; height: auto; margin: 0 auto 1.1rem; }
-    @media (max-width: 520px) { .sig-hogs { width: 200px; } }
+    .sig-hogs { display: block; width: 260px; height: 131px; margin: 0 auto 1.1rem;
+      background: url(hogs.png) center/contain no-repeat; }
+    /* En oscuro la version a color era lo unico de la pagina que no pertenecia:
+       un bulto crema sobre casi negro. Mismo dibujo, aplanado al tono del pie. */
+    @supports ((mask-image: url(#m)) or (-webkit-mask-image: url(#m))) {
+      html:not([data-theme="light"]) .sig-hogs {
+        background: var(--text-mute);
+        -webkit-mask: url(hogs-ink.png) center/contain no-repeat;
+                mask: url(hogs-ink.png) center/contain no-repeat;
+      }
+    }
+    @media (max-width: 520px) { .sig-hogs { width: 200px; height: 101px; } }
     footer { border-top: 1px solid var(--border); padding: 2rem 1.5rem; text-align: center; color: var(--text-mute); font-size: 0.84rem; }
     footer .sep { margin: 0 0.5rem; color: var(--border-lt); }
     footer a { color: var(--text-soft); }
@@ -935,7 +1024,7 @@
       <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20commission" class="btn btn-gmail"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Email me</a>
       <span class="cta-with-eyes"><a href="#services" class="btn btn-ghost">See services</a><svg class="bicon-eyes" viewBox="0 0 30 18" width="30" height="17" aria-hidden="true"><ellipse cx="9" cy="9" rx="7.6" ry="8.2" fill="#fff" stroke="#2a2014" stroke-width="0.9"/><ellipse cx="21" cy="9" rx="7.6" ry="8.2" fill="#fff" stroke="#2a2014" stroke-width="0.9"/><circle cx="12.6" cy="8.2" r="3.5" fill="#15110b"/><circle cx="24.6" cy="8.2" r="3.5" fill="#15110b"/><circle cx="13.85" cy="7" r="1.05" fill="#fff"/><circle cx="25.85" cy="7" r="1.05" fill="#fff"/></svg></span>
     </div>
-    <p class="hero-contact">Fastest way to reach me: <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer">my Discord</a> or <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20commission">email</a>, or <a href="https://wa.me/56936375703" target="_blank" rel="noopener noreferrer">WhatsApp</a></p>
+    <p class="hero-contact">Fastest way to reach me: <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer">my Discord</a> or <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20commission">email</a></p>
     <p class="hero-trust">Quotes are free, and there's nothing to pay until we've agreed the scope and price in writing. I usually reply the same day.</p>
   </div>
 </section>
@@ -1257,7 +1346,7 @@
       <p>Still unsure whether your case fits? That is the normal state of things. <strong>Send the mod link and I will look at it before either of us talks about money.</strong></p>
       <div class="softcta-row">
         <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" class="btn btn-discord">Ask me on Discord</a>
-        <a href="https://wa.me/56936375703" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">WhatsApp</a>
+        <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20commission" class="btn btn-ghost">Or send an email</a>
       </div>
     </div>
   </div>
@@ -1280,7 +1369,10 @@
           </div>
           <span class="port-status">Publication pending</span>
         </div>
-        <h3 class="port-name" translate="no">Mindful Eating</h3>
+        <div class="port-title">
+          <img class="port-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAAeklEQVR42mNgwA7+QzEDAwMDAxM2BUnLbBiSltkwICvEZsJ/q0pjuGmMyAqOqFoyMDAwMBx9+ZSh/NMjuDwTsgI9EwW4jk4+Obh1KG66dOYBw9GXTzHcwAJjIEue+PKHwYIHLoXqpkAmKQYGBgYGCx4WFDcxYvEdhgEAiSYnbgeFKKAAAAAASUVORK5CYII=" width="45" height="45" alt="" loading="lazy" decoding="async">
+          <h3 class="port-name" translate="no">Mindful Eating</h3>
+        </div>
         <p class="port-desc">Forward-port of camcam_burger's food-variety mod, from Forge 1.20.1 up to NeoForge 1.21.1. Rebuilt the per-player data system on native data attachments (dropping the Blueprint dependency at the creator's suggestion) and moved the food-stat tweaks to the 1.21 component system. Boot-tested in-game and delivered to the original creator for the mod's official CurseForge page.</p>
         <dl class="port-stats">
           <div><dt>Jump</dt><dd>1.20.1 → 1.21.1</dd></div>
@@ -1364,33 +1456,27 @@
 <section id="contact">
   <div class="wrap">
         <h2>Get your fixed price</h2>
-    <p class="sub">Everything's in writing and async. <strong>Discord is the fastest way to reach me</strong> (WhatsApp and email work too): message me or build your request in the estimator above, and you'll have a fixed quote in writing, usually within a day. BuiltByBit escrow is coming soon.</p>
+    <p class="sub">Everything's in writing and async. <strong>Discord is the fastest way to reach me</strong> (email works too): message me or build your request in the estimator above, and you'll have a fixed quote in writing, usually within a day. BuiltByBit escrow is coming soon.</p>
     <div class="contact-cards">
       <div class="contact-card contact-card--primary">
         <div class="ci ci--discord"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4V5z"/><circle cx="9.5" cy="10.5" r="0.6" fill="currentColor" stroke="none"/><circle cx="14.5" cy="10.5" r="0.6" fill="currentColor" stroke="none"/></svg></div>
         <h3>Discord (best way to reach me)</h3>
         <p>Message me or open a ticket on my server. Drop the mod link and what you need, and we scope it together. This is where I'm quickest to reply.</p>
-        <a href="https://discord.gg/EV8F84fheJ" class="contact-link" target="_blank" rel="noopener noreferrer">discord.gg/EV8F84fheJ</a>
+        <a href="https://discord.gg/EV8F84fheJ" class="btn btn-discord contact-btn" target="_blank" rel="noopener noreferrer"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg>Open my Discord</a>
       </div>
       <div class="contact-card">
         <div class="ci ci--gmail"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg></div>
         <h3>Email (backup)</h3>
         <p>Prefer email? Send the mod link and what you want done, or just the estimator summary, and I'll reply within a day.</p>
-        <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20porting%20commission" class="contact-link">modwrightstudios@gmail.com</a>
+        <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20porting%20commission" class="btn btn-gmail contact-btn"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Send me an email</a>
       </div>
-      <div class="contact-card">
-          <div class="ci ci--wa"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.9 7L4 20l1.6-4A8 8 0 1 1 20 11.5z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5"/></svg></div>
-          <h3>WhatsApp</h3>
-          <p>If you would rather send a voice note or a screenshot from your phone, this reaches me too. Same as everywhere else: the scope and the price end up in writing before anything starts.</p>
-          <a href="https://wa.me/56936375703" class="contact-link" target="_blank" rel="noopener noreferrer" translate="no">+56 9 3637 5703</a>
-        </div>
-        <div class="contact-card contact-card--soon">
+      <div class="contact-card contact-card--soon">
         <div class="ci ci--bbb"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v5c0 4.5-3.4 7.7-8 9-4.6-1.3-8-4.5-8-9V6l8-3z"/></svg></div>
         <h3>BuiltByBit · escrow</h3>
         <p>Escrow via BuiltByBit is coming soon. For now, we agree the scope and price in writing, and you see the working build before final payment.</p>
       </div>
     </div>
-    <p class="contact-note">Written and async, on Discord, WhatsApp or email. I usually reply the same day. I take two commissions at a time, so the queue stays short and every job gets my full attention.</p>
+    <p class="contact-note">Written and async, on Discord or email. I usually reply the same day. I take two commissions at a time, so the queue stays short and every job gets my full attention.</p>
   </div>
 </section>
 
@@ -1449,7 +1535,7 @@
 </section>
 
 <footer>
-  <img class="sig-hogs" src="hogs.png" width="260" height="131" alt="" loading="lazy" decoding="async">
+  <div class="sig-hogs" aria-hidden="true"></div>
   <div><strong style="color:var(--text-soft)">Modwright</strong> <span class="sep">·</span> Forge 1.20.1 mod porting <span class="sep">·</span> <a href="mod-porting-cost.html">What a port costs</a> <span class="sep">·</span> <a href="fabric-to-forge-1-20-1.html">Fabric to Forge: what breaks</a> <span class="sep">·</span> <a href="#terms">Terms</a> <span class="sep">·</span> <a href="#privacy">Privacy</a> <span class="sep">·</span> <a href="#licenses">Licenses</a> <span class="sep">·</span> <a href="mailto:modwrightstudios@gmail.com">Contact</a></div>
 </footer>
 
@@ -1479,14 +1565,17 @@
       advToggle.setAttribute('aria-expanded', nowHidden ? 'false' : 'true');
     });
   }
+  // Misma lista que el bloque de CSS del fade. Si se toca una, se toca la otra.
+  var REVEAL_SEL = '.reveal, section > .wrap > h2, section > .wrap > .sub, .card, .port-card,' +
+    ' .contact-card, .legal-row, .faq-item, .step, .paycard, .softcta, .big-quote';
   var rmReveal = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!rmReveal && 'IntersectionObserver' in window) {
     var revIO = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in-view'); revIO.unobserve(en.target); } });
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.reveal').forEach(function (el) { revIO.observe(el); });
+    document.querySelectorAll(REVEAL_SEL).forEach(function (el) { revIO.observe(el); });
   } else {
-    document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in-view'); });
+    document.querySelectorAll(REVEAL_SEL).forEach(function (el) { el.classList.add('in-view'); });
   }
   function money(n) { return '$' + Math.round(n); }
   function compute() {
