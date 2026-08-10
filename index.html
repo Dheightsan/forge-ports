@@ -728,9 +728,12 @@
     .port-img span { color: var(--text-mute); font-size: 0.78rem; }
     .port-card-head { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.9rem; flex-wrap: wrap; }
     .port-badges { display: flex; gap: 0.4rem; flex-wrap: wrap; }
-    .badge--lic-mit, .badge--loader { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em; padding: 0.22rem 0.55rem; border-radius: 999px; }
+    .badge--lic-mit, .badge--lic-arr, .badge--loader { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em; padding: 0.22rem 0.55rem; border-radius: 999px; }
     .badge--lic-mit { background: var(--green-glow); color: var(--green-hi); border: 1px solid var(--green-ring); }
-    .badge--loader { background: var(--surface2); color: var(--text-soft); border: 1px solid var(--border); }
+    /* Licencia restrictiva: neutra a proposito. El verde de --lic-mit dice "llevatelo",
+       y un port con todos los derechos reservados no puede decir eso. Neutra tambien
+       porque --brown se vuelve verde en el modo de acento verde, y ahi mentiria. */
+    .badge--lic-arr, .badge--loader { background: var(--surface2); color: var(--text-soft); border: 1px solid var(--border); }
     .port-status { margin-left: auto; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--brown-hi); }
     .port-name { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
     /* El icono que viaja dentro del jar del mod. Pixel art de 9x9: se pinta a un
@@ -1381,6 +1384,27 @@
           <div><dt>Tested</dt><dd>In-game, survival</dd></div>
         </dl>
         <p class="port-link-ph">The official page link lands here once the creator publishes it.</p>
+      </div>
+
+      <div class="port-card">
+        <div class="port-card-head">
+          <div class="port-badges">
+            <span class="badge--lic-arr">All rights reserved</span>
+            <span class="badge--loader" translate="no">Forge 1.20.1</span>
+          </div>
+          <span class="port-status">Delivered to the creators</span>
+        </div>
+        <div class="port-title">
+          <h3 class="port-name" translate="no">Puppy Paws</h3>
+        </div>
+        <p class="port-desc">Loader conversion of <span translate="no">Shaunt</span> and <span translate="no">Caf&eacute;</span>'s companion-dog mod, from <span translate="no">Fabric</span> to <span translate="no">Forge</span> on the same Minecraft version. Five breeds, twelve coat variants, the golden retriever's digging behaviour, the food items and the <span translate="no">Melody</span> disc, all rebuilt on <span translate="no">Forge</span> registries and events, with the spawn rules moved to data-driven biome modifiers. This mod has no public source, so the port was rebuilt from the compiled jar and then diffed back against it. Boot-tested on a dedicated server and handed to its creators.</p>
+        <dl class="port-stats">
+          <div><dt>Loader</dt><dd>Fabric &rarr; Forge</dd></div>
+          <div><dt>Version</dt><dd>1.20.1, unchanged</dd></div>
+          <div><dt>Source</dt><dd>Rebuilt from the jar</dd></div>
+          <div><dt>Tested</dt><dd>Dedicated server</dd></div>
+        </dl>
+        <p class="port-link-ph">No download here: the mod is its creators' to publish, not mine. Original by <span translate="no">Shaunt</span>, <span translate="no">Caf&eacute;</span> and <span translate="no">@Hecco</span>.</p>
       </div>
 
       <div class="port-card port-card--cta">
