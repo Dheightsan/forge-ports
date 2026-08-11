@@ -1585,7 +1585,7 @@
       <div class="port-card">
         <h3 class="port-name">A crash the compiler cannot see</h3>
         <p class="port-desc">In my port of <span translate="no">Capybara</span> (<span translate="no">39Choko</span>, MIT) the model asked for a bone called <span translate="no">saddleParts</span>. In the model file that bone is called <span translate="no">saddle</span>. The name lives inside a text string, so nothing checked it. The build passed. The resource diff passed. It crashed the first time a capybara was drawn, in my own test instance. <span translate="no">GeckoLib</span>'s <span translate="no">AnimationProcessor.getBone</span> returns null for a name the model does not have, and the renderer runs every frame.</p>
-        <p class="port-footer-note"><strong>Proof.</strong> I kept the broken jar. The check now reads bone names straight out of the compiled bytecode with <span translate="no">javap</span> and compares them against the model file. On the fixed jar: one bone found, zero failures. On the broken jar: it fails, names <span translate="no">saddleParts</span>, and prints the 11 bones that do exist.</p>
+        <p class="port-footer-note"><strong>Proof.</strong> I kept the broken jar. The check now reads bone names straight out of the compiled bytecode with <span translate="no">javap</span> and compares them against the model file. On the fixed jar: one bone found, zero failures. On the broken jar: it fails, names <span translate="no">saddleParts</span>, and prints the 11 bones that do exist. I wrote up <a href="geckolib-bone-name-crash.html">how to run that check on your own jar</a>.</p>
       </div>
 
       <div class="port-card">

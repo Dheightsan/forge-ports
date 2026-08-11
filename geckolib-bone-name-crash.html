@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; frame-src 'none'">
+<script>
+/* El tema claro de esta pagina existia en el CSS pero era inalcanzable: el
+   <html> traia data-theme="dark" fijo y nada lo cambiaba nunca. Quien elige
+   claro en la portada aterrizaba aqui en oscuro. Se lee la misma clave que
+   guarda la portada y, si no hay eleccion, la preferencia del sistema. Va en
+   el <head> y sin defer para que no haya parpadeo antes de pintar. */
+(function(){try{var r=document.documentElement,s=null;
+try{s=localStorage.getItem('mw-theme');}catch(e){}
+if(!s&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches){s='light';}
+r.setAttribute('data-theme',s==='light'?'light':'dark');}catch(e){}})();
+</script>
+<title>GeckoLib bone name mismatch: the crash no compiler can catch | Modwright</title>
+<meta name="description" content="A GeckoLib model asks for a bone the model file does not have, getBone returns null, and the renderer dies on the first frame the entity is drawn. Why nothing catches it at build time, and how to check your own jar with javap before you ship it.">
+<link rel="canonical" href="https://dheightsan.github.io/forge-ports/geckolib-bone-name-crash.html">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon-180.png">
+<meta property="og:title" content="GeckoLib bone name mismatch: the crash no compiler can catch">
+<meta property="og:description" content="getBone returns null, the renderer runs every frame, and the build was green. How to catch it first.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://dheightsan.github.io/forge-ports/geckolib-bone-name-crash.html">
+<meta property="og:image" content="https://dheightsan.github.io/forge-ports/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Modwright: Minecraft mod porting and backporting">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"TechArticle",
+"datePublished":"2026-08-10","dateModified":"2026-08-10",
+"headline":"GeckoLib bone name mismatch: the crash no compiler can catch",
+"description":"A GeckoLib model asks for a bone the model file does not have, getBone returns null, and the renderer dies on the first frame the entity is drawn. Why nothing catches it at build time, and how to check your own jar with javap before you ship it.",
+"author":{"@type":"Person","name":"josda"},
+"publisher":{"@type":"Organization","name":"Modwright"},
+"inLanguage":"en",
+"about":["Minecraft modding","GeckoLib","debugging","mod porting"],
+"proficiencyLevel":"Expert",
+"mainEntityOfPage":"https://dheightsan.github.io/forge-ports/geckolib-bone-name-crash.html"}
+</script>
+<style>
+  @font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 400; font-display: swap; src: url('fonts/space-grotesk-400-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  @font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 600; font-display: swap; src: url('fonts/space-grotesk-600-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  @font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 700; font-display: swap; src: url('fonts/space-grotesk-700-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+  :root {
+    --bg: #14100c; --surface: #211812; --surface2: #2a1f15;
+    --border: #2a2823; --border-lt: #3c382f;
+    --copper: #c07e3c; --gold: #cba14a; --brick: #c14a3c;
+    --text: #eae4d6; --text-soft: #b0a896; --text-mute: #8d8372;
+    --radius: 8px; --max: 760px;
+    --font: 'Space Grotesk', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  }
+  html[data-theme="light"] {
+    --bg: #faf7f1; --surface: #fff; --surface2: #f3ede2;
+    --border: #e2dccf; --border-lt: #cfc7b5;
+    --text: #241c14; --text-soft: #4f463a; --text-mute: #6d6355;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { overflow-x: clip; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font); font-size: 1rem; line-height: 1.72; -webkit-font-smoothing: antialiased; }
+  :focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; border-radius: 2px; }
+  a { color: var(--copper); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .skip { position: absolute; left: -9999px; }
+  .skip:focus { left: 1rem; top: 1rem; background: var(--surface2); padding: 0.6rem 1rem; border-radius: var(--radius); z-index: 10; }
+
+  header.bar { border-bottom: 1px solid var(--border); background: var(--bg); }
+  .bar-in { max-width: var(--max); margin: 0 auto; padding: 0.9rem 1.4rem; display: flex; align-items: center; gap: 0.65rem; }
+  .cuy { width: 46px; height: 46px; flex-shrink: 0; background: url('logo-cuy-v2.webp') center/contain no-repeat; }
+  .bar-in strong { font-weight: 600; font-size: 1.1rem; }
+  .bar-in .back { margin-left: auto; font-size: 0.9rem; color: var(--text-soft); }
+
+  main { max-width: var(--max); margin: 0 auto; padding: 3rem 1.4rem 4rem; }
+  .kicker { color: var(--text-mute); font-size: 0.82rem; letter-spacing: 0.09em; text-transform: uppercase; margin-bottom: 0.9rem; }
+  h1 { font-size: clamp(1.9rem, 5.5vw, 2.7rem); font-weight: 700; line-height: 1.14; letter-spacing: -0.01em; overflow-wrap: anywhere; min-width: 0; margin-bottom: 1.1rem; }
+  h2 { font-size: clamp(1.25rem, 3.4vw, 1.55rem); font-weight: 600; line-height: 1.25; margin: 2.9rem 0 0.85rem; overflow-wrap: anywhere; }
+  h3 { font-size: 1.05rem; font-weight: 600; margin: 1.7rem 0 0.5rem; }
+  p { margin-bottom: 1.05rem; color: var(--text-soft); }
+  p.lede { font-size: 1.1rem; color: var(--text); }
+  strong { color: var(--text); font-weight: 600; }
+  ul, ol { margin: 0 0 1.05rem 1.15rem; color: var(--text-soft); }
+  li { margin-bottom: 0.5rem; }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.9em; background: var(--surface2); border: 1px solid var(--border); border-radius: 4px; padding: 0.1em 0.38em; color: var(--text); overflow-wrap: anywhere; }
+  pre { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.1rem; margin: 0 0 1.3rem; overflow-x: auto; }
+  pre code { background: none; border: 0; padding: 0; font-size: 0.82em; line-height: 1.65; white-space: pre; overflow-wrap: normal; display: block; }
+  .tablewrap { overflow-x: auto; margin-bottom: 1.3rem; border: 1px solid var(--border); border-radius: var(--radius); }
+  table { border-collapse: collapse; width: 100%; min-width: 420px; font-size: 0.93rem; }
+  th, td { text-align: left; padding: 0.7rem 0.9rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { color: var(--text); font-weight: 600; background: var(--surface2); }
+  tr:last-child td { border-bottom: none; }
+  td { color: var(--text-soft); }
+  .note { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--copper); border-radius: var(--radius); padding: 1.1rem 1.3rem; margin: 1.5rem 0; }
+  .note p:last-child { margin-bottom: 0; }
+  .silent { border-left-color: var(--brick); }
+  .cta { background: var(--surface); border: 1px solid var(--border-lt); border-radius: var(--radius); padding: 1.6rem; margin-top: 3rem; }
+  .cta p:last-child { margin-bottom: 0; }
+  .btn { display: inline-block; background: var(--copper); color: #17110b; font-weight: 600; padding: 0.72rem 1.25rem; border-radius: var(--radius); margin-top: 0.4rem; }
+  .btn:hover { text-decoration: none; filter: brightness(1.08); }
+  footer { border-top: 1px solid var(--border); margin-top: 3.5rem; padding: 1.8rem 1.4rem; text-align: center; color: var(--text-mute); font-size: 0.85rem; }
+  @media (max-width: 480px) { .bar-in strong { display: none; } main { padding-top: 2.2rem; } }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="bar">
+  <div class="bar-in">
+    <span class="cuy" role="img" aria-label="Modwright logo"></span>
+    <strong translate="no">Modwright</strong>
+    <a class="back" href="./">Services and pricing</a>
+  </div>
+</header>
+
+<main id="main">
+  <div class="kicker">Field notes</div>
+  <h1><span translate="no">GeckoLib</span> bone name mismatch: the crash no compiler can catch</h1>
+
+  <p class="lede">The build succeeds. The log is clean. The mod loads. Then the entity is drawn for the first time and the game dies, because the model asked for a bone the model file does not have. Nothing between you and that moment can see the mistake, and this is why.</p>
+
+  <p>This happened to me on a port of <span translate="no">Capybara</span> by <span translate="no">39Choko</span>, and I kept the broken jar, so everything below is measured rather than remembered.</p>
+
+  <h2>What the mistake looks like</h2>
+  <p>The renderer asked for a bone called <code>saddleParts</code>. In the model file that bone is called <code>saddle</code>. That is the whole bug.</p>
+  <p>Both names are correct <span translate="no">Java</span>. Both compile. The name lives inside a string literal, and a string literal is just characters to the compiler. It has no idea one of them is supposed to correspond to a key in a <code>.geo.json</code> file sitting somewhere else in the jar.</p>
+
+  <div class="note">
+    <p><strong>Why it survives every gate you already have.</strong> A resource diff compares files and both files are present and unchanged. A build passes because the syntax is fine. A load test passes because nothing reads the model until something is rendered. The mod is installed, the log says it initialised, and it is still broken.</p>
+  </div>
+
+  <h2>What actually happens at runtime</h2>
+  <p><span translate="no">GeckoLib</span>'s <code>AnimationProcessor.getBone</code> returns <code>null</code> for a name the loaded model does not contain. It does not throw, and it does not warn. The null travels back into your renderer, which then does what renderers do with it.</p>
+  <p>The detail that makes this loud instead of intermittent: <strong>the renderer runs every frame</strong>. There is no rare code path and no unlucky timing. The first time that entity enters view, the exception fires, and it keeps firing.</p>
+  <p>So the failure is simultaneously invisible before release and impossible to miss after it. That combination is what makes it expensive.</p>
+
+  <h2>Why "check your spelling" is not an answer</h2>
+  <p>It is the advice you will find on every thread about this, and it is correct, and it is useless. It assumes you know which name is wrong, in a jar that might have a dozen models and a hundred bones between them. Spotting a mismatch by reading is exactly the task humans are worst at.</p>
+  <p>The mismatch is also frequently not a typo. Mine came from a rename: the model file used one convention and the code kept an older one. Nobody misspelled anything. The two files simply drifted, which is what files do when a mod moves between versions or loaders.</p>
+
+  <h2>How to check a jar before you ship it</h2>
+  <p>You need two lists and a comparison: every bone name your compiled code asks for, and every bone name the model file actually defines. Neither list requires running the game.</p>
+
+  <p><strong>1. Pull the names out of the bytecode.</strong> The names your code requests are string constants in the compiled class, so <code>javap</code> can read them straight out without any source:</p>
+  <pre><code>unzip -o yourmod.jar -d unpacked
+javap -p -c unpacked/path/to/YourEntityModel.class | grep "// String"</code></pre>
+  <p>Every bone name you pass to <code>getBone</code> shows up in that output as a string constant.</p>
+
+  <p><strong>2. Pull the names out of the model file.</strong> The bones in a <code>.geo.json</code> are objects with a <code>name</code> key, nested to whatever depth the rig has, so walk it:</p>
+  <pre><code>import json
+
+def bone_names(node):
+    if isinstance(node, dict):
+        if isinstance(node.get("name"), str):
+            yield node["name"]
+        for value in node.values():
+            yield from bone_names(value)
+    elif isinstance(node, list):
+        for value in node:
+            yield from bone_names(value)
+
+model = json.load(open("unpacked/assets/yourmod/geo/your_model.geo.json"))
+print(sorted(set(bone_names(model))))</code></pre>
+
+  <p><strong>3. Compare them.</strong> Anything requested that is not defined is the bug, and you have its exact name before a single frame is rendered.</p>
+
+  <div class="note">
+    <p><strong>What this actually returned for me.</strong> On the fixed jar: one bone requested, one bone found, zero failures. On the jar I kept broken: it fails, it names <code>saddleParts</code>, and it prints the eleven bones that do exist so the correct one is right there to read.</p>
+  </div>
+
+  <h2>What this check does not do</h2>
+  <p>Being honest about the limits, because a check you trust too much is worse than no check:</p>
+  <ul>
+    <li>It only sees <strong>literal</strong> names. A bone name built at runtime by concatenating strings is invisible to it.</li>
+    <li>It needs a <span translate="no">JDK</span> on the machine, because <code>javap</code> ships with the <span translate="no">JDK</span> and not with the runtime.</li>
+    <li>It proves the names line up. It does not prove the animation is correct, or that the model looks right.</li>
+  </ul>
+  <p>It is a colander, not a proof. It catches one specific class of silent failure completely, and says nothing about any other.</p>
+
+  <h2>The general shape of the problem</h2>
+  <p>Any identifier that crosses from code into a data file is unchecked by definition: bone names, animation names, texture paths, sound events, model keys. The compiler stops at the edge of the language, and the mistake lives one step past that edge.</p>
+  <p>So the question worth asking of a mod is not "does it build". It is "which of its strings are secretly references, and what verifies them". On a port that question matters more than usual, because a port is a rebuild, and rebuilds are exactly when the two sides drift.</p>
+
+  <div class="cta">
+    <p><strong>If you would rather not do this yourself.</strong></p>
+    <p>I port, backport and revive Minecraft mods, and <span translate="no">Forge</span> 1.20.1 is where I work most. This check now runs against every jar I build, before anything is launched, along with four other structural ones.</p>
+    <p><a class="btn" href="./#estimator">Price your mod</a></p>
+  </div>
+<hr>
+<p><strong>Related.</strong> This is one of several failures that pass every automatic gate. The rest are in <a href="fabric-to-forge-1-20-1.html">what actually breaks when you port a Fabric mod to Forge 1.20.1</a>, and if you are weighing up paying somebody, <a href="mod-porting-cost.html">what a mod port costs, and why</a> explains where the hours actually go.</p>
+</main>
+
+<footer>
+  <span translate="no">Modwright</span> &middot; <a href="./">Services and pricing</a> &middot; <a href="./#legal">Terms</a>
+</footer>
+</body>
+</html>
