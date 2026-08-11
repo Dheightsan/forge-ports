@@ -121,6 +121,16 @@ r.setAttribute('data-theme',s==='light'?'light':'dark');}catch(e){}})();
 
   <p>Everything below comes from real ports, not from reading documentation: <span translate="no">Boids</span> and its <span translate="no">Birds</span> addon, a rideable capybara mod with <span translate="no">GeckoLib</span> animations, and a dog mod with five variants.</p>
 
+  <h2>First, check whether you need to port it at all</h2>
+  <p>There is a free option and it would be dishonest of me to write a page about paying for this without naming it. <a href="https://modrinth.com/mod/connector" target="_blank" rel="noopener noreferrer"><span translate="no">Sinytra Connector</span></a> runs <span translate="no">Fabric</span> mods on <span translate="no">Forge</span> and <span translate="no">NeoForge</span> at runtime, it is <span translate="no">MIT</span>, and it has over 22 million downloads. It supports 1.20.1. Try it before you pay anybody, including me.</p>
+  <p>It works by translating between the two loaders while the game runs, which is why it is free and why it is not the same thing as a port. Three consequences worth knowing before you decide:</p>
+  <ul>
+    <li><strong>Some mods are on the incompatibility list and stay there.</strong> The project tracks known 1.20.1 problems in <a href="https://github.com/Sinytra/Connector/discussions/180" target="_blank" rel="noopener noreferrer">discussion 180</a>. Check yours against it first. 1.20.1 sits on its own maintenance branch while active development happens on the newer versions, so a mod on that list is not likely to come off it soon.</li>
+    <li><strong>You ship the bridge as a dependency.</strong> Everyone on the server needs <span translate="no">Connector</span> and <span translate="no">Forgified Fabric API</span> installed. For a private <span translate="no">SMP</span> that is nothing. For a modpack you distribute, it is two more moving parts in your dependency tree.</li>
+    <li><strong>The mod is still a <span translate="no">Fabric</span> mod.</strong> If you need it to interoperate with <span translate="no">Forge</span> mods at the code level, a compat patch against the real <span translate="no">Forge</span> API, or an addon of your own, then you need a native build to work against.</li>
+  </ul>
+  <p>So the honest split: if <span translate="no">Connector</span> runs your mod and you are happy, you are done and this page is just reading material. Porting earns its price when <span translate="no">Connector</span> cannot run it, when you are shipping something public and want one fewer dependency, or when the mod has to be extended rather than just launched.</p>
+
   <h2>1. Registration is the easy part, and it is most of the diff</h2>
   <p><span translate="no">Fabric</span> registers things by calling <code>Registry.register</code> during initialisation. <span translate="no">Forge</span> wants a <code>DeferredRegister</code> per registry type, created up front and bound to the mod event bus. Mechanical work: items, blocks, entities, sounds, the creative tab, spawn eggs.</p>
   <p>It is boring and it is safe, because the compiler catches you. Expect this to be sixty per cent of the changed lines and almost none of the risk. If someone quotes a port by counting files, this is what they are counting, and it is the wrong thing to count.</p>
