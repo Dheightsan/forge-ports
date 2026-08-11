@@ -1186,6 +1186,53 @@
     .coll-cta { margin-top: 1.8rem; display: flex; flex-wrap: wrap; align-items: center; gap: 0.8rem; }
     .btn[aria-disabled="true"] { opacity: 0.55; cursor: not-allowed; pointer-events: none; }
     .coll-soon { font-size: 0.82rem; color: var(--text-mute); }
+    /* -- HERO A DOS COLUMNAS ------------------------------------------------
+       Antes de esto el hero era texto sobre color plano: `.hero-scene` estaba
+       apagada con display:none (la ilustracion dibujada a mano no se veia, no
+       es que estuviera tapada) y `.hero-inner` limitado a 760 px dejaba media
+       pantalla vacia al lado. Diez bloques de texto seguidos y ni una imagen.
+       Mientras tanto las 9 panoramicas del pack vivian en #about, a 6000 px de
+       scroll de donde se decide si te quedas.
+       El texto NO se toca: la copia del hero y los colores del titular son
+       decision cerrada de josda (rechazo ~11 propuestas de color).
+
+       El hero usa ancho PROPIO, mas que la columna de contenido del resto de la
+       pagina: un hero puede ser mas ancho, un parrafo no. Con 1240 y reparto
+       1.12/0.88 al texto le quedan ~655 px y a la imagen ~515. Con el reparto
+       anterior (760px fijos al texto) a la imagen le sobraban 258 y se veia una
+       miniatura. */
+    /* align-items:start y no center. Centrada contra una columna de texto
+       de 800 px de alto, la imagen caia a media altura y dejaba vacio el
+       cuadrante de arriba a la derecha, que es justo donde va el ojo al
+       entrar. Arriba acompaña al titular. */
+    .hero-inner { max-width: 1240px; display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr); gap: 2.8rem; align-items: start; }
+    .hero-art { padding-top: 3.2rem; }
+    .hero-copy { min-width: 0; }
+    .hero-art { min-width: 0; }
+    .hero-art figure { margin: 0; }
+    .hero-art img { display: block; width: 100%; height: auto; border-radius: var(--radius-lg); border: 1px solid var(--border-lt); }
+    /* El que posiciona es el stack, NO .hero-art: .hero-art incluye el pie, y
+       colgar la foto pequeña de el la mandaba por debajo del pie y se pisaban. */
+    .hero-art-stack { position: relative; }
+    .hero-art-main img { box-shadow: 0 26px 52px -26px rgba(0,0,0,0.8); }
+    /* Descolgada por abajo a la izquierda: dos rectangulos alineados parecen
+       una galeria; descolgada parece una ventana a un mundo. */
+    .hero-art-side { position: absolute; left: -2.6rem; bottom: -2.4rem; width: 48%; }
+    .hero-art-side img { box-shadow: 0 20px 36px -18px rgba(0,0,0,0.85); }
+    .hero-art-note { margin-top: 3.6rem; font-size: 0.78rem; line-height: 1.5; color: var(--text-mute); text-align: right; }
+    /* Por debajo de 1080 no caben dos columnas con el titular a este cuerpo. La
+       imagen pasa ARRIBA DEL TODO y en banda: lo visual tiene que aparecer
+       antes que el muro de texto, que es justo lo que fallaba. */
+    @media (max-width: 1080px) {
+      #hero { min-height: 0; padding-top: 2rem; }
+      .hero-inner { grid-template-columns: minmax(0, 1fr); gap: 1.6rem; }
+      .hero-art { order: -1; }
+      .hero-art-main img { aspect-ratio: 16 / 7; object-fit: cover; }
+      .hero-art-side { position: static; width: 100%; margin-top: 0.7rem; }
+      .hero-art-side img { aspect-ratio: 16 / 6; object-fit: cover; }
+      .hero-art-note { margin-top: 0.7rem; text-align: left; }
+    }
+    @media (max-width: 620px) { .hero-art-side { display: none; } }
 
     /* -- PERSONAJES --------------------------------------------------------
        Los generan tools_build_heads.py y tools_place_heads.py.
@@ -1353,6 +1400,7 @@
   </svg>
   </div>
   <div class="wrap hero-inner">
+    <div class="hero-copy">
     <div class="badge"><span class="badge-dot"></span>Open for commissions</div>
     <h1><span class="w-port">Port,</span> <span class="w-back">backport</span> <span class="w-amp">&amp;</span> <span class="w-rev">revive</span> <span class="mc" translate="no" data-word="Minecraft">Minecraft</span> <span class="w-mods">mods,</span><br><span class="w-ver">any version,</span> <span class="w-load">any loader</span></h1>
     <p class="hero-services">Plus compatibility patches, maintenance and optimization.</p>
@@ -1380,6 +1428,18 @@
       world &mdash; they are decoration, not a client list.</span>
     </div>
     <p class="hero-trust">Quotes are free, and there's nothing to pay until we've agreed the scope and price in writing. I usually reply the same day.</p>
+    </div><!--/hero-copy-->
+    <div class="hero-art">
+      <div class="hero-art-stack">
+        <figure class="hero-art-main">
+          <img src="hero-main.webp" width="1400" height="788" alt="A large ornate structure of dark stone and gold beside a lava fall in the Nether, lit by soul fire." loading="eager" fetchpriority="high" decoding="async">
+        </figure>
+        <figure class="hero-art-side">
+          <img src="hero-side.webp" width="900" height="506" alt="My character standing beside a large pale horned bull on open grassland." loading="lazy" decoding="async">
+        </figure>
+      </div>
+      <p class="hero-art-note">My own pack, on <span translate="no">Forge</span> 1.20.1. Not a commission and not a port of mine.</p>
+    </div>
   </div>
 </section>
 
