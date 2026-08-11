@@ -1186,6 +1186,40 @@
     .coll-cta { margin-top: 1.8rem; display: flex; flex-wrap: wrap; align-items: center; gap: 0.8rem; }
     .btn[aria-disabled="true"] { opacity: 0.55; cursor: not-allowed; pointer-events: none; }
     .coll-soon { font-size: 0.82rem; color: var(--text-mute); }
+
+    /* ── CABEZAS ─────────────────────────────────────────────────────────────
+       Generadas por tools_build_heads.py y colocadas por tools_place_heads.py.
+       NO tocar a mano: se reescriben enteras al relanzar el script.
+       El reparto de escritorio vive en los margenes (166 px libres a cada lado
+       de la columna de 1060). Por debajo de 1280 px esos margenes no existen,
+       asi que las sueltas se apagan y sale la fila de .heads-row en su lugar. */
+    .head-sc { position: absolute; z-index: 0; pointer-events: none; user-select: none; image-rendering: pixelated; }
+    /* 6.2rem y corte en 1260 px NO son a ojo, salen de la cuenta. La columna mide
+       1060, asi que su borde esta en 50% - 530. La cabeza empieza 99.2 px antes,
+       luego el hueco que queda hasta el texto es 99.2 menos el tamano de la
+       cabeza, y la mas grande de la lista mide 78: sobran 21 px SIEMPRE, en
+       cualquier ancho. Lo que si depende del ancho es que la cabeza no se salga
+       por la izquierda: a 1260 px arrancaba a 0.8 px del borde, o sea pegada.
+       Cortando en 1280 (ancho de portatil de toda la vida) le quedan 11 px.
+       Antes habia un max(0.6rem, ...) de parachoques y era peor: en vez de
+       salirse, la cabeza se metia debajo del texto sin avisar. */
+    .head-sc--left { left: calc(50% - 530px - 6.2rem); }
+    .head-sc--right { right: calc(50% - 530px - 6.2rem); }
+    /* El contenido va por encima igualmente, por si alguna vez cambia el ancho
+       de la columna y la cuenta de arriba deja de cuadrar: pierde la cabeza. */
+    section > .wrap, .ls-inner { position: relative; z-index: 1; }
+    .heads-row { display: none; }
+    @media (max-width: 1279px) {
+      .head-sc { display: none; }
+      .heads-row { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-end;
+                   gap: 0.5rem 0.7rem; padding: 0 1.2rem 2.6rem; }
+      .heads-row img { width: 46px; height: 46px; image-rendering: pixelated; opacity: 0.82; }
+    }
+    /* La de josda. Va en el flujo del hero, no absoluta: es la unica que tiene
+       que verse siempre, tambien en movil. */
+    .hero-me { display: flex; align-items: center; gap: 0.7rem; margin-top: 1.6rem; }
+    .hero-me img { width: 62px; height: 62px; image-rendering: pixelated; flex-shrink: 0; }
+    .hero-me span { font-size: 0.82rem; line-height: 1.45; color: var(--text-mute); }
   </style>
   <script>
     (function(){
@@ -1338,6 +1372,11 @@
       <span class="cta-with-eyes"><a href="#services" class="btn btn-ghost">See services</a><svg class="bicon-eyes" viewBox="0 0 30 18" width="30" height="17" aria-hidden="true"><ellipse cx="9" cy="9" rx="7.6" ry="8.2" fill="#fff" stroke="#2a2014" stroke-width="0.9"/><ellipse cx="21" cy="9" rx="7.6" ry="8.2" fill="#fff" stroke="#2a2014" stroke-width="0.9"/><circle cx="12.6" cy="8.2" r="3.5" fill="#15110b"/><circle cx="24.6" cy="8.2" r="3.5" fill="#15110b"/><circle cx="13.85" cy="7" r="1.05" fill="#fff"/><circle cx="25.85" cy="7" r="1.05" fill="#fff"/></svg></span>
     </div>
     <p class="hero-contact">Quickest reply is on <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer">my Discord</a>. <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20commission">Email</a> works too.</p>
+    <div class="hero-me">
+      <img src="h1024-11.webp" width="62" height="62" alt="" aria-hidden="true" decoding="async">
+      <span>That's my character. The rest of the faces around the page are from the
+      same world &mdash; they are decoration, not a client list.</span>
+    </div>
     <p class="hero-trust">Quotes are free, and there's nothing to pay until we've agreed the scope and price in writing. I usually reply the same day.</p>
   </div>
 </section>
@@ -1379,6 +1418,8 @@
 
 <!-- ESTIMATOR -->
 <section id="estimator">
+  <img class="head-sc head-sc--right" src="h1024-13.webp" width="56" height="56" style="top:68%;width:56px;height:56px;opacity:0.70" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="head-sc head-sc--left" src="h1024-12.webp" width="68" height="68" style="top:16%;width:68px;height:68px;opacity:0.85" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
     <div class="eyebrow" translate="no">Angel Engine</div>
     <h2>Estimate your commission</h2>
@@ -1507,6 +1548,8 @@
 
 <!-- SERVICES -->
 <section id="services">
+  <img class="head-sc head-sc--left" src="h1024-22.webp" width="58" height="58" style="top:61%;width:58px;height:58px;opacity:0.72" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="head-sc head-sc--right" src="h1024-21.webp" width="78" height="78" style="top:24%;width:78px;height:78px;opacity:0.90" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
         <h2>Backports, ports and loader conversions</h2>
     <p class="sub">Forge 1.20.1 is my lowest rate because it sits just below every recent version wall, so it's where I'm fastest. Anything harder is priced by the real work it adds, not some made-up percentage. The full reasoning is written up in <a href="mod-porting-cost.html">what a port costs, and why</a>.</p>
@@ -1606,6 +1649,8 @@
 
 <!-- HOW IT WORKS -->
 <section id="how-it-works">
+  <img class="head-sc head-sc--right" src="h1024-31.webp" width="54" height="54" style="top:70%;width:54px;height:54px;opacity:0.70" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="head-sc head-sc--left" src="h1024-23.webp" width="64" height="64" style="top:30%;width:64px;height:64px;opacity:0.85" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
         <h2>How a mod commission works</h2>
     <p class="sub">It's all done in writing, async, no calls.</p>
@@ -1623,6 +1668,7 @@
 
 <!-- FAQ -->
 <section id="faq">
+  <img class="head-sc head-sc--left" src="h512-11.webp" width="62" height="62" style="top:34%;width:62px;height:62px;opacity:0.82" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
         <h2>Before you ask</h2>
     <div class="faq-list">
@@ -1649,6 +1695,8 @@
 
 <!-- PORTFOLIO -->
 <section id="portfolio">
+  <img class="head-sc head-sc--left" src="h512-13.webp" width="52" height="52" style="top:72%;width:52px;height:52px;opacity:0.68" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="head-sc head-sc--right" src="h512-12.webp" width="66" height="66" style="top:30%;width:66px;height:66px;opacity:0.80" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
         <h2>Recent ports</h2>
     <p class="sub">Anything I build for you stays private unless you want it shown here.</p>
@@ -1741,6 +1789,7 @@
 
 <!-- MOD AUTHORS -->
 <section id="authors">
+  <img class="head-sc head-sc--left" src="h512-21.webp" width="60" height="60" style="top:38%;width:60px;height:60px;opacity:0.82" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
         <h2>Free if you wrote the mod</h2>
     <p class="sub">There is a version of this that costs you nothing. It is not charity, and the reason is worth reading.</p>
@@ -1841,6 +1890,7 @@
 
 <!-- MI PROPIO PACK -->
 <section id="modpack">
+  <img class="head-sc head-sc--right" src="h1024-32.webp" width="70" height="70" style="top:26%;width:70px;height:70px;opacity:0.86" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
         <h2>What I do to my own pack</h2>
     <p class="sub">Nobody pays me for this one. It is where the techniques come from, and where I find out what breaks before a client does.</p>
@@ -1879,6 +1929,7 @@
 
 <!-- ABOUT -->
 <section id="about">
+  <img class="head-sc head-sc--right" src="h512-22.webp" width="70" height="70" style="top:12%;width:70px;height:70px;opacity:0.88" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
         <h2>It's just me</h2>
     <p class="sub">There's no team and nothing gets outsourced. The person who takes your commission is the person who writes and debugs every line of it.</p>
@@ -1929,6 +1980,8 @@
 
 <!-- CONTACT -->
 <section id="contact">
+  <img class="head-sc head-sc--right" src="h512-31.webp" width="54" height="54" style="top:74%;width:54px;height:54px;opacity:0.70" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="head-sc head-sc--left" src="h512-23.webp" width="74" height="74" style="top:40%;width:74px;height:74px;opacity:0.90" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
         <h2>Send me the mod</h2>
     <p class="sub">Message me or build your request in the <span translate="no">Angel Engine</span> above, and you'll have a fixed quote in writing, usually within a day.</p>
@@ -1957,6 +2010,7 @@
 
 <!-- COLISION DE IDEAS -->
 <section id="collision">
+  <img class="head-sc head-sc--left" src="h1024-33.webp" width="62" height="62" style="top:46%;width:62px;height:62px;opacity:0.80" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
         <h2><span translate="no">Colisi&oacute;n de ideas</span></h2>
     <p class="sub">A private group I am putting together for people who draw. Nothing to do with commissions.</p>
@@ -1974,6 +2028,7 @@
 
 <!-- LEGAL -->
 <section id="legal">
+  <img class="head-sc head-sc--right" src="h512-32.webp" width="56" height="56" style="top:28%;width:56px;height:56px;opacity:0.66" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
         <h2>I only port what I have rights to port</h2>
     <p class="sub">Most devs in this space ignore licensing. I don't, because a DMCA takedown or account ban hits your account harder than it hits me.</p>
@@ -2026,6 +2081,26 @@
   </div>
 </section>
 
+<div class="heads-row" aria-hidden="true">
+  <img src="h1024-11.webp" width="46" height="46" alt="" loading="lazy" decoding="async">
+  <img src="h1024-12.webp" width="46" height="46" alt="" loading="lazy" decoding="async">
+  <img src="h1024-13.webp" width="46" height="46" alt="" loading="lazy" decoding="async">
+  <img src="h1024-21.webp" width="46" height="46" alt="" loading="lazy" decoding="async">
+  <img src="h1024-22.webp" width="46" height="46" alt="" loading="lazy" decoding="async">
+  <img src="h1024-23.webp" width="46" height="46" alt="" loading="lazy" decoding="async">
+  <img src="h1024-31.webp" width="46" height="46" alt="" loading="lazy" decoding="async">
+  <img src="h1024-32.webp" width="46" height="46" alt="" loading="lazy" decoding="async">
+  <img src="h1024-33.webp" width="46" height="46" alt="" loading="lazy" decoding="async">
+  <img src="h512-11.webp" width="46" height="46" alt="" loading="lazy" decoding="async">
+  <img src="h512-12.webp" width="46" height="46" alt="" loading="lazy" decoding="async">
+  <img src="h512-13.webp" width="46" height="46" alt="" loading="lazy" decoding="async">
+  <img src="h512-21.webp" width="46" height="46" alt="" loading="lazy" decoding="async">
+  <img src="h512-22.webp" width="46" height="46" alt="" loading="lazy" decoding="async">
+  <img src="h512-23.webp" width="46" height="46" alt="" loading="lazy" decoding="async">
+  <img src="h512-31.webp" width="46" height="46" alt="" loading="lazy" decoding="async">
+  <img src="h512-32.webp" width="46" height="46" alt="" loading="lazy" decoding="async">
+  <img src="h512-33.webp" width="46" height="46" alt="" loading="lazy" decoding="async">
+</div>
 <footer>
   <div class="sig-hogs" aria-hidden="true"></div>
   <div><strong style="color:var(--text-soft)">Modwright</strong> <span class="sep">·</span> Forge 1.20.1 mod porting <span class="sep">·</span> <a href="mod-porting-cost.html">What a port costs</a> <span class="sep">·</span> <a href="fabric-to-forge-1-20-1.html">Fabric to Forge: what breaks</a> <span class="sep">·</span> <a href="#terms">Terms</a> <span class="sep">·</span> <a href="#privacy">Privacy</a> <span class="sep">·</span> <a href="#licenses">Licenses</a> <span class="sep">·</span> <a href="mailto:modwrightstudios@gmail.com">Contact</a></div>
