@@ -1027,13 +1027,16 @@
        Reexportadas a 1800 px de ancho. Los 760 px que bastan en la rejilla, estirados
        a todo el ancho de un monitor, se ven borrosos. */
     .scene-band { position: relative; line-height: 0; overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-    .scene-band img { display: block; width: 100%; height: clamp(200px, 27vw, 360px); object-fit: cover; object-position: center; }
+    /* COMPLETA, sin recortar. Antes: height fija + object-fit:cover, o sea que
+       a 1440 px se veia una franja de 360 px de una foto de 1800x1012: el 46%
+       de su altura. Ahora se ve entera, con el ancho topado a 1240 para que
+       no se convierta en un muro de 800 px de alto. */
+    .scene-band img { display: block; width: 100%; max-width: 1240px; height: auto; margin-inline: auto; }
     /* El pie va sobre la imagen y no debajo: debajo parte el respiro en dos y deja
        de leerse como una pausa. El degradado es fijo (no de tema) porque lo que hay
        detras es la foto, que no cambia con el tema. */
     .scene-band figcaption { position: absolute; inset: auto 0 0 0; padding: 2.8rem 1.5rem 0.9rem; font-size: 0.78rem; line-height: 1.5; color: rgba(255,255,255,0.87); background: linear-gradient(180deg, rgba(9,8,6,0) 0%, rgba(9,8,6,0.68) 58%, rgba(9,8,6,0.9) 100%); }
-    .scene-band figcaption > span { display: block; max-width: var(--max); margin: 0 auto; }
-    .scene-band--low img { object-position: center 64%; }
+    .scene-band figcaption > span { display: block; max-width: 1240px; margin: 0 auto; }
     @media (max-width: 720px) { .scene-band figcaption { padding-inline: 1.2rem; font-size: 0.74rem; } }
     /* Retrato en #about. Es el mismo personaje de las bandas, asi que la seccion
        que dice "solo yo" ensena a quien. 351 px es el original entero, no hay mas:
@@ -1230,9 +1233,9 @@
       #hero { min-height: 0; padding-top: 2rem; }
       .hero-inner { grid-template-columns: minmax(0, 1fr); gap: 1.6rem; }
       .hero-art { order: -1; }
-      .hero-art-main img { aspect-ratio: 16 / 7; object-fit: cover; }
+      /* sin aspect-ratio ni cover: en movil tambien se estaban recortando */
       .hero-art-side { position: static; width: 100%; margin-top: 0.7rem; }
-      .hero-art-side img { aspect-ratio: 16 / 6; object-fit: cover; }
+      
       .hero-art-note { margin-top: 0.7rem; text-align: left; }
     }
     @media (max-width: 620px) { .hero-art-side { display: none; } }
@@ -1435,7 +1438,7 @@
           <img src="hero-main.webp" width="1400" height="788" alt="My character standing at the edge of a river inside a towering redwood forest, in a heavily modded world." loading="eager" fetchpriority="high" decoding="async">
         </figure>
         <figure class="hero-art-side">
-          <img src="hero-side.webp" width="900" height="506" alt="A large ornate structure of dark stone and gold beside a lava fall in the Nether, lit by soul fire." loading="lazy" decoding="async">
+          <img src="hero-side.webp" width="900" height="506" alt="My character standing beside a large pale horned bull on open grassland." loading="lazy" decoding="async">
         </figure>
       </div>
       <p class="hero-art-note">My own pack, on <span translate="no">Forge</span> 1.20.1. Not a commission and not a port of mine.</p>
@@ -1445,7 +1448,7 @@
 <!-- LOADERS -->
 <section id="loaders">
   <div class="wrap">
-    <img class="ch ch--tit" src="h1024-12.webp" width="256" height="236" style="top:-6px;height:92px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
+    <img class="ch ch--tit" src="h1024-21.webp" width="256" height="236" style="top:-6px;height:92px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <h2>One target, any starting point</h2>
     <p class="sub">Whatever your mod runs on now, it can come across. The three loaders convert between each other, and versions move up or down.</p>
     <figure class="loomd-wrap">
@@ -1474,7 +1477,7 @@
 <!-- PORTFOLIO -->
 <section id="portfolio">
   <div class="wrap">
-    <img class="ch ch--tit" src="h1024-13.webp" width="256" height="235" style="top:14px;height:58px;opacity:0.92" alt="" aria-hidden="true" loading="lazy" decoding="async">
+    <img class="ch ch--tit" src="h1024-12.webp" width="256" height="236" style="top:14px;height:58px;opacity:0.92" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <h2>Recent ports</h2>
     <p class="sub">Anything I build for you stays private unless you want it shown here.</p>
 
@@ -1569,7 +1572,7 @@
 <!-- SERVICES -->
 <section id="services">
   <div class="wrap">
-    <img class="ch ch--tit" src="h1024-21.webp" width="256" height="236" style="top:2px;height:74px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
+    <img class="ch ch--tit" src="h512-21.webp" width="256" height="245" style="top:2px;height:74px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <h2>Backports, ports and loader conversions</h2>
     <p class="sub">Forge 1.20.1 is my lowest rate because it sits just below every recent version wall, so it's where I'm fastest. Anything harder is priced by the real work it adds, not some made-up percentage. The full reasoning is written up in <a href="mod-porting-cost.html">what a port costs, and why</a>.</p>
 <div class="cards">
@@ -1637,18 +1640,13 @@
   </div>
   <p class="svc-price-note">Every one of these is priced in the <a href="#estimator"><span translate="no">Angel Engine</span></a> above.</p>
 </section>
-<figure class="scene-band scene-band--low">
-  <img src="band-skeleton.webp" width="1800" height="1012" alt="An enormous skeleton lying across a flooded clearing between giant redwoods, seen from above." loading="lazy" decoding="async">
-  <figcaption><span>My own pack, on Forge 1.20.1. Not a commission and not a port of mine — this is the one I actually play.</span></figcaption>
-
-</figure>
 <div class="torn-sep" aria-hidden="true"><svg viewBox="0 0 1440 24" preserveAspectRatio="none"><path d="M0 24 L0 13 L60 8 L120 16 L186 7 L256 15 L330 9 L408 17 L486 8 L566 15 L648 9 L730 17 L812 8 L894 15 L976 10 L1058 17 L1140 8 L1222 15 L1304 9 L1386 16 L1440 12 L1440 24 Z"/></svg>
 
 </div>
 <!-- HOW IT WORKS -->
 <section id="how-it-works">
   <div class="wrap">
-    <img class="ch ch--tit" src="h1024-22.webp" width="256" height="236" style="top:22px;height:46px;opacity:0.88" alt="" aria-hidden="true" loading="lazy" decoding="async">
+    <img class="ch ch--tit" src="h1024-32.webp" width="256" height="236" style="top:22px;height:46px;opacity:0.88" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <h2>How a mod commission works</h2>
     <p class="sub">It's all done in writing, async, no calls.</p>
     <div class="steps">
@@ -1663,7 +1661,7 @@
 <!-- ESTIMATOR -->
 <section id="estimator">
   <div class="wrap">
-    <img class="ch ch--tit" src="h1024-23.webp" width="256" height="235" style="top:6px;height:68px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
+    <img class="ch ch--tit" src="h512-33.webp" width="256" height="242" style="top:4px;height:72px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
     <div class="eyebrow" translate="no">Angel Engine</div>
     <h2>Estimate your commission</h2>
     <p class="sub">Pick what you need and the ballpark updates as you go, and it writes a summary you can paste straight into a message. Every price on this site lives here, so there is one number to check and nothing to cross-reference.</p>
@@ -1791,7 +1789,7 @@
 <!-- FAQ -->
 <section id="faq">
   <div class="wrap">
-    <img class="ch ch--tit" src="h1024-31.webp" width="256" height="236" style="top:-4px;height:86px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
+    <img class="ch ch--tit" src="h1024-13.webp" width="256" height="235" style="top:-4px;height:86px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <h2>Before you ask</h2>
     <div class="faq-list">
       <div class="faq-item"><button type="button" class="faq-q">Why is 1.20.1 the cheapest lane? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">It sits just below every recent version wall, so it takes the least work. Other versions have to cross walls (networking, data components, worldgen) that genuinely take longer, so they carry a flat premium per wall.</div></div></div>
@@ -1815,7 +1813,7 @@
 <!-- MOD AUTHORS -->
 <section id="authors">
   <div class="wrap">
-    <img class="ch ch--tit" src="h1024-32.webp" width="256" height="236" style="top:18px;height:52px;opacity:0.90" alt="" aria-hidden="true" loading="lazy" decoding="async">
+    <img class="ch ch--tit" src="h512-12.webp" width="256" height="245" style="top:18px;height:52px;opacity:0.90" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <h2>Free if you wrote the mod</h2>
     <p class="sub">There is a version of this that costs you nothing. It is not charity, and the reason is worth reading.</p>
 
@@ -1954,7 +1952,7 @@
 <!-- ABOUT -->
 <section id="about">
   <div class="wrap">
-    <img class="ch ch--tit" src="h1024-33.webp" width="256" height="235" style="top:0px;height:78px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
+    <img class="ch ch--tit" src="h1024-23.webp" width="256" height="235" style="top:0px;height:78px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <h2>It's just me</h2>
     <p class="sub">There's no team and nothing gets outsourced. The person who takes your commission is the person who writes and debugs every line of it.</p>
     <div class="about-body">
@@ -1976,6 +1974,8 @@
         <img src="pack-01.webp" width="1200" height="675" alt="A villager outside a wooden house in a heavily modded world, with custom flowers and trees around it." loading="lazy" decoding="async">
       </figure>
       <div class="pack-grid">
+        <img src="pack-02.webp" width="760" height="428" alt="An enormous skeleton lying across a flooded clearing between giant redwoods, seen from above." loading="lazy" decoding="async">
+        <img src="pack-04.webp" width="760" height="428" alt="A large ornate structure of dark stone and gold beside a lava fall in the Nether, lit by soul fire." loading="lazy" decoding="async">
         <img src="pack-05.webp" width="760" height="428" alt="Three bears gathered on a stone platform in a birch and pine forest." loading="lazy" decoding="async">
         <img src="pack-06.webp" width="760" height="428" alt="A window set into the trunk of a huge tree at sunset, with birch trees behind it." loading="lazy" decoding="async">
         <img src="pack-08.webp" width="760" height="428" alt="A pillager riding an orange boar through bright green forest undergrowth." loading="lazy" decoding="async">
@@ -1983,7 +1983,7 @@
         <img src="pack-10.webp" width="760" height="428" alt="A capybara resting on open grassland under a clear sky." loading="lazy" decoding="async">
         <img src="pack-11.webp" width="669" height="578" alt="A tall red villager and a blue-robed wizard holding a staff, standing on a snow field." loading="lazy" decoding="async">
       </div>
-      <p class="pack-note">Every one of these is from a pack I run for myself, on Forge 1.20.1, with hundreds of other people's mods in it. <strong>None of them is a commission and none of them is a port of mine</strong>, and I am not claiming credit for a single block in the frame. They are here because this is the thing the work is for.</p>
+      <p class="pack-note">Every one of these is from a pack I run for myself, on Forge 1.20.1, with <strong>more than 600 mods</strong> in it. I am a player before I am anything else, and this is the pack the porting work grew out of. <strong>None of them is a commission and none of them is a port of mine</strong>, and I am not claiming credit for a single block in the frame. They are here because this is the thing the work is for.</p>
     </div>
 
     <div class="credit">
@@ -2039,11 +2039,11 @@
       <p>It stays private and small on purpose. Everyone gets in by invitation.</p>
     </div>
     <div class="ch-fila" aria-hidden="true">
+      <img class="ch-en-fila" src="h512-13.webp" width="256" height="245" style="" alt="" aria-hidden="true" loading="lazy" decoding="async">
       <img class="ch-en-fila" src="h512-22.webp" width="256" height="235" style="" alt="" aria-hidden="true" loading="lazy" decoding="async">
       <img class="ch-en-fila" src="h512-23.webp" width="256" height="235" style="" alt="" aria-hidden="true" loading="lazy" decoding="async">
       <img class="ch-en-fila" src="h512-31.webp" width="256" height="242" style="" alt="" aria-hidden="true" loading="lazy" decoding="async">
       <img class="ch-en-fila" src="h512-32.webp" width="256" height="242" style="" alt="" aria-hidden="true" loading="lazy" decoding="async">
-      <img class="ch-en-fila" src="h512-33.webp" width="256" height="242" style="" alt="" aria-hidden="true" loading="lazy" decoding="async">
     </div>
     <div class="coll-cta">
       <a class="btn btn-discord" aria-disabled="true" role="link">Invite link coming</a>
