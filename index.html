@@ -174,7 +174,7 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     ::selection { background: rgba(203,161,74,0.32); color: #fff8ec; }
     :focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; border-radius: 2px; }
-    html.js .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s cubic-bezier(.2,.8,.2,1), transform 0.6s cubic-bezier(.2,.8,.2,1); }
+    html.js .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.3s cubic-bezier(.2,.8,.2,1), transform 0.3s cubic-bezier(.2,.8,.2,1); }
     html.js .reveal.in-view { opacity: 1; transform: none; }
     @media (prefers-reduced-motion: reduce) { html.js .reveal { opacity: 1; transform: none; transition: none; } }
     /* La maquinaria de arriba existia desde el principio pero SOLO la usaba el
@@ -182,25 +182,39 @@
        y no con clases en el HTML para que el estado inicial exista ya en el primer
        pintado: si las clases se anadieran por JS, el contenido parpadearia visible
        antes de ocultarse. La lista va escrita dos veces a proposito, para que la
-       regla .in-view sea mas especifica sin recurrir a !important. */
+       regla .in-view sea mas especifica sin recurrir a !important.
+       Van a 0.3s y no a 0.55s: por encima de ~400ms el que baja rapido se adelanta
+       a la aparicion y se lleva el hueco en blanco, asi que la animacion que existe
+       para que se note viva conseguia lo contrario. Fuera de la lista .faq-item y
+       .legal-row: son el acordeon de dudas y las filas de Terminos/Privacidad, lo
+       que se lee cuando ya se ESTA buscando algo concreto, y ahi un fundido es un
+       peaje, no un adorno. */
     html.js :is(section > .wrap > h2, section > .wrap > .sub, .card, .port-card,
-      .contact-card, .legal-row, .faq-item, .step, .paycard, .softcta, .deal-col, .big-quote) {
+      .contact-card, .step, .paycard, .softcta, .deal-col, .big-quote) {
       opacity: 0; transform: translateY(16px);
-      transition: opacity 0.55s cubic-bezier(.2,.8,.2,1), transform 0.55s cubic-bezier(.2,.8,.2,1);
+      transition: opacity 0.3s cubic-bezier(.2,.8,.2,1), transform 0.3s cubic-bezier(.2,.8,.2,1);
     }
     html.js :is(section > .wrap > h2, section > .wrap > .sub, .card, .port-card,
-      .contact-card, .legal-row, .faq-item, .step, .paycard, .softcta, .deal-col, .big-quote).in-view {
+      .contact-card, .step, .paycard, .softcta, .deal-col, .big-quote).in-view {
       opacity: 1; transform: none;
     }
     /* Escalonado dentro de cada rejilla: las tarjetas entran una detras de otra en
        vez de todas a la vez, que es lo que hace que se note vivo y no un parpadeo. */
-    html.js :is(.card, .port-card, .contact-card, .legal-row, .faq-item, .step, .paycard):nth-child(2) { transition-delay: 0.07s; }
-    html.js :is(.card, .port-card, .contact-card, .legal-row, .faq-item, .step, .paycard):nth-child(3) { transition-delay: 0.14s; }
-    html.js :is(.card, .port-card, .contact-card, .legal-row, .faq-item, .step, .paycard):nth-child(4) { transition-delay: 0.21s; }
-    html.js :is(.card, .port-card, .contact-card, .legal-row, .faq-item, .step, .paycard):nth-child(n+5) { transition-delay: 0.28s; }
+    html.js :is(.card, .port-card, .contact-card, .step, .paycard):nth-child(2) { transition-delay: 0.07s; }
+    html.js :is(.card, .port-card, .contact-card, .step, .paycard):nth-child(3) { transition-delay: 0.14s; }
+    html.js :is(.card, .port-card, .contact-card, .step, .paycard):nth-child(4) { transition-delay: 0.21s; }
+    html.js :is(.card, .port-card, .contact-card, .step, .paycard):nth-child(n+5) { transition-delay: 0.28s; }
     @media (prefers-reduced-motion: reduce) {
       html.js :is(section > .wrap > h2, section > .wrap > .sub, .card, .port-card,
-        .contact-card, .legal-row, .faq-item, .step, .paycard, .softcta, .deal-col, .big-quote) {
+        .contact-card, .step, .paycard, .softcta, .deal-col, .big-quote) {
+        opacity: 1; transform: none; transition: none; transition-delay: 0s;
+      }
+    }
+    /* En movil el fade no aporta: el viewport es tan corto que casi todo entra ya
+       dentro del umbral del observador, y el pulgar va mas rapido que la transicion. */
+    @media (max-width: 767px) {
+      html.js :is(section > .wrap > h2, section > .wrap > .sub, .card, .port-card,
+        .contact-card, .step, .paycard, .softcta, .deal-col, .big-quote), html.js .reveal {
         opacity: 1; transform: none; transition: none; transition-delay: 0s;
       }
     }
@@ -604,9 +618,16 @@
     #estimator { border-top: 1px solid var(--border); }
     .estimator { margin-top: 2.75rem; display: grid; grid-template-columns: 1.3fr 1fr; gap: 1.5rem; align-items: start; }
     .est-form { background: linear-gradient(180deg, #1a1814, #131210); padding: var(--pad-card); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: inset 0 1px 0 rgba(234,228,214,0.04), 0 8px 24px -16px rgba(0,0,0,0.7); }
-    .est-group { margin-bottom: 1.5rem; }
+    /* Elegir Compatibilidad/Mantenimiento/Optimizacion hace desaparecer tres
+       preguntas y aparecer otra de golpe, sin explicacion: el formulario cambia de
+       alto y el panel del precio da un salto. El fundido de 0.18s dice "esto se ha
+       reemplazado" en vez de "se ha roto". Va con allow-discrete para poder animar
+       algo que entra y sale de display:none sin una linea de JS; el navegador que no
+       lo entienda descarta la regla entera y se queda con el cambio instantaneo de
+       hoy, que es exactamente la degradacion correcta. */
+    .est-group { margin-bottom: 1.5rem; opacity: 1; transition: opacity 0.18s ease, display 0.18s allow-discrete; }
     .est-group:last-child { margin-bottom: 0; }
-    .est-group.hidden { display: none; }
+    .est-group.hidden { display: none; opacity: 0; }
     .est-adv-toggle { display: inline-flex; align-items: center; gap: 0.4rem; background: transparent; border: 1px dashed var(--border-lt); color: var(--text-soft); font-family: inherit; font-size: 0.86rem; font-weight: 600; padding: 0.55rem 0.95rem; border-radius: var(--radius); cursor: pointer; transition: background-color 0.15s, color 0.15s, border-color 0.15s; margin-bottom: 1.5rem; }
     .est-adv-toggle:hover { border-color: var(--green-ring); color: var(--text); }
     .est-adv-toggle .adv-caret { transition: transform 0.18s; font-size: 0.78rem; }
@@ -617,6 +638,10 @@
     .est-options { display: flex; flex-wrap: wrap; gap: 0.55rem; }
     .est-opt { background: var(--surface2); color: var(--text-soft); border: 1px solid var(--border); padding: 0.7rem 1.05rem; min-height: 48px; border-radius: var(--radius); font-size: 0.95rem; font-weight: 600; cursor: pointer; font-family: inherit; transition: background-color 0.13s, color 0.13s, border-color 0.13s; }
     .est-opt:hover { border-color: var(--green-ring); color: var(--text); }
+    /* Acuse fisico del clic, ademas del de color. Es solo un transform de 1px, asi
+       que con movimiento reducido se quita y queda el cambio de color de siempre. */
+    .est-opt:active { transform: translateY(1px); }
+    @media (prefers-reduced-motion: reduce) { .est-opt:active { transform: none; } }
     .est-opt.active { background: var(--green-hi); color: #2a1808; border-color: var(--green-hi); font-weight: 700; box-shadow: 0 0 0 3px var(--green-glow); }
     .est-opt small { display: block; font-size: 0.8rem; font-weight: 400; opacity: 0.82; margin-top: 0.15rem; }
     /* tier colour-coding: easy/cheap up to brutal */
@@ -679,7 +704,14 @@
     .est-price { font-size: clamp(3.1rem, 6vw, 3.8rem); font-weight: 700; color: var(--gold); line-height: 1; margin-bottom: 0.55rem; font-variant-numeric: tabular-nums; letter-spacing: -0.01em; text-shadow: 0 0 24px rgba(203,161,74,0.25); }
     @keyframes estpulse { 0% { color: #ffe6ab; text-shadow: 0 0 30px rgba(203,161,74,0.55); } 100% { color: var(--gold); text-shadow: 0 0 24px rgba(203,161,74,0.25); } }
     .est-price.pulse { animation: estpulse 0.5s ease-out; }
-    @media (prefers-reduced-motion: reduce) { .est-price.pulse { animation: none; } }
+    /* Con movimiento reducido el destello se QUEDA, solo mas corto. Es color y
+       resplandor, cero desplazamiento, o sea de los efectos que la guia deja pasar,
+       y ahora que el numero salta en vez de interpolarse es el unico aviso de que
+       el precio cambio: apagarlo dejaba el estimador sin respuesta ninguna. Lleva
+       !important porque el reset global de arriba apaga toda animacion con !important. */
+    @media (prefers-reduced-motion: reduce) {
+      .est-price.pulse { animation-name: estpulse !important; animation-duration: 0.15s !important; }
+    }
     .est-note { font-size: 0.9rem; color: var(--text-soft); line-height: 1.55; min-height: 2.4em; margin-bottom: 1.1rem; padding-bottom: 1.1rem; border-bottom: 1px solid var(--border); }
     .est-note .premium { color: var(--brown-hi); font-weight: 600; }
     .est-summary { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--gold); border-radius: var(--radius); padding: 0.95rem 1.1rem; font-size: 0.86rem; color: var(--text-soft); line-height: 1.7; margin-bottom: 1rem; white-space: pre-wrap; overflow-wrap: anywhere; }
@@ -811,11 +843,32 @@
     .faq-q:hover { color: var(--green-hi); }
     .faq-q { width: 100%; text-align: left; background: none; border: none; color: var(--text); font-family: inherit; font-size: 0.94rem; font-weight: 700; padding: 1.1rem 1.3rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
     .faq-icon { display: inline-grid; place-items: center; flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--green-glow); font-size: 1.15rem; font-weight: 400; color: var(--green-hi); line-height: 1; }
-    .faq-a { padding: 0 1.3rem; max-height: 0; overflow: hidden; transition: max-height 0.25s, padding 0.25s; color: var(--text-soft); font-size: 0.88rem; line-height: 1.65; }
+    /* Abre con grid-template-rows 0fr->1fr, no con max-height. Con max-height habia
+       que fijar un techo (360px) y la respuesta mas larga lo rozaba en movil: un
+       parrafo mas y se cortaba en silencio. Ademas la curva se aplicaba al TECHO, no
+       a la altura real, asi que las respuestas cortas terminaban antes de tiempo y
+       las largas daban un tiron al final. Con 0fr->1fr la altura real es la que se
+       anima, no hay techo que ajustar y no hay nada que se pueda cortar. */
+    .faq-a { display: grid; grid-template-rows: 0fr; overflow: hidden; transition: grid-template-rows 0.25s ease; padding: 0 1.3rem; color: var(--text-soft); font-size: 0.88rem; line-height: 1.65; }
     /* Medido: 129 caracteres por linea, lo mas ilegible de la pagina. El borde y la
-       flecha los pone .faq-item, asi que limitar aqui no rompe la caja. */
-    .faq-a { max-width: 36em; }
-    .faq-a.open { max-height: 360px; padding: 0 1.3rem 1.2rem; }
+       flecha los pone .faq-item, asi que limitar aqui no rompe la caja.
+       Ni relleno ni margen abajo en el hijo: es la casilla de la rejilla y su caja
+       no se puede comprimir a cero, asi que el relleno se quedaba visible como una
+       franja de 19px con el acordeon cerrado. El aire de abajo va como ::after, que
+       es contenido y por tanto se colapsa con la casilla. */
+    .faq-a > .faq-body { min-height: 0; max-width: 36em; }
+    .faq-a > .faq-body::after { content: ''; display: block; height: 1.2rem; }
+    .faq-a.open { grid-template-rows: 1fr; }
+    /* MEDIDO, no por precaucion: con movimiento reducido el reset global deja la
+       transicion en 0.01ms y a esa duracion el navegador se queda enganchado en el
+       valor inicial al interpolar fr, o sea que el acordeon NO ABRIA NUNCA para
+       quien pide menos movimiento. Con la transicion a 250ms abre bien y sin ella
+       tambien; lo unico roto era el punto intermedio. Aqui se quita del todo, que
+       ademas es lo que corresponde: abrir de golpe, sin animacion. */
+    @media (prefers-reduced-motion: reduce) {
+      .faq-a { transition: none !important; }
+      .est-group { transition: none !important; }
+    }
 
     /* ── PORTFOLIO ── */
     #portfolio { background: var(--surface); border-top: 1px solid var(--border); }
@@ -859,6 +912,22 @@
     .port-stats > div { display: flex; flex-direction: column; gap: 0.12rem; }
     .port-stats dt { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-mute); }
     .port-stats dd { font-size: 0.82rem; font-weight: 700; color: var(--text); }
+    /* ── cifras de #proof ──
+       Tres numeros grandes al entrar en la seccion. Estan por una razon concreta:
+       debajo vienen cinco parrafos densos seguidos y el ojo no tiene donde parar.
+       El descanso lo da un numero, no una foto: una foto bonita no puede estar
+       equivocada, asi que no afirma nada; estos tres si pueden, y por eso pesan.
+       Van en HTML vivo y no como imagen para que se seleccionen, se traduzcan, los
+       lea el buscador y respondan a los cuatro temas, cosas que un PNG no hace.
+       La frase de debajo no es adorno: un numero suelto no dice nada, lo que
+       convence es la frase que le dice al numero que esta demostrando. */
+    .figrow { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.4rem; margin: 2.2rem 0 2.6rem; }
+    .fig { display: flex; flex-direction: column; gap: 0.5rem; }
+    .fig-n { font-family: var(--font-display); font-size: clamp(2.4rem, 6vw, 3.4rem); font-weight: 700; line-height: 0.95; color: var(--gold); font-variant-numeric: tabular-nums; }
+    .fig-rule { width: 44px; height: 2px; background: var(--border-lt); }
+    .fig-t { font-size: 0.86rem; line-height: 1.55; color: var(--text-soft); max-width: 32ch; }
+    .fig-t strong { color: var(--text); font-weight: 700; }
+    @media (max-width: 720px) { .figrow { grid-template-columns: 1fr; gap: 1.5rem; margin: 1.8rem 0 2rem; } .fig-t { max-width: none; } }
     /* ── editorial pull-quote band + hand-inked rule (textured divider) ── */
     .quote-band { position: relative; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: linear-gradient(180deg, var(--surface), var(--bg)); padding: 3.6rem 1.5rem; }
     .q-rule { width: 100px; height: 8px; display: block; margin: 0 auto 1.5rem; }
@@ -1428,14 +1497,14 @@
   <div class="wrap">
         <h2>Before you ask</h2>
     <div class="faq-list">
-      <div class="faq-item"><button type="button" class="faq-q">Why is 1.20.1 the cheapest lane? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a">It sits just below every recent version wall, so it takes the least work. Other versions have to cross walls (networking, data components, worldgen) that genuinely take longer, so they carry a flat premium per wall.</div></div>
-      <div class="faq-item"><button type="button" class="faq-q">What exactly is a compatibility patch? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a">Making two or more mods work together without adding new content. For example: getting one mod's mobs to spawn in another mod's biomes, or fixing a conflict that breaks a feature. Each one is custom, so I quote it by scope.</div></div>
-      <div class="faq-item"><button type="button" class="faq-q">Is this legal? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a">Yes. You pay for my time writing the port, not for distribution rights. I publish only open-source mods or mods with written permission; anything else is delivered privately to whoever holds the right to use it. See the Licenses section below.</div></div>
-      <div class="faq-item"><button type="button" class="faq-q">How do I pay safely? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a">Wise or PayPal (Goods &amp; Services), wherever you are. I never take Friends &amp; Family, because it's the one payment type with no buyer protection for you. BuiltByBit escrow is coming, but it isn't live yet.</div></div>
-      <div class="faq-item"><button type="button" class="faq-q">How long does it take? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a">It depends on the mod. We agree a timeline before I start, but I won't quote a fixed turnaround I can't stand behind. I'd rather under-promise and actually deliver than miss a date.</div></div>
-      <div class="faq-item"><button type="button" class="faq-q">What if the port doesn't work? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a">You see the build working before you make final payment, so you're never paying for something you haven't seen run. The deliverable is whatever we agree in writing up front, and if a bug inside that agreed scope shows up within 30 days of delivery, I fix it at no charge. After that, or for problems caused by Minecraft updates, other mods, or server changes, it becomes a maintenance job.</div></div>
-      <div class="faq-item"><button type="button" class="faq-q">Can I put the ported mod in my public modpack? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a">It depends on the original mod's licence, and I tell you which case you are in before you pay, not after. Open-source: yes, and I publish it with credit to the original author so your pack links to something real. Your own mod, or one where you hold written permission: yes, and I tell you exactly what credit to include. All rights reserved with no permission: no, and I will not take the job on those terms, because the takedown would land on your account and not mine.</div></div>
-      <div class="faq-item"><button type="button" class="faq-q">What's out of scope? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a">The mod's original textures and assets always come across with the port. What doesn't: brand-new textures, 3D models or animations, full gameplay or balance redesigns, and ongoing maintenance across future Minecraft versions. Those get quoted separately, so tell me upfront and I'll fold it into the price.</div></div>
+      <div class="faq-item"><button type="button" class="faq-q">Why is 1.20.1 the cheapest lane? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">It sits just below every recent version wall, so it takes the least work. Other versions have to cross walls (networking, data components, worldgen) that genuinely take longer, so they carry a flat premium per wall.</div></div></div>
+      <div class="faq-item"><button type="button" class="faq-q">What exactly is a compatibility patch? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">Making two or more mods work together without adding new content. For example: getting one mod's mobs to spawn in another mod's biomes, or fixing a conflict that breaks a feature. Each one is custom, so I quote it by scope.</div></div></div>
+      <div class="faq-item"><button type="button" class="faq-q">Is this legal? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">Yes. You pay for my time writing the port, not for distribution rights. I publish only open-source mods or mods with written permission; anything else is delivered privately to whoever holds the right to use it. See the Licenses section below.</div></div></div>
+      <div class="faq-item"><button type="button" class="faq-q">How do I pay safely? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">Wise or PayPal (Goods &amp; Services), wherever you are. I never take Friends &amp; Family, because it's the one payment type with no buyer protection for you. BuiltByBit escrow is coming, but it isn't live yet.</div></div></div>
+      <div class="faq-item"><button type="button" class="faq-q">How long does it take? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">It depends on the mod. We agree a timeline before I start, but I won't quote a fixed turnaround I can't stand behind. I'd rather under-promise and actually deliver than miss a date.</div></div></div>
+      <div class="faq-item"><button type="button" class="faq-q">What if the port doesn't work? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">You see the build working before you make final payment, so you're never paying for something you haven't seen run. The deliverable is whatever we agree in writing up front, and if a bug inside that agreed scope shows up within 30 days of delivery, I fix it at no charge. After that, or for problems caused by Minecraft updates, other mods, or server changes, it becomes a maintenance job.</div></div></div>
+      <div class="faq-item"><button type="button" class="faq-q">Can I put the ported mod in my public modpack? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">It depends on the original mod's licence, and I tell you which case you are in before you pay, not after. Open-source: yes, and I publish it with credit to the original author so your pack links to something real. Your own mod, or one where you hold written permission: yes, and I tell you exactly what credit to include. All rights reserved with no permission: no, and I will not take the job on those terms, because the takedown would land on your account and not mine.</div></div></div>
+      <div class="faq-item"><button type="button" class="faq-q">What's out of scope? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">The mod's original textures and assets always come across with the port. What doesn't: brand-new textures, 3D models or animations, full gameplay or balance redesigns, and ongoing maintenance across future Minecraft versions. Those get quoted separately, so tell me upfront and I'll fold it into the price.</div></div></div>
     </div>
     <div class="softcta">
       <p>Still got a question? Ask me the awkward one. <strong>I'd rather deal with it now than after you've paid.</strong></p>
@@ -1589,6 +1658,24 @@
         <h2>It compiles. That proves nothing.</h2>
     <p class="sub">None of this is client work, it's my own porting. These are five failures that pass every automatic gate: the build succeeds, the log stays clean, and the mod is still wrong.</p>
 
+    <div class="figrow">
+      <div class="fig">
+        <span class="fig-n">5</span>
+        <span class="fig-rule" aria-hidden="true"></span>
+        <p class="fig-t"><strong>checks</strong> run on every jar before it leaves my machine: mod metadata, pack format, bytecode version, mixin declarations in the manifest, and model bones.</p>
+      </div>
+      <div class="fig">
+        <span class="fig-n">0</span>
+        <span class="fig-rule" aria-hidden="true"></span>
+        <p class="fig-t"><strong>files lost</strong> in the repack, out of 28 asset, data and licence files diffed against the jars the original authors published.</p>
+      </div>
+      <div class="fig">
+        <span class="fig-n">41</span>
+        <span class="fig-rule" aria-hidden="true"></span>
+        <p class="fig-t"><strong>packet payloads</strong> rebuilt by hand on one backport, because the clientbound ones take a dedicated server down at startup and never fail in singleplayer.</p>
+      </div>
+    </div>
+
     <div class="port-grid">
       <div class="port-card">
         <h3 class="port-name">A crash the compiler cannot see</h3>
@@ -1599,7 +1686,7 @@
       <div class="port-card">
         <h3 class="port-name">Files that vanish in the repack</h3>
         <p class="port-desc">A port is a rebuild, not a copy. Recipes, loot tables and textures can go missing when the jar is repackaged, and nothing errors. The mod loads and quietly does less than it did before.</p>
-        <p class="port-footer-note"><strong>Proof.</strong> I diff every asset, data and licence file against the jar the original author published. Across <span translate="no">Boids</span> and <span translate="no">Birds</span> (<span translate="no">Tomate0613</span>, MIT) and <span translate="no">Capybara</span> (<span translate="no">39Choko</span>, MIT): 28 files, none missing. 22 are byte identical. 6 are <span translate="no">JSON</span> the build reformatted, and they parse to exactly the same data. Two files are added, both <span translate="no">Forge</span> biome modifiers so spawns work on this loader. Loader metadata is replaced on purpose, <span translate="no">mods.toml</span> where <span translate="no">Fabric</span> had <span translate="no">fabric.mod.json</span>. Unzip both jars and run the same diff.</p>
+        <p class="port-footer-note"><strong>Proof.</strong> I diff every asset, data and licence file against the jar the original author published. Across <span translate="no">Boids</span> and <span translate="no">Birds</span> (<span translate="no">Tomate0613</span>, MIT) and <span translate="no">Capybara</span> (<span translate="no">39Choko</span>, MIT): 22 of the 28 are byte identical. 6 are <span translate="no">JSON</span> the build reformatted, and they parse to exactly the same data. Two files are added, both <span translate="no">Forge</span> biome modifiers so spawns work on this loader. Loader metadata is replaced on purpose, <span translate="no">mods.toml</span> where <span translate="no">Fabric</span> had <span translate="no">fabric.mod.json</span>. Unzip both jars and run the same diff.</p>
       </div>
 
       <div class="port-card">
@@ -1611,13 +1698,13 @@
       <div class="port-card">
         <h3 class="port-name">Fine in singleplayer, dead on the server</h3>
         <p class="port-desc">A clientbound packet handler written as a method reference is resolved where it is registered. A dedicated server has no client class to resolve, so registration can take the server down at startup while singleplayer never complains.</p>
-        <p class="port-footer-note"><strong>Proof.</strong> On a network layer backport from 1.21 to <span translate="no">Forge</span> 1.20.1, on my own modpack, I rebuilt 41 packet payloads: 22 serverbound, 19 clientbound. All 19 clientbound handlers are explicit lambdas with the client call behind a <span translate="no">Dist.CLIENT</span> guard, and all 41 register from one shared method with sequential IDs, so the two sides cannot drift. That is how the code is written, not a test result. I do not name the mod here: it is a personal-use port and I have no written permission from the author to put its name on a commercial page.</p>
+        <p class="port-footer-note"><strong>Proof.</strong> On a network layer backport from 1.21 to <span translate="no">Forge</span> 1.20.1, on my own modpack, I rebuilt every packet payload by hand: 22 serverbound, 19 clientbound. All 19 clientbound handlers are explicit lambdas with the client call behind a <span translate="no">Dist.CLIENT</span> guard, and all 41 register from one shared method with sequential IDs, so the two sides cannot drift. That is how the code is written, not a test result. I do not name the mod here: it is a personal-use port and I have no written permission from the author to put its name on a commercial page.</p>
       </div>
 
       <div class="port-card">
         <h3 class="port-name">Mixins that quietly do not load</h3>
         <p class="port-desc">Repackaging a jar can drop the manifest entry that declares its mixin configs. <span translate="no">Forge</span> then loads the mod without complaint and none of the mixins apply. The mod is installed, part of its behaviour is missing, and nothing in the log says so.</p>
-        <p class="port-footer-note"><strong>Proof.</strong> Same class of bug, same answer: it became a check. Five structural checks now run against every jar I build, before anything is launched: mod metadata, pack format, bytecode version, mixin declarations in the manifest, and model bones. They are a colander, not a proof. The bone check only sees literal names, and it needs a <span translate="no">JDK</span> to read the bytecode.</p>
+        <p class="port-footer-note"><strong>Proof.</strong> Same class of bug, same answer: it became a check. The manifest one at the top of this section is this exact bug, turned into something a script can catch, and every one of the five is there because something like it got past me first. They are a colander, not a proof. The bone check only sees literal names, and it needs a <span translate="no">JDK</span> to read the bytecode.</p>
       </div>
     </div>
   </div>
@@ -1755,8 +1842,11 @@
   }
   // Misma lista que el bloque de CSS del fade. Si se toca una, se toca la otra.
   var REVEAL_SEL = '.reveal, section > .wrap > h2, section > .wrap > .sub, .card, .port-card,' +
-    ' .contact-card, .legal-row, .faq-item, .step, .paycard, .softcta, .deal-col, .big-quote';
-  var rmReveal = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    ' .contact-card, .step, .paycard, .softcta, .deal-col, .big-quote';
+  // En movil se marca todo visible de entrada, igual que con movimiento reducido:
+  // el CSS ya lo deja a opacity 1 ahi, esto evita ademas montar el observador.
+  var rmReveal = window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+    window.matchMedia('(max-width: 767px)').matches;
   if (!rmReveal && 'IntersectionObserver' in window) {
     var revIO = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in-view'); revIO.unobserve(en.target); } });
@@ -1830,28 +1920,21 @@
     if (state.rush === 'r24') parts.push('×1.5 top priority');
     return parts.join('   ·   ');
   }
-  var prefersReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var shownLow = 0, shownHigh = 0, firstPrice = true, priceRaf = null;
+  var firstPrice = true;
   function setPriceText(lo, hi) { priceEl.textContent = money(lo) + ' – ' + money(hi); }
   function pulsePrice() { priceEl.classList.remove('pulse'); void priceEl.offsetWidth; priceEl.classList.add('pulse'); }
-  function tweenPrice(lo, hi) {
-    if (priceRaf) cancelAnimationFrame(priceRaf);
-    if (prefersReduce) { shownLow = lo; shownHigh = hi; setPriceText(lo, hi); pulsePrice(); return; }
-    var fromLo = shownLow, fromHi = shownHigh, start = null;
-    function step(ts) {
-      if (start === null) start = ts;
-      var t = Math.min((ts - start) / 360, 1), e = 1 - Math.pow(1 - t, 3);
-      setPriceText(fromLo + (lo - fromLo) * e, fromHi + (hi - fromHi) * e);
-      if (t < 1) { priceRaf = requestAnimationFrame(step); }
-      else { shownLow = lo; shownHigh = hi; setPriceText(lo, hi); }
-    }
-    priceRaf = requestAnimationFrame(step);
-    pulsePrice();
-  }
+  /* El precio SALTA a su valor final; antes se interpolaba durante 360ms y eso
+     pintaba una veintena de precios por clic que ninguna regla de la tarifa puede
+     producir. Peor: #est-price es aria-live, asi que un lector de pantalla cantaba
+     esas cifras inventadas como si fueran cotizaciones, y prefers-reduced-motion no
+     protege de eso porque no es una senal de lector de pantalla. Lo que cambia se
+     anuncia con el destello de color, que no afirma ningun numero.
+     tabular-nums ya esta en .est-price, asi que el salto no da tirones de ancho. */
+  function showPrice(lo, hi) { setPriceText(lo, hi); pulsePrice(); }
   function render() {
     var r = compute();
-    if (firstPrice) { firstPrice = false; shownLow = r.low; shownHigh = r.high; setPriceText(r.low, r.high); }
-    else { tweenPrice(r.low, r.high); }
+    if (firstPrice) { firstPrice = false; setPriceText(r.low, r.high); }
+    else { showPrice(r.low, r.high); }
     noteEl.innerHTML = buildNote(r);
     breakdownEl.textContent = buildBreakdown(r);
     summaryEl.textContent = buildSummary(r);
