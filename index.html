@@ -1208,7 +1208,7 @@
        de 800 px de alto, la imagen caia a media altura y dejaba vacio el
        cuadrante de arriba a la derecha, que es justo donde va el ojo al
        entrar. Arriba acompaña al titular. */
-    .hero-inner { max-width: 1240px; display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr); gap: 2.8rem; align-items: start; }
+    .hero-inner { max-width: 1240px; display: grid; grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr); gap: 2.6rem; align-items: start; }
     .hero-art { padding-top: 3.2rem; }
     .hero-copy { min-width: 0; }
     .hero-art { min-width: 0; }
@@ -1220,12 +1220,7 @@
     .hero-art-main img { box-shadow: 0 26px 52px -26px rgba(0,0,0,0.8); }
     /* Descolgada por abajo a la izquierda: dos rectangulos alineados parecen
        una galeria; descolgada parece una ventana a un mundo. */
-    /* Solapa una ESQUINA, no medio cuadro. Con 48% y -2.4rem se comia 108 de
-       sus 142 px de alto sobre la foto grande, y la grande es la que josda
-       eligio para que mande. Con 40% y -5.5rem el solape baja a ~28 px. */
-    .hero-art-side { position: absolute; left: -2rem; bottom: -5.5rem; width: 40%; }
-    .hero-art-side img { box-shadow: 0 20px 36px -18px rgba(0,0,0,0.85); }
-    .hero-art-note { margin-top: 7.2rem; font-size: 0.78rem; line-height: 1.5; color: var(--text-mute); text-align: right; }
+    .hero-art-note { margin-top: 1.1rem; font-size: 0.78rem; line-height: 1.5; color: var(--text-mute); text-align: right; }
     /* Por debajo de 1080 no caben dos columnas con el titular a este cuerpo. La
        imagen pasa ARRIBA DEL TODO y en banda: lo visual tiene que aparecer
        antes que el muro de texto, que es justo lo que fallaba. */
@@ -1234,11 +1229,9 @@
       .hero-inner { grid-template-columns: minmax(0, 1fr); gap: 1.6rem; }
       .hero-art { order: -1; }
       /* sin aspect-ratio ni cover: en movil tambien se estaban recortando */
-      .hero-art-side { position: static; width: 100%; margin-top: 0.7rem; }
       
       .hero-art-note { margin-top: 0.7rem; text-align: left; }
     }
-    @media (max-width: 620px) { .hero-art-side { display: none; } }
 
     /* -- PERSONAJES --------------------------------------------------------
        Los generan tools_build_heads.py y tools_place_heads.py.
@@ -1436,9 +1429,6 @@
       <div class="hero-art-stack">
         <figure class="hero-art-main">
           <img src="hero-main.webp" width="1400" height="788" alt="My character standing at the edge of a river inside a towering redwood forest, in a heavily modded world." loading="eager" fetchpriority="high" decoding="async">
-        </figure>
-        <figure class="hero-art-side">
-          <img src="hero-side.webp" width="900" height="506" alt="My character standing beside a large pale horned bull on open grassland." loading="lazy" decoding="async">
         </figure>
       </div>
       <p class="hero-art-note">My own pack, on <span translate="no">Forge</span> 1.20.1. Not a commission and not a port of mine.</p>
@@ -1944,6 +1934,18 @@
           <h3>One missing letter that silenced the spawns of seven mods</h3>
         </div>
         <p><span translate="no">Forge</span> reads biome modifiers from a folder called <code>biome_modifiers</code>. A folder called <code>biome_modifier</code> is ignored: no warning, no error, nothing in the log. Seven mods in my pack had the singular, so they loaded perfectly and their creatures simply never appeared anywhere in the world. It looks exactly like a mod that is broken, and it is a plural.</p>
+      </article>
+
+      <article class="mp-item">
+        <div class="mp-head">
+          <div class="mp-logos">
+            <img class="mp-logo" src="logo-mutantmore.webp" width="96" height="96" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          </div>
+          <h3>A mod that was written off as unfixable, and the one word that fixed it</h3>
+        </div>
+        <p><span translate="no">Mutant More</span> had been sitting out of my pack for weeks, crashing on load. The previous read was that its bytecode would have to be rewritten. It did not. Its mixin config declared <code>compatibilityLevel: "JAVA_16"</code> while <strong>all 577 of its classes were compiled as Java 17</strong>, so the mixin loader refused every one of them. Java 16 caps at class version 60; the classes were 61.</p>
+        <p class="mp-catch"><strong>The fix was one word.</strong> <code>JAVA_16</code> became <code>JAVA_17</code>. Before touching it I opened <span translate="no">mixin-0.8.5.jar</span>, the version <span translate="no">Forge</span> 1.20.1 loads, and read its <span translate="no">CompatibilityLevel</span> enum to confirm <span translate="no">JAVA_17</span> was a value it would actually accept rather than assuming. Original jar backed up first, repacked, and the pack went from 588 mods loading to 589 of 589.</p>
+        <p class="mp-credit"><span translate="no">Mutant More</span> is by <a href="https://modrinth.com/mod/new-mutant-more" target="_blank" rel="noopener noreferrer"><span translate="no">AlexandersFunAndGames</span></a>. The mod is theirs; the config line was the only thing I touched, and only in my own copy.</p>
       </article>
 
     </div>
