@@ -954,6 +954,30 @@
     details.more > summary::after { content: '\25be'; font-size: 0.8em; transition: transform 0.15s; }
     details.more[open] > summary::after { transform: rotate(180deg); }
     details.more > summary:hover { text-decoration: underline; }
+    /* Galeria del pack propio. Va en #about a proposito y NUNCA junto a una ficha
+       de port: ahi la maqueta afirmaria que ese es el mod porteado aunque el texto
+       no lo diga, y ninguna de estas doce lo es. El pie lo dice con todas las letras,
+       porque la posicion afirma cosas que ninguna frase tiene que escribir.
+       Archivos reales, no data-URI: los PNG originales son de 4-5 MB, en WebP son
+       490 KB entre las doce, y en base64 no se cachearian ni se cargarian en diferido.
+       Rejilla por COLUMNAS y no grid: las proporciones son distintas (dos verticales)
+       y un grid con object-fit las recortaria. Asi entran enteras, sin recortar. */
+    .pack-shots { margin: 2.4rem 0 0; }
+    .pack-lead img { display: block; width: 100%; height: auto; border-radius: var(--radius); border: 1px solid var(--border); }
+    .pack-grid { columns: 3; column-gap: 0.7rem; margin-top: 0.7rem; }
+    .pack-grid img { display: block; width: 100%; height: auto; margin-bottom: 0.7rem; break-inside: avoid; border-radius: var(--radius); border: 1px solid var(--border); }
+    .pack-note { margin-top: 1.2rem; font-size: 0.82rem; line-height: 1.65; color: var(--text-mute); max-width: 62ch; }
+    .pack-note strong { color: var(--text-soft); }
+    @media (max-width: 860px) { .pack-grid { columns: 2; } }
+    @media (max-width: 520px) { .pack-grid { columns: 1; } }
+    /* Credito a Alex. Las comisiones siguen siendo de josda solo: eso es lo primero
+       que dice el parrafo, porque un "equipo" a medias levanta la pregunta de quien
+       toca el mod del cliente. Aqui se afirma SOLO lo que josda me dijo (mismo curso,
+       colabora); nada de inventarle aportaciones concretas. */
+    .credit { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border); max-width: 36em; }
+    .credit h3 { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-mute); margin-bottom: 0.6rem; }
+    .credit p { color: var(--text-soft); font-size: 0.9rem; line-height: 1.7; margin: 0; }
+    .credit strong { color: var(--text); }
     details.more > p { margin-top: 1rem; }
 
     /* ── CONTACT ── */
@@ -1721,6 +1745,31 @@
         <summary>Read more about how I work</summary>
         <p>I started doing this for other people because the market has a hole in the middle. The established devs won't touch small commissions, and the cheap shops skip the licence work until a DMCA takedown lands on your CurseForge account. So I quote a fixed price, check the licence first, and put it <strong>all in writing</strong>.</p>
       </details>
+    </div>
+
+    <div class="pack-shots">
+      <figure class="pack-lead">
+        <img src="pack-01.webp" width="1200" height="675" alt="A villager outside a wooden house in a heavily modded world, with custom flowers and trees around it." loading="lazy" decoding="async">
+      </figure>
+      <div class="pack-grid">
+        <img src="pack-02.webp" width="760" height="428" alt="An enormous skeleton lying across a flooded clearing between giant redwoods, seen from above." loading="lazy" decoding="async">
+        <img src="pack-03.webp" width="760" height="428" alt="A player in red and gold armour standing at the edge of a river inside a towering redwood forest." loading="lazy" decoding="async">
+        <img src="pack-04.webp" width="760" height="428" alt="A large ornate structure of dark stone and gold beside a lava fall in the Nether, lit by soul fire." loading="lazy" decoding="async">
+        <img src="pack-05.webp" width="760" height="428" alt="Three bears gathered on a stone platform in a birch and pine forest." loading="lazy" decoding="async">
+        <img src="pack-06.webp" width="760" height="428" alt="A window set into the trunk of a huge tree at sunset, with birch trees behind it." loading="lazy" decoding="async">
+        <img src="pack-07.webp" width="351" height="408" alt="Close view of a player wearing red and gold armour with glowing green trim." loading="lazy" decoding="async">
+        <img src="pack-08.webp" width="760" height="428" alt="A pillager riding an orange boar through bright green forest undergrowth." loading="lazy" decoding="async">
+        <img src="pack-09.webp" width="760" height="428" alt="A large pale horned bull standing beside a player on open grassland, with slimes in the distance." loading="lazy" decoding="async">
+        <img src="pack-10.webp" width="760" height="428" alt="A capybara resting on open grassland under a clear sky." loading="lazy" decoding="async">
+        <img src="pack-11.webp" width="669" height="578" alt="A tall red villager and a blue-robed wizard holding a staff, standing on a snow field." loading="lazy" decoding="async">
+        <img src="pack-12.webp" width="760" height="428" alt="A player silhouetted mid-air against the sun setting over an open sea." loading="lazy" decoding="async">
+      </div>
+      <p class="pack-note">Every one of these is from a pack I run for myself, on Forge 1.20.1, with hundreds of other people's mods in it. <strong>None of them is a commission and none of them is a port of mine</strong>, and I am not claiming credit for a single block in the frame. They are here because this is the thing the work is for.</p>
+    </div>
+
+    <div class="credit">
+      <h3>Credit where it is due</h3>
+      <p>Commissions are still only me, and that part is not changing: nobody else touches a client's mod. But I did not get here on my own. <strong translate="no">Alex</strong> and I are on the same course, and he is the one I talk this through with.</p>
     </div>
   </div>
 </section>
