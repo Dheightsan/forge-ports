@@ -15,7 +15,7 @@
        propio bloque, asi que un error alli abajo no puede alcanzarla. */
     addEventListener('load', function () {
       var SEL = '.reveal, section > .wrap > h2, section > .wrap > .sub, .card, .port-card,' +
-        ' .contact-card, .legal-row, .faq-item, .step, .paycard, .softcta, .big-quote';
+        ' .contact-card, .legal-row, .faq-item, .step, .paycard, .softcta, .deal-col, .big-quote';
       var ticking = false;
       // Revela lo que YA esta en pantalla y sigue oculto. Si el observador funciona
       // nunca encuentra nada; si falla, hace su mismo trabajo y nadie ve una pagina
@@ -127,12 +127,12 @@
        antes de ocultarse. La lista va escrita dos veces a proposito, para que la
        regla .in-view sea mas especifica sin recurrir a !important. */
     html.js :is(section > .wrap > h2, section > .wrap > .sub, .card, .port-card,
-      .contact-card, .legal-row, .faq-item, .step, .paycard, .softcta, .big-quote) {
+      .contact-card, .legal-row, .faq-item, .step, .paycard, .softcta, .deal-col, .big-quote) {
       opacity: 0; transform: translateY(16px);
       transition: opacity 0.55s cubic-bezier(.2,.8,.2,1), transform 0.55s cubic-bezier(.2,.8,.2,1);
     }
     html.js :is(section > .wrap > h2, section > .wrap > .sub, .card, .port-card,
-      .contact-card, .legal-row, .faq-item, .step, .paycard, .softcta, .big-quote).in-view {
+      .contact-card, .legal-row, .faq-item, .step, .paycard, .softcta, .deal-col, .big-quote).in-view {
       opacity: 1; transform: none;
     }
     /* Escalonado dentro de cada rejilla: las tarjetas entran una detras de otra en
@@ -143,7 +143,7 @@
     html.js :is(.card, .port-card, .contact-card, .legal-row, .faq-item, .step, .paycard):nth-child(n+5) { transition-delay: 0.28s; }
     @media (prefers-reduced-motion: reduce) {
       html.js :is(section > .wrap > h2, section > .wrap > .sub, .card, .port-card,
-        .contact-card, .legal-row, .faq-item, .step, .paycard, .softcta, .big-quote) {
+        .contact-card, .legal-row, .faq-item, .step, .paycard, .softcta, .deal-col, .big-quote) {
         opacity: 1; transform: none; transition: none; transition-delay: 0s;
       }
     }
@@ -680,6 +680,27 @@
     .softcta strong { color: var(--text); }
     .softcta-row { display: flex; flex-wrap: wrap; gap: 0.7rem; justify-content: center; }
     @media (max-width: 520px) { .softcta-row .btn { width: 100%; } }
+
+    /* Trato para autores de mods. Las dos columnas van a proposito: el trueque se lee
+       de un vistazo y mi lado queda a la vista, que es lo que lo hace creible. */
+    /* align-items:start a proposito: sin el, el grid estira la columna corta y le deja
+       un hueco muerto abajo. Que mi lado se vea mas pequeno es el mensaje, no un fallo. */
+    .deal-cols { display: grid; grid-template-columns: 1fr 1fr; align-items: start; gap: 1rem; margin: 1.6rem 0 1.4rem; }
+    .deal-col { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: var(--pad-card); }
+    .deal-col--mine { background: var(--green-glow); border-color: var(--green-ring); }
+    .deal-head { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-mute); margin-bottom: 0.75rem; }
+    .deal-col--mine .deal-head { color: var(--green-hi); }
+    .deal-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.6rem; }
+    .deal-list li { color: var(--text-soft); font-size: 0.88rem; line-height: 1.55; padding-left: 1.15rem; position: relative; }
+    .deal-list li::before { content: "·"; position: absolute; left: 0.3rem; color: var(--text-mute); font-weight: 700; }
+    .deal-why { max-width: 36em; color: var(--text-soft); line-height: 1.7; margin: 0 0 1rem; }
+    .deal-fine { max-width: 36em; margin: 1.4rem 0 1.5rem; padding-top: 1.1rem; border-top: 1px solid var(--border); }
+    .deal-fine li { font-size: 0.82rem; color: var(--text-mute); line-height: 1.55; }
+    /* A la izquierda, no centrados: esta seccion alinea a la izquierda y los botones
+       tienen que seguirla. Centrar solo vale en las islas .softcta, que son un corte aparte. */
+    .deal-row { display: flex; flex-wrap: wrap; gap: 0.7rem; }
+    @media (max-width: 520px) { .deal-row .btn { width: 100%; justify-content: center; } }
+    @media (max-width: 700px) { .deal-cols { grid-template-columns: 1fr; } }
     /* Iba centrado bajo un encabezado alineado a la izquierda, dentro de la misma caja. */
     .paystrip-foot { margin-top: 1.05rem; font-size: 0.82rem; font-weight: 600; color: var(--text-mute); letter-spacing: 0.02em; }
     @media (max-width: 640px) { .paycards { grid-template-columns: 1fr; } }
@@ -918,6 +939,7 @@
       <li><a href="#portfolio">Portfolio</a></li>
       <li><a href="#estimator">Estimate</a></li>
       <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#authors">Mod authors</a></li>
       <li><a href="#legal">Legal</a></li>
       <li class="nav-cta"><a href="#estimator" class="btn-nav">Price my mod<span class="nav-free">free</span></a></li>
       <li class="nav-tog"><button type="button" id="accent-toggle" class="theme-toggle" aria-label="Toggle green accent" title="Warm / green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19c0-7 4.5-12.5 13-13-0.5 8.5-6 13-13 13z"/><path d="M5 19c3-4.5 6.5-8 10.5-10.5"/></svg></button></li>
@@ -1423,6 +1445,48 @@
   </div>
 </section>
 
+<!-- MOD AUTHORS -->
+<section id="authors">
+  <div class="wrap">
+        <h2>Free if you wrote the mod</h2>
+    <p class="sub">There is a version of this that costs you nothing. It is not charity, and the reason is worth reading.</p>
+
+    <div class="deal-cols">
+      <div class="deal-col">
+        <div class="deal-head">You get</div>
+        <ul class="deal-list">
+          <li>The port, at no cost.</li>
+          <li>It stays yours. Your page, your licence, your download counts. I am not taking anything over.</li>
+          <li>Your name stays on the mod. Mine goes in the credits as the person who did the port, and nowhere else.</li>
+        </ul>
+      </div>
+      <div class="deal-col deal-col--mine">
+        <div class="deal-head">I get</div>
+        <ul class="deal-list">
+          <li>Your permission to release the port publicly and to show it on this page as my work.</li>
+          <li>That is the whole trade.</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="deal-why">Most of what I have ported is sitting on my own machine, unreleased, because I never had the author's permission to put it out. That is what actually holds this back, not the money. I would rather trade the fee for the yes.</p>
+
+    <p class="deal-why">It has already happened twice, before I thought to call it an offer. <span translate="no">Mindful Eating</span> went back to <span translate="no">camcam_burger</span> for his own <span translate="no">CurseForge</span> page. <span translate="no">Shaunt</span> read through the <span translate="no">Puppy Paws</span> port himself and told me it was fine.</p>
+
+    <ul class="deal-list deal-fine">
+      <li>You have to actually hold the rights to the mod. If it is a team, I need the team's yes.</li>
+      <li>One of these at a time, so paying clients keep their place in the queue.</li>
+      <li>I can turn it down. A large tech mod is not a favour, it is a month of work.</li>
+      <li>Otherwise it runs like any job: scope agreed in writing before I start, and bugs inside that scope fixed free for 30 days.</li>
+    </ul>
+
+    <div class="deal-row">
+      <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" class="btn btn-discord">I wrote a mod, let's talk</a>
+      <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20author%20collaboration" class="btn btn-ghost">Or send an email</a>
+    </div>
+  </div>
+</section>
+
 <!-- PROOF -->
 <section id="proof">
   <div class="wrap">
@@ -1596,7 +1660,7 @@
   }
   // Misma lista que el bloque de CSS del fade. Si se toca una, se toca la otra.
   var REVEAL_SEL = '.reveal, section > .wrap > h2, section > .wrap > .sub, .card, .port-card,' +
-    ' .contact-card, .legal-row, .faq-item, .step, .paycard, .softcta, .big-quote';
+    ' .contact-card, .legal-row, .faq-item, .step, .paycard, .softcta, .deal-col, .big-quote';
   var rmReveal = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (!rmReveal && 'IntersectionObserver' in window) {
     var revIO = new IntersectionObserver(function (entries) {
