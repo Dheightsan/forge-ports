@@ -309,6 +309,7 @@
     html[data-theme="light"] .card,
     html[data-theme="light"] .est-form,
     html[data-theme="light"] .port-card,
+    html[data-theme="light"] .mp-item,
     html[data-theme="light"] .contact-card { background: linear-gradient(180deg, #fdfaf4, #f3ead9); box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), 0 8px 22px -18px rgba(120,90,50,0.30); }
     /* light-mode: hero words hold contrast on cream */
     html[data-theme="light"] #hero h1 .w-port,
@@ -353,6 +354,7 @@
     html[data-accent="green"]:not([data-theme="light"]) .card,
     html[data-accent="green"]:not([data-theme="light"]) .est-form,
     html[data-accent="green"]:not([data-theme="light"]) .port-card,
+    html[data-accent="green"]:not([data-theme="light"]) .mp-item,
     html[data-accent="green"]:not([data-theme="light"]) .contact-card { background: linear-gradient(180deg, #18211a, #111812); box-shadow: inset 0 1px 0 rgba(226,236,228,0.04), 0 8px 24px -16px rgba(0,0,0,0.7); }
     html[data-accent="green"] .torn-sep path { fill: #10160f; stroke: rgba(126,226,168,0.20); }
     /* El separador dentado tenia relleno oscuro fijo y NINGUNA variante clara:
@@ -384,6 +386,7 @@
     html[data-accent="green"][data-theme="light"] .card,
     html[data-accent="green"][data-theme="light"] .est-form,
     html[data-accent="green"][data-theme="light"] .port-card,
+    html[data-accent="green"][data-theme="light"] .mp-item,
     html[data-accent="green"][data-theme="light"] .contact-card { background: linear-gradient(180deg, #fbfdf9, #ecf4e7); box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), 0 8px 22px -18px rgba(50,90,60,0.30); }
     /* Mismo caso que la terracota: #1f8443 daba 3.75-4.23:1 sobre los fondos
        claros del acento verde, por debajo de AA. Un escalon mas oscuro -> 4.7-5.3.
@@ -442,7 +445,11 @@
     #faq, #legal { padding-top: 4.25rem; padding-bottom: 4.5rem; }
     #about { padding-top: 4.75rem; }
     /* perf: skip rendering off-screen sections until needed (auto remembers size → no jank) */
-    #legal, #faq, #portfolio, #proof, #about, #contact { content-visibility: auto; contain-intrinsic-size: auto 700px; }
+    #legal, #faq, #proof, #about, #contact { content-visibility: auto; contain-intrinsic-size: auto 700px; }
+    /* El portafolio se lleva las fichas, las cifras, el estante, los cuatro
+       arreglos y la galeria: 700px de estimacion daban un salto de barra feo
+       en el primer render. */
+    #portfolio { content-visibility: auto; contain-intrinsic-size: auto 3200px; }
 
     /* loaders strip */
     .loaders-strip { padding: 1.4rem 1.5rem; background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
@@ -952,10 +959,12 @@
     .port-stats > div { display: flex; flex-direction: column; gap: 0.12rem; }
     .port-stats dt { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-mute); }
     .port-stats dd { font-size: 0.82rem; font-weight: 700; color: var(--text); }
-    /* ── cifras de #proof ──
-       Tres numeros grandes al entrar en la seccion. Estan por una razon concreta:
-       debajo vienen cinco parrafos densos seguidos y el ojo no tiene donde parar.
-       El descanso lo da un numero, no una foto: una foto bonita no puede estar
+    /* ── las tres cifras ──
+       Nacieron abriendo #proof, para dar descanso antes de cinco parrafos densos.
+       Ahora abren el portafolio y los cinco parrafos se fueron al final: de todo
+       #proof, esto es lo unico que se lee de un vistazo, asi que es lo unico que
+       merece estar arriba. El resto es consulta, no argumento.
+       El peso lo da un numero, no una foto: una foto bonita no puede estar
        equivocada, asi que no afirma nada; estos tres si pueden, y por eso pesan.
        Van en HTML vivo y no como imagen para que se seleccionen, se traduzcan, los
        lea el buscador y respondan a los cuatro temas, cosas que un PNG no hace.
@@ -968,6 +977,10 @@
     .fig-t { font-size: 0.86rem; line-height: 1.55; color: var(--text-soft); max-width: 32ch; }
     .fig-t strong { color: var(--text); font-weight: 700; }
     @media (max-width: 720px) { .figrow { grid-template-columns: 1fr; gap: 1.5rem; margin: 1.8rem 0 2rem; } .fig-t { max-width: none; } }
+    /* El enlace a los cinco casos. Sin el, mandar el detalle al final de la
+       pagina seria esconderlo; con el, es un apendice al que se llega. */
+    .figrow-note { font-size: 0.84rem; color: var(--text-mute); margin: -1rem 0 0; }
+    .figrow-note a { color: var(--text-soft); }
     /* ── editorial pull-quote band + hand-inked rule (textured divider) ── */
     .quote-band { position: relative; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: linear-gradient(180deg, var(--surface), var(--bg)); padding: 3.6rem 1.5rem; }
     .q-rule { width: 100px; height: 8px; display: block; margin: 0 auto 1.5rem; }
@@ -984,6 +997,11 @@
 
     /* ── ABOUT ── */
     #about { border-top: 1px solid var(--border); }
+    /* #proof cerraba en medio de la pagina y ahora es el apendice: cinco casos
+       largos, justo encima de lo legal, que es el otro sitio donde el que lee
+       ya viene buscando letra. Fondo distinto para que se lea como anexo y no
+       como una seccion mas de venta. */
+    #proof { background: var(--surface); border-top: 1px solid var(--border); }
     .about-body { margin-top: 2rem; max-width: 980px; display: grid; grid-template-columns: minmax(0, 1fr) 240px; gap: 1.6rem 2.6rem; align-items: start; }
     .about-body p { color: var(--text-soft); font-size: 0.94rem; line-height: 1.78; max-width: 36em; }
     .about-body p + p { margin-top: 1rem; }
@@ -994,10 +1012,13 @@
     details.more > summary::after { content: '\25be'; font-size: 0.8em; transition: transform 0.15s; }
     details.more[open] > summary::after { transform: rotate(180deg); }
     details.more > summary:hover { text-decoration: underline; }
-    /* Galeria del pack propio. Va en #about a proposito y NUNCA junto a una ficha
+    /* Galeria del pack propio. Cierra el portafolio, y NUNCA junto a una ficha
        de port: ahi la maqueta afirmaria que ese es el mod porteado aunque el texto
-       no lo diga, y ninguna de estas doce lo es. El pie lo dice con todas las letras,
-       porque la posicion afirma cosas que ninguna frase tiene que escribir.
+       no lo diga, y ninguna de estas doce lo es. Eso no cambio al unificar; lo que
+       cambio es que ahora se cumple por distancia (entre las fichas y la galeria
+       van el estante y los cuatro arreglos) y no por vivir en otra seccion.
+       El pie lo dice ademas con todas las letras, porque la posicion afirma cosas
+       que ninguna frase tiene que escribir.
        Archivos reales, no data-URI: los PNG originales son de 4-5 MB, en WebP son
        490 KB entre las doce, y en base64 no se cachearian ni se cargarian en diferido.
        Rejilla por COLUMNAS y no grid: las proporciones son distintas (dos verticales)
@@ -1157,9 +1178,15 @@
       .btn-nav { padding: 0.48rem 0.72rem; font-size: 0.8rem; }
     }
 
-    /* ── MI PROPIO PACK ── */
-    #modpack { background: var(--surface); border-top: 1px solid var(--border); }
-    .mp-list { margin-top: 2.6rem; display: grid; gap: 1.1rem; }
+    /* ── MI PROPIO PACK ──
+       Era una seccion suya y ahora es el ultimo bloque del portafolio, porque
+       arreglar el mod de otro dentro de tu propio pack es trabajo enseñable
+       igual que un port. Se separa con la misma linea que el estante para que
+       se lea como capitulo y no como continuacion de las fichas. */
+    .packwork { margin-top: 2.8rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+    .packwork h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .packwork-lead { max-width: 52em; color: var(--text-soft); font-size: 0.9rem; line-height: 1.65; margin: 0; }
+    .mp-list { margin-top: 1.6rem; display: grid; gap: 1.1rem; }
     .mp-item { background: linear-gradient(180deg, #1a1814, #131210); border: 1px solid var(--border); border-top: 2px solid var(--border-lt); border-radius: var(--radius-lg); padding: var(--pad-card); }
     /* Cabecera en rejilla y no en linea: cuando lleve el logo del mod al lado,
        el titulo tiene que poder ocupar dos lineas sin empujarlo. */
@@ -1264,7 +1291,7 @@
     .port-card--cta { position: relative; }
     .ch--tarjeta { position: absolute; top: 1.4rem; left: 50%; transform: translateX(-50%); z-index: 1; }
     .port-card--cta > * { position: relative; z-index: 2; }
-    /* En #modpack acompañan a la ficha por la derecha. */
+    /* En las fichas del pack propio acompañan a la ficha por la derecha. */
     .mp-item { position: relative; }
     .ch--mp { top: 50%; right: 1.4rem; transform: translateY(-50%); }
     @media (max-width: 1180px) { .ch--mp { display: none; } }
@@ -1479,12 +1506,17 @@
     </figure>
   </div>
 </section>
+<figure class="scene-band">
+  <img src="band-flight.webp" width="1800" height="1012" alt="My character hanging in the air above an open sea, with the sun going down behind him." loading="lazy" decoding="async">
+  <figcaption><span>Same pack, same character. Hundreds of other people's mods in that world, and not one of them is mine.</span></figcaption>
+
+</figure>
 <!-- PORTFOLIO -->
 <section id="portfolio">
   <img class="ch ch--borde" src="h1024-13.webp" width="256" height="235" style="left:-92px;top:34%;height:250px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
-        <h2>Recent ports</h2>
-    <p class="sub">Anything I build for you stays private unless you want it shown here.</p>
+        <h2>The work</h2>
+    <p class="sub">Two ports out in the world, twenty-three more sitting on my own machine, and a 600-mod pack I keep breaking on purpose. Anything I build for you stays private unless you want it shown here.</p>
 
     <div class="port-grid">
       <div class="port-card">
@@ -1540,9 +1572,28 @@
       </div>
     </div>
 
+    <div class="figrow">
+      <div class="fig">
+        <span class="fig-n">5</span>
+        <span class="fig-rule" aria-hidden="true"></span>
+        <p class="fig-t"><strong>checks</strong> run on every jar before it leaves my machine: mod metadata, pack format, bytecode version, mixin declarations in the manifest, and model bones.</p>
+      </div>
+      <div class="fig">
+        <span class="fig-n">0</span>
+        <span class="fig-rule" aria-hidden="true"></span>
+        <p class="fig-t"><strong>files lost</strong> in the repack, out of 28 asset, data and licence files diffed against the jars the original authors published.</p>
+      </div>
+      <div class="fig">
+        <span class="fig-n">41</span>
+        <span class="fig-rule" aria-hidden="true"></span>
+        <p class="fig-t"><strong>packet payloads</strong> rebuilt by hand on one backport, because the clientbound ones take a dedicated server down at startup and never fail in singleplayer.</p>
+      </div>
+    </div>
+    <p class="figrow-note">Every one of those three exists because something got past me first. <a href="#proof">The five that did</a>, in full.</p>
+
     <div class="shelf">
       <h3>The rest is sitting on my own machine</h3>
-      <p>23 more mods I have ported, or am partway through porting, for my own modpack. Almost every one is a personal-use licence, so I cannot put them out. That is the whole reason for what comes next.</p>
+      <p>23 more mods I have ported, or am partway through porting, for my own modpack. Almost every one is a personal-use licence, so I cannot put them out. That is the whole reason I do <a href="#authors">free work for the people who wrote them</a>.</p>
       <ul class="shelf-grid">
         <li class="tile"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHAAAABwCAMAAADxPgR5AAAAwFBMVEVcWVCfbmxwXCaglGpmIiHDnZCiRjkmLSGbqqGkLCniS0m9wLnh6e3Iwbk7RkbQvcC/wsGdP0F4kIEwQTfAPz3N0tOQNjPMycmtNjR0My46JxHLublIOCXRR0W5q6yqSU26trRxZiVFKxmYR0ZDMRwwFwutU1nW3eBkWEmLKyixiYlSRzOZmJCIeidWTRqRioOMhHirl5VWURrY4uW0aGlOFxdKak6aVFGPgi6xpJVnVyQCAwLEqalXdlxqZliEdhxdmui8AAAAQHRSTlP/////////////////////////////////////////////////////////////////////////////////////73leyQAAA1NJREFUeNrt1+dyozAQAGABLpd6FQmwTAfbgAvuJbHf/61uJQj2JJkLzvn853ZnIsfMZD+tUAvRrxwEQQQRRBBBBBFEEEEEEUQQQQQR/H9BdlWwB3FVMM/yzSTty3CvAe4jCyKUcQWQzZTI8kOfy3AZY2e+3vMrtJVxKkv0fT9NeaYLk9V+w+QT8/OeyFG1fItzK5uJRzPWEcESRdO0iy+L2ViAUKDPTa4oyhwiGFDDMOiAHg4H13XvHjTtR1YLZO+/hc7Tk20/QSQrZR5T0zSpQSkVxmBgGDfyd/FkOByqqjocHpbLpVsHfPMGmBKsVrFxMygyy7a0yqakfhkG9KO1Hnqet16vn5+XXz4GWZbBGkuzahYwPWlAETenmU/A6lu326XUnE5HUByA09FoKUD2EfgttEKYCZPjyM7yAT0ppczfEvlbXSiJdm9booUHpjkCECrceu3djtQCGechT9vZPcw7GS4bNwRlmgbkhCGrWmo6R6ps1enIU1UAo92uXW9IST/jltVXCEnl0vYX0UIU9hq8FWBXDqZTDC3MIkOAEFvP2u1SbVJr0uizSeTLzasEF40CLF4TdV4AKnshJ0rRHkHPUx9/7pubTq1loWewyngVUeTTKqrMxbI4Aal83NqqWwmm7fa+qW3qLXy7v++HodxK4COKIvO0iNdgWWwQBKL82AlGI2GS/aS5qQnqvRmzivB9ATbegGXBjiORuCVb+BLE8UquDI2xjm27tbe212Ag8wdOSzRxIDMHopFPnQL/DmU6TjBN0+FBg421NsjumCt25oJswKRxRO9pHEtK5hftABAYyViJ54mWNJtJh+V+yMkjWa+1r2IrZ/UmTR6m3PfDF7ABYDF2RSmKshJKM0mSZt4pDoniWIRhhD8ghNz94Vh8B7TFagArkrFYLGg8n69WgZInImy7QtiD+DiirJNMNJWH4x4763ginMs7C+lv7I1tJ4rtlgGJ3RI8BitDlz/NNLTOAWGr6fPQgr2t2gjcHJDTOEHYmzuGDv1iZxzALmwwoexjeXFgupu/MJV0wWuiG4r5GWW90yNZjtU/unm7ZDyeTMaXSl9n0vT+8mp9NnjJ8cN/1xBEEEEEEUQQQQQRRBBBBBFEEEEEEUQQwU/Hb0reLiOND/UBAAAAAElFTkSuQmCC" width="56" height="56" alt="" loading="lazy" decoding="async"><span translate="no">Boids</span></li>
         <li class="tile"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHAAAABwCAMAAADxPgR5AAABhWlDQ1BJQ0MgUHJvZmlsZQAAeJx9kTtIw1AUhv+mig8qDmYQcchQneyiIrqVKhbBQmkrtOpgctMXNGlIUlwcBdeCg4/FqoOLs64OroIg+ABxdnBSdJESz00KLWI8cLkf/z3/z73nAkKjwjSrKwpoum2m4jEpm1uVel4RgAARc+iTmWUk0osZ+NbXPXVT3UV4ln/fnzWg5i0GBCTiKDNMm3iDeGbTNjjvE4usJKvE58QTJl2Q+JHrisdvnIsuCzxTNDOpeWKRWCp2sNLBrGRqxNPEYVXTKV/Ieqxy3uKsVWqsdU/+wlBeX0lzndYo4lhCAklIUFBDGRXYiNCuk2IhRecxH/+I60+SSyFXGYwcC6hCg+z6wf/g92ytwtSklxSKAd0vjvMxBvTsAs2643wfO07zBAg+A1d6219tALOfpNfbWvgIGNwGLq7bmrIHXO4Aw0+GbMquFKQlFArA+xl9Uw4YugX617y5tc5x+gBkaFbLN8DBITBepOx1n3f3ds7t357W/H4AnAdyt9q+MFIAAADAUExURe3t7DEkGfX29kYzI1InEicZDGwsEa2oo6udlGlYS29kWndrZ04ZAtjV04Z5cHxxbEQuIFNEN3IwEzksIo+DeE0xHM3IxZSMhZuUjLu2saiinMbBvT0wJcG8txUHAKeHdWg9KWpJPODd21tNQsqmc8WXVx0RBLR0HCMMANKzh2xNQJRyS7qEOcOsoOPg3WMWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMlFTEMAAABAdFJOU////////////////////////////////////////////////////////////////wAAAAAAAAAAAAAAAAAAAAA8cdOGAAAC9ElEQVR42u3Y2ZajIBAAUClALIwY4m623pdZ///vBmMyp6MmxJ7Rhz7Ug1kEroWgqOfNG+A50IEOdKADHehABzrQgQ50oAO/DgjvP57mBZ9en2cEAeD99dlsYSZQCLH/ngpRRzAHCF4swzAOQ4n5TKAKY+OZiOYDGy6eETzGPKD3645hHMbI2HqmDO8W31QDLvLxE2N8hYf9frW4Dw8Zqv3ocQpDs/pqRL7PFvdtl/q/f9qKgw2MZBsY18FA5NF25fv+HSLem08/EAOFaoXy1EwFV0GTAO/G4mOwJvzG9M3WfF90olN5F3Ry7PwSKiadYP0w1OpgDuzrVse0uAbGO3NU3TpkaaIL+sw/J8mS0aRbs8kxuQYWVGvdrZZQSjd9kJ16tY2ELvugaU2jbVqA7OdoenZ5jDazUzR/H3axgTqE9tsfmkaD4Ia2saGH03ccNivzm7LDjkEw6g/L7gFEtN8x3VH04QxeL0poEtjAnL9wSyuENWCTo60g4bvCBj4UpbaJLDODJMsyW34kKYrcAjZXttia4ul8WsvZL23gBfWjNcMjSK1gHnn2c8hvTfAGMuGldZRukiT5T6BpyQqa20UUPQh+G3cV5HHTlge33A+3nFzu2JtAU32X3nQ/bGO73ubIPw/Sar3eDi6x4NJaHkDu+GCcg4NFXjZw6UHg8pIESrO+rkUvyo8eU739zZJVqs8soi6tac7A6raVzL+s2vKzHq1h8mViyT6CcnLQw+xs1Ixd7Y8+wO0ZR1k5NaiIprrN0nzoDKcFIdJUMimb85hhylBnIx9oxoKCPEqmdNufKkPJ1bRgTBSSQGvJEFmgaUr0uDZGHp6Z9TWla6olQSQV8gCJmBJMOQqCa0oPoFC8MP9M2KVQoUHSiqAiMuSF4LjGetJzCCBwWxGVElnyIsLSA5j4SmPMisQplwVPwZv+kfsw+d+k4jJ9Q2+eV19Qx1VJVa6KGV/u/d26N8IOdKADHehABzrQgQ50oAMd+EVAmDn+AF1BLwDgAX8oAAAAAElFTkSuQmCC" width="56" height="56" alt="" loading="lazy" decoding="async"><span translate="no">Birds</span></li>
@@ -1569,6 +1620,71 @@
         <li class="tile"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHAAAABwCAMAAADxPgR5AAAAwFBMVEXn7O/b4+rV3ufR2+b+7qzX3Nj86Jv23ZPJ1eHG0d7Cz929zNy9y9m5ydjnz4u3xta0xdSywtTnulC/uKauwNKsvdCqu86ouMujt8yhtMqfssiasceZrsOWq8OSqsKQp8DInl7BjUeOpb2ljHGIoryFn7mCnLiAl696l7R0krFzkK1qjqBsiahmhqhhg6ZcgZOhdEWYWCNscHlwUzlZfKJZfJ9GYV4/SldwNRtPNilUJhdHHBAvMDYsHBkvEQ0OBgiQPA2wAAAPf0lEQVR42p2ZC3uiSgyGaXXFaqVqRa21rbeKResFKghy+f//6iSZGZgB3O5zcs7u9qK8fpkkk8loWsnuFLvPrAbWzOyBWQus3W4/knXAntC63R7agMw0h8xGo9F4rP0bsMZ4t4AAw7/+F7BaXq2Aa+a4ltD3mOO6COtxnCnhysDb3qzQx/2JwE5R32AwkIEjzvsXYK0sr6m6k8FyfQJomkV9Ly83cf8oL/cm8bpVuBGX94L2u0Nr1et3g9frZf5UgIL38ls2lHG5QNmdRW8yHOeNmTdfJmC/ZR8+vvm7P3Nn5ryhOZR4Y8ab/HX5ag8P9CtAKt58KLozU8eTIY+WkaovA1Yn372mTWzLNu9qrVoObLVaFf5k8sq5wIMTeLLCu8psuK81u14cxd7g7r7ozlYhHboyUJKX6WPA19ebtQX03U18/3icz11/ct96kIpZu93+O2+o6Mv9+YrA2zzTubp9sHkYW3cYPIXqItcW1aHDskMz4A3e/cNd0zsB7RheLmHqaFwj4LBQt9Xly8JTTfaRrI5w0+mtXG9qowjlncJrcg3DwJnet1pMnhqdIvny7BsOy9kncDJQzfS7phMCDniX0+VySVK/W3t4zKNFKWZZ+uXZMFSz7/WV83JgobRo22Den1+uwJufTpcwSbzHZpunQwf/u6HPVEp1ifd2A3hnuaf+HPSFlxMST5dr7Jm11mO7la2fLK9XtTWMZd6U8UpAIdAPgXdNQggZ0Igir6kzbddoXxd7rYRTd9rMnzeBIhVqYgn9cD4PMVwQiUSM1WgB69iW9fUqwiWPl4nqzzc0LePVcmsSEAReM+IRFzIMvMkd/LrTe+qUOxe1eirJJ+QxYF7Jsr0IgFcECqJYxzSNfd93RvfdbjWvXFwmsry3t3ct92dNAYYyEIio8HIJAteFxRwOHwFYWVzETjtRVo/B0LT7Ao7vQxMPIIyIIEReg1mfKp0b+4u2tLUPylstA0rZwHAfHx9acfmYtbRDcpxf4jjTeLm6s75uzMGO19Qbt7tALHVKlfKIyHAceF8CPjSnjnsKooiIgIOKg+qOIDq5wmJum09mKVhGcqwoySB4i4VWhQN71FpelKZIxOS4Xk/Egy/AQqgCVu+p2Far+iZycHJ/LghYxYO9CHYHJ4oZ8ZqAvnn/lLDKCoKTeFpr94bFvfalnA0iXj4EsBKH+xA0MqOIaUwuUFjnF+BdsOhQcfWdw6Q1GpY6wYI/VX0ArN0APjw8PjZriygNoji9Iu8EXMyPOcuRJI2dUddE0qhYXCr1LQrAik630246KRBTKm5QySlB5oKYxN6IImdYLp2vRW8y3ioDFjrdlug8p14cRwkKCxPIyKyWnyhyY9/qPg164FV175tOC9nH5S1WK+3msY8al06zuY3jFFbugsF6oTJ3OjKNkJtp5IB9dgY5UMax4pLrW3FgdR+PyE639WDFaYgCKSF5mRNuxfKapp5lTYfjX6KF8QhYqe+RTrWdThfWMQ6hcIsKQBoxdNC/R6M/M2ZuGluDl6lSzKaSvgKw4liEPNYLwjbUbkZXBFKVQ43kTvCxaxhGo99v6P35MYqs5mT6Ul1dMtpq9akVz0WCR0C20zadAB7Ptw5yKmb+aWb0G3VdhwKkY7vlHiaDqRyflTwJKB/a5XNR58nsOsBJ4/ga8sCBP0ejgaxGvc/tFDsv4+n0taAvD5fVJ/ByYHFIkDUuT92B5lxPp5S2Dto7sLQ2wJkkDzesOREDZzJRAlTlIa4AlM9FWd8JG+3j1j1BR0NV9RqKUm4A0WDpgS0BJ75lCV+FE0A1+9rqDKTXMx8WfpoEAIyJSDxQp89ok0aDxAFiZI2ldJCDk9HW67WmzngEUOBEZ9YZOmnEiSFuHcgzoJzHUIjQoN4i0VuNP4Q7C9GSAwszLCowhWNRr9c2nWyrCqGU09IBL/I9Mj+KkRg6r5MPBFa6cy0BpVMYywbl2N4b9toWSkRicuoTEHiR71iWBc+dbr0IykN/Hjgfbx8fPDxLNAJmAh/b5WOYmEqYg+6CdmMkYoCAyFMSeVvr4e7PHZxq/1hAvJz6l+jtZbFAXDVwoynFrC3PlNTGemBabP9PoSdH4ukK+rZPYijxYHnoVIibqQjP4vJlwFbx2NcpTMyojxj0nDgOoiTByg3tRhjD8lmgDQ2IT1s/xrjxrakcnisZt94gsFU8tUvhMpAaT/OJ4gY8ihJPEC/+AUAL3KAe4YuRE13w5/ZrVTpkwFbx0M54kAltbvQz4A8GHSAiEATCuR+a/q0AjmBWMNl6zKfm6+v7oiJeNmgKMF+/wWNrhCWDfVZcEvhuMYb8jxPcm5hA/wDetIBnoU9HBy9G4MHe7T7fPor6NhsBZL5sC1znqTcwe4Ot57quww0TjSwWQBIIQbPdHhxn+4eixsFFPCVw/HADZ7Var8v6GFA+taO+TrtT28bBDMwwnmezJdoRngKWpgx4jX1uzoH0/YFP5UOKnuIjvC+IndfFx0pavQxYXj6Ils7ID2b1Rp2ZDthnQKLWgAPDSAA90vdnC19GBHyuNxrLq2+tPit4BFSis9fpbR3HD5YNw5gJYwrRx25SBPpT0gdknylcQiOgHyFp/AMjbmTT2vKQAMxsjWBnSAL4nBVA8Gsl0GFfMpdC41FfYk3yrY8NAQXz6+tLK87jB00rgLO1a9T1maE3wOoN3XimdXQgityE0iIUVdvzt9Op5ZFArG2gsG7o9WcXnhJtPzaKPgFUlq/jpJcwWBp1YwaftI5IIILI45F8GlOhuUTeYX9gUBbGDsXM/AS9BwANB4Cpt1qrOAIqxXrQeXKSS+gudYgVHYG6riORSwQLQSIkvn+2GXBx9weW8Hw+k0eD5wa61DgCMFGAXxyYhycKNNsT/wrAGQSnjkD8R8dI5UDHiaEP7/cvsWefKT23o8nUOdtf5wh3i+DZwA+qLwPokn17peIAWJjRjZqfEZxwYQkbTCHjglsZEcyNUSJsFj/78/f5cAB/nnfr1d5H6RcXVh5eXn9GYHT4sFUeApUJ3aj1GQAQg1Q36oplxCigBubq797p1ARz7s773sd9EhYfqwW4ZImPifYcKHC2rcnXGwA0O1sepAwokh+WEtIEkh8DJ7rijniJz+/vA6rvr5svL8atAhYf6xMAIUyvMPVcF3i2hrh8xmM+jf0EBB4N9GWdBw6rNmBYbTAXIf5x1gip8QpvGo9XfoA/gcmKs1zOKbohaq7Qg2xXX4Jnk2mSPtz4niYIdJcNZBAwr29IdJaU/TH1GdBEOc4BA4fx4sAFrxMPosYl4OeXwuPArJUYPg0J+ExepCwUPqUaAOuIQOjR6NgPbek1CLAxRsFx5DrIw3pRbyxJ4e7TlmgIVC9Uhk8v5NIlB0qGCalDBUCvQp2OSVT/RPs/2gX0ObSCIi+uAQDXFUBpRDcYOLDWlIYNXZdAwqdQ0TEbA+p9Q+rw+2w0HgXucYlJCJ/KQCAUN5jnfCm83U5TR8i9UUQCDQQ1MiCuZCMnok/h+QFsx+xoAfPiCHCzZ4O/BVxqgMQQJG5kfQBUR6yDkZ+EMMVTl09nYrHCGTojRpHPoiemZt8/QrSgL+tUnvCt+oyAtgTc7RhQ6gXNSZQB6d0yULhVf17CKmIhpy3SOR4xVIRDGuytqDAmhTmMA+XrokEPFCYCiP+zJaR9ij0LP8cMNw4q5yxI6GPkn46WQGdAe2MrRE29UDGhsIUwqGSPLhpiKeQNcOpyVv49BQx9Be+fYdQEh40i8FtTrsMGsFXAi1SgeIhsIJGkMX26wdyQvxDfP4Md6hL6uy97lwG/EShdpwymMRW2Gd8IdRY5DW6Uh8yO7px9YWQLzF5XF+GGiwgbRryXgN8ANOWRpzmNyKNGo37LOJMBDREqUn3gVGyJXAR+f2X+ZED5PgyAGKRzo8FVsYWjx+jiU6DnCAieE4GEXqTeAD6OwUNMZ8D9l4RjwGzgORJZgatjsHYt79wo+BsUOPAsl7dYtEsel7mJr43GLFCAiNvvtWE+Qn4ZmwsqbEt4eoWxNIA/oBGCBjur2Yy1HZiMubnuEaOYFbeDncvLgTTQnQzHHgxFAvnzSkatPm1AoHR5nLFPhd0cT0ipi+ViYS8PfXv3neE4kF+nTMyXCC8nj9kbZwoQSif8D/XMxb54yXhFiAyHMA2hkbI5cC+A2fWN+RIwIAv+gkOPNCGB0pkGDnoNfwTPxuAxUKbi+BwY7ezvbwWY3RdNzBEqvMz4qWIufXJ0XRx4AZvJBI6LzcSSvcqgTKEVVQ0uPCXgngGzefz4ZTJ8i/DGEN88mx+RN6f0Zq51AegF8CeKfajezrIEkI4/GTCMzpJDGZDciQKnHswpsbLhi5d8aegkA0HoMCC02hG0EgA8loLLKBCP2G2F/t7ey8Dsfmo6ePNPcwSKpc+e5LC9TyiEvRCv2Vx+gnOVeFHjGh4Y/QBwv68CviMQhulB0WJmATsviW+FBbcMsvCCwC8ZKN2nDGxs4qljwDklDSu54cAQbjA4MGWWcLuqL6Z5HH6LNzigID187XPT8su+iXlI4ViERlR2LcKumiC8YQZVAMYht+KL+be8m0s9m8N+wApA8SIa/LJZbK5RACOhUPyOXpa/VPyUpv8w2fV2KpDfFk0nw23KPydcnsWJYjFzKSEhEZOiFV+PP2Lyk9T5znjnswC+wvB4uBCf/YZ5mPiBF/GHx+k/WXzY/XB5CJTuUybTg/c3iyNawQyYZrOav5qHMfrzUwLSND67sH0rXQIsYHyJeRhka5hG0kHTlptPKi07ucL8CNOUq/ZXbm/i1p1m1wz8/hlFIC7Gv9jMJPKKB3jBFdsfJ5I2FcjUvclzajGcW1s43LHWnxbWbZiNBHG0Y0d3paWWIXspLM/nH+kfBOa3N+/vpeu+fAa5WntxGtk2xKgP05e1pEtuPHc7lSmiJXOpdJ1Z5BVG1quVFx1WlgVzizWeGL5s1Ys3eGVg8bYvuz0tD3RpbmYJbbZt26pTd0Wfiuw750EzrXZnxYAcRmbkR/i7EJgqbq8sIYqTeAwo8xaLmwP5QkAWQmanpIGaCz+KQvnmuyQvd+X6VgrYf1+9vwOL+qSlUycuucCdlBT7YnhKvhTAt9Jl5qLCnb/7s6iOR0s1sCxPnv9vNjnwBu+7OjqrTCuES2V0FlfPrpSnClQoclq8vd+4Oy15swjc/SX7CqEiJaL2Lt1mVt2GlevzV2U2lMJFWT5JIS8uH9X6Nv/sz18XrwxcVd6GFYC3lu/fgRXJVy4um82tarb75/CsBn7+Ei92IdtLvJ/f7D898+uZNSwkfwAAAABJRU5ErkJggg==" width="56" height="56" alt="" loading="lazy" decoding="async"><span translate="no">Wildex</span></li>
       </ul>
       <p class="shelf-foot">Every mod here belongs to whoever wrote it, and the logos are theirs too, shown to identify their work. Nothing on this list is downloadable from me.</p>
+    </div>
+
+    <div class="packwork">
+      <h3>Inside my own pack</h3>
+      <p class="packwork-lead">Nobody pays me for this one, and none of it is a port. It is other people's mods, in my own world, made to work together &mdash; and it is where I find out what breaks before a client does.</p>
+      <div class="mp-list">
+
+      <article class="mp-item">
+        <img class="ch ch--mp" src="h512-12.webp" width="256" height="245" style="height:118px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <div class="mp-head">
+          <div class="mp-logos">
+            <img class="mp-logo" src="logo-freshanimations.webp" width="96" height="96" alt="" aria-hidden="true" loading="lazy" decoding="async">
+            <img class="mp-logo" src="logo-epicfight.webp" width="96" height="96" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          </div>
+          <h3><span translate="no">Fresh Animations</span> on the mobs, <span translate="no">Epic Fight</span> on the player</h3>
+        </div>
+        <p><span translate="no">Fresh Animations</span> on almost every creature, <span translate="no">Epic Fight</span> on my character alone. Taking a mob off <span translate="no">Epic Fight</span> needs two changes, not one: a datapack entry stops its combat patch, but the mob still draws through <span translate="no">Epic Fight</span>'s own renderer, so <span translate="no">Fresh Animations</span> never gets a look in. The other half is a script that pulls the mob out of that renderer map on world load. I found the split by decompiling the render engine, not by guessing.</p>
+        <p class="mp-catch"><strong>The half that hid the longest.</strong> The datapack was not loading at all. It was missing its <code>pack.mcmeta</code>, so the loader skipped the entire folder and said nothing about it in the log. Everything was configured correctly and <span translate="no">Epic Fight</span> kept winning anyway. Both halves now name the same 24 mobs, and they still match today.</p>
+        <p class="mp-credit"><a href="https://modrinth.com/resourcepack/fresh-animations" target="_blank" rel="noopener noreferrer"><span translate="no">Fresh Animations</span></a> is by <span translate="no">FreshLX</span>, <a href="https://modrinth.com/mod/epic-fight" target="_blank" rel="noopener noreferrer"><span translate="no">Epic Fight</span></a> by its own team. All I did was make them share a world.</p>
+      </article>
+
+      <article class="mp-item">
+        <img class="ch ch--mp" src="h512-13.webp" width="256" height="245" style="height:96px;opacity:0.92" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <div class="mp-head">
+          <h3>I measured which mods animate themselves instead of assuming</h3>
+        </div>
+        <p><span translate="no">Fresh Animations</span> does nothing for a mod that animates its own creatures, so before touching anything I scanned the bytecode of <strong>645 jars</strong> for <span translate="no">GeckoLib</span>, <span translate="no">AzureLib</span> and <span translate="no">Citadel</span>. 305 add creatures, 3,951 creatures between them, and <strong>48% were already animated</strong>. That is the difference between a job with no edges and a short list.</p>
+      </article>
+
+      <article class="mp-item">
+        <div class="mp-head">
+          <h3>One missing letter that silenced the spawns of seven mods</h3>
+        </div>
+        <p><span translate="no">Forge</span> reads biome modifiers from a folder called <code>biome_modifiers</code>. A folder called <code>biome_modifier</code> is ignored: no warning, no error, nothing in the log. Seven mods in my pack had the singular, so they loaded perfectly and their creatures simply never appeared anywhere in the world. It looks exactly like a mod that is broken, and it is a plural.</p>
+      </article>
+
+      <article class="mp-item">
+        <img class="ch ch--mp" src="h512-21.webp" width="256" height="245" style="height:110px;opacity:0.96" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <div class="mp-head">
+          <div class="mp-logos">
+            <img class="mp-logo" src="logo-mutantmore.webp" width="96" height="96" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          </div>
+          <h3>A mod that was written off as unfixable, and the one word that fixed it</h3>
+        </div>
+        <p><span translate="no">Mutant More</span> had been sitting out of my pack for weeks, crashing on load. The previous read was that its bytecode would have to be rewritten. It did not. Its mixin config declared <code>compatibilityLevel: "JAVA_16"</code> while <strong>all 577 of its classes were compiled as Java 17</strong>, so the mixin loader refused every one of them. Java 16 caps at class version 60; the classes were 61.</p>
+        <p class="mp-catch"><strong>The fix was one word.</strong> <code>JAVA_16</code> became <code>JAVA_17</code>. Before touching it I opened <span translate="no">mixin-0.8.5.jar</span>, the version <span translate="no">Forge</span> 1.20.1 loads, and read its <span translate="no">CompatibilityLevel</span> enum to confirm <span translate="no">JAVA_17</span> was a value it would actually accept rather than assuming. Original jar backed up first, repacked, and the pack went from 588 mods loading to 589 of 589.</p>
+        <p class="mp-credit"><span translate="no">Mutant More</span> is by <a href="https://modrinth.com/mod/new-mutant-more" target="_blank" rel="noopener noreferrer"><span translate="no">AlexandersFunAndGames</span></a>. That config line was the only thing I touched, and only in my own copy.</p>
+      </article>
+      </div>
+
+    <div class="pack-shots">
+      <figure class="pack-lead">
+        <img src="pack-01.webp" width="1200" height="675" alt="A villager outside a wooden house in a heavily modded world, with custom flowers and trees around it." loading="lazy" decoding="async">
+      </figure>
+      <div class="pack-grid">
+        <img src="pack-02.webp" width="760" height="428" alt="An enormous skeleton lying across a flooded clearing between giant redwoods, seen from above." loading="lazy" decoding="async">
+        <img src="pack-04.webp" width="760" height="428" alt="A large ornate structure of dark stone and gold beside a lava fall in the Nether, lit by soul fire." loading="lazy" decoding="async">
+        <img src="pack-05.webp" width="760" height="428" alt="Three bears gathered on a stone platform in a birch and pine forest." loading="lazy" decoding="async">
+        <img src="pack-06.webp" width="760" height="428" alt="A window set into the trunk of a huge tree at sunset, with birch trees behind it." loading="lazy" decoding="async">
+        <img src="pack-08.webp" width="760" height="428" alt="A pillager riding an orange boar through bright green forest undergrowth." loading="lazy" decoding="async">
+        <img src="pack-10.webp" width="760" height="428" alt="A capybara resting on open grassland under a clear sky." loading="lazy" decoding="async">
+        <img src="pack-11.webp" width="669" height="578" alt="A tall red villager and a blue-robed wizard holding a staff, standing on a snow field." loading="lazy" decoding="async">
+      </div>
+      <p class="pack-note">Same pack: <strong>more than 600 mods</strong> on Forge 1.20.1. <strong>Not one block in any of these frames is mine</strong> &mdash; no commissions, no ports of mine. I am a player first, and this is the thing the work is for.</p>
+    </div>
     </div>
   </div>
 </section>
@@ -1856,115 +1972,6 @@
     </div>
   </div>
 </section>
-<!-- PROOF -->
-<section id="proof">
-  <div class="wrap">
-        <h2>It compiles. That proves nothing.</h2>
-    <p class="sub">None of this is client work, it's my own porting. These are five failures that pass every automatic gate: the build succeeds, the log stays clean, and the mod is still wrong.</p>
-
-    <div class="figrow">
-      <div class="fig">
-        <span class="fig-n">5</span>
-        <span class="fig-rule" aria-hidden="true"></span>
-        <p class="fig-t"><strong>checks</strong> run on every jar before it leaves my machine: mod metadata, pack format, bytecode version, mixin declarations in the manifest, and model bones.</p>
-      </div>
-      <div class="fig">
-        <span class="fig-n">0</span>
-        <span class="fig-rule" aria-hidden="true"></span>
-        <p class="fig-t"><strong>files lost</strong> in the repack, out of 28 asset, data and licence files diffed against the jars the original authors published.</p>
-      </div>
-      <div class="fig">
-        <span class="fig-n">41</span>
-        <span class="fig-rule" aria-hidden="true"></span>
-        <p class="fig-t"><strong>packet payloads</strong> rebuilt by hand on one backport, because the clientbound ones take a dedicated server down at startup and never fail in singleplayer.</p>
-      </div>
-    </div>
-
-    <div class="port-grid">
-      <div class="port-card">
-        <h3 class="port-name">A crash the compiler cannot see</h3>
-        <p class="port-desc">In my port of <span translate="no">Capybara</span> (<span translate="no">39Choko</span>, MIT) the model asked for a bone called <span translate="no">saddleParts</span>. In the model file that bone is called <span translate="no">saddle</span>. The name lives inside a text string, so nothing checked it. The build passed. The resource diff passed. It crashed the first time a capybara was drawn, in my own test instance. <span translate="no">GeckoLib</span>'s <span translate="no">AnimationProcessor.getBone</span> returns null for a name the model does not have, and the renderer runs every frame.</p>
-        <p class="port-footer-note"><strong>Proof.</strong> I kept the broken jar. The check now reads bone names straight out of the compiled bytecode with <span translate="no">javap</span> and compares them against the model file. On the fixed jar: one bone found, zero failures. On the broken jar: it fails, names <span translate="no">saddleParts</span>, and prints the 11 bones that do exist. I wrote up <a href="geckolib-bone-name-crash.html">how to run that check on your own jar</a>.</p>
-      </div>
-
-      <div class="port-card">
-        <h3 class="port-name">Files that vanish in the repack</h3>
-        <p class="port-desc">A port is a rebuild, not a copy. Recipes, loot tables and textures can go missing when the jar is repackaged, and nothing errors. The mod loads and quietly does less than it did before.</p>
-        <p class="port-footer-note"><strong>Proof.</strong> I diff every asset, data and licence file against the jar the original author published. Across <span translate="no">Boids</span> and <span translate="no">Birds</span> (<span translate="no">Tomate0613</span>, MIT) and <span translate="no">Capybara</span> (<span translate="no">39Choko</span>, MIT): 22 of the 28 are byte identical. 6 are <span translate="no">JSON</span> the build reformatted, and they parse to exactly the same data. Two files are added, both <span translate="no">Forge</span> biome modifiers so spawns work on this loader. Loader metadata is replaced on purpose, <span translate="no">mods.toml</span> where <span translate="no">Fabric</span> had <span translate="no">fabric.mod.json</span>. Unzip both jars and run the same diff.</p>
-      </div>
-
-      <div class="port-card">
-        <h3 class="port-name"><span translate="no">Yarn</span> names and <span translate="no">Mojang</span> names do not line up</h3>
-        <p class="port-desc"><span translate="no">Fabric</span> source is written in <span translate="no">Yarn</span> names. <span translate="no">Forge</span> builds against <span translate="no">Mojang</span>'s. I bridge them in two hops through intermediary mappings, and the translator only rewrites a name when it has exactly one possible target. Anything ambiguous is left for the compiler to reject.</p>
-        <p class="port-footer-note"><strong>Proof.</strong> It still gets things wrong, and those mistakes compile. On <span translate="no">Capybara</span> the jungle spawn biome came out of the translator as <span translate="no">JUNGLE_PLANKS</span>. That is why I read translated output back against the original source before it goes into a build. The jungle, mangrove swamp and sparse jungle spawns in that port came from the original, not from the translated text.</p>
-      </div>
-
-      <div class="port-card">
-        <h3 class="port-name">Fine in singleplayer, dead on the server</h3>
-        <p class="port-desc">A clientbound packet handler written as a method reference is resolved where it is registered. A dedicated server has no client class to resolve, so registration can take the server down at startup while singleplayer never complains.</p>
-        <p class="port-footer-note"><strong>Proof.</strong> On a network layer backport from 1.21 to <span translate="no">Forge</span> 1.20.1, on my own modpack, I rebuilt every packet payload by hand: 22 serverbound, 19 clientbound. All 19 clientbound handlers are explicit lambdas with the client call behind a <span translate="no">Dist.CLIENT</span> guard, and all 41 register from one shared method with sequential IDs, so the two sides cannot drift. That is how the code is written, not a test result. I do not name the mod here: it is a personal-use port and I have no written permission from the author to put its name on a commercial page.</p>
-      </div>
-
-      <div class="port-card">
-        <h3 class="port-name">Mixins that quietly do not load</h3>
-        <p class="port-desc">Repackaging a jar can drop the manifest entry that declares its mixin configs. <span translate="no">Forge</span> then loads the mod without complaint and none of the mixins apply. The mod is installed, part of its behaviour is missing, and nothing in the log says so.</p>
-        <p class="port-footer-note"><strong>Proof.</strong> Same class of bug, same answer: it became a check. The manifest one at the top of this section is this exact bug, turned into something a script can catch, and every one of the five is there because something like it got past me first. They are a colander, not a proof. The bone check only sees literal names, and it needs a <span translate="no">JDK</span> to read the bytecode.</p>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- MI PROPIO PACK -->
-<section id="modpack">
-  <div class="wrap">
-        <h2>What I do to my own pack</h2>
-    <p class="sub">Nobody pays me for this one. It is where the techniques come from, and where I find out what breaks before a client does.</p>
-    <div class="mp-list">
-
-      <article class="mp-item">
-        <img class="ch ch--mp" src="h512-12.webp" width="256" height="245" style="height:118px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <div class="mp-head">
-          <div class="mp-logos">
-            <img class="mp-logo" src="logo-freshanimations.webp" width="96" height="96" alt="" aria-hidden="true" loading="lazy" decoding="async">
-            <img class="mp-logo" src="logo-epicfight.webp" width="96" height="96" alt="" aria-hidden="true" loading="lazy" decoding="async">
-          </div>
-          <h3><span translate="no">Fresh Animations</span> on the mobs, <span translate="no">Epic Fight</span> on the player</h3>
-        </div>
-        <p>I wanted <span translate="no">Fresh Animations</span> running on almost every creature and <span translate="no">Epic Fight</span> only on my own character. Taking a mob off <span translate="no">Epic Fight</span> turns out to need two separate changes, not one. A datapack entry stops its combat patch, but the mob still draws through <span translate="no">Epic Fight</span>'s own renderer, so <span translate="no">Fresh Animations</span> never gets a look in. The other half is a script that pulls the mob out of that renderer map when the world loads. I found the split by decompiling the render engine, not by guessing.</p>
-        <p class="mp-catch"><strong>The half that hid the longest.</strong> The datapack was not loading at all. It was missing its <code>pack.mcmeta</code>, so the loader skipped the entire folder and said nothing about it in the log. Everything was configured correctly and <span translate="no">Epic Fight</span> kept winning anyway. Both halves now name the same 24 mobs, and they still match today.</p>
-        <p class="mp-credit">Neither of these is mine. <a href="https://modrinth.com/resourcepack/fresh-animations" target="_blank" rel="noopener noreferrer"><span translate="no">Fresh Animations</span></a> is by <span translate="no">FreshLX</span>, and <a href="https://modrinth.com/mod/epic-fight" target="_blank" rel="noopener noreferrer"><span translate="no">Epic Fight</span></a> is by its own team. All I did was make them share a world.</p>
-      </article>
-
-      <article class="mp-item">
-        <img class="ch ch--mp" src="h512-13.webp" width="256" height="245" style="height:96px;opacity:0.92" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <div class="mp-head">
-          <h3>I measured which mods animate themselves instead of assuming</h3>
-        </div>
-        <p><span translate="no">Fresh Animations</span> does nothing for a mod that already animates its own creatures, so before touching anything I scanned the bytecode of <strong>645 jars</strong> for references to <span translate="no">GeckoLib</span>, <span translate="no">AzureLib</span> and <span translate="no">Citadel</span>. 305 of them add creatures, 3,951 creatures between them, and <strong>48% were already animated</strong> and never needed <span translate="no">Fresh Animations</span> at all. That is the difference between a job with no edges and a short list.</p>
-      </article>
-
-      <article class="mp-item">
-        <div class="mp-head">
-          <h3>One missing letter that silenced the spawns of seven mods</h3>
-        </div>
-        <p><span translate="no">Forge</span> reads biome modifiers from a folder called <code>biome_modifiers</code>. A folder called <code>biome_modifier</code> is ignored: no warning, no error, nothing in the log. Seven mods in my pack had the singular, so they loaded perfectly and their creatures simply never appeared anywhere in the world. It looks exactly like a mod that is broken, and it is a plural.</p>
-      </article>
-
-      <article class="mp-item">
-        <img class="ch ch--mp" src="h512-21.webp" width="256" height="245" style="height:110px;opacity:0.96" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <div class="mp-head">
-          <div class="mp-logos">
-            <img class="mp-logo" src="logo-mutantmore.webp" width="96" height="96" alt="" aria-hidden="true" loading="lazy" decoding="async">
-          </div>
-          <h3>A mod that was written off as unfixable, and the one word that fixed it</h3>
-        </div>
-        <p><span translate="no">Mutant More</span> had been sitting out of my pack for weeks, crashing on load. The previous read was that its bytecode would have to be rewritten. It did not. Its mixin config declared <code>compatibilityLevel: "JAVA_16"</code> while <strong>all 577 of its classes were compiled as Java 17</strong>, so the mixin loader refused every one of them. Java 16 caps at class version 60; the classes were 61.</p>
-        <p class="mp-catch"><strong>The fix was one word.</strong> <code>JAVA_16</code> became <code>JAVA_17</code>. Before touching it I opened <span translate="no">mixin-0.8.5.jar</span>, the version <span translate="no">Forge</span> 1.20.1 loads, and read its <span translate="no">CompatibilityLevel</span> enum to confirm <span translate="no">JAVA_17</span> was a value it would actually accept rather than assuming. Original jar backed up first, repacked, and the pack went from 588 mods loading to 589 of 589.</p>
-        <p class="mp-credit"><span translate="no">Mutant More</span> is by <a href="https://modrinth.com/mod/new-mutant-more" target="_blank" rel="noopener noreferrer"><span translate="no">AlexandersFunAndGames</span></a>. The mod is theirs; the config line was the only thing I touched, and only in my own copy.</p>
-      </article>
-
-    </div>
-  </div>
-</section>
 <!-- ABOUT -->
 <section id="about">
   <div class="wrap">
@@ -1984,23 +1991,6 @@
       </div>
     </div>
 
-    <div class="pack-shots">
-      <figure class="pack-lead">
-        <img src="pack-01.webp" width="1200" height="675" alt="A villager outside a wooden house in a heavily modded world, with custom flowers and trees around it." loading="lazy" decoding="async">
-      </figure>
-      <div class="pack-grid">
-        <img src="pack-02.webp" width="760" height="428" alt="An enormous skeleton lying across a flooded clearing between giant redwoods, seen from above." loading="lazy" decoding="async">
-        <img src="pack-04.webp" width="760" height="428" alt="A large ornate structure of dark stone and gold beside a lava fall in the Nether, lit by soul fire." loading="lazy" decoding="async">
-        <img src="pack-05.webp" width="760" height="428" alt="Three bears gathered on a stone platform in a birch and pine forest." loading="lazy" decoding="async">
-        <img src="pack-06.webp" width="760" height="428" alt="A window set into the trunk of a huge tree at sunset, with birch trees behind it." loading="lazy" decoding="async">
-        <img src="pack-08.webp" width="760" height="428" alt="A pillager riding an orange boar through bright green forest undergrowth." loading="lazy" decoding="async">
-        <img src="pack-09.webp" width="760" height="428" alt="A large pale horned bull standing beside a player on open grassland, with slimes in the distance." loading="lazy" decoding="async">
-        <img src="pack-10.webp" width="760" height="428" alt="A capybara resting on open grassland under a clear sky." loading="lazy" decoding="async">
-        <img src="pack-11.webp" width="669" height="578" alt="A tall red villager and a blue-robed wizard holding a staff, standing on a snow field." loading="lazy" decoding="async">
-      </div>
-      <p class="pack-note">Every one of these is from a pack I run for myself, on Forge 1.20.1, with <strong>more than 600 mods</strong> in it. I am a player before I am anything else, and this is the pack the porting work grew out of. <strong>None of them is a commission and none of them is a port of mine</strong>, and I am not claiming credit for a single block in the frame. They are here because this is the thing the work is for.</p>
-    </div>
-
     <div class="credit">
       <h3>Credit where it is due</h3>
       <p>Commissions are still only me, and that part is not changing: nobody else touches a client's mod. But I did not get here on my own. <strong translate="no">Alex</strong> and I are on the same course, and he is the one I talk this through with.</p>
@@ -2008,9 +1998,8 @@
   </div>
 </section>
 <figure class="scene-band">
-  <img src="band-flight.webp" width="1800" height="1012" alt="My character hanging in the air above an open sea, with the sun going down behind him." loading="lazy" decoding="async">
-  <figcaption><span>Same pack, same character. Hundreds of other people's mods in that world, and not one of them is mine.</span></figcaption>
-
+  <img src="band-cow.webp" width="1800" height="1012" alt="My character standing on open grassland beside a large pale horned cow, with slimes in the distance." loading="lazy" decoding="async">
+  <figcaption><span>This is where the porting started: my own pack, and a list of mods that never got updated.</span></figcaption>
 </figure>
 <div class="torn-sep" aria-hidden="true"><svg viewBox="0 0 1440 24" preserveAspectRatio="none"><path d="M0 24 L0 11 L52 16 L108 8 L168 17 L232 7 L304 15 L380 9 L456 17 L536 7 L618 15 L702 9 L786 17 L870 8 L952 15 L1036 9 L1120 17 L1204 8 L1286 15 L1366 10 L1440 14 L1440 24 Z"/></svg>
 
@@ -2065,6 +2054,45 @@
     <div class="coll-cta">
       <a class="btn btn-discord" aria-disabled="true" role="link">Invite link coming</a>
       <span class="coll-soon">The group is not up yet. I will put the link here the day it is.</span>
+    </div>
+  </div>
+</section>
+<!-- PROOF -->
+<section id="proof">
+  <div class="wrap">
+        <h2>It compiles. That proves nothing.</h2>
+    <p class="sub">The long version, for whoever wants it. Five failures of my own that pass every automatic gate: the build succeeds, the log stays clean, and the mod is still wrong.</p>
+
+    <div class="port-grid">
+      <div class="port-card">
+        <h3 class="port-name">A crash the compiler cannot see</h3>
+        <p class="port-desc">In my port of <span translate="no">Capybara</span> (<span translate="no">39Choko</span>, MIT) the model asked for a bone called <span translate="no">saddleParts</span>. In the model file that bone is called <span translate="no">saddle</span>. The name lives inside a text string, so nothing checked it. The build passed. The resource diff passed. It crashed the first time a capybara was drawn, in my own test instance. <span translate="no">GeckoLib</span>'s <span translate="no">AnimationProcessor.getBone</span> returns null for a name the model does not have, and the renderer runs every frame.</p>
+        <p class="port-footer-note"><strong>Proof.</strong> I kept the broken jar. The check now reads bone names straight out of the compiled bytecode with <span translate="no">javap</span> and compares them against the model file. On the fixed jar: one bone found, zero failures. On the broken jar: it fails, names <span translate="no">saddleParts</span>, and prints the 11 bones that do exist. I wrote up <a href="geckolib-bone-name-crash.html">how to run that check on your own jar</a>.</p>
+      </div>
+
+      <div class="port-card">
+        <h3 class="port-name">Files that vanish in the repack</h3>
+        <p class="port-desc">A port is a rebuild, not a copy. Recipes, loot tables and textures can go missing when the jar is repackaged, and nothing errors. The mod loads and quietly does less than it did before.</p>
+        <p class="port-footer-note"><strong>Proof.</strong> I diff every asset, data and licence file against the jar the original author published. Across <span translate="no">Boids</span> and <span translate="no">Birds</span> (<span translate="no">Tomate0613</span>, MIT) and <span translate="no">Capybara</span> (<span translate="no">39Choko</span>, MIT): 22 of the 28 are byte identical. 6 are <span translate="no">JSON</span> the build reformatted, and they parse to exactly the same data. Two files are added, both <span translate="no">Forge</span> biome modifiers so spawns work on this loader. Loader metadata is replaced on purpose, <span translate="no">mods.toml</span> where <span translate="no">Fabric</span> had <span translate="no">fabric.mod.json</span>. Unzip both jars and run the same diff.</p>
+      </div>
+
+      <div class="port-card">
+        <h3 class="port-name"><span translate="no">Yarn</span> names and <span translate="no">Mojang</span> names do not line up</h3>
+        <p class="port-desc"><span translate="no">Fabric</span> source is written in <span translate="no">Yarn</span> names. <span translate="no">Forge</span> builds against <span translate="no">Mojang</span>'s. I bridge them in two hops through intermediary mappings, and the translator only rewrites a name when it has exactly one possible target. Anything ambiguous is left for the compiler to reject.</p>
+        <p class="port-footer-note"><strong>Proof.</strong> It still gets things wrong, and those mistakes compile. On <span translate="no">Capybara</span> the jungle spawn biome came out of the translator as <span translate="no">JUNGLE_PLANKS</span>. That is why I read translated output back against the original source before it goes into a build. The jungle, mangrove swamp and sparse jungle spawns in that port came from the original, not from the translated text.</p>
+      </div>
+
+      <div class="port-card">
+        <h3 class="port-name">Fine in singleplayer, dead on the server</h3>
+        <p class="port-desc">A clientbound packet handler written as a method reference is resolved where it is registered. A dedicated server has no client class to resolve, so registration can take the server down at startup while singleplayer never complains.</p>
+        <p class="port-footer-note"><strong>Proof.</strong> On a network layer backport from 1.21 to <span translate="no">Forge</span> 1.20.1, on my own modpack, I rebuilt every packet payload by hand: 22 serverbound, 19 clientbound. All 19 clientbound handlers are explicit lambdas with the client call behind a <span translate="no">Dist.CLIENT</span> guard, and all 41 register from one shared method with sequential IDs, so the two sides cannot drift. That is how the code is written, not a test result. I do not name the mod here: it is a personal-use port and I have no written permission from the author to put its name on a commercial page.</p>
+      </div>
+
+      <div class="port-card">
+        <h3 class="port-name">Mixins that quietly do not load</h3>
+        <p class="port-desc">Repackaging a jar can drop the manifest entry that declares its mixin configs. <span translate="no">Forge</span> then loads the mod without complaint and none of the mixins apply. The mod is installed, part of its behaviour is missing, and nothing in the log says so.</p>
+        <p class="port-footer-note"><strong>Proof.</strong> Same class of bug, same answer: it became a check. The manifest one in the <a href="#portfolio">five checks I run</a> is this exact bug, turned into something a script can catch. They are a colander, not a proof. The bone check only sees literal names, and it needs a <span translate="no">JDK</span> to read the bytecode.</p>
+      </div>
     </div>
   </div>
 </section>
