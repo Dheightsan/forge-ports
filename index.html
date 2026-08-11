@@ -775,7 +775,6 @@
     .step p { color: var(--text-soft); font-size: 0.84rem; line-height: 1.6; }
 
     /* ── PRICING ── */
-    #pricing { border-top: 1px solid var(--border); }
     .price-promo { display: flex; align-items: center; gap: 0.85rem; flex-wrap: wrap; margin-top: 1.6rem; padding: 0.9rem 1.2rem; background: linear-gradient(90deg, rgba(192,126,60,0.13), rgba(203,161,74,0.10)); border: 1px solid var(--green-ring); border-radius: var(--radius); font-size: 0.9rem; color: var(--text); line-height: 1.5; }
     .price-promo-tag { font-size: 0.74rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; background: var(--green); color: #2a1808; padding: 0.32rem 0.62rem; border-radius: 999px; white-space: nowrap; }
     .price-promo strong { color: var(--gold); font-weight: 700; }
@@ -1154,6 +1153,34 @@
       .brand-cuy { width: 48px; height: 48px; }
       .btn-nav { padding: 0.48rem 0.72rem; font-size: 0.8rem; }
     }
+
+    /* ── MI PROPIO PACK ── */
+    #modpack { background: var(--surface); border-top: 1px solid var(--border); }
+    .mp-list { margin-top: 2.6rem; display: grid; gap: 1.1rem; }
+    .mp-item { background: linear-gradient(180deg, #1a1814, #131210); border: 1px solid var(--border); border-top: 2px solid var(--border-lt); border-radius: var(--radius-lg); padding: var(--pad-card); }
+    /* Cabecera en rejilla y no en linea: cuando lleve el logo del mod al lado,
+       el titulo tiene que poder ocupar dos lineas sin empujarlo. */
+    .mp-head { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0.85rem; align-items: center; margin-bottom: 0.75rem; }
+    .mp-logo { width: 40px; height: 40px; border-radius: 7px; object-fit: contain; background: var(--surface2); flex-shrink: 0; }
+    .mp-item h3 { font-size: 1.02rem; font-weight: 700; line-height: 1.35; margin: 0; }
+    .mp-item p { color: var(--text-soft); font-size: 0.9rem; line-height: 1.72; max-width: 68ch; }
+    .mp-item p + p { margin-top: 0.85rem; }
+    .mp-item code { font-size: 0.86em; background: var(--surface2); border: 1px solid var(--border); border-radius: 4px; padding: 0.05em 0.35em; }
+    .mp-catch { border-left: 2px solid var(--gold); padding-left: 0.9rem; }
+    .mp-catch strong { color: var(--text); }
+    @media (max-width: 620px) { .mp-head { grid-template-columns: minmax(0, 1fr); gap: 0.5rem; } }
+
+    /* ── COLISION DE IDEAS ── */
+    /* Va al final a proposito: se dirige a dibujantes, no a quien viene a
+       encargar un port, y no tiene que estorbar a ese camino. */
+    #collision { border-top: 1px solid var(--border); }
+    .coll-body { margin-top: 2.2rem; max-width: 62ch; }
+    .coll-body p { color: var(--text-soft); font-size: 0.94rem; line-height: 1.78; }
+    .coll-body p + p { margin-top: 1rem; }
+    .coll-body strong { color: var(--text); font-weight: 600; }
+    .coll-cta { margin-top: 1.8rem; display: flex; flex-wrap: wrap; align-items: center; gap: 0.8rem; }
+    .btn[aria-disabled="true"] { opacity: 0.55; cursor: not-allowed; pointer-events: none; }
+    .coll-soon { font-size: 0.82rem; color: var(--text-mute); }
   </style>
   <script>
     (function(){
@@ -1191,8 +1218,7 @@
     <ul class="nav-links">
       <li><a href="#services">Services</a></li>
       <li><a href="#portfolio">Portfolio</a></li>
-      <li><a href="#estimator">Estimate</a></li>
-      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#estimator" translate="no">Angel Engine</a></li>
       <li><a href="#authors">Mod authors</a></li>
       <li><a href="#legal">Legal</a></li>
       <li class="nav-cta"><a href="#estimator" class="btn-nav">Price my mod<span class="nav-free">free</span></a></li>
@@ -1350,8 +1376,8 @@
 <section id="estimator">
   <div class="wrap">
     <div class="eyebrow">Instant estimate</div>
-    <h2>Build your commission</h2>
-    <p class="sub">Pick what you need and the ballpark updates as you go. It also writes a summary you can paste straight into a message.</p>
+    <h2><span translate="no">Angel Engine</span></h2>
+    <p class="sub">My price estimator. Pick what you need and the ballpark updates as you go, and it writes a summary you can paste straight into a message. Every price on this site lives here, so there is one number to check and nothing to cross-reference.</p>
 
     <div class="estimator reveal">
       <div class="est-form">
@@ -1432,6 +1458,46 @@
       </div>
     </div>
   </div>
+
+    <!-- intro offer: parked. re-enable this block when ready
+    <div class="price-promo">
+      <span class="price-promo-tag">Intro offer</span>
+      <span>First clients get a <strong>discount on their first port</strong> in exchange for an honest review. Lock in a low rate before prices settle.</span>
+    </div>
+    -->
+    <p class="pnote"><strong>Reviving an old mod, converting Fabric to Forge, or private closed-source work?</strong> &nbsp;Those are quoted as one flat number for your specific mod, never a stack of surcharges.</p>
+    <div class="price-promo">
+      <span class="price-promo-tag">Returning clients</span>
+      <span>When your pack moves to a new Minecraft version, re-porting work I originally built for you is <strong>40% of the original price</strong>, and past clients jump the queue.</span>
+    </div>
+    <div class="paystrip">
+      <div class="paystrip-head">How you pay</div>
+      <div class="paycards">
+        <div class="paycard">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#5fa86a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v5c0 4.5-3.4 7.7-8 9-4.6-1.3-8-4.5-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg>
+          <div class="paycard-name">BuiltByBit escrow</div>
+          <div class="paycard-sub">Not live yet. Until it is, you pay after you have seen the build run.</div>
+        </div>
+        <div class="paycard">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#5aa84a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h13l-3-3"/><path d="M20 16H7l3 3"/></svg>
+          <div class="paycard-name">Wise</div>
+          <div class="paycard-sub">Low-fee bank transfer, paid from anywhere worldwide.</div>
+        </div>
+        <div class="paycard">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#4a7fc4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/></svg>
+          <div class="paycard-name">PayPal</div>
+          <div class="paycard-sub">Goods &amp; Services, with buyer protection.</div>
+        </div>
+      </div>
+    </div>
+    <div class="softcta">
+      <p><strong>Not sure it can even be done?</strong> Send me the mod link and I'll tell you whether it's possible and what gets in the way. No charge, and no obligation to take it further.</p>
+      <div class="softcta-row">
+        <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" class="btn btn-discord">Ask me on Discord</a>
+        <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20commission" class="btn btn-ghost">Or email me</a>
+      </div>
+    </div>
+  
 </section>
 
 <!-- SERVICES -->
@@ -1458,7 +1524,7 @@
       <g style="color:var(--ld-forge)"><circle class="loomd-node" cx="170.1" cy="325.0" r="54"/><circle class="loomd-node-fill" cx="170.1" cy="325.0" r="54"/><g class="loomd-glyph"><g transform="translate(149.7,304.6) scale(1.700)"><path fill="currentColor" d="M2 8h10l-1.2 2.4H15v2h-1.9L12 17H8L6.2 12.4H2z"/><rect x="6" y="18" width="9" height="2" rx="0.4" fill="currentColor"/></g></g><text class="loomd-t" x="170.1" y="413.0" font-size="28" text-anchor="middle">Forge</text></g>
       </svg>
       <p class="loomd-claim">Any version, any loader.</p>
-      <figcaption>A <span translate="no">NeoForge</span> mod is mostly a rename, so it converts both ways for a flat $20. A <span translate="no">Fabric</span> mod is close to a rewrite, because the events, registries and mixins are all different. A <span translate="no">Forge</span> mod on another version is priced by the walls it has to cross, not by a percentage.</figcaption>
+      <figcaption>A <span translate="no">NeoForge</span> mod is mostly a rename, so it converts both ways and it is the cheapest of the three. A <span translate="no">Fabric</span> mod is close to a rewrite, because the events, registries and mixins are all different. A <span translate="no">Forge</span> mod on another version is priced by the walls it has to cross, not by a percentage.</figcaption>
     </figure>
     <div class="cards">
       <div class="card card--base">
@@ -1467,7 +1533,7 @@
         <p>A newer mod (1.21+) your pack needs running on something older like Forge 1.20.1. That means porting the items, blocks, mechanics and textures across. Backporting a mod to Forge 1.20.1 is the job I do most.</p>
         <div class="card-stats">
           <div><span class="k">Target</span><span class="v">Forge 1.20.1</span></div>
-          <div><span class="k">From</span><span class="v">$35</span></div>
+          
         </div>
         <span class="card-tag tag-base">Lowest rate</span>
       </div>
@@ -1486,8 +1552,8 @@
         <h3>Loader conversion</h3>
         <p>Moving a mod between Fabric, NeoForge and Forge. <strong>Porting a Fabric mod to Forge is close to a rewrite</strong> because the events, registries and mixins are all different. I wrote up <a href="fabric-to-forge-1-20-1.html">what actually breaks in a Fabric to Forge port</a>, with the failures that never show an error.</p>
         <div class="card-stats">
-          <div><span class="k">Forge↔Neo</span><span class="v">+$20</span></div>
-          <div><span class="k">Fabric→Forge</span><span class="v">by quote</span></div>
+          
+          
         </div>
         <span class="card-tag tag-premium">By complexity</span>
       </div>
@@ -1497,7 +1563,7 @@
         <p>Getting mods to coexist: two native mods, a ported one alongside a native one, mobs spawning across mods, or a conflict that breaks a feature. This works <strong>even for closed-source mods</strong>, and it ships as a publishable add-on.</p>
         <div class="card-stats">
           <div><span class="k">Works with</span><span class="v">Closed-source too</span></div>
-          <div><span class="k">From</span><span class="v">$25</span></div>
+          
         </div>
         <span class="card-tag tag-base">Publishable</span>
       </div>
@@ -1507,7 +1573,7 @@
         <p>A mod that broke after an update: failing <strong>mixins</strong>, crashes, dependency or mapping breaks, deprecated APIs. I track down the fault and get it loading clean again on your version.</p>
         <div class="card-stats">
           <div><span class="k">Fixes</span><span class="v">Mixins · crashes · deps</span></div>
-          <div><span class="k">From</span><span class="v">$25</span></div>
+          
         </div>
         <span class="card-tag tag-base">By scope</span>
       </div>
@@ -1517,12 +1583,13 @@
         <p>A mod or pack that <strong>eats TPS and FPS</strong>. I profile the hot paths and bring the cost down: async work, caching, smarter ticking, lighter worldgen. None of it changes what the mod actually does.</p>
         <div class="card-stats">
           <div><span class="k">Cuts</span><span class="v">Lag · RAM · tick time</span></div>
-          <div><span class="k">From</span><span class="v">$45</span></div>
+          
         </div>
         <span class="card-tag tag-premium">By scope</span>
       </div>
     </div>
   </div>
+  <p class="svc-price-note">Every one of these is priced in the <a href="#estimator"><span translate="no">Angel Engine</span></a> above.</p>
 </section>
 
 <figure class="scene-band scene-band--low">
@@ -1538,7 +1605,7 @@
         <h2>How a mod commission works</h2>
     <p class="sub">It's all done in writing, async, no calls.</p>
     <div class="steps">
-      <div class="step"><div class="step-n">01</div><h3>Send me the mod</h3><p>Message the mod link and what you need. Open-source or licensed, both work. Use the estimator to pre-fill the details.</p></div>
+      <div class="step"><div class="step-n">01</div><h3>Send me the mod</h3><p>Message the mod link and what you need. Open-source or licensed, both work. Use the <span translate="no">Angel Engine</span> to pre-fill the details.</p></div>
       <div class="step"><div class="step-n">02</div><h3>Flat quote</h3><p>I look over the mod and reply with a fixed price and a timeline. No scope creep once we've agreed.</p></div>
       <div class="step"><div class="step-n">03</div><h3>Agree &amp; start</h3><p>We lock the scope and price in writing. <strong>Your first job with me carries no deposit, whatever the size:</strong> you pay once you have seen it run. After that, bigger jobs start on a 50% deposit.</p></div>
       <div class="step"><div class="step-n">04</div><h3>I build it</h3><p>Every job gets its own timeline, agreed before I touch anything. <strong>If you have a hard date, say so first:</strong> I will either commit to it in writing or turn the job down.</p></div>
@@ -1548,84 +1615,6 @@
 </section>
 
 <!-- PRICING -->
-<section id="pricing">
-  <div class="wrap">
-        <h2>Fixed price, agreed before we start</h2>
-    <p class="sub">These are starting points. Tell me about your mod on Discord or by email and you get one fixed price for the whole job, agreed in writing before I begin. No hourly billing, no surprise add-ons.</p>
-
-    <!-- intro offer: parked. re-enable this block when ready
-    <div class="price-promo">
-      <span class="price-promo-tag">Intro offer</span>
-      <span>First clients get a <strong>discount on their first port</strong> in exchange for an honest review. Lock in a low rate before prices settle.</span>
-    </div>
-    -->
-
-    <div class="ptable">
-      <div class="prow prow-head"><div>Service</div><div>Starts at</div><div>What it covers</div></div>
-      <div class="prow base">
-        <div class="pservice">Quick fix / recompile <small>simplest job</small></div>
-        <div class="pprice">from $20</div>
-        <div class="pwhy">Same loader, a neighbouring version (e.g. 1.20.1 ↔ 1.19.2), or a config / recipe / small tweak.</div>
-      </div>
-      <div class="prow base">
-        <div class="pservice">Backport to Forge 1.20.1 <small>my specialty</small></div>
-        <div class="pprice">from $35</div>
-        <div class="pwhy"><strong>By mod size:</strong> small (items, blocks, recipes), medium (mechanics, entities, GUI), large (tech, worldgen).</div>
-      </div>
-      <div class="prow">
-        <div class="pservice">Compatibility patch <small>make mods coexist</small></div>
-        <div class="pprice">from $25</div>
-        <div class="pwhy">Config or datapack fixes, mixin and event patching, multi-mod conflicts.</div>
-      </div>
-      <div class="prow">
-        <div class="pservice">Mod maintenance <small>fix mixins / crashes</small></div>
-        <div class="pprice">from $25</div>
-        <div class="pwhy">A failing mixin, a crash, a dependency or mapping break.</div>
-      </div>
-      <div class="prow">
-        <div class="pservice">Mod optimization <small>less lag / resources</small></div>
-        <div class="pprice">from $45</div>
-        <div class="pwhy">Targeted lag fix, an async or caching pass, or deeper profiling of hot paths.</div>
-      </div>
-    </div>
-
-    <p class="pnote"><strong>Reviving an old mod, converting Fabric to Forge, or private closed-source work?</strong> &nbsp;Those are quoted as one flat number for your specific mod, never a stack of surcharges.</p>
-    <p class="pexample"><strong>Worked example.</strong> A medium backport to Forge 1.20.1, open-source, lands around <strong>$65</strong>. Most first jobs come in between <strong>$20 and $120</strong>. Bigger revivals and Fabric→Forge rewrites are quoted per job.</p>
-
-    <div class="price-promo">
-      <span class="price-promo-tag">Returning clients</span>
-      <span>When your pack moves to a new Minecraft version, re-porting work I originally built for you is <strong>40% of the original price</strong>, and past clients jump the queue.</span>
-    </div>
-
-    <div class="paystrip">
-      <div class="paystrip-head">How you pay</div>
-      <div class="paycards">
-        <div class="paycard">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#5fa86a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v5c0 4.5-3.4 7.7-8 9-4.6-1.3-8-4.5-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg>
-          <div class="paycard-name">BuiltByBit escrow</div>
-          <div class="paycard-sub">Not live yet. Until it is, you pay after you have seen the build run.</div>
-        </div>
-        <div class="paycard">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#5aa84a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h13l-3-3"/><path d="M20 16H7l3 3"/></svg>
-          <div class="paycard-name">Wise</div>
-          <div class="paycard-sub">Low-fee bank transfer, paid from anywhere worldwide.</div>
-        </div>
-        <div class="paycard">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#4a7fc4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/></svg>
-          <div class="paycard-name">PayPal</div>
-          <div class="paycard-sub">Goods &amp; Services, with buyer protection.</div>
-        </div>
-      </div>
-    </div>
-    <div class="softcta">
-      <p><strong>Not sure it can even be done?</strong> Send me the mod link and I'll tell you whether it's possible and what gets in the way. No charge, and no obligation to take it further.</p>
-      <div class="softcta-row">
-        <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" class="btn btn-discord">Ask me on Discord</a>
-        <a href="#estimator" class="btn btn-ghost">Or price it yourself</a>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- FAQ -->
 <section id="faq">
@@ -1845,6 +1834,40 @@
   </div>
 </section>
 
+<!-- MI PROPIO PACK -->
+<section id="modpack">
+  <div class="wrap">
+        <h2>What I do to my own pack</h2>
+    <p class="sub">Nobody pays me for this one. It is where the techniques come from, and where I find out what breaks before a client does.</p>
+    <div class="mp-list">
+
+      <article class="mp-item">
+        <div class="mp-head">
+          <!-- LOGOS: hueco listo. Faltan epicfight.webp y freshanimations.webp -->
+          <h3><span translate="no">Fresh Animations</span> on the mobs, <span translate="no">Epic Fight</span> on the player</h3>
+        </div>
+        <p>I wanted <span translate="no">Fresh Animations</span> running on almost every creature and <span translate="no">Epic Fight</span> only on my own character. Taking a mob off <span translate="no">Epic Fight</span> turns out to need two separate changes, not one. A datapack entry stops its combat patch, but the mob still draws through <span translate="no">Epic Fight</span>'s own renderer, so <span translate="no">Fresh Animations</span> never gets a look in. The other half is a script that pulls the mob out of that renderer map when the world loads. I found the split by decompiling the render engine, not by guessing.</p>
+        <p class="mp-catch"><strong>The half that hid the longest.</strong> The datapack was not loading at all. It was missing its <code>pack.mcmeta</code>, so the loader skipped the entire folder and said nothing about it in the log. Everything was configured correctly and <span translate="no">Epic Fight</span> kept winning anyway. Both halves now name the same 24 mobs, and they still match today.</p>
+      </article>
+
+      <article class="mp-item">
+        <div class="mp-head">
+          <h3>I measured which mods animate themselves instead of assuming</h3>
+        </div>
+        <p><span translate="no">Fresh Animations</span> does nothing for a mod that already animates its own creatures, so before touching anything I scanned the bytecode of <strong>645 jars</strong> for references to <span translate="no">GeckoLib</span>, <span translate="no">AzureLib</span> and <span translate="no">Citadel</span>. 305 of them add creatures, 3,951 creatures between them, and <strong>48% were already animated</strong> and never needed <span translate="no">Fresh Animations</span> at all. That is the difference between a job with no edges and a short list.</p>
+      </article>
+
+      <article class="mp-item">
+        <div class="mp-head">
+          <h3>One missing letter that silenced the spawns of seven mods</h3>
+        </div>
+        <p><span translate="no">Forge</span> reads biome modifiers from a folder called <code>biome_modifiers</code>. A folder called <code>biome_modifier</code> is ignored: no warning, no error, nothing in the log. Seven mods in my pack had the singular, so they loaded perfectly and their creatures simply never appeared anywhere in the world. It looks exactly like a mod that is broken, and it is a plural.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
 <!-- ABOUT -->
 <section id="about">
   <div class="wrap">
@@ -1899,7 +1922,7 @@
 <section id="contact">
   <div class="wrap">
         <h2>Send me the mod</h2>
-    <p class="sub">Message me or build your request in the estimator above, and you'll have a fixed quote in writing, usually within a day.</p>
+    <p class="sub">Message me or build your request in the <span translate="no">Angel Engine</span> above, and you'll have a fixed quote in writing, usually within a day.</p>
     <div class="contact-cards">
       <div class="contact-card contact-card--primary">
         <div class="ci ci--discord"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4V5z"/><circle cx="9.5" cy="10.5" r="0.6" fill="currentColor" stroke="none"/><circle cx="14.5" cy="10.5" r="0.6" fill="currentColor" stroke="none"/></svg></div>
@@ -1910,7 +1933,7 @@
       <div class="contact-card">
         <div class="ci ci--gmail"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg></div>
         <h3>Email (backup)</h3>
-        <p>Prefer email? Send the mod link and what you want done, or just the estimator summary.</p>
+        <p>Prefer email? Send the mod link and what you want done, or just the <span translate="no">Angel Engine</span> summary.</p>
         <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20porting%20commission" class="btn btn-gmail contact-btn"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Send me an email</a>
       </div>
       <div class="contact-card contact-card--soon">
@@ -1920,6 +1943,23 @@
       </div>
     </div>
     <p class="contact-note">I take two commissions at a time, so the queue stays short.</p>
+  </div>
+</section>
+
+<!-- COLISION DE IDEAS -->
+<section id="collision">
+  <div class="wrap">
+        <h2><span translate="no">Colisi&oacute;n de ideas</span></h2>
+    <p class="sub">A private group I am putting together for people who draw. Nothing to do with commissions.</p>
+    <div class="coll-body">
+      <p>The idea is small and specific: <strong>a place to put concept art up and have someone actually look at it.</strong> Creatures, weapons, buildings, whatever you are working on. Half-finished is fine, that is rather the point.</p>
+      <p>I build modpacks, so a lot of what I bring will be Minecraft-shaped, but <strong>you do not have to draw anything Minecraft</strong> to be in it. There is no work attached and nobody is hiring. If a commission ever comes out of a conversation in there, it is yours and it is between you and whoever asks.</p>
+      <p>It stays private and small on purpose. Everyone gets in by invitation.</p>
+    </div>
+    <div class="coll-cta">
+      <a class="btn btn-discord" aria-disabled="true" role="link">Invite link coming</a>
+      <span class="coll-soon">The group is not up yet. I will put the link here the day it is.</span>
+    </div>
   </div>
 </section>
 
@@ -1940,7 +1980,7 @@
         <summary>Terms of Service</summary>
         <div class="legal-doc-body">
           <p><strong>Service.</strong> Modwright provides Minecraft mod commission work: porting, backporting, reviving, loader conversion, compatibility patches, maintenance and optimization, all carried out by one developer.</p>
-          <p><strong>Quotes &amp; pricing.</strong> The estimator gives a non-binding ballpark. The final price is fixed and agreed in writing before any work begins. A deposit may be requested for larger jobs; a $20 minimum applies.</p>
+          <p><strong>Quotes &amp; pricing.</strong> The <span translate="no">Angel Engine</span> gives a non-binding ballpark. The final price is fixed and agreed in writing before any work begins. A deposit may be requested for larger jobs, and a minimum charge applies; the <span translate="no">Angel Engine</span> shows it.</p>
           <p><strong>Payment.</strong> Through Wise or PayPal, or BuiltByBit escrow where available, as agreed. With escrow, funds release on delivery.</p>
           <p><strong>Delivery &amp; timelines.</strong> You receive a working, boot-tested build. Timelines are honest estimates, not promises, and I don't commit to hard deadlines.</p>
           <p><strong>Scope &amp; corrections.</strong> The deliverable is the working build described in our written agreement, which you review before final payment. If a bug inside that agreed scope shows up within 30 days of delivery, I fix it at no charge; where a correction is not possible, I refund the affected amount. After 30 days, or for breakage caused by Minecraft updates, other mods, server setup, or changes beyond the agreed scope, fixes are quoted as maintenance work.</p>
@@ -1955,7 +1995,7 @@
         <summary>Privacy Policy</summary>
         <div class="legal-doc-body">
           <p><strong>Short version:</strong> this is a static page with no accounts and no tracking cookies. I only ever see what you choose to send me.</p>
-          <p><strong>What I collect.</strong> Only the information you include when you contact me: your email address and the commission details you provide. The price estimator runs entirely in your browser; nothing you enter there leaves your device until you click to email it.</p>
+          <p><strong>What I collect.</strong> Only the information you include when you contact me: your email address and the commission details you provide. The <span translate="no">Angel Engine</span> runs entirely in your browser; nothing you enter there leaves your device until you click to email it.</p>
           <p><strong>How I use it.</strong> Solely to reply to you and carry out the work you ask for. I never sell, rent, or share your information.</p>
           <p><strong>Third parties.</strong> If you pay, the payment runs through your chosen provider (BuiltByBit, Wise, etc.) under their own policies. Email is handled through Gmail.</p>
           <p><strong>Analytics.</strong> I don't use tracking cookies. If I ever add analytics, it'll be cookieless and won't collect personal data.</p>
