@@ -1293,7 +1293,9 @@
     .port-card--cta { position: relative; }
     .ch--tarjeta { position: absolute; top: 1.4rem; left: 50%; transform: translateX(-50%); z-index: 1; }
     .port-card--cta > * { position: relative; z-index: 2; }
-    /* En las fichas del pack propio acompañan a la ficha por la derecha. */
+    /* En las fichas del pack propio acompañaban a la ficha por la derecha.
+       EN_MODPACK esta vacia ahora mismo, asi que esto no pinta a nadie; se deja
+       porque volver a llenar la lista tiene que bastar para recuperarlos. */
     .mp-item { position: relative; }
     .ch--mp { top: 50%; right: 1.4rem; transform: translateY(-50%); }
     @media (max-width: 1180px) { .ch--mp { display: none; } }
@@ -1630,7 +1632,6 @@
       <div class="mp-list">
 
       <article class="mp-item">
-        <img class="ch ch--mp" src="h512-12.webp" width="256" height="245" style="height:118px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <div class="mp-head">
           <div class="mp-logos">
             <img class="mp-logo" src="logo-freshanimations.webp" width="96" height="96" alt="" aria-hidden="true" loading="lazy" decoding="async">
@@ -1644,7 +1645,6 @@
       </article>
 
       <article class="mp-item">
-        <img class="ch ch--mp" src="h512-13.webp" width="256" height="245" style="height:96px;opacity:0.92" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <div class="mp-head">
           <h3>I measured which mods animate themselves instead of assuming</h3>
         </div>
@@ -1659,7 +1659,6 @@
       </article>
 
       <article class="mp-item">
-        <img class="ch ch--mp" src="h512-21.webp" width="256" height="245" style="height:110px;opacity:0.96" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <div class="mp-head">
           <div class="mp-logos">
             <img class="mp-logo" src="logo-mutantmore.webp" width="96" height="96" alt="" aria-hidden="true" loading="lazy" decoding="async">
