@@ -1161,7 +1161,12 @@
     /* Cabecera en rejilla y no en linea: cuando lleve el logo del mod al lado,
        el titulo tiene que poder ocupar dos lineas sin empujarlo. */
     .mp-head { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0.85rem; align-items: center; margin-bottom: 0.75rem; }
-    .mp-logo { width: 40px; height: 40px; border-radius: 7px; object-fit: contain; background: var(--surface2); flex-shrink: 0; }
+    .mp-logos { display: flex; gap: 0.45rem; }
+    /* pixelated: los iconos vienen a 96 px y se pintan a 40. Sin esto el
+       navegador los suaviza y un icono de Minecraft suavizado canta. */
+    .mp-logo { width: 40px; height: 40px; border-radius: 7px; object-fit: contain; background: var(--surface2); border: 1px solid var(--border); }
+    .mp-credit { margin-top: 0.9rem; font-size: 0.82rem; color: var(--text-mute); }
+    .mp-credit a { color: var(--text-soft); }
     .mp-item h3 { font-size: 1.02rem; font-weight: 700; line-height: 1.35; margin: 0; }
     .mp-item p { color: var(--text-soft); font-size: 0.9rem; line-height: 1.72; max-width: 68ch; }
     .mp-item p + p { margin-top: 0.85rem; }
@@ -1375,9 +1380,9 @@
 <!-- ESTIMATOR -->
 <section id="estimator">
   <div class="wrap">
-    <div class="eyebrow">Instant estimate</div>
-    <h2><span translate="no">Angel Engine</span></h2>
-    <p class="sub">My price estimator. Pick what you need and the ballpark updates as you go, and it writes a summary you can paste straight into a message. Every price on this site lives here, so there is one number to check and nothing to cross-reference.</p>
+    <div class="eyebrow" translate="no">Angel Engine</div>
+    <h2>Estimate your commission</h2>
+    <p class="sub">Pick what you need and the ballpark updates as you go, and it writes a summary you can paste straight into a message. Every price on this site lives here, so there is one number to check and nothing to cross-reference.</p>
 
     <div class="estimator reveal">
       <div class="est-form">
@@ -1843,11 +1848,15 @@
 
       <article class="mp-item">
         <div class="mp-head">
-          <!-- LOGOS: hueco listo. Faltan epicfight.webp y freshanimations.webp -->
+          <div class="mp-logos">
+            <img class="mp-logo" src="logo-freshanimations.webp" width="96" height="96" alt="" aria-hidden="true" loading="lazy" decoding="async">
+            <img class="mp-logo" src="logo-epicfight.webp" width="96" height="96" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          </div>
           <h3><span translate="no">Fresh Animations</span> on the mobs, <span translate="no">Epic Fight</span> on the player</h3>
         </div>
         <p>I wanted <span translate="no">Fresh Animations</span> running on almost every creature and <span translate="no">Epic Fight</span> only on my own character. Taking a mob off <span translate="no">Epic Fight</span> turns out to need two separate changes, not one. A datapack entry stops its combat patch, but the mob still draws through <span translate="no">Epic Fight</span>'s own renderer, so <span translate="no">Fresh Animations</span> never gets a look in. The other half is a script that pulls the mob out of that renderer map when the world loads. I found the split by decompiling the render engine, not by guessing.</p>
         <p class="mp-catch"><strong>The half that hid the longest.</strong> The datapack was not loading at all. It was missing its <code>pack.mcmeta</code>, so the loader skipped the entire folder and said nothing about it in the log. Everything was configured correctly and <span translate="no">Epic Fight</span> kept winning anyway. Both halves now name the same 24 mobs, and they still match today.</p>
+        <p class="mp-credit">Neither of these is mine. <a href="https://modrinth.com/resourcepack/fresh-animations" target="_blank" rel="noopener noreferrer"><span translate="no">Fresh Animations</span></a> is by <span translate="no">FreshLX</span>, and <a href="https://modrinth.com/mod/epic-fight" target="_blank" rel="noopener noreferrer"><span translate="no">Epic Fight</span></a> is by its own team. All I did was make them share a world.</p>
       </article>
 
       <article class="mp-item">
