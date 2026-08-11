@@ -233,6 +233,35 @@ r.setAttribute('data-theme',s==='light'?'light':'dark');}catch(e){}})();
     <p><strong>The estimate is a range, and the range is honest about what it is.</strong> It is built from the mod as you describe it. The fixed price comes in writing after I have actually opened the source, and it is the number you pay. If what I find makes the job bigger than described, you get told before any work starts, not after.</p>
   </div>
 
+  <h2>A real job, added up</h2>
+
+  <p><span translate="no">Mindful Eating</span> by <span translate="no">camcam_burger</span>, a food variety mod. It ran on <span translate="no">Forge</span> 1.20.1 and had to end up on <span translate="no">NeoForge</span> 1.21.1. What that actually involved:</p>
+
+  <ul>
+    <li>The per player data system rebuilt on native data attachments, which also let the <span translate="no">Blueprint</span> dependency go, at the creator's own suggestion.</li>
+    <li>The food stat tweaks moved onto the 1.21 component system, because the old approach does not exist there any more.</li>
+    <li>A <span translate="no">HUD</span>, so client and server behaviour both had to be checked rather than assumed.</li>
+  </ul>
+
+  <p>Priced off the tables above, nothing hidden:</p>
+
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Component</th><th>Why</th><th>Amount</th></tr></thead>
+    <tbody>
+      <tr><td>Base, medium mod</td><td>mechanics plus a <span translate="no">GUI</span>, not just items</td><td class="num">$65</td></tr>
+      <tr><td>Hard wall</td><td>crosses 1.21 data components</td><td class="num">+$60</td></tr>
+      <tr><td>Loader change</td><td><span translate="no">Forge</span> to <span translate="no">NeoForge</span></td><td class="num">+$20</td></tr>
+      <tr><td>Licence multiplier</td><td><span translate="no">LGPL</span>, publishable, so none applies</td><td class="num">&times;1</td></tr>
+      <tr><td><strong>Total</strong></td><td>the arithmetic is additive on purpose, so you can check it</td><td class="num"><strong>$145</strong></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="note">
+    <p><strong>Being straight about this one.</strong> That is where the job lands on my own table, not an invoice. I did this port for the mod's creator and handed it back to him for his official page, so nobody paid me for it. I am using it because it is a job I can describe end to end with his name on it, and a worked example you cannot verify is worth nothing.</p>
+  </div>
+
   <h2>What is not in the price</h2>
 
   <ul>
@@ -241,6 +270,18 @@ r.setAttribute('data-theme',s==='light'?'light':'dark');}catch(e){}})();
     <li><strong>Hosting or publishing on your behalf.</strong> Public listings are yours to control, unless you ask me to handle it.</li>
     <li><strong>Support past the correction window.</strong> Corrections against the written scope are included for thirty days. After that it is maintenance, and maintenance has its own line in the table above.</li>
   </ul>
+
+  <h2>When you should not pay me at all</h2>
+
+  <p>Three cases where this costs you nothing, and I would rather say so here than after you have opened a ticket.</p>
+
+  <ul>
+    <li><strong>The mod already runs through a bridge.</strong> <a href="https://modrinth.com/mod/connector" target="_blank" rel="noopener noreferrer"><span translate="no">Sinytra Connector</span></a> runs <span translate="no">Fabric</span> mods on <span translate="no">Forge</span> and <span translate="no">NeoForge</span>, including 1.20.1, and it is free. Try it first. I wrote up <a href="fabric-to-forge-1-20-1.html">when it works and when it does not</a>.</li>
+    <li><strong>The mod is built on <span translate="no">Architectury</span>.</strong> If the source tree already has a <code>forge/src</code> directory, most of the work you would be paying for is done. That is usually a version bump, not a port, and often something you can finish yourself in an evening.</li>
+    <li><strong>You want to learn how.</strong> Everything I know about the failures that produce no error is written down for free: <a href="fabric-to-forge-1-20-1.html">what breaks in a <span translate="no">Fabric</span> to <span translate="no">Forge</span> port</a> and <a href="geckolib-bone-name-crash.html">the crash no compiler can catch</a>. If you would rather spend a weekend than money, spend the weekend.</li>
+  </ul>
+
+  <p>What you are actually buying when you do pay is not the typing. It is somebody who has already hit the failures that build clean and break silently, and who checks for them before the jar leaves.</p>
 
   <h2>How to get a number you can trust</h2>
 
