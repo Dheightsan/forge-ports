@@ -16,14 +16,14 @@ if(!s&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').mat
 r.setAttribute('data-theme',s==='light'?'light':'dark');}catch(e){}})();
 </script>
 <title>Porting a Fabric mod to Forge 1.20.1: what actually breaks | Modwright</title>
-<meta name="description" content="A practical account of what breaks when you move a Fabric mod to Forge 1.20.1: registries, entrypoints, mixins, spawns, bundled libraries, and the four failures that produce no error at all.">
+<meta name="description" content="A practical account of what breaks when you move a Fabric mod to Forge 1.20.1: registries, entrypoints, mixins, spawns, bundled libraries, and the failures that produce no error at all.">
 <link rel="canonical" href="https://dheightsan.github.io/forge-ports/fabric-to-forge-1-20-1.html">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="favicon-180.png">
 <meta property="og:title" content="Porting a Fabric mod to Forge 1.20.1: what actually breaks">
-<meta property="og:description" content="Registries, entrypoints, mixins, spawns and the four failures that produce no error at all.">
+<meta property="og:description" content="Registries, entrypoints, mixins, spawns and the failures that produce no error at all.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://dheightsan.github.io/forge-ports/fabric-to-forge-1-20-1.html">
 <meta property="og:image" content="https://dheightsan.github.io/forge-ports/og.png">
@@ -117,7 +117,7 @@ r.setAttribute('data-theme',s==='light'?'light':'dark');}catch(e){}})();
   <div class="kicker">Field notes</div>
   <h1>Porting a <span translate="no">Fabric</span> mod to <span translate="no">Forge</span> 1.20.1: what actually breaks</h1>
 
-  <p class="lede">Most of a small mod moves over in an afternoon. What eats the week is a short list of things that behave differently, plus four failures that produce no error message at all. This is what I hit repeatedly, written down so you can judge the job before you start it.</p>
+  <p class="lede">Most of a small mod moves over in an afternoon. What eats the week is a short list of things that behave differently, plus a handful of failures that produce no error message at all. This is what I hit repeatedly, written down so you can judge the job before you start it.</p>
 
   <p>Everything below comes from real ports, not from reading documentation: <span translate="no">Boids</span> and its <span translate="no">Birds</span> addon, a rideable capybara mod with <span translate="no">GeckoLib</span> animations, and a dog mod with five variants.</p>
 
@@ -165,7 +165,7 @@ r.setAttribute('data-theme',s==='light'?'light':'dark');}catch(e){}})();
   </div>
   <p>A mod already built on <span translate="no">Architectury</span>, with a <code>forge/src</code> directory in the tree, is a different conversation entirely. Much of the work is done and the job is often closer to a version bump.</p>
 
-  <h2>7. The four failures that produce no error</h2>
+  <h2>7. The failures that produce no error</h2>
   <p>Compiling is not the finish line. These are the ones that cost real time, because there is nothing in the log to search for.</p>
 
   <h3>An access transformer that did not make it across</h3>
@@ -179,6 +179,9 @@ r.setAttribute('data-theme',s==='light'?'light':'dark');}catch(e){}})();
 
   <h3>Testing a stale artifact</h3>
   <p>The oldest one and still the most common. The build succeeded, the instance is running the previous jar, and you spend an hour debugging a fix that was never loaded. Compare file sizes or hashes before concluding anything about behaviour.</p>
+
+    <h3>A bone name that only exists in a string</h3>
+  <p>An animation library asks for a bone by name. If the model file calls it something else, the lookup returns <code>null</code> and the renderer dies the first frame the entity is drawn, having built and loaded perfectly. The name lives in a string literal, so nothing checks it. Full write-up, including how to verify a jar with <code>javap</code> before you ship it: <a href="geckolib-bone-name-crash.html">the crash no compiler can catch</a>.</p>
 
   <h2>8. Knowing when it is actually done</h2>
   <p>Compiling proves the syntax. What proves the port is starting the game, creating a fresh world, and confirming that each thing the mod adds is present: items in the creative tab, entities spawning naturally rather than only by command, animations playing, config reload responding, and a clean exit.</p>
