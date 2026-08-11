@@ -169,9 +169,31 @@ print(sorted(set(bone_names(model))))</code></pre>
 
   <p><strong>3. Compare them.</strong> Anything requested that is not defined is the bug, and you have its exact name before a single frame is rendered.</p>
 
-  <div class="note">
-    <p><strong>What this actually returned for me.</strong> On the fixed jar: one bone requested, one bone found, zero failures. On the jar I kept broken: it fails, it names <code>saddleParts</code>, and it prints the eleven bones that do exist so the correct one is right there to read.</p>
-  </div>
+  <h2>What it actually printed</h2>
+
+  <p>Not a summary of what it printed. This is the output, from running the check just now against both jars, the one I shipped and the one I kept broken on purpose:</p>
+
+  <pre><code>======================================================================
+BROKEN  capymod-1.20.1-1.2.BROKEN.jar
+  models found      : 1  -&gt; capybara.geo.json
+  bones defined     : 11 -&gt; body, ear1, ear2, head, head2, leg1,
+                            leg2, leg3, leg4, legs, saddle
+  requested + found : 0
+  FAIL: asks for a bone the model does not have
+     asks for 'saddleParts' | model has 'saddle' | in CapybaraModel.class
+
+======================================================================
+FIXED   capymod-1.20.1-1.2.jar
+  models found      : 1  -&gt; capybara.geo.json
+  bones defined     : 11
+  requested + found : 1  -&gt; saddle
+  OK: zero mismatches</code></pre>
+
+  <p>Two things worth noticing. The broken jar <strong>names the wrong bone and then lists the eleven that do exist</strong>, so the correct one is sitting right there to read: you do not go hunting. And the fixed jar reports one bone requested, one found, which is the boring output you want.</p>
+
+  <p>The mod is <span translate="no">Capybara</span> by <span translate="no">39Choko</span>, <span translate="no">MIT</span>. I am not hosting either jar here, because publishing somebody else's mod is a separate conversation I have not had with them yet. The check above is mine and it runs on any jar you point it at, including yours.</p>
+
+
 
   <h2>What this check does not do</h2>
   <p>Being honest about the limits, because a check you trust too much is worse than no check:</p>
