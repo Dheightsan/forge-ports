@@ -1392,6 +1392,23 @@
        los queria repartidos por los lados. El CSS se va con ella; si algun dia
        vuelve, se rehace llenando EN_FILA. */
     /* La de josda va en el flujo del hero: tiene que verse siempre. */
+    /* Cameron y Shaunt van DENTRO de la ficha de su mod, no en el margen.
+       Los otros 36 son decoracion: caras de la partida, sin nombre. Estos dos
+       son los AUTORES, y una cara junto a su nombre dice lo que un personaje
+       flotando en el borde no dice. Van en el flujo (`position: static`), asi
+       que no pueden pisar texto por definicion; `.ch` los pone en absolute y
+       hay que deshacerlo aqui o se van a la esquina de la ficha. */
+       Va FLOTADA y no en una fila flex: la ficha deja ~310 px de contenido, y
+       en fila el texto se queda con 200 y el credito de Puppy Paws se parte en
+       cuatro tiras. Flotando, el texto la rodea y si algun dia crece sigue por
+       debajo en vez de estrecharse mas. `flow-root` contiene el flotado sin
+       tener que limpiar nada. */
+    .port-link-ph--autor { display: flow-root; }
+    .ch--autor { position: static; float: left; width: 112px; height: auto;
+          margin: 0.1rem 0.8rem 0.25rem 0; border-radius: 10px;
+          image-rendering: pixelated;
+          filter: drop-shadow(0 4px 10px rgba(0,0,0,0.45)); }
+    @media (max-width: 420px) { .ch--autor { width: 84px; margin-right: 0.65rem; } }
     .hero-me { display: flex; align-items: center; gap: 0.75rem; margin-top: 1.6rem; }
     .hero-me img { width: 116px; height: auto; image-rendering: pixelated; flex-shrink: 0; }
     .hero-me span { font-size: 0.82rem; line-height: 1.45; color: var(--text-mute); }
@@ -1601,14 +1618,13 @@
 </figure>
 <!-- PORTFOLIO -->
 <section id="portfolio">
-  <img class="ch ch--borde" src="h9478c-22.webp" width="256" height="236" style="right:calc(50% + 530px + 18px);top:3831px;--h:215px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="h512-23.webp" width="256" height="235" style="left:calc(50% + 530px + 18px);top:3528px;--h:215px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="h1024-21.webp" width="256" height="236" style="right:calc(50% + 530px + 18px);top:3225px;--h:215px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="h9478c-21.webp" width="256" height="236" style="left:calc(50% + 530px + 18px);top:2620px;--h:215px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="h9478c-13.webp" width="256" height="235" style="right:calc(50% + 530px + 18px);top:2015px;--h:215px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="h1024-13.webp" width="256" height="235" style="left:calc(50% + 530px + 18px);top:1410px;--h:215px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="h512-32.webp" width="256" height="242" style="right:calc(50% + 530px + 18px);top:1107px;--h:215px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="h9478c-12.webp" width="256" height="236" style="left:calc(50% + 530px + 18px);top:805px;--h:215px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch ch--borde" src="h9478c-22.webp" width="256" height="236" style="left:calc(50% + 530px + 18px);top:3831px;--h:215px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch ch--borde" src="h512-23.webp" width="256" height="235" style="right:calc(50% + 530px + 18px);top:3528px;--h:215px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch ch--borde" src="h1024-21.webp" width="256" height="236" style="left:calc(50% + 530px + 18px);top:3225px;--h:215px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch ch--borde" src="h9478c-21.webp" width="256" height="236" style="right:calc(50% + 530px + 18px);top:2620px;--h:215px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch ch--borde" src="h9478c-13.webp" width="256" height="235" style="left:calc(50% + 530px + 18px);top:2015px;--h:215px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch ch--borde" src="h1024-13.webp" width="256" height="235" style="right:calc(50% + 530px + 18px);top:1410px;--h:215px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch ch--borde" src="h512-32.webp" width="256" height="242" style="left:calc(50% + 530px + 18px);top:1107px;--h:215px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="ch ch--borde" src="h512-31.webp" width="256" height="242" style="right:calc(50% + 530px + 18px);top:502px;--h:215px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="ch ch--borde" src="h9478c-11.webp" width="256" height="236" style="left:calc(50% + 530px + 18px);top:200px;--h:215px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
@@ -1639,7 +1655,7 @@
           <summary>What it took</summary>
           <p>Rebuilt the per-player data system on native data attachments, dropping the <span translate="no">Blueprint</span> dependency at the creator's suggestion, and moved the food-stat tweaks to the 1.21 component system. Boot-tested in-game, in survival.</p>
         </details>
-        <p class="port-link-ph">The official page link lands here once the creator publishes it.</p>
+        <p class="port-link-ph port-link-ph--autor"><img class="ch ch--autor" src="h9478c-12.webp" width="256" height="236" alt="" aria-hidden="true" loading="lazy" decoding="async"><span>The official page link lands here once <span translate="no">camcam_burger</span> publishes it.</span></p>
       </div>
 
       <div class="port-card">
@@ -1665,7 +1681,7 @@
           <summary>What it took</summary>
           <p>Five breeds, twelve coat variants, the golden retriever's digging behaviour and the <span translate="no">Melody</span> disc, all rebuilt on <span translate="no">Forge</span> registries and events, with spawns moved to data-driven biome modifiers. I diffed the rebuild back against the original jar, boot-tested it on a dedicated server, and its creators reviewed the result.</p>
         </details>
-        <p class="port-link-ph">No download here: the mod is its creators' to publish, not mine. Original by <span translate="no">Shaunt</span>, <span translate="no">Caf&eacute;</span> and <span translate="no">@Hecco</span>.</p>
+        <p class="port-link-ph port-link-ph--autor"><img class="ch ch--autor" src="hshaun-11.webp" width="256" height="235" alt="" aria-hidden="true" loading="lazy" decoding="async"><span>No download here: the mod is its creators' to publish, not mine. Original by <span translate="no">Shaunt</span>, <span translate="no">Caf&eacute;</span> and <span translate="no">@Hecco</span>.</span></p>
       </div>
 
       <div class="port-card port-card--cta">
@@ -1815,9 +1831,9 @@
 </figure>
 <!-- SERVICES -->
 <section id="services">
-  <img class="ch ch--borde" src="h1024-22.webp" width="256" height="236" style="left:calc(50% + 530px + 18px);top:1263px;--h:195px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="h512-13.webp" width="256" height="245" style="right:calc(50% + 530px + 18px);top:731px;--h:195px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="h9478c-23.webp" width="256" height="244" style="left:calc(50% + 530px + 18px);top:200px;--h:195px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch ch--borde" src="h1024-22.webp" width="256" height="236" style="right:calc(50% + 530px + 18px);top:1263px;--h:195px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch ch--borde" src="h512-13.webp" width="256" height="245" style="left:calc(50% + 530px + 18px);top:731px;--h:195px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch ch--borde" src="h9478c-23.webp" width="256" height="244" style="right:calc(50% + 530px + 18px);top:200px;--h:195px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
         <h2>Backports, ports and loader conversions</h2>
     <p class="sub">Forge 1.20.1 is my lowest rate because it sits just below every recent version wall, so it's where I'm fastest. Anything harder is priced by the real work it adds, not some made-up percentage. The full reasoning is written up in <a href="mod-porting-cost.html">what a port costs, and why</a>.</p>
@@ -1892,7 +1908,7 @@
 </div>
 <!-- HOW IT WORKS -->
 <section id="how-it-works">
-  <img class="ch ch--borde" src="h9478c-31.webp" width="256" height="236" style="right:calc(50% + 530px + 18px);top:273px;--h:200px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch ch--borde" src="h9478c-31.webp" width="256" height="236" style="left:calc(50% + 530px + 18px);top:273px;--h:200px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
         <h2>How a mod commission works</h2>
     <p class="sub">It's all done in writing, async, no calls.</p>
@@ -1908,11 +1924,11 @@
 </section>
 <!-- ESTIMATOR -->
 <section id="estimator">
-  <img class="ch ch--borde" src="h9478c-33.webp" width="256" height="235" style="left:calc(50% + 530px + 18px);top:1565px;--h:205px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="hsunny-23.webp" width="256" height="245" style="right:calc(50% + 530px + 18px);top:890px;--h:205px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="h1024-23.webp" width="256" height="235" style="left:calc(50% + 530px + 18px);top:700px;--h:205px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="h512-21.webp" width="256" height="245" style="right:calc(50% + 530px + 18px);top:450px;--h:205px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="h9478c-32.webp" width="256" height="236" style="left:calc(50% + 530px + 18px);top:201px;--h:205px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch ch--borde" src="h9478c-33.webp" width="256" height="235" style="right:calc(50% + 530px + 18px);top:1565px;--h:205px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch ch--borde" src="hsunny-23.webp" width="256" height="245" style="left:calc(50% + 530px + 18px);top:890px;--h:205px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch ch--borde" src="h1024-23.webp" width="256" height="235" style="right:calc(50% + 530px + 18px);top:700px;--h:205px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch ch--borde" src="h512-21.webp" width="256" height="245" style="left:calc(50% + 530px + 18px);top:450px;--h:205px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch ch--borde" src="h9478c-32.webp" width="256" height="236" style="right:calc(50% + 530px + 18px);top:201px;--h:205px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
     <div class="eyebrow" translate="no">Angel Engine</div>
     <h2>Estimate your commission</h2>
@@ -2040,9 +2056,9 @@
 </section>
 <!-- FAQ -->
 <section id="faq">
-  <img class="ch ch--borde" src="h1024-31.webp" width="256" height="236" style="right:calc(50% + 530px + 18px);top:849px;--h:195px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="hari-23.webp" width="256" height="245" style="left:calc(50% + 530px + 18px);top:524px;--h:195px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="hsunny-11.webp" width="256" height="246" style="right:calc(50% + 530px + 18px);top:200px;--h:195px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch ch--borde" src="h1024-31.webp" width="256" height="236" style="left:calc(50% + 530px + 18px);top:849px;--h:195px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch ch--borde" src="hari-23.webp" width="256" height="245" style="right:calc(50% + 530px + 18px);top:524px;--h:195px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch ch--borde" src="hsunny-11.webp" width="256" height="246" style="left:calc(50% + 530px + 18px);top:200px;--h:195px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
         <h2>Before you ask</h2>
     <div class="faq-list">
@@ -2067,8 +2083,8 @@
 </section>
 <!-- MOD AUTHORS -->
 <section id="authors">
-  <img class="ch ch--borde" src="hsunny-13.webp" width="256" height="236" style="right:calc(50% + 530px + 18px);top:749px;--h:190px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="hsunny-12.webp" width="256" height="246" style="left:calc(50% + 530px + 18px);top:200px;--h:190px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch ch--borde" src="hsunny-13.webp" width="256" height="236" style="left:calc(50% + 530px + 18px);top:749px;--h:190px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch ch--borde" src="hsunny-12.webp" width="256" height="246" style="right:calc(50% + 530px + 18px);top:200px;--h:190px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
         <h2>Free if you wrote the mod</h2>
     <p class="sub">There is a version of this that costs you nothing. It is not charity, and the reason is worth reading.</p>
@@ -2111,9 +2127,8 @@
 <!-- ABOUT -->
 <section id="about">
   <img class="ch ch--borde" src="hsunny-22.webp" width="256" height="245" style="right:calc(50% + 530px + 18px);top:1760px;--h:185px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="hshaun-11.webp" width="256" height="235" style="left:calc(50% + 530px + 18px);top:1240px;--h:185px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="hsunny-21.webp" width="256" height="235" style="right:calc(50% + 530px + 18px);top:720px;--h:185px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="h1024-32.webp" width="256" height="236" style="left:calc(50% + 530px + 18px);top:201px;--h:185px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch ch--borde" src="hsunny-21.webp" width="256" height="235" style="left:calc(50% + 530px + 18px);top:720px;--h:185px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch ch--borde" src="h1024-32.webp" width="256" height="236" style="right:calc(50% + 530px + 18px);top:201px;--h:185px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
         <h2>Who you're actually hiring</h2>
     <p class="sub">The person who takes your commission is the person who writes and debugs it. <strong>This has been going well</strong>, and not on my own &mdash; which is worth saying out loud.</p>
