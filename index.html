@@ -614,6 +614,14 @@
     .icon-wrap.svc-bridge { color: #6f93b8; background: rgba(111,147,184,0.15); }
     .icon-wrap.svc-steel  { color: #9aa0a8; background: rgba(154,160,168,0.15); }
     .icon-wrap.svc-spark  { color: #e0b441; background: rgba(224,180,65,0.13); }
+    /* Las dos lineas que cierran #services. Estaban FUERA de .wrap y sin una
+       sola regla, o sea pegadas al borde de la pantalla mientras la seccion se
+       queda en 1060. La de arriba quita un pero ("no es todo o nada") y por eso
+       pesa mas que la de abajo, que es una nota de precio. */
+    .svc-shape { margin-top: 2.2rem; padding-top: 1.6rem; border-top: 1px solid var(--border);
+                 max-width: 62ch; font-size: 0.95rem; line-height: 1.7; color: var(--text-soft); }
+    .svc-shape strong { color: var(--text); font-weight: 700; }
+    .svc-price-note { margin-top: 0.9rem; font-size: 0.82rem; color: var(--text-mute); }
     .card h3 { font-size: 1.04rem; font-weight: 700; margin-bottom: 0.5rem; }
     .card p { color: var(--text-soft); font-size: 0.86rem; line-height: 1.65; margin-bottom: 0.9rem; }
     .card p strong { color: var(--text); font-weight: 600; }
@@ -776,7 +784,12 @@
 
     /* ── HOW IT WORKS ── */
     #how-it-works { background: linear-gradient(180deg, #15140f, #100e0b); border-top: 1px solid var(--border); }
-    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(165px, 1fr)); gap: 1.8rem; margin-top: 2.75rem; }
+    /* Con 165px entraban CINCO en fila y el sexto paso caia solo en una
+       segunda fila, con cuatro huecos al lado. Y bajar el minimo para meter
+       seis dejaba columnas de 148px, donde "Delivery + final payment" cae en
+       cuatro lineas. Con 260px salen 3 x 2: filas llenas y ~334px por columna,
+       que es ancho de leer. */
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.8rem 2.2rem; margin-top: 2.75rem; }
     .step-n { font-size: 1.9rem; font-weight: 700; color: var(--gold); line-height: 1; margin-bottom: 0.6rem; font-variant-numeric: tabular-nums; }
     .step h3 { font-size: 0.96rem; font-weight: 700; margin-bottom: 0.4rem; }
     .step p { color: var(--text-soft); font-size: 0.84rem; line-height: 1.6; }
@@ -1798,8 +1811,9 @@
         <span class="card-tag tag-premium">By scope</span>
       </div>
     </div>
+    <p class="svc-shape"><strong>None of these is all-or-nothing.</strong> Leave a feature out, change spawn rates, damage, effects, recipes or loot &mdash; <a href="#faq">say so when you send it</a> and it goes in the same fixed quote.</p>
+    <p class="svc-price-note">Every one of these is priced in the <a href="#estimator"><span translate="no">Angel Engine</span></a> above.</p>
   </div>
-  <p class="svc-price-note">Every one of these is priced in the <a href="#estimator"><span translate="no">Angel Engine</span></a> above.</p>
 </section>
 <div class="torn-sep" aria-hidden="true"><svg viewBox="0 0 1440 24" preserveAspectRatio="none"><path d="M0 24 L0 13 L60 8 L120 16 L186 7 L256 15 L330 9 L408 17 L486 8 L566 15 L648 9 L730 17 L812 8 L894 15 L976 10 L1058 17 L1140 8 L1222 15 L1304 9 L1386 16 L1440 12 L1440 24 Z"/></svg>
 
@@ -1816,6 +1830,7 @@
       <div class="step"><div class="step-n">03</div><h3>Agree &amp; start</h3><p>We lock the scope and price in writing. <strong>Your first job with me carries no deposit, whatever the size:</strong> you pay once you have seen it run. After that, bigger jobs start on a 50% deposit.</p></div>
       <div class="step"><div class="step-n">04</div><h3>I build it</h3><p>Every job gets its own timeline, agreed before I touch anything. <strong>If you have a hard date, say so first:</strong> I will either commit to it in writing or turn the job down.</p></div>
       <div class="step"><div class="step-n">05</div><h3>Delivery + final payment</h3><p>You receive and test the .jar. Final payment before release. Open-source ports get published with author credit.</p></div>
+      <div class="step"><div class="step-n">06</div><h3>I check back</h3><p>Once it has actually run in your pack, not just on my machine. <strong>Bugs inside the agreed scope are on me for 30 days.</strong> Anything after that, or anything new you need, comes back to me as a returning client.</p></div>
     </div>
   </div>
 </section>
@@ -1959,6 +1974,7 @@
       <div class="faq-item"><button type="button" class="faq-q">How long does it take? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">It depends on the mod. We agree a timeline before I start, but I won't quote a fixed turnaround I can't stand behind. I'd rather under-promise and actually deliver than miss a date.</div></div></div>
       <div class="faq-item"><button type="button" class="faq-q">What if the port doesn't work? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">You see the build working before you make final payment, so you're never paying for something you haven't seen run. The deliverable is whatever we agree in writing up front, and if a bug inside that agreed scope shows up within 30 days of delivery, I fix it at no charge. After that, or for problems caused by Minecraft updates, other mods, or server changes, it becomes a maintenance job.</div></div></div>
       <div class="faq-item"><button type="button" class="faq-q">Can I put the ported mod in my public modpack? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">It depends on the original mod's licence, and I tell you which case you are in before you pay, not after. Open-source: yes, and I publish it with credit to the original author so your pack links to something real. Your own mod, or one where you hold written permission: yes, and I tell you exactly what credit to include. All rights reserved with no permission: no, and I will not take the job on those terms, because the takedown would land on your account and not mine.</div></div></div>
+      <div class="faq-item"><button type="button" class="faq-q">Can you leave parts of the mod out, or change what it does? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">Yes, and it is worth asking. A port does not have to be the whole mod: I can drop a feature you do not want, change values like spawn rates, durability or damage, retune or remove effects, and adjust recipes and loot. Tell me when you send it and it goes into the fixed quote, instead of turning into a second job later. The line is between tweaks and a redesign: rebalancing the whole mod is its own job and I quote it separately.</div></div></div>
       <div class="faq-item"><button type="button" class="faq-q">What's out of scope? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">The mod's original textures and assets always come across with the port. What doesn't: brand-new textures, 3D models or animations, full gameplay or balance redesigns, and ongoing maintenance across future Minecraft versions. Those get quoted separately, so tell me upfront and I'll fold it into the price.</div></div></div>
     </div>
     <div class="softcta">
