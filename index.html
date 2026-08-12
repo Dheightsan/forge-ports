@@ -1302,6 +1302,16 @@
     .hero-inner { max-width: 1240px; display: grid; grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr); gap: 2.6rem; align-items: start; }
     .hero-art { padding-top: 3.2rem; }
     .hero-copy { min-width: 0; }
+    /* El titulo de Blockbench va ARRIBA DEL TODO de la columna, antes del chip
+       de "open for commissions": es la marca, y una marca no se presenta
+       despues de un aviso. Nada de `image-rendering: pixelated`: la imagen no
+       es pixel art, viene renderizada con antialias (2.166 colores) y ademas
+       aqui se REDUCE de 1024 a ~470, asi que el escalado suave es el que la
+       deja limpia. Ancho maximo y no 100%: con la relacion 10,5:1 que tiene,
+       a lo ancho de la columna saldria una cinta de 60 px de alto. */
+    .hero-title { display: block; width: 100%; max-width: 470px; height: auto; margin: 0 0 1.35rem; filter: drop-shadow(0 5px 14px rgba(0,0,0,0.5)); }
+    html[data-theme="light"] .hero-title { filter: drop-shadow(0 4px 10px rgba(0,0,0,0.28)); }
+    @media (max-width: 720px) { .hero-title { max-width: 100%; margin-bottom: 1.1rem; } }
     .hero-art { min-width: 0; }
     .hero-art figure { margin: 0; }
     .hero-art img { display: block; width: 100%; height: auto; border-radius: var(--radius-lg); border: 1px solid var(--border-lt); }
@@ -1517,6 +1527,7 @@
   </div>
   <div class="wrap hero-inner">
     <div class="hero-copy">
+    <img class="hero-title" src="titulo-modwright.webp" width="1024" height="97" alt="Modwright Studios" fetchpriority="high" decoding="async">
     <div class="badge"><span class="badge-dot"></span>Open for commissions</div>
     <h1><span class="w-port">Port,</span> <span class="w-back">backport</span> <span class="w-amp">&amp;</span> <span class="w-rev">revive</span> <span class="mc" translate="no" data-word="Minecraft">Minecraft</span> <span class="w-mods">mods,</span><br><span class="w-ver">any version,</span> <span class="w-load">any loader</span></h1>
     <p class="hero-services">Plus compatibility patches, maintenance and optimization.</p>
