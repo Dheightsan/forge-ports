@@ -1012,6 +1012,20 @@
     details.more > summary::after { content: '\25be'; font-size: 0.8em; transition: transform 0.15s; }
     details.more[open] > summary::after { transform: rotate(180deg); }
     details.more > summary:hover { text-decoration: underline; }
+    /* ── PLEGADO DE LO DENSO ──
+       El portafolio tenia 966 palabras a la vista y 439 eran cuatro parrafos
+       tecnicos. El publico de esta pagina escanea; no lee un ensayo para
+       decidir si escribe. Asi que cada bloque denso deja fuera su titular y UNA
+       linea con el golpe, y el desarrollo entra aqui. No se borra nada: se
+       ordena por quien lo va a leer. */
+    .mp-item .mp-hook { font-size: 0.98rem; line-height: 1.62; color: var(--text); max-width: 60ch; }
+    .mp-item .mp-hook strong { color: var(--gold); font-weight: 700; }
+    details.more--card { margin-top: 0.9rem; }
+    details.more--card > summary { font-size: 0.82rem; }
+    details.more--card > p:first-of-type { margin-top: 0.7rem; }
+    /* Dentro de una ficha de port el desarrollo va despues de la tabla de
+       datos, que es lo que si se escanea. */
+    .port-card details.more--card { margin: 0 0 1rem; }
     /* Galeria del pack propio. Cierra el portafolio, y NUNCA junto a una ficha
        de port: ahi la maqueta afirmaria que ese es el mod porteado aunque el texto
        no lo diga, y ninguna de estas doce lo es. Eso no cambio al unificar; lo que
@@ -1520,7 +1534,7 @@
   <img class="ch ch--borde" src="h1024-13.webp" width="256" height="235" style="left:-92px;top:538px;height:250px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
         <h2>The work</h2>
-    <p class="sub">Two ports out in the world, twenty-three more sitting on my own machine, and a 600-mod pack I keep breaking on purpose. Anything I build for you stays private unless you want it shown here.</p>
+    <p class="sub">Anything I build for you stays private unless you want it shown here.</p>
 
     <div class="port-grid">
       <div class="port-card">
@@ -1535,13 +1549,17 @@
           <img class="port-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAAeklEQVR42mNgwA7+QzEDAwMDAxM2BUnLbBiSltkwICvEZsJ/q0pjuGmMyAqOqFoyMDAwMBx9+ZSh/NMjuDwTsgI9EwW4jk4+Obh1KG66dOYBw9GXTzHcwAJjIEue+PKHwYIHLoXqpkAmKQYGBgYGCx4WFDcxYvEdhgEAiSYnbgeFKKAAAAAASUVORK5CYII=" width="45" height="45" alt="" loading="lazy" decoding="async">
           <h3 class="port-name" translate="no">Mindful Eating</h3>
         </div>
-        <p class="port-desc">Forward-port of camcam_burger's food-variety mod, from Forge 1.20.1 up to NeoForge 1.21.1. Rebuilt the per-player data system on native data attachments (dropping the Blueprint dependency at the creator's suggestion) and moved the food-stat tweaks to the 1.21 component system. Boot-tested in-game and delivered to the original creator for the mod's official CurseForge page.</p>
+        <p class="port-desc">Forward-port of <span translate="no">camcam_burger</span>'s food-variety mod, delivered to its creator for the mod's official page.</p>
         <dl class="port-stats">
           <div><dt>Jump</dt><dd>1.20.1 → 1.21.1</dd></div>
           <div><dt>Loader</dt><dd>Forge → NeoForge</dd></div>
           <div><dt>Library mods</dt><dd>Cut from 2 to 1</dd></div>
           <div><dt>Tested</dt><dd>In-game, survival</dd></div>
         </dl>
+        <details class="more more--card">
+          <summary>What it took</summary>
+          <p>Rebuilt the per-player data system on native data attachments, dropping the <span translate="no">Blueprint</span> dependency at the creator's suggestion, and moved the food-stat tweaks to the 1.21 component system. Boot-tested in-game, in survival.</p>
+        </details>
         <p class="port-link-ph">The official page link lands here once the creator publishes it.</p>
       </div>
 
@@ -1557,13 +1575,17 @@
           <img class="port-icon port-icon--tile" src="data:image/png;base64,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" width="45" height="45" alt="" loading="lazy" decoding="async">
           <h3 class="port-name" translate="no">Puppy Paws</h3>
         </div>
-        <p class="port-desc">Loader conversion of <span translate="no">Shaunt</span> and <span translate="no">Caf&eacute;</span>'s companion-dog mod, from <span translate="no">Fabric</span> to <span translate="no">Forge</span> on the same Minecraft version. Five breeds, twelve coat variants, the golden retriever's digging behaviour and the <span translate="no">Melody</span> disc, all rebuilt on <span translate="no">Forge</span> registries and events, with spawns moved to data-driven biome modifiers. There's no public source, so I rebuilt it from the compiled jar and diffed the result back against it. Boot-tested on a dedicated server, then reviewed by its creators.</p>
+        <p class="port-desc">Loader conversion of <span translate="no">Shaunt</span> and <span translate="no">Caf&eacute;</span>'s companion-dog mod. <strong>No public source</strong>, so I rebuilt it from the compiled jar.</p>
         <dl class="port-stats">
           <div><dt>Loader</dt><dd>Fabric &rarr; Forge</dd></div>
           <div><dt>Version</dt><dd>1.20.1, unchanged</dd></div>
           <div><dt>Source</dt><dd>Rebuilt from the jar</dd></div>
           <div><dt>Tested</dt><dd>Dedicated server</dd></div>
         </dl>
+        <details class="more more--card">
+          <summary>What it took</summary>
+          <p>Five breeds, twelve coat variants, the golden retriever's digging behaviour and the <span translate="no">Melody</span> disc, all rebuilt on <span translate="no">Forge</span> registries and events, with spawns moved to data-driven biome modifiers. I diffed the rebuild back against the original jar, boot-tested it on a dedicated server, and its creators reviewed the result.</p>
+        </details>
         <p class="port-link-ph">No download here: the mod is its creators' to publish, not mine. Original by <span translate="no">Shaunt</span>, <span translate="no">Caf&eacute;</span> and <span translate="no">@Hecco</span>.</p>
       </div>
 
@@ -1580,24 +1602,24 @@
       <div class="fig">
         <span class="fig-n">5</span>
         <span class="fig-rule" aria-hidden="true"></span>
-        <p class="fig-t"><strong>checks</strong> run on every jar before it leaves my machine: mod metadata, pack format, bytecode version, mixin declarations in the manifest, and model bones.</p>
+        <p class="fig-t"><strong>checks</strong> on every jar before it leaves my machine: metadata, pack format, bytecode version, mixin declarations and model bones.</p>
       </div>
       <div class="fig">
         <span class="fig-n">0</span>
         <span class="fig-rule" aria-hidden="true"></span>
-        <p class="fig-t"><strong>files lost</strong> in the repack, out of 28 asset, data and licence files diffed against the jars the original authors published.</p>
+        <p class="fig-t"><strong>files lost</strong> in the repack, out of 28 diffed against the jars the original authors published.</p>
       </div>
       <div class="fig">
         <span class="fig-n">41</span>
         <span class="fig-rule" aria-hidden="true"></span>
-        <p class="fig-t"><strong>packet payloads</strong> rebuilt by hand on one backport, because the clientbound ones take a dedicated server down at startup and never fail in singleplayer.</p>
+        <p class="fig-t"><strong>packet payloads</strong> rebuilt by hand, because the clientbound ones kill a dedicated server at startup and never fail in singleplayer.</p>
       </div>
     </div>
     <p class="figrow-note">Every one of those three exists because something got past me first. <a href="#proof">The five that did</a>, in full.</p>
 
     <div class="shelf">
-      <h3>The rest is sitting on my own machine</h3>
-      <p>23 more mods I have ported, or am partway through porting, for my own modpack. Almost every one is a personal-use licence, so I cannot put them out. That is the whole reason I do <a href="#authors">free work for the people who wrote them</a>.</p>
+      <h3>Two I can show you. Twenty-three I can&rsquo;t.</h3>
+      <p>Personal-use licences: mine to run, not mine to hand out. That is the whole reason I do <a href="#authors">free work for the people who wrote them</a>.</p>
       <ul class="shelf-grid">
         <li class="tile"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHAAAABwCAMAAADxPgR5AAAAwFBMVEVcWVCfbmxwXCaglGpmIiHDnZCiRjkmLSGbqqGkLCniS0m9wLnh6e3Iwbk7RkbQvcC/wsGdP0F4kIEwQTfAPz3N0tOQNjPMycmtNjR0My46JxHLublIOCXRR0W5q6yqSU26trRxZiVFKxmYR0ZDMRwwFwutU1nW3eBkWEmLKyixiYlSRzOZmJCIeidWTRqRioOMhHirl5VWURrY4uW0aGlOFxdKak6aVFGPgi6xpJVnVyQCAwLEqalXdlxqZliEdhxdmui8AAAAQHRSTlP/////////////////////////////////////////////////////////////////////////////////////73leyQAAA1NJREFUeNrt1+dyozAQAGABLpd6FQmwTAfbgAvuJbHf/61uJQj2JJkLzvn853ZnIsfMZD+tUAvRrxwEQQQRRBBBBBFEEEEEEUQQQQQR/H9BdlWwB3FVMM/yzSTty3CvAe4jCyKUcQWQzZTI8kOfy3AZY2e+3vMrtJVxKkv0fT9NeaYLk9V+w+QT8/OeyFG1fItzK5uJRzPWEcESRdO0iy+L2ViAUKDPTa4oyhwiGFDDMOiAHg4H13XvHjTtR1YLZO+/hc7Tk20/QSQrZR5T0zSpQSkVxmBgGDfyd/FkOByqqjocHpbLpVsHfPMGmBKsVrFxMygyy7a0yqakfhkG9KO1Hnqet16vn5+XXz4GWZbBGkuzahYwPWlAETenmU/A6lu326XUnE5HUByA09FoKUD2EfgttEKYCZPjyM7yAT0ppczfEvlbXSiJdm9booUHpjkCECrceu3djtQCGechT9vZPcw7GS4bNwRlmgbkhCGrWmo6R6ps1enIU1UAo92uXW9IST/jltVXCEnl0vYX0UIU9hq8FWBXDqZTDC3MIkOAEFvP2u1SbVJr0uizSeTLzasEF40CLF4TdV4AKnshJ0rRHkHPUx9/7pubTq1loWewyngVUeTTKqrMxbI4Aal83NqqWwmm7fa+qW3qLXy7v++HodxK4COKIvO0iNdgWWwQBKL82AlGI2GS/aS5qQnqvRmzivB9ATbegGXBjiORuCVb+BLE8UquDI2xjm27tbe212Ag8wdOSzRxIDMHopFPnQL/DmU6TjBN0+FBg421NsjumCt25oJswKRxRO9pHEtK5hftABAYyViJ54mWNJtJh+V+yMkjWa+1r2IrZ/UmTR6m3PfDF7ABYDF2RSmKshJKM0mSZt4pDoniWIRhhD8ghNz94Vh8B7TFagArkrFYLGg8n69WgZInImy7QtiD+DiirJNMNJWH4x4763ginMs7C+lv7I1tJ4rtlgGJ3RI8BitDlz/NNLTOAWGr6fPQgr2t2gjcHJDTOEHYmzuGDv1iZxzALmwwoexjeXFgupu/MJV0wWuiG4r5GWW90yNZjtU/unm7ZDyeTMaXSl9n0vT+8mp9NnjJ8cN/1xBEEEEEEUQQQQQRRBBBBBFEEEEEEUQQwU/Hb0reLiOND/UBAAAAAElFTkSuQmCC" width="56" height="56" alt="" loading="lazy" decoding="async"><span translate="no">Boids</span></li>
         <li class="tile"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHAAAABwCAMAAADxPgR5AAABhWlDQ1BJQ0MgUHJvZmlsZQAAeJx9kTtIw1AUhv+mig8qDmYQcchQneyiIrqVKhbBQmkrtOpgctMXNGlIUlwcBdeCg4/FqoOLs64OroIg+ABxdnBSdJESz00KLWI8cLkf/z3/z73nAkKjwjSrKwpoum2m4jEpm1uVel4RgAARc+iTmWUk0osZ+NbXPXVT3UV4ln/fnzWg5i0GBCTiKDNMm3iDeGbTNjjvE4usJKvE58QTJl2Q+JHrisdvnIsuCzxTNDOpeWKRWCp2sNLBrGRqxNPEYVXTKV/Ieqxy3uKsVWqsdU/+wlBeX0lzndYo4lhCAklIUFBDGRXYiNCuk2IhRecxH/+I60+SSyFXGYwcC6hCg+z6wf/g92ytwtSklxSKAd0vjvMxBvTsAs2643wfO07zBAg+A1d6219tALOfpNfbWvgIGNwGLq7bmrIHXO4Aw0+GbMquFKQlFArA+xl9Uw4YugX617y5tc5x+gBkaFbLN8DBITBepOx1n3f3ds7t357W/H4AnAdyt9q+MFIAAADAUExURe3t7DEkGfX29kYzI1InEicZDGwsEa2oo6udlGlYS29kWndrZ04ZAtjV04Z5cHxxbEQuIFNEN3IwEzksIo+DeE0xHM3IxZSMhZuUjLu2saiinMbBvT0wJcG8txUHAKeHdWg9KWpJPODd21tNQsqmc8WXVx0RBLR0HCMMANKzh2xNQJRyS7qEOcOsoOPg3WMWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMlFTEMAAABAdFJOU////////////////////////////////////////////////////////////////wAAAAAAAAAAAAAAAAAAAAA8cdOGAAAC9ElEQVR42u3Y2ZajIBAAUClALIwY4m623pdZ///vBmMyp6MmxJ7Rhz7Ug1kEroWgqOfNG+A50IEOdKADHehABzrQgQ50oAO/DgjvP57mBZ9en2cEAeD99dlsYSZQCLH/ngpRRzAHCF4swzAOQ4n5TKAKY+OZiOYDGy6eETzGPKD3645hHMbI2HqmDO8W31QDLvLxE2N8hYf9frW4Dw8Zqv3ocQpDs/pqRL7PFvdtl/q/f9qKgw2MZBsY18FA5NF25fv+HSLem08/EAOFaoXy1EwFV0GTAO/G4mOwJvzG9M3WfF90olN5F3Ry7PwSKiadYP0w1OpgDuzrVse0uAbGO3NU3TpkaaIL+sw/J8mS0aRbs8kxuQYWVGvdrZZQSjd9kJ16tY2ELvugaU2jbVqA7OdoenZ5jDazUzR/H3axgTqE9tsfmkaD4Ia2saGH03ccNivzm7LDjkEw6g/L7gFEtN8x3VH04QxeL0poEtjAnL9wSyuENWCTo60g4bvCBj4UpbaJLDODJMsyW34kKYrcAjZXttia4ul8WsvZL23gBfWjNcMjSK1gHnn2c8hvTfAGMuGldZRukiT5T6BpyQqa20UUPQh+G3cV5HHTlge33A+3nFzu2JtAU32X3nQ/bGO73ubIPw/Sar3eDi6x4NJaHkDu+GCcg4NFXjZw6UHg8pIESrO+rkUvyo8eU739zZJVqs8soi6tac7A6raVzL+s2vKzHq1h8mViyT6CcnLQw+xs1Ixd7Y8+wO0ZR1k5NaiIprrN0nzoDKcFIdJUMimb85hhylBnIx9oxoKCPEqmdNufKkPJ1bRgTBSSQGvJEFmgaUr0uDZGHp6Z9TWla6olQSQV8gCJmBJMOQqCa0oPoFC8MP9M2KVQoUHSiqAiMuSF4LjGetJzCCBwWxGVElnyIsLSA5j4SmPMisQplwVPwZv+kfsw+d+k4jJ9Q2+eV19Qx1VJVa6KGV/u/d26N8IOdKADHehABzrQgQ50oAMd+EVAmDn+AF1BLwDgAX8oAAAAAElFTkSuQmCC" width="56" height="56" alt="" loading="lazy" decoding="async"><span translate="no">Birds</span></li>
@@ -1623,12 +1645,12 @@
         <li class="tile"><img src="data:image/png;base64,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" width="56" height="56" alt="" loading="lazy" decoding="async"><span translate="no">Toasty's Mobs</span></li>
         <li class="tile"><img src="data:image/png;base64,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" width="56" height="56" alt="" loading="lazy" decoding="async"><span translate="no">Wildex</span></li>
       </ul>
-      <p class="shelf-foot">Every mod here belongs to whoever wrote it, and the logos are theirs too, shown to identify their work. Nothing on this list is downloadable from me.</p>
+      <p class="shelf-foot">Every mod and every logo here belongs to whoever wrote it, shown to identify their work.</p>
     </div>
 
     <div class="packwork">
       <h3>Inside my own pack</h3>
-      <p class="packwork-lead">Nobody pays me for this one, and none of it is a port. It is other people's mods, in my own world, made to work together &mdash; and it is where I find out what breaks before a client does.</p>
+      <p class="packwork-lead">Other people's mods, in my own world, made to work together. Nobody pays me for this one: it is where I find out what breaks before a client does.</p>
       <div class="mp-list">
 
       <article class="mp-item">
@@ -1639,8 +1661,12 @@
           </div>
           <h3><span translate="no">Fresh Animations</span> on the mobs, <span translate="no">Epic Fight</span> on the player</h3>
         </div>
+        <p class="mp-hook">Everything was configured correctly and <span translate="no">Epic Fight</span> kept winning anyway. The datapack was never loading: a missing <code>pack.mcmeta</code>, and not one line in the log.</p>
+        <details class="more more--card">
+          <summary>Reading the split</summary>
         <p><span translate="no">Fresh Animations</span> on almost every creature, <span translate="no">Epic Fight</span> on my character alone. Taking a mob off <span translate="no">Epic Fight</span> needs two changes, not one: a datapack entry stops its combat patch, but the mob still draws through <span translate="no">Epic Fight</span>'s own renderer, so <span translate="no">Fresh Animations</span> never gets a look in. The other half is a script that pulls the mob out of that renderer map on world load. I found the split by decompiling the render engine, not by guessing.</p>
         <p class="mp-catch"><strong>The half that hid the longest.</strong> The datapack was not loading at all. It was missing its <code>pack.mcmeta</code>, so the loader skipped the entire folder and said nothing about it in the log. Everything was configured correctly and <span translate="no">Epic Fight</span> kept winning anyway. Both halves now name the same 24 mobs, and they still match today.</p>
+        </details>
         <p class="mp-credit"><a href="https://modrinth.com/resourcepack/fresh-animations" target="_blank" rel="noopener noreferrer"><span translate="no">Fresh Animations</span></a> is by <span translate="no">FreshLX</span>, <a href="https://modrinth.com/mod/epic-fight" target="_blank" rel="noopener noreferrer"><span translate="no">Epic Fight</span></a> by its own team. All I did was make them share a world.</p>
       </article>
 
@@ -1648,14 +1674,22 @@
         <div class="mp-head">
           <h3>I measured which mods animate themselves instead of assuming</h3>
         </div>
+        <p class="mp-hook"><strong>48% of them were already animated</strong> and never needed <span translate="no">Fresh Animations</span> at all. I scanned the bytecode of <strong>645 jars</strong> instead of guessing.</p>
+        <details class="more more--card">
+          <summary>The numbers</summary>
         <p><span translate="no">Fresh Animations</span> does nothing for a mod that animates its own creatures, so before touching anything I scanned the bytecode of <strong>645 jars</strong> for <span translate="no">GeckoLib</span>, <span translate="no">AzureLib</span> and <span translate="no">Citadel</span>. 305 add creatures, 3,951 creatures between them, and <strong>48% were already animated</strong>. That is the difference between a job with no edges and a short list.</p>
+        </details>
       </article>
 
       <article class="mp-item">
         <div class="mp-head">
           <h3>One missing letter that silenced the spawns of seven mods</h3>
         </div>
+        <p class="mp-hook">Seven mods loaded perfectly and their creatures never appeared anywhere. Their folder was <code>biome_modifier</code>. <span translate="no">Forge</span> reads <code>biome_modifiers</code>.</p>
+        <details class="more more--card">
+          <summary>Why nothing warned me</summary>
         <p><span translate="no">Forge</span> reads biome modifiers from a folder called <code>biome_modifiers</code>. A folder called <code>biome_modifier</code> is ignored: no warning, no error, nothing in the log. Seven mods in my pack had the singular, so they loaded perfectly and their creatures simply never appeared anywhere in the world. It looks exactly like a mod that is broken, and it is a plural.</p>
+        </details>
       </article>
 
       <article class="mp-item">
@@ -1665,8 +1699,12 @@
           </div>
           <h3>A mod that was written off as unfixable, and the one word that fixed it</h3>
         </div>
+        <p class="mp-hook">Written off as needing its bytecode rewritten. <strong>The fix was one word</strong>, and the pack went from 588 mods loading to 589 of 589.</p>
+        <details class="more more--card">
+          <summary>The one word</summary>
         <p><span translate="no">Mutant More</span> had been sitting out of my pack for weeks, crashing on load. The previous read was that its bytecode would have to be rewritten. It did not. Its mixin config declared <code>compatibilityLevel: "JAVA_16"</code> while <strong>all 577 of its classes were compiled as Java 17</strong>, so the mixin loader refused every one of them. Java 16 caps at class version 60; the classes were 61.</p>
         <p class="mp-catch"><strong>The fix was one word.</strong> <code>JAVA_16</code> became <code>JAVA_17</code>. Before touching it I opened <span translate="no">mixin-0.8.5.jar</span>, the version <span translate="no">Forge</span> 1.20.1 loads, and read its <span translate="no">CompatibilityLevel</span> enum to confirm <span translate="no">JAVA_17</span> was a value it would actually accept rather than assuming. Original jar backed up first, repacked, and the pack went from 588 mods loading to 589 of 589.</p>
+        </details>
         <p class="mp-credit"><span translate="no">Mutant More</span> is by <a href="https://modrinth.com/mod/new-mutant-more" target="_blank" rel="noopener noreferrer"><span translate="no">AlexandersFunAndGames</span></a>. That config line was the only thing I touched, and only in my own copy.</p>
       </article>
       </div>
@@ -1684,7 +1722,7 @@
         <img src="pack-10.webp" width="760" height="428" alt="A capybara resting on open grassland under a clear sky." loading="lazy" decoding="async">
         <img src="pack-11.webp" width="669" height="578" alt="A tall red villager and a blue-robed wizard holding a staff, standing on a snow field." loading="lazy" decoding="async">
       </div>
-      <p class="pack-note">Same pack: <strong>more than 600 mods</strong> on Forge 1.20.1. <strong>Not one block in any of these frames is mine</strong> &mdash; no commissions, no ports of mine. I am a player first, and this is the thing the work is for.</p>
+      <p class="pack-note"><strong>More than 600 mods</strong> on Forge 1.20.1, and <strong>not one block in any of these frames is mine</strong>. I am a player first; this is the thing the work is for.</p>
     </div>
     </div>
   </div>
