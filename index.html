@@ -1050,6 +1050,17 @@
        490 KB entre las doce, y en base64 no se cachearian ni se cargarian en diferido.
        Rejilla por COLUMNAS y no grid: las proporciones son distintas (dos verticales)
        y un grid con object-fit las recortaria. Asi entran enteras, sin recortar. */
+    /* ── ARTE DE MARCA ──
+       Estas dos son ILUSTRACION, no capturas del mundo de josda, asi que no
+       llevan el aviso de "esto no es un port mio": nadie va a confundir un cuy
+       con bigote con una captura de partida. La banda del taller no lleva el
+       recorte de las otras porque su gracia esta en los bordes (la estanteria
+       de cargadores a la izquierda, la lista de pasos abajo). */
+    .scene-band--art img { background: #1a1512; }
+    .mascots { margin: 2.4rem 0 0; max-width: 620px; }
+    .mascots img { display: block; width: 100%; height: auto; border-radius: var(--radius); border: 1px solid var(--border); }
+    .mascots figcaption { margin-top: 0.9rem; font-size: 0.85rem; line-height: 1.65; color: var(--text-mute); }
+    .mascots figcaption strong { color: var(--text-soft); }
     .pack-shots { margin: 2.4rem 0 0; }
     /* La que abre se queda a todo el ancho. Probe a limitarla a 780 para que no se
        comiera la seccion ahora que hay retrato, y quedaba peor: la rejilla de debajo
@@ -1753,6 +1764,10 @@
 <div class="torn-sep" aria-hidden="true"><svg viewBox="0 0 1440 24" preserveAspectRatio="none"><path d="M0 24 L0 12 L48 16 L96 8 L150 17 L210 7 L280 15 L356 9 L432 17 L510 7 L590 15 L676 9 L760 17 L846 7 L932 15 L1018 9 L1104 17 L1190 7 L1276 15 L1356 10 L1440 14 L1440 24 Z"/></svg>
 
 </div>
+<figure class="scene-band scene-band--art">
+  <img src="band-lab.webp" width="1536" height="1024" alt="An illustrated workshop: a hedgehog dressed as Einstein and a guinea pig dressed as Nikola Tesla at a workbench. A blackboard behind them reads Modwright, bridging Minecraft mods across versions; a shelf holds books named after each mod loader, and a scroll lists the steps of a commission." loading="lazy" decoding="async">
+  <figcaption><span>Everything on that board is a real step of the job. The staff are imaginary.</span></figcaption>
+</figure>
 <!-- SERVICES -->
 <section id="services">
   <img class="ch ch--borde" src="h1024-21.webp" width="256" height="236" style="left:calc(50% + 530px + 18px);top:299px;--h:190px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
@@ -2058,6 +2073,11 @@
       </details>
       </div>
     </div>
+
+    <figure class="mascots">
+      <img src="mascots.webp" width="1000" height="800" alt="Two illustrated mascots standing on wooden nameplates: a guinea pig dressed as Nikola Tesla, and a hedgehog dressed as Albert Einstein." loading="lazy" decoding="async">
+      <figcaption><strong>They are mascots, not staff.</strong> The nameplates are a joke about the two halves of this work, the one that plans it and the one that makes it run. There is still only me, and that part is not changing.</figcaption>
+    </figure>
 
     <div class="credit">
       <h3>Credit where it is due</h3>
