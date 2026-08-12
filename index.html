@@ -1076,10 +1076,7 @@
        encima: en una pagina de servicios eso se lee como una NOTA, y no hay
        ninguna resena detras. Se recorto esa franja y el pie dice lo que si es
        cierto, que las referencias de verdad entraran cuando existan. */
-    .signoff { margin: 2.4rem 0 0; max-width: 420px; }
-    .signoff img { display: block; width: 100%; height: auto; border-radius: var(--radius); border: 1px solid var(--border); }
-    .signoff figcaption { margin-top: 0.8rem; font-size: 0.84rem; line-height: 1.6; color: var(--text-mute); }
-    .signoff figcaption strong { color: var(--text-soft); }
+    .contact-note strong { color: var(--text-soft); }
     .pack-shots { margin: 2.4rem 0 0; }
     /* La que abre se queda a todo el ancho. Probe a limitarla a 780 para que no se
        comiera la seccion ahora que hay retrato, y quedaba peor: la rejilla de debajo
@@ -1910,7 +1907,7 @@
 <!-- ESTIMATOR -->
 <section id="estimator">
   <img class="ch ch--borde" src="h9478c-33.webp" width="256" height="235" style="left:calc(50% + 530px + 18px);top:1565px;--h:205px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="hsunny-23.webp" width="256" height="245" style="right:calc(50% + 530px + 18px);top:950px;--h:205px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch ch--borde" src="hsunny-23.webp" width="256" height="245" style="right:calc(50% + 530px + 18px);top:890px;--h:205px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="ch ch--borde" src="h1024-23.webp" width="256" height="235" style="left:calc(50% + 530px + 18px);top:700px;--h:205px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="ch ch--borde" src="h512-21.webp" width="256" height="245" style="right:calc(50% + 530px + 18px);top:450px;--h:205px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="ch ch--borde" src="h9478c-32.webp" width="256" height="236" style="left:calc(50% + 530px + 18px);top:201px;--h:205px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
@@ -2158,9 +2155,16 @@
 </div>
 <!-- CONTACT -->
 <section id="contact">
-  <img class="ch ch--borde" src="hari-11.webp" width="256" height="246" style="left:calc(50% + 530px + 18px);top:857px;--h:190px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="h512-22.webp" width="256" height="235" style="right:calc(50% + 530px + 18px);top:528px;--h:190px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="h1024-33.webp" width="256" height="235" style="left:calc(50% + 530px + 18px);top:200px;--h:190px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <!-- Los tres bajaban de 857/528/200, repartidos para una seccion de 1106 px.
+       Al quitar el perro y el gato la seccion se quedo en 786 y el de 857 salia
+       190 px por debajo del borde, metido en `#collision`. No lo cazaba nada:
+       el detector de choques compara cada personaje con el texto de SU seccion,
+       asi que uno que se va a la de al lado le pasa por delante. Van a 150/360/
+       570 (a tamano completo el ultimo acaba en 760, dentro de los 764) y el lado no se toca: se calcula por orden de
+       documento y moverlos de sitio le cambiaria el lado a media pagina. -->
+  <img class="ch ch--borde" src="hari-11.webp" width="256" height="246" style="left:calc(50% + 530px + 18px);top:570px;--h:190px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch ch--borde" src="h512-22.webp" width="256" height="235" style="right:calc(50% + 530px + 18px);top:360px;--h:190px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch ch--borde" src="h1024-33.webp" width="256" height="235" style="left:calc(50% + 530px + 18px);top:150px;--h:190px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
         <h2>Send me the mod</h2>
     <p class="sub">Message me or build your request in the <span translate="no">Angel Engine</span> above, and you'll have a fixed quote in writing, usually within a day.</p>
@@ -2184,10 +2188,7 @@
       </div>
     </div>
     <p class="contact-note">I take two commissions at a time, so the queue stays short.</p>
-    <figure class="signoff">
-      <img src="signoff.webp" width="900" height="626" alt="An illustrated dog in a suit giving a thumbs up beside a clipboard, and a cat holding a small sign, both drawn in a cartoon style." loading="lazy" decoding="async">
-      <figcaption>The only two who have signed anything off so far. <strong>Real client references land here the day I have any to show</strong>, with names attached.</figcaption>
-    </figure>
+    <p class="contact-note"><strong>Real client references land here the day I have any to show</strong>, with names attached.</p>
 
   </div>
 </section>
