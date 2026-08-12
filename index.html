@@ -1300,21 +1300,29 @@
              uno salia como una franja sobre un parrafo; y el del portafolio
              quedaba tapado entero porque encima de la tarjeta solo hay 30 px.
 
-       v6b: cortados por el borde de la ventana, apoyandose en el
-       `html { overflow-x: clip }` que ya tenia la pagina. Anclados en PIXELES
-       desde el borde de arriba de su seccion: en porcentaje, una seccion que
-       crece los arrastra, y al unificar el portafolio uno se fue 1000 px. Sobresalen sin
-       provocar scroll y el borde los recorta. Uno entero y centrado es un
-       icono; uno cortado es alguien asomandose, y ademas puede ser enorme sin
-       acercarse a la columna de texto. */
+         v6b  cortados por el borde de la ventana. Se veia mal y la culpa
+              era de no mirar la imagen: son BUSTOS que ocupan el 92% del
+              cuadro, asi que cortar 86 de 243 px se llevaba un tercio de la
+              CARA y quedaba un pegote sin ojos. Ese truco solo vale para
+              personajes de cuerpo entero.
+
+       v7: enteros, nunca cortados, pegados por fuera a la columna de texto y
+       no al borde de la pantalla (en 1920 el margen es de 430 px y ahi se
+       quedarian flotando en el vacio). Anclados en PIXELES desde el borde de
+       arriba de su seccion: en porcentaje, una seccion que crece los arrastra,
+       y al unificar el portafolio uno se fue 1000 px. */
     section { position: relative; }
     .ch { position: absolute; z-index: 3; pointer-events: none; user-select: none;
           width: auto; image-rendering: pixelated;
           filter: drop-shadow(0 6px 14px rgba(0,0,0,0.5)); }
     section > .wrap { position: relative; z-index: 4; }
-    /* Necesitan margen lateral de verdad. Por debajo de 1360 el margen no da y
-       se meterian en el texto, asi que se apagan: manda el de la tarjeta y la
-       fila, que van en el flujo y no dependen del hueco. */
+    /* El alto va en --h para poder escalarlos por ancho de ventana. El hueco
+       es (ancho - 1060) / 2, asi que a 1600 hay 270 px y caben enteros; a 1440
+       hay 190 y no, por eso ahi se dibujan al 62%. Por debajo de 1360 no hay
+       hueco para nadie y se apagan: manda el de la tarjeta y la fila, que van
+       en el flujo. */
+    .ch--borde { height: var(--h); }
+    @media (max-width: 1600px) { .ch--borde { height: calc(var(--h) * 0.62); } }
     @media (max-width: 1360px) { .ch--borde { display: none; } }
     /* El que va DENTRO de la tarjeta vacia del portafolio. */
     .port-card--cta { position: relative; }
@@ -1544,7 +1552,7 @@
 </figure>
 <!-- PORTFOLIO -->
 <section id="portfolio">
-  <img class="ch ch--borde" src="h1024-13.webp" width="256" height="235" style="left:-92px;top:538px;height:250px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch ch--borde" src="h1024-13.webp" width="256" height="235" style="right:calc(50% + 530px + 18px);top:538px;--h:220px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
         <h2>The work</h2>
     <p class="sub">Anything I build for you stays private unless you want it shown here.</p>
@@ -1745,7 +1753,7 @@
 </div>
 <!-- SERVICES -->
 <section id="services">
-  <img class="ch ch--borde" src="h1024-21.webp" width="256" height="236" style="right:-74px;top:299px;height:196px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch ch--borde" src="h1024-21.webp" width="256" height="236" style="left:calc(50% + 530px + 18px);top:299px;--h:190px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
         <h2>Backports, ports and loader conversions</h2>
     <p class="sub">Forge 1.20.1 is my lowest rate because it sits just below every recent version wall, so it's where I'm fastest. Anything harder is priced by the real work it adds, not some made-up percentage. The full reasoning is written up in <a href="mod-porting-cost.html">what a port costs, and why</a>.</p>
@@ -1820,7 +1828,7 @@
 </div>
 <!-- HOW IT WORKS -->
 <section id="how-it-works">
-  <img class="ch ch--borde" src="h1024-22.webp" width="256" height="236" style="left:-86px;top:234px;height:224px;opacity:0.96" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch ch--borde" src="h1024-22.webp" width="256" height="236" style="right:calc(50% + 530px + 18px);top:234px;--h:205px;opacity:0.96" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
         <h2>How a mod commission works</h2>
     <p class="sub">It's all done in writing, async, no calls.</p>
@@ -1963,7 +1971,7 @@
 </section>
 <!-- FAQ -->
 <section id="faq">
-  <img class="ch ch--borde" src="h1024-33.webp" width="256" height="235" style="right:-96px;top:264px;height:260px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch ch--borde" src="h1024-33.webp" width="256" height="235" style="left:calc(50% + 530px + 18px);top:264px;--h:215px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
         <h2>Before you ask</h2>
     <div class="faq-list">
