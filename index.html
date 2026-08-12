@@ -1296,7 +1296,10 @@
        de 800 px de alto, la imagen caia a media altura y dejaba vacio el
        cuadrante de arriba a la derecha, que es justo donde va el ojo al
        entrar. Arriba acompaña al titular. */
-    .hero-inner { max-width: 1240px; display: grid; grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr); gap: 2.6rem; align-items: start; }
+    /* La captura pesa mas que el texto a proposito (josda, 12-08): era
+       1.02/0.98 y la foto se quedaba corta. 0.92/1.08 le da ~60 px mas de
+       ancho sin empujar el titulo, que tiene su propio tope de 470 px. */
+    .hero-inner { max-width: 1240px; display: grid; grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr); gap: 2.6rem; align-items: start; }
     .hero-art { padding-top: 3.2rem; }
     .hero-copy { min-width: 0; }
     /* El titulo de Blockbench va ARRIBA DEL TODO de la columna, antes del chip
@@ -1559,7 +1562,7 @@
           <img src="hero-main.webp" width="1400" height="788" alt="My character standing at the edge of a river inside a towering redwood forest, in a heavily modded world." loading="eager" fetchpriority="high" decoding="async">
         </figure>
       </div>
-      <p class="hero-art-note">My own pack, on <span translate="no">Forge</span> 1.20.1. Not a commission and not a port of mine.</p>
+      <p class="hero-art-note">Me taking in the view in my own pack, over 600 mods. Like you, I know the version problem first-hand, and every other headache that comes with it.</p>
     </div>
   </div>
 </section>
