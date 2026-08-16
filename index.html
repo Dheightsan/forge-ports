@@ -181,13 +181,17 @@
     @font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 600; font-display: swap; src: url('fonts/space-grotesk-600-latin-ext.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
     @font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 700; font-display: swap; src: url('fonts/space-grotesk-700-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
     @font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 700; font-display: swap; src: url('fonts/space-grotesk-700-latin-ext.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
-    /* Pixelify Sans, SIL OFL, autoalojada como la otra. Es VARIABLE: los pesos
-       400 a 700 salen del MISMO archivo, por eso son dos ficheros y no seis y el
-       peso va como RANGO. Si se pusiera `font-weight: 700` a secas, el navegador
-       tomaria el archivo solo para 700 y en cualquier otro peso caeria al
-       sustituto. Se usa SOLO en el CTA de la cabecera. */
-    @font-face { font-family: 'Pixelify Sans'; font-style: normal; font-weight: 400 700; font-display: swap; src: url('fonts/pixelify-sans-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
-    @font-face { font-family: 'Pixelify Sans'; font-style: normal; font-weight: 400 700; font-display: swap; src: url('fonts/pixelify-sans-latin-ext.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+    /* Monocraft, SIL OFL 1.1, autoalojada como Space Grotesk. Calca los glifos
+       de Mojangles, que es la fuente de la interfaz de Minecraft y la que pidio
+       josda: aquella es un asset de Mojang y este repo es publico, asi que
+       subirla seria redistribuirla.
+       Va SUBCONJUNTADA al latino con acentos: el OTF entero son 225 KB sobre una
+       pagina de 240, y asi son 14. NO se recorta a las letras de "Price my mod"
+       a proposito: la pagina se traduce al español y el boton pasa a decir otra
+       cosa, que con un subconjunto corto caeria a la fuente sustituta a media
+       palabra. Se regenera con tools_fuente_pixel.py.
+       Se usa SOLO en el CTA de la cabecera. */
+    @font-face { font-family: 'Monocraft'; font-style: normal; font-weight: 700; font-display: swap; src: url('fonts/monocraft-700-latin.woff2') format('woff2'); }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     ::selection { background: rgba(203,161,74,0.32); color: #fff8ec; }
@@ -537,11 +541,11 @@
     .nav-links a { color: var(--text-soft); font-size: 0.88rem; transition: color 0.15s; }
     .nav-links a:hover { color: var(--text); text-decoration: none; }
     /* Tipografia de pixeles SOLO aqui, pedido de josda. Sube de 0.85 a 0.95rem
-       porque Pixelify Sans tiene la altura de la x mas baja que Space Grotesk:
+       porque Monocraft tiene la altura de la x mas baja que Space Grotesk:
        al mismo tamano nominal se lee bastante mas pequena, y este es el boton
        que trae los encargos. La pastilla FREE de dentro NO la hereda: a 0.62em
        una letra de pixeles no se lee. */
-    .btn-nav { background: var(--terracotta); color: #2a1302 !important; font-family: 'Pixelify Sans', 'Space Grotesk', system-ui, sans-serif; font-weight: 700; font-size: 0.95rem; letter-spacing: 0.01em; padding: 0.48rem 1rem; border-radius: var(--radius); white-space: nowrap; box-shadow: 0 0 0 2px rgba(210,112,63,0.30); transition: background 0.15s, box-shadow 0.15s; }
+    .btn-nav { background: var(--terracotta); color: #2a1302 !important; font-family: 'Monocraft', 'Space Grotesk', system-ui, sans-serif; font-weight: 700; font-size: 0.95rem; letter-spacing: 0.01em; padding: 0.48rem 1rem; border-radius: var(--radius); white-space: nowrap; box-shadow: 0 0 0 2px rgba(210,112,63,0.30); transition: background 0.15s, box-shadow 0.15s; }
     .nav-free { font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 0.62em; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; border: 1.4px solid currentColor; border-radius: 999px; padding: 0.12em 0.5em; margin-left: 0.5em; vertical-align: 0.12em; opacity: 0.85; }
     /* El chip se retira cuando el nav no tiene sitio: su trabajo es persuadir
        en escritorio, y a 414px cuesta 33px de un presupuesto que no da. */
