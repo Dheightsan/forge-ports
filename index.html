@@ -1080,10 +1080,14 @@
        recorte de las otras porque su gracia esta en los bordes (la estanteria
        de cargadores a la izquierda, la lista de pasos abajo). */
     .scene-band--art img { background: #1a1512; }
-    .mascots { margin: 2.4rem 0 0; max-width: 620px; }
-    .mascots img { display: block; width: 100%; height: auto; border-radius: var(--radius); border: 1px solid var(--border); }
-    .mascots figcaption { margin-top: 0.9rem; font-size: 0.85rem; line-height: 1.65; color: var(--text-mute); }
-    .mascots figcaption strong { color: var(--text-soft); }
+    /* Ocupa el sitio de .mascots, que se fue el 16-08 con Tesla y Einstein.
+       SIN borde ni fondo, al reves que aquella: esta viene recortada a
+       transparente, asi que un marco dibujaria un rectangulo alrededor de aire.
+       Y sin figcaption: la ilustracion ya trae dentro lo que diria el pie. */
+    /* A la IZQUIERDA, como iba .mascots. Centrarla bajo una seccion alineada a
+       la izquierda es exactamente el defecto de alineacion que señalo Jack. */
+    .brandart { margin: 2.4rem 0 0; max-width: 620px; }
+    .brandart img { display: block; width: 100%; height: auto; }
     /* El perro y el gato. Venian con cinco estrellas doradas y "Expertos."
        encima: en una pagina de servicios eso se lee como una NOTA, y no hay
        ninguna resena detras. Se recorto esa franja y el pie dice lo que si es
@@ -1156,9 +1160,8 @@
        necesita respirar mas que un parrafo suelto. */
     .credit { max-width: 46em; }
     .credit p + p { margin-top: 0.9rem; }
-    .support { margin: 1.4rem 0; max-width: 460px; }
-    .support img { display: block; width: 100%; height: auto; border-radius: var(--radius); border: 1px solid var(--border); }
-    .support figcaption { margin-top: 0.7rem; font-size: 0.82rem; color: var(--text-mute); }
+    /* .support se fue el 16-08 con la ilustracion del grupo. El texto de
+       agradecimiento que la rodeaba SI sigue: no era el pie de la imagen. */
     details.more > p { margin-top: 1rem; }
 
     /* ── CONTACT ── */
@@ -2157,6 +2160,10 @@
       </details>
       </div>
     </div>
+
+    <figure class="brandart">
+      <img src="brandart.webp" width="1100" height="846" alt="Modwright brand illustration in pixel art: a guinea pig in work overalls holding a wrench, and a hedgehog in a lab coat holding a book labelled mappings, APIs and logs, next to a checklist reading analyze, adapt, test, fix, repeat. Below them, the Modwright wordmark and the line: build it, port it, keep it alive." loading="lazy" decoding="async">
+    </figure>
 
     <div class="credit">
       <h3>Thank you</h3>
