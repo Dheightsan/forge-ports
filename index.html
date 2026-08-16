@@ -1104,6 +1104,18 @@
        la izquierda es exactamente el defecto de alineacion que señalo Jack. */
     .brandart { margin: 2.4rem 0 0; max-width: 620px; }
     .brandart img { display: block; width: 100%; height: auto; }
+    /* Las mascotas van en #how-it-works, no en #services ni en #about:
+       - #services abre hablando de tarifas y cierra apuntando al motor de
+         precios, y dos personajes con cargo al lado de un precio se leen como
+         plantilla que te esta cobrando
+       - #about es literalmente "a quien contratas": el peor sitio posible para
+         unos cargos inventados, y ademas ya tiene brandart
+       - #how-it-works es proceso puro, no tiene ni una imagen, y los dos
+         personajes SON las dos mitades del proceso */
+    .mascotas { margin: 2.2rem auto 0; max-width: 500px; }
+    .mascotas img { display: block; width: 100%; height: auto; }
+    .mascotas figcaption { margin-top: 0.9rem; font-size: 0.85rem; line-height: 1.65; color: var(--text-mute); text-align: center; max-width: 36em; margin-left: auto; margin-right: auto; }
+    .mascotas figcaption strong { color: var(--text-soft); }
     /* El perro y el gato. Venian con cinco estrellas doradas y "Expertos."
        encima: en una pagina de servicios eso se lee como una NOTA, y no hay
        ninguna resena detras. Se recorto esa franja y el pie dice lo que si es
@@ -1953,6 +1965,10 @@
       <div class="step"><div class="step-n">05</div><h3>Delivery + final payment</h3><p>You receive and test the .jar. Final payment before release. Open-source ports get published with author credit.</p></div>
       <div class="step"><div class="step-n">06</div><h3>I check back</h3><p>Once it has actually run in your pack, not just on my machine. <strong>Bugs inside the agreed scope are on me for 30 days.</strong> Anything after that, or anything new you need, comes back to me as a returning client.</p></div>
     </div>
+    <figure class="mascotas">
+      <img src="mascotas.webp" width="978" height="902" alt="Two pixel-art mascots on wooden nameplates: a guinea pig with a moustache holding crackling electricity, labelled Nikola Tesla, systems integration engineer; and a hedgehog in a lab coat holding a galaxy, labelled Einstein, theoretical architect." loading="lazy" decoding="async">
+      <figcaption><strong>Mascots, not staff.</strong> The nameplates are a joke about the two halves of one job, working out what the port needs and then making it run. The person you hire does both.</figcaption>
+    </figure>
   </div>
 </section>
 <!-- ESTIMATOR -->
@@ -2159,7 +2175,12 @@
 </section>
 <!-- ABOUT -->
 <section id="about">
-  <img class="ch ch--borde" src="hsunny-22.webp" width="256" height="245" style="right:calc(50% + 530px + 18px);top:1760px;--h:185px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <!-- 1760 -> 1240: #about paso de 2038 a ~1508 px al irse las mascotas y el
+       grupo, y este `top` va en pixeles contra la seccion, asi que se quedaba
+       438 px por debajo del borde, dentro de la seccion siguiente. Lo caza la
+       guarda "se salen de seccion" de verificar.py. Al tocar el contenido de
+       una seccion hay que re-medir SUS personajes. -->
+  <img class="ch ch--borde" src="hsunny-22.webp" width="256" height="245" style="right:calc(50% + 530px + 18px);top:1240px;--h:185px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="ch ch--borde" src="hsunny-21.webp" width="256" height="235" style="left:calc(50% + 530px + 18px);top:720px;--h:185px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="ch ch--borde" src="h1024-32.webp" width="256" height="236" style="right:calc(50% + 530px + 18px);top:201px;--h:185px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
