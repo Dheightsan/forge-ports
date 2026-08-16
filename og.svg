@@ -12,18 +12,20 @@
   </defs>
   <rect width="1200" height="630" fill="url(#bg)"/>
   <ellipse cx="250" cy="120" rx="560" ry="380" fill="url(#glow)"/>
+  <!-- La marca es el cuy desde 2026-08-16. Antes habia un hexagono dibujado a
+       mano aqui: la tarjeta del enlace ensenaba una marca que no existe en
+       ninguna otra parte, ni en la cabecera ni en la pestana del navegador.
+       La caja mide 96 y el dibujo trae un 4% de aire propio, asi que el cuy se
+       ve a ~88. El rotulo se movio de x=68 a x=110 para dejarle sitio.
+
+       96 y no 64: Discord y X pintan la tarjeta a unos 500 px de ancho, o sea
+       que aqui se divide por 2,4. A 64 el logo llegaba al lector a 27 px y no
+       se reconocia; a 96 llega a 40. La caja va centrada con el rotulo: el
+       texto es de 42 px, su altura de mayusculas cae en y=23,3 local, asi que
+       la caja empieza en 23,3-48 = -24,7. -->
   <g transform="translate(80,66)">
-    <g transform="scale(1.7)">
-      <path d="M16 2.5 L27.7 9.25 L27.7 22.75 L16 29.5 L4.3 22.75 L4.3 9.25 Z" fill="#241a10"/>
-      <g transform="translate(16,12.4) scale(0.3)">
-        <path d="M0,-13 L26,0 L0,13 L-26,0 Z" fill="#d9a25e" stroke="#3a2718" stroke-width="2.4" stroke-linejoin="round"/>
-        <path d="M-26,0 L0,13 L0,37 L-26,24 Z" fill="#b07a3c" stroke="#3a2718" stroke-width="2.4" stroke-linejoin="round"/>
-        <path d="M26,0 L0,13 L0,37 L26,24 Z" fill="#854f22" stroke="#3a2718" stroke-width="2.4" stroke-linejoin="round"/>
-        <g stroke="#3a2718" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M0,-7 L0,7"/><path d="M-3.5,-3.5 L0,-7 L3.5,-3.5"/><path d="M-3.5,3.5 L0,7 L3.5,3.5"/></g>
-      </g>
-      <path d="M16 2.5 L27.7 9.25 L27.7 22.75 L16 29.5 L4.3 22.75 L4.3 9.25 Z" fill="none" stroke="#b9742f" stroke-width="1.6"/>
-    </g>
-    <text x="68" y="38" font-family="Space Grotesk, system-ui, sans-serif" font-size="42" font-weight="700" fill="#eae4d6">Modwright</text>
+    <image href="logo-cuy-v3.png" x="0" y="-24.7" width="96" height="96"/>
+    <text x="110" y="38" font-family="Space Grotesk, system-ui, sans-serif" font-size="42" font-weight="700" fill="#eae4d6">Modwright</text>
   </g>
   <text x="80" y="312" font-family="Space Grotesk, system-ui, sans-serif" font-size="72" font-weight="700" fill="#e8dcc4">Port, backport &amp; <tspan fill="#5fb84a">revive</tspan></text>
   <text x="80" y="394" font-family="Space Grotesk, system-ui, sans-serif" font-size="72" font-weight="700" fill="#e8dcc4"><tspan fill="#79bd45">Minecraft</tspan> mods</text>

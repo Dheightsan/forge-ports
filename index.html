@@ -520,7 +520,11 @@
     .brand-mark { width: 27px; height: 27px; flex-shrink: 0; }
     /* el badge del cuy es circular: caja cuadrada, no el 54x32 del logo anterior,
        que dejaba 22px de aire muerto a los lados. */
-    .brand-cuy { width: 60px; height: 60px; flex-shrink: 0; background-image: url('logo-cuy-v2.webp'); background-repeat: no-repeat; background-size: contain; background-position: center; }
+    /* El logo va por CSS, o sea que NO lo ve el regex de src/href de subir.py:
+       se sube solo porque ya esta en el repo. Al cambiarle el nombre hay que
+       meterlo en la lista EXTRA del desplegador o queda perfecto en local y
+       roto en vivo, que es exactamente lo que paso con hogs-ink.png. */
+    .brand-cuy { width: 60px; height: 60px; flex-shrink: 0; background-image: url('logo-cuy-v3.webp'); background-repeat: no-repeat; background-size: contain; background-position: center; }
     .brand .ph { color: var(--text-mute); font-weight: 600; font-size: 0.95rem; }
     .nav-links { display: flex; gap: 1.6rem; list-style: none; align-items: center; margin-left: clamp(0rem, calc((100vw - 880px) * 1), 2rem); }
     .nav-links a { color: var(--text-soft); font-size: 0.88rem; transition: color 0.15s; }
