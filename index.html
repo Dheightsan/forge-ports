@@ -570,8 +570,16 @@
        NOT background-clip:text (that made the word vanish under Google Translate's DOM
        rewrite). Fallback chain: no ::before -> solid green; ::before without mask ->
        solid brown. Both readable, never invisible. */
-    #hero h1 .mc { position: relative; display: inline-block; color: #79bd45; }
-    #hero h1 .mc::before { content: attr(data-word) / ""; position: absolute; inset: 0; color: #8a6239; -webkit-mask-image: linear-gradient(to bottom, transparent 32%, #000 70%); mask-image: linear-gradient(to bottom, transparent 32%, #000 70%); pointer-events: none; }
+    /* Los dos colores de la palabra "Minecraft" NO son una eleccion de diseno:
+       salen MEDIDOS de la captura que dio josda el 16-08 (verde #334d1f, marron
+       #3e2d19). Su captura era el fundido de entrada congelado a un tercio de
+       opacidad, o sea estos mismos colores al 33% sobre el fondo #14100c; se
+       comprobo despejando el factor por canal y salio constante (dispersion
+       0,07). Aqui van ya calculados a opacidad plena, que da el mismo pixel.
+       No tocarlos por criterio propio: los colores del hero los decide el, y ya
+       hubo once intentos rechazados. */
+    #hero h1 .mc { position: relative; display: inline-block; color: #334d1f; }
+    #hero h1 .mc::before { content: attr(data-word) / ""; position: absolute; inset: 0; color: #3e2d19; -webkit-mask-image: linear-gradient(to bottom, transparent 32%, #000 70%); mask-image: linear-gradient(to bottom, transparent 32%, #000 70%); pointer-events: none; }
     .hero-tagline { font-size: 1.28rem; font-weight: 600; color: var(--text); max-width: 560px; margin-bottom: 1.1rem; line-height: 1.4; }
     .hero-tagline .b { color: var(--brown-hi); }
     .hero-desc { font-size: 1.05rem; color: var(--text-soft); max-width: 545px; margin-bottom: 2rem; line-height: 1.7; }
