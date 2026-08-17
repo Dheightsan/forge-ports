@@ -554,6 +554,10 @@
     .h1-texto { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0; }
     #hero h1.hero-h1-img { max-width: 730px; margin-bottom: 1.1rem; text-shadow: none; }
     #hero h1.hero-h1-img img { display: block; width: 100%; height: auto; }
+    /* El titular español existe siempre en el HTML pero apagado: solo lo
+       enciende la regla de `[lang|="es"]` de mas abajo. Lleva `loading="lazy"`
+       para que en ingles no se descargue. */
+    #hero h1.hero-h1-img img.h1-es { display: none; }
     /* EL TITULAR VUELVE A SER TEXTO en dos casos, y por el mismo motivo: una
        imagen no se puede reajustar ni traducir.
 
@@ -578,10 +582,37 @@
     html.translated-rtl #hero h1.hero-h1-img img { display: none; }
     html.translated-ltr #hero h1.hero-h1-img,
     html.translated-rtl #hero h1.hero-h1-img { font-size: clamp(2.2rem, 5vw, 3.6rem); }
+    /* ...pero en ESPAÑOL hay un segundo dibujo, y gana al texto.
+       Lo que se veia antes con el traductor puesto: cinco lineas en la letra del
+       cuerpo, sin bloques y sin colores de cargador. O sea que el visitante en
+       español no llegaba a ver la marca, que es lo primero que hay en la pagina.
+       josda ya lo habia avisado: "si bien esta en ingles con el traductor
+       deberia funcionar en español".
+
+       El idioma sale del atributo `lang`, que lo reescribe el propio traductor.
+       `[lang|="es"]` cubre es, es-ES, es-419, es-MX... y **cualquier otro idioma
+       cae al texto**, que es el comportamiento de siempre y funciona: mas vale
+       un titular en aleman de texto que un dibujo en español.
+
+       Va dentro de `min-width: 701px` A PROPOSITO: por debajo de eso manda el
+       texto en los dos idiomas, y sin el `@media` esta regla ganaria por ser mas
+       especifica y devolveria a movil un dibujo de cuatro lineas con letras
+       diminutas. Es la misma trampa de orden que ya costo una vuelta. */
+    @media (min-width: 701px) {
+      html.translated-ltr[lang|="es"] .h1-texto,
+      html.translated-rtl[lang|="es"] .h1-texto { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0; }
+      html.translated-ltr[lang|="es"] #hero h1.hero-h1-img img.h1-es,
+      html.translated-rtl[lang|="es"] #hero h1.hero-h1-img img.h1-es { display: block; }
+    }
     .brand-cuy { width: 60px; height: 60px; flex-shrink: 0; background-image: url('logo-cuy-v3.webp'); background-repeat: no-repeat; background-size: contain; background-position: center; }
     .brand .ph { color: var(--text-mute); font-weight: 600; font-size: 0.95rem; }
     .nav-links { display: flex; gap: 1.6rem; list-style: none; align-items: center; margin-left: clamp(0rem, calc((100vw - 880px) * 1), 2rem); }
-    .nav-links a { color: var(--text-soft); font-size: 0.88rem; transition: color 0.15s; }
+    /* `nowrap` porque un enlace partido en dos lineas ("Angel / Engine",
+       "Mod / authors") deja de parecer un enlace y parece un fallo, y ademas
+       descuadra el alto de la fila. Pasaba ya en ingles a 1000 px y en español
+       antes, porque las palabras son mas largas. Partir no es la solucion: si no
+       cabe, la fila entera se colapsa (media queries de abajo). */
+    .nav-links a { color: var(--text-soft); font-size: 0.88rem; transition: color 0.15s; white-space: nowrap; }
     .nav-links a:hover { color: var(--text); text-decoration: none; }
     /* Tipografia de pixeles SOLO aqui, pedido de josda. Sube de 0.85 a 0.95rem
        porque Monocraft tiene la altura de la x mas baja que Space Grotesk:
@@ -1327,8 +1358,23 @@
        850px. Por debajo de eso los enlaces se colapsan y quedan CTA y toggles.
        Sin esta regla, entre 601 y 850px el boton "Price my mod" se salia de la
        pantalla y era inalcanzable, y el overflow-x: clip impedia verlo. */
-    @media (max-width: 880px) {
+    /* 880 era una ESTIMACION ("necesita unos 850") y estaba corta: medido con
+       `buscar_umbral_nav.py`, la fila entera necesita 985 px y a 922 se salia
+       62 px por la derecha, donde `overflow-x: clip` la deja inalcanzable.
+       Ahora el numero esta medido. */
+    @media (max-width: 1000px) {
       .nav-links li:not(.nav-cta):not(.nav-tog) { display: none; }
+    }
+    /* Y traducida al español la misma fila ocupa un 25-30% mas. Dos cosas:
+       1. se aprietan los huecos, porque colapsar los cinco enlaces en toda
+          pantalla dejaria al visitante en español sin menu. Con gap 1.05rem y
+          sin el margen izquierdo se ganan ~76 px, y hacian falta 15.
+       2. el umbral de colapso sube a 1180, medido igual que el ingles. */
+    html.translated-ltr .nav-links,
+    html.translated-rtl .nav-links { gap: 1.05rem; margin-left: 0; }
+    @media (max-width: 1180px) {
+      html.translated-ltr .nav-links li:not(.nav-cta):not(.nav-tog),
+      html.translated-rtl .nav-links li:not(.nav-cta):not(.nav-tog) { display: none; }
     }
     @media (max-width: 600px) {
       section { padding: 3.75rem 1.2rem; }
@@ -1666,26 +1712,26 @@
     <div class="hero-copy">
     <img class="hero-title" src="titulo-modwright.webp" width="1024" height="97" alt="Modwright Studios" fetchpriority="high" decoding="async">
     <div class="badge"><span class="badge-dot"></span>Open for commissions</div>
-    <h1 class="hero-h1-img"><span class="h1-texto">Port, backport &amp; revive <span class="mc" translate="no" data-word="Minecraft">Minecraft</span> mods, any version, any loader</span><img src="titulo-hero.webp" width="2537" height="731" alt="" aria-hidden="true" fetchpriority="high" decoding="async"></h1>
+    <h1 class="hero-h1-img"><span class="h1-texto">Port, backport &amp; revive <span class="mc" translate="no" data-word="Minecraft">Minecraft</span> mods, any version, any loader</span><img src="titulo-hero.webp" width="2537" height="731" alt="" aria-hidden="true" fetchpriority="high" decoding="async"><img class="h1-es" src="titulo-hero-es.webp" width="2533" height="1142" alt="" aria-hidden="true" loading="lazy" decoding="async"></h1>
     <p class="hero-services">Plus compatibility patches, maintenance and optimization.</p>
-    <p class="hero-who">I'm <strong>josda</strong>. I build modpacks; I got fed up with mods dying off on old versions, so I started porting them myself.</p>
+    <p class="hero-who">I'm <strong><span translate="no">josda</span></strong>. I build modpacks; I got fed up with mods dying off on old versions, so I started porting them myself.</p>
     <p class="hero-desc">
-      I work across Forge, Fabric and NeoForge, and I move mods up and down versions. Forge 1.20.1 is my lowest rate because it is the least work, not because it is all I do. I check the licence first and boot-test every build before it's released.
+      I work across <span translate="no">Forge</span>, <span translate="no">Fabric</span> and <span translate="no">NeoForge</span>, and I move mods up and down versions. <span translate="no">Forge</span> 1.20.1 is my lowest rate because it is the least work, not because it is all I do. I check the licence first and boot-test every build before it's released.
     </p>
     <div class="pills">
       <span class="pill pill-price">Fixed price, one flat quote</span>
-      <span class="pill pill-trust">Forge, Fabric &amp; NeoForge</span>
+      <span class="pill pill-trust"><span translate="no">Forge</span>, <span translate="no">Fabric</span> &amp; <span translate="no">NeoForge</span></span>
       <span class="pill">5 structural checks before any jar ships</span>
       <span class="pill">Licence checked up front</span>
     </div>
     <p class="hero-hook">Is your favourite mod missing on the version you actually play? Price it in about a minute.</p>
     <div class="ctas">
       <a href="#estimator" class="btn btn-go">Estimate my commission</a>
-      <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" class="btn btn-discord"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg>Chat on Discord</a>
+      <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" class="btn btn-discord"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg>Chat on <span translate="no">Discord</span></a>
       <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20commission" class="btn btn-gmail"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Email me</a>
       <span class="cta-with-eyes"><a href="#services" class="btn btn-ghost">See services</a><svg class="bicon-eyes" viewBox="0 0 30 18" width="30" height="17" aria-hidden="true"><ellipse cx="9" cy="9" rx="7.6" ry="8.2" fill="#fff" stroke="#2a2014" stroke-width="0.9"/><ellipse cx="21" cy="9" rx="7.6" ry="8.2" fill="#fff" stroke="#2a2014" stroke-width="0.9"/><circle cx="12.6" cy="8.2" r="3.5" fill="#15110b"/><circle cx="24.6" cy="8.2" r="3.5" fill="#15110b"/><circle cx="13.85" cy="7" r="1.05" fill="#fff"/><circle cx="25.85" cy="7" r="1.05" fill="#fff"/></svg></span>
     </div>
-    <p class="hero-contact">Quickest reply is on <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer">my Discord</a>. <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20commission">Email</a> works too.</p>
+    <p class="hero-contact">Quickest reply is on <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer">my <span translate="no">Discord</span></a>. <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20commission">Email</a> works too.</p>
     <div class="hero-me">
       <img src="h1024-11.webp" width="256" height="236" alt="" aria-hidden="true" decoding="async">
       <span>That's my character. The rest around the page are from the same world.</span>
@@ -1722,7 +1768,7 @@
     <figure class="loomd-wrap">
       <svg class="loomd" viewBox="0 0 600 432" role="img" aria-labelledby="ldt ldd" preserveAspectRatio="xMidYMid meet">
       <title id="ldt">Moving a mod between loaders</title>
-      <desc id="ldd">Fabric, NeoForge and Forge, each joined to the other two, with arrows pointing both ways.</desc>
+      <desc id="ldd"><span translate="no">Fabric</span>, <span translate="no">NeoForge</span> and <span translate="no">Forge</span>, each joined to the other two, with arrows pointing both ways.</desc>
       <defs><linearGradient id="lg-fabric-neo" gradientUnits="userSpaceOnUse" x1="361.0" y1="113.0" x2="449.2" y2="265.7"><stop class="st-fabric" offset="0"/><stop class="st-neo" offset="1"/></linearGradient><linearGradient id="lg-neo-forge" gradientUnits="userSpaceOnUse" x1="388.2" y1="371.4" x2="211.8" y2="371.4"><stop class="st-neo" offset="0"/><stop class="st-forge" offset="1"/></linearGradient><linearGradient id="lg-forge-fabric" gradientUnits="userSpaceOnUse" x1="150.8" y1="265.7" x2="239.0" y2="113.0"><stop class="st-forge" offset="0"/><stop class="st-fabric" offset="1"/></linearGradient></defs>
       <path class="loomd-link" stroke="url(#lg-fabric-neo)" d="M361.0 113.0 A150 150 0 0 1 449.2 265.7"/>
       <g style="color:var(--ld-fabric)"><path class="loomd-tip" d="M361.0 113.0 L376.9 111.8 M361.0 113.0 L370.7 125.5"/></g>
@@ -1733,9 +1779,9 @@
       <path class="loomd-link" stroke="url(#lg-forge-fabric)" d="M150.8 265.7 A150 150 0 0 1 239.0 113.0"/>
       <g style="color:var(--ld-forge)"><path class="loomd-tip" d="M150.8 265.7 L141.9 252.5 M150.8 265.7 L156.8 251.0"/></g>
       <g style="color:var(--ld-fabric)"><path class="loomd-tip" d="M239.0 113.0 L229.3 125.5 M239.0 113.0 L223.1 111.8"/></g>
-      <g style="color:var(--ld-fabric)"><circle class="loomd-node" cx="300.0" cy="100.0" r="54"/><circle class="loomd-node-fill" cx="300.0" cy="100.0" r="54"/><g class="loomd-glyph"><g transform="translate(279.6,79.6) scale(1.700)"><rect x="3.5" y="3.5" width="17" height="17" rx="3" fill="currentColor"/><g stroke="var(--bg)" stroke-width="1.2" opacity="0.34" fill="none"><path d="M3.5 9.7h17M3.5 14.3h17M9.7 3.5v17M14.3 3.5v17"/></g></g></g><text class="loomd-t" x="300.0" y="26.0" font-size="28" text-anchor="middle">Fabric</text></g>
-      <g style="color:var(--ld-neo)"><circle class="loomd-node" cx="429.9" cy="325.0" r="54"/><circle class="loomd-node-fill" cx="429.9" cy="325.0" r="54"/><g class="loomd-glyph"><g transform="translate(409.5,304.6) scale(1.700)"><path d="M8.5 16.5V7.5l7 9v-9" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g></g><text class="loomd-t" x="429.9" y="413.0" font-size="28" text-anchor="middle">NeoForge</text></g>
-      <g style="color:var(--ld-forge)"><circle class="loomd-node" cx="170.1" cy="325.0" r="54"/><circle class="loomd-node-fill" cx="170.1" cy="325.0" r="54"/><g class="loomd-glyph"><g transform="translate(149.7,304.6) scale(1.700)"><path fill="currentColor" d="M2 8h10l-1.2 2.4H15v2h-1.9L12 17H8L6.2 12.4H2z"/><rect x="6" y="18" width="9" height="2" rx="0.4" fill="currentColor"/></g></g><text class="loomd-t" x="170.1" y="413.0" font-size="28" text-anchor="middle">Forge</text></g>
+      <g style="color:var(--ld-fabric)"><circle class="loomd-node" cx="300.0" cy="100.0" r="54"/><circle class="loomd-node-fill" cx="300.0" cy="100.0" r="54"/><g class="loomd-glyph"><g transform="translate(279.6,79.6) scale(1.700)"><rect x="3.5" y="3.5" width="17" height="17" rx="3" fill="currentColor"/><g stroke="var(--bg)" stroke-width="1.2" opacity="0.34" fill="none"><path d="M3.5 9.7h17M3.5 14.3h17M9.7 3.5v17M14.3 3.5v17"/></g></g></g><text class="loomd-t" x="300.0" y="26.0" font-size="28" text-anchor="middle"><span translate="no">Fabric</span></text></g>
+      <g style="color:var(--ld-neo)"><circle class="loomd-node" cx="429.9" cy="325.0" r="54"/><circle class="loomd-node-fill" cx="429.9" cy="325.0" r="54"/><g class="loomd-glyph"><g transform="translate(409.5,304.6) scale(1.700)"><path d="M8.5 16.5V7.5l7 9v-9" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g></g><text class="loomd-t" x="429.9" y="413.0" font-size="28" text-anchor="middle"><span translate="no">NeoForge</span></text></g>
+      <g style="color:var(--ld-forge)"><circle class="loomd-node" cx="170.1" cy="325.0" r="54"/><circle class="loomd-node-fill" cx="170.1" cy="325.0" r="54"/><g class="loomd-glyph"><g transform="translate(149.7,304.6) scale(1.700)"><path fill="currentColor" d="M2 8h10l-1.2 2.4H15v2h-1.9L12 17H8L6.2 12.4H2z"/><rect x="6" y="18" width="9" height="2" rx="0.4" fill="currentColor"/></g></g><text class="loomd-t" x="170.1" y="413.0" font-size="28" text-anchor="middle"><span translate="no">Forge</span></text></g>
       </svg>
       <p class="loomd-claim">Any version, any loader.</p>
       <figcaption>I work in all three. <span translate="no">Fabric</span> to <span translate="no">Forge</span> is the hard one, and I do it.</figcaption>
@@ -1769,7 +1815,7 @@
             <span class="badge--lic-mit" translate="no">LGPL-2.1</span>
             <span class="badge--loader" translate="no">NeoForge 1.21.1</span>
           </div>
-          <span class="port-status">Live on CurseForge</span>
+          <span class="port-status">Live on <span translate="no">CurseForge</span></span>
         </div>
         <a class="port-title port-title--link" href="https://www.curseforge.com/minecraft/mc-mods/mindful-eating" target="_blank" rel="noopener noreferrer">
           <img class="port-icon port-icon--cf" src="mod-mindful-eating.webp" width="108" height="108" alt="" loading="lazy" decoding="async">
@@ -1781,7 +1827,7 @@
         <p class="port-desc">Forward-port of <span translate="no">camcam_burger</span>'s food-variety mod, delivered to its creator for the mod's official page.</p>
         <dl class="port-stats">
           <div><dt>Jump</dt><dd>1.20.1 → 1.21.1</dd></div>
-          <div><dt>Loader</dt><dd>Forge → NeoForge</dd></div>
+          <div><dt>Loader</dt><dd><span translate="no">Forge</span> → <span translate="no">NeoForge</span></dd></div>
           <div><dt>Library mods</dt><dd>Cut from 2 to 1</dd></div>
           <div><dt>Tested</dt><dd>In-game, survival</dd></div>
         </dl>
@@ -1809,7 +1855,7 @@
         </a>
         <p class="port-desc">Loader conversion of <span translate="no">Shaunt</span> and <span translate="no">Caf&eacute;</span>'s companion-dog mod. <strong>No public source</strong>, so I rebuilt it from the compiled jar.</p>
         <dl class="port-stats">
-          <div><dt>Loader</dt><dd>Fabric &rarr; Forge</dd></div>
+          <div><dt>Loader</dt><dd><span translate="no">Fabric</span> &rarr; <span translate="no">Forge</span></dd></div>
           <div><dt>Version</dt><dd>1.20.1, unchanged</dd></div>
           <div><dt>Source</dt><dd>Rebuilt from the jar</dd></div>
           <div><dt>Tested</dt><dd>Dedicated server</dd></div>
@@ -1954,7 +2000,7 @@
         <img src="pack-10.webp" width="760" height="428" alt="A capybara resting on open grassland under a clear sky." loading="lazy" decoding="async">
         <img src="pack-11.webp" width="669" height="578" alt="A tall red villager and a blue-robed wizard holding a staff, standing on a snow field." loading="lazy" decoding="async">
       </div>
-      <p class="pack-note"><strong>More than 600 mods</strong> on Forge 1.20.1, and <strong>not one block in any of these frames is mine</strong>. I am a player first; this is the thing the work is for.</p>
+      <p class="pack-note"><strong>More than 600 mods</strong> on <span translate="no">Forge</span> 1.20.1, and <strong>not one block in any of these frames is mine</strong>. I am a player first; this is the thing the work is for.</p>
     </div>
     </div>
   </div>
@@ -1973,14 +2019,14 @@
   <img class="ch ch--borde" src="h9478c-23.webp" width="256" height="244" style="right:calc(50% + 530px + 18px);top:200px;--h:195px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
         <h2>Backports, ports and loader conversions</h2>
-    <p class="sub">All three loaders, both directions. Forge 1.20.1 carries the lowest rate because it sits just below every recent version wall, so it is the least work. Anything harder is priced by the real work it adds, not some made-up percentage. The full reasoning is written up in <a href="mod-porting-cost.html">what a port costs, and why</a>.</p>
+    <p class="sub">All three loaders, both directions. <span translate="no">Forge</span> 1.20.1 carries the lowest rate because it sits just below every recent version wall, so it is the least work. Anything harder is priced by the real work it adds, not some made-up percentage. The full reasoning is written up in <a href="mod-porting-cost.html">what a port costs, and why</a>.</p>
 <div class="cards">
       <div class="card card--base">
         <div class="icon-wrap svc-copper"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v13"/><path d="M6 11l6 6 6-6"/></svg></div>
         <h3>Backport</h3>
-        <p>A newer mod (1.21+) your pack needs running on something older like Forge 1.20.1. That means porting the items, blocks, mechanics and textures across. Backporting a mod to Forge 1.20.1 is the job I do most.</p>
+        <p>A newer mod (1.21+) your pack needs running on something older like <span translate="no">Forge</span> 1.20.1. That means porting the items, blocks, mechanics and textures across. Backporting a mod to <span translate="no">Forge</span> 1.20.1 is the job I do most.</p>
         <div class="card-stats">
-          <div><span class="k">Target</span><span class="v">Forge 1.20.1</span></div>
+          <div><span class="k">Target</span><span class="v"><span translate="no">Forge</span> 1.20.1</span></div>
           
         </div>
         <span class="card-tag tag-base">Lowest rate</span>
@@ -1998,7 +2044,7 @@
       <div class="card card--premium">
         <div class="icon-wrap svc-loom"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h13l-3-3"/><path d="M20 16H7l3 3"/></svg></div>
         <h3>Loader conversion</h3>
-        <p>Moving a mod between Fabric, NeoForge and Forge. <strong>Porting a Fabric mod to Forge is close to a rewrite</strong> because the events, registries and mixins are all different. I wrote up <a href="fabric-to-forge-1-20-1.html">what actually breaks in a Fabric to Forge port</a>, with the failures that never show an error.</p>
+        <p>Moving a mod between <span translate="no">Fabric</span>, <span translate="no">NeoForge</span> and <span translate="no">Forge</span>. <strong>Porting a <span translate="no">Fabric</span> mod to <span translate="no">Forge</span> is close to a rewrite</strong> because the events, registries and mixins are all different. I wrote up <a href="fabric-to-forge-1-20-1.html">what actually breaks in a <span translate="no">Fabric</span> to <span translate="no">Forge</span> port</a>, with the failures that never show an error.</p>
         <div class="card-stats">
           
           
@@ -2020,7 +2066,7 @@
         <h3>Mod maintenance</h3>
         <p>A mod that broke after an update: failing <strong>mixins</strong>, crashes, dependency or mapping breaks, deprecated APIs. I track down the fault and get it loading clean again on your version.</p>
         <div class="card-stats">
-          <div><span class="k">Fixes</span><span class="v">Mixins · crashes · deps</span></div>
+          <div><span class="k">Fixes</span><span class="v"><span translate="no">Mixins</span> · crashes · deps</span></div>
           
         </div>
         <span class="card-tag tag-base">By scope</span>
@@ -2146,11 +2192,11 @@
         <div class="est-note" id="est-note">Same loader, no version wall to cross.</div>
         <div class="est-breakdown" id="est-breakdown"></div>
         <div class="est-summary" id="est-summary"></div>
-        <a class="btn btn-discord est-discord" id="est-discord" href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg>Chat on Discord</a>
+        <a class="btn btn-discord est-discord" id="est-discord" href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg>Chat on <span translate="no">Discord</span></a>
         <button type="button" class="btn btn-ghost est-copy" id="est-copy">Copy summary</button>
         <a class="btn btn-gmail est-email" id="est-email" href="mailto:modwrightstudios@gmail.com?subject=Mod%20porting%20commission"><svg class="bicon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Email it instead</a>
-        <div class="est-disclaimer">Treat this as a starting point; I'll confirm the final fixed price in writing, usually within a day of seeing the mod. $20 minimum on any job. Tip: "Chat on Discord" copies this quote so you can paste it straight into a ticket.</div>
-        <p class="est-skip">Prefer to just talk? <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer">Message me on Discord</a> or <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20commission">email</a>.</p>
+        <div class="est-disclaimer">Treat this as a starting point; I'll confirm the final fixed price in writing, usually within a day of seeing the mod. $20 minimum on any job. Tip: "Chat on <span translate="no">Discord</span>" copies this quote so you can paste it straight into a ticket.</div>
+        <p class="est-skip">Prefer to just talk? <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer">Message me on <span translate="no">Discord</span></a> or <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20commission">email</a>.</p>
       </div>
     </div>
   </div>
@@ -2161,27 +2207,27 @@
       <span>First clients get a <strong>discount on their first port</strong> in exchange for an honest review. Lock in a low rate before prices settle.</span>
     </div>
     -->
-    <p class="pnote"><strong>Reviving an old mod, converting Fabric to Forge, or private closed-source work?</strong> &nbsp;Those are quoted as one flat number for your specific mod, never a stack of surcharges.</p>
+    <p class="pnote"><strong>Reviving an old mod, converting <span translate="no">Fabric</span> to <span translate="no">Forge</span>, or private closed-source work?</strong> &nbsp;Those are quoted as one flat number for your specific mod, never a stack of surcharges.</p>
     <div class="price-promo">
       <span class="price-promo-tag">Returning clients</span>
-      <span>When your pack moves to a new Minecraft version, re-porting work I originally built for you is <strong>40% of the original price</strong>, and past clients jump the queue.</span>
+      <span>When your pack moves to a new <span translate="no">Minecraft</span> version, re-porting work I originally built for you is <strong>40% of the original price</strong>, and past clients jump the queue.</span>
     </div>
     <div class="paystrip">
       <div class="paystrip-head">How you pay</div>
       <div class="paycards">
         <div class="paycard">
           <svg viewBox="0 0 24 24" fill="none" stroke="#5fa86a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v5c0 4.5-3.4 7.7-8 9-4.6-1.3-8-4.5-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg>
-          <div class="paycard-name">BuiltByBit escrow</div>
+          <div class="paycard-name"><span translate="no">BuiltByBit</span> escrow</div>
           <div class="paycard-sub">Not live yet. Until it is, you pay after you have seen the build run.</div>
         </div>
         <div class="paycard">
           <svg viewBox="0 0 24 24" fill="none" stroke="#5aa84a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h13l-3-3"/><path d="M20 16H7l3 3"/></svg>
-          <div class="paycard-name">Wise</div>
+          <div class="paycard-name"><span translate="no">Wise</span></div>
           <div class="paycard-sub">Low-fee bank transfer, paid from anywhere worldwide.</div>
         </div>
         <div class="paycard">
           <svg viewBox="0 0 24 24" fill="none" stroke="#4a7fc4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/></svg>
-          <div class="paycard-name">PayPal</div>
+          <div class="paycard-name"><span translate="no">PayPal</span></div>
           <div class="paycard-sub">Goods &amp; Services, with buyer protection.</div>
         </div>
       </div>
@@ -2189,7 +2235,7 @@
     <div class="softcta">
       <p><strong>Not sure it can even be done?</strong> Send me the mod link and I'll tell you whether it's possible and what gets in the way. No charge, and no obligation to take it further.</p>
       <div class="softcta-row">
-        <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" class="btn btn-discord">Ask me on Discord</a>
+        <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" class="btn btn-discord">Ask me on <span translate="no">Discord</span></a>
         <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20commission" class="btn btn-ghost">Or email me</a>
       </div>
     </div>
@@ -2206,17 +2252,17 @@
       <div class="faq-item"><button type="button" class="faq-q">Why is 1.20.1 the cheapest lane? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">It sits just below every recent version wall, so it takes the least work. Other versions have to cross walls (networking, data components, worldgen) that genuinely take longer, so they carry a flat premium per wall.</div></div></div>
       <div class="faq-item"><button type="button" class="faq-q">What exactly is a compatibility patch? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">Making two or more mods work together without adding new content. For example: getting one mod's mobs to spawn in another mod's biomes, or fixing a conflict that breaks a feature. Each one is custom, so I quote it by scope.</div></div></div>
       <div class="faq-item"><button type="button" class="faq-q">Is this legal? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">Yes. You pay for my time writing the port, not for distribution rights. I publish only open-source mods or mods with written permission; anything else is delivered privately to whoever holds the right to use it. See the Licenses section below.</div></div></div>
-      <div class="faq-item"><button type="button" class="faq-q">How do I pay safely? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">Wise or PayPal (Goods &amp; Services), wherever you are. I never take Friends &amp; Family, because it's the one payment type with no buyer protection for you. BuiltByBit escrow is coming, but it isn't live yet.</div></div></div>
+      <div class="faq-item"><button type="button" class="faq-q">How do I pay safely? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body"><span translate="no">Wise</span> or <span translate="no">PayPal</span> (Goods &amp; Services), wherever you are. I never take Friends &amp; Family, because it's the one payment type with no buyer protection for you. <span translate="no">BuiltByBit</span> escrow is coming, but it isn't live yet.</div></div></div>
       <div class="faq-item"><button type="button" class="faq-q">How long does it take? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">It depends on the mod. We agree a timeline before I start, but I won't quote a fixed turnaround I can't stand behind. I'd rather under-promise and actually deliver than miss a date.</div></div></div>
-      <div class="faq-item"><button type="button" class="faq-q">What if the port doesn't work? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">You see the build working before you make final payment, so you're never paying for something you haven't seen run. The deliverable is whatever we agree in writing up front, and if a bug inside that agreed scope shows up within 30 days of delivery, I fix it at no charge. After that, or for problems caused by Minecraft updates, other mods, or server changes, it becomes a maintenance job.</div></div></div>
+      <div class="faq-item"><button type="button" class="faq-q">What if the port doesn't work? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">You see the build working before you make final payment, so you're never paying for something you haven't seen run. The deliverable is whatever we agree in writing up front, and if a bug inside that agreed scope shows up within 30 days of delivery, I fix it at no charge. After that, or for problems caused by <span translate="no">Minecraft</span> updates, other mods, or server changes, it becomes a maintenance job.</div></div></div>
       <div class="faq-item"><button type="button" class="faq-q">Can I put the ported mod in my public modpack? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">It depends on the original mod's licence, and I tell you which case you are in before you pay, not after. Open-source: yes, and I publish it with credit to the original author so your pack links to something real. Your own mod, or one where you hold written permission: yes, and I tell you exactly what credit to include. All rights reserved with no permission: no, and I will not take the job on those terms, because the takedown would land on your account and not mine.</div></div></div>
       <div class="faq-item"><button type="button" class="faq-q">Can you leave parts of the mod out, or change what it does? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">Yes, and it is worth asking. A port does not have to be the whole mod: I can drop a feature you do not want, change values like spawn rates, durability or damage, retune or remove effects, and adjust recipes and loot. Tell me when you send it and it goes into the fixed quote, instead of turning into a second job later. The line is between tweaks and a redesign: rebalancing the whole mod is its own job and I quote it separately.</div></div></div>
-      <div class="faq-item"><button type="button" class="faq-q">What's out of scope? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">The mod's original textures and assets always come across with the port. What doesn't: brand-new textures, 3D models or animations, full gameplay or balance redesigns, and ongoing maintenance across future Minecraft versions. Those get quoted separately, so tell me upfront and I'll fold it into the price.</div></div></div>
+      <div class="faq-item"><button type="button" class="faq-q">What's out of scope? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">The mod's original textures and assets always come across with the port. What doesn't: brand-new textures, 3D models or animations, full gameplay or balance redesigns, and ongoing maintenance across future <span translate="no">Minecraft</span> versions. Those get quoted separately, so tell me upfront and I'll fold it into the price.</div></div></div>
     </div>
     <div class="softcta">
       <p>Still got a question? Ask me the awkward one. <strong>I'd rather deal with it now than after you've paid.</strong></p>
       <div class="softcta-row">
-        <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" class="btn btn-discord">Ask me on Discord</a>
+        <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" class="btn btn-discord">Ask me on <span translate="no">Discord</span></a>
         <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20commission" class="btn btn-ghost">Or send an email</a>
       </div>
     </div>
@@ -2284,10 +2330,10 @@
         <figcaption>Me, in the pack I keep for myself.</figcaption>
       </figure>
       <div class="about-copy">
-      <p>Like a lot of pack builders, I spent years waiting on mods that never got updated. Eventually I started porting them myself, and after enough of them on Forge 1.20.1 I know the API cold: the event handlers, the Gradle quirks, the mapping gaps between versions. Most of the people who write to me run a private SMP with friends, or keep a modpack alive that one dead mod is holding hostage.</p>
+      <p>Like a lot of pack builders, I spent years waiting on mods that never got updated. Eventually I started porting them myself, and after enough of them on <span translate="no">Forge</span> 1.20.1 I know the API cold: the event handlers, the <span translate="no">Gradle</span> quirks, the mapping gaps between versions. Most of the people who write to me run a private SMP with friends, or keep a modpack alive that one dead mod is holding hostage.</p>
       <details class="more">
         <summary>Read more about how I work</summary>
-        <p>I started doing this for other people because the market has a hole in the middle. The established devs won't touch small commissions, and the cheap shops skip the licence work until a DMCA takedown lands on your CurseForge account. So I quote a fixed price, check the licence first, and put it <strong>all in writing</strong>.</p>
+        <p>I started doing this for other people because the market has a hole in the middle. The established devs won't touch small commissions, and the cheap shops skip the licence work until a DMCA takedown lands on your <span translate="no">CurseForge</span> account. So I quote a fixed price, check the licence first, and put it <strong>all in writing</strong>.</p>
       </details>
       </div>
     </div>
@@ -2329,9 +2375,9 @@
     <div class="contact-cards">
       <div class="contact-card contact-card--primary">
         <div class="ci ci--discord"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4V5z"/><circle cx="9.5" cy="10.5" r="0.6" fill="currentColor" stroke="none"/><circle cx="14.5" cy="10.5" r="0.6" fill="currentColor" stroke="none"/></svg></div>
-        <h3>Discord (best way to reach me)</h3>
+        <h3><span translate="no">Discord</span> (best way to reach me)</h3>
         <p>Message me or open a ticket on my server. Drop the mod link and what you need, and we scope it together. This is where I'm quickest to reply.</p>
-        <a href="https://discord.gg/EV8F84fheJ" class="btn btn-discord contact-btn" target="_blank" rel="noopener noreferrer"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg>Open my Discord</a>
+        <a href="https://discord.gg/EV8F84fheJ" class="btn btn-discord contact-btn" target="_blank" rel="noopener noreferrer"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg>Open my <span translate="no">Discord</span></a>
       </div>
       <div class="contact-card">
         <div class="ci ci--gmail"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg></div>
@@ -2341,7 +2387,7 @@
       </div>
       <div class="contact-card contact-card--soon">
         <div class="ci ci--bbb"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v5c0 4.5-3.4 7.7-8 9-4.6-1.3-8-4.5-8-9V6l8-3z"/></svg></div>
-        <h3>BuiltByBit · escrow</h3>
+        <h3><span translate="no">BuiltByBit</span> · escrow</h3>
         <p>Not live yet. Until it is, you see the build working before you pay.</p>
       </div>
     </div>
@@ -2358,7 +2404,7 @@
     <p class="sub">A private group I am putting together for people who draw. Nothing to do with commissions.</p>
     <div class="coll-body">
       <p>The idea is specific: <strong>a place to put concept art up and have someone actually look at it.</strong> Creatures, weapons, buildings, whatever you are working on. Half-finished is fine, that is rather the point.</p>
-      <p>I build modpacks, so a lot of what I bring will be Minecraft-shaped, but <strong>you do not have to draw anything Minecraft</strong> to be in it. There is no work attached and nobody is hiring. If a commission ever comes out of a conversation in there, it is yours and it is between you and whoever asks.</p>
+      <p>I build modpacks, so a lot of what I bring will be <span translate="no">Minecraft</span>-shaped, but <strong>you do not have to draw anything <span translate="no">Minecraft</span></strong> to be in it. There is no work attached and nobody is hiring. If a commission ever comes out of a conversation in there, it is yours and it is between you and whoever asks.</p>
       <p>It stays private and small on purpose. Everyone gets in by invitation.</p>
     </div>
     <div class="coll-cta">
@@ -2402,7 +2448,7 @@
       </div>
 
       <div class="port-card">
-        <h3 class="port-name">Mixins that quietly do not load</h3>
+        <h3 class="port-name"><span translate="no">Mixins</span> that quietly do not load</h3>
         <p class="port-desc">Repackaging a jar can drop the manifest entry that declares its mixin configs. <span translate="no">Forge</span> then loads the mod without complaint and none of the mixins apply. The mod is installed, part of its behaviour is missing, and nothing in the log says so.</p>
         <p class="port-footer-note"><strong>Proof.</strong> Same class of bug, same answer: it became a check. The manifest one in the <a href="#portfolio">five checks I run</a> is this exact bug, turned into something a script can catch. They are a colander, not a proof. The bone check only sees literal names, and it needs a <span translate="no">JDK</span> to read the bytecode.</p>
       </div>
@@ -2417,7 +2463,7 @@
         <h2>I only port what I have rights to port</h2>
     <p class="sub">Most devs in this space ignore licensing. I don't, because a DMCA takedown or account ban hits your account harder than it hits me.</p>
     <div class="legal-rows">
-      <div class="legal-row"><h3>Public: open-source &amp; compatibility</h3><p>Open-source mods (MIT · Apache · LGPL), mods with written permission, and compatibility add-ons (my own code, depending on mods you install yourself) get published to CurseForge &amp; Modrinth, with full credit to the original authors.</p></div>
+      <div class="legal-row"><h3>Public: open-source &amp; compatibility</h3><p>Open-source mods (MIT · Apache · LGPL), mods with written permission, and compatibility add-ons (my own code, depending on mods you install yourself) get published to <span translate="no">CurseForge</span> &amp; <span translate="no">Modrinth</span>, with full credit to the original authors.</p></div>
       <div class="legal-row"><h3>Private: closed-source mods</h3><p>Most requested mods are closed-source. You bring one you have the right to use; I modify it for you and deliver privately, to you only, never published.</p></div>
       <div class="legal-row"><h3>What I won't do</h3><p>Publicly redistribute a closed-source (All Rights Reserved) mod without written permission from the author. I don't bend on this.</p></div>
     </div>
@@ -2427,11 +2473,11 @@
       <details class="legal-doc" id="terms">
         <summary>Terms of Service</summary>
         <div class="legal-doc-body">
-          <p><strong>Service.</strong> Modwright provides Minecraft mod commission work: porting, backporting, reviving, loader conversion, compatibility patches, maintenance and optimization.</p>
+          <p><strong>Service.</strong> <span translate="no">Modwright</span> provides <span translate="no">Minecraft</span> mod commission work: porting, backporting, reviving, loader conversion, compatibility patches, maintenance and optimization.</p>
           <p><strong>Quotes &amp; pricing.</strong> The <span translate="no">Angel Engine</span> gives a non-binding ballpark. The final price is fixed and agreed in writing before any work begins. A deposit may be requested for larger jobs, and a minimum charge applies; the <span translate="no">Angel Engine</span> shows it.</p>
-          <p><strong>Payment.</strong> Through Wise or PayPal, or BuiltByBit escrow where available, as agreed. With escrow, funds release on delivery.</p>
+          <p><strong>Payment.</strong> Through <span translate="no">Wise</span> or <span translate="no">PayPal</span>, or <span translate="no">BuiltByBit</span> escrow where available, as agreed. With escrow, funds release on delivery.</p>
           <p><strong>Delivery &amp; timelines.</strong> You receive a working, boot-tested build. Timelines are honest estimates, not promises, and I don't commit to hard deadlines.</p>
-          <p><strong>Scope &amp; corrections.</strong> The deliverable is the working build described in our written agreement, which you review before final payment. If a bug inside that agreed scope shows up within 30 days of delivery, I fix it at no charge; where a correction is not possible, I refund the affected amount. After 30 days, or for breakage caused by Minecraft updates, other mods, server setup, or changes beyond the agreed scope, fixes are quoted as maintenance work.</p>
+          <p><strong>Scope &amp; corrections.</strong> The deliverable is the working build described in our written agreement, which you review before final payment. If a bug inside that agreed scope shows up within 30 days of delivery, I fix it at no charge; where a correction is not possible, I refund the affected amount. After 30 days, or for breakage caused by <span translate="no">Minecraft</span> updates, other mods, server setup, or changes beyond the agreed scope, fixes are quoted as maintenance work.</p>
           <p><strong>Your responsibilities.</strong> You must have the right to commission work on the mod you submit: it's open-source, your own, or you have the author's permission. You are responsible for how you use the delivered files.</p>
           <p><strong>Rights &amp; redistribution.</strong> You pay for my time, not for distribution rights. Closed-source (ARR) work is delivered privately to you only and is never published. I will not publicly redistribute an ARR mod without the author's written permission.</p>
           <p><strong>Liability.</strong> Work is provided “as is.” To the extent permitted by law, I am not liable for indirect or consequential damages, and total liability is limited to the amount paid for the job in question.</p>
@@ -2445,7 +2491,7 @@
           <p><strong>Short version:</strong> this is a static page with no accounts and no tracking cookies. I only ever see what you choose to send me.</p>
           <p><strong>What I collect.</strong> Only the information you include when you contact me: your email address and the commission details you provide. The <span translate="no">Angel Engine</span> runs entirely in your browser; nothing you enter there leaves your device until you click to email it.</p>
           <p><strong>How I use it.</strong> Solely to reply to you and carry out the work you ask for. I never sell, rent, or share your information.</p>
-          <p><strong>Third parties.</strong> If you pay, the payment runs through your chosen provider (BuiltByBit, Wise, etc.) under their own policies. Email is handled through Gmail.</p>
+          <p><strong>Third parties.</strong> If you pay, the payment runs through your chosen provider (<span translate="no">BuiltByBit</span>, <span translate="no">Wise</span>, etc.) under their own policies. Email is handled through Gmail.</p>
           <p><strong>Analytics.</strong> I don't use tracking cookies. If I ever add analytics, it'll be cookieless and won't collect personal data.</p>
           <p><strong>Retention &amp; your choices.</strong> I keep commission correspondence only as long as needed for the work and records, and you can ask me to delete your data at any time.</p>
           <p class="legal-doc-note">Questions? Email modwrightstudios@gmail.com. Last updated June 2026.</p>
@@ -2455,9 +2501,9 @@
         <summary>Licenses &amp; attributions</summary>
         <div class="legal-doc-body">
           <p><strong>Mods.</strong> I only work on mods you have the right to modify: open-source, your own, or with the author's permission. Open-source ports I publish keep the original licence and credit the original author; closed-source work stays private.</p>
-          <p><strong>This website.</strong> Design, copy and graphics are original work © Modwright. Illustrations and icons are hand-built inline SVG; no third-party images are used.</p>
+          <p><strong>This website.</strong> Design, copy and graphics are original work © <span translate="no">Modwright</span>. Illustrations and icons are hand-built inline SVG; no third-party images are used.</p>
           <p><strong>Fonts.</strong> “Space Grotesk” is used under the SIL Open Font License.</p>
-          <p><strong>Trademarks.</strong> Minecraft is a trademark of Mojang Studios. Forge, NeoForge, Fabric, CurseForge, Modrinth and BuiltByBit belong to their respective owners. Their names are used here for identification only. This is an independent service with no affiliation or endorsement.</p>
+          <p><strong>Trademarks.</strong> <span translate="no">Minecraft</span> is a trademark of <span translate="no">Mojang Studios</span>. <span translate="no">Forge</span>, <span translate="no">NeoForge</span>, <span translate="no">Fabric</span>, <span translate="no">CurseForge</span>, <span translate="no">Modrinth</span> and <span translate="no">BuiltByBit</span> belong to their respective owners. Their names are used here for identification only. This is an independent service with no affiliation or endorsement.</p>
           <p class="legal-doc-note">Last updated June 2026.</p>
         </div>
       </details>
@@ -2467,7 +2513,7 @@
 
 <footer>
   <div class="sig-hogs" aria-hidden="true"></div>
-  <div><strong style="color:var(--text-soft)">Modwright</strong> <span class="sep">·</span> Forge 1.20.1 mod porting <span class="sep">·</span> <a href="mod-porting-cost.html">What a port costs</a> <span class="sep">·</span> <a href="fabric-to-forge-1-20-1.html">Fabric to Forge: what breaks</a> <span class="sep">·</span> <a href="#terms">Terms</a> <span class="sep">·</span> <a href="#privacy">Privacy</a> <span class="sep">·</span> <a href="#licenses">Licenses</a> <span class="sep">·</span> <a href="mailto:modwrightstudios@gmail.com">Contact</a></div>
+  <div><strong style="color:var(--text-soft)"><span translate="no">Modwright</span></strong> <span class="sep">·</span> <span translate="no">Forge</span> 1.20.1 mod porting <span class="sep">·</span> <a href="mod-porting-cost.html">What a port costs</a> <span class="sep">·</span> <a href="fabric-to-forge-1-20-1.html"><span translate="no">Fabric</span> to <span translate="no">Forge</span>: what breaks</a> <span class="sep">·</span> <a href="#terms">Terms</a> <span class="sep">·</span> <a href="#privacy">Privacy</a> <span class="sep">·</span> <a href="#licenses">Licenses</a> <span class="sep">·</span> <a href="mailto:modwrightstudios@gmail.com">Contact</a></div>
 </footer>
 
 <script>
