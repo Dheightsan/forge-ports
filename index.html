@@ -1943,13 +1943,18 @@
         <details class="more more--card">
           <summary>Reading the split</summary>
         <p><span translate="no">Fresh Animations</span> on almost every creature, <span translate="no">Epic Fight</span> on my character alone. Taking a mob off <span translate="no">Epic Fight</span> needs two changes, not one: a datapack entry stops its combat patch, but the mob still draws through <span translate="no">Epic Fight</span>'s own renderer, so <span translate="no">Fresh Animations</span> never gets a look in. The other half is a script that pulls the mob out of that renderer map on world load. I found the split by decompiling the render engine, not by guessing.</p>
-        <p class="mp-catch"><strong>The half that hid the longest.</strong> The datapack was not loading at all. It was missing its <code>pack.mcmeta</code>, so the loader skipped the entire folder and said nothing about it in the log. Everything was configured correctly and <span translate="no">Epic Fight</span> kept winning anyway. Both halves now name the same 24 mobs, and they still match today.</p>
+        <p class="mp-catch"><strong>The half that hid the longest.</strong> The datapack was not loading at all. It was missing its <code>pack.mcmeta</code>, so the loader skipped the entire folder and said nothing about it in the log. Both halves now name the same 24 mobs, and they still match today.</p>
         </details>
         <p class="mp-credit"><a href="https://modrinth.com/resourcepack/fresh-animations" target="_blank" rel="noopener noreferrer"><span translate="no">Fresh Animations</span></a> is by <span translate="no">FreshLX</span>, <a href="https://modrinth.com/mod/epic-fight" target="_blank" rel="noopener noreferrer"><span translate="no">Epic Fight</span></a> by its own team. All I did was make them share a world.</p>
       </article>
 
       <article class="mp-item">
         <div class="mp-head">
+          <div class="mp-logos">
+            <img class="mp-logo" src="logo-geckolib.webp" width="96" height="96" alt="" aria-hidden="true" loading="lazy" decoding="async">
+            <img class="mp-logo" src="logo-azurelib.webp" width="96" height="96" alt="" aria-hidden="true" loading="lazy" decoding="async">
+            <img class="mp-logo" src="logo-citadel.webp" width="96" height="96" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          </div>
           <h3>I measured which mods animate themselves instead of assuming</h3>
         </div>
         <p class="mp-hook"><strong>48% of them were already animated</strong> and never needed <span translate="no">Fresh Animations</span> at all. I scanned the bytecode of <strong>645 <span translate="no">jars</span></strong> instead of guessing.</p>
