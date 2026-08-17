@@ -1016,20 +1016,24 @@
     #portfolio { background: var(--surface); border-top: 1px solid var(--border); }
     .port-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(252px, 1fr)); gap: 1.1rem; margin-top: 2.75rem; }
     .port-card { background: linear-gradient(180deg, #1a1814, #131210); padding: var(--pad-card); border: 1px solid var(--border); border-radius: var(--radius-lg); position: relative; overflow: hidden; box-shadow: inset 0 1px 0 rgba(234,228,214,0.04), 0 8px 24px -16px rgba(0,0,0,0.7); }
-    /* TIRA DE MODS PUBLICOS. Con dos fichas no hay nada que deslizar, asi que
-       no se monta un carrusel de flechas y puntitos: eso es JS, es la firma de
-       una plantilla, y con 2 elementos se ve vacio. Es una fila que se desliza
-       SOLA cuando no cabe (scroll-snap nativo, cero JS): hoy con una entrada se
-       queda quieta, y el dia que haya cinco se desliza con el dedo en el movil.
-       La imagen es el logo OFICIAL del mod, bajado de CurseForge, y el bloque
-       entero es el enlace: josda pidio ir directo a ver el mod. */
-    .port-live-row { display: flex; gap: 0.7rem; overflow-x: auto; scroll-snap-type: x proximity; margin: 0 0 1rem; padding-bottom: 0.2rem; scrollbar-width: thin; }
-    .port-live { scroll-snap-align: start; flex: 0 0 auto; display: flex; align-items: center; gap: 0.7rem; max-width: 100%; padding: 0.5rem 0.85rem 0.5rem 0.5rem; border-radius: var(--radius); border: 1px solid var(--border); background: var(--surface2); text-decoration: none; transition: border-color 0.15s, background 0.15s; }
-    .port-live:hover { text-decoration: none; border-color: var(--copper); background: var(--surface); }
-    .port-live img { width: 46px; height: 46px; border-radius: 6px; flex-shrink: 0; }
-    .port-live-t { display: flex; flex-direction: column; line-height: 1.3; min-width: 0; }
-    .port-live-t strong { font-size: 0.86rem; color: var(--text); }
-    .port-live-t em { font-style: normal; font-size: 0.76rem; color: var(--text-mute); }
+    /* MOD PUBLICADO: EL TITULO ES EL ENLACE, Y HAY UNA SOLA IMAGEN.
+       Antes habia el icono del jar arriba y, debajo, un boton con el logo
+       oficial del MISMO mod: la misma imagen dos veces con 20 px de diferencia.
+       josda: "se ve duplicado ahi... deja solo una y que al tocarla te lleve a
+       la pagina del mod". Asi que el bloque del titulo pasa a ser el enlace y
+       la imagen que se queda es la OFICIAL de CurseForge, no el icono del jar:
+       es la que el visitante va a reconocer cuando llegue a la otra pagina.
+       Se toca donde el ojo ya esta mirando y no hace falta ningun boton. */
+    .port-title--link { text-decoration: none; color: inherit; }
+    .port-title--link:hover { text-decoration: none; }
+    .port-title--link:hover .port-name { color: var(--copper); }
+    .port-title--link:hover .port-icon--tile { border-color: var(--copper); }
+    .port-title-t { display: flex; flex-direction: column; align-items: flex-start; gap: 0.28rem; min-width: 0; }
+    /* La pastilla dice DONDE vive el mod, nada mas. El texto que habia aqui
+       ("I am a credited author on the official page") lo quito josda por
+       fanfarron, y ademas repetia lo que ya decia el pie de la ficha. */
+    .port-go { font-size: 0.7rem; color: var(--text-mute); border: 1px solid var(--border); border-radius: 999px; padding: 0.12rem 0.5rem; white-space: nowrap; transition: border-color 0.15s, color 0.15s; }
+    .port-title--link:hover .port-go { border-color: var(--copper); color: var(--copper); }
     .port-img { height: 132px; border-radius: var(--radius); margin-bottom: 1rem; display: grid; place-items: center; text-align: center; padding: 0.5rem 1rem; background: linear-gradient(135deg, var(--surface2), var(--bg)); border: 1px dashed var(--border-lt); }
     .port-img span { color: var(--text-mute); font-size: 0.78rem; }
     .port-card-head { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.9rem; flex-wrap: wrap; }
@@ -1051,6 +1055,12 @@
        sin esquinas ni linea parecen una pegatina encima de la tarjeta. Siguen pixelados:
        llevan sombreado y despistan, pero son pixel art y suavizarlos los empasta. */
     .port-icon--tile { border-radius: 9px; border: 1px solid var(--border); }
+    /* El logo OFICIAL de CurseForge, no el icono del jar. Va a 54 px y SIN
+       pixelar: se midio y su rejilla tiene periodo 1, o sea que no es un pixel
+       art escalado limpio sino una imagen suavizada, y pixelarla solo le anade
+       escalones. El archivo se guarda a 108 para que se vea fino en pantallas
+       de doble densidad. */
+    .port-icon--cf { width: 54px; height: 54px; image-rendering: auto; }
     .port-desc { color: var(--text-soft); font-size: 0.84rem; line-height: 1.6; margin-bottom: 0.9rem; }
     .port-meta { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.9rem; }
     .port-ver, .port-origin { font-size: 0.72rem; color: var(--text-mute); background: var(--surface2); border: 1px solid var(--border); border-radius: 999px; padding: 0.2rem 0.55rem; }
@@ -1761,16 +1771,13 @@
           </div>
           <span class="port-status">Live on CurseForge</span>
         </div>
-        <div class="port-title">
-          <img class="port-icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAAeklEQVR42mNgwA7+QzEDAwMDAxM2BUnLbBiSltkwICvEZsJ/q0pjuGmMyAqOqFoyMDAwMBx9+ZSh/NMjuDwTsgI9EwW4jk4+Obh1KG66dOYBw9GXTzHcwAJjIEue+PKHwYIHLoXqpkAmKQYGBgYGCx4WFDcxYvEdhgEAiSYnbgeFKKAAAAAASUVORK5CYII=" width="45" height="45" alt="" loading="lazy" decoding="async">
-          <h3 class="port-name" translate="no">Mindful Eating</h3>
-        </div>
-        <div class="port-live-row">
-          <a class="port-live" href="https://www.curseforge.com/minecraft/mc-mods/mindful-eating" target="_blank" rel="noopener noreferrer">
-            <img src="mod-mindful-eating.webp" width="256" height="256" alt="" loading="lazy" decoding="async">
-            <span class="port-live-t"><strong>View it on <span translate="no">CurseForge</span></strong><em>I am a credited author on the official page</em></span>
-          </a>
-        </div>
+        <a class="port-title port-title--link" href="https://www.curseforge.com/minecraft/mc-mods/mindful-eating" target="_blank" rel="noopener noreferrer">
+          <img class="port-icon port-icon--cf" src="mod-mindful-eating.webp" width="108" height="108" alt="" loading="lazy" decoding="async">
+          <span class="port-title-t">
+            <h3 class="port-name" translate="no">Mindful Eating</h3>
+            <span class="port-go">Open on <span translate="no">CurseForge</span> &rarr;</span>
+          </span>
+        </a>
         <p class="port-desc">Forward-port of <span translate="no">camcam_burger</span>'s food-variety mod, delivered to its creator for the mod's official page.</p>
         <dl class="port-stats">
           <div><dt>Jump</dt><dd>1.20.1 → 1.21.1</dd></div>
@@ -1782,7 +1789,7 @@
           <summary>What it took</summary>
           <p>Rebuilt the per-player data system on native data attachments, dropping the <span translate="no">Blueprint</span> dependency at the creator's suggestion, and moved the food-stat tweaks to the 1.21 component system. Boot-tested in-game, in survival.</p>
         </details>
-        <p class="port-link-ph port-link-ph--autor"><img class="ch ch--autor" src="h9478c-12.webp" width="256" height="236" alt="" aria-hidden="true" loading="lazy" decoding="async"><span>It is live on the mod's official page, and I am listed there as one of its authors.</span></p>
+        <p class="port-link-ph port-link-ph--autor"><img class="ch ch--autor" src="h9478c-12.webp" width="256" height="236" alt="" aria-hidden="true" loading="lazy" decoding="async"><span>Original by <span translate="no">camcam_burger</span>. The page above is his.</span></p>
       </div>
 
       <div class="port-card">
@@ -1793,10 +1800,13 @@
           </div>
           <span class="port-status">Reviewed by its creator</span>
         </div>
-        <div class="port-title">
-          <img class="port-icon port-icon--tile" src="data:image/png;base64,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" width="45" height="45" alt="" loading="lazy" decoding="async">
+        <a class="port-title port-title--link" href="https://www.curseforge.com/minecraft/mc-mods/puppy-paws" target="_blank" rel="noopener noreferrer">
+          <img class="port-icon port-icon--cf port-icon--tile" src="mod-puppy-paws.webp" width="108" height="108" alt="" loading="lazy" decoding="async">
+          <span class="port-title-t">
           <h3 class="port-name" translate="no">Puppy Paws</h3>
-        </div>
+            <span class="port-go">Open on <span translate="no">CurseForge</span> &rarr;</span>
+          </span>
+        </a>
         <p class="port-desc">Loader conversion of <span translate="no">Shaunt</span> and <span translate="no">Caf&eacute;</span>'s companion-dog mod. <strong>No public source</strong>, so I rebuilt it from the compiled jar.</p>
         <dl class="port-stats">
           <div><dt>Loader</dt><dd>Fabric &rarr; Forge</dd></div>
@@ -1808,7 +1818,7 @@
           <summary>What it took</summary>
           <p>Five breeds, twelve coat variants, the golden retriever's digging behaviour and the <span translate="no">Melody</span> disc, all rebuilt on <span translate="no">Forge</span> registries and events, with spawns moved to data-driven biome modifiers. I diffed the rebuild back against the original jar, boot-tested it on a dedicated server, and its creators reviewed the result.</p>
         </details>
-        <p class="port-link-ph port-link-ph--autor"><img class="ch ch--autor" src="hshaun-11.webp" width="256" height="235" alt="" aria-hidden="true" loading="lazy" decoding="async"><span>No download here: the mod is its creators' to publish, not mine. Original by <span translate="no">Shaunt</span>, <span translate="no">Caf&eacute;</span> and <span translate="no">@Hecco</span>.</span></p>
+        <p class="port-link-ph port-link-ph--autor"><img class="ch ch--autor" src="hshaun-11.webp" width="256" height="235" alt="" aria-hidden="true" loading="lazy" decoding="async"><span>Original by <span translate="no">Shaunt</span>, <span translate="no">Caf&eacute;</span> and <span translate="no">@Hecco</span>. Nothing downloads from here: the page above is theirs.</span></p>
       </div>
 
       <div class="port-card port-card--cta">
