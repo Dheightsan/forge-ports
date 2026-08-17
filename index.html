@@ -535,6 +535,30 @@
        se sube solo porque ya esta en el repo. Al cambiarle el nombre hay que
        meterlo en la lista EXTRA del desplegador o queda perfecto en local y
        roto en vivo, que es exactamente lo que paso con hogs-ink.png. */
+
+    /* EL H1 ES UNA IMAGEN, y el texto sigue debajo. josda quiso el titular
+       hecho en Blockbench; el H1 es la senal mas fuerte que lee un buscador y
+       esta web todavia no esta indexada, asi que perderlo saldria caro. La
+       solucion no es un truco: las palabras del <span> y las del dibujo son
+       LAS MISMAS, solo que unas las lee Google y un lector de pantalla y las
+       otras las ve el visitante. La imagen va aria-hidden y con alt vacio para
+       que nadie oiga el titular dos veces.
+       El dibujo se genera con tools_titulo_hero.py. Colores HORNEADOS dentro:
+       cambiar un token de cargador NO lo actualiza. */
+    /* EN ESCRITORIO manda el dibujo y el texto se oculta a la vista (Google y
+       los lectores de pantalla lo siguen leyendo).
+       EN MOVIL se invierte, y no es un capricho: medido a 320 px el dibujo cae
+       a 272x74 px para TRES lineas, o sea letras de 16 px. El texto a ese ancho
+       usa 8vw = 25 px y ademas reflowea solo. Una imagen de texto no se puede
+       reajustar; el texto si. Por eso el corte esta en 700 px. */
+    .h1-texto { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0; }
+    #hero h1.hero-h1-img { max-width: 730px; margin-bottom: 1.1rem; text-shadow: none; }
+    #hero h1.hero-h1-img img { display: block; width: 100%; height: auto; }
+    @media (max-width: 700px) {
+      .h1-texto { position: static; width: auto; height: auto; margin: 0; overflow: visible; clip: auto; clip-path: none; white-space: normal; }
+      #hero h1.hero-h1-img img { display: none; }
+      #hero h1.hero-h1-img { font-size: clamp(1.95rem, 8vw, 2.6rem); }
+    }
     .brand-cuy { width: 60px; height: 60px; flex-shrink: 0; background-image: url('logo-cuy-v3.webp'); background-repeat: no-repeat; background-size: contain; background-position: center; }
     .brand .ph { color: var(--text-mute); font-weight: 600; font-size: 0.95rem; }
     .nav-links { display: flex; gap: 1.6rem; list-style: none; align-items: center; margin-left: clamp(0rem, calc((100vw - 880px) * 1), 2rem); }
@@ -1591,7 +1615,7 @@
     <div class="hero-copy">
     <img class="hero-title" src="titulo-modwright.webp" width="1024" height="97" alt="Modwright Studios" fetchpriority="high" decoding="async">
     <div class="badge"><span class="badge-dot"></span>Open for commissions</div>
-    <h1><span class="w-port">Port,</span> <span class="w-back">backport</span> <span class="w-amp">&amp;</span> <span class="w-rev">revive</span> <span class="mc" translate="no" data-word="Minecraft">Minecraft</span> <span class="w-mods">mods,</span><br><span class="w-ver">any version,</span> <span class="w-load">any loader</span></h1>
+    <h1 class="hero-h1-img"><span class="h1-texto">Port, backport &amp; revive <span class="mc" translate="no" data-word="Minecraft">Minecraft</span> mods, any version, any loader</span><img src="titulo-hero.webp" width="1640" height="444" alt="" aria-hidden="true" fetchpriority="high" decoding="async"></h1>
     <p class="hero-services">Plus compatibility patches, maintenance and optimization.</p>
     <p class="hero-who">I'm <strong>josda</strong>. I build modpacks; I got fed up with mods dying off on old versions, so I started porting them myself.</p>
     <p class="hero-desc">
