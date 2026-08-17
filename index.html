@@ -554,11 +554,30 @@
     .h1-texto { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0; }
     #hero h1.hero-h1-img { max-width: 730px; margin-bottom: 1.1rem; text-shadow: none; }
     #hero h1.hero-h1-img img { display: block; width: 100%; height: auto; }
+    /* EL TITULAR VUELVE A SER TEXTO en dos casos, y por el mismo motivo: una
+       imagen no se puede reajustar ni traducir.
+
+       1. MOVIL. Medido a 320 px, el dibujo cae a 272x74 para tres lineas, o sea
+          letras de 16 px. El texto usa 8vw = 25 px y ademas reflowea.
+
+       2. PAGINA TRADUCIDA. Esto lo pidio josda: la web esta en ingles y mucha
+          gente la abre con el traductor. El dibujo dice "Port, backport &
+          revive" en ingles PARA SIEMPRE, porque es un dibujo. Chrome y el
+          traductor de Google marcan el documento con la clase translated-ltr
+          (o rtl) al traducirlo, asi que ahi se apaga el dibujo y sale el texto,
+          que si se traduce. En español el visitante lee su titular; en ingles
+          ve el de Blockbench. */
     @media (max-width: 700px) {
       .h1-texto { position: static; width: auto; height: auto; margin: 0; overflow: visible; clip: auto; clip-path: none; white-space: normal; }
       #hero h1.hero-h1-img img { display: none; }
       #hero h1.hero-h1-img { font-size: clamp(1.95rem, 8vw, 2.6rem); }
     }
+    html.translated-ltr .h1-texto,
+    html.translated-rtl .h1-texto { position: static; width: auto; height: auto; margin: 0; overflow: visible; clip: auto; clip-path: none; white-space: normal; }
+    html.translated-ltr #hero h1.hero-h1-img img,
+    html.translated-rtl #hero h1.hero-h1-img img { display: none; }
+    html.translated-ltr #hero h1.hero-h1-img,
+    html.translated-rtl #hero h1.hero-h1-img { font-size: clamp(2.2rem, 5vw, 3.6rem); }
     .brand-cuy { width: 60px; height: 60px; flex-shrink: 0; background-image: url('logo-cuy-v3.webp'); background-repeat: no-repeat; background-size: contain; background-position: center; }
     .brand .ph { color: var(--text-mute); font-weight: 600; font-size: 0.95rem; }
     .nav-links { display: flex; gap: 1.6rem; list-style: none; align-items: center; margin-left: clamp(0rem, calc((100vw - 880px) * 1), 2rem); }
@@ -1637,7 +1656,7 @@
     <div class="hero-copy">
     <img class="hero-title" src="titulo-modwright.webp" width="1024" height="97" alt="Modwright Studios" fetchpriority="high" decoding="async">
     <div class="badge"><span class="badge-dot"></span>Open for commissions</div>
-    <h1 class="hero-h1-img"><span class="h1-texto">Port, backport &amp; revive <span class="mc" translate="no" data-word="Minecraft">Minecraft</span> mods, any version, any loader</span><img src="titulo-hero.webp" width="1640" height="444" alt="" aria-hidden="true" fetchpriority="high" decoding="async"></h1>
+    <h1 class="hero-h1-img"><span class="h1-texto">Port, backport &amp; revive <span class="mc" translate="no" data-word="Minecraft">Minecraft</span> mods, any version, any loader</span><img src="titulo-hero.webp" width="1200" height="325" alt="" aria-hidden="true" fetchpriority="high" decoding="async"></h1>
     <p class="hero-services">Plus compatibility patches, maintenance and optimization.</p>
     <p class="hero-who">I'm <strong>josda</strong>. I build modpacks; I got fed up with mods dying off on old versions, so I started porting them myself.</p>
     <p class="hero-desc">
