@@ -1351,7 +1351,7 @@
     /* Dos erizos: firma del pie. Imagen original de josda (simbolizan a un
        amigo y su implicacion), fondo recortado para integrarse en ambos temas. */
     .sig-hogs { display: block; width: 260px; height: 131px; margin: 0 auto 1.1rem;
-      background: url(hogs.png) center/contain no-repeat; }
+      background: url(hogs.webp) center/contain no-repeat; }
     /* En oscuro la version a color era lo unico de la pagina que no pertenecia:
        un bulto crema sobre casi negro. Mismo dibujo, aplanado al tono del pie. */
     @supports ((mask-image: url(#m)) or (-webkit-mask-image: url(#m))) {
@@ -1579,7 +1579,7 @@
        son los AUTORES, y una cara junto a su nombre dice lo que un personaje
        flotando en el borde no dice. Van en el flujo (`position: static`), asi
        que no pueden pisar texto por definicion; `.ch` los pone en absolute y
-       hay que deshacerlo aqui o se van a la esquina de la ficha. */
+       hay que deshacerlo aqui o se van a la esquina de la ficha.
        Va FLOTADA y no en una fila flex: la ficha deja ~310 px de contenido, y
        en fila el texto se queda con 200 y el credito de Puppy Paws se parte en
        cuatro tiras. Flotando, el texto la rodea y si algun dia crece sigue por
