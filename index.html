@@ -836,7 +836,12 @@
 
     /* ── ESTIMATOR ── */
     #estimator { border-top: 1px solid var(--border); }
-    .estimator { margin-top: 2.75rem; display: grid; grid-template-columns: 1.3fr 1fr; gap: 1.5rem; align-items: start; }
+    /* `minmax(0, ...)` en las dos columnas: un `1fr` pelado tiene como minimo el
+       min-content de lo que lleva dentro, asi que no encoge por debajo de su
+       palabra o su boton mas ancho. Con el texto en español los botones del
+       motor se salian de la pantalla a 320, 375 y 414 px. Mismo fallo que tenia
+       `.mp-list`. */
+    .estimator { margin-top: 2.75rem; display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 1.5rem; align-items: start; }
     .est-form { background: linear-gradient(180deg, #1a1814, #131210); padding: var(--pad-card); border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: inset 0 1px 0 rgba(234,228,214,0.04), 0 8px 24px -16px rgba(0,0,0,0.7); }
     /* Elegir Compatibilidad/Mantenimiento/Optimizacion hace desaparecer tres
        preguntas y aparecer otra de golpe, sin explicacion: el formulario cambia de
@@ -924,7 +929,12 @@
     /* La frase va en HTML y no dentro del SVG: asi usa la tipografia real del
        sitio, escala como el resto del texto y la lee un buscador. */
     .loomd-claim { margin: 0.4rem auto 0; max-width: 560px; text-align: center; font-family: var(--font-display); font-weight: 700; font-size: 1.22rem; letter-spacing: -0.01em; color: var(--text); }
-    .loomd-wrap figcaption { margin-top: 1.2rem; font-size: 0.85rem; line-height: 1.65; color: var(--text-mute); max-width: 62ch; }
+    /* La afirmacion secundaria del diagrama. Era un <figcaption> y ahora es un
+       <p>: no describia el dibujo, decia lo que hace josda, y un pie de foto
+       debajo de una imagen es justo lo que el no quiere. Se centra como su
+       hermana de arriba, en vez de alinearse a la izquierda como hacia el pie. */
+    .loomd-claim--sub { margin-top: 0.7rem; font-family: inherit; font-weight: 400;
+      font-size: 0.9rem; line-height: 1.6; color: var(--text-mute); max-width: 46ch; }
     .est-opt .loglyph { width: 16px; height: 16px; margin-right: 0.5rem; vertical-align: middle; }
     .est-opt.brand-forge .loglyph { color: #b9b3a7; }
     .est-opt.brand-neoforge .loglyph { color: var(--terracotta); }
@@ -1124,7 +1134,12 @@
        a la altura real, asi que las respuestas cortas terminaban antes de tiempo y
        las largas daban un tiron al final. Con 0fr->1fr la altura real es la que se
        anima, no hay techo que ajustar y no hay nada que se pueda cortar. */
-    .faq-a { display: grid; grid-template-rows: 0fr; overflow: hidden; transition: grid-template-rows 0.25s ease; padding: 0 1.3rem; color: var(--text-soft); font-size: 0.88rem; line-height: 1.65; }
+    /* Lleva `grid-template-columns` aunque la rejilla se use para las FILAS (el
+       acordeon anima `0fr -> 1fr`). Sin declararla, la columna implicita queda en
+       `auto`, cuyo minimo es el min-content: la respuesta no encogia por debajo
+       de su palabra mas larga y en español se salia de la pantalla. Tercera vez
+       el mismo fallo en esta hoja, despues de `.mp-list` y `.estimator`. */
+    .faq-a { display: grid; grid-template-rows: 0fr; grid-template-columns: minmax(0, 1fr); overflow: hidden; transition: grid-template-rows 0.25s ease; padding: 0 1.3rem; color: var(--text-soft); font-size: 0.88rem; line-height: 1.65; }
     /* Medido: 129 caracteres por linea, lo mas ilegible de la pagina. El borde y la
        flecha los pone .faq-item, asi que limitar aqui no rompe la caja.
        Ni relleno ni margen abajo en el hijo: es la casilla de la rejilla y su caja
@@ -1223,6 +1238,24 @@
        La frase de debajo no es adorno: un numero suelto no dice nada, lo que
        convence es la frase que le dice al numero que esta demostrando. */
     .figrow { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.4rem; margin: 2.2rem 0 2.6rem; }
+    /* Tres columnas a 320 px dan ~90 px cada una, y ahi ya no cabe una palabra
+       larga en español: la cifra y su texto se salian de la pantalla. Por debajo
+       de 420 px van en una sola columna. `overflow-wrap` es la red de seguridad
+       para una palabra que no quepa ni asi (nombres de mod, rutas). */
+    @media (max-width: 420px) { .figrow { grid-template-columns: minmax(0, 1fr); gap: 1rem; } }
+    .fig-t, .fig-n { overflow-wrap: anywhere; }
+    /* Red de seguridad para palabras que no caben en una pantalla estrecha:
+       nombres propios largos (BuiltByBit, CurseForge, los ids de los mods) y los
+       <code>. Sin esto se salian de la pantalla en español, y como `html` lleva
+       `overflow-x: clip` no se podian ni arrastrar para leerlos: quedaban
+       cortados. Va `anywhere` y no `break-word` A PROPOSITO: solo `anywhere`
+       reduce el min-content, que es lo que permite a una casilla de rejilla o de
+       flex encoger por debajo de su palabra mas larga. `break-word` deja el
+       min-content igual y el desborde seguiria. Solo actua cuando la palabra NO
+       cabe, asi que el texto normal no cambia. */
+    p, li, h1, h2, h3, h4, dd, dt, td, th, summary, code,
+    .fig-t, .est-label, .card-stats .v, .port-name,
+    .faq-body, .est-disclaimer { overflow-wrap: anywhere; }
     .fig { display: flex; flex-direction: column; gap: 0.5rem; }
     .fig-n { font-family: var(--font-display); font-size: clamp(2.4rem, 6vw, 3.4rem); font-weight: 700; line-height: 0.95; color: var(--gold); font-variant-numeric: tabular-nums; }
     .fig-rule { width: 44px; height: 2px; background: var(--border-lt); }
@@ -1314,8 +1347,8 @@
          personajes SON las dos mitades del proceso */
     .mascotas { margin: 2.2rem auto 0; max-width: 500px; }
     .mascotas img { display: block; width: 100%; height: auto; }
-    .mascotas figcaption { margin-top: 0.9rem; font-size: 0.85rem; line-height: 1.65; color: var(--text-mute); text-align: center; max-width: 36em; margin-left: auto; margin-right: auto; }
-    .mascotas figcaption strong { color: var(--text-soft); }
+    /* Sin `figcaption`: se recortaron las placas con los cargos inventados, asi
+       que ya no hay nada que desmentir debajo de la imagen. */
     /* El perro y el gato. Venian con cinco estrellas doradas y "Expertos."
        encima: en una pagina de servicios eso se lee como una NOTA, y no hay
        ninguna resena detras. Se recorto esa franja y el pie dice lo que si es
@@ -1354,15 +1387,18 @@
     /* El pie va sobre la imagen y no debajo: debajo parte el respiro en dos y deja
        de leerse como una pausa. El degradado es fijo (no de tema) porque lo que hay
        detras es la foto, que no cambia con el tema. */
-    .scene-band figcaption { position: absolute; inset: auto 0 0 0; padding: 2.8rem 1.5rem 0.9rem; font-size: 0.78rem; line-height: 1.5; color: rgba(255,255,255,0.87); background: linear-gradient(180deg, rgba(9,8,6,0) 0%, rgba(9,8,6,0.68) 58%, rgba(9,8,6,0.9) 100%); }
-    .scene-band figcaption > span { display: block; max-width: 1240px; margin: 0 auto; }
-    @media (max-width: 720px) { .scene-band figcaption { padding-inline: 1.2rem; font-size: 0.74rem; } }
+    /* Las bandas ya NO llevan pie superpuesto. Llevaban un <figcaption> en
+       `position: absolute` con un degradado oscuro encima de la foto para poder
+       leerse: texto sobre la imagen, que es justo lo que josda no quiere. Lo que
+       decian vive en el `alt`, que es lo que leen un buscador y un lector de
+       pantalla, y ademas no tapa nada. */
     /* Retrato en #about. Es el mismo personaje de las bandas, asi que la seccion
        que dice "solo yo" ensena a quien. 351 px es el original entero, no hay mas:
        la columna se queda en 200 px a proposito para no estirarlo. */
     .me-shot { grid-column: 2; grid-row: 1; margin: 0; }
     .me-shot img { display: block; width: 100%; height: auto; border-radius: var(--radius); border: 1px solid var(--border); }
-    .me-shot figcaption { margin-top: 0.55rem; font-size: 0.76rem; line-height: 1.5; color: var(--text-mute); }
+    /* Sin `figcaption`: decia "Me, in the pack I keep for myself", que es lo
+       mismo que ya dice el `alt` y lo que cuenta el parrafo de al lado. */
     .about-copy { grid-column: 1; grid-row: 1; min-width: 0; }
     /* Esta consulta va DESPUES de las dos reglas de arriba a proposito. Puesta antes
        tiene la misma especificidad y pierde por orden: la rejilla se queda en una
@@ -1453,7 +1489,7 @@
     footer a { color: var(--text-soft); }
 
     @media (max-width: 760px) {
-      .estimator { grid-template-columns: 1fr; }
+      .estimator { grid-template-columns: minmax(0, 1fr); }
       .est-result { position: static; }
     }
     /* La cabecera completa (marca + 5 enlaces + CTA + 2 toggles) necesita unos
@@ -1510,7 +1546,14 @@
     .packwork { margin-top: 2.8rem; padding-top: 2rem; border-top: 1px solid var(--border); }
     .packwork h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
     .packwork-lead { max-width: 52em; color: var(--text-soft); font-size: 0.9rem; line-height: 1.65; margin: 0; }
-    .mp-list { margin-top: 1.6rem; display: grid; gap: 1.1rem; }
+    /* `minmax(0, 1fr)` y no la columna implicita: una pista de rejilla en `auto`
+       tiene como MINIMO el min-content de lo que lleva dentro, asi que crece con
+       el contenido en vez de encogerse con la pantalla. En ingles colaba de
+       milagro; con el texto en español (un 28% mas largo) la tarjeta se salia
+       ~100 px a 375 y 414 px, y como `html` lleva `overflow-x: clip` no se podia
+       ni arrastrar para verlo: quedaba cortado y punto.
+       Es el mismo patron que la pagina ya usa en `.mp-head` y en `.figrow`. */
+    .mp-list { margin-top: 1.6rem; display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.1rem; }
     .mp-item { background: linear-gradient(180deg, #1a1814, #131210); border: 1px solid var(--border); border-top: 2px solid var(--border-lt); border-radius: var(--radius-lg); padding: var(--pad-card); }
     /* Cabecera en rejilla y no en linea: cuando lleve el logo del mod al lado,
        el titulo tiene que poder ocupar dos lineas sin empujarlo. */
@@ -1682,7 +1725,11 @@
     @media (max-width: 420px) { .ch--autor { width: 84px; margin-right: 0.65rem; } }
     .hero-me { display: flex; align-items: center; gap: 0.75rem; margin-top: 1.6rem; }
     .hero-me img { width: 116px; height: auto; image-rendering: pixelated; flex-shrink: 0; }
-    .hero-me span { font-size: 0.82rem; line-height: 1.45; color: var(--text-mute); }
+    /* `min-width: 0` porque una casilla de flex vale por defecto `min-width: auto`,
+       o sea que NO encoge por debajo de su contenido. Con el texto en español se
+       salia 26 px de la pantalla a 320 px. Es el mismo minimo implicito que tenian
+       las tres rejillas (`.mp-list`, `.estimator`, `.faq-a`), en su version flex. */
+    .hero-me span { font-size: 0.82rem; line-height: 1.45; color: var(--text-mute); min-width: 0; }
   </style>
   <script>
     (function(){
@@ -1916,14 +1963,16 @@
       <g style="color:var(--ld-forge)"><circle class="loomd-node" cx="170.1" cy="325.0" r="54"/><circle class="loomd-node-fill" cx="170.1" cy="325.0" r="54"/><g class="loomd-glyph"><g transform="translate(149.7,304.6) scale(1.700)"><path fill="currentColor" d="M2 8h10l-1.2 2.4H15v2h-1.9L12 17H8L6.2 12.4H2z"/><rect x="6" y="18" width="9" height="2" rx="0.4" fill="currentColor"/></g></g><text translate="no" class="loomd-t" x="170.1" y="413.0" font-size="28" text-anchor="middle">Forge</text></g>
       </svg>
       <p class="loomd-claim">Any version, any loader.</p>
-      <figcaption>I work in all three. <span translate="no">Fabric</span> to <span translate="no">Forge</span> is the hard one, and I do it.</figcaption>
+      <!-- Esto NO es un pie de foto, es la afirmacion del diagrama, asi que va
+           como parrafo y no como <figcaption>: josda no quiere texto explicando
+           imagenes debajo de ellas, y un <figcaption> es exactamente eso. Aqui
+           el texto no describe el dibujo, dice lo que el hace. -->
+      <p class="loomd-claim loomd-claim--sub">I work in all three. <span translate="no">Fabric</span> to <span translate="no">Forge</span> is the hard one, and I do it.</p>
     </figure>
   </div>
 </section>
 <figure class="scene-band">
   <img src="band-flight.webp" width="1800" height="1012" alt="My character hanging in the air above an open sea, with the sun going down behind him." loading="lazy" decoding="async">
-  <figcaption><span>Same pack, same character. None of those mods are mine.</span></figcaption>
-
 </figure>
 <!-- PORTFOLIO -->
 <section id="portfolio">
@@ -2267,8 +2316,13 @@
       <div class="step"><div class="step-n">06</div><h3>I check back</h3><p>Once it has actually run in your pack, not just on my machine. <strong>Bugs inside the agreed scope are on me for 30 days.</strong> Anything after that, or anything new you need, comes back to me as a returning client.</p></div>
     </div>
     <figure class="mascotas">
-      <img src="mascotas.webp" width="978" height="902" alt="Two pixel-art mascots on wooden nameplates: a guinea pig with a moustache holding crackling electricity, labelled Nikola Tesla, systems integration engineer; and a hedgehog in a lab coat holding a galaxy, labelled Einstein, theoretical architect." loading="lazy" decoding="async">
-      <figcaption><strong>Mascots, not staff.</strong> The job titles are invented.</figcaption>
+      <!-- La ilustracion traia dos placas horneadas con CARGOS INVENTADOS
+           ("Systems Integration Engineer", "Theoretical Architect") en la pagina
+           de un negocio de una persona, y por eso NECESITABA un pie que los
+           desmintiera. Se recortaron las placas (tools_mascotas_sin_placas.py):
+           sin cargos no hay nada que desmentir, y el pie desaparece con ellos.
+           El texto alternativo tampoco los nombra ya. -->
+      <img src="mascotas.webp" width="978" height="724" alt="Two pixel-art mascots: a guinea pig with a moustache holding crackling electricity, and a hedgehog in a lab coat holding a galaxy." loading="lazy" decoding="async">
     </figure>
   </div>
 </section>
@@ -2490,7 +2544,6 @@
     <div class="about-body">
       <figure class="me-shot">
         <img src="me.webp" width="351" height="408" alt="Close view of my character in a red and gold armour set with glowing green trim, standing in a field of purple flowers." loading="lazy" decoding="async">
-        <figcaption>Me, in the pack I keep for myself.</figcaption>
       </figure>
       <div class="about-copy">
       <p>Like a lot of pack builders, I spent years waiting on mods that never got updated. Eventually I started <span translate="no">porting</span> them myself, and after enough of them on <span translate="no">Forge</span> 1.20.1 I know the API cold: the event handlers, the <span translate="no">Gradle</span> quirks, the mapping gaps between versions. Most of the people who write to me run a private SMP with friends, or keep a <span translate="no">modpack</span> alive that one dead mod is holding hostage.</p>
@@ -2520,7 +2573,6 @@
 </section>
 <figure class="scene-band">
   <img src="band-cow.webp" width="1800" height="1012" alt="My character standing on open grassland beside a large pale horned cow, with slimes in the distance." loading="lazy" decoding="async">
-  <figcaption><span>Where the <span translate="no">porting</span> started: my own pack.</span></figcaption>
 </figure>
 <div class="torn-sep" aria-hidden="true"><svg viewBox="0 0 1440 24" preserveAspectRatio="none"><path d="M0 24 L0 11 L52 16 L108 8 L168 17 L232 7 L304 15 L380 9 L456 17 L536 7 L618 15 L702 9 L786 17 L870 8 L952 15 L1036 9 L1120 17 L1204 8 L1286 15 L1366 10 L1440 14 L1440 24 Z"/></svg>
 
@@ -2593,32 +2645,37 @@
     <div class="port-grid">
       <div class="port-card">
         <h3 class="port-name">A crash the compiler cannot see</h3>
-        <p class="port-desc">In my <span translate="no">port</span> of <span translate="no">Capybara</span> (<span translate="no">39Choko</span>, MIT) the model asked for a bone called <span translate="no">saddleParts</span>. In the model file that bone is called <span translate="no">saddle</span>. The name lives inside a text string, so nothing checked it. The build passed. The resource diff passed. It crashed the first time a capybara was drawn, in my own test instance. <span translate="no">GeckoLib</span>'s <span translate="no">AnimationProcessor.getBone</span> returns null for a name the model does not have, and the renderer runs every frame.</p>
-        <p class="port-footer-note"><strong>Proof.</strong> I kept the broken <span translate="no">jar</span>. The check now reads bone names straight out of the compiled bytecode with <span translate="no">javap</span> and compares them against the model file. On the fixed <span translate="no">jar</span>: one bone found, zero failures. On the broken <span translate="no">jar</span>: it fails, names <span translate="no">saddleParts</span>, and prints the 11 bones that do exist. I wrote up <a href="geckolib-bone-name-crash.html">how to run that check on your own <span translate="no">jar</span></a>.</p>
+        <details class="more more--card"><summary>Read the detail</summary>
+          <p class="port-desc">In my <span translate="no">port</span> of <span translate="no">Capybara</span> (<span translate="no">39Choko</span>, MIT) the model asked for a bone called <span translate="no">saddleParts</span>. In the model file that bone is called <span translate="no">saddle</span>. The name lives inside a text string, so nothing checked it. The build passed. The resource diff passed. It crashed the first time a capybara was drawn, in my own test instance. <span translate="no">GeckoLib</span>'s <span translate="no">AnimationProcessor.getBone</span> returns null for a name the model does not have, and the renderer runs every frame.</p>
+          <p class="port-footer-note"><strong>Proof.</strong> I kept the broken <span translate="no">jar</span>. The check now reads bone names straight out of the compiled bytecode with <span translate="no">javap</span> and compares them against the model file. On the fixed <span translate="no">jar</span>: one bone found, zero failures. On the broken <span translate="no">jar</span>: it fails, names <span translate="no">saddleParts</span>, and prints the 11 bones that do exist. I wrote up <a href="geckolib-bone-name-crash.html">how to run that check on your own <span translate="no">jar</span></a>.</p></details>
       </div>
 
       <div class="port-card">
         <h3 class="port-name">Files that vanish in the repack</h3>
-        <p class="port-desc">A <span translate="no">port</span> is a rebuild, not a copy. Recipes, loot tables and textures can go missing when the <span translate="no">jar</span> is repackaged, and nothing errors. The mod loads and quietly does less than it did before.</p>
-        <p class="port-footer-note"><strong>Proof.</strong> I diff every asset, data and licence file against the <span translate="no">jar</span> the original author published. Across <span translate="no">Boids</span> and <span translate="no">Birds</span> (<span translate="no">Tomate0613</span>, MIT) and <span translate="no">Capybara</span> (<span translate="no">39Choko</span>, MIT): 22 of the 28 are byte identical. 6 are <span translate="no">JSON</span> the build reformatted, and they parse to exactly the same data. Two files are added, both <span translate="no">Forge</span> biome modifiers so spawns work on this loader. Loader metadata is replaced on purpose, <span translate="no">mods.toml</span> where <span translate="no">Fabric</span> had <span translate="no">fabric.mod.json</span>. Unzip both <span translate="no">jars</span> and run the same diff.</p>
+        <details class="more more--card"><summary>Read the detail</summary>
+          <p class="port-desc">A <span translate="no">port</span> is a rebuild, not a copy. Recipes, loot tables and textures can go missing when the <span translate="no">jar</span> is repackaged, and nothing errors. The mod loads and quietly does less than it did before.</p>
+          <p class="port-footer-note"><strong>Proof.</strong> I diff every asset, data and licence file against the <span translate="no">jar</span> the original author published. Across <span translate="no">Boids</span> and <span translate="no">Birds</span> (<span translate="no">Tomate0613</span>, MIT) and <span translate="no">Capybara</span> (<span translate="no">39Choko</span>, MIT): 22 of the 28 are byte identical. 6 are <span translate="no">JSON</span> the build reformatted, and they parse to exactly the same data. Two files are added, both <span translate="no">Forge</span> biome modifiers so spawns work on this loader. Loader metadata is replaced on purpose, <span translate="no">mods.toml</span> where <span translate="no">Fabric</span> had <span translate="no">fabric.mod.json</span>. Unzip both <span translate="no">jars</span> and run the same diff.</p></details>
       </div>
 
       <div class="port-card">
         <h3 class="port-name"><span translate="no">Yarn</span> names and <span translate="no">Mojang</span> names do not line up</h3>
-        <p class="port-desc"><span translate="no">Fabric</span> source is written in <span translate="no">Yarn</span> names. <span translate="no">Forge</span> builds against <span translate="no">Mojang</span>'s. I bridge them in two hops through intermediary mappings, and the translator only rewrites a name when it has exactly one possible target. Anything ambiguous is left for the compiler to reject.</p>
-        <p class="port-footer-note"><strong>Proof.</strong> It still gets things wrong, and those mistakes compile. On <span translate="no">Capybara</span> the jungle spawn biome came out of the translator as <span translate="no">JUNGLE_PLANKS</span>. That is why I read translated output back against the original source before it goes into a build. The jungle, mangrove swamp and sparse jungle spawns in that <span translate="no">port</span> came from the original, not from the translated text.</p>
+        <details class="more more--card"><summary>Read the detail</summary>
+          <p class="port-desc"><span translate="no">Fabric</span> source is written in <span translate="no">Yarn</span> names. <span translate="no">Forge</span> builds against <span translate="no">Mojang</span>'s. I bridge them in two hops through intermediary mappings, and the translator only rewrites a name when it has exactly one possible target. Anything ambiguous is left for the compiler to reject.</p>
+          <p class="port-footer-note"><strong>Proof.</strong> It still gets things wrong, and those mistakes compile. On <span translate="no">Capybara</span> the jungle spawn biome came out of the translator as <span translate="no">JUNGLE_PLANKS</span>. That is why I read translated output back against the original source before it goes into a build. The jungle, mangrove swamp and sparse jungle spawns in that <span translate="no">port</span> came from the original, not from the translated text.</p></details>
       </div>
 
       <div class="port-card">
         <h3 class="port-name">Fine in singleplayer, dead on the server</h3>
-        <p class="port-desc">A clientbound packet handler written as a method reference is resolved where it is registered. A dedicated server has no client class to resolve, so registration can take the server down at startup while singleplayer never complains.</p>
-        <p class="port-footer-note"><strong>Proof.</strong> On a network layer <span translate="no">backport</span> from 1.21 to <span translate="no">Forge</span> 1.20.1, on my own <span translate="no">modpack</span>, I rebuilt every packet payload by hand: 22 serverbound, 19 clientbound. All 19 clientbound handlers are explicit lambdas with the client call behind a <span translate="no">Dist.CLIENT</span> guard, and all 41 register from one shared method with sequential IDs, so the two sides cannot drift. That is how the code is written, not a test result. I do not name the mod here: it is a personal-use <span translate="no">port</span> and I have no written permission from the author to put its name on a commercial page.</p>
+        <details class="more more--card"><summary>Read the detail</summary>
+          <p class="port-desc">A clientbound packet handler written as a method reference is resolved where it is registered. A dedicated server has no client class to resolve, so registration can take the server down at startup while singleplayer never complains.</p>
+          <p class="port-footer-note"><strong>Proof.</strong> On a network layer <span translate="no">backport</span> from 1.21 to <span translate="no">Forge</span> 1.20.1, on my own <span translate="no">modpack</span>, I rebuilt every packet payload by hand: 22 serverbound, 19 clientbound. All 19 clientbound handlers are explicit lambdas with the client call behind a <span translate="no">Dist.CLIENT</span> guard, and all 41 register from one shared method with sequential IDs, so the two sides cannot drift. That is how the code is written, not a test result. I do not name the mod here: it is a personal-use <span translate="no">port</span> and I have no written permission from the author to put its name on a commercial page.</p></details>
       </div>
 
       <div class="port-card">
         <h3 class="port-name"><span translate="no">Mixins</span> that quietly do not load</h3>
-        <p class="port-desc">Repackaging a <span translate="no">jar</span> can drop the manifest entry that declares its mixin configs. <span translate="no">Forge</span> then loads the mod without complaint and none of the mixins apply. The mod is installed, part of its behaviour is missing, and nothing in the log says so.</p>
-        <p class="port-footer-note"><strong>Proof.</strong> Same class of bug, same answer: it became a check. The manifest one in the <a href="#portfolio">five checks I run</a> is this exact bug, turned into something a script can catch. They are a colander, not a proof. The bone check only sees literal names, and it needs a <span translate="no">JDK</span> to read the bytecode.</p>
+        <details class="more more--card"><summary>Read the detail</summary>
+          <p class="port-desc">Repackaging a <span translate="no">jar</span> can drop the manifest entry that declares its mixin configs. <span translate="no">Forge</span> then loads the mod without complaint and none of the mixins apply. The mod is installed, part of its behaviour is missing, and nothing in the log says so.</p>
+          <p class="port-footer-note"><strong>Proof.</strong> Same class of bug, same answer: it became a check. The manifest one in the <a href="#portfolio">five checks I run</a> is this exact bug, turned into something a script can catch. They are a colander, not a proof. The bone check only sees literal names, and it needs a <span translate="no">JDK</span> to read the bytecode.</p></details>
       </div>
     </div>
   </div>
