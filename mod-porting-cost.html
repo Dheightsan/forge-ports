@@ -115,7 +115,7 @@ r.setAttribute('data-theme',s==='light'?'light':'dark');}catch(e){}})();
 
 <main id="main">
   <div class="kicker">Field notes</div>
-  <h1>What a <span translate="no">Minecraft</span> mod port costs, and why</h1>
+  <h1>What a<span translate="no"> Minecraft </span>mod port costs, and why</h1>
 
   <p class="lede">Almost every quote you will get for a mod port is a number with no reasoning attached, which makes it impossible to tell a fair one from a guess. Four things actually set the price, and only one of them has anything to do with how big the mod is.</p>
 
@@ -137,14 +137,14 @@ r.setAttribute('data-theme',s==='light'?'light':'dark');}catch(e){}})();
     <tbody>
       <tr><td><strong>The Flattening</strong></td><td>1.12 to 1.13</td><td>Numeric IDs and metadata are gone, so every block variant becomes its own block. LWJGL 2 to 3, assets restructured into data. Effectively a rewrite.</td></tr>
       <tr><td><strong>Worldgen to datapack</strong></td><td>crossing 1.18</td><td>Biomes, dimensions and structures move to JSON and codecs. Brutal for a worldgen mod, barely noticeable for a content mod.</td></tr>
-      <tr><td><strong>Networking and config phase</strong></td><td>crossing 1.20.2</td><td><code>SimpleChannel</code> becomes <code>CustomPacketPayload</code>, plus a new connection phase. This is also the line where <span translate="no">Forge</span> and <span translate="no">NeoForge</span> diverge.</td></tr>
+      <tr><td><strong>Networking and config phase</strong></td><td>crossing 1.20.2</td><td><code>SimpleChannel</code> becomes <code>CustomPacketPayload</code>, plus a new connection phase. This is also the line where<span translate="no"> Forge </span>and<span translate="no"> NeoForge </span>diverge.</td></tr>
       <tr><td><strong>Data components</strong></td><td>crossing 1.20.5 and 1.21</td><td>Item NBT becomes <code>DataComponentMap</code>, with <code>StreamCodec</code> and Java 21. Anything that touches <code>ItemStack</code> data gets rewritten.</td></tr>
     </tbody>
   </table>
   </div>
 
   <div class="note">
-    <p><strong>Why 1.20.1 is the cheap destination.</strong> It is the last <span translate="no">Forge</span> long term support version, it sits underneath every recent wall, and it still carries an enormous modpack base. A port <em>to</em> 1.20.1 from a neighbouring version crosses nothing, which is why it is the cheapest work on the list and the version I specialise in.</p>
+    <p><strong>Why 1.20.1 is the cheap destination.</strong> It is the last<span translate="no"> Forge </span>long term support version, it sits underneath every recent wall, and it still carries an enormous modpack base. A port <em>to</em> 1.20.1 from a neighbouring version crosses nothing, which is why it is the cheapest work on the list and the version I specialise in.</p>
   </div>
 
   <p>Some jumps that look large are trivial: 1.19.2 to 1.20.1, 1.20 to 1.20.1, and 1.20.2 to 1.20.4 are mostly recompiles. Some jumps that look small are not: 1.20.4 to 1.21 crosses data components.</p>
@@ -157,17 +157,17 @@ r.setAttribute('data-theme',s==='light'?'light':'dark');}catch(e){}})();
   <table>
     <thead><tr><th>Direction</th><th>Difficulty</th><th>Why</th></tr></thead>
     <tbody>
-      <tr><td><span translate="no">Fabric</span> to <span translate="no">Forge</span></td><td><strong>Hardest</strong></td><td>Different events and registries, different mappings, and a weaker mixin surface, so mixins get re-derived and <span translate="no">Fabric</span> API calls get reimplemented. Close to a rewrite.</td></tr>
-      <tr><td><span translate="no">NeoForge</span> to <span translate="no">Fabric</span></td><td>Very hard</td><td>Same cross family wall, and nothing on the Fabric side smooths it over.</td></tr>
-      <tr><td><span translate="no">Forge</span> to <span translate="no">Fabric</span></td><td>Hard</td><td>Cross family rewrite, but onto a lighter target.</td></tr>
-      <tr><td><span translate="no">Fabric</span> to <span translate="no">NeoForge</span></td><td>Hard</td><td>Same shape as the first row, with better tooling.</td></tr>
-      <tr><td><span translate="no">Forge</span> to <span translate="no">NeoForge</span></td><td><strong>Easy</strong></td><td>Same forked codebase. Mostly a rename.</td></tr>
-      <tr><td><span translate="no">NeoForge</span> to <span translate="no">Forge</span></td><td><strong>Easiest</strong></td><td>The reverse of that rename.</td></tr>
+      <tr><td><span translate="no">Fabric </span>to<span translate="no"> Forge</span></td><td><strong>Hardest</strong></td><td>Different events and registries, different mappings, and a weaker mixin surface, so mixins get re-derived and<span translate="no"> Fabric </span>API calls get reimplemented. Close to a rewrite.</td></tr>
+      <tr><td><span translate="no">NeoForge </span>to<span translate="no"> Fabric</span></td><td>Very hard</td><td>Same cross family wall, and nothing on the Fabric side smooths it over.</td></tr>
+      <tr><td><span translate="no">Forge </span>to<span translate="no"> Fabric</span></td><td>Hard</td><td>Cross family rewrite, but onto a lighter target.</td></tr>
+      <tr><td><span translate="no">Fabric </span>to<span translate="no"> NeoForge</span></td><td>Hard</td><td>Same shape as the first row, with better tooling.</td></tr>
+      <tr><td><span translate="no">Forge </span>to<span translate="no"> NeoForge</span></td><td><strong>Easy</strong></td><td>Same forked codebase. Mostly a rename.</td></tr>
+      <tr><td><span translate="no">NeoForge </span>to<span translate="no"> Forge</span></td><td><strong>Easiest</strong></td><td>The reverse of that rename.</td></tr>
     </tbody>
   </table>
   </div>
 
-  <p>If you have been quoted the same premium for <span translate="no">Forge</span> to <span translate="no">NeoForge</span> as for <span translate="no">Fabric</span> to <span translate="no">Forge</span>, one of those two numbers is wrong. I wrote a separate piece on <a href="fabric-to-forge-1-20-1.html">what actually breaks in a <span translate="no">Fabric</span> to <span translate="no">Forge</span> port</a> if you want to see where the hours go.</p>
+  <p>If you have been quoted the same premium for<span translate="no"> Forge </span>to<span translate="no"> NeoForge </span>as for<span translate="no"> Fabric </span>to<span translate="no"> Forge</span>, one of those two numbers is wrong. I wrote a separate piece on <a href="fabric-to-forge-1-20-1.html">what actually breaks in a<span translate="no"> Fabric </span>to<span translate="no"> Forge </span>port</a> if you want to see where the hours go.</p>
 
   <h2>3. What the mod touches</h2>
 
@@ -204,7 +204,7 @@ r.setAttribute('data-theme',s==='light'?'light':'dark');}catch(e){}})();
   <table>
     <thead><tr><th>Component</th><th>Small</th><th>Medium</th><th>Large</th></tr></thead>
     <tbody>
-      <tr><td><strong><span translate="no">Forge</span> 1.20.1 port, base</strong></td><td class="num">$35</td><td class="num">$65</td><td class="num">$120</td></tr>
+      <tr><td><strong><span translate="no">Forge </span>1.20.1 port, base</strong></td><td class="num">$35</td><td class="num">$65</td><td class="num">$120</td></tr>
       <tr><td>Compatibility patch between two mods</td><td class="num">$25</td><td class="num">$60</td><td class="num">$130</td></tr>
       <tr><td>Maintenance on an existing port</td><td class="num">$25</td><td class="num">$50</td><td class="num">$95</td></tr>
       <tr><td>Performance work</td><td class="num">$45</td><td class="num">$85</td><td class="num">$150</td></tr>
@@ -220,8 +220,8 @@ r.setAttribute('data-theme',s==='light'?'light':'dark');}catch(e){}})();
       <tr><td>Moderate wall, crossing 1.20.2 networking</td><td class="num">+$25</td></tr>
       <tr><td>Hard wall, crossing 1.21 data components</td><td class="num">+$60</td></tr>
       <tr><td>Brutal wall, the Flattening or worldgen across 1.18</td><td class="num">+$110</td></tr>
-      <tr><td><span translate="no">Forge</span> to <span translate="no">NeoForge</span> in either direction</td><td class="num">+$20</td></tr>
-      <tr><td><span translate="no">Fabric</span> to <span translate="no">Forge</span></td><td class="num">+$250</td></tr>
+      <tr><td><span translate="no">Forge </span>to<span translate="no"> NeoForge </span>in either direction</td><td class="num">+$20</td></tr>
+      <tr><td><span translate="no">Fabric </span>to<span translate="no"> Forge</span></td><td class="num">+$250</td></tr>
       <tr><td>Private delivery, all rights reserved source</td><td class="num">&times;1.35</td></tr>
       <tr><td>Priority in the queue</td><td class="num">&times;1.25</td></tr>
       <tr><td>Top of the queue</td><td class="num">&times;1.5</td></tr>
@@ -237,12 +237,12 @@ r.setAttribute('data-theme',s==='light'?'light':'dark');}catch(e){}})();
 
   <h2>A real job, added up</h2>
 
-  <p><span translate="no">Mindful Eating</span> by <span translate="no">camcam_burger</span>, a food variety mod. It ran on <span translate="no">Forge</span> 1.20.1 and had to end up on <span translate="no">NeoForge</span> 1.21.1. What that actually involved:</p>
+  <p><span translate="no">Mindful Eating </span>by<span translate="no"> camcam_burger</span>, a food variety mod. It ran on<span translate="no"> Forge </span>1.20.1 and had to end up on<span translate="no"> NeoForge </span>1.21.1. What that actually involved:</p>
 
   <ul>
-    <li>The per player data system rebuilt on native data attachments, which also let the <span translate="no">Blueprint</span> dependency go, at the creator's own suggestion.</li>
+    <li>The per player data system rebuilt on native data attachments, which also let the<span translate="no"> Blueprint </span>dependency go, at the creator's own suggestion.</li>
     <li>The food stat tweaks moved onto the 1.21 component system, because the old approach does not exist there any more.</li>
-    <li>A <span translate="no">HUD</span>, so client and server behaviour both had to be checked rather than assumed.</li>
+    <li>A<span translate="no"> HUD</span>, so client and server behaviour both had to be checked rather than assumed.</li>
   </ul>
 
   <p>Priced off the tables above, nothing hidden:</p>
@@ -251,9 +251,9 @@ r.setAttribute('data-theme',s==='light'?'light':'dark');}catch(e){}})();
   <table>
     <thead><tr><th>Component</th><th>Why</th><th>Amount</th></tr></thead>
     <tbody>
-      <tr><td>Base, medium mod</td><td>mechanics plus a <span translate="no">GUI</span>, not just items</td><td class="num">$65</td></tr>
+      <tr><td>Base, medium mod</td><td>mechanics plus a<span translate="no"> GUI</span>, not just items</td><td class="num">$65</td></tr>
       <tr><td>Hard wall</td><td>crosses 1.21 data components</td><td class="num">+$60</td></tr>
-      <tr><td>Loader change</td><td><span translate="no">Forge</span> to <span translate="no">NeoForge</span></td><td class="num">+$20</td></tr>
+      <tr><td>Loader change</td><td><span translate="no">Forge </span>to<span translate="no"> NeoForge</span></td><td class="num">+$20</td></tr>
       <tr><td>Licence multiplier</td><td><span translate="no">LGPL</span>, publishable, so none applies</td><td class="num">&times;1</td></tr>
       <tr><td><strong>Total</strong></td><td>the arithmetic is additive on purpose, so you can check it</td><td class="num"><strong>$145</strong></td></tr>
     </tbody>
@@ -278,9 +278,9 @@ r.setAttribute('data-theme',s==='light'?'light':'dark');}catch(e){}})();
   <p>Three cases where this costs you nothing, and I would rather say so here than after you have opened a ticket.</p>
 
   <ul>
-    <li><strong>The mod already runs through a bridge.</strong> <a href="https://modrinth.com/mod/connector" target="_blank" rel="noopener noreferrer"><span translate="no">Sinytra Connector</span></a> runs <span translate="no">Fabric</span> mods on <span translate="no">Forge</span> and <span translate="no">NeoForge</span>, including 1.20.1, and it is free. Try it first. I wrote up <a href="fabric-to-forge-1-20-1.html">when it works and when it does not</a>.</li>
-    <li><strong>The mod is built on <span translate="no">Architectury</span>.</strong> If the source tree already has a <code>forge/src</code> directory, most of the work you would be paying for is done. That is usually a version bump, not a port, and often something you can finish yourself in an evening.</li>
-    <li><strong>You want to learn how.</strong> Everything I know about the failures that produce no error is written down for free: <a href="fabric-to-forge-1-20-1.html">what breaks in a <span translate="no">Fabric</span> to <span translate="no">Forge</span> port</a> and <a href="geckolib-bone-name-crash.html">the crash no compiler can catch</a>. If you would rather spend a weekend than money, spend the weekend.</li>
+    <li><strong>The mod already runs through a bridge.</strong> <a href="https://modrinth.com/mod/connector" target="_blank" rel="noopener noreferrer"><span translate="no">Sinytra Connector</span></a> runs<span translate="no"> Fabric </span>mods on<span translate="no"> Forge </span>and<span translate="no"> NeoForge</span>, including 1.20.1, and it is free. Try it first. I wrote up <a href="fabric-to-forge-1-20-1.html">when it works and when it does not</a>.</li>
+    <li><strong>The mod is built on<span translate="no"> Architectury</span>.</strong> If the source tree already has a <code>forge/src</code> directory, most of the work you would be paying for is done. That is usually a version bump, not a port, and often something you can finish yourself in an evening.</li>
+    <li><strong>You want to learn how.</strong> Everything I know about the failures that produce no error is written down for free: <a href="fabric-to-forge-1-20-1.html">what breaks in a<span translate="no"> Fabric </span>to<span translate="no"> Forge </span>port</a> and <a href="geckolib-bone-name-crash.html">the crash no compiler can catch</a>. If you would rather spend a weekend than money, spend the weekend.</li>
   </ul>
 
   <p>What you are actually buying when you do pay is not the typing. It is somebody who has already hit the failures that build clean and break silently, and who checks for them before the jar leaves.</p>
@@ -299,11 +299,11 @@ r.setAttribute('data-theme',s==='light'?'light':'dark');}catch(e){}})();
     <p><strong>Want the number for your mod?</strong> The estimator asks for the version pair, the loader direction, the rough size and the licence, and gives you a range immediately. No email required to see it.</p>
     <p><a class="btn" href="./#estimator">Price my port</a></p>
   </div>
-  <p class="byline">Written by <strong translate="no">josda</strong>, <span translate="no">Forge</span> 1.20.1 mod porting. Last updated August 2026. Questions, corrections or a mod you need moved: <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer">Discord</a> or <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20porting">email</a>.</p>
+  <p class="byline">Written by <strong translate="no">josda</strong>,<span translate="no"> Forge </span>1.20.1 mod porting. Last updated August 2026. Questions, corrections or a mod you need moved: <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer">Discord</a> or <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20porting">email</a>.</p>
 </main>
 
 <footer>
-  <span translate="no">Modwright</span> &middot; <span translate="no">Forge</span> 1.20.1 mod porting &middot; <a href="./">Services and pricing</a> &middot; <a href="fabric-to-forge-1-20-1.html"><span translate="no">Fabric</span> to <span translate="no">Forge</span>: what breaks</a>
+ <span translate="no"> Modwright </span>&middot;<span translate="no"> Forge </span>1.20.1 mod porting &middot; <a href="./">Services and pricing</a> &middot; <a href="fabric-to-forge-1-20-1.html"><span translate="no">Fabric </span>to<span translate="no"> Forge</span>: what breaks</a>
  &middot; <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer">Discord</a> &middot; <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20porting">Email</a></footer>
 </body>
 </html>
