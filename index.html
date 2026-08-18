@@ -427,6 +427,27 @@
        El token --green-hi NO se toca: lo usan fondos de boton, y oscurecerlo ahi
        empeoraria el texto oscuro que va encima. */
     html[data-accent="green"][data-theme="light"] a { color: #1b733b; }
+    /* ...pero ese verde de enlace NO puede caer sobre los botones solidos: empata
+       en especificidad (0,2,2) con el bloque de arriba que les da su color y gana
+       por ir despues. Medido en claro+verde: la etiqueta de .btn-discord salia a
+       1,28:1 sobre el azul de Discord y la de .btn-gmail a 1,50:1 sobre el rojo,
+       ilegibles, y los iconos `.bicon` heredan currentColor asi que iban igual.
+       18 controles afectados, y SOLO en esta combinacion de tema y acento.
+       Se repite el bloque con el prefijo del acento en vez de usar
+       `a:not(.btn)...`: medido, con :not() el enlace de salto se quedaba en
+       1,85:1 (cambiaba verde-sobre-verde por marron-sobre-verde, igual de ilegible). */
+    html[data-accent="green"][data-theme="light"] a.btn-go      { color: #102506; }  /* 6,33:1 */
+    html[data-accent="green"][data-theme="light"] a.btn-discord { color: #fff; }     /* 4,61:1 */
+    html[data-accent="green"][data-theme="light"] a.btn-gmail   { color: #fff; }     /* 3,92:1 */
+    html[data-accent="green"][data-theme="light"] a.btn-quote   { color: #2a1302; }  /* 5,14:1 */
+    html[data-accent="green"][data-theme="light"] a.btn-ghost   { color: var(--text); }
+    /* El enlace de salto ya declara su propio color oscuro (#2a1808, que da 5,10:1
+       sobre su fondo), pero en los temas claros lo pisaba la regla generica de
+       enlace y se quedaba en 1,90:1: el unico control de la pagina que existe
+       para quien navega con teclado era el menos legible. Una sola regla cubre
+       claro/calido y claro/verde: empata en especificidad con la del acento verde
+       y gana por ir despues. */
+    html[data-theme="light"] a.skip { color: #2a1808; }
     /* El hover del CTA oscurecia el fondo manteniendo texto oscuro (3.9:1).
        En claro el hover tiene que ACLARAR para que el texto siga leyendose. */
     html[data-accent="green"][data-theme="light"] .btn-nav:hover { background: #35ab5f !important; }
@@ -464,8 +485,18 @@
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E"); }
     a { color: var(--green-hi); text-decoration: none; }
     a:hover { text-decoration: underline; }
+    /* El anillo de foco va con --gold y NO con --green-hi. El bloque del tema
+       claro redefine --gold, --text, --bg y --border pero se dejo --green-hi con
+       su valor de modo oscuro (#d49a55), asi que en claro+calido el anillo daba
+       2,07-2,36:1 contra el fondo de al lado en LAS 47 paradas de tabulacion,
+       contra el 3:1 que pide WCAG 1.4.11. Medido recorriendo el foco con Tab en
+       los 4 modos. Con --gold ninguno empeora: claro/calido 4,49-5,10 ·
+       claro/verde 4,80-5,10 (antes 4,23-4,49) · oscuro/calido 6,01-8,02 ·
+       oscuro/verde 11,26-12,03.
+       --green-hi no se corrige en su token porque tambien es FONDO de
+       `.est-opt.active`, y oscurecerlo estropearia el texto que va encima. */
     a:focus-visible, button:focus-visible, .est-opt:focus-visible, .faq-q:focus-visible, .skip:focus {
-      outline: 3px solid var(--green-hi); outline-offset: 2px; border-radius: 4px;
+      outline: 3px solid var(--gold); outline-offset: 2px; border-radius: 4px;
     }
     .skip { position: absolute; left: -9999px; top: 0; z-index: 200; background: var(--green); color: #2a1808; padding: 0.6rem 1.1rem; font-weight: 700; border-radius: 0 0 var(--radius) 0; }
     .skip:focus { left: 0; }
@@ -517,8 +548,14 @@
     .btn-quote { background: var(--terracotta); color: #2a1302; border: 1px solid var(--terracotta); box-shadow: 0 0 0 3px rgba(210,112,63,0.30); }
     .btn-quote:hover { background: #e27d44; border-color: #e27d44; text-decoration: none; transform: translateY(-1px); box-shadow: 0 0 0 4px rgba(210,112,63,0.36); }
     /* brand-themed CTAs: Gmail red / Fabric paper / NeoForge orange */
-    .btn-gmail { background: #ea4335; color: #fff; border: 1px solid #ea4335; box-shadow: 0 0 0 3px rgba(234,67,53,0.28); }
-    .btn-gmail:hover { background: #d33a2d; border-color: #d33a2d; text-decoration: none; transform: translateY(-1px); box-shadow: 0 0 0 4px rgba(234,67,53,0.34); }
+    /* El rojo es #d93025 y no #ea4335, y sigue siendo el rojo de Google: es su
+       "red 600", un solo paso de su propia paleta. Con #ea4335 la etiqueta blanca
+       daba 3,92:1, y a 14,7 px en negrita el umbral es 4,5:1 (para 3:1 haria falta
+       18,66 px). Con #d93025 son 4,77:1. La regla 3 del playbook pide que el fondo
+       sea el color de la marca, no un hex exacto, y Google usa este mismo tono
+       cuando pone texto blanco encima. */
+    .btn-gmail { background: #d93025; color: #fff; border: 1px solid #d93025; box-shadow: 0 0 0 3px rgba(217,48,37,0.28); }
+    .btn-gmail:hover { background: #c5221f; border-color: #c5221f; text-decoration: none; transform: translateY(-1px); box-shadow: 0 0 0 4px rgba(217,48,37,0.34); }
     .btn-discord { background: #5865f2; color: #fff; border: 1px solid #5865f2; box-shadow: 0 0 0 3px rgba(88,101,242,0.30); }
     .btn-discord:hover { background: #4752c4; border-color: #4752c4; text-decoration: none; transform: translateY(-1px); box-shadow: 0 0 0 4px rgba(88,101,242,0.36); }
     /* el icono marcaba el alto de la fila, asi que un boton con icono salia 2px
@@ -1943,7 +1980,7 @@
 
     <div class="shelf">
       <h3>Two I can show you. Twenty-three I can&rsquo;t.</h3>
-      <p>Personal-use licences: mine to run, not mine to hand out. That is the whole reason I do <a href="#authors">free work for the people who wrote them</a>.</p>
+      <p>Some are personal-use licences, mine to run but not mine to hand out. The rest are open licences where I am still waiting on the author's yes before I put a build out. That is the whole reason I do <a href="#authors">free work for the people who wrote them</a>.</p>
       <ul class="shelf-grid">
         <li class="tile"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHAAAABwCAMAAADxPgR5AAAAwFBMVEVcWVCfbmxwXCaglGpmIiHDnZCiRjkmLSGbqqGkLCniS0m9wLnh6e3Iwbk7RkbQvcC/wsGdP0F4kIEwQTfAPz3N0tOQNjPMycmtNjR0My46JxHLublIOCXRR0W5q6yqSU26trRxZiVFKxmYR0ZDMRwwFwutU1nW3eBkWEmLKyixiYlSRzOZmJCIeidWTRqRioOMhHirl5VWURrY4uW0aGlOFxdKak6aVFGPgi6xpJVnVyQCAwLEqalXdlxqZliEdhxdmui8AAAAQHRSTlP/////////////////////////////////////////////////////////////////////////////////////73leyQAAA1NJREFUeNrt1+dyozAQAGABLpd6FQmwTAfbgAvuJbHf/61uJQj2JJkLzvn853ZnIsfMZD+tUAvRrxwEQQQRRBBBBBFEEEEEEUQQQQQR/H9BdlWwB3FVMM/yzSTty3CvAe4jCyKUcQWQzZTI8kOfy3AZY2e+3vMrtJVxKkv0fT9NeaYLk9V+w+QT8/OeyFG1fItzK5uJRzPWEcESRdO0iy+L2ViAUKDPTa4oyhwiGFDDMOiAHg4H13XvHjTtR1YLZO+/hc7Tk20/QSQrZR5T0zSpQSkVxmBgGDfyd/FkOByqqjocHpbLpVsHfPMGmBKsVrFxMygyy7a0yqakfhkG9KO1Hnqet16vn5+XXz4GWZbBGkuzahYwPWlAETenmU/A6lu326XUnE5HUByA09FoKUD2EfgttEKYCZPjyM7yAT0ppczfEvlbXSiJdm9booUHpjkCECrceu3djtQCGechT9vZPcw7GS4bNwRlmgbkhCGrWmo6R6ps1enIU1UAo92uXW9IST/jltVXCEnl0vYX0UIU9hq8FWBXDqZTDC3MIkOAEFvP2u1SbVJr0uizSeTLzasEF40CLF4TdV4AKnshJ0rRHkHPUx9/7pubTq1loWewyngVUeTTKqrMxbI4Aal83NqqWwmm7fa+qW3qLXy7v++HodxK4COKIvO0iNdgWWwQBKL82AlGI2GS/aS5qQnqvRmzivB9ATbegGXBjiORuCVb+BLE8UquDI2xjm27tbe212Ag8wdOSzRxIDMHopFPnQL/DmU6TjBN0+FBg421NsjumCt25oJswKRxRO9pHEtK5hftABAYyViJ54mWNJtJh+V+yMkjWa+1r2IrZ/UmTR6m3PfDF7ABYDF2RSmKshJKM0mSZt4pDoniWIRhhD8ghNz94Vh8B7TFagArkrFYLGg8n69WgZInImy7QtiD+DiirJNMNJWH4x4763ginMs7C+lv7I1tJ4rtlgGJ3RI8BitDlz/NNLTOAWGr6fPQgr2t2gjcHJDTOEHYmzuGDv1iZxzALmwwoexjeXFgupu/MJV0wWuiG4r5GWW90yNZjtU/unm7ZDyeTMaXSl9n0vT+8mp9NnjJ8cN/1xBEEEEEEUQQQQQRRBBBBBFEEEEEEUQQwU/Hb0reLiOND/UBAAAAAElFTkSuQmCC" width="56" height="56" alt="" loading="lazy" decoding="async"><span translate="no">Boids</span></li>
         <li class="tile"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHAAAABwCAMAAADxPgR5AAABhWlDQ1BJQ0MgUHJvZmlsZQAAeJx9kTtIw1AUhv+mig8qDmYQcchQneyiIrqVKhbBQmkrtOpgctMXNGlIUlwcBdeCg4/FqoOLs64OroIg+ABxdnBSdJESz00KLWI8cLkf/z3/z73nAkKjwjSrKwpoum2m4jEpm1uVel4RgAARc+iTmWUk0osZ+NbXPXVT3UV4ln/fnzWg5i0GBCTiKDNMm3iDeGbTNjjvE4usJKvE58QTJl2Q+JHrisdvnIsuCzxTNDOpeWKRWCp2sNLBrGRqxNPEYVXTKV/Ieqxy3uKsVWqsdU/+wlBeX0lzndYo4lhCAklIUFBDGRXYiNCuk2IhRecxH/+I60+SSyFXGYwcC6hCg+z6wf/g92ytwtSklxSKAd0vjvMxBvTsAs2643wfO07zBAg+A1d6219tALOfpNfbWvgIGNwGLq7bmrIHXO4Aw0+GbMquFKQlFArA+xl9Uw4YugX617y5tc5x+gBkaFbLN8DBITBepOx1n3f3ds7t357W/H4AnAdyt9q+MFIAAADAUExURe3t7DEkGfX29kYzI1InEicZDGwsEa2oo6udlGlYS29kWndrZ04ZAtjV04Z5cHxxbEQuIFNEN3IwEzksIo+DeE0xHM3IxZSMhZuUjLu2saiinMbBvT0wJcG8txUHAKeHdWg9KWpJPODd21tNQsqmc8WXVx0RBLR0HCMMANKzh2xNQJRyS7qEOcOsoOPg3WMWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMlFTEMAAABAdFJOU////////////////////////////////////////////////////////////////wAAAAAAAAAAAAAAAAAAAAA8cdOGAAAC9ElEQVR42u3Y2ZajIBAAUClALIwY4m623pdZ///vBmMyp6MmxJ7Rhz7Ug1kEroWgqOfNG+A50IEOdKADHehABzrQgQ50oAO/DgjvP57mBZ9en2cEAeD99dlsYSZQCLH/ngpRRzAHCF4swzAOQ4n5TKAKY+OZiOYDGy6eETzGPKD3645hHMbI2HqmDO8W31QDLvLxE2N8hYf9frW4Dw8Zqv3ocQpDs/pqRL7PFvdtl/q/f9qKgw2MZBsY18FA5NF25fv+HSLem08/EAOFaoXy1EwFV0GTAO/G4mOwJvzG9M3WfF90olN5F3Ry7PwSKiadYP0w1OpgDuzrVse0uAbGO3NU3TpkaaIL+sw/J8mS0aRbs8kxuQYWVGvdrZZQSjd9kJ16tY2ELvugaU2jbVqA7OdoenZ5jDazUzR/H3axgTqE9tsfmkaD4Ia2saGH03ccNivzm7LDjkEw6g/L7gFEtN8x3VH04QxeL0poEtjAnL9wSyuENWCTo60g4bvCBj4UpbaJLDODJMsyW34kKYrcAjZXttia4ul8WsvZL23gBfWjNcMjSK1gHnn2c8hvTfAGMuGldZRukiT5T6BpyQqa20UUPQh+G3cV5HHTlge33A+3nFzu2JtAU32X3nQ/bGO73ubIPw/Sar3eDi6x4NJaHkDu+GCcg4NFXjZw6UHg8pIESrO+rkUvyo8eU739zZJVqs8soi6tac7A6raVzL+s2vKzHq1h8mViyT6CcnLQw+xs1Ixd7Y8+wO0ZR1k5NaiIprrN0nzoDKcFIdJUMimb85hhylBnIx9oxoKCPEqmdNufKkPJ1bRgTBSSQGvJEFmgaUr0uDZGHp6Z9TWla6olQSQV8gCJmBJMOQqCa0oPoFC8MP9M2KVQoUHSiqAiMuSF4LjGetJzCCBwWxGVElnyIsLSA5j4SmPMisQplwVPwZv+kfsw+d+k4jJ9Q2+eV19Qx1VJVa6KGV/u/d26N8IOdKADHehABzrQgQ50oAMd+EVAmDn+AF1BLwDgAX8oAAAAAElFTkSuQmCC" width="56" height="56" alt="" loading="lazy" decoding="async"><span translate="no">Birds</span></li>
@@ -2265,7 +2302,7 @@
         <div class="paycard">
           <svg viewBox="0 0 24 24" fill="none" stroke="#5fa86a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v5c0 4.5-3.4 7.7-8 9-4.6-1.3-8-4.5-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg>
           <div class="paycard-name"><span translate="no">BuiltByBit</span> escrow</div>
-          <div class="paycard-sub">Not live yet. Until it is, you pay after you have seen the build run.</div>
+          <div class="paycard-sub">Not live yet. <span translate="no">Wise</span> or <span translate="no">PayPal</span> in the meantime.</div>
         </div>
         <div class="paycard">
           <svg viewBox="0 0 24 24" fill="none" stroke="#5aa84a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h13l-3-3"/><path d="M20 16H7l3 3"/></svg>
@@ -2523,7 +2560,7 @@
           <p><strong>Service.</strong> <span translate="no">Modwright</span> does paid <span translate="no">Minecraft</span> mod work: <span translate="no">porting</span>, backporting, reviving, loader conversion, compatibility patches, maintenance and optimization.</p>
           <p><strong>Quotes &amp; pricing.</strong> The <span translate="no">Angel Engine</span> gives a non-binding ballpark. The final price is fixed and agreed in writing before any work begins. A deposit may be requested for larger jobs, and a minimum charge applies; the <span translate="no">Angel Engine</span> shows it.</p>
           <p><strong>Payment.</strong> Through <span translate="no">Wise</span> or <span translate="no">PayPal</span>, or <span translate="no">BuiltByBit</span> escrow where available, as agreed. With escrow, funds release on delivery.</p>
-          <p><strong>Delivery &amp; timelines.</strong> You receive a working, boot-tested build. Timelines are honest estimates, not promises, and I don't commit to hard deadlines.</p>
+          <p><strong>Delivery &amp; timelines.</strong> You receive a working, boot-tested build. Timelines are honest estimates based on the work in front of me, not guarantees, and I do not commit to hard deadlines. If a date is genuinely critical for you, say so before we agree: I will either commit to it in writing or turn the job down.</p>
           <p><strong>Scope &amp; corrections.</strong> The deliverable is the working build described in our written agreement, which you review before final payment. If a bug inside that agreed scope shows up within 30 days of delivery, I fix it at no charge; where a correction is not possible, I refund the affected amount. After 30 days, or for breakage caused by <span translate="no">Minecraft</span> updates, other mods, server setup, or changes beyond the agreed scope, fixes are quoted as maintenance work.</p>
           <p><strong>Your responsibilities.</strong> You must have the right to have the mod worked on: it's open-source, your own, or you have the author's permission. You are responsible for how you use the delivered files.</p>
           <p><strong>Rights &amp; redistribution.</strong> You pay for my time, not for distribution rights. Closed-source (ARR) work is delivered privately to you only and is never published. I will not publicly redistribute an ARR mod without the author's written permission.</p>
@@ -2548,7 +2585,7 @@
         <summary>Licenses &amp; attributions</summary>
         <div class="legal-doc-body">
           <p><strong>Mods.</strong> I only work on mods you have the right to modify: open-source, your own, or with the author's permission. Open-source <span translate="no">ports</span> I publish keep the original licence and credit the original author; closed-source work stays private.</p>
-          <p><strong>This website.</strong> Design, copy and graphics are original work © <span translate="no">Modwright</span>. Illustrations and icons are hand-built inline SVG; no third-party images are used.</p>
+          <p><strong>This website.</strong> Design, copy and original artwork are © <span translate="no">Modwright</span>. Mod logos, mod icons and in-game captures belong to their authors and to <span translate="no">Mojang Studios</span>, and appear here only to identify the work they refer to.</p>
           <p><strong>Fonts.</strong> “Space Grotesk” is used under the SIL Open Font License.</p>
           <p><strong>Trademarks.</strong> <span translate="no">Minecraft</span> is a trademark of <span translate="no">Mojang Studios</span>. <span translate="no">Forge</span>, <span translate="no">NeoForge</span>, <span translate="no">Fabric</span>, <span translate="no">CurseForge</span>, <span translate="no">Modrinth</span> and <span translate="no">BuiltByBit</span> belong to their respective owners. Their names are used here for identification only. This is an independent service with no affiliation or endorsement.</p>
           <p class="legal-doc-note">Last updated June 2026.</p>
