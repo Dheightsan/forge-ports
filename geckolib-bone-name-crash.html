@@ -15,28 +15,31 @@ try{s=localStorage.getItem('mw-theme');}catch(e){}
 if(!s&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches){s='light';}
 r.setAttribute('data-theme',s==='light'?'light':'dark');}catch(e){}})();
 </script>
-<title>GeckoLib bone name mismatch: the crash no compiler can catch | Modwright</title>
-<meta name="description" content="A GeckoLib model asks for a bone the model file does not have, getBone returns null, and the renderer dies on the first frame the entity is drawn. Why nothing catches it at build time, and how to check your own jar with javap before you ship it.">
+<title>GeckoLib bone name mismatch: the silent crash | Modwright</title>
+<meta name="description" content="A GeckoLib model asks for a bone the file does not have, getBone returns null, and the renderer dies. How to catch it with javap.">
 <link rel="canonical" href="https://dheightsan.github.io/forge-ports/geckolib-bone-name-crash.html">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="favicon-180.png">
-<meta property="og:title" content="GeckoLib bone name mismatch: the crash no compiler can catch">
-<meta property="og:description" content="getBone returns null, the renderer runs every frame, and the build was green. How to catch it first.">
+<meta property="og:title" content="GeckoLib bone name mismatch: the silent crash">
+<meta property="og:description" content="A GeckoLib model asks for a bone the file does not have, getBone returns null, and the renderer dies. How to catch it with javap.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://dheightsan.github.io/forge-ports/geckolib-bone-name-crash.html">
-<meta property="og:image" content="https://dheightsan.github.io/forge-ports/og.png">
+<meta property="og:image" content="https://dheightsan.github.io/forge-ports/og-2026-08.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Modwright: Minecraft mod porting and backporting">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"TechArticle",
+      "image": "https://dheightsan.github.io/forge-ports/og-2026-08.png",
 "datePublished":"2026-08-10","dateModified":"2026-08-10",
 "headline":"GeckoLib bone name mismatch: the crash no compiler can catch",
 "description":"A GeckoLib model asks for a bone the model file does not have, getBone returns null, and the renderer dies on the first frame the entity is drawn. Why nothing catches it at build time, and how to check your own jar with javap before you ship it.",
 "author":{"@type":"Person","name":"josda"},
-"publisher":{"@type":"Organization","name":"Modwright"},
+"publisher":{"@type":"Organization","name":"Modwright",
+        "logo": {"@type": "ImageObject", "url": "https://dheightsan.github.io/forge-ports/logo-cuy-v3.webp"}
+      },
 "inLanguage":"en",
 "about":["Minecraft modding","GeckoLib","debugging","mod porting"],
 "proficiencyLevel":"Expert",
@@ -106,7 +109,13 @@ r.setAttribute('data-theme',s==='light'?'light':'dark');}catch(e){}})();
   footer { border-top: 1px solid var(--border); margin-top: 3.5rem; padding: 1.8rem 1.4rem; text-align: center; color: var(--text-mute); font-size: 0.85rem; }
   @media (max-width: 480px) { .bar-in strong { display: none; } main { padding-top: 2.2rem; } }
 </style>
-</head>
+
+  <meta property="og:site_name" content="Modwright">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="GeckoLib bone name mismatch: the silent crash">
+  <meta name="twitter:description" content="A GeckoLib model asks for a bone the file does not have, getBone returns null, and the renderer dies. How to catch it with javap.">
+  <meta name="twitter:image" content="https://dheightsan.github.io/forge-ports/og-2026-08.png"></head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
