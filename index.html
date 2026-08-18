@@ -1831,7 +1831,14 @@
       I work across <span translate="no">Forge</span>, <span translate="no">Fabric</span> and <span translate="no">NeoForge</span>, and I move mods up and down versions. <span translate="no">Forge</span> 1.20.1 is my lowest rate because it is the least work, not because it is all I do. I check the licence first and boot-test every build before it's released.
     </p>
     <div class="pills">
-      <span class="pill pill-price">Fixed price, one flat quote</span>
+      <!-- Lleva la cifra porque sin ella el lector recorria hero, portafolio y
+           servicios enteros sin ver UN SOLO numero: el minimo solo aparecia dentro
+           del motor, en letra pequena. Los "$20" no se inventan aqui, ya vivian en
+           la descripcion de los buscadores y en el JSON-LD.
+           Y de paso arregla la fila: medido, con el texto corto los 4 distintivos
+           caian 3+1 a 768 px (un distintivo huerfano se lee como un fallo de
+           maqueta) y con la cifra caen 2+2. A 1440, 1280, 1024 y 375 no cambia. -->
+      <span class="pill pill-price">Fixed price from $20, one flat quote</span>
       <span class="pill pill-trust"><span translate="no">Forge</span>, <span translate="no">Fabric</span> &amp; <span translate="no">NeoForge</span></span>
       <span class="pill">5 structural checks before any <span translate="no">jar</span> ships</span>
       <span class="pill">Licence checked up front</span>
@@ -2082,10 +2089,13 @@
           </div>
           <h3>I measured which mods animate themselves instead of assuming</h3>
         </div>
-        <p class="mp-hook"><strong>48% of them were already animated</strong> and never needed <span translate="no">Fresh Animations</span> at all. I scanned the bytecode of <strong>645 <span translate="no">jars</span></strong> instead of guessing.</p>
+        <!-- "of their creatures" y no "of them": a la vista hay TRES cantidades
+             (645 jars, 305 mods, 3.951 criaturas) y el porcentaje es todo el caso.
+             Con "them" el lector no sabe de cual de las tres es el 48%. -->
+        <p class="mp-hook"><strong>48% of their creatures were already animated</strong> and never needed <span translate="no">Fresh Animations</span> at all. I scanned the bytecode of <strong>645 <span translate="no">jars</span></strong> instead of guessing.</p>
         <details class="more more--card">
           <summary>The numbers</summary>
-        <p><span translate="no">Fresh Animations</span> does nothing for a mod that animates its own creatures, so before touching anything I scanned the bytecode of <strong>645 <span translate="no">jars</span></strong> for <span translate="no">GeckoLib</span>, <span translate="no">AzureLib</span> and <span translate="no">Citadel</span>. 305 add creatures, 3,951 creatures between them, and <strong>48% were already animated</strong>. That is the difference between a job with no edges and a short list.</p>
+        <p><span translate="no">Fresh Animations</span> does nothing for a mod that animates its own creatures, so before touching anything I scanned the bytecode of <strong>645 <span translate="no">jars</span></strong> for <span translate="no">GeckoLib</span>, <span translate="no">AzureLib</span> and <span translate="no">Citadel</span>. 305 add creatures, 3,951 creatures between them, and <strong>48% of those creatures were already animated</strong>. That is the difference between a job with no edges and a short list.</p>
         </details>
       </article>
 
@@ -2162,7 +2172,12 @@
   <img class="ch ch--borde" src="h9478c-23.webp" width="256" height="244" style="right:calc(50% + 530px + 18px);top:200px;--h:195px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
         <h2>Backports, <span translate="no">ports</span> and loader conversions</h2>
-    <p class="sub">All three loaders, both directions. <span translate="no">Forge</span> 1.20.1 carries the lowest rate because it sits just below every recent version wall, so it is the least work. Anything harder is priced by the real work it adds, not some made-up percentage. The full reasoning is written up in <a href="mod-porting-cost.html">what a <span translate="no">port</span> costs, and why</a>.</p>
+    <!-- El "por que" del 1.20.1 se decia TRES veces, dos de ellas con las mismas
+         doce palabras seguidas ("it sits just below every recent version wall").
+         Vive en el hero, donde ademas lleva lo que solo el puede decir ("not
+         because it is all I do"), y en la pregunta del FAQ que existe justo para
+         eso. Aqui el dato util es la tarifa. -->
+    <p class="sub">All three loaders, both directions. <span translate="no">Forge</span> 1.20.1 carries the lowest rate. Anything harder is priced by the real work it adds, not some made-up percentage. The full reasoning is written up in <a href="mod-porting-cost.html">what a <span translate="no">port</span> costs, and why</a>.</p>
 <div class="cards">
       <div class="card card--base">
         <div class="icon-wrap svc-copper"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v13"/><path d="M6 11l6 6 6-6"/></svg></div>
@@ -2226,7 +2241,12 @@
       </div>
     </div>
     <p class="svc-shape"><strong>None of these is all-or-nothing.</strong> Leave a feature out, change spawn rates, damage, effects, recipes or loot. <a href="#faq">Say so when you send it</a> and it goes in the same fixed quote.</p>
-    <p class="svc-price-note">Every one of these is priced in the <a href="#estimator"><span translate="no">Angel Engine</span></a> above.</p>
+    <!-- "below", no "above": el motor va DESPUES de esta seccion (services 2159,
+         how-it-works 2236, estimator 2256). Decia "above" y mandaba a scrollear en
+         direccion contraria justo a quien acaba de decidir y va a por el precio.
+         Tampoco "just below": entre medias esta how-it-works, asi que no es lo
+         siguiente que se encuentra. -->
+    <p class="svc-price-note">Every one of these is priced in the <a href="#estimator"><span translate="no">Angel Engine</span></a> below.</p>
   </div>
 </section>
 <div class="torn-sep" aria-hidden="true"><svg viewBox="0 0 1440 24" preserveAspectRatio="none"><path d="M0 24 L0 13 L60 8 L120 16 L186 7 L256 15 L330 9 L408 17 L486 8 L566 15 L648 9 L730 17 L812 8 L894 15 L976 10 L1058 17 L1140 8 L1222 15 L1304 9 L1386 16 L1440 12 L1440 24 Z"/></svg>
@@ -2487,7 +2507,12 @@
 
     <div class="credit">
       <h3>Thank you</h3>
-      <p><strong>This is going better than I expected.</strong> One of my <span translate="no">ports</span> went to the mod's original creator for its official page. Another was read through and signed off by the people who wrote it. Twenty-three more are finished or close to it on my own machine, waiting on permission rather than on work. A year ago none of that existed.</p>
+      <!-- Las tres frases del medio contaban por TERCERA vez lo mismo: el
+           portafolio ya lo dice con sus dos fichas y con "Two I can show you.
+           Twenty-three I can't.", y #authors lo cuenta con nombres a menos de una
+           pantalla de aqui. Se queda la apertura y el cierre, que es lo unico que
+           esta seccion aporta: el balance del ano. -->
+      <p><strong>This is going better than I expected.</strong> A year ago none of that existed.</p>
       <p><strong>And none of it happened on my own.</strong> <span translate="no">Alex</span> is the one I talk the hard calls through with, and we are on the same course. Around that there are people who test what I build, who send me mods worth looking at, and who tell me straight when something is wrong. And before any of them, the authors who wrote these mods and let me near their work.</p>
       <p><strong>I would rather say that than pretend it was all me.</strong> Your job is still written and debugged by the person you are talking to; what I am not going to claim is that I got here by myself.</p>
     </div>
