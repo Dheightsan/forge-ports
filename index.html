@@ -6,7 +6,20 @@
        GitHub Pages no permite cabeceras HTTP, asi que solo valen las directivas de fetch
        (frame-ancestors y X-Frame-Options NO funcionan via meta: el navegador las ignora). -->
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; frame-src 'none'">
+  <!-- `img-src`/`font-src` nombran el origen canonico ADEMAS de 'self', y no es
+       redundante: cuando un proxy sirve la pagina (translate.goog del traductor de
+       Google, la Wayback Machine) el origen pasa a ser el del proxy, mientras el
+       <base> que ese proxy inyecta sigue apuntando aqui. O sea que los assets se
+       vuelven cross-origin y 'self' deja de cubrirlos. Medido el 18-08 en
+       dheightsan-github-io.translate.goog: 66 imagenes rotas de 90 y 2 fuentes
+       cargadas de 9, o sea la pagina sin ninguna de las 40 caricaturas y sin la
+       letra de la marca. Esto NO abre nada a terceros: es el mismo sitio.
+       Lo que sigue SIN permitir es que el traductor CORRA (su script vive en
+       translate.googleapis.com y script-src no lo admite), asi que por esa via la
+       pagina se ve en ingles. Abrirlo es una decision de seguridad de josda: son
+       tres hosts de Google en script-src de forma permanente, tambien en el origen
+       real. Sin decidir, a proposito. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self' https://dheightsan.github.io; img-src 'self' data: https://dheightsan.github.io; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; frame-src 'none'">
   <script>
     document.documentElement.classList.add('js');
     /* El fade oculta el contenido con CSS colgado de html.js, y quien lo revela es el
@@ -1031,6 +1044,16 @@
     .faq-item:hover { border-color: var(--green-ring); border-left-color: var(--green-hi); }
     .faq-q:hover { color: var(--green-hi); }
     .faq-q { width: 100%; text-align: left; background: none; border: none; color: var(--text); font-family: inherit; font-size: 0.94rem; font-weight: 700; padding: 1.1rem 1.3rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+    /* El texto de la pregunta va en UN elemento, y no suelto, porque `.faq-q` es
+       flex con `space-between`: cada `<span translate="no">` a media frase se
+       convertia en un item flex mas y la pregunta se repartia por todo el ancho.
+       Medido a 1262 px: "Can I put the / ported / mod in my public / modpack / ?"
+       salia en 5 trozos con 129 px de hueco entre cada uno. Con el texto en
+       español (un 28% mas largo) a 375 px ademas desbordaba la caja 54 px y el
+       "+" se iba fuera, recortado por el `overflow: hidden` de `.faq-item`.
+       `min-width: 0` es obligatorio: sin el, el flex-item no baja de su
+       contenido y a 375 vuelve a desbordar. */
+    .faq-txt { flex: 1; min-width: 0; }
     .faq-icon { display: inline-grid; place-items: center; flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--green-glow); font-size: 1.15rem; font-weight: 400; color: var(--green-hi); line-height: 1; }
     /* Abre con grid-template-rows 0fr->1fr, no con max-height. Con max-height habia
        que fijar un techo (360px) y la respuesta mas larga lo rozaba en movil: un
@@ -1728,8 +1751,8 @@
     <div class="hero-copy">
     <img class="hero-title" src="titulo-modwright.webp" width="1024" height="97" alt="Modwright Studios" fetchpriority="high" decoding="async">
     <div class="hero-services-row">
-      <a class="hs-chip svc-copper" href="#services"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v13"/><path d="M6 11l6 6 6-6"/></svg><span>Backport</span></a>
-      <a class="hs-chip svc-life" href="#services"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V7"/><path d="M6 13l6-6 6 6"/></svg><span>Forward-<span translate="no">port</span></span></a>
+      <a class="hs-chip svc-copper" href="#services"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v13"/><path d="M6 11l6 6 6-6"/></svg><span translate="no">Backport</span></a>
+      <a class="hs-chip svc-life" href="#services"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V7"/><path d="M6 13l6-6 6 6"/></svg><span translate="no">Forward-port</span></a>
       <a class="hs-chip svc-loom" href="#services"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h13l-3-3"/><path d="M20 16H7l3 3"/></svg><span>Loader conversion</span></a>
       <a class="hs-chip svc-bridge" href="#services"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7h5a4 4 0 0 1 0 8h-1"/><path d="M15 17h-5a4 4 0 0 1 0-8h1"/></svg><span>Compatibility</span></a>
       <a class="hs-chip svc-steel" href="#services"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.6 5.6L3 18l3 3 6.1-6.1a4 4 0 0 0 5.6-5.6l-2.9 2.9a1.5 1.5 0 0 1-2-2l2.9-2.9z"/></svg><span>Maintenance</span></a>
@@ -1847,7 +1870,7 @@
             <span class="port-go">Open on <span translate="no">CurseForge</span> &rarr;</span>
           </span>
         </a>
-        <p class="port-desc">Forward-<span translate="no">port</span> of <span translate="no">camcam_burger</span>'s food-variety mod, delivered to its creator for the mod's official page.</p>
+        <p class="port-desc"><span translate="no">Forward-port</span> of <span translate="no">camcam_burger</span>'s food-variety mod, delivered to its creator for the mod's official page.</p>
         <dl class="port-stats">
           <div><dt>Jump</dt><dd>1.20.1 → 1.21.1</dd></div>
           <div><dt>Loader</dt><dd><span translate="no">Forge</span> → <span translate="no">NeoForge</span></dd></div>
@@ -2047,8 +2070,8 @@
 <div class="cards">
       <div class="card card--base">
         <div class="icon-wrap svc-copper"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v13"/><path d="M6 11l6 6 6-6"/></svg></div>
-        <h3>Backport</h3>
-        <p>A newer mod (1.21+) your pack needs running on something older like <span translate="no">Forge</span> 1.20.1. That means <span translate="no">porting</span> the items, blocks, mechanics and textures across. Backporting a mod to <span translate="no">Forge</span> 1.20.1 is the job I do most.</p>
+        <h3><span translate="no">Backport</span></h3>
+        <p>A newer mod (1.21+) your pack needs running on something older like <span translate="no">Forge</span> 1.20.1. That means <span translate="no">porting</span> the items, blocks, mechanics and textures across. <span translate="no">Backporting</span> a mod to <span translate="no">Forge</span> 1.20.1 is the job I do most.</p>
         <div class="card-stats">
           <div><span class="k">Target</span><span class="v"><span translate="no">Forge</span> 1.20.1</span></div>
           
@@ -2057,7 +2080,7 @@
       </div>
       <div class="card card--premium">
         <div class="icon-wrap svc-life"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V7"/><path d="M6 13l6-6 6 6"/></svg></div>
-        <h3>Forward-<span translate="no">port</span> &amp; revive</h3>
+        <h3><span translate="no">Forward-port</span> &amp; revive</h3>
         <p>An old or abandoned mod you love, stuck on 1.12 / 1.16 / 1.18, that you want running on a modern version. It's the hardest kind of <span translate="no">port</span>, which is exactly why most porters won't take it. The price scales with how many version walls it has to cross.</p>
         <div class="card-stats">
           <div><span class="k">Range</span><span class="v">1.12 → modern</span></div>
@@ -2150,8 +2173,8 @@
         <div class="est-group" id="grp-service">
           <div class="est-label">What kind of job is it?</div>
           <div class="est-options" data-group="service">
-            <button type="button" class="est-opt ac-copper active" data-value="backport"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v13"/><path d="M6 12l6 6 6-6"/></svg>Backport<small>newer → older</small></button>
-            <button type="button" class="est-opt ac-life" data-value="forward"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V6"/><path d="M6 12l6-6 6 6"/></svg>Forward-<span translate="no">port</span> / revive<small>old → modern</small></button>
+            <button type="button" class="est-opt ac-copper active" data-value="backport"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v13"/><path d="M6 12l6 6 6-6"/></svg><span translate="no">Backport</span><small>newer → older</small></button>
+            <button type="button" class="est-opt ac-life" data-value="forward"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V6"/><path d="M6 12l6-6 6 6"/></svg><span translate="no">Forward-port</span> / revive<small>old → modern</small></button>
             <button type="button" class="est-opt ac-bridge" data-value="compat"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7h4a4 4 0 0 1 0 8h-1"/><path d="M15 17h-4a4 4 0 0 1 0-8h1"/></svg>Compatibility<small>make mods coexist</small></button>
             <button type="button" class="est-opt ac-steel" data-value="maintain"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.6 5.6L3 18l3 3 6.1-6.1a4 4 0 0 0 5.6-5.6l-2.9 2.9a1.5 1.5 0 0 1-2-2l2.9-2.9z"/></svg>Maintenance<small>fix mixins / crashes</small></button>
             <button type="button" class="est-opt ac-spark" data-value="optimize"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Optimization<small>less lag / resources</small></button>
@@ -2234,7 +2257,7 @@
     <p class="pnote"><strong>Reviving an old mod, converting <span translate="no">Fabric</span> to <span translate="no">Forge</span>, or private closed-source work?</strong> &nbsp;Those are quoted as one flat number for your specific mod, never a stack of surcharges.</p>
     <div class="price-promo">
       <span class="price-promo-tag">Returning clients</span>
-      <span>When your pack moves to a new <span translate="no">Minecraft</span> version, re-<span translate="no">porting</span> work I originally built for you is <strong>40% of the original price</strong>, and past clients jump the queue.</span>
+      <span>When your pack moves to a new <span translate="no">Minecraft</span> version, <span translate="no">re-porting</span> work I originally built for you is <strong>40% of the original price</strong>, and past clients jump the queue.</span>
     </div>
     <div class="paystrip">
       <div class="paystrip-head">How you pay</div>
@@ -2273,15 +2296,15 @@
   <div class="wrap">
         <h2>Before you ask</h2>
     <div class="faq-list">
-      <div class="faq-item"><button type="button" class="faq-q">Why is 1.20.1 the cheapest lane? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">It sits just below every recent version wall, so it takes the least work. Other versions have to cross walls (networking, data components, worldgen) that genuinely take longer, so they carry a flat premium per wall.</div></div></div>
-      <div class="faq-item"><button type="button" class="faq-q">What exactly is a compatibility patch? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">Making two or more mods work together without adding new content. For example: getting one mod's mobs to spawn in another mod's biomes, or fixing a conflict that breaks a feature. Each one is custom, so I quote it by scope.</div></div></div>
-      <div class="faq-item"><button type="button" class="faq-q">Is this legal? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">Yes. You pay for my time writing the <span translate="no">port</span>, not for distribution rights. I publish only open-source mods or mods with written permission; anything else is delivered privately to whoever holds the right to use it. See the Licenses section below.</div></div></div>
-      <div class="faq-item"><button type="button" class="faq-q">How do I pay safely? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body"><span translate="no">Wise</span> or <span translate="no">PayPal</span> (Goods &amp; Services), wherever you are. I never take Friends &amp; Family, because it's the one payment type with no buyer protection for you. <span translate="no">BuiltByBit</span> escrow is coming, but it isn't live yet.</div></div></div>
-      <div class="faq-item"><button type="button" class="faq-q">How long does it take? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">It depends on the mod. We agree a timeline before I start, but I won't quote a fixed turnaround I can't stand behind. I'd rather under-promise and actually deliver than miss a date.</div></div></div>
-      <div class="faq-item"><button type="button" class="faq-q">What if the <span translate="no">port</span> doesn't work? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">You see the build working before you make final payment, so you're never paying for something you haven't seen run. The deliverable is whatever we agree in writing up front, and if a bug inside that agreed scope shows up within 30 days of delivery, I fix it at no charge. After that, or for problems caused by <span translate="no">Minecraft</span> updates, other mods, or server changes, it becomes a maintenance job.</div></div></div>
-      <div class="faq-item"><button type="button" class="faq-q">Can I put the <span translate="no">ported</span> mod in my public <span translate="no">modpack</span>? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">It depends on the original mod's licence, and I tell you which case you are in before you pay, not after. Open-source: yes, and I publish it with credit to the original author so your pack links to something real. Your own mod, or one where you hold written permission: yes, and I tell you exactly what credit to include. All rights reserved with no permission: no, and I will not take the job on those terms, because the takedown would land on your account and not mine.</div></div></div>
-      <div class="faq-item"><button type="button" class="faq-q">Can you leave parts of the mod out, or change what it does? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">Yes, and it is worth asking. A <span translate="no">port</span> does not have to be the whole mod: I can drop a feature you do not want, change values like spawn rates, durability or damage, retune or remove effects, and adjust recipes and loot. Tell me when you send it and it goes into the fixed quote, instead of turning into a second job later. The line is between tweaks and a redesign: rebalancing the whole mod is its own job and I quote it separately.</div></div></div>
-      <div class="faq-item"><button type="button" class="faq-q">What's out of scope? <span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">The mod's original textures and assets always come across with the <span translate="no">port</span>. What doesn't: brand-new textures, 3D models or animations, full gameplay or balance redesigns, and ongoing maintenance across future <span translate="no">Minecraft</span> versions. Those get quoted separately, so tell me upfront and I'll fold it into the price.</div></div></div>
+      <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">Why is 1.20.1 the cheapest lane?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">It sits just below every recent version wall, so it takes the least work. Other versions have to cross walls (networking, data components, worldgen) that genuinely take longer, so they carry a flat premium per wall.</div></div></div>
+      <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">What exactly is a compatibility patch?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">Making two or more mods work together without adding new content. For example: getting one mod's mobs to spawn in another mod's biomes, or fixing a conflict that breaks a feature. Each one is custom, so I quote it by scope.</div></div></div>
+      <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">Is this legal?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">Yes. You pay for my time writing the <span translate="no">port</span>, not for distribution rights. I publish only open-source mods or mods with written permission; anything else is delivered privately to whoever holds the right to use it. See the Licenses section below.</div></div></div>
+      <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">How do I pay safely?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body"><span translate="no">Wise</span> or <span translate="no">PayPal</span> (Goods &amp; Services), wherever you are. I never take Friends &amp; Family, because it's the one payment type with no buyer protection for you. <span translate="no">BuiltByBit</span> escrow is coming, but it isn't live yet.</div></div></div>
+      <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">How long does it take?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">It depends on the mod. We agree a timeline before I start, but I won't quote a fixed turnaround I can't stand behind. I'd rather under-promise and actually deliver than miss a date.</div></div></div>
+      <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">What if the <span translate="no">port</span> doesn't work?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">You see the build working before you make final payment, so you're never paying for something you haven't seen run. The deliverable is whatever we agree in writing up front, and if a bug inside that agreed scope shows up within 30 days of delivery, I fix it at no charge. After that, or for problems caused by <span translate="no">Minecraft</span> updates, other mods, or server changes, it becomes a maintenance job.</div></div></div>
+      <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">Can I put the <span translate="no">ported</span> mod in my public <span translate="no">modpack</span>?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">It depends on the original mod's licence, and I tell you which case you are in before you pay, not after. Open-source: yes, and I publish it with credit to the original author so your pack links to something real. Your own mod, or one where you hold written permission: yes, and I tell you exactly what credit to include. All rights reserved with no permission: no, and I will not take the job on those terms, because the takedown would land on your account and not mine.</div></div></div>
+      <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">Can you leave parts of the mod out, or change what it does?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">Yes, and it is worth asking. A <span translate="no">port</span> does not have to be the whole mod: I can drop a feature you do not want, change values like spawn rates, durability or damage, retune or remove effects, and adjust recipes and loot. Tell me when you send it and it goes into the fixed quote, instead of turning into a second job later. The line is between tweaks and a redesign: rebalancing the whole mod is its own job and I quote it separately.</div></div></div>
+      <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">What's out of scope?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">The mod's original textures and assets always come across with the <span translate="no">port</span>. What doesn't: brand-new textures, 3D models or animations, full gameplay or balance redesigns, and ongoing maintenance across future <span translate="no">Minecraft</span> versions. Those get quoted separately, so tell me upfront and I'll fold it into the price.</div></div></div>
     </div>
     <div class="softcta">
       <p>Still got a question? Ask me the awkward one. <strong>I'd rather deal with it now than after you've paid.</strong></p>
