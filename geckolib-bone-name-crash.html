@@ -120,15 +120,15 @@ r.setAttribute('data-theme',s==='light'?'light':'dark');}catch(e){}})();
 
 <main id="main">
   <div class="kicker">Field notes</div>
-  <h1><span translate="no">GeckoLib</span> bone name mismatch: the crash no compiler can catch</h1>
+  <h1><span translate="no">GeckoLib </span>bone name mismatch: the crash no compiler can catch</h1>
 
   <p class="lede">The build succeeds. The log is clean. The mod loads. Then the entity is drawn for the first time and the game dies, because the model asked for a bone the model file does not have. Nothing between you and that moment can see the mistake, and this is why.</p>
 
-  <p>This happened to me on a port of <span translate="no">Capybara</span> by <span translate="no">39Choko</span>, and I kept the broken jar, so everything below is measured rather than remembered.</p>
+  <p>This happened to me on a port of<span translate="no"> Capybara </span>by<span translate="no"> 39Choko</span>, and I kept the broken jar, so everything below is measured rather than remembered.</p>
 
   <h2>What the mistake looks like</h2>
   <p>The renderer asked for a bone called <code>saddleParts</code>. In the model file that bone is called <code>saddle</code>. That is the whole bug.</p>
-  <p>Both names are correct <span translate="no">Java</span>. Both compile. The name lives inside a string literal, and a string literal is just characters to the compiler. It has no idea one of them is supposed to correspond to a key in a <code>.geo.json</code> file sitting somewhere else in the jar.</p>
+  <p>Both names are correct<span translate="no"> Java</span>. Both compile. The name lives inside a string literal, and a string literal is just characters to the compiler. It has no idea one of them is supposed to correspond to a key in a <code>.geo.json</code> file sitting somewhere else in the jar.</p>
 
   <div class="note">
     <p><strong>Why it survives every gate you already have.</strong> A resource diff compares files and both files are present and unchanged. A build passes because the syntax is fine. A load test passes because nothing reads the model until something is rendered. The mod is installed, the log says it initialised, and it is still broken.</p>
@@ -191,7 +191,7 @@ FIXED   capymod-1.20.1-1.2.jar
 
   <p>Two things worth noticing. The broken jar <strong>names the wrong bone and then lists the eleven that do exist</strong>, so the correct one is sitting right there to read: you do not go hunting. And the fixed jar reports one bone requested, one found, which is the boring output you want.</p>
 
-  <p>The mod is <span translate="no">Capybara</span> by <span translate="no">39Choko</span>, <span translate="no">MIT</span>. I am not hosting either jar here, because publishing somebody else's mod is a separate conversation I have not had with them yet. The check above is mine and it runs on any jar you point it at, including yours.</p>
+  <p>The mod is<span translate="no"> Capybara </span>by<span translate="no"> 39Choko</span>,<span translate="no"> MIT</span>. I am not hosting either jar here, because publishing somebody else's mod is a separate conversation I have not had with them yet. The check above is mine and it runs on any jar you point it at, including yours.</p>
 
 
 
@@ -199,7 +199,7 @@ FIXED   capymod-1.20.1-1.2.jar
   <p>Being honest about the limits, because a check you trust too much is worse than no check:</p>
   <ul>
     <li>It only sees <strong>literal</strong> names. A bone name built at runtime by concatenating strings is invisible to it.</li>
-    <li>It needs a <span translate="no">JDK</span> on the machine, because <code>javap</code> ships with the <span translate="no">JDK</span> and not with the runtime.</li>
+    <li>It needs a<span translate="no"> JDK </span>on the machine, because <code>javap</code> ships with the<span translate="no"> JDK </span>and not with the runtime.</li>
     <li>It proves the names line up. It does not prove the animation is correct, or that the model looks right.</li>
   </ul>
   <p>It is a colander, not a proof. It catches one specific class of silent failure completely, and says nothing about any other.</p>
@@ -210,16 +210,16 @@ FIXED   capymod-1.20.1-1.2.jar
 
   <div class="cta">
     <p><strong>If you would rather not do this yourself.</strong></p>
-    <p>I port, backport and revive Minecraft mods, and <span translate="no">Forge</span> 1.20.1 is where I work most. This check now runs against every jar I build, before anything is launched, along with four other structural ones.</p>
+    <p>I port, backport and revive Minecraft mods, and<span translate="no"> Forge </span>1.20.1 is where I work most. This check now runs against every jar I build, before anything is launched, along with four other structural ones.</p>
     <p><a class="btn" href="./#estimator">Price your mod</a></p>
   </div>
 <hr>
 <p><strong>Related.</strong> This is one of several failures that pass every automatic gate. The rest are in <a href="fabric-to-forge-1-20-1.html">what actually breaks when you port a Fabric mod to Forge 1.20.1</a>, and if you are weighing up paying somebody, <a href="mod-porting-cost.html">what a mod port costs, and why</a> explains where the hours actually go.</p>
-  <p class="byline">Written by <strong translate="no">josda</strong>, <span translate="no">Forge</span> 1.20.1 mod porting. Last updated August 2026. Questions, corrections or a mod you need moved: <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer">Discord</a> or <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20porting">email</a>.</p>
+  <p class="byline">Written by <strong translate="no">josda</strong>,<span translate="no"> Forge </span>1.20.1 mod porting. Last updated August 2026. Questions, corrections or a mod you need moved: <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer">Discord</a> or <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20porting">email</a>.</p>
 </main>
 
 <footer>
-  <span translate="no">Modwright</span> &middot; <a href="./">Services and pricing</a> &middot; <a href="./#legal">Terms</a>
+ <span translate="no"> Modwright </span>&middot; <a href="./">Services and pricing</a> &middot; <a href="./#legal">Terms</a>
  &middot; <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer">Discord</a> &middot; <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20porting">Email</a></footer>
 </body>
 </html>

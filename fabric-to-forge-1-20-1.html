@@ -117,48 +117,48 @@ r.setAttribute('data-theme',s==='light'?'light':'dark');}catch(e){}})();
 
 <main id="main">
   <div class="kicker">Field notes</div>
-  <h1>Porting a <span translate="no">Fabric</span> mod to <span translate="no">Forge</span> 1.20.1: what actually breaks</h1>
+  <h1>Porting a<span translate="no"> Fabric </span>mod to<span translate="no"> Forge </span>1.20.1: what actually breaks</h1>
 
   <p class="lede">Most of a small mod moves over in an afternoon. What eats the week is a short list of things that behave differently, plus a handful of failures that produce no error message at all. This is what I hit repeatedly, written down so you can judge the job before you start it.</p>
 
-  <p>Everything below comes from real ports, not from reading documentation: <span translate="no">Boids</span> and its <span translate="no">Birds</span> addon, a rideable capybara mod with <span translate="no">GeckoLib</span> animations, and a dog mod with five variants.</p>
+  <p>Everything below comes from real ports, not from reading documentation:<span translate="no"> Boids </span>and its<span translate="no"> Birds </span>addon, a rideable capybara mod with<span translate="no"> GeckoLib </span>animations, and a dog mod with five variants.</p>
 
   <h2>First, check whether you need to port it at all</h2>
-  <p>There is a free option and it would be dishonest of me to write a page about paying for this without naming it. <a href="https://modrinth.com/mod/connector" target="_blank" rel="noopener noreferrer"><span translate="no">Sinytra Connector</span></a> runs <span translate="no">Fabric</span> mods on <span translate="no">Forge</span> and <span translate="no">NeoForge</span> at runtime, it is <span translate="no">MIT</span>, and it has over 22 million downloads. It supports 1.20.1. Try it before you pay anybody, including me.</p>
+  <p>There is a free option and it would be dishonest of me to write a page about paying for this without naming it. <a href="https://modrinth.com/mod/connector" target="_blank" rel="noopener noreferrer"><span translate="no">Sinytra Connector</span></a> runs<span translate="no"> Fabric </span>mods on<span translate="no"> Forge </span>and<span translate="no"> NeoForge </span>at runtime, it is<span translate="no"> MIT</span>, and it has over 22 million downloads. It supports 1.20.1. Try it before you pay anybody, including me.</p>
   <p>It works by translating between the two loaders while the game runs, which is why it is free and why it is not the same thing as a port. Three consequences worth knowing before you decide:</p>
   <ul>
     <li><strong>Some mods are on the incompatibility list and stay there.</strong> The project tracks known 1.20.1 problems in <a href="https://github.com/Sinytra/Connector/discussions/180" target="_blank" rel="noopener noreferrer">discussion 180</a>. Check yours against it first. 1.20.1 sits on its own maintenance branch while active development happens on the newer versions, so a mod on that list is not likely to come off it soon.</li>
-    <li><strong>You ship the bridge as a dependency.</strong> Everyone on the server needs <span translate="no">Connector</span> and <span translate="no">Forgified Fabric API</span> installed. For a private <span translate="no">SMP</span> that is nothing. For a modpack you distribute, it is two more moving parts in your dependency tree.</li>
-    <li><strong>The mod is still a <span translate="no">Fabric</span> mod.</strong> If you need it to interoperate with <span translate="no">Forge</span> mods at the code level, a compat patch against the real <span translate="no">Forge</span> API, or an addon of your own, then you need a native build to work against.</li>
+    <li><strong>You ship the bridge as a dependency.</strong> Everyone on the server needs<span translate="no"> Connector </span>and<span translate="no"> Forgified Fabric API </span>installed. For a private<span translate="no"> SMP </span>that is nothing. For a modpack you distribute, it is two more moving parts in your dependency tree.</li>
+    <li><strong>The mod is still a<span translate="no"> Fabric </span>mod.</strong> If you need it to interoperate with<span translate="no"> Forge </span>mods at the code level, a compat patch against the real<span translate="no"> Forge </span>API, or an addon of your own, then you need a native build to work against.</li>
   </ul>
-  <p>So the honest split: if <span translate="no">Connector</span> runs your mod and you are happy, you are done and this page is just reading material. Porting earns its price when <span translate="no">Connector</span> cannot run it, when you are shipping something public and want one fewer dependency, or when the mod has to be extended rather than just launched.</p>
+  <p>So the honest split: if<span translate="no"> Connector </span>runs your mod and you are happy, you are done and this page is just reading material. Porting earns its price when<span translate="no"> Connector </span>cannot run it, when you are shipping something public and want one fewer dependency, or when the mod has to be extended rather than just launched.</p>
 
   <h2>1. Registration is the easy part, and it is most of the diff</h2>
-  <p><span translate="no">Fabric</span> registers things by calling <code>Registry.register</code> during initialisation. <span translate="no">Forge</span> wants a <code>DeferredRegister</code> per registry type, created up front and bound to the mod event bus. Mechanical work: items, blocks, entities, sounds, the creative tab, spawn eggs.</p>
+  <p><span translate="no">Fabric </span>registers things by calling <code>Registry.register</code> during initialisation.<span translate="no"> Forge </span>wants a <code>DeferredRegister</code> per registry type, created up front and bound to the mod event bus. Mechanical work: items, blocks, entities, sounds, the creative tab, spawn eggs.</p>
   <p>It is boring and it is safe, because the compiler catches you. Expect this to be sixty per cent of the changed lines and almost none of the risk. If someone quotes a port by counting files, this is what they are counting, and it is the wrong thing to count.</p>
 
   <h2>2. Entrypoints and lifecycle</h2>
   <p>The <code>fabric.mod.json</code> entrypoints become a <code>@Mod</code> class plus event listeners, and <code>mods.toml</code> replaces the manifest. Client-only code moves from a separate entrypoint to a <code>DistExecutor</code> call or a client-side event subscriber.</p>
-  <p>Config is the part people forget: a mod reading its own JSON from the config directory keeps working, but the directory resolution changes. In <span translate="no">Boids</span> the config stayed as the same <code>boids.json5</code> file with the same options, and only the loading path and the reload command moved.</p>
+  <p>Config is the part people forget: a mod reading its own JSON from the config directory keeps working, but the directory resolution changes. In<span translate="no"> Boids </span>the config stayed as the same <code>boids.json5</code> file with the same options, and only the loading path and the reload command moved.</p>
 
   <div class="note">
-    <p><strong>Version ranges bite here.</strong> If your addon depends on the main mod, check the range against the sibling's real version string. <span translate="no">Forge</span> parses <code>1.20.1-2.0.3</code> as major 1, so a dependency declared as <code>[2.0,)</code> excludes it and you get the red dependency screen on first boot. It looks like a broken build; it is a string comparison.</p>
+    <p><strong>Version ranges bite here.</strong> If your addon depends on the main mod, check the range against the sibling's real version string.<span translate="no"> Forge </span>parses <code>1.20.1-2.0.3</code> as major 1, so a dependency declared as <code>[2.0,)</code> excludes it and you get the red dependency screen on first boot. It looks like a broken build; it is a string comparison.</p>
   </div>
 
   <h2>3. Mixins: separate the accessors from the real ones</h2>
   <p>This is the single most useful distinction when estimating a port, and the one most often got wrong.</p>
-  <p>An <code>@Accessor</code> or <code>@Invoker</code> mixin exists only to expose a private field or method. On <span translate="no">Forge</span> you usually delete it and write <strong>one line of an access transformer</strong> instead. It costs minutes.</p>
+  <p>An <code>@Accessor</code> or <code>@Invoker</code> mixin exists only to expose a private field or method. On<span translate="no"> Forge </span>you usually delete it and write <strong>one line of an access transformer</strong> instead. It costs minutes.</p>
   <p>A behavioural mixin, an <code>@Inject</code> or <code>@Redirect</code> into a vanilla class, is different. It has to be re-checked against the target class, and injection points that were valid on one mapping may not exist on the other. That is where the hours go.</p>
   <p>A mod with thirty mixin files where twenty-five are accessors is a small job. A mod with eight mixins that are all injections into rendering or world generation is not. Counting them together produces an estimate that is wrong in both directions.</p>
 
   <h2>4. Spawns move from tags to biome modifiers</h2>
-  <p><span translate="no">Fabric</span> mods usually add natural spawns in code against a biome tag. On <span translate="no">Forge</span> 1.20.1 that becomes a data file: a biome modifier JSON of type <code>forge:add_spawns</code>, with the same biome set and the same weights.</p>
+  <p><span translate="no">Fabric </span>mods usually add natural spawns in code against a biome tag. On<span translate="no"> Forge </span>1.20.1 that becomes a data file: a biome modifier JSON of type <code>forge:add_spawns</code>, with the same biome set and the same weights.</p>
   <div class="note silent">
     <p><strong>These decode at world creation, not at boot.</strong> A malformed biome modifier will not stop the game from starting. You find it when a new world has no mobs, which is a long way from the file you edited. Always create a fresh world when testing spawns.</p>
   </div>
 
   <h2>5. Bundled libraries</h2>
-  <p>A <span translate="no">Fabric</span> build that shades a small library needs the equivalent on <span translate="no">Forge</span>, which is <code>jarJar</code>. <span translate="no">Boids</span> bundles a config library this way, and the practical consequence is that the shipped artifact is the fat jar, not the thin one. Ship the wrong file and the mod fails at class load with an error that names the library, not your mod.</p>
+  <p>A<span translate="no"> Fabric </span>build that shades a small library needs the equivalent on<span translate="no"> Forge</span>, which is <code>jarJar</code>.<span translate="no"> Boids </span>bundles a config library this way, and the practical consequence is that the shipped artifact is the fat jar, not the thin one. Ship the wrong file and the mod fails at class load with an error that names the library, not your mod.</p>
 
   <h2>6. Libraries with no direct equivalent</h2>
   <p>This is the honest cost driver. Some are a swap; some mean reimplementing a feature.</p>
@@ -168,14 +168,14 @@ r.setAttribute('data-theme',s==='light'?'light':'dark');}catch(e){}})();
       <tbody>
         <tr><td translate="no">GeckoLib</td><td>Exists. Usually a rebuild against the Forge artifact, and the explicit init call goes away</td></tr>
         <tr><td translate="no">Cloth Config</td><td>Exists, but the API differs enough that config screens get rewritten</td></tr>
-        <tr><td translate="no">Trinkets</td><td>Closest equivalent is <span translate="no">Curios</span>. Different model, so slot logic is rewritten</td></tr>
+        <tr><td translate="no">Trinkets</td><td>Closest equivalent is<span translate="no"> Curios</span>. Different model, so slot logic is rewritten</td></tr>
         <tr><td translate="no">Mod Menu</td><td>No equivalent. Config screens hook into the Forge screen instead</td></tr>
         <tr><td translate="no">Cardinal Components</td><td>No direct equivalent. Per-entity data is reimplemented on capabilities</td></tr>
         <tr><td>Kotlin via the Fabric language adapter</td><td>Workable, but the mod entry and the build both change shape</td></tr>
       </tbody>
     </table>
   </div>
-  <p>A mod already built on <span translate="no">Architectury</span>, with a <code>forge/src</code> directory in the tree, is a different conversation entirely. Much of the work is done and the job is often closer to a version bump.</p>
+  <p>A mod already built on<span translate="no"> Architectury</span>, with a <code>forge/src</code> directory in the tree, is a different conversation entirely. Much of the work is done and the job is often closer to a version bump.</p>
 
   <h2>7. The failures that produce no error</h2>
   <p>Compiling is not the finish line. These are the ones that cost real time, because there is nothing in the log to search for.</p>
@@ -184,7 +184,7 @@ r.setAttribute('data-theme',s==='light'?'light':'dark');}catch(e){}})();
   <p>A field that was public in your development mappings can be private at runtime. The result is an <code>IllegalAccessError</code> thrown inside world generation, where it is swallowed by the generation thread. The game does not crash. It hangs, or the chunk simply arrives empty.</p>
 
   <h3>A missing block colour handler</h3>
-  <p>Biome-tinted foliage on <span translate="no">Forge</span> needs a colour handler registered on the client. Without it the plants render grey. There is no warning, no exception, and the model and texture are both correct. It looks like an art bug and it is a registration bug.</p>
+  <p>Biome-tinted foliage on<span translate="no"> Forge </span>needs a colour handler registered on the client. Without it the plants render grey. There is no warning, no exception, and the model and texture are both correct. It looks like an art bug and it is a registration bug.</p>
 
   <h3>Resources dropped from the jar</h3>
   <p>A parity check that compares classes will happily report that nothing was lost while the licence file is missing from the built jar. For an MIT mod that is not cosmetic: shipping the copyright notice is the one obligation the licence imposes, so a jar without it is a licence violation, not an oversight.</p>
@@ -210,16 +210,16 @@ r.setAttribute('data-theme',s==='light'?'light':'dark');}catch(e){}})();
 
   <div class="cta">
     <p><strong>If you would rather not do this yourself.</strong></p>
-    <p>I port, backport and revive Minecraft mods, and <span translate="no">Forge</span> 1.20.1 is where I work most. I check the licence before quoting, give a fixed price in writing before any payment, and boot test every build in a real instance before it goes out.</p>
+    <p>I port, backport and revive Minecraft mods, and<span translate="no"> Forge </span>1.20.1 is where I work most. I check the licence before quoting, give a fixed price in writing before any payment, and boot test every build in a real instance before it goes out.</p>
     <p><a class="btn" href="./#estimator">Price your mod</a></p>
   </div>
 <hr>
 <p><strong>What this costs.</strong> Every failure on this page is work somebody has to do, and that work is what you are paying for when you commission a port. I broke the pricing down in <a href="mod-porting-cost.html">what a Minecraft mod port costs, and why</a>. If you want yours quoted, the <a href="index.html">main page</a> has an estimator and my Discord.</p>
-  <p class="byline">Written by <strong translate="no">josda</strong>, <span translate="no">Forge</span> 1.20.1 mod porting. Last updated August 2026. Questions, corrections or a mod you need moved: <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer">Discord</a> or <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20porting">email</a>.</p>
+  <p class="byline">Written by <strong translate="no">josda</strong>,<span translate="no"> Forge </span>1.20.1 mod porting. Last updated August 2026. Questions, corrections or a mod you need moved: <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer">Discord</a> or <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20porting">email</a>.</p>
 </main>
 
 <footer>
-  <span translate="no">Modwright</span> &middot; <a href="./">Services and pricing</a> &middot; <a href="./#legal">Terms</a>
+ <span translate="no"> Modwright </span>&middot; <a href="./">Services and pricing</a> &middot; <a href="./#legal">Terms</a>
  &middot; <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer">Discord</a> &middot; <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20porting">Email</a></footer>
 </body>
 </html>
