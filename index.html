@@ -186,14 +186,28 @@
        Google en cada visita, lo que entregaba la IP del visitante a un tercero y
        contradecia la Privacy Policy de este sitio. El unicode-range hace que el
        navegador baje solo el subconjunto que de verdad necesita. */
-    @font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 400; font-display: swap; src: url('fonts/space-grotesk-400-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
-    @font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 400; font-display: swap; src: url('fonts/space-grotesk-400-latin-ext.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
-    @font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 500; font-display: swap; src: url('fonts/space-grotesk-500-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
-    @font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 500; font-display: swap; src: url('fonts/space-grotesk-500-latin-ext.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
-    @font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 600; font-display: swap; src: url('fonts/space-grotesk-600-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
-    @font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 600; font-display: swap; src: url('fonts/space-grotesk-600-latin-ext.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
-    @font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 700; font-display: swap; src: url('fonts/space-grotesk-700-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
-    @font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 700; font-display: swap; src: url('fonts/space-grotesk-700-latin-ext.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+    /* DOS @font-face y no ocho, con RANGO de peso. Los ocho archivos que se
+       declaraban son en realidad DOS: `sha256` de los cuatro `-latin.woff2` da el
+       mismo hash (22.288 B cada uno) y lo mismo los cuatro `-ext`. Al tener URLs
+       distintas el navegador no los deduplica, asi que se bajaba tres veces el
+       MISMO byte: 66.864 B donde bastan 22.288, o sea 44.576 B tirados, el 14,5%
+       de lo que descarga un movil. Y los tres `font-weight: 500` del CSS habrian
+       provocado una CUARTA descarga al llegar a ese texto.
+       Es una fuente VARIABLE: `fvar` con eje `wght` de 300 a 700 (comprobado con
+       fontTools). Un solo archivo cubre los cuatro pesos declarando el rango.
+       Comprobado que NO se ve: renderizado "Hamburgefonstiv" a 400/500/600/700
+       con los 8 caras y con estas 2, y la tinta sale IDENTICA en los cuatro
+       (diferencia 0 px). Y el eje responde: +44,6% de tinta de 400 a 700, igual
+       en los dos montajes.
+       ⚠ La medida buena es la TINTA, no el ancho: en esta grotesca el avance
+       cambia un 0,26% entre 400 y 700, o sea que medir el ancho da "no cambia"
+       tanto si el eje funciona como si no. No distingue los dos casos.
+       ⚠ Los 6 archivos que dejan de usarse NO se borran: los piden las tres
+       paginas satelite (mod-porting-cost, fabric-to-forge-1-20-1,
+       geckolib-bone-name-crash) y `tools_og.py`, que los incrusta para dibujar la
+       tarjeta del enlace. Y por eso tampoco se renombran los dos que quedan. */
+    @font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 300 700; font-display: swap; src: url('fonts/space-grotesk-400-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+    @font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 300 700; font-display: swap; src: url('fonts/space-grotesk-400-latin-ext.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
     /* Monocraft, SIL OFL 1.1, autoalojada como Space Grotesk. Calca los glifos
        de Mojangles, que es la fuente de la interfaz de Minecraft y la que pidio
        josda: aquella es un asset de Mojang y este repo es publico, asi que
@@ -474,7 +488,19 @@
     html[data-theme="light"] .theme-toggle .icon-sun { display: none; }
     html[data-theme="light"] .theme-toggle .icon-moon { display: inline; }
 
-    html { scroll-behavior: smooth; overflow-x: clip; }
+    /* La barra de arriba es `position: sticky`, asi que al saltar a un ancla se
+       comia el principio de la seccion: medido, 16-17 px de la primera linea del
+       titular tapados a 414 px de ancho en seis secciones, y 8-9 px a 320 y 375.
+       Hay 11 anclas internas en la pagina y cero JS que lo compense.
+       `scroll-padding-top` se lo dice al navegador de una vez, sin JS. El alto
+       del nav va en una variable porque hay dos (74 px, y 66 por debajo de 400):
+       antes estaba escrito dos veces y la segunda se quedaria vieja. Los 9 px son
+       aire para que el borde de la seccion no quede pegado a la barra.
+       ⚠ Lo que aterriza a 9 px de la barra es el BORDE de la seccion, no el
+       titular: el relleno propio de la seccion se suma encima. Es lo normal de
+       `scroll-padding`, no un fallo. */
+    html { scroll-behavior: smooth; overflow-x: clip; --nav-h: 74px;
+           scroll-padding-top: calc(var(--nav-h) + 9px); }
     body {
       overflow-x: clip;
       background: var(--bg);
@@ -1462,6 +1488,9 @@
     /* moviles muy estrechos (<=400px): sin esto, los 2 toggles del nav quedaban FUERA de pantalla
        y eran inalcanzables. El logo del cuy se mantiene; solo se oculta el wordmark de texto. */
     @media (max-width: 400px) {
+      /* la barra baja a 66 px aqui, asi que el hueco que reserva el salto a un
+         ancla tiene que bajar con ella: por eso el alto va en una variable. */
+      html { --nav-h: 66px; }
       .nav-inner { padding: 0 0.9rem; height: 66px; }
       .nav-links { gap: 0.55rem; }
       .brand .wordmark { display: none; }
@@ -1796,7 +1825,7 @@
       <a class="hs-chip svc-spark" href="#services"><svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg><span>Optimization</span></a>
     </div>
     <div class="badge"><span class="badge-dot"></span>Open for work</div>
-    <h1 class="hero-h1-img"><span class="h1-texto">Port, <span translate="no">backport</span> &amp; revive <span class="mc" translate="no" data-word="Minecraft">Minecraft</span> mods, any version, any loader</span><img src="titulo-hero.webp" width="2537" height="731" alt="" aria-hidden="true" fetchpriority="high" decoding="async"><img class="h1-es" src="titulo-hero-es.webp" width="2533" height="1142" alt="" aria-hidden="true" loading="lazy" decoding="async"></h1>
+    <h1 class="hero-h1-img"><span class="h1-texto">Port, <span translate="no">backport</span> &amp; revive <span class="mc" translate="no" data-word="Minecraft">Minecraft</span> mods, any version, any loader</span><picture><source media="(max-width: 700px)" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"><img src="titulo-hero.webp" width="2537" height="731" alt="" aria-hidden="true" fetchpriority="high" decoding="async"></picture><img class="h1-es" src="titulo-hero-es.webp" width="2533" height="1142" alt="" aria-hidden="true" loading="lazy" decoding="async"></h1>
     <p class="hero-who"><picture><source media="(prefers-reduced-motion: reduce)" srcset="wave-me-still.webp"><img class="hero-wave" src="wave-me.webp" width="192" height="190" alt="" aria-hidden="true" loading="eager" decoding="async"></picture>I'm <strong><span translate="no">josda</span></strong>. I build <span translate="no">modpacks</span>; I got fed up with mods dying off on old versions, so I started <span translate="no">porting</span> them myself.</p>
     <p class="hero-desc">
       I work across <span translate="no">Forge</span>, <span translate="no">Fabric</span> and <span translate="no">NeoForge</span>, and I move mods up and down versions. <span translate="no">Forge</span> 1.20.1 is my lowest rate because it is the least work, not because it is all I do. I check the licence first and boot-test every build before it's released.
@@ -1829,7 +1858,20 @@
     <div class="hero-art">
       <div class="hero-art-stack">
         <figure class="hero-art-main">
-          <img src="hero-main.webp" width="1400" height="788" alt="My character standing at the edge of a river inside a towering redwood forest, in a heavily modded world." loading="eager" fetchpriority="high" decoding="async">
+          <!-- Esta captura es el LCP de la pagina en los dos anchos, o sea la
+               imagen por la que Google mide si carga rapido. Se servia igual a
+               todo el mundo: 1400x788 y 80 KB para un hueco de 327 px en un
+               movil. El `sizes` NO es una estimacion, sale medido: el canal
+               (100vw menos el aire) es constante de 320 a 1080 px, y por encima
+               de 1080 la columna de arte se clava en 648 CSS px (igual a 1440,
+               1600 y 1920). El corte de 1080 es el @media que ya existe.
+               El original se queda como tramo grande: a viewport 1024 se pinta a
+               976 CSS px, que con densidad 2 pide 1952 fisicos, mas de los 1400
+               que tiene. Ahi no sobra nada. Se regenera con tools_hero_srcset.py. -->
+          <img src="hero-main.webp"
+               srcset="hero-main-654.webp 654w, hero-main-1000.webp 1000w, hero-main.webp 1400w"
+               sizes="(max-width: 1080px) calc(100vw - 48px), 648px"
+               width="1400" height="788" alt="My character standing at the edge of a river inside a towering redwood forest, in a heavily modded world." loading="eager" fetchpriority="high" decoding="async">
         </figure>
       </div>
       <p class="hero-art-note">Me taking in the view in my own pack, over 600 mods. Like you, I know the version problem first-hand, and every other headache that comes with it.</p>
