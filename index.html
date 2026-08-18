@@ -341,7 +341,6 @@
     html[data-theme="light"] #hero h1 .w-ver { color: #2b2117; }
     html[data-theme="light"] #hero h1 .w-rev,
     html[data-theme="light"] #hero h1 .w-load { color: #3e7a1f; }
-    html[data-theme="light"] .hero-services { color: #6f6350; }
     html[data-theme="light"] #hero h1 .mc { color: #4f8a2a; }
     html[data-theme="light"] #hero h1 .mc::before { color: #7a5738; }
     html[data-theme="light"] .pill-price { background: rgba(192,126,60,0.12); border-color: rgba(192,126,60,0.36); color: #89531e; }
@@ -429,7 +428,6 @@
     html[data-accent="green"][data-theme="light"] #hero h1 .w-amp,
     html[data-accent="green"][data-theme="light"] #hero h1 .w-mods,
     html[data-accent="green"][data-theme="light"] #hero h1 .w-ver { color: #1e2a20; }
-    html[data-accent="green"][data-theme="light"] .hero-services { color: #52655a; }
 
     /* theme toggle */
     .theme-toggle { display: inline-grid; place-items: center; width: 34px; height: 34px; position: relative; border-radius: var(--radius); background: var(--surface2); border: 1px solid var(--border-lt); color: var(--text-soft); cursor: pointer; transition: color 0.15s, border-color 0.15s; }
@@ -645,6 +643,20 @@
     .hero-inner::before { content: none; }
     .badge { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--green-glow); border: 1px solid var(--green-ring); color: var(--green-hi); font-size: 0.78rem; font-weight: 600; padding: 0.4rem 0.85rem; border-radius: 999px; margin-bottom: 1.6rem; }
     .badge-dot { width: 7px; height: 7px; background: var(--green-hi); border-radius: 50%; }
+    /* fila de servicios bajo el titulo: los mismos 6 nombres y colores que las
+       tarjetas de #services, en miniatura, para que se reconozcan al llegar
+       abajo. Cada chip enlaza a #services. */
+    .hero-services-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0 0 1.35rem; }
+    .hs-chip { display: inline-flex; align-items: center; gap: 0.4rem; background: var(--surface2); border: 1px solid var(--border); border-radius: 999px; padding: 0.36rem 0.8rem 0.36rem 0.55rem; font-size: 0.82rem; font-weight: 600; color: var(--text-soft); text-decoration: none; transition: border-color 0.15s, transform 0.15s; }
+    .hs-chip:hover { border-color: var(--text-mute); transform: translateY(-1px); }
+    .hs-chip:focus-visible { outline: 2px solid var(--text-mute); outline-offset: 2px; }
+    .hs-chip svg { width: 15px; height: 15px; stroke-width: 2.3; fill: none; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+    .hs-chip.svc-copper svg { stroke: #cc8049; }
+    .hs-chip.svc-life svg   { stroke: #5aa83f; }
+    .hs-chip.svc-loom svg   { stroke: #cdae7e; }
+    .hs-chip.svc-bridge svg { stroke: #6f93b8; }
+    .hs-chip.svc-steel svg  { stroke: #9aa0a8; }
+    .hs-chip.svc-spark svg  { stroke: #e0b441; }
     #hero h1 { font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 700; letter-spacing: -0.005em; line-height: 1.12; margin-bottom: 1.1rem; max-width: 730px; text-shadow: 0 1px 2px rgba(0,0,0,0.55); }
     #hero h1 .w-port,
     #hero h1 .w-back,
@@ -1715,9 +1727,16 @@
   <div class="wrap hero-inner">
     <div class="hero-copy">
     <img class="hero-title" src="titulo-modwright.webp" width="1024" height="97" alt="Modwright Studios" fetchpriority="high" decoding="async">
+    <div class="hero-services-row">
+      <a class="hs-chip svc-copper" href="#services"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v13"/><path d="M6 11l6 6 6-6"/></svg><span>Backport</span></a>
+      <a class="hs-chip svc-life" href="#services"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V7"/><path d="M6 13l6-6 6 6"/></svg><span>Forward-<span translate="no">port</span></span></a>
+      <a class="hs-chip svc-loom" href="#services"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h13l-3-3"/><path d="M20 16H7l3 3"/></svg><span>Loader conversion</span></a>
+      <a class="hs-chip svc-bridge" href="#services"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7h5a4 4 0 0 1 0 8h-1"/><path d="M15 17h-5a4 4 0 0 1 0-8h1"/></svg><span>Compatibility</span></a>
+      <a class="hs-chip svc-steel" href="#services"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.6 5.6L3 18l3 3 6.1-6.1a4 4 0 0 0 5.6-5.6l-2.9 2.9a1.5 1.5 0 0 1-2-2l2.9-2.9z"/></svg><span>Maintenance</span></a>
+      <a class="hs-chip svc-spark" href="#services"><svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg><span>Optimization</span></a>
+    </div>
     <div class="badge"><span class="badge-dot"></span>Open for work</div>
     <h1 class="hero-h1-img"><span class="h1-texto">Port, <span translate="no">backport</span> &amp; revive <span class="mc" translate="no" data-word="Minecraft">Minecraft</span> mods, any version, any loader</span><img src="titulo-hero.webp" width="2537" height="731" alt="" aria-hidden="true" fetchpriority="high" decoding="async"><img class="h1-es" src="titulo-hero-es.webp" width="2533" height="1142" alt="" aria-hidden="true" loading="lazy" decoding="async"></h1>
-    <p class="hero-services">Plus compatibility patches, maintenance and optimization.</p>
     <p class="hero-who"><picture><source media="(prefers-reduced-motion: reduce)" srcset="wave-me-still.webp"><img class="hero-wave" src="wave-me.webp" width="192" height="190" alt="" aria-hidden="true" loading="eager" decoding="async"></picture>I'm <strong><span translate="no">josda</span></strong>. I build <span translate="no">modpacks</span>; I got fed up with mods dying off on old versions, so I started <span translate="no">porting</span> them myself.</p>
     <p class="hero-desc">
       I work across <span translate="no">Forge</span>, <span translate="no">Fabric</span> and <span translate="no">NeoForge</span>, and I move mods up and down versions. <span translate="no">Forge</span> 1.20.1 is my lowest rate because it is the least work, not because it is all I do. I check the licence first and boot-test every build before it's released.
