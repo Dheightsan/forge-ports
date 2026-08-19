@@ -720,7 +720,18 @@
     @media (max-width: 700px) {
       .h1-texto { position: static; width: auto; height: auto; margin: 0; overflow: visible; clip: auto; clip-path: none; white-space: normal; }
       #hero h1.hero-h1-img img { display: none; }
-      #hero h1.hero-h1-img { font-size: clamp(1.95rem, 8vw, 2.6rem); }
+      /* La letra de pixeles sale de la cabecera y llega al titular del MOVIL,
+         pedido de josda el 19-08 despues de ver las cuatro variantes a tamano
+         real. Es la MISMA Monocraft que ya carga `.btn-nav`: cero descargas
+         nuevas. En el ordenador esto ni se aplica; alli manda el dibujo de
+         Blockbench. Si alguien lee el comentario de `.btn-nav` ("pixeles SOLO
+         aqui") y viene a quitar esto, que lea tambien la fecha: es posterior.
+         El tamano BAJA de 8vw a 6.4vw A PROPOSITO. Monocraft es monoespaciada,
+         cada letra ocupa lo mismo, y al tamano de hoy la frase se iba a SEIS
+         lineas y 203 px de alto (medido, variante B). A 6.4vw son cuatro lineas
+         y 125 px: quince menos que la letra normal que habia. */
+      #hero h1.hero-h1-img .h1-texto { font-family: 'Monocraft', 'Space Grotesk', system-ui, sans-serif; letter-spacing: 0.01em; line-height: 1.30; }
+      #hero h1.hero-h1-img { font-size: clamp(1.25rem, 6.4vw, 2.4rem); }
     }
     html.translated-ltr .h1-texto,
     html.translated-rtl .h1-texto { position: static; width: auto; height: auto; margin: 0; overflow: visible; clip: auto; clip-path: none; white-space: normal; }
@@ -760,7 +771,8 @@
        cabe, la fila entera se colapsa (media queries de abajo). */
     .nav-links a { color: var(--text-soft); font-size: 0.88rem; transition: color 0.15s; white-space: nowrap; }
     .nav-links a:hover { color: var(--text); text-decoration: none; }
-    /* Tipografia de pixeles SOLO aqui, pedido de josda. Sube de 0.85 a 0.95rem
+    /* Tipografia de pixeles aqui y, desde el 19-08, en el titular del movil
+       (@media max-width:700px). Sube de 0.85 a 0.95rem
        porque Monocraft tiene la altura de la x mas baja que Space Grotesk:
        al mismo tamano nominal se lee bastante mas pequena, y este es el boton
        que trae los encargos. La pastilla FREE de dentro NO la hereda: a 0.62em
