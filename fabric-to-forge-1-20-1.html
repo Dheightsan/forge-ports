@@ -105,6 +105,20 @@ r.setAttribute('data-theme',s==='light'?'light':'dark');}catch(e){}})();
   .btn:hover { text-decoration: none; filter: brightness(1.08); }
   footer { border-top: 1px solid var(--border); margin-top: 3.5rem; padding: 1.8rem 1.4rem; text-align: center; color: var(--text-mute); font-size: 0.85rem; }
   @media (max-width: 480px) { .bar-in strong { display: none; } main { padding-top: 2.2rem; } }
+
+/* Caricaturas al margen (tanda del 19-08). Mismas piezas que la portada, asi
+   que quien viene de alli las tiene ya en cache. `main` mide 760 px centrados
+   y van pegadas por fuera a esa columna, no al borde de la pantalla.
+   El `top` va en PIXELES desde el inicio de main: en porcentaje, un articulo
+   que crece al traducirse las arrastra. Se fija SOLO el alto (`--h`) y el
+   ancho se deduce, que es la unica forma de que no se deformen.
+   Por debajo de 1100 px no hay hueco y se apagan: aqui manda el texto. */
+main { position: relative; }
+.ch { position: absolute; z-index: 1; pointer-events: none; user-select: none;
+      width: auto; height: var(--h); image-rendering: pixelated;
+      filter: drop-shadow(0 6px 14px rgba(0,0,0,0.5)); }
+main > * { position: relative; z-index: 2; }
+@media (max-width: 1100px) { .ch { display: none; } }
 </style>
 
   <meta property="og:site_name" content="Modwright">
@@ -125,6 +139,12 @@ r.setAttribute('data-theme',s==='light'?'light':'dark');}catch(e){}})();
 </header>
 
 <main id="main">
+  <img class="ch" src="pix-b18.webp" width="231" height="168" style="right:calc(50% + 380px + 18px);top:3800px;--h:168px" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch" src="pix-b20.webp" width="149" height="97" style="left:calc(50% + 380px + 18px);top:4700px;--h:97px" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch" src="pix-b09.webp" width="89" height="97" style="right:calc(50% + 380px + 18px);top:220px;--h:97px" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch" src="pix-c32.webp" width="147" height="85" style="left:calc(50% + 380px + 18px);top:1150px;--h:85px" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch" src="pix-b16.webp" width="193" height="123" style="right:calc(50% + 380px + 18px);top:2050px;--h:123px" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch" src="pix-c27.webp" width="135" height="143" style="left:calc(50% + 380px + 18px);top:2900px;--h:143px" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="kicker">Field notes</div>
   <h1>Porting a<span translate="no"> Fabric </span>mod to<span translate="no"> Forge </span>1.20.1: what actually breaks</h1>
 
