@@ -139,7 +139,7 @@
       "name": "How do I pay safely?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Wise or PayPal (Goods &amp; Services), wherever you are. I never take Friends &amp; Family, because it's the one payment type with no buyer protection for you. BuiltByBit escrow is coming, but it isn't live yet."
+        "text": "Wise or PayPal (Goods & Services), wherever you are. I never take Friends & Family, because it's the one payment type with no buyer protection for you. BuiltByBit escrow is coming, but it isn't live yet."
       }
     },
     {
@@ -185,6 +185,15 @@
   ]
 }
   </script>
+  <!-- El LCP (la captura del hero) se descubria en el byte 145.221 del HTML, o
+       sea al 46% del flujo: el navegador no sabia que existia hasta leer medio
+       documento. Con el precargado empieza a pedirla de inmediato.
+       ⚠️ Lleva `imagesrcset` e `imagesizes` COPIADOS del <img>, no un `href`
+       pelado: si no coinciden, el navegador precarga un tamano y luego pide OTRO
+       al encontrar la etiqueta, o sea que se descargan las dos. -->
+  <link rel="preload" as="image" fetchpriority="high"
+        imagesrcset="hero-main-654.webp 654w, hero-main-1000.webp 1000w, hero-main.webp 1400w"
+        imagesizes="(max-width: 1080px) calc(100vw - 48px), 648px">
   <link rel="icon" href="favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
@@ -702,7 +711,11 @@
        que trae los encargos. La pastilla FREE de dentro NO la hereda: a 0.62em
        una letra de pixeles no se lee. */
     .btn-nav { background: var(--terracotta); color: #2a1302 !important; font-family: 'Monocraft', 'Space Grotesk', system-ui, sans-serif; font-weight: 700; font-size: 0.95rem; letter-spacing: 0.01em; padding: 0.48rem 1rem; border-radius: var(--radius); white-space: nowrap; box-shadow: 0 0 0 2px rgba(210,112,63,0.30); transition: background 0.15s, box-shadow 0.15s; }
-    .nav-free { font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 0.62em; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; border: 1.4px solid currentColor; border-radius: 999px; padding: 0.12em 0.5em; margin-left: 0.5em; vertical-align: 0.12em; opacity: 0.85; }
+    .nav-free { font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 0.62em; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; border: 1.4px solid currentColor; border-radius: 999px; padding: 0.12em 0.5em; margin-left: 0.5em; vertical-align: 0.12em; }
+    /* Sin `opacity: 0.85`: bajaba la pildora "free" a 4,19:1 sobre el naranja del
+       boton, por debajo del 4,5 que pide texto normal. Que se distinga del rotulo
+       ya lo hacen el tamano (0,62em), la versalita y el borde redondeado; la
+       opacidad solo restaba legibilidad al unico dato que dice que es gratis. */
     /* El chip se retira cuando el nav no tiene sitio: su trabajo es persuadir
        en escritorio, y a 414px cuesta 33px de un presupuesto que no da. */
     @media (max-width: 520px) { .nav-free { display: none; } }
@@ -1231,6 +1244,10 @@
     /* ── entity-card stats (champion/mob-card style from refs) ── */
     .port-card--cta::before { background: linear-gradient(90deg, var(--green), var(--gold)); }
     .port-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 0.55rem 1rem; margin: 0.1rem 0 1rem; padding-top: 0.9rem; border-top: 1px solid var(--border); }
+    /* A 320 px las dos columnas quedan en 105 px cada una y la mitad de los
+       datos se parte en tres lineas. Por debajo de 360 px va cada dato a lo
+       ancho de la ficha y ninguno pasa de dos. */
+    @media (max-width: 360px) { .port-stats { grid-template-columns: minmax(0, 1fr); } }
     .port-stats > div { display: flex; flex-direction: column; gap: 0.12rem; }
     .port-stats dt { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-mute); }
     .port-stats dd { font-size: 0.82rem; font-weight: 700; color: var(--text); }
@@ -1300,7 +1317,11 @@
     .about-body p + p { margin-top: 1rem; }
     .about-body strong { color: var(--text); font-weight: 600; }
     details.more { margin-top: 1rem; }
-    details.more > summary { display: inline-flex; align-items: center; gap: 0.4rem; cursor: pointer; color: var(--green-hi); font-weight: 600; font-size: 0.9rem; list-style: none; }
+    /* El `padding` sube la caja clicable de 21,7 px a ~26,5, que es el minimo de
+       24 que pide WCAG para un objetivo tactil. No mueve ni un pixel el texto de
+       alrededor: el summary es inline-flex y crece hacia dentro. Son SIETE
+       desplegables, o sea siete objetivos que en un movil se fallaban. */
+    details.more > summary { display: inline-flex; align-items: center; gap: 0.4rem; cursor: pointer; color: var(--green-hi); font-weight: 600; font-size: 0.9rem; list-style: none; padding: 0.15rem 0; }
     details.more > summary::-webkit-details-marker { display: none; }
     details.more > summary::after { content: '\25be'; font-size: 0.8em; transition: transform 0.15s; }
     details.more[open] > summary::after { transform: rotate(180deg); }
@@ -1493,7 +1514,10 @@
     }
     @media (max-width: 520px) { .sig-hogs { width: 200px; height: 101px; } }
     footer { border-top: 1px solid var(--border); padding: 2rem 1.5rem; text-align: center; color: var(--text-mute); font-size: 0.84rem; }
-    footer .sep { margin: 0 0.5rem; color: var(--border-lt); }
+    /* El separador iba con `--border-lt`, que es un color pensado para LINEAS y
+       no para texto: daba 1,39-1,82:1 en los cuatro modos. Pero es un caracter,
+       asi que o se lee o no se lee. Con `--text-mute` sube a 4,76-6,22. */
+    footer .sep { margin: 0 0.5rem; color: var(--text-mute); }
     footer a { color: var(--text-soft); }
 
     @media (max-width: 760px) {
@@ -2249,7 +2273,7 @@
       <div class="card card--premium">
         <div class="icon-wrap svc-life"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V7"/><path d="M6 13l6-6 6 6"/></svg></div>
         <h3><span translate="no">Forward-port </span>&amp; revive</h3>
-        <p>An old or abandoned mod you love, stuck on 1.12 / 1.16 / 1.18, that you want running on a modern version. It's the hardest kind of<span translate="no"> port</span>, which is exactly why most porters won't take it. The price scales with how many version walls it has to cross.</p>
+        <p>An old or abandoned mod you love, stuck on 1.12 / 1.16 / 1.18, that you want running on a modern version. It's the hardest kind of<span translate="no"> port</span>, which is exactly why most<span translate="no"> porters </span>won't take it. The price scales with how many version walls it has to cross.</p>
         <div class="card-stats">
           <div><span class="k">Range</span><span class="v">1.12 → modern</span></div>
           <div><span class="k">Driver</span><span class="v">Version walls</span></div>
