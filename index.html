@@ -1606,20 +1606,6 @@
     .weave::before { background: linear-gradient(to right, transparent, var(--border-lt)); }
     .weave::after { background: linear-gradient(to left, transparent, var(--border-lt)); }
     .weave svg { width: 60px; height: 38px; display: block; }
-    /* Dos erizos: firma del pie. Imagen original de josda (simbolizan a un
-       amigo y su implicacion), fondo recortado para integrarse en ambos temas. */
-    .sig-hogs { display: block; width: 260px; height: 131px; margin: 0 auto 1.1rem;
-      background: url(hogs.webp) center/contain no-repeat; }
-    /* En oscuro la version a color era lo unico de la pagina que no pertenecia:
-       un bulto crema sobre casi negro. Mismo dibujo, aplanado al tono del pie. */
-    @supports ((mask-image: url(#m)) or (-webkit-mask-image: url(#m))) {
-      html:not([data-theme="light"]) .sig-hogs {
-        background: var(--text-mute);
-        -webkit-mask: url(hogs-ink.png) center/contain no-repeat;
-                mask: url(hogs-ink.png) center/contain no-repeat;
-      }
-    }
-    @media (max-width: 520px) { .sig-hogs { width: 200px; height: 101px; } }
     footer { border-top: 1px solid var(--border); padding: 2rem 1.5rem; text-align: center; color: var(--text-mute); font-size: 0.84rem; }
     /* El separador iba con `--border-lt`, que es un color pensado para LINEAS y
        no para texto: daba 1,39-1,82:1 en los cuatro modos. Pero es un caracter,
@@ -2890,7 +2876,6 @@
 </figure>
 
 <footer>
-  <div class="sig-hogs" aria-hidden="true"></div>
   <div><strong style="color:var(--text-soft)"><span translate="no">Modwright</span></strong> <span class="sep">·</span><span translate="no"> Forge </span>1.20.1 mod<span translate="no"> porting </span><span class="sep">·</span> <a href="mod-porting-cost.html">What a<span translate="no"> port </span>costs</a> <span class="sep">·</span> <a href="fabric-to-forge-1-20-1.html"><span translate="no">Fabric </span>to<span translate="no"> Forge</span>: what breaks</a> <span class="sep">·</span> <a href="#terms">Terms</a> <span class="sep">·</span> <a href="#privacy">Privacy</a> <span class="sep">·</span> <a href="#licenses">Licenses</a> <span class="sep">·</span> <a href="mailto:modwrightstudios@gmail.com">Contact</a></div>
 </footer>
 
