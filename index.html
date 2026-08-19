@@ -541,6 +541,24 @@
     a:focus-visible, button:focus-visible, .est-opt:focus-visible, .faq-q:focus-visible, .skip:focus {
       outline: 3px solid var(--gold); outline-offset: 2px; border-radius: 4px;
     }
+    /* 🚨 El anillo de las 9 preguntas se PINTABA y no se VEIA. El boton ocupa la
+       caja entera de `.faq-item`, que lleva `overflow: hidden` (necesario: sin el
+       el "+" se sale), y un `outline-offset` POSITIVO cae fuera de esa caja, o
+       sea justo dentro del recorte. Medido: en los 4 modos, 0 de 5.922 pixeles
+       del color del anillo alrededor de esos 9 botones. Quien navega con teclado
+       los cruzaba a ciegas.
+       Se mete el anillo hacia DENTRO solo para ese control: asi no sale de la
+       caja y no hay nada que recortar. El color no se toca, ya daba 4,46-11,66:1. */
+    .faq-q:focus-visible { outline-offset: -3px; }
+    /* Los desplegables usan --green-hi, que el tema claro NO redefine: se queda
+       con el valor del modo oscuro y da 2,06-2,29:1 en claro+calido. Son los 12
+       "Read the detail" / "What it took" / "Read more about how I work", cinco de
+       ellos añadidos hoy al plegar el detalle tecnico. Se reasignan a los dos
+       colores de acento que la pagina YA tiene medidos para fondo claro (los
+       mismos de `a`, `.badge` y `.pill-trust`): 5,0-5,3:1.
+       --green-hi NO se toca en su token: tambien es FONDO de `.est-opt.active`. */
+    html[data-theme="light"] details.more > summary { color: #89531e; }
+    html[data-accent="green"][data-theme="light"] details.more > summary { color: #1b733b; }
     .skip { position: absolute; left: -9999px; top: 0; z-index: 200; background: var(--green); color: #2a1808; padding: 0.6rem 1.1rem; font-weight: 700; border-radius: 0 0 var(--radius) 0; }
     .skip:focus { left: 0; }
     @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; scroll-behavior: auto !important; } }
@@ -1904,7 +1922,7 @@
       <a class="hs-chip svc-spark" href="#services"><svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg><span>Optimization</span></a>
     </div>
     <div class="badge"><span class="badge-dot"></span>Open for work</div>
-    <h1 class="hero-h1-img"><span class="h1-texto"><span translate="no">Port,</span><span translate="no"> backport </span>&amp; revive<span class="mc" translate="no" data-word="&nbsp;Minecraft&nbsp;">&nbsp;Minecraft&nbsp;</span>mods, any version, any loader</span><picture><source media="(max-width: 700px)" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"><img src="titulo-hero.webp" width="2537" height="731" alt="" aria-hidden="true" fetchpriority="high" decoding="async"></picture><img class="h1-es" src="titulo-hero-es.webp" width="2533" height="1142" alt="" aria-hidden="true" loading="lazy" decoding="async"></h1>
+    <h1 class="hero-h1-img"><span class="h1-texto"><span translate="no">Port,</span><span translate="no"> backport </span>&amp; revive<span translate="no"> </span><span class="mc" translate="no" data-word="Minecraft">Minecraft</span><span translate="no"> </span>mods, any version, any loader</span><picture><source media="(max-width: 700px)" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"><img src="titulo-hero.webp" width="2537" height="731" alt="" aria-hidden="true" fetchpriority="high" decoding="async"></picture><img class="h1-es" src="titulo-hero-es.webp" width="2533" height="1142" alt="" aria-hidden="true" loading="lazy" decoding="async"></h1>
     <p class="hero-who"><picture><source media="(prefers-reduced-motion: reduce)" srcset="wave-me-still.webp"><img class="hero-wave" src="wave-me.webp" width="192" height="190" alt="" aria-hidden="true" loading="eager" decoding="async"></picture>I'm <strong><span translate="no">josda</span></strong>. I build<span translate="no"> modpacks</span>; I got fed up with mods dying off on old versions, so I started<span translate="no"> porting </span>them myself.</p>
     <p class="hero-desc">
       I work across<span translate="no"> Forge</span>,<span translate="no"> Fabric </span>and<span translate="no"> NeoForge</span>, and I move mods up and down versions.<span translate="no"> Forge </span>1.20.1 is my lowest rate because it is the least work, not because it is all I do. I check the licence first and boot-test every build before it's released.
@@ -2599,7 +2617,11 @@
            Twenty-three I can't.", y #authors lo cuenta con nombres a menos de una
            pantalla de aqui. Se queda la apertura y el cierre, que es lo unico que
            esta seccion aporta: el balance del ano. -->
-      <p><strong>This is going better than I expected.</strong> A year ago none of that existed.</p>
+      <!-- "this" y no "that": las tres frases del medio se quitaron por contarse
+           ya en el portafolio, y el "that" del remate apuntaba justo a ellas.
+           Quedaba un pronombre sin antecedente. "This" se refiere a todo esto
+           (el trabajo, la pagina) y se sostiene solo, sin devolver la redundancia. -->
+      <p><strong>This is going better than I expected.</strong> A year ago none of this existed.</p>
       <p><strong>And none of it happened on my own.</strong><span translate="no"> Alex </span>is the one I talk the hard calls through with, and we are on the same course. Around that there are people who test what I build, who send me mods worth looking at, and who tell me straight when something is wrong. And before any of them, the authors who wrote these mods and let me near their work.</p>
       <p><strong>I would rather say that than pretend it was all me.</strong> Your job is still written and debugged by the person you are talking to; what I am not going to claim is that I got here by myself.</p>
     </div>
@@ -2679,35 +2701,35 @@
     <div class="port-grid">
       <div class="port-card">
         <h3 class="port-name">A crash the compiler cannot see</h3>
-        <details class="more more--card"><summary>Read the detail</summary>
+        <details class="more more--card"><summary aria-label="Read the detail: A crash the compiler cannot see">Read the detail</summary>
           <p class="port-desc">In my<span translate="no"> port </span>of<span translate="no"> Capybara </span>(<span translate="no">39Choko</span>, MIT) the model asked for a bone called<span translate="no"> saddleParts</span>. In the model file that bone is called<span translate="no"> saddle</span>. The name lives inside a text string, so nothing checked it. The build passed. The resource diff passed. It crashed the first time a capybara was drawn, in my own test instance.<span translate="no"> GeckoLib</span>'s<span translate="no"> AnimationProcessor.getBone </span>returns null for a name the model does not have, and the renderer runs every frame.</p>
           <p class="port-footer-note"><strong>Proof.</strong> I kept the broken<span translate="no"> jar</span>. The check now reads bone names straight out of the compiled bytecode with<span translate="no"> javap </span>and compares them against the model file. On the fixed<span translate="no"> jar</span>: one bone found, zero failures. On the broken<span translate="no"> jar</span>: it fails, names<span translate="no"> saddleParts</span>, and prints the 11 bones that do exist. I wrote up <a href="geckolib-bone-name-crash.html">how to run that check on your own<span translate="no"> jar</span></a>.</p></details>
       </div>
 
       <div class="port-card">
         <h3 class="port-name">Files that vanish in the repack</h3>
-        <details class="more more--card"><summary>Read the detail</summary>
+        <details class="more more--card"><summary aria-label="Read the detail: Files that vanish in the repack">Read the detail</summary>
           <p class="port-desc">A<span translate="no"> port </span>is a rebuild, not a copy. Recipes, loot tables and textures can go missing when the<span translate="no"> jar </span>is repackaged, and nothing errors. The mod loads and quietly does less than it did before.</p>
           <p class="port-footer-note"><strong>Proof.</strong> I diff every asset, data and licence file against the<span translate="no"> jar </span>the original author published. Across<span translate="no"> Boids </span>and<span translate="no"> Birds </span>(<span translate="no">Tomate0613</span>, MIT) and<span translate="no"> Capybara </span>(<span translate="no">39Choko</span>, MIT): 22 of the 28 are byte identical. 6 are<span translate="no"> JSON </span>the build reformatted, and they parse to exactly the same data. Two files are added, both<span translate="no"> Forge </span>biome modifiers so spawns work on this loader. Loader metadata is replaced on purpose,<span translate="no"> mods.toml </span>where<span translate="no"> Fabric </span>had<span translate="no"> fabric.mod.json</span>. Unzip both<span translate="no"> jars </span>and run the same diff.</p></details>
       </div>
 
       <div class="port-card">
         <h3 class="port-name"><span translate="no">Yarn </span>names and<span translate="no"> Mojang </span>names do not line up</h3>
-        <details class="more more--card"><summary>Read the detail</summary>
+        <details class="more more--card"><summary aria-label="Read the detail: Yarn names and Mojang names do not line up">Read the detail</summary>
           <p class="port-desc"><span translate="no">Fabric </span>source is written in<span translate="no"> Yarn </span>names.<span translate="no"> Forge </span>builds against<span translate="no"> Mojang</span>'s. I bridge them in two hops through intermediary mappings, and the translator only rewrites a name when it has exactly one possible target. Anything ambiguous is left for the compiler to reject.</p>
           <p class="port-footer-note"><strong>Proof.</strong> It still gets things wrong, and those mistakes compile. On<span translate="no"> Capybara </span>the jungle spawn biome came out of the translator as<span translate="no"> JUNGLE_PLANKS</span>. That is why I read translated output back against the original source before it goes into a build. The jungle, mangrove swamp and sparse jungle spawns in that<span translate="no"> port </span>came from the original, not from the translated text.</p></details>
       </div>
 
       <div class="port-card">
         <h3 class="port-name">Fine in singleplayer, dead on the server</h3>
-        <details class="more more--card"><summary>Read the detail</summary>
+        <details class="more more--card"><summary aria-label="Read the detail: Fine in singleplayer, dead on the server">Read the detail</summary>
           <p class="port-desc">A clientbound packet handler written as a method reference is resolved where it is registered. A dedicated server has no client class to resolve, so registration can take the server down at startup while singleplayer never complains.</p>
           <p class="port-footer-note"><strong>Proof.</strong> On a network layer<span translate="no"> backport </span>from 1.21 to<span translate="no"> Forge </span>1.20.1, on my own<span translate="no"> modpack</span>, I rebuilt every packet payload by hand: 22 serverbound, 19 clientbound. All 19 clientbound handlers are explicit lambdas with the client call behind a<span translate="no"> Dist.CLIENT </span>guard, and all 41 register from one shared method with sequential IDs, so the two sides cannot drift. That is how the code is written, not a test result. I do not name the mod here: it is a personal-use<span translate="no"> port </span>and I have no written permission from the author to put its name on a commercial page.</p></details>
       </div>
 
       <div class="port-card">
         <h3 class="port-name"><span translate="no">Mixins </span>that quietly do not load</h3>
-        <details class="more more--card"><summary>Read the detail</summary>
+        <details class="more more--card"><summary aria-label="Read the detail: Mixins that quietly do not load">Read the detail</summary>
           <p class="port-desc">Repackaging a<span translate="no"> jar </span>can drop the manifest entry that declares its mixin configs.<span translate="no"> Forge </span>then loads the mod without complaint and none of the mixins apply. The mod is installed, part of its behaviour is missing, and nothing in the log says so.</p>
           <p class="port-footer-note"><strong>Proof.</strong> Same class of bug, same answer: it became a check. The manifest one in the <a href="#portfolio">five checks I run</a> is this exact bug, turned into something a script can catch. They are a colander, not a proof. The bone check only sees literal names, and it needs a<span translate="no"> JDK </span>to read the bytecode.</p></details>
       </div>
