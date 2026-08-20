@@ -93,6 +93,7 @@
     "email": "modwrightstudios@gmail.com",
     "sameAs": [
       "https://github.com/Dheightsan",
+      "https://www.curseforge.com/members/danisansietev/projects",
       "https://builtbybit.com/members/modwrightstudios.891720/"
     ],
     "contactPoint": {
@@ -1612,6 +1613,17 @@
        asi que o se lee o no se lee. Con `--text-mute` sube a 4,76-6,22. */
     footer .sep { margin: 0 0.5rem; color: var(--text-mute); }
     footer a { color: var(--text-soft); }
+    /* Los perfiles. Hasta hoy GitHub y BuiltByBit SOLO existian dentro del
+       `sameAs` del schema, o sea que los veia Google y no los veia nadie mas.
+       En un oficio donde el comprador desconfia por defecto, tener cuenta en
+       las plataformas donde viven los mods es parte de la credencial, asi que
+       tienen que estar A LA VISTA.
+       Van en su propia linea y no metidos en la fila de enlaces legales: ahi
+       serian el septimo `·` de una fila que ya es larga. */
+    .perfiles { margin-top: 0.85rem; font-size: 0.82rem; color: var(--text-mute); }
+    .perfiles a { color: var(--text-soft); text-decoration: underline;
+      text-underline-offset: 3px; text-decoration-color: var(--border-lt); }
+    .perfiles a:hover { text-decoration-color: currentColor; }
 
     @media (max-width: 760px) {
       .estimator { grid-template-columns: minmax(0, 1fr); }
@@ -2990,6 +3002,7 @@
 
 <footer>
   <div><strong style="color:var(--text-soft)"><span translate="no">Modwright</span></strong> <span class="sep">·</span><span translate="no"> Forge </span>1.20.1 mod<span translate="no"> porting </span><span class="sep">·</span> <a href="mod-porting-cost.html">What a<span translate="no"> port </span>costs</a> <span class="sep">·</span> <a href="fabric-to-forge-1-20-1.html"><span translate="no">Fabric </span>to<span translate="no"> Forge</span>: what breaks</a> <span class="sep">·</span> <a href="#terms">Terms</a> <span class="sep">·</span> <a href="#privacy">Privacy</a> <span class="sep">·</span> <a href="#licenses">Licenses</a> <span class="sep">·</span> <a href="mailto:modwrightstudios@gmail.com">Contact</a></div>
+  <div class="perfiles">Also on <a href="https://www.curseforge.com/members/danisansietev/projects" target="_blank" rel="noopener noreferrer" translate="no">CurseForge</a> <span class="sep">·</span> <a href="https://github.com/Dheightsan" target="_blank" rel="noopener noreferrer" translate="no">GitHub</a> <span class="sep">·</span> <a href="https://builtbybit.com/members/modwrightstudios.891720/" target="_blank" rel="noopener noreferrer" translate="no">BuiltByBit</a></div>
 </footer>
 
 <script>
