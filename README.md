@@ -8,16 +8,16 @@
 
 ## Services
 
-| Service | What it is |
-|---------|------------|
-| 🔧 **Quick fix / recompile** | Same loader, neighbouring version, small tweaks |
-| 🎯 **Backport** | Newer mod running on an older version (Forge 1.20.1 specialty) |
-| 🧩 **Compatibility patch** | Make mods coexist, works even with closed-source mods |
-| 🛠️ **Maintenance** | Fix mixins, crashes, dependency breaks |
-| ⚡ **Optimization** | Less lag, lighter on resources |
-| ⏫ **Revive / loader conversion** | Abandoned mods, Fabric to Forge |
+| Service | What it is | Starting at |
+|---------|------------|-------------|
+| 🔧 **Quick fix / recompile** | Same loader, neighbouring version, small tweaks | $20 |
+| 🧩 **Compatibility patch** | Make mods coexist, works even with closed-source mods | $25 |
+| 🛠️ **Maintenance** | Fix mixins, crashes, dependency breaks | $25 |
+| 🎯 **Backport** | Newer mod running on an older version (Forge 1.20.1 specialty) | $35 |
+| ⚡ **Optimization** | Less lag, lighter on resources | $45 |
+| ⏫ **Revive / loader conversion** | Abandoned mods, Fabric to Forge | Quoted per job |
 
-Every job is **one fixed price for your specific mod**, scoped privately and agreed in writing before any work begins. What moves the number is the size of the mod, how deep the work goes, how far the version jump is, and whether the loader changes. The [estimator](https://dheightsan.github.io/forge-ports/#estimator) puts a ballpark on it in about a minute.
+Those are floors, not the price. Every job is **one fixed price for your specific mod**, scoped privately and agreed in writing before any work begins. What moves the number is the size of the mod, how deep the work goes, how far the version jump is, and whether the loader changes. The [estimator](https://dheightsan.github.io/forge-ports/#estimator) puts a ballpark on it in about a minute.
 
 ## How to commission
 
