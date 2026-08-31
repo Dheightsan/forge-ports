@@ -1220,6 +1220,18 @@
     /* auto-fit y no `repeat(3,...)`: al irse el escrow quedan dos metodos y la
        tercera columna dejaba un hueco a la derecha. Asi tampoco habra que
        tocarlo el dia que entre un tercero. */
+    /* Vive dentro de #estimator, al 50% de scroll: lejos de la primera
+       impresion que el dueño mando proteger, y justo donde mira quien fue a
+       buscar un precio. */
+    .floors { margin-top: 1.6rem; padding: 1.1rem 1.25rem; background: var(--surface2); border: 1px solid var(--border-lt); border-radius: var(--radius); }
+    .floors-head { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-mute); margin-bottom: 0.8rem; }
+    .floors-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.1rem 1.6rem; }
+    .floors-list li { display: flex; align-items: baseline; gap: 0.5rem; padding: 0.42rem 0; border-bottom: 1px solid var(--border-lt); font-size: 0.93rem; }
+    .floors-list li span { color: var(--text-soft); }
+    /* El punteado empuja la cifra al borde derecho sin tabla ni anchos fijos. */
+    .floors-list li::after { content: ""; flex: 1 1 auto; border-bottom: 1px dotted var(--border); transform: translateY(-0.22em); }
+    .floors-list li b { font-family: 'Monocraft', 'Space Grotesk', system-ui, sans-serif; color: var(--text); white-space: nowrap; }
+    .floors-note { margin: 0.9rem 0 0; font-size: 0.85rem; color: var(--text-mute); }
     .paycards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.9rem; }
     .paycard { display: flex; flex-direction: column; gap: 0.45rem; background: var(--surface2); border: 1px solid var(--border-lt); border-radius: var(--radius); padding: 1rem 1.1rem; transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s; }
     .paycard:hover { transform: translateY(-2px); border-color: var(--green-ring); box-shadow: 0 6px 20px rgba(0,0,0,0.18); }
@@ -2744,6 +2756,7 @@
             <button type="button" class="est-opt ac-bridge" data-value="compat"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7h4a4 4 0 0 1 0 8h-1"/><path d="M15 17h-4a4 4 0 0 1 0-8h1"/></svg>Compatibility<small>make mods coexist</small></button>
             <button type="button" class="est-opt ac-steel" data-value="maintain"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.6 5.6L3 18l3 3 6.1-6.1a4 4 0 0 0 5.6-5.6l-2.9 2.9a1.5 1.5 0 0 1-2-2l2.9-2.9z"/></svg>Maintenance<small>fix mixins / crashes</small></button>
             <button type="button" class="est-opt ac-spark" data-value="optimize"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Optimization<small>less lag / resources</small></button>
+            <button type="button" class="est-opt ac-steel" data-value="quickfix"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15.5 4.5a4.5 4.5 0 0 0-5.9 5.6L4 15.7V20h4.3l5.6-5.6a4.5 4.5 0 0 0 5.6-5.9L17 11l-2.5-.5L14 8z"/></svg>Quick fix<small>small tweaks, same loader</small></button>
           </div>
         </div>
         <div class="est-group" id="grp-loader">
@@ -2824,6 +2837,18 @@
       <span>First clients get a <strong>discount on their first port</strong> in exchange for an honest review. Lock in a low rate before prices settle.</span>
     </div>
     -->
+    <div class="floors">
+      <div class="floors-head">Starting prices</div>
+      <ul class="floors-list">
+        <li><span>Quick fix</span><b>from $20</b></li>
+        <li><span>Compatibility patch</span><b>from $25</b></li>
+        <li><span>Maintenance</span><b>from $25</b></li>
+        <li><span translate="no">Backport</span><b>from $35</b></li>
+        <li><span>Optimization</span><b>from $45</b></li>
+        <li><span translate="no">Forward-port </span>/ revive<b>quoted per job</b></li>
+      </ul>
+      <p class="floors-note">These are floors, not the price. Every job is quoted as one fixed number once I have looked at the mod, and agreed in writing before any work begins.</p>
+    </div>
     <p class="pnote"><strong>Reviving an old mod, converting<span translate="no"> Fabric </span>to<span translate="no"> Forge</span>, or private closed-source work?</strong> Those are quoted as one flat number for your specific mod, never a stack of surcharges.</p>
     <div class="price-promo">
       <span class="price-promo-tag">Returning clients</span>
@@ -3195,6 +3220,10 @@
   var RUSH = { standard: 1, prio: 1.25, top: 1.5 };
   var MAINT = { small: 25, medium: 50, large: 95 };
   var OPT = { small: 45, medium: 85, large: 150 };
+  /* Precio PLANO y una sola cifra a proposito: es la unica que dio el dueño.
+     Un medium y un large aqui serian precios inventados. Si algun dia escala,
+     hacen falta sus otros dos numeros. */
+  var QUICK = 20;
   var MIN = 20;
   var priceEl = document.getElementById('est-price');
   var noteEl = document.getElementById('est-note');
@@ -3226,22 +3255,33 @@
     document.querySelectorAll(REVEAL_SEL).forEach(function (el) { el.classList.add('in-view'); });
   }
   function money(n) { return '$' + Math.round(n); }
+  /* `scopeMode` vivia duplicado en compute() y en syncGroups(). El modo nuevo
+     se define UNA vez para no repetir ese error: si se toca, se toca aqui. */
+  function modoDe(svc) {
+    return {
+      flat: svc === 'quickfix',
+      scope: (svc === 'compat' || svc === 'maintain' || svc === 'optimize')
+    };
+  }
   function compute() {
     var svc = state.service;
-    var scopeMode = (svc === 'compat' || svc === 'maintain' || svc === 'optimize');
+    var modo = modoDe(svc);
+    var scopeMode = modo.scope;
     var sub;
-    if (svc === 'compat') sub = COMPAT[state.scope];
+    if (modo.flat) sub = QUICK;
+    else if (svc === 'compat') sub = COMPAT[state.scope];
     else if (svc === 'maintain') sub = MAINT[state.scope];
     else if (svc === 'optimize') sub = OPT[state.scope];
     else sub = BASE[state.size] + WALL[state.wall] + LOADER[state.loader];
     if (state.license === 'closed') sub = sub * 1.35;
     sub = sub * RUSH[state.rush];
     sub = Math.max(sub, MIN);
-    return { low: Math.max(Math.round(sub), MIN), high: Math.round(sub * 1.15), scopeMode: scopeMode };
+    return { low: Math.max(Math.round(sub), MIN), high: Math.round(sub * 1.15), scopeMode: scopeMode, flat: modo.flat };
   }
   function buildNote(r) {
     var bits = [];
-    if (state.service === 'compat') { bits.push('Compatibility patch (my own publishable code).'); }
+    if (state.service === 'quickfix') { bits.push('Quick fix: same loader, neighbouring version, small tweaks.'); }
+    else if (state.service === 'compat') { bits.push('Compatibility patch (my own publishable code).'); }
     else if (state.service === 'maintain') { bits.push('Mod maintenance (mixin / crash / dependency fixes).'); }
     else if (state.service === 'optimize') { bits.push('Mod optimization (less lag, lighter on resources).'); }
     else {
@@ -3256,13 +3296,17 @@
     return bits.join(' · ');
   }
   function buildSummary(r) {
-    var svc = ({ backport: 'Backport: adapt a newer mod down to an older version', forward: 'Forward-port / revive: bring an old or abandoned mod to a modern version', compat: 'Compatibility patch: make mods coexist', maintain: 'Mod maintenance: fix mixins / crashes / dependencies', optimize: 'Mod optimization: reduce lag and resource use' })[state.service];
+    var svc = ({ backport: 'Backport: adapt a newer mod down to an older version', forward: 'Forward-port / revive: bring an old or abandoned mod to a modern version', compat: 'Compatibility patch: make mods coexist', maintain: 'Mod maintenance: fix mixins / crashes / dependencies', optimize: 'Mod optimization: reduce lag and resource use', quickfix: 'Quick fix: same loader, neighbouring version, small tweaks' })[state.service];
     var L = [];
     L.push("Hi! I'd like to commission a mod job.");
     L.push('');
     L.push('What I need: ' + svc);
     L.push('Mod: <paste the mod name + link here>');
-    if (r.scopeMode) {
+    if (r.flat) {
+      /* Sin linea de detalle: en modo plano no se enseña ningun selector, asi
+         que meter aqui un tamaño o un muro seria inventar lo que el cliente
+         no ha elegido. */
+    } else if (r.scopeMode) {
       L.push('Scope: ' + ({ small: 'small, one fix', medium: 'moderate, a few systems', large: 'deep, complex' })[state.scope]);
     } else {
       L.push('Details: ' + ({ small: 'small mod', medium: 'medium mod', large: 'large mod' })[state.size] + ' · ' + ({ none: 'no version wall', moderate: 'crosses 1.20.2', hard: 'crosses 1.21', brutal: 'crosses 1.13/1.18' })[state.wall] + ' · ' + ({ forge: 'Forge', neoforge: 'NeoForge', fabric: 'Fabric' })[state.loader] + ' source');
@@ -3277,7 +3321,8 @@
   function buildBreakdown(r) {
     var sw = ({ small: 'simple', medium: 'moderate', large: 'deep' })[state.scope];
     var parts = [];
-    if (state.service === 'compat') parts.push('Compatibility · ' + sw + ' $' + COMPAT[state.scope]);
+    if (state.service === 'quickfix') parts.push('Quick fix $' + QUICK);
+    else if (state.service === 'compat') parts.push('Compatibility · ' + sw + ' $' + COMPAT[state.scope]);
     else if (state.service === 'maintain') parts.push('Maintenance · ' + sw + ' $' + MAINT[state.scope]);
     else if (state.service === 'optimize') parts.push('Optimization · ' + sw + ' $' + OPT[state.scope]);
     else {
@@ -3319,10 +3364,11 @@
   }
   function syncGroups() {
     var svc = state.service;
-    var scopeMode = (svc === 'compat' || svc === 'maintain' || svc === 'optimize');
-    document.getElementById('grp-size').classList.toggle('hidden', scopeMode);
-    document.getElementById('grp-wall').classList.toggle('hidden', scopeMode);
-    document.getElementById('grp-loader').classList.toggle('hidden', scopeMode);
+    var modo = modoDe(svc);
+    var scopeMode = modo.scope;
+    document.getElementById('grp-size').classList.toggle('hidden', scopeMode || modo.flat);
+    document.getElementById('grp-wall').classList.toggle('hidden', scopeMode || modo.flat);
+    document.getElementById('grp-loader').classList.toggle('hidden', scopeMode || modo.flat);
     document.getElementById('grp-scope').classList.toggle('hidden', !scopeMode);
     var sl = document.getElementById('scope-label');
     if (sl) sl.textContent = svc === 'maintain' ? 'Maintenance scope' : (svc === 'optimize' ? 'Optimization scope' : 'Compatibility scope');
