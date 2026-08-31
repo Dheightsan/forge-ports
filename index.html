@@ -156,7 +156,7 @@
       "name": "How long does it take?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "It depends on the mod. We agree a timeline before I start, but I won't quote a fixed turnaround I can't stand behind. I'd rather under-promise and actually deliver than miss a date."
+        "text": "It depends on the mod. We agree a timeline before I start, but I won't quote a fixed turnaround I can't stand behind. Under-promising costs me a job now and then. Missing a date costs you a launch."
       }
     },
     {
@@ -510,6 +510,45 @@
     .theme-toggle::after { content: ''; position: absolute; top: 50%; left: 50%; width: 44px; height: 44px; transform: translate(-50%, -50%); }
     .theme-toggle:hover { color: var(--text); border-color: var(--green-ring); }
     .theme-toggle svg { width: 18px; height: 18px; }
+
+    /* Discord y correo pegados al CTA del menu (josda 2026-08-30). Misma caja
+       que los interruptores de tema para que la fila no se desordene, y van en
+       `nav-tog` A PROPOSITO: es la unica clase que la regla de arriba no apaga
+       por debajo de 1440, o sea que en movil son el unico contacto directo del
+       menu. El color sale de la marca y el dibujo es el nuestro, como manda la
+       regla dura 3: nada de logos calcados. */
+    .nav-chan { display: inline-grid; place-items: center; width: 34px; height: 34px;
+                position: relative; border-radius: var(--radius); background: var(--surface2);
+                border: 1px solid var(--border-lt); cursor: pointer;
+                transition: border-color 0.15s, background 0.15s; }
+    .nav-chan svg { width: 18px; height: 18px; }
+    .nav-chan::after { content: ''; position: absolute; top: 50%; left: 50%;
+                       width: 44px; height: 44px; transform: translate(-50%, -50%); }
+    /* 🚨 El prefijo `.nav-links` NO sobra: sin el, `.nav-links a` (0,1,1) le
+       gana a `.nav-chan--discord` (0,1,0) y los dos botones salen grises, con
+       el color declarado y sin aplicar. */
+    .nav-links .nav-chan--discord { color: #7d8bff; }
+    .nav-links .nav-chan--mail { color: #e8705d; }
+    html[data-theme="light"] .nav-links .nav-chan--discord { color: #4753c8; }
+    html[data-theme="light"] .nav-links .nav-chan--mail { color: #c2402c; }
+    .nav-chan--discord:hover { border-color: #5865f2; background: rgba(88,101,242,0.14); }
+    .nav-chan--mail:hover { border-color: #ea4335; background: rgba(234,67,53,0.13); }
+
+    /* El "Show more" de la galeria es un BOTON y no el enlace verde que usan
+       los otros desplegables: aqui abre 48 fotos, es el gesto mas grande de la
+       pagina y tiene que verse pulsable, tambien con el dedo. */
+    details.pack-more { margin-top: 1rem; }
+    details.pack-more > summary { display: inline-flex; align-items: center; gap: 0.45rem;
+      padding: 0.6rem 1.2rem; border-radius: var(--radius); cursor: pointer;
+      font-family: 'Monocraft', 'Space Grotesk', system-ui, sans-serif;
+      font-weight: 700; font-size: 0.86rem; color: var(--text);
+      background: var(--surface2); border: 1px solid var(--border-lt);
+      list-style: none; transition: border-color 0.15s, background 0.15s; }
+    details.pack-more > summary::-webkit-details-marker { display: none; }
+    details.pack-more > summary::after { content: '\25be'; font-size: 0.85em; transition: transform 0.15s; }
+    details.pack-more[open] > summary::after { transform: rotate(180deg); }
+    details.pack-more > summary:hover { border-color: var(--green-ring); background: var(--surface); text-decoration: none; }
+    details.pack-more > .pack-grid { margin-top: 0.9rem; }
     .theme-toggle .icon-moon { display: none; }
     html[data-theme="light"] .theme-toggle .icon-sun { display: none; }
     html[data-theme="light"] .theme-toggle .icon-moon { display: inline; }
@@ -638,8 +677,14 @@
     /* ── buttons ── */
     .btn {
       display: inline-flex; align-items: center; gap: 0.45rem;
-      padding: 0.74rem 1.4rem; cursor: pointer; font-family: inherit;
-      font-size: 0.92rem; font-weight: 700; line-height: 1.25;
+      padding: 0.74rem 1.4rem; cursor: pointer;
+      /* La misma letra que el boton "Price my mod" del menu (peticion de josda
+         2026-08-30): antes era `inherit`, o sea Space Grotesk, y el CTA del
+         menu era el unico en Monocraft. Monocraft es monoespaciada y ocupa
+         mas, asi que la medida de cada boton se comprobo renderizada a 375,
+         768 y 1440 antes de dar esto por bueno. */
+      font-family: 'Monocraft', 'Space Grotesk', system-ui, sans-serif;
+      font-size: 0.86rem; font-weight: 700; line-height: 1.25; letter-spacing: 0;
       border: 1px solid transparent; border-radius: var(--radius); transition: background-color 0.15s, color 0.15s, border-color 0.15s, box-shadow 0.15s;
     }
     .btn-primary { background: var(--green); color: #1a1410; }
@@ -932,6 +977,11 @@
     /* ── SERVICES ── */
     #services { background: var(--surface); border-top: 1px solid var(--border); }
     .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(238px, 1fr)); gap: 1.1rem; margin-top: 2.75rem; }
+    /* Son SEIS tarjetas: en cuatro columnas la segunda fila sale a medias, con
+       dos huecos, y la seccion cierra en escalon. A tres columnas caen 3+3.
+       Por debajo de 900 px manda otra vez `auto-fit`, que ahi da 2 (y 3 filas
+       de 2, que tambien cierra en recto). */
+    @media (min-width: 900px) { .cards { grid-template-columns: repeat(3, 1fr); } }
     .card { background: linear-gradient(180deg, #1a1814, #131210); padding: var(--pad-card-lg); border: 1px solid var(--border); border-radius: var(--radius-lg); transition: border-color 0.15s, transform 0.1s; position: relative; overflow: hidden; box-shadow: inset 0 1px 0 rgba(234,228,214,0.04), 0 8px 24px -16px rgba(0,0,0,0.7); }
     .card:hover { border-color: var(--green-ring); transform: translateY(-3px); }
     .card--premium::before { background: var(--gold); }
@@ -1122,6 +1172,13 @@
     /* las tres acciones del presupuesto son UNA pila: mismo ancho y mismo hueco.
        El de Discord no tenia regla y salia a ancho de contenido, 186px contra 297px. */
     .est-discord, .est-copy, .est-email { display: flex; width: 100%; justify-content: center; margin-top: 0.6rem; }
+    /* Los tres botones del resultado se apretan por debajo de 980: ahi la
+       columna baja a ~241 px y la etiqueta mas larga se partia en dos lineas,
+       que ademas descuadraba la fila (60 px contra 43 de sus hermanos). El
+       relleno lateral es lo primero que sobra en un boton a todo el ancho. */
+    @media (max-width: 980px) {
+      .est-discord, .est-copy, .est-email { padding-left: 0.7rem; padding-right: 0.7rem; font-size: 0.8rem; }
+    }
     .est-copy.done { background: var(--surface2); color: var(--green-hi); }
     .est-disclaimer { font-size: 0.74rem; color: var(--text-mute); margin-top: 0.85rem; text-align: center; line-height: 1.5; }
     .est-disclaimer a { color: var(--green-hi); }
@@ -1503,7 +1560,12 @@
     .pack-note { margin-top: 1.2rem; font-size: 0.82rem; line-height: 1.65; color: var(--text-mute); max-width: 62ch; }
     .pack-note strong { color: var(--text-soft); }
     @media (max-width: 860px) { .pack-grid { columns: 2; } }
-    @media (max-width: 520px) { .pack-grid { columns: 1; } }
+    /* 🚨 La rejilla de MUESTRA se queda en 2 columnas hasta el ancho mas
+       estrecho. En 1 columna las 6 fotos elegidas son ~1.400 px de muro en un
+       telefono, o sea que plegar la galeria no habria servido de nada justo
+       donde mas falta hacia. Dentro del desplegable SI baja a 1 columna: ahi
+       el visitante ha pedido ver las 44 y las quiere grandes. */
+    @media (max-width: 520px) { details.pack-more > .pack-grid { columns: 1; } }
     /* Bandas a todo el ancho, entre seccion y seccion. Son las capturas en las que
        el que sale es josda: dentro de la rejilla eran dos miniaturas mas entre doce
        y aqui hacen de respiro entre bloques de texto largos, que es lo que a esta
@@ -1640,6 +1702,31 @@
     @media (max-width: 1000px) {
       .nav-links li:not(.nav-cta):not(.nav-tog) { display: none; }
     }
+    /* 🚨 LOS DOS ICONOS NUEVOS (Discord y correo) ROMPIERON EL AJUSTE EN MOVIL.
+       Medido: la barra se salia por la derecha 11 px a 375, 26 a 360, 66 a 320,
+       70 a 414, 54 a 430 y 74 a 520. `overflow-x: clip` no da scroll ni error,
+       asi que el interruptor de tema quedaba cortado y sin poder tocarse.
+       Es la TERCERA vez que pasa lo mismo en esta barra (ya se salieron los 2
+       toggles por debajo de 400). El ancho es aqui el recurso escaso: cada
+       cosa que se le anada hay que MEDIRLA, no mirarla.
+       Lo contraintuitivo, y por eso costo verlo: a 414 y 520 se salia MAS que
+       a 375, porque por debajo de 400 ya entraban las reglas compactas y entre
+       400 y 740 no habia ninguna. */
+    @media (max-width: 820px) {
+      /* El hueco de 1.6rem es para la fila de 5 enlaces, que aqui ya no
+         existe. Entre iconos solo empuja. Ademas los 4 iconos se leen mejor
+         como un grupo pegado, separado del CTA. */
+      .nav-links { gap: 0.5rem; }
+      .nav-links .nav-cta { margin-right: 0.25rem; }
+    }
+    @media (max-width: 740px) {
+      /* 170 px de wordmark contra el contacto directo: gana el contacto.
+         El cuy se queda, que es la marca que se reconoce. */
+      .brand .wordmark { display: none; }
+    }
+    /* Los valores compactos NO van aqui: el bloque `max-width: 430px` de mas
+       abajo tiene la misma especificidad y va despues, asi que ganaria el.
+       Estan todos alli, en un solo sitio. */
     /* Y traducida al español la misma fila ocupa un 25-30% mas. Dos cosas:
        1. se aprietan los huecos, porque colapsar los cinco enlaces en toda
           pantalla dejaria al visitante en español sin menu. Con gap 1.05rem y
@@ -1658,21 +1745,42 @@
       .prow-head { display: none; }
       .pprice { font-size: 1.1rem; }
     }
-    /* moviles muy estrechos (<=400px): sin esto, los 2 toggles del nav quedaban FUERA de pantalla
-       y eran inalcanzables. El logo del cuy se mantiene; solo se oculta el wordmark de texto. */
-    @media (max-width: 400px) {
+    /* moviles (<=430px): sin esto los toggles del nav quedan FUERA de pantalla
+       y son inalcanzables. El logo del cuy se mantiene; solo se oculta el
+       wordmark de texto.
+       🚨 EL UMBRAL ERA 400 Y ESTABA CORTO. Con los dos iconos nuevos, medido a
+       414 px la barra se salia 3 px por la derecha, y 414/428/430 son iPhone
+       corrientes. Ahora cubre hasta 430. Este bloque es EL sitio de los valores
+       compactos de la barra: cualquier otro que se escriba antes en el archivo
+       pierde la cascada y no se aplica (ya paso una vez). */
+    @media (max-width: 430px) {
       /* la barra baja a 66 px aqui, asi que el hueco que reserva el salto a un
          ancla tiene que bajar con ella: por eso el alto va en una variable. */
       html { --nav-h: 66px; }
-      .nav-inner { padding: 0 0.9rem; height: 66px; }
-      .nav-links { gap: 0.55rem; }
+      .nav-inner { padding: 0 0.8rem; height: 66px; }
+      .nav-links { gap: 0.42rem; }
       .brand .wordmark { display: none; }
-      /* Logo algo mas contenido aqui: por debajo de 400px los dos toggles ya
-         se salieron de pantalla una vez, y el ancho es el recurso escaso. */
-      .brand-cuy { width: 48px; height: 48px; }
+      /* Logo algo mas contenido aqui: por debajo de 430px los toggles ya se
+         salieron de pantalla dos veces, y el ancho es el recurso escaso. */
+      .brand-cuy { width: 44px; height: 44px; }
       /* Sube en la misma proporcion que el tamano base (0.85->0.95), o aqui la
          letra de pixeles se quedaria por debajo de lo legible. */
-      .btn-nav { padding: 0.48rem 0.72rem; font-size: 0.88rem; }
+      .btn-nav { padding: 0.48rem 0.7rem; font-size: 0.88rem; }
+      /* Encoge el DIBUJO, no el area de toque: el ::after de 44 px de
+         `.nav-chan` y `.theme-toggle` va aparte y no depende de estas medidas,
+         asi que el dedo sigue teniendo los 44 px de siempre. */
+      .nav-chan, .theme-toggle { width: 30px; height: 30px; }
+      .nav-chan svg, .theme-toggle svg { width: 17px; height: 17px; }
+    }
+    /* Telefonos de 320-350 (un SE de 2016 y poco mas). Aqui ya no queda holgura
+       de ningun tipo: con los valores de arriba la barra aun se salia 42 px. */
+    @media (max-width: 350px) {
+      .nav-inner { padding: 0 0.55rem; }
+      .nav-links { gap: 0.3rem; }
+      .brand-cuy { width: 38px; height: 38px; }
+      .btn-nav { padding: 0.44rem 0.5rem; font-size: 0.78rem; }
+      .nav-chan, .theme-toggle { width: 28px; height: 28px; }
+      .nav-chan svg, .theme-toggle svg { width: 16px; height: 16px; }
     }
 
     /* ── MI PROPIO PACK ──
@@ -1773,6 +1881,18 @@
     /* Descolgada por abajo a la izquierda: dos rectangulos alineados parecen
        una galeria; descolgada parece una ventana a un mundo. */
     .hero-art-note { margin-top: 1.1rem; font-size: 0.78rem; line-height: 1.5; color: var(--text-mute); text-align: right; }
+    /* SEGUNDA captura: el hueco muerto de la derecha volvio.
+       Medido a 1440: la columna de texto acaba en 1224 px y la de la imagen en
+       535, o sea ~690 px de vacio justo en la primera pantalla. Es EL MISMO
+       fallo que creo este hero a dos columnas ("media pantalla vacia al lado"),
+       reabierto porque la columna izquierda fue creciendo despues.
+       Se rellena siguiendo la intencion que ya estaba escrita aqui: subir las
+       panoramicas del pack al hero, en vez de dejarlas a 6000 px de scroll.
+       Solo en escritorio: por debajo de 1080 la columna pasa a `order: -1` y una
+       segunda imagen empujaria el titular aun mas abajo. */
+    .hero-art-extra { margin-top: 1.6rem; }
+    .hero-art-extra img { box-shadow: 0 20px 44px -26px rgba(0,0,0,0.75); }
+    @media (max-width: 1080px) { .hero-art-extra { display: none; } }
     /* Por debajo de 1080 no caben dos columnas con el titular a este cuerpo. La
        imagen pasa ARRIBA DEL TODO y en banda: lo visual tiene que aparecer
        antes que el muro de texto, que es justo lo que fallaba. */
@@ -1811,8 +1931,17 @@
        y al unificar el portafolio uno se fue 1000 px. */
     section { position: relative; }
     .ch { position: absolute; z-index: 3; pointer-events: none; user-select: none;
-          width: auto; image-rendering: pixelated;
+          width: auto;
           filter: drop-shadow(0 6px 14px rgba(0,0,0,0.5)); }
+    /* SIN `image-rendering: pixelated`, y es a proposito: `pixelated` sirve para
+       AMPLIAR, no para reducir. Estos SIEMPRE se reducen, y ademas a un factor
+       que cambia con la ventana (bajo 1600 px van al 62%), asi que nunca cae en
+       un multiplo entero. Medido: 36 de 52 quedaban en factores de 1,09 a 1,49
+       (y al 62% no se salva ninguno), y ahi `pixelated` reparte los bloques con
+       anchos desiguales, el temblor que se veia en las cabezas. Comprobado con
+       recortes x3 antes y despues. Las cabezas `h*` SI son pixel art de verdad
+       (24-82 colores, 95% de vecinos identicos); las `pix-*` son ilustraciones
+       suaves (5.000-12.800 colores), asi que `pixelated` tampoco les tocaba. */
     section > .wrap { position: relative; z-index: 4; }
     /* El alto va en --h para poder escalarlos por ancho de ventana. El hueco
        es (ancho - 1060) / 2, asi que a 1600 hay 270 px y caben enteros; a 1440
@@ -1904,10 +2033,12 @@
     <ul class="nav-links">
       <li><a href="#portfolio">Portfolio</a></li>
       <li><a href="#services">Services</a></li>
-      <li><a href="#estimator" translate="no">Angel Engine</a></li>
+      
       <li><a href="#authors">Mod authors</a></li>
       <li><a href="#legal">Legal</a></li>
       <li class="nav-cta"><a href="#estimator" class="btn-nav">Price my mod<span class="nav-free">free</span></a></li>
+      <li class="nav-tog"><a class="nav-chan nav-chan--discord" href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" aria-label="Message me on Discord" title="Discord"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg></a></li>
+      <li class="nav-tog"><a class="nav-chan nav-chan--mail" href="mailto:modwrightstudios@gmail.com?subject=Mod%20commission" aria-label="Send me an email" title="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a></li>
       <li class="nav-tog"><button type="button" id="accent-toggle" class="theme-toggle" aria-label="Toggle green accent" title="Warm / green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19c0-7 4.5-12.5 13-13-0.5 8.5-6 13-13 13z"/><path d="M5 19c3-4.5 6.5-8 10.5-10.5"/></svg></button></li>
       <li class="nav-tog"><button type="button" id="theme-toggle" class="theme-toggle" aria-label="Switch between light and dark theme" title="Light / dark"><svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button></li>
     </ul>
@@ -2012,7 +2143,7 @@
     <h1 class="hero-h1-img"><span class="h1-texto"><span translate="no">Port,</span><span translate="no"> backport </span>&amp; revive<span translate="no"> </span><span class="mc" translate="no" data-word="Minecraft">Minecraft</span><span translate="no"> </span>mods, any version, any loader</span><picture><source media="(max-width: 700px)" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"><img src="titulo-hero.webp" width="2537" height="731" alt="" aria-hidden="true" fetchpriority="high" decoding="async"></picture><img class="h1-es" src="titulo-hero-es.webp" width="2533" height="1142" alt="" aria-hidden="true" loading="lazy" decoding="async"></h1>
     <p class="hero-who"><picture><source media="(prefers-reduced-motion: reduce)" srcset="wave-me-still.webp"><img class="hero-wave" src="wave-me.webp" width="192" height="190" alt="" aria-hidden="true" loading="eager" decoding="async"></picture>I'm <strong><span translate="no">josda</span></strong>. I build<span translate="no"> modpacks</span>; I got fed up with mods dying off on old versions, so I started<span translate="no"> porting </span>them myself.</p>
     <p class="hero-desc">
-      I work across<span translate="no"> Forge</span>,<span translate="no"> Fabric </span>and<span translate="no"> NeoForge</span>, and I move mods up and down versions.<span translate="no"> Forge </span>1.20.1 is my lowest rate because it is the least work, not because it is all I do. I check the licence first and boot-test every build before it's released.
+      A mod only runs on the version of<span translate="no"> Minecraft </span>it was built for. I rebuild it so it runs on yours instead, or on a different mod loader:<span translate="no"> Forge</span>,<span translate="no"> Fabric </span>and<span translate="no"> NeoForge</span>, in any direction.<span translate="no"> Forge </span>1.20.1 is my lowest rate because it is the least work, not because it is all I do. I check the licence first, and I run every build in the game before it goes out.
     </p>
     <div class="pills">
       <!-- Lleva la cifra porque sin ella el lector recorria hero, portafolio y
@@ -2024,7 +2155,7 @@
            maqueta) y con la cifra caen 2+2. A 1440, 1280, 1024 y 375 no cambia. -->
       <span class="pill pill-price">Fixed price from $20, one flat quote</span>
       <span class="pill pill-trust"><span translate="no">Forge</span>,<span translate="no"> Fabric </span>&amp;<span translate="no"> NeoForge</span></span>
-      <span class="pill">5 structural checks before any<span translate="no"> jar </span>ships</span>
+      <span class="pill">5 checks on every build before it ships</span>
       <span class="pill">Licence checked up front</span>
     </div>
     <p class="hero-hook">Is your favourite mod missing on the version you actually play? Price it in about a minute.</p>
@@ -2066,6 +2197,9 @@
         </figure>
       </div>
       <p class="hero-art-note">Me taking in the view in my own pack, over 600 mods. Like you, I know the version problem first-hand, and every other headache that comes with it.</p>
+      <figure class="hero-art-extra">
+        <img src="pack-05.webp" width="760" height="428" alt="A modded Minecraft landscape from my own pack." loading="lazy" decoding="async">
+      </figure>
     </div>
   </div>
 </section>
@@ -2080,14 +2214,14 @@
        cada uno cae en un tramo comprobado libre en ese lado. -->
   <img class="ch ch--borde" src="h1024-12.webp" width="256" height="236" style="right:calc(50% + 530px + 18px);top:362px;--h:185px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
-        <h2>One target, any starting point</h2>
+        <h2>Same mod, your version</h2>
     <!-- Esta seccion iba justo despues del hero explicando solo el MECANISMO
          (los tres cargadores se convierten entre si) y no decia en ningun
          momento que hay en juego. El problema estaba escrito, pero a 13.000 px
          de aqui, dentro de #about. La afirmacion vive donde mas pesa, y para
          esta la portada pesa mas que el "sobre mi". Las palabras son distintas
          a las de alli a proposito ("stopped updating" y no "dead mod"). -->
-    <p class="sub">A pack does not have to die because one mod stopped updating, and moving to a new version does not have to mean dropping half of what you built. Whatever your mod runs on now, it can come across: the three loaders convert between each other, and versions move up or down.</p>
+    <p class="sub"><span translate="no">Porting </span>means rebuilding. I take the mod apart and put it back together for the version and the loader you actually run, and the same content comes out the other side. So a pack does not have to die because one mod stopped updating, and moving to a new version does not have to mean dropping half of what you built.</p>
 
     <figure class="loomd-wrap">
       <svg class="loomd" viewBox="0 0 600 432" role="img" aria-labelledby="ldt ldd" preserveAspectRatio="xMidYMid meet">
@@ -2189,7 +2323,7 @@
             <span class="port-go">Open on<span translate="no"> CurseForge </span>&rarr;</span>
           </span>
         </a>
-        <p class="port-desc">Loader conversion of<span translate="no"> Shaunt </span>and<span translate="no"> Caf&eacute;</span>'s companion-dog mod. <strong>No public source</strong>, so I rebuilt it from the compiled<span translate="no"> jar</span>.</p>
+        <p class="port-desc">Loader conversion of<span translate="no"> Shaunt </span>and<span translate="no"> Caf&eacute;</span>'s companion-dog mod. <strong>The code was never published</strong>, so I rebuilt it from the finished mod file.</p>
         <dl class="port-stats">
           <div><dt>Loader</dt><dd><span translate="no">Fabric </span>&rarr;<span translate="no"> Forge</span></dd></div>
           <div><dt>Version</dt><dd>1.20.1, unchanged</dd></div>
@@ -2335,67 +2469,70 @@
       <figure class="pack-lead">
         <img src="pack-01.webp" width="1200" height="675" alt="A villager outside a wooden house in a heavily modded world, with custom flowers and trees around it." loading="lazy" decoding="async">
       </figure>
+      <!-- 🚨 LA GALERIA NO SE ABRE ENTERA (peticion de josda 2026-08-30).
+           Eran 50 fotos seguidas: un muro que enterraba todo lo que va debajo.
+           A la vista quedan la principal y SEIS elegidas por variedad (dos
+           construcciones, un paisaje, el Nether, una criatura, un amanecer);
+           el resto entra tras un clic. Para cambiar cuales salen, mueve el
+           nombre en la lista PORTADA de `parche6.py` o el <img> a mano: el
+           orden de ESTA rejilla es el orden en que se ven. -->
       <div class="pack-grid">
         <img src="pack-02.webp" width="760" height="428" alt="An enormous skeleton lying across a flooded clearing between giant redwoods, seen from above." loading="lazy" decoding="async">
         <img src="pack-04.webp" width="760" height="428" alt="A large ornate structure of dark stone and gold beside a lava fall in the Nether, lit by soul fire." loading="lazy" decoding="async">
-        <img src="pack-05.webp" width="760" height="428" alt="Three bears gathered on a stone platform in a birch and pine forest." loading="lazy" decoding="async">
-        <img src="pack-06.webp" width="760" height="428" alt="A window set into the trunk of a huge tree at sunset, with birch trees behind it." loading="lazy" decoding="async">
-        <img src="pack-08.webp" width="760" height="428" alt="A pillager riding an orange boar through bright green forest undergrowth." loading="lazy" decoding="async">
-        <img src="pack-10.webp" width="760" height="428" alt="A capybara resting on open grassland under a clear sky." loading="lazy" decoding="async">
-        <img src="pack-11.webp" width="669" height="578" alt="A tall red villager and a blue-robed wizard holding a staff, standing on a snow field." loading="lazy" decoding="async">
-        <!-- Tanda del 18-08, once capturas nuevas de josda. Llegaron por WhatsApp,
-             o sea ya recomprimidas a JPEG; se convierten con tools_galeria_nuevas.py
-             al mismo formato que las de arriba (760 de ancho, que es 2x de los ~380
-             que pinta la rejilla). El texto alternativo describe lo que se ve y
-             nada mas: ninguno dice ni sugiere que el mod de la imagen sea un port
-             suyo, porque esta seccion es su pack jugando, no su trabajo. -->
-        <img src="pack-13.webp" width="760" height="428" alt="A pale moth flying at night over a patch of pumpkins in a dark forest, with a snowy peak on the horizon." loading="lazy" decoding="async">
-        <img src="pack-14.webp" width="760" height="428" alt="My character standing beside a large bear on a grassy slope in early morning light." loading="lazy" decoding="async">
-        <img src="pack-15.webp" width="760" height="428" alt="My character sitting on a pale stone shore between a bear and its cub." loading="lazy" decoding="async">
-        <img src="pack-16.webp" width="760" height="428" alt="A small white and blue creature with wide eyes sitting among bright jungle leaves." loading="lazy" decoding="async">
-        <img src="pack-17.webp" width="760" height="562" alt="A pig standing next to my character on open grassland under a clear sky." loading="lazy" decoding="async">
-        <img src="pack-18.webp" width="760" height="428" alt="My character on a mossy ledge at sunset, facing a large pink animal across a canyon." loading="lazy" decoding="async">
-        <img src="pack-19.webp" width="760" height="428" alt="A tall white wading bird on a sandy shore beside turquoise water and sandstone cliffs." loading="lazy" decoding="async">
-        <img src="pack-20.webp" width="760" height="428" alt="A brown and white cow standing in tall savanna grass under acacia trees." loading="lazy" decoding="async">
-        <img src="pack-21.webp" width="760" height="428" alt="Inside a raised wooden lodge with villagers and lanterns, looking out over a green forest." loading="lazy" decoding="async">
-        <img src="pack-22.webp" width="760" height="428" alt="A pig on the orange terraces of a badlands canyon at sunset." loading="lazy" decoding="async">
-        <img src="pack-23.webp" width="760" height="428" alt="A black and white cow in savanna grass beneath acacia trees." loading="lazy" decoding="async">
-        <!-- Tanda del 19-08, treinta y dos capturas nuevas de josda. Mismo origen y
-             mismo pipeline que la tanda del 18-08 (WhatsApp -> tools_galeria_nuevas2.py
-             -> 760 de ancho, calidad 84): sigue la serie desde pack-24. -->
-        <img src="pack-24.webp" width="760" height="428" alt="A small pink-eared rabbit-like creature and a gray hedgehog near a patch of purple flowers." loading="lazy" decoding="async">
-        <img src="pack-25.webp" width="760" height="428" alt="A close view of several villagers in diamond and iron armor gathered in a stone courtyard garden." loading="lazy" decoding="async">
         <img src="pack-26.webp" width="760" height="428" alt="A stone castle courtyard with a garden, several armored villagers gathered together, red mushrooms nearby and autumn trees beyond the walls." loading="lazy" decoding="async">
-        <img src="pack-27.webp" width="760" height="428" alt="A red panda-like creature in tall grass beside a lake, with dark woven structures and pink terracotta nearby." loading="lazy" decoding="async">
-        <img src="pack-28.webp" width="760" height="428" alt="A small flock of white and black sheep in a grass field, with a floating jungle island in the distance." loading="lazy" decoding="async">
-        <img src="pack-29.webp" width="760" height="428" alt="A yellow lion-like creature standing in golden savanna grass among baobab trees." loading="lazy" decoding="async">
-        <img src="pack-30.webp" width="760" height="428" alt="Two pigs standing in a meadow of purple flowers." loading="lazy" decoding="async">
         <img src="pack-31.webp" width="760" height="428" alt="An orange-striped tiger resting among pink blossoms under a dark tree, with a red-eyed creature watching from behind." loading="lazy" decoding="async">
-        <img src="pack-32.webp" width="760" height="428" alt="A group of monkeys sitting beneath a banana-leaf palm, with a player in dark armor and glowing eyes crouching nearby." loading="lazy" decoding="async">
-        <img src="pack-33.webp" width="760" height="428" alt="A duck standing among reeds beside a small boat at sunrise over a misty lake." loading="lazy" decoding="async">
-        <img src="pack-34.webp" width="760" height="428" alt="A player character drawing a bow in mid-air over grassy hills near a village." loading="lazy" decoding="async">
-        <img src="pack-35.webp" width="760" height="428" alt="A wooden chicken coop with chickens inside and a small hedgehog-like creature outside, near a large windmill building and sunflowers." loading="lazy" decoding="async">
-        <img src="pack-36.webp" width="760" height="428" alt="A player character sitting atop pink and white blossom-covered hills, with buildings in the distance." loading="lazy" decoding="async">
-        <img src="pack-37.webp" width="760" height="428" alt="A tall wooden house on stilts with a red dragonfly-like creature flying above, and a red mushroom nearby." loading="lazy" decoding="async">
-        <img src="pack-38.webp" width="760" height="428" alt="A white and brown goat-like creature standing in a dark forest among purple flowers." loading="lazy" decoding="async">
-        <img src="pack-39.webp" width="760" height="428" alt="A forest clearing at dusk with a stone monument among purple flowers and tall tree trunks." loading="lazy" decoding="async">
-        <img src="pack-40.webp" width="760" height="428" alt="An orange crab-like creature in grass near a stone monument and a small wooden shrine, with red autumn trees and mountains behind." loading="lazy" decoding="async">
-        <img src="pack-41.webp" width="760" height="428" alt="An orange crab-like creature perched on a rocky stone ledge in a forest." loading="lazy" decoding="async">
-        <img src="pack-42.webp" width="760" height="428" alt="A desert oasis with tall palm-like trees on sandstone terrain, and a small colorful bird among the rocks." loading="lazy" decoding="async">
-        <img src="pack-43.webp" width="760" height="428" alt="A rooster-like creature riding a pack animal through tall grass near honeycomb blocks and autumn trees." loading="lazy" decoding="async">
         <img src="pack-44.webp" width="760" height="428" alt="A small palm-tree island reflected in calm water at sunrise, with a black and white bird flying overhead." loading="lazy" decoding="async">
-        <img src="pack-45.webp" width="760" height="428" alt="Underwater shipwreck ruins in deep blue water." loading="lazy" decoding="async">
-        <img src="pack-46.webp" width="760" height="428" alt="Pigs grazing on a mossy hillside among purple flowers at sunset." loading="lazy" decoding="async">
-        <img src="pack-47.webp" width="760" height="428" alt="A dark, bony horse-like creature standing near a wooden house, with a village visible in the distance." loading="lazy" decoding="async">
-        <img src="pack-48.webp" width="760" height="428" alt="A player character beside a spotted cow at sunset by a wooden farmhouse." loading="lazy" decoding="async">
-        <img src="pack-49.webp" width="760" height="428" alt="Pumpkin-topped wooden totems on a lake shore among autumn-orange trees." loading="lazy" decoding="async">
-        <img src="pack-50.webp" width="760" height="428" alt="A green parrot standing in golden savanna grass among acacia trees." loading="lazy" decoding="async">
-        <img src="pack-51.webp" width="760" height="428" alt="A large elephant standing in golden savanna grass among flat-topped trees." loading="lazy" decoding="async">
         <img src="pack-52.webp" width="760" height="428" alt="A tall wooden house with a spiral shingled roof, on a grassy cliff overlooking the sea." loading="lazy" decoding="async">
-        <img src="pack-53.webp" width="760" height="428" alt="Two dark crow-like birds flying over a grassy field, with ruins in the distance." loading="lazy" decoding="async">
-        <img src="pack-54.webp" width="760" height="428" alt="A player character beside a large white-antlered deer, near a stone and timber house." loading="lazy" decoding="async">
-        <img src="pack-55.webp" width="760" height="428" alt="Two villagers indoors, one dressed as a chef in white, beside a stove lit by lantern light." loading="lazy" decoding="async">
       </div>
+      <details class="pack-more">
+        <summary>Show the other 44 photos</summary>
+        <div class="pack-grid">
+          <img src="pack-05.webp" width="760" height="428" alt="Three bears gathered on a stone platform in a birch and pine forest." loading="lazy" decoding="async">
+          <img src="pack-06.webp" width="760" height="428" alt="A window set into the trunk of a huge tree at sunset, with birch trees behind it." loading="lazy" decoding="async">
+          <img src="pack-08.webp" width="760" height="428" alt="A pillager riding an orange boar through bright green forest undergrowth." loading="lazy" decoding="async">
+          <img src="pack-10.webp" width="760" height="428" alt="A capybara resting on open grassland under a clear sky." loading="lazy" decoding="async">
+          <img src="pack-11.webp" width="669" height="578" alt="A tall red villager and a blue-robed wizard holding a staff, standing on a snow field." loading="lazy" decoding="async">
+          <img src="pack-13.webp" width="760" height="428" alt="A pale moth flying at night over a patch of pumpkins in a dark forest, with a snowy peak on the horizon." loading="lazy" decoding="async">
+          <img src="pack-14.webp" width="760" height="428" alt="My character standing beside a large bear on a grassy slope in early morning light." loading="lazy" decoding="async">
+          <img src="pack-15.webp" width="760" height="428" alt="My character sitting on a pale stone shore between a bear and its cub." loading="lazy" decoding="async">
+          <img src="pack-16.webp" width="760" height="428" alt="A small white and blue creature with wide eyes sitting among bright jungle leaves." loading="lazy" decoding="async">
+          <img src="pack-17.webp" width="760" height="562" alt="A pig standing next to my character on open grassland under a clear sky." loading="lazy" decoding="async">
+          <img src="pack-18.webp" width="760" height="428" alt="My character on a mossy ledge at sunset, facing a large pink animal across a canyon." loading="lazy" decoding="async">
+          <img src="pack-19.webp" width="760" height="428" alt="A tall white wading bird on a sandy shore beside turquoise water and sandstone cliffs." loading="lazy" decoding="async">
+          <img src="pack-20.webp" width="760" height="428" alt="A brown and white cow standing in tall savanna grass under acacia trees." loading="lazy" decoding="async">
+          <img src="pack-21.webp" width="760" height="428" alt="Inside a raised wooden lodge with villagers and lanterns, looking out over a green forest." loading="lazy" decoding="async">
+          <img src="pack-22.webp" width="760" height="428" alt="A pig on the orange terraces of a badlands canyon at sunset." loading="lazy" decoding="async">
+          <img src="pack-23.webp" width="760" height="428" alt="A black and white cow in savanna grass beneath acacia trees." loading="lazy" decoding="async">
+          <img src="pack-24.webp" width="760" height="428" alt="A small pink-eared rabbit-like creature and a gray hedgehog near a patch of purple flowers." loading="lazy" decoding="async">
+          <img src="pack-25.webp" width="760" height="428" alt="A close view of several villagers in diamond and iron armor gathered in a stone courtyard garden." loading="lazy" decoding="async">
+          <img src="pack-27.webp" width="760" height="428" alt="A red panda-like creature in tall grass beside a lake, with dark woven structures and pink terracotta nearby." loading="lazy" decoding="async">
+          <img src="pack-28.webp" width="760" height="428" alt="A small flock of white and black sheep in a grass field, with a floating jungle island in the distance." loading="lazy" decoding="async">
+          <img src="pack-29.webp" width="760" height="428" alt="A yellow lion-like creature standing in golden savanna grass among baobab trees." loading="lazy" decoding="async">
+          <img src="pack-30.webp" width="760" height="428" alt="Two pigs standing in a meadow of purple flowers." loading="lazy" decoding="async">
+          <img src="pack-32.webp" width="760" height="428" alt="A group of monkeys sitting beneath a banana-leaf palm, with a player in dark armor and glowing eyes crouching nearby." loading="lazy" decoding="async">
+          <img src="pack-33.webp" width="760" height="428" alt="A duck standing among reeds beside a small boat at sunrise over a misty lake." loading="lazy" decoding="async">
+          <img src="pack-34.webp" width="760" height="428" alt="A player character drawing a bow in mid-air over grassy hills near a village." loading="lazy" decoding="async">
+          <img src="pack-35.webp" width="760" height="428" alt="A wooden chicken coop with chickens inside and a small hedgehog-like creature outside, near a large windmill building and sunflowers." loading="lazy" decoding="async">
+          <img src="pack-36.webp" width="760" height="428" alt="A player character sitting atop pink and white blossom-covered hills, with buildings in the distance." loading="lazy" decoding="async">
+          <img src="pack-37.webp" width="760" height="428" alt="A tall wooden house on stilts with a red dragonfly-like creature flying above, and a red mushroom nearby." loading="lazy" decoding="async">
+          <img src="pack-38.webp" width="760" height="428" alt="A white and brown goat-like creature standing in a dark forest among purple flowers." loading="lazy" decoding="async">
+          <img src="pack-39.webp" width="760" height="428" alt="A forest clearing at dusk with a stone monument among purple flowers and tall tree trunks." loading="lazy" decoding="async">
+          <img src="pack-40.webp" width="760" height="428" alt="An orange crab-like creature in grass near a stone monument and a small wooden shrine, with red autumn trees and mountains behind." loading="lazy" decoding="async">
+          <img src="pack-41.webp" width="760" height="428" alt="An orange crab-like creature perched on a rocky stone ledge in a forest." loading="lazy" decoding="async">
+          <img src="pack-42.webp" width="760" height="428" alt="A desert oasis with tall palm-like trees on sandstone terrain, and a small colorful bird among the rocks." loading="lazy" decoding="async">
+          <img src="pack-43.webp" width="760" height="428" alt="A rooster-like creature riding a pack animal through tall grass near honeycomb blocks and autumn trees." loading="lazy" decoding="async">
+          <img src="pack-45.webp" width="760" height="428" alt="Underwater shipwreck ruins in deep blue water." loading="lazy" decoding="async">
+          <img src="pack-46.webp" width="760" height="428" alt="Pigs grazing on a mossy hillside among purple flowers at sunset." loading="lazy" decoding="async">
+          <img src="pack-47.webp" width="760" height="428" alt="A dark, bony horse-like creature standing near a wooden house, with a village visible in the distance." loading="lazy" decoding="async">
+          <img src="pack-48.webp" width="760" height="428" alt="A player character beside a spotted cow at sunset by a wooden farmhouse." loading="lazy" decoding="async">
+          <img src="pack-49.webp" width="760" height="428" alt="Pumpkin-topped wooden totems on a lake shore among autumn-orange trees." loading="lazy" decoding="async">
+          <img src="pack-50.webp" width="760" height="428" alt="A green parrot standing in golden savanna grass among acacia trees." loading="lazy" decoding="async">
+          <img src="pack-51.webp" width="760" height="428" alt="A large elephant standing in golden savanna grass among flat-topped trees." loading="lazy" decoding="async">
+          <img src="pack-53.webp" width="760" height="428" alt="Two dark crow-like birds flying over a grassy field, with ruins in the distance." loading="lazy" decoding="async">
+          <img src="pack-54.webp" width="760" height="428" alt="A player character beside a large white-antlered deer, near a stone and timber house." loading="lazy" decoding="async">
+          <img src="pack-55.webp" width="760" height="428" alt="Two villagers indoors, one dressed as a chef in white, beside a stove lit by lantern light." loading="lazy" decoding="async">
+        </div>
+      </details>
       <p class="pack-note"><strong>More than 600 mods</strong> on<span translate="no"> Forge </span>1.20.1, and <strong>not one block in any of these frames is mine</strong>. I am a player first; this is the thing the work is for.</p>
     </div>
     </div>
@@ -2424,7 +2561,7 @@
          Vive en el hero, donde ademas lleva lo que solo el puede decir ("not
          because it is all I do"), y en la pregunta del FAQ que existe justo para
          eso. Aqui el dato util es la tarifa. -->
-    <p class="sub">All three loaders, both directions.<span translate="no"> Forge </span>1.20.1 carries the lowest rate. Anything harder is priced by the real work it adds, not some made-up percentage. The full reasoning is written up in <a href="mod-porting-cost.html">what a<span translate="no"> port </span>costs, and why</a>.</p>
+    <p class="sub">Any of the three loaders, into any of the others.<span translate="no"> Forge </span>1.20.1 carries the lowest rate. Anything harder is priced by the real work it adds, not some made-up percentage. The full reasoning is written up in <a href="mod-porting-cost.html">what a<span translate="no"> port </span>costs, and why</a>.</p>
 <div class="cards">
       <div class="card card--base">
         <div class="icon-wrap svc-copper"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v13"/><path d="M6 11l6 6 6-6"/></svg></div>
@@ -2449,7 +2586,7 @@
       <div class="card card--premium">
         <div class="icon-wrap svc-loom"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h13l-3-3"/><path d="M20 16H7l3 3"/></svg></div>
         <h3>Loader conversion</h3>
-        <p>Moving a mod between<span translate="no"> Fabric</span>,<span translate="no"> NeoForge </span>and<span translate="no"> Forge</span>. <strong>Porting a<span translate="no"> Fabric </span>mod to<span translate="no"> Forge </span>is close to a rewrite</strong> because the events, registries and mixins are all different. I wrote up <a href="fabric-to-forge-1-20-1.html">what actually breaks in a<span translate="no"> Fabric </span>to<span translate="no"> Forge</span><span translate="no"> port</span></a>, with the failures that never show an error.</p>
+        <p>Moving a mod between<span translate="no"> Fabric</span>,<span translate="no"> NeoForge </span>and<span translate="no"> Forge</span>. <strong>Porting a<span translate="no"> Fabric </span>mod to<span translate="no"> Forge </span>is close to a rewrite</strong> because the two are built on completely different plumbing, so most of the code has to be written again. I wrote up <a href="fabric-to-forge-1-20-1.html">what actually breaks in a<span translate="no"> Fabric </span>to<span translate="no"> Forge</span><span translate="no"> port</span></a>, with the failures that never show an error.</p>
         <div class="card-stats">
           
           
@@ -2459,7 +2596,7 @@
       <div class="card card--base">
         <div class="icon-wrap svc-bridge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7h5a4 4 0 0 1 0 8h-1"/><path d="M15 17h-5a4 4 0 0 1 0-8h1"/></svg></div>
         <h3>Compatibility patches</h3>
-        <p>Getting mods to coexist: two native mods, a<span translate="no"> ported </span>one alongside a native one, mobs spawning across mods, or a conflict that breaks a feature. This works <strong>even for closed-source mods</strong>, and it ships as a publishable add-on.</p>
+        <p>Getting mods to coexist: two native mods, a<span translate="no"> ported </span>one alongside a native one, mobs spawning across mods, or a conflict that breaks a feature. This works <strong>even on mods whose code was never published</strong>, and what you get is a separate add-on you are free to publish.</p>
         <div class="card-stats">
           <div><span class="k">Works with</span><span class="v">Closed-source too</span></div>
           
@@ -2469,7 +2606,7 @@
       <div class="card card--base">
         <div class="icon-wrap svc-steel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.6 5.6L3 18l3 3 6.1-6.1a4 4 0 0 0 5.6-5.6l-2.9 2.9a1.5 1.5 0 0 1-2-2l2.9-2.9z"/></svg></div>
         <h3>Mod maintenance</h3>
-        <p>A mod that broke after an update: failing <strong>mixins</strong>, crashes, dependency or mapping breaks, deprecated APIs. I track down the fault and get it loading clean again on your version.</p>
+        <p>A mod that stopped working after an update. It crashes on load, or it starts and half of what it used to do is gone. I track it down and get it running clean again on your version.</p>
         <div class="card-stats">
           <div><span class="k">Fixes</span><span class="v"><span translate="no">Mixins </span>· crashes · deps</span></div>
           
@@ -2479,7 +2616,7 @@
       <div class="card card--premium">
         <div class="icon-wrap svc-spark"><svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
         <h3>Mod optimization</h3>
-        <p>A mod or pack that <strong>eats TPS and FPS</strong>. I profile the hot paths and bring the cost down: async work, caching, smarter ticking, lighter worldgen. None of it changes what the mod actually does.</p>
+        <p>A mod or pack that <strong>drops your frame rate or drags the server down</strong>. I find what is eating the time and make it cheaper to run. Nothing you can see in the game changes.</p>
         <div class="card-stats">
           <div><span class="k">Cuts</span><span class="v">Lag · RAM · tick time</span></div>
           
@@ -2512,13 +2649,13 @@
   <img class="ch ch--borde" src="h9478c-31.webp" width="256" height="236" style="left:calc(50% + 530px + 18px);top:273px;--h:200px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
         <h2>How a job works</h2>
-    <p class="sub">It's all done in writing, async, no calls.</p>
+    <p class="sub">All in writing. No calls and no meetings.</p>
     <div class="steps">
       <div class="step"><div class="step-n">01</div><h3>Send me the mod</h3><p>Message the mod link and what you need. Open-source or licensed, both work. Use the<span translate="no"> Angel Engine </span>to pre-fill the details.</p></div>
       <div class="step"><div class="step-n">02</div><h3>Flat quote</h3><p>I look over the mod and reply with a fixed price and a timeline. No scope creep once we've agreed.</p></div>
       <div class="step"><div class="step-n">03</div><h3>Agree &amp; start</h3><p>We lock the scope and price in writing. <strong>Your first job with me carries no deposit, whatever the size:</strong> you pay once you have seen it run. After that, bigger jobs start on a 50% deposit.</p></div>
       <div class="step"><div class="step-n">04</div><h3>I build it</h3><p>Every job gets its own timeline, agreed before I touch anything. <strong>If you have a hard date, say so first:</strong> I will either commit to it in writing or turn the job down.</p></div>
-      <div class="step"><div class="step-n">05</div><h3>Delivery + final payment</h3><p>You receive and test the .<span translate="no">jar</span>. Final payment before release. Open-source<span translate="no"> ports </span>get published with author credit.</p></div>
+      <div class="step"><div class="step-n">05</div><h3>Delivery + final payment</h3><p>You get the finished mod file and try it yourself. Final payment before release. Open-source<span translate="no"> ports </span>get published with author credit.</p></div>
       <div class="step"><div class="step-n">06</div><h3>I check back</h3><p>Once it has actually run in your pack, not just on my machine. <strong>Bugs inside the agreed scope are on me for 30 days.</strong> Anything after that, or anything new you need, comes back to me as a returning client.</p></div>
     </div>
     <figure class="mascotas">
@@ -2550,7 +2687,7 @@
   <div class="wrap">
     <div class="eyebrow" translate="no">Angel Engine</div>
     <h2>Price your mod</h2>
-    <p class="sub">Pick what you need and the ballpark updates as you go, and it writes a summary you can paste straight into a message. Every price on this site lives here, so there is one number to check and nothing to cross-reference.</p>
+    <p class="sub">Pick what you need and the number moves as you go, and it writes a summary you can paste straight into a message. Every price on this site comes from here.</p>
 
     <div class="estimator reveal">
       <div class="est-form">
@@ -2568,7 +2705,7 @@
           <div class="est-label">Source mod loader</div>
           <div class="est-options" data-group="loader">
             <button type="button" class="est-opt brand-forge active" data-value="forge"><svg class="loglyph" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M2 8h10l-1.2 2.4H15v2h-1.9L12 17H8L6.2 12.4H2z"/><rect x="6" y="18" width="9" height="2" rx="0.4" fill="currentColor"/></svg><span translate="no">Forge</span><small>same loader, lowest rate</small></button>
-            <button type="button" class="est-opt brand-neoforge" data-value="neoforge"><svg class="loglyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 16.5V7.5l7 9v-9" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span translate="no">NeoForge</span><small>rename, +$20</small></button>
+            <button type="button" class="est-opt brand-neoforge" data-value="neoforge"><svg class="loglyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 16.5V7.5l7 9v-9" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span translate="no">NeoForge</span><small>mostly a rename, +$20</small></button>
             <button type="button" class="est-opt brand-fabric" data-value="fabric"><svg class="loglyph" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="3" fill="currentColor"/><g stroke="#0e0d0b" stroke-width="1.2" opacity="0.32"><path d="M3.5 9.7h17M3.5 14.3h17M9.7 3.5v17M14.3 3.5v17"/></g></svg>From<span translate="no"> Fabric</span><small>near-rewrite</small></button>
           </div>
         </div>
@@ -2627,10 +2764,10 @@
         <div class="est-note" id="est-note">Same loader, no version wall to cross.</div>
         <div class="est-breakdown" id="est-breakdown"></div>
         <div class="est-summary" id="est-summary"></div>
-        <a class="btn btn-discord est-discord" id="est-discord" href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg><span>Chat on<span translate="no"> Discord</span></span></a>
-        <button type="button" class="btn btn-ghost est-copy" id="est-copy">Copy summary</button>
+        <a class="btn btn-discord est-discord" id="est-discord" href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg><span>Copy &amp; open<span translate="no"> Discord</span></span></a>
+        <button type="button" class="btn btn-ghost est-copy" id="est-copy">Just copy it</button>
         <a class="btn btn-gmail est-email" id="est-email" href="mailto:modwrightstudios@gmail.com?subject=Mod%20porting%20commission"><svg class="bicon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Email it instead</a>
-        <div class="est-disclaimer"><strong>This is an estimate, not a quote.</strong> It is a range, worked out from what you picked. The quote is a single number, and it comes on<span translate="no"> Discord </span>once I have looked at the actual mod. That one is in writing and it does not move. $20 minimum on any job. Tip: "<span>Chat on<span translate="no"> Discord</span></span>" copies this estimate so you can paste it straight into a ticket.</div>
+        <div class="est-disclaimer"><strong>This is an estimate, not a quote.</strong> It is a range, worked out from what you picked. The quote is a single number, and it comes on<span translate="no"> Discord </span>once I have looked at the actual mod. That one is in writing and it does not move. $20 minimum on any job.</div>
         <p class="est-skip">Prefer to just talk? <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer"><span>Message me on<span translate="no"> Discord</span></span></a> or <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20commission">email</a>.</p>
       </div>
     </div>
@@ -2695,7 +2832,7 @@
       <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">What exactly is a compatibility patch?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">Making two or more mods work together without adding new content. For example: getting one mod's mobs to spawn in another mod's biomes, or fixing a conflict that breaks a feature. Each one is custom, so I quote it by scope.</div></div></div>
       <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">Is this legal?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">Yes. You pay for my time writing the<span translate="no"> port</span>, not for distribution rights. I publish only open-source mods or mods with written permission; anything else is delivered privately to whoever holds the right to use it. See the Licenses section below.</div></div></div>
       <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">How do I pay safely?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body"><span translate="no">Wise </span>or<span translate="no"> PayPal </span>(Goods &amp; Services), wherever you are. I never take Friends &amp; Family, because it's the one payment type with no buyer protection for you.<span translate="no"> BuiltByBit </span>escrow is coming, but it isn't live yet.</div></div></div>
-      <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">How long does it take?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">It depends on the mod. We agree a timeline before I start, but I won't quote a fixed turnaround I can't stand behind. I'd rather under-promise and actually deliver than miss a date.</div></div></div>
+      <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">How long does it take?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">It depends on the mod. We agree a timeline before I start, but I won't quote a fixed turnaround I can't stand behind. Under-promising costs me a job now and then. Missing a date costs you a launch.</div></div></div>
       <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">What if the<span translate="no"> port </span>doesn't work?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">You see the build working before you make final payment, so you're never paying for something you haven't seen run. The deliverable is whatever we agree in writing up front, and if a bug inside that agreed scope shows up within 30 days of delivery, I fix it at no charge. After that, or for problems caused by<span translate="no"> Minecraft </span>updates, other mods, or server changes, it becomes a maintenance job.</div></div></div>
       <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">Can I put the<span translate="no"> ported </span>mod in my public<span translate="no"> modpack</span>?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">It depends on the original mod's licence, and I tell you which case you are in before you pay, not after. Open-source: yes, and I publish it with credit to the original author so your pack links to something real. Your own mod, or one where you hold written permission: yes, and I tell you exactly what credit to include. All rights reserved with no permission: no, and I will not take the job on those terms, because the takedown would land on your account and not mine.</div></div></div>
       <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">Can you leave parts of the mod out, or change what it does?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">Yes, and it is worth asking. A<span translate="no"> port </span>does not have to be the whole mod: I can drop a feature you do not want, change values like spawn rates, durability or damage, retune or remove effects, and adjust recipes and loot. Tell me when you send it and it goes into the fixed quote, instead of turning into a second job later. The line is between tweaks and a redesign: rebalancing the whole mod is its own job and I quote it separately.</div></div></div>
@@ -2723,7 +2860,7 @@
   <img class="ch ch--borde" src="hsunny-12.webp" width="256" height="246" style="right:calc(50% + 530px + 18px);top:200px;--h:190px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
         <h2>Free if you wrote the mod</h2>
-    <p class="sub">There is a version of this that costs you nothing. It is not charity, and the reason is worth reading.</p>
+    <p class="sub">There is a version of this that costs you nothing. Here's why it isn't charity.</p>
 
     <div class="deal-cols">
       <div class="deal-col">
@@ -2738,19 +2875,19 @@
         <div class="deal-head">I get</div>
         <ul class="deal-list">
           <li>Your permission to release the<span translate="no"> port </span>publicly and to show it on this page as my work.</li>
-          <li>That is the whole trade.</li>
+          <li>Nothing else.</li>
         </ul>
       </div>
     </div>
 
-    <p class="deal-why">Most of what I have<span translate="no"> ported </span>is sitting on my own machine, unreleased, because I never had the author's permission to put it out. That is what actually holds this back, not the money. I would rather trade the fee for the yes.</p>
+    <p class="deal-why">Most of what I have<span translate="no"> ported </span>is sitting on my own machine, unreleased, because I never had the author's permission to put it out. That is what actually holds this back, not the money. The permission is worth more to me than the fee.</p>
 
     <p class="deal-why">It has already happened twice, before I thought to call it an offer.<span translate="no"> Mindful Eating </span>went back to<span translate="no"> camcam_burger </span>for his own<span translate="no"> CurseForge </span>page.<span translate="no"> Shaunt </span>read through the<span translate="no"> Puppy Paws</span><span translate="no"> port </span>himself and told me it was fine.</p>
 
     <ul class="deal-list deal-fine">
       <li>You have to actually hold the rights to the mod. If it is a team, I need the team's yes.</li>
       <li>One of these at a time, so paying clients keep their place in the queue.</li>
-      <li>I can turn it down. A large tech mod is not a favour, it is a month of work.</li>
+      <li>I can turn it down. A large tech mod is a month of work, not a favour.</li>
       <li>Otherwise it runs like any job: scope agreed in writing before I start, and bugs inside that scope fixed free for 30 days.</li>
     </ul>
 
@@ -2780,7 +2917,7 @@
   <img class="ch ch--borde" src="h1024-32.webp" width="256" height="236" style="right:calc(50% + 530px + 18px);top:201px;--h:185px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
         <h2>Who you're actually hiring</h2>
-    <p class="sub">The person who takes the job is the person who writes and debugs it. <strong>This has been going well</strong>, and not on my own. That is worth saying out loud.</p>
+    <p class="sub">The person who takes the job is the person who writes and debugs it. <strong>This has been going well</strong>, and I have had help getting here.</p>
     <div class="about-body">
       <figure class="me-shot">
         <img src="me.webp" width="351" height="408" alt="Close view of my character in a red and gold armour set with glowing green trim, standing in a field of purple flowers." loading="lazy" decoding="async">
@@ -2811,7 +2948,7 @@
            (el trabajo, la pagina) y se sostiene solo, sin devolver la redundancia. -->
       <p><strong>This is going better than I expected.</strong> A year ago none of this existed.</p>
       <p><strong>And none of it happened on my own.</strong><span translate="no"> Alex </span>is the one I talk the hard calls through with, and we are on the same course. Around that there are people who test what I build, who send me mods worth looking at, and who tell me straight when something is wrong. And before any of them, the authors who wrote these mods and let me near their work.</p>
-      <p><strong>I would rather say that than pretend it was all me.</strong> Your job is still written and debugged by the person you are talking to; what I am not going to claim is that I got here by myself.</p>
+      <p><strong>Pretending it was all me would be easier to write. It wouldn't be true.</strong> Your job is still written and debugged by the person you are talking to; what I am not going to claim is that I got here by myself.</p>
     </div>
   </div>
 </section>
@@ -2840,7 +2977,7 @@
       <div class="contact-card contact-card--primary">
         <div class="ci ci--discord"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4V5z"/><circle cx="9.5" cy="10.5" r="0.6" fill="currentColor" stroke="none"/><circle cx="14.5" cy="10.5" r="0.6" fill="currentColor" stroke="none"/></svg></div>
         <h3><span translate="no">Discord </span>(best way to reach me)</h3>
-        <p>Message me or open a ticket on my server. Drop the mod link and what you need, and we scope it together. This is where I'm quickest to reply.</p>
+        <p>The link opens my server. Post the mod link and what you need, and I tell you there what it would take. It runs in a browser tab, so there is nothing to install. This is where I'm quickest to reply.</p>
         <a href="https://discord.gg/EV8F84fheJ" class="btn btn-discord contact-btn" target="_blank" rel="noopener noreferrer"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg><span>Open my<span translate="no"> Discord</span></span></a>
       </div>
       <div class="contact-card">
@@ -2893,7 +3030,7 @@
   <img class="ch ch--borde" src="h512-11.webp" width="256" height="245" style="left:calc(50% + 530px + 18px);top:200px;--h:170px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
         <h2>It compiles. That proves nothing.</h2>
-    <p class="sub">The long version, for whoever wants it. Five failures of my own that pass every automatic gate: the build succeeds, the log stays clean, and the mod is still wrong.</p>
+    <p class="sub">The long version, for whoever wants it. Five mistakes of my own that no automatic check would have caught: it built, it started, nothing complained, and the mod was still wrong.</p>
 
     <div class="port-grid">
       <div class="port-card">
@@ -3002,7 +3139,7 @@
 
 <footer>
   <div><strong style="color:var(--text-soft)"><span translate="no">Modwright</span></strong> <span class="sep">·</span><span translate="no"> Forge </span>1.20.1 mod<span translate="no"> porting </span><span class="sep">·</span> <a href="mod-porting-cost.html">What a<span translate="no"> port </span>costs</a> <span class="sep">·</span> <a href="fabric-to-forge-1-20-1.html"><span translate="no">Fabric </span>to<span translate="no"> Forge</span>: what breaks</a> <span class="sep">·</span> <a href="#terms">Terms</a> <span class="sep">·</span> <a href="#privacy">Privacy</a> <span class="sep">·</span> <a href="#licenses">Licenses</a> <span class="sep">·</span> <a href="mailto:modwrightstudios@gmail.com">Contact</a></div>
-  <div class="perfiles">Also on <a href="https://www.curseforge.com/members/danisansietev/projects" target="_blank" rel="noopener noreferrer" translate="no">CurseForge</a> <span class="sep">·</span> <a href="https://github.com/Dheightsan" target="_blank" rel="noopener noreferrer" translate="no">GitHub</a> <span class="sep">·</span> <a href="https://builtbybit.com/members/modwrightstudios.891720/" target="_blank" rel="noopener noreferrer" translate="no">BuiltByBit</a></div>
+  <div class="perfiles">Talk to me on <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" translate="no">Discord</a> <span class="sep">·</span> also on <a href="https://www.curseforge.com/members/danisansietev/projects" target="_blank" rel="noopener noreferrer" translate="no">CurseForge</a> <span class="sep">·</span> <a href="https://github.com/Dheightsan" target="_blank" rel="noopener noreferrer" translate="no">GitHub</a> <span class="sep">·</span> <a href="https://builtbybit.com/members/modwrightstudios.891720/" target="_blank" rel="noopener noreferrer" translate="no">BuiltByBit</a></div>
 </footer>
 
 <script>
@@ -3129,7 +3266,13 @@
     noteEl.innerHTML = buildNote(r);
     breakdownEl.textContent = buildBreakdown(r);
     summaryEl.textContent = buildSummary(r);
-    copyBtn.classList.remove('done'); copyBtn.textContent = 'Copy summary';
+    copyBtn.classList.remove('done'); copyBtn.textContent = 'Just copy it';
+    // El de Discord tambien se queda en "copiado" tras pulsarlo. Si luego
+    // cambias una opcion, el resumen ya es otro y el boton estaria mintiendo,
+    // asi que vuelve a su etiqueta. `var` sube la declaracion al principio de
+    // esta funcion anonima, asi que se puede nombrar antes de asignarla; la
+    // guarda cubre el primer render, cuando todavia no existe.
+    if (resetDiscord) resetDiscord();
     emailBtn.href = 'mailto:modwrightstudios@gmail.com?subject=' + encodeURIComponent('Mod port commission ' + money(r.low) + '-' + money(r.high)) + '&body=' + encodeURIComponent(buildSummary(r));
   }
   function syncGroups() {
@@ -3166,12 +3309,27 @@
     else { fallbackCopy(text, done); }
   });
   var discordBtn = document.getElementById('est-discord');
+  var resetDiscord = null;
   if (discordBtn) {
+    var etiquetaDiscord = discordBtn.querySelector('span');
+    var textoDiscord = etiquetaDiscord ? etiquetaDiscord.innerHTML : '';
+    resetDiscord = function () {
+      var e = discordBtn.querySelector('span');
+      if (e && textoDiscord) e.innerHTML = textoDiscord;
+    };
+    // Antes copiaba el resumen SIN decirlo: el unico aviso era un "Tip:"
+    // enterrado en el parrafo del aviso del motor. Ahora lo anuncia el boton
+    // antes (su etiqueta) y lo confirma despues, que es justo cuando el
+    // visitante vuelve de la pestana de Discord y necesita saber que lleva
+    // algo que pegar.
     discordBtn.addEventListener('click', function () {
       var text = summaryEl.textContent;
-      var noop = function () {};
-      if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).catch(function () { fallbackCopy(text, noop); }); }
-      else { fallbackCopy(text, noop); }
+      var hecho = function () {
+        var etiqueta = discordBtn.querySelector('span');
+        if (etiqueta) etiqueta.textContent = 'Estimate copied, paste it in the chat';
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(hecho).catch(function () { fallbackCopy(text, hecho); }); }
+      else { fallbackCopy(text, hecho); }
     });
   }
   document.querySelectorAll('.faq-q').forEach(function (q) {
