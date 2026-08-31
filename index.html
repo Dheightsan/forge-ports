@@ -1040,7 +1040,17 @@
     .est-label { font-size: 0.96rem; font-weight: 700; color: var(--text); margin-bottom: 0.7rem; display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; }
     .est-hint { font-size: 0.78rem; color: var(--text-mute); font-weight: 400; }
     .est-options { display: flex; flex-wrap: wrap; gap: 0.55rem; }
-    .est-opt { background: var(--surface2); color: var(--text-soft); border: 1px solid var(--border); padding: 0.7rem 1.05rem; min-height: 48px; border-radius: var(--radius); font-size: 0.95rem; font-weight: 600; cursor: pointer; font-family: inherit; transition: background-color 0.13s, color 0.13s, border-color 0.13s; }
+    /* La letra de pixeles tambien aqui: es la peticion de josda de que TODOS
+       los botones lleven la del CTA. Medido antes de aplicarlo, porque
+       Monocraft es monoespaciada y ocupa bastante mas:
+         movil 375 .... 1413 -> 1363 px  (el formulario se ACORTA 50)
+         escritorio ... 760 -> 934 px    (+174, en una sola seccion)
+         se parte ..... nada a 1440; a 375 "Forward-port / revive" sube a
+                        79 px, pero ahi cada opcion va sola en su fila y no
+                        descuadra a ninguna otra.
+       Se descarto "solo la etiqueta en pixeles y la descripcion no": cuesta
+       casi lo mismo (891 px) y ademas parte esa opcion en tres lineas. */
+    .est-opt { background: var(--surface2); color: var(--text-soft); border: 1px solid var(--border); padding: 0.7rem 1.05rem; min-height: 48px; border-radius: var(--radius); font-size: 0.95rem; font-weight: 600; cursor: pointer; font-family: 'Monocraft', 'Space Grotesk', system-ui, sans-serif; transition: background-color 0.13s, color 0.13s, border-color 0.13s; }
     .est-opt:hover { border-color: var(--green-ring); color: var(--text); }
     /* Acuse fisico del clic, ademas del de color. Es solo un transform de 1px, asi
        que con movimiento reducido se quita y queda el cambio de color de siempre. */
@@ -2721,9 +2731,9 @@
           <div class="est-label" title="Most jobs cross none or one.">Version jump <span class="est-hint">(the biggest cost driver)</span></div>
           <div class="est-options" data-group="wall">
             <button type="button" class="est-opt t1 active" data-value="none"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="2.8" y="15" width="3.2" height="5" rx="0.8"/><rect x="7.6" y="11" width="3.2" height="9" rx="0.8" opacity="0.22"/><rect x="12.4" y="7" width="3.2" height="13" rx="0.8" opacity="0.22"/><rect x="17.2" y="3" width="3.2" height="17" rx="0.8" opacity="0.22"/></svg>None / tiny<small>e.g. 1.19.2 ↔ 1.20.1</small></button>
-            <button type="button" class="est-opt t2" data-value="moderate"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="2.8" y="15" width="3.2" height="5" rx="0.8"/><rect x="7.6" y="11" width="3.2" height="9" rx="0.8"/><rect x="12.4" y="7" width="3.2" height="13" rx="0.8" opacity="0.22"/><rect x="17.2" y="3" width="3.2" height="17" rx="0.8" opacity="0.22"/></svg>Moderate<small>crosses 1.20.2</small></button>
-            <button type="button" class="est-opt t3" data-value="hard"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="2.8" y="15" width="3.2" height="5" rx="0.8"/><rect x="7.6" y="11" width="3.2" height="9" rx="0.8"/><rect x="12.4" y="7" width="3.2" height="13" rx="0.8"/><rect x="17.2" y="3" width="3.2" height="17" rx="0.8" opacity="0.22"/></svg>Hard<small>crosses 1.21</small></button>
-            <button type="button" class="est-opt t4" data-value="brutal"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="2.8" y="15" width="3.2" height="5" rx="0.8"/><rect x="7.6" y="11" width="3.2" height="9" rx="0.8"/><rect x="12.4" y="7" width="3.2" height="13" rx="0.8"/><rect x="17.2" y="3" width="3.2" height="17" rx="0.8"/></svg>Brutal<small>crosses 1.13 / 1.18</small></button>
+            <button type="button" class="est-opt t2" data-value="moderate"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="2.8" y="15" width="3.2" height="5" rx="0.8"/><rect x="7.6" y="11" width="3.2" height="9" rx="0.8"/><rect x="12.4" y="7" width="3.2" height="13" rx="0.8" opacity="0.22"/><rect x="17.2" y="3" width="3.2" height="17" rx="0.8" opacity="0.22"/></svg>Moderate<small>e.g. 1.20.4 &#8594; 1.20.1</small></button>
+            <button type="button" class="est-opt t3" data-value="hard"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="2.8" y="15" width="3.2" height="5" rx="0.8"/><rect x="7.6" y="11" width="3.2" height="9" rx="0.8"/><rect x="12.4" y="7" width="3.2" height="13" rx="0.8"/><rect x="17.2" y="3" width="3.2" height="17" rx="0.8" opacity="0.22"/></svg>Hard<small>e.g. 1.21 &#8594; 1.20.1</small></button>
+            <button type="button" class="est-opt t4" data-value="brutal"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="2.8" y="15" width="3.2" height="5" rx="0.8"/><rect x="7.6" y="11" width="3.2" height="9" rx="0.8"/><rect x="12.4" y="7" width="3.2" height="13" rx="0.8"/><rect x="17.2" y="3" width="3.2" height="17" rx="0.8"/></svg>Brutal<small>e.g. 1.12.2 &#8594; 1.20.1</small></button>
           </div>
         </div>
         <div class="est-group hidden" id="grp-scope">
@@ -2807,7 +2817,7 @@
     <div class="softcta">
       <p><strong>Not sure it can even be done?</strong> Send me the mod link and I'll tell you whether it's possible and what gets in the way. No charge, and no obligation to take it further.</p>
       <div class="softcta-row">
-        <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" class="btn btn-discord"><span>Ask me on<span translate="no"> Discord</span></span></a>
+        <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" class="btn btn-discord"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg><span>Ask me on<span translate="no"> Discord</span></span></a>
         <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20commission" class="btn btn-ghost">Or email me</a>
       </div>
     </div>
@@ -2841,7 +2851,7 @@
     <div class="softcta">
       <p>Still got a question? Ask me the awkward one. <strong>I'd rather deal with it now than after you've paid.</strong></p>
       <div class="softcta-row">
-        <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" class="btn btn-discord"><span>Ask me on<span translate="no"> Discord</span></span></a>
+        <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" class="btn btn-discord"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg><span>Ask me on<span translate="no"> Discord</span></span></a>
         <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20commission" class="btn btn-ghost">Or send an email</a>
       </div>
     </div>
@@ -2892,7 +2902,7 @@
     </ul>
 
     <div class="deal-row">
-      <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" class="btn btn-discord">I wrote a mod, let's talk</a>
+      <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" class="btn btn-discord"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg><span>I wrote a mod, let's talk</span></a>
       <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20author%20collaboration" class="btn btn-ghost">Or send an email</a>
     </div>
   </div>
