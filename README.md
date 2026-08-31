@@ -8,16 +8,16 @@
 
 ## Services
 
-| Service | Description | Starts at |
-|---------|-------------|-----------|
-| 🔧 **Quick fix / recompile** | Same loader, neighbouring version, small tweaks | $20 |
-| 🎯 **Backport** | Newer mod running on an older version (Forge 1.20.1 specialty) | $35 |
-| 🧩 **Compatibility patch** | Make mods coexist, works even with closed-source mods | $25 |
-| 🛠️ **Maintenance** | Fix mixins, crashes, dependency breaks | $25 |
-| ⚡ **Optimization** | Less lag, lighter on resources | $45 |
-| ⏫ **Revive / loader conversion** | Abandoned mods, Fabric to Forge | Quoted per job |
+| Service | What it is |
+|---------|------------|
+| 🔧 **Quick fix / recompile** | Same loader, neighbouring version, small tweaks |
+| 🎯 **Backport** | Newer mod running on an older version (Forge 1.20.1 specialty) |
+| 🧩 **Compatibility patch** | Make mods coexist, works even with closed-source mods |
+| 🛠️ **Maintenance** | Fix mixins, crashes, dependency breaks |
+| ⚡ **Optimization** | Less lag, lighter on resources |
+| ⏫ **Revive / loader conversion** | Abandoned mods, Fabric to Forge |
 
-These are starting points. The exact price is scoped privately and agreed in writing before any work begins. $20 minimum. The [estimator](https://dheightsan.github.io/forge-ports/#estimator) shows your ballpark in real time.
+Every job is **one fixed price for your specific mod**, scoped privately and agreed in writing before any work begins. What moves the number is the size of the mod, how deep the work goes, how far the version jump is, and whether the loader changes. The [estimator](https://dheightsan.github.io/forge-ports/#estimator) puts a ballpark on it in about a minute.
 
 ## How to commission
 
@@ -37,4 +37,4 @@ These are starting points. The exact price is scoped privately and agreed in wri
 |---------|------|
 | 💬 Discord (fastest) | [discord.gg/EV8F84fheJ](https://discord.gg/EV8F84fheJ) |
 | 📧 Email | modwrightstudios@gmail.com |
-| 🏪 BuiltByBit | Profile coming soon |
+| 🏪 BuiltByBit | [builtbybit.com/members/modwrightstudios.891720](https://builtbybit.com/members/modwrightstudios.891720/) |
