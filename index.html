@@ -1993,7 +1993,13 @@
           filter: drop-shadow(0 4px 10px rgba(0,0,0,0.45)); }
     @media (max-width: 420px) { .ch--autor { width: 84px; margin-right: 0.65rem; } }
     .hero-me { display: flex; align-items: center; gap: 0.75rem; margin-top: 1.6rem; }
-    .hero-me img { width: 116px; height: auto; image-rendering: pixelated; flex-shrink: 0; }
+    /* ⚠️ SIN `image-rendering: pixelated` A PROPOSITO. La imagen es de 256 px
+       y se pinta a 116, o sea a factor 0,453: con pixelado, los bloques de 9 px
+       del original salen en tiras de 1 px y la cara se deshilacha. Es el mismo
+       reparto desigual que ya se corrigio en los `.ch` el 29-08 y en los logos
+       de CurseForge a 54 px. El navegador reescala mejor que el pixelado
+       cuando el factor no es entero. */
+    .hero-me img { width: 116px; height: auto; flex-shrink: 0; }
     /* `min-width: 0` porque una casilla de flex vale por defecto `min-width: auto`,
        o sea que NO encoge por debajo de su contenido. Con el texto en español se
        salia 26 px de la pantalla a 320 px. Es el mismo minimo implicito que tenian
@@ -2146,7 +2152,7 @@
     <h1 class="hero-h1-img"><span class="h1-texto"><span translate="no">Port,</span><span translate="no"> backport </span>&amp; revive<span translate="no"> </span><span class="mc" translate="no" data-word="Minecraft">Minecraft</span><span translate="no"> </span>mods, any version, any loader</span><picture><source media="(max-width: 700px)" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"><img src="titulo-hero.webp" width="2537" height="731" alt="" aria-hidden="true" fetchpriority="high" decoding="async"></picture><img class="h1-es" src="titulo-hero-es.webp" width="2533" height="1142" alt="" aria-hidden="true" loading="lazy" decoding="async"></h1>
     <p class="hero-who"><picture><source media="(prefers-reduced-motion: reduce)" srcset="wave-me-still.webp"><img class="hero-wave" src="wave-me.webp" width="192" height="190" alt="" aria-hidden="true" loading="eager" decoding="async"></picture>I'm <strong><span translate="no">josda</span></strong>. I build<span translate="no"> modpacks</span>; I got fed up with mods dying off on old versions, so I started<span translate="no"> porting </span>them myself.</p>
     <p class="hero-desc">
-      A mod only runs on the version of<span translate="no"> Minecraft </span>it was built for. I rebuild it so it runs on yours instead, or on a different mod loader:<span translate="no"> Forge</span>,<span translate="no"> Fabric </span>and<span translate="no"> NeoForge</span>, in any direction.<span translate="no"> Forge </span>1.20.1 is my lowest rate because it is the least work, not because it is all I do. I check the licence first, and I run every build in the game before it goes out.
+      A mod only runs on the version of<span translate="no"> Minecraft </span>it was built for. I rebuild it so it runs on yours instead, or on a different mod loader:<span translate="no"> Forge</span>,<span translate="no"> Fabric </span>and<span translate="no"> NeoForge</span>, in any direction.<span translate="no"> Forge </span>1.20.1 is where most of my work lands, not the limit of what I take. I check the licence first, and I run every build in the game before it goes out.
     </p>
     <div class="pills">
       <!-- 🚨 AQUI YA NO VA LA CIFRA (josda, 2026-08-31): "no pongas el precio
@@ -2169,7 +2175,13 @@
       <a href="#estimator" class="btn btn-go">Price my mod</a>
       <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" class="btn btn-discord"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg><span>Chat on<span translate="no"> Discord</span></span></a>
       <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20commission" class="btn btn-gmail"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Email me</a>
-      <span class="cta-with-eyes"><a href="#services" class="btn btn-ghost">See services</a><svg class="bicon-eyes" viewBox="0 0 30 18" width="30" height="17" aria-hidden="true"><ellipse cx="9" cy="9" rx="7.6" ry="8.2" fill="#fff" stroke="#2a2014" stroke-width="0.9"/><ellipse cx="21" cy="9" rx="7.6" ry="8.2" fill="#fff" stroke="#2a2014" stroke-width="0.9"/><circle cx="12.6" cy="8.2" r="3.5" fill="#15110b"/><circle cx="24.6" cy="8.2" r="3.5" fill="#15110b"/><circle cx="13.85" cy="7" r="1.05" fill="#fff"/><circle cx="25.85" cy="7" r="1.05" fill="#fff"/></svg></span>
+      <!-- 🚨 APUNTA A #portfolio Y NO A #services, MEDIDO: la portada ya tiene
+           SIETE enlaces a #services (las 6 pildoras de arriba y este) y CERO al
+           portafolio. Y en la barra fija "Portfolio" esta OCULTO a 375 y a 768,
+           asi que sin este boton no hay ni una sola ruta al trabajo real en la
+           primera pantalla de un movil. Coste: 0 px, el boton mide 128,1 px con
+           los dos textos a 1440 y a 768, y 289 a 375. -->
+      <span class="cta-with-eyes"><a href="#portfolio" class="btn btn-ghost">See the work</a><svg class="bicon-eyes" viewBox="0 0 30 18" width="30" height="17" aria-hidden="true"><ellipse cx="9" cy="9" rx="7.6" ry="8.2" fill="#fff" stroke="#2a2014" stroke-width="0.9"/><ellipse cx="21" cy="9" rx="7.6" ry="8.2" fill="#fff" stroke="#2a2014" stroke-width="0.9"/><circle cx="12.6" cy="8.2" r="3.5" fill="#15110b"/><circle cx="24.6" cy="8.2" r="3.5" fill="#15110b"/><circle cx="13.85" cy="7" r="1.05" fill="#fff"/><circle cx="25.85" cy="7" r="1.05" fill="#fff"/></svg></span>
     </div>
     <p class="hero-contact">Quickest reply is on <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer">my<span translate="no"> Discord</span></a>. <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20commission">Email</a> works too.</p>
     <div class="hero-me">
@@ -2567,7 +2579,7 @@
          Vive en el hero, donde ademas lleva lo que solo el puede decir ("not
          because it is all I do"), y en la pregunta del FAQ que existe justo para
          eso. Aqui el dato util es la tarifa. -->
-    <p class="sub">Any of the three loaders, into any of the others.<span translate="no"> Forge </span>1.20.1 carries the lowest rate. Anything harder is priced by the real work it adds, not some made-up percentage. The full reasoning is written up in <a href="mod-porting-cost.html">what a<span translate="no"> port </span>costs, and why</a>.</p>
+    <p class="sub">Any of the three loaders, into any of the others.<span translate="no"> Forge </span>1.20.1 is the shortest route. Anything harder is priced by the real work it adds, not some made-up percentage. The full reasoning is written up in <a href="mod-porting-cost.html">what a<span translate="no"> port </span>costs, and why</a>.</p>
 <div class="cards">
       <div class="card card--base">
         <div class="icon-wrap svc-copper"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v13"/><path d="M6 11l6 6 6-6"/></svg></div>
@@ -2773,7 +2785,7 @@
         <a class="btn btn-discord est-discord" id="est-discord" href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg><span>Copy &amp; open<span translate="no"> Discord</span></span></a>
         <button type="button" class="btn btn-ghost est-copy" id="est-copy">Just copy it</button>
         <a class="btn btn-gmail est-email" id="est-email" href="mailto:modwrightstudios@gmail.com?subject=Mod%20porting%20commission"><svg class="bicon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Email it instead</a>
-        <div class="est-disclaimer"><strong>This is an estimate, not a quote.</strong> It is a range, worked out from what you picked. The quote is a single number, and it comes on<span translate="no"> Discord </span>once I have looked at the actual mod. That one is in writing and it does not move. $20 minimum on any job.</div>
+        <div class="est-disclaimer"><strong>This is an estimate, not a quote.</strong> It is a range, worked out from what you picked. The quote is a single number, and it comes on<span translate="no"> Discord </span>once I have looked at the actual mod. That one is in writing and it does not move.</div>
         <p class="est-skip">Prefer to just talk? <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer"><span>Message me on<span translate="no"> Discord</span></span></a> or <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20commission">email</a>.</p>
       </div>
     </div>
@@ -2953,7 +2965,7 @@
            Quedaba un pronombre sin antecedente. "This" se refiere a todo esto
            (el trabajo, la pagina) y se sostiene solo, sin devolver la redundancia. -->
       <p><strong>This is going better than I expected.</strong> A year ago none of this existed.</p>
-      <p><strong>And none of it happened on my own.</strong><span translate="no"> Alex </span>is the one I talk the hard calls through with, and we are on the same course. Around that there are people who test what I build, who send me mods worth looking at, and who tell me straight when something is wrong. And before any of them, the authors who wrote these mods and let me near their work.</p>
+      <p><strong>And none of it happened on my own.</strong><span translate="no"> Alex </span>is the one I talk the hard calls through with, and we are on the same course.<span translate="no"> Criss </span>puts the work in front of people and plays the<span translate="no"> ports</span>. Around them there are people who test what I build, who send me mods worth looking at, and who tell me straight when something is wrong. And before any of them, the authors who wrote these mods and let me near their work.</p>
       <p><strong>Pretending it was all me would be easier to write. It wouldn't be true.</strong> Your job is still written and debugged by the person you are talking to; what I am not going to claim is that I got here by myself.</p>
     </div>
   </div>
@@ -3129,7 +3141,7 @@
         <summary>Licenses &amp; attributions</summary>
         <div class="legal-doc-body">
           <p><strong>Mods.</strong> I only work on mods you have the right to modify: open-source, your own, or with the author's permission. Open-source<span translate="no"> ports </span>I publish keep the original licence and credit the original author; closed-source work stays private.</p>
-          <p><strong>This website.</strong> Design, copy and original artwork are ©<span translate="no"> Modwright</span>. Mod logos, mod icons and in-game captures belong to their authors and to<span translate="no"> Mojang Studios</span>, and appear here only to identify the work they refer to.</p>
+          <p><strong>This website.</strong> The design, the words and the artwork here are ©<span translate="no"> Modwright</span>. Please don't reuse them without asking me first. Mod logos, mod icons and in-game captures belong to their authors and to<span translate="no"> Mojang Studios</span>, and appear here only to identify the work they refer to.</p>
           <p><strong>Fonts.</strong> “Space Grotesk” and “Monocraft” are used under the SIL Open Font License.</p>
           <p><strong>Trademarks.</strong><span translate="no"> Minecraft </span>is a trademark of<span translate="no"> Mojang Studios</span>.<span translate="no"> Forge</span>,<span translate="no"> NeoForge</span>,<span translate="no"> Fabric</span>,<span translate="no"> CurseForge</span>,<span translate="no"> Modrinth </span>and<span translate="no"> BuiltByBit </span>belong to their respective owners. Their names are used here for identification only. This is an independent service with no affiliation or endorsement.</p>
           <p class="legal-doc-note">Last updated June 2026.</p>
@@ -3233,7 +3245,7 @@
     }
     L.push('Delivery: ' + (state.license === 'closed' ? 'private (closed-source / ARR, to me only)' : 'open-source or I have permission (publishable)'));
     if (state.rush !== 'standard') L.push('Priority: ' + (state.rush === 'r72' ? 'priority (+25%)' : 'top priority (+50%)'));
-    L.push('Quick quote: ' + money(r.low) + ' to ' + money(r.high) + ' (min $20, you confirm the exact fixed price after a look)');
+    L.push('Quick quote: ' + money(r.low) + ' to ' + money(r.high) + ' (you confirm the exact fixed price after a look)');
     L.push('');
     L.push('Thanks!');
     return L.join('\n');
