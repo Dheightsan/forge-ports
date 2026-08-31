@@ -23,7 +23,7 @@ Every job is **one fixed price for your specific mod**, scoped privately and agr
 
 1. **Message me on [Discord](https://discord.gg/EV8F84fheJ)** (fastest) or email **modwrightstudios@gmail.com** with the mod link and what you need. The estimator writes a summary you can paste.
 2. I reply with a fixed price and a realistic timeline, in writing. No hourly billing, no surprise add-ons.
-3. Pay via Wise or PayPal (Goods & Services). On bigger jobs a 50% deposit starts the work; you see the build working before final payment. BuiltByBit escrow is coming soon.
+3. Pay via Wise, or PayPal (Goods and Services) if you ask for it. Your first job carries no deposit whatever its size; after that, bigger jobs start on a deposit agreed in writing. You watch the build running before final payment.
 
 ## Legal
 

@@ -141,7 +141,7 @@
       "name": "How do I pay safely?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Wise or PayPal (Goods & Services), wherever you are. I never take Friends & Family, because it's the one payment type with no buyer protection for you. BuiltByBit escrow is coming, but it isn't live yet."
+        "text": "Wise is how I invoice by default, wherever you are. If you would rather use PayPal, ask and I will send a Goods and Services invoice instead. I never take Friends and Family, because it is the one payment type that leaves you with nothing to fall back on. Either way, your first job carries no deposit whatever its size, you watch the build running in your own setup, and the final payment comes after that."
       }
     },
     {
@@ -157,7 +157,7 @@
       "name": "What if the port doesn't work?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "You see the build working before you make final payment, so you're never paying for something you haven't seen run. The deliverable is whatever we agree in writing up front, and if a bug inside that agreed scope shows up within 30 days of delivery, I fix it at no charge. After that, or for problems caused by Minecraft updates, other mods, or server changes, it becomes a maintenance job."
+        "text": "You watch the build running before you make final payment, so you never pay for something you have not seen work. The deliverable is what we agree in writing up front, and for 30 days after delivery I correct, at no charge, any defect I introduced inside that agreed scope, on the setup we agreed. After that, or for problems caused by Minecraft updates, other mods, or server changes, it becomes a maintenance job."
       }
     },
     {
@@ -181,7 +181,7 @@
       "name": "What's out of scope?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The mod's original textures and assets always come across with the port. What doesn't: brand-new textures, 3D models or animations, full gameplay or balance redesigns, and ongoing maintenance across future Minecraft versions. Those get quoted separately, so tell me upfront and I'll fold it into the price."
+        "text": "The mod's original textures and assets come across with the port. What doesn't: brand-new textures, 3D models or animations, full gameplay or balance redesigns, and ongoing maintenance across future Minecraft versions. Those get quoted separately, so tell me upfront and I'll fold it into the price."
       }
     }
   ]
@@ -1217,7 +1217,10 @@
     .pnote strong { color: var(--text-soft); }
     .paystrip { margin-top: 1.6rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.4rem 1.5rem; }
     .paystrip-head { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-mute); margin-bottom: 1rem; }
-    .paycards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.9rem; }
+    /* auto-fit y no `repeat(3,...)`: al irse el escrow quedan dos metodos y la
+       tercera columna dejaba un hueco a la derecha. Asi tampoco habra que
+       tocarlo el dia que entre un tercero. */
+    .paycards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.9rem; }
     .paycard { display: flex; flex-direction: column; gap: 0.45rem; background: var(--surface2); border: 1px solid var(--border-lt); border-radius: var(--radius); padding: 1rem 1.1rem; transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s; }
     .paycard:hover { transform: translateY(-2px); border-color: var(--green-ring); box-shadow: 0 6px 20px rgba(0,0,0,0.18); }
     .paycard svg { width: 26px; height: 26px; }
@@ -2481,6 +2484,30 @@
         </details>
         <p class="mp-credit"><span translate="no">Mutant More </span>is by <a href="https://modrinth.com/mod/new-mutant-more" target="_blank" rel="noopener noreferrer"><span translate="no">AlexandersFunAndGames</span></a>. That config line was the only thing I touched, and only in my own copy.</p>
       </article>
+
+      <article class="mp-item">
+        <div class="mp-head">
+          <h3>I read 414<span translate="no"> jars </span>before letting one of them into my pack</h3>
+        </div>
+        <p class="mp-hook">Sixty-seven of them contradicted my own notes, and <strong>eight could never have loaded at all</strong>. I found that out by opening them, not by trusting the list I had been keeping.</p>
+        <details class="more more--card">
+          <summary>What was actually inside them</summary>
+        <p>I keep a store of mods I might want one day. Nothing goes from there into the pack until it has been read: the metadata, the loader it was built for, the version it targets, and whether anything already installed collides with it. 414 candidates went through that and came out sorted into <strong>103 ready to go in, 192 in due course, 44 that needed a decision, and 75 on hold</strong> behind a missing dependency or ruled out on purpose.</p>
+        <p class="mp-catch"><strong>Eight of them were never going to load.</strong> Three had no <code>mods.toml</code>, which means they were not mods at all. Three carried malformed<span translate="no"> JSON</span>. One was a<span translate="no"> NeoForge </span>build and one was compiled for a different<span translate="no"> Minecraft </span>version. Every one of them sat in that folder looking exactly like a working mod, and my own spreadsheet said they were fine.</p>
+        </details>
+      </article>
+
+      <article class="mp-item">
+        <div class="mp-head">
+          <h3>Six mods whose only job was making other mods get along</h3>
+        </div>
+        <p class="mp-hook">I wrote all six, then I deleted all six. <strong>Five of their names still live inside the mod that absorbed them</strong>, and that part is deliberate.</p>
+        <details class="more more--card">
+          <summary>Why the names stayed</summary>
+        <p>Making a pack behave means writing glue: spawn entries, tags, recipes and loot that teach one mod about another. Mine had grown into six separate add-on<span translate="no"> jars </span>that did nothing on their own. Six more entries in the mod list, six things to keep in step, and two of them shipped the same file path, so <strong>which one won was decided fresh on every launch</strong>. I folded all six into the two mods I already owned and deleted the<span translate="no"> jars</span>.</p>
+        <p class="mp-catch"><strong>I did not rename a single file.</strong> Data loads from the<span translate="no"> jar </span>that carries it, not from the mod whose name is on the folder, so paths like <code>omega_ssg_compat</code> and <code>omega_toasty_compat</code> still sit inside a mod none of them belongs to any more. Renaming them would have meant touching every reference for no gain. It reads wrong and the game does not care.</p>
+        </details>
+      </article>
       </div>
 
     <div class="pack-shots">
@@ -2624,7 +2651,7 @@
       <div class="card card--base">
         <div class="icon-wrap svc-steel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.6 5.6L3 18l3 3 6.1-6.1a4 4 0 0 0 5.6-5.6l-2.9 2.9a1.5 1.5 0 0 1-2-2l2.9-2.9z"/></svg></div>
         <h3>Mod maintenance</h3>
-        <p>A mod that stopped working after an update. It crashes on load, or it starts and half of what it used to do is gone. I track it down and get it running clean again on your version.</p>
+        <p>A mod that stopped working after an update. It crashes on load, or it starts and half of what it used to do is gone. I find what broke and fix it on your version.</p>
         <div class="card-stats">
           <div><span class="k">Fixes</span><span class="v"><span translate="no">Mixins </span>· crashes · deps</span></div>
           
@@ -2671,10 +2698,10 @@
     <div class="steps">
       <div class="step"><div class="step-n">01</div><h3>Send me the mod</h3><p>Message the mod link and what you need. Open-source or licensed, both work. Use the<span translate="no"> Angel Engine </span>to pre-fill the details.</p></div>
       <div class="step"><div class="step-n">02</div><h3>Flat quote</h3><p>I look over the mod and reply with a fixed price and a timeline. No scope creep once we've agreed.</p></div>
-      <div class="step"><div class="step-n">03</div><h3>Agree &amp; start</h3><p>We lock the scope and price in writing. <strong>Your first job with me carries no deposit, whatever the size:</strong> you pay once you have seen it run. After that, bigger jobs start on a 50% deposit.</p></div>
+      <div class="step"><div class="step-n">03</div><h3>Agree &amp; start</h3><p>We lock the scope and price in writing. <strong>Your first job with me carries no deposit, whatever the size:</strong> you pay once you have seen it run. After that, bigger jobs start on a deposit we agree in writing.</p></div>
       <div class="step"><div class="step-n">04</div><h3>I build it</h3><p>Every job gets its own timeline, agreed before I touch anything. <strong>If you have a hard date, say so first:</strong> I will either commit to it in writing or turn the job down.</p></div>
       <div class="step"><div class="step-n">05</div><h3>Delivery + final payment</h3><p>You get the finished mod file and try it yourself. Final payment before release. Open-source<span translate="no"> ports </span>get published with author credit.</p></div>
-      <div class="step"><div class="step-n">06</div><h3>I check back</h3><p>Once it has actually run in your pack, not just on my machine. <strong>Bugs inside the agreed scope are on me for 30 days.</strong> Anything after that, or anything new you need, comes back to me as a returning client.</p></div>
+      <div class="step"><div class="step-n">06</div><h3>I check back</h3><p>Once it has actually run in your pack, not just on my machine. <strong>Any defect I introduced inside the agreed scope, on the setup we agreed, is on me for 30 days.</strong> Anything after that, or anything new you need, comes back to me as a returning client.</p></div>
     </div>
     <figure class="mascotas">
       <!-- La ilustracion traia dos placas horneadas con CARGOS INVENTADOS
@@ -2765,8 +2792,8 @@
           <div class="est-label">Priority <span class="est-hint">(optional, jump the queue)</span></div>
           <div class="est-options" data-group="rush">
             <button type="button" class="est-opt t1 active" data-value="standard"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 8v4.2l2.6 1.6"/></svg>Standard<small>normal queue</small></button>
-            <button type="button" class="est-opt t2" data-value="r72"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 15l7-6 7 6"/></svg>Priority<small>+25%</small></button>
-            <button type="button" class="est-opt t3" data-value="r24"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l7-5 7 5"/><path d="M5 18l7-5 7 5"/></svg>Top priority<small>+50%</small></button>
+            <button type="button" class="est-opt t2" data-value="prio"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 15l7-6 7 6"/></svg>Priority<small>+25%</small></button>
+            <button type="button" class="est-opt t3" data-value="top"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l7-5 7 5"/><path d="M5 18l7-5 7 5"/></svg>Top priority<small>+50%</small></button>
           </div>
         </div>
         </div>
@@ -2806,19 +2833,14 @@
       <div class="paystrip-head">How you pay</div>
       <div class="paycards">
         <div class="paycard">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#5fa86a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v5c0 4.5-3.4 7.7-8 9-4.6-1.3-8-4.5-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg>
-          <div class="paycard-name"><span translate="no">BuiltByBit </span>escrow</div>
-          <div class="paycard-sub">Not live yet.<span translate="no"> Wise </span>or<span translate="no"> PayPal </span>in the meantime.</div>
-        </div>
-        <div class="paycard">
           <svg viewBox="0 0 24 24" fill="none" stroke="#5aa84a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h13l-3-3"/><path d="M20 16H7l3 3"/></svg>
           <div class="paycard-name"><span translate="no">Wise</span></div>
-          <div class="paycard-sub">Low-fee bank transfer, paid from anywhere worldwide.</div>
+          <div class="paycard-sub">The default. Low-fee bank transfer, paid from anywhere worldwide.</div>
         </div>
         <div class="paycard">
           <svg viewBox="0 0 24 24" fill="none" stroke="#4a7fc4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/></svg>
           <div class="paycard-name"><span translate="no">PayPal</span></div>
-          <div class="paycard-sub">Goods &amp; Services, with buyer protection.</div>
+          <div class="paycard-sub">On request. Goods and Services only, never Friends and Family.</div>
         </div>
       </div>
     </div>
@@ -2849,12 +2871,12 @@
       <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">Why is 1.20.1 the shortest route?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">It sits just below every recent version wall, so it takes the least work. Other versions have to cross walls (networking, data components, worldgen) that genuinely take longer, so they carry a flat premium per wall.</div></div></div>
       <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">What exactly is a compatibility patch?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">Making two or more mods work together without adding new content. For example: getting one mod's mobs to spawn in another mod's biomes, or fixing a conflict that breaks a feature. Each one is custom, so I quote it by scope.</div></div></div>
       <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">Is this legal?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">Yes. You pay for my time writing the<span translate="no"> port</span>, not for distribution rights. I publish only open-source mods or mods with written permission; anything else is delivered privately to whoever holds the right to use it. See the Licenses section below.</div></div></div>
-      <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">How do I pay safely?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body"><span translate="no">Wise </span>or<span translate="no"> PayPal </span>(Goods &amp; Services), wherever you are. I never take Friends &amp; Family, because it's the one payment type with no buyer protection for you.<span translate="no"> BuiltByBit </span>escrow is coming, but it isn't live yet.</div></div></div>
+      <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">How do I pay safely?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body"><span translate="no">Wise </span>is how I invoice by default, wherever you are. If you would rather use<span translate="no"> PayPal</span>, ask and I will send a Goods and Services invoice instead. I never take Friends and Family, because it is the one payment type that leaves you with nothing to fall back on. Either way, your first job carries no deposit whatever its size, you watch the build running in your own setup, and the final payment comes after that.</div></div></div>
       <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">How long does it take?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">It depends on the mod. We agree a timeline before I start, but I won't quote a fixed turnaround I can't stand behind. Under-promising costs me a job now and then. Missing a date costs you a launch.</div></div></div>
-      <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">What if the<span translate="no"> port </span>doesn't work?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">You see the build working before you make final payment, so you're never paying for something you haven't seen run. The deliverable is whatever we agree in writing up front, and if a bug inside that agreed scope shows up within 30 days of delivery, I fix it at no charge. After that, or for problems caused by<span translate="no"> Minecraft </span>updates, other mods, or server changes, it becomes a maintenance job.</div></div></div>
+      <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">What if the<span translate="no"> port </span>doesn't work?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">You watch the build running before you make final payment, so you never pay for something you have not seen work. The deliverable is what we agree in writing up front, and for 30 days after delivery I correct, at no charge, any defect I introduced inside that agreed scope, on the setup we agreed. After that, or for problems caused by<span translate="no"> Minecraft </span>updates, other mods, or server changes, it becomes a maintenance job.</div></div></div>
       <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">Can I put the<span translate="no"> ported </span>mod in my public<span translate="no"> modpack</span>?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">It depends on the original mod's licence, and I tell you which case you are in before you pay, not after. Open-source: yes, and I publish it with credit to the original author so your pack links to something real. Your own mod, or one where you hold written permission: yes, and I tell you exactly what credit to include. All rights reserved with no permission: no, and I will not take the job on those terms, because the takedown would land on your account and not mine.</div></div></div>
       <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">Can you leave parts of the mod out, or change what it does?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">Yes, and it is worth asking. A<span translate="no"> port </span>does not have to be the whole mod: I can drop a feature you do not want, change values like spawn rates, durability or damage, retune or remove effects, and adjust recipes and loot. Tell me when you send it and it goes into the fixed quote, instead of turning into a second job later. The line is between tweaks and a redesign: rebalancing the whole mod is its own job and I quote it separately.</div></div></div>
-      <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">What's out of scope?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">The mod's original textures and assets always come across with the<span translate="no"> port</span>. What doesn't: brand-new textures, 3D models or animations, full gameplay or balance redesigns, and ongoing maintenance across future<span translate="no"> Minecraft </span>versions. Those get quoted separately, so tell me upfront and I'll fold it into the price.</div></div></div>
+      <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">What's out of scope?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">The mod's original textures and assets come across with the<span translate="no"> port</span>. What doesn't: brand-new textures, 3D models or animations, full gameplay or balance redesigns, and ongoing maintenance across future<span translate="no"> Minecraft </span>versions. Those get quoted separately, so tell me upfront and I'll fold it into the price.</div></div></div>
     </div>
     <div class="softcta">
       <p>Still got a question? Ask me the awkward one. <strong>I'd rather deal with it now than after you've paid.</strong></p>
@@ -2906,7 +2928,7 @@
       <li>You have to actually hold the rights to the mod. If it is a team, I need the team's yes.</li>
       <li>One of these at a time, so paying clients keep their place in the queue.</li>
       <li>I can turn it down. A large tech mod is a month of work, not a favour.</li>
-      <li>Otherwise it runs like any job: scope agreed in writing before I start, and bugs inside that scope fixed free for 30 days.</li>
+      <li>Otherwise it runs like any job: scope agreed in writing before I start, and any defect I introduce inside that scope, on the setup we agreed, corrected free for 30 days.</li>
     </ul>
 
     <div class="deal-row">
@@ -3003,11 +3025,6 @@
         <h3>Email (backup)</h3>
         <p>Prefer email? Send the mod link and what you want done, or just the<span translate="no"> Angel Engine </span>summary.</p>
         <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20porting%20commission" class="btn btn-gmail contact-btn"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Send me an email</a>
-      </div>
-      <div class="contact-card contact-card--soon">
-        <div class="ci ci--bbb"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v5c0 4.5-3.4 7.7-8 9-4.6-1.3-8-4.5-8-9V6l8-3z"/></svg></div>
-        <h3><span translate="no">BuiltByBit </span>· escrow</h3>
-        <p>Not live yet. Until it is, you see the build working before you pay.</p>
       </div>
     </div>
     <p class="contact-note">I take two jobs at a time, so the queue stays short.</p>
@@ -3114,15 +3131,22 @@
         <summary>Terms of Service</summary>
         <div class="legal-doc-body">
           <p><strong>Service.</strong><span translate="no"> Modwright </span>does paid<span translate="no"> Minecraft </span>mod work:<span translate="no"> porting</span>, backporting, reviving, loader conversion, compatibility patches, maintenance and optimization.</p>
-          <p><strong>Quotes &amp; pricing.</strong> The<span translate="no"> Angel Engine </span>gives a non-binding ballpark. The final price is fixed and agreed in writing before any work begins. A deposit may be requested for larger jobs.</p>
-          <p><strong>Payment.</strong> Through<span translate="no"> Wise </span>or<span translate="no"> PayPal</span>, or<span translate="no"> BuiltByBit </span>escrow where available, as agreed. With escrow, funds release on delivery.</p>
-          <p><strong>Delivery &amp; timelines.</strong> You receive a working, boot-tested build. Timelines are honest estimates based on the work in front of me, not guarantees, and I do not commit to hard deadlines. If a date is genuinely critical for you, say so before we agree: I will either commit to it in writing or turn the job down.</p>
-          <p><strong>Scope &amp; corrections.</strong> The deliverable is the working build described in our written agreement, which you review before final payment. If a bug inside that agreed scope shows up within 30 days of delivery, I fix it at no charge; where a correction is not possible, I refund the affected amount. After 30 days, or for breakage caused by<span translate="no"> Minecraft </span>updates, other mods, server setup, or changes beyond the agreed scope, fixes are quoted as maintenance work.</p>
-          <p><strong>Your responsibilities.</strong> You must have the right to have the mod worked on: it's open-source, your own, or you have the author's permission. You are responsible for how you use the delivered files.</p>
+          <p><strong>Quotes &amp; pricing.</strong> The<span translate="no"> Angel Engine </span>gives a non-binding ballpark. The final price is fixed and agreed in writing before any work begins. Your first job carries no deposit, whatever its size. After that, larger jobs start on a deposit agreed in writing.</p>
+          <p><strong>Returning clients.</strong> When your pack moves to a new<span translate="no"> Minecraft </span>version,<span translate="no"> re-porting </span>work I originally built for you is 40% of the original price, and past clients come ahead of new ones in the queue.</p>
+          <p><strong>Payment.</strong><span translate="no"> Wise </span>is the default and is how I invoice unless we agree otherwise in writing.<span translate="no"> PayPal </span>is available if you ask for it, as Goods and Services only; I do not take Friends and Family. Currency and schedule are set out in our written agreement.</p>
+          <p><strong>Delivery &amp; timelines.</strong> Every build is booted on a dedicated server before it leaves my machine, and you watch it running in your own setup before you make final payment. Timelines are honest estimates based on the work in front of me, not guarantees, and I do not commit to hard deadlines. If a date is genuinely critical for you, say so before we agree: I will either commit to it in writing or turn the job down.</p>
+          <p><strong>Scope &amp; acceptance.</strong> The deliverable is exactly what our written agreement describes: the mod, the loader, the<span translate="no"> Minecraft </span>version, and the mod list it was built against. You run the build and confirm it before you make final payment, and that confirmation closes the scope. If you have not raised a problem within seven days of delivery, the build counts as accepted and the final payment falls due. Anything outside that agreement is a separate job, quoted separately.</p>
+          <p><strong>Corrections.</strong> For 30 days after delivery I correct, at no charge, any defect I introduced that appears inside the agreed scope and reproduces on the setup we agreed. The remedy is that I fix it. After those 30 days, and for anything caused by a<span translate="no"> Minecraft </span>update, another mod, a change to your server, or a change to the mod list we agreed on, fixes are quoted as maintenance work.</p>
+          <p><strong>Your responsibilities.</strong> You must have the right to have the mod worked on: it's open-source, your own, or you have the author's permission. If that turns out not to be the case, I stop the job, and what you have already paid covers the work already done. How you run, monetise or advertise your server is between you and<span translate="no"> Mojang</span>'s own rules, not something I take on. I work on the mod as you supply it, so defects that were already in the original, and problems caused by the other mods, plugins or server software you run it alongside, sit outside the job unless we agreed to cover them. You are responsible for how you use the delivered files.</p>
+          <p><strong>Claims about the mod you bring me.</strong> If someone brings a claim against me over the mod you supplied, or over how you use what I deliver, you cover the cost of dealing with it. This is not me expecting trouble. It is the reason I check the licence before I write a line, so that neither of us ever ends up there.</p>
           <p><strong>Rights &amp; redistribution.</strong> You pay for my time, not for distribution rights. Closed-source (ARR) work is delivered privately to you only and is never published. I will not publicly redistribute an ARR mod without the author's written permission.</p>
+          <p><strong>What stays mine.</strong> You get the delivered work and a permanent licence to use it in your own packs and servers. The general techniques, tools and libraries I build stay mine and I reuse them from one job to the next. That reuse is exactly why your second job costs less than your first.</p>
+          <p><strong>Showing the work.</strong> Unless we agree otherwise in writing, I may describe a finished job and show the result. Closed-source work stays private either way: no files, no code, and no client named without your say so.</p>
+          <p><strong>If a job stops.</strong> Either of us can stop a job before it is finished. If you stop it, you pay for the work done up to that point and I hand over what exists. If I stop it, I return anything you paid for work I had not done. A deposit covers work already scheduled and started, so it stays with me once the work has begun.</p>
+          <p><strong>Reversed payments.</strong> If a payment is reversed after a build has been accepted, the licence to use that work pauses until the payment is settled. If something is wrong, tell me first: correcting my own work is faster for both of us than a dispute.</p>
           <p><strong>Liability.</strong> Work is provided “as is.” To the extent permitted by law, I am not liable for indirect or consequential damages, and total liability is limited to the amount paid for the job in question.</p>
-          <p><strong>Changes.</strong> These terms may be updated; the version shown here on the day you hire me applies.</p>
-          <p class="legal-doc-note">Plain-language summary of how these jobs work, not formal legal advice. Last updated June 2026.</p>
+          <p><strong>Changes.</strong> These terms may be updated; the version shown here on the day you hire me applies, and the dated history of this page is public in the repository that serves it.</p>
+          <p class="legal-doc-note">Plain-language summary of how these jobs work, not formal legal advice. Last updated August 2026.</p>
         </div>
       </details>
       <details class="legal-doc" id="privacy">
@@ -3131,10 +3155,10 @@
           <p><strong>Short version:</strong> this is a static page with no accounts and no tracking cookies. I only ever see what you choose to send me.</p>
           <p><strong>What I collect.</strong> Only the information you include when you contact me: your email address and the job details you provide. The<span translate="no"> Angel Engine </span>runs entirely in your browser; nothing you enter there leaves your device until you click to email it.</p>
           <p><strong>How I use it.</strong> Solely to reply to you and carry out the work you ask for. I never sell, rent, or share your information.</p>
-          <p><strong>Third parties.</strong> If you pay, the payment runs through your chosen provider (<span translate="no">BuiltByBit</span>,<span translate="no"> Wise</span>, etc.) under their own policies. Email is handled through Gmail.</p>
+          <p><strong>Third parties.</strong> If you pay, the payment runs through<span translate="no"> Wise</span>, or through<span translate="no"> PayPal </span>if you asked for it, under their own policies. Email is handled through Gmail.</p>
           <p><strong>Analytics.</strong> I don't use tracking cookies. If I ever add analytics, it'll be cookieless and won't collect personal data.</p>
           <p><strong>Retention &amp; your choices.</strong> I keep job correspondence only as long as needed for the work and records, and you can ask me to delete your data at any time.</p>
-          <p class="legal-doc-note">Questions? Email modwrightstudios@gmail.com. Last updated June 2026.</p>
+          <p class="legal-doc-note">Questions? Email modwrightstudios@gmail.com. Last updated August 2026.</p>
         </div>
       </details>
       <details class="legal-doc" id="licenses">
@@ -3144,7 +3168,7 @@
           <p><strong>This website.</strong> The design, the words and the artwork here are ©<span translate="no"> Modwright</span>. Please don't reuse them without asking me first. Mod logos, mod icons and in-game captures belong to their authors and to<span translate="no"> Mojang Studios</span>, and appear here only to identify the work they refer to.</p>
           <p><strong>Fonts.</strong> “Space Grotesk” and “Monocraft” are used under the SIL Open Font License.</p>
           <p><strong>Trademarks.</strong><span translate="no"> Minecraft </span>is a trademark of<span translate="no"> Mojang Studios</span>.<span translate="no"> Forge</span>,<span translate="no"> NeoForge</span>,<span translate="no"> Fabric</span>,<span translate="no"> CurseForge</span>,<span translate="no"> Modrinth </span>and<span translate="no"> BuiltByBit </span>belong to their respective owners. Their names are used here for identification only. This is an independent service with no affiliation or endorsement.</p>
-          <p class="legal-doc-note">Last updated June 2026.</p>
+          <p class="legal-doc-note">Last updated August 2026.</p>
         </div>
       </details>
     </div>
@@ -3168,7 +3192,7 @@
   var COMPAT = { small: 25, medium: 60, large: 130 };
   var WALL = { none: 0, moderate: 25, hard: 60, brutal: 110 };
   var LOADER = { forge: 0, neoforge: 20, fabric: 250 };
-  var RUSH = { standard: 1, r72: 1.25, r24: 1.5 };
+  var RUSH = { standard: 1, prio: 1.25, top: 1.5 };
   var MAINT = { small: 25, medium: 50, large: 95 };
   var OPT = { small: 45, medium: 85, large: 150 };
   var MIN = 20;
@@ -3227,8 +3251,8 @@
       if (bits.length === 0) bits.push('Same loader, no version wall to cross.');
     }
     if (state.license === 'closed') bits.push('private ARR delivery');
-    if (state.rush === 'r72') bits.push('<span class="premium">priority</span>');
-    if (state.rush === 'r24') bits.push('<span class="premium">top priority</span>');
+    if (state.rush === 'prio') bits.push('<span class="premium">priority</span>');
+    if (state.rush === 'top') bits.push('<span class="premium">top priority</span>');
     return bits.join(' · ');
   }
   function buildSummary(r) {
@@ -3244,7 +3268,7 @@
       L.push('Details: ' + ({ small: 'small mod', medium: 'medium mod', large: 'large mod' })[state.size] + ' · ' + ({ none: 'no version wall', moderate: 'crosses 1.20.2', hard: 'crosses 1.21', brutal: 'crosses 1.13/1.18' })[state.wall] + ' · ' + ({ forge: 'Forge', neoforge: 'NeoForge', fabric: 'Fabric' })[state.loader] + ' source');
     }
     L.push('Delivery: ' + (state.license === 'closed' ? 'private (closed-source / ARR, to me only)' : 'open-source or I have permission (publishable)'));
-    if (state.rush !== 'standard') L.push('Priority: ' + (state.rush === 'r72' ? 'priority (+25%)' : 'top priority (+50%)'));
+    if (state.rush !== 'standard') L.push('Priority: ' + (state.rush === 'prio' ? 'priority (+25%)' : 'top priority (+50%)'));
     L.push('Quick quote: ' + money(r.low) + ' to ' + money(r.high) + ' (you confirm the exact fixed price after a look)');
     L.push('');
     L.push('Thanks!');
@@ -3262,8 +3286,8 @@
       if (LOADER[state.loader] > 0) parts.push('+$' + LOADER[state.loader] + ' ' + (state.loader === 'fabric' ? 'Fabric' : 'NeoForge'));
     }
     if (state.license === 'closed') parts.push('×1.35 private');
-    if (state.rush === 'r72') parts.push('×1.25 priority');
-    if (state.rush === 'r24') parts.push('×1.5 top priority');
+    if (state.rush === 'prio') parts.push('×1.25 priority');
+    if (state.rush === 'top') parts.push('×1.5 top priority');
     return parts.join('   ·   ');
   }
   var firstPrice = true;
