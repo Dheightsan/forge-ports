@@ -155,19 +155,19 @@ main > * { position: relative; z-index: 2; }
 
   <h2>What the mistake looks like</h2>
   <p>The renderer asked for a bone called <code>saddleParts</code>. In the model file that bone is called <code>saddle</code>. That is the whole bug.</p>
-  <p>Both names are correct<span translate="no"> Java</span>. Both compile. The name lives inside a string literal, and a string literal is just characters to the compiler. It has no idea one of them is supposed to correspond to a key in a <code>.geo.json</code> file sitting somewhere else in the jar.</p>
+  <p>Both names are correct<span translate="no"> Java</span>, and both compile. The name lives inside a string literal, and a string literal is just characters to the compiler. It has no idea one of them is supposed to correspond to a key in a <code>.geo.json</code> file sitting somewhere else in the jar.</p>
 
   <div class="note">
     <p><strong>Why it survives every gate you already have.</strong> A resource diff compares files and both files are present and unchanged. A build passes because the syntax is fine. A load test passes because nothing reads the model until something is rendered. The mod is installed, the log says it initialised, and it is still broken.</p>
   </div>
 
-  <h2>What actually happens at runtime</h2>
+  <h2>Inside the renderer, frame by frame</h2>
   <p><span translate="no">GeckoLib</span>'s <code>AnimationProcessor.getBone</code> returns <code>null</code> for a name the loaded model does not contain. It does not throw, and it does not warn. The null travels back into your renderer, which then does what renderers do with it.</p>
   <p>The detail that makes this loud instead of intermittent: <strong>the renderer runs every frame</strong>. There is no rare code path and no unlucky timing. The first time that entity enters view, the exception fires, and it keeps firing.</p>
-  <p>So the failure is simultaneously invisible before release and impossible to miss after it. That combination is what makes it expensive.</p>
+  <p>So the failure is invisible before release and impossible to miss after it, which is what makes it expensive.</p>
 
   <h2>Why "check your spelling" is not an answer</h2>
-  <p>It is the advice you will find on every thread about this, and it is correct, and it is useless. It assumes you know which name is wrong, in a jar that might have a dozen models and a hundred bones between them. Spotting a mismatch by reading is exactly the task humans are worst at.</p>
+  <p>It is the advice you will find on every thread about this, and while it is correct it does not help. It assumes you know which name is wrong, in a jar that might have a dozen models and a hundred bones between them. Spotting a mismatch by reading is exactly the task humans are worst at.</p>
   <p>The mismatch is also frequently not a typo. Mine came from a rename: the model file used one convention and the code kept an older one. Nobody misspelled anything. The two files simply drifted, which is what files do when a mod moves between versions or loaders.</p>
 
   <h2>How to check a jar before you ship it</h2>
@@ -196,7 +196,7 @@ print(sorted(set(bone_names(model))))</code></pre>
 
   <p><strong>3. Compare them.</strong> Anything requested that is not defined is the bug, and you have its exact name before a single frame is rendered.</p>
 
-  <h2>What it actually printed</h2>
+  <h2>The output from a real jar</h2>
 
   <p>Not a summary of what it printed. This is the output, from running the check just now against both jars, the one I shipped and the one I kept broken on purpose:</p>
 
@@ -222,7 +222,7 @@ FIXED   capymod-1.20.1-1.2.jar
 
 
 
-  <h2>What this check does not do</h2>
+  <h2>Limits of this check</h2>
   <p>Being honest about the limits, because a check you trust too much is worse than no check:</p>
   <ul>
     <li>It only sees <strong>literal</strong> names. A bone name built at runtime by concatenating strings is invisible to it.</li>
@@ -233,20 +233,20 @@ FIXED   capymod-1.20.1-1.2.jar
 
   <h2>The general shape of the problem</h2>
   <p>Any identifier that crosses from code into a data file is unchecked by definition: bone names, animation names, texture paths, sound events, model keys. The compiler stops at the edge of the language, and the mistake lives one step past that edge.</p>
-  <p>So the question worth asking of a mod is not "does it build". It is "which of its strings are secretly references, and what verifies them". On a port that question matters more than usual, because a port is a rebuild, and rebuilds are exactly when the two sides drift.</p>
+  <p>The question worth asking of a mod, then, is which of its strings are secretly references, and what verifies them. On a port that question matters more than usual, because a port is a rebuild, and rebuilds are exactly when the two sides drift.</p>
 
   <div class="cta">
-    <p><strong>If you would rather not do this yourself.</strong></p>
+    <p><strong>If you would rather hand it off.</strong></p>
     <p>I port, backport and revive Minecraft mods, and<span translate="no"> Forge </span>1.20.1 is where I work most. This check now runs against every jar I build, before anything is launched, along with four other structural ones.</p>
-    <p><a class="btn" href="./#estimator">Price your mod</a></p>
+    <p><a class="btn" href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer">Price your mod on Discord</a></p>
   </div>
 <hr>
 <p><strong>Related.</strong> This is one of several failures that pass every automatic gate. The rest are in <a href="fabric-to-forge-1-20-1.html">what actually breaks when you port a Fabric mod to Forge 1.20.1</a>, and if you are weighing up paying somebody, <a href="mod-porting-cost.html">what a mod port costs, and why</a> explains where the hours actually go.</p>
-  <p class="byline">Written by <strong translate="no">josda</strong>,<span translate="no"> Forge </span>1.20.1 mod porting. Last updated August 2026. Questions, corrections or a mod you need moved: <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer">Discord</a> or <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20porting">email</a>.</p>
+  <p class="byline">Written by <strong translate="no">josda</strong>,<span translate="no"> Forge </span>1.20.1 mod porting. Last updated August 2026. Questions, corrections or a mod you need moved: open a ticket on <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer">my<span translate="no"> Discord</span></a>.</p>
 </main>
 
 <footer>
  <span translate="no"> Modwright </span>&middot; <a href="./">Services and pricing</a> &middot; <a href="./#legal">Terms</a>
- &middot; <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer">Discord</a> &middot; <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20porting">Email</a></footer>
+ &middot; <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer">Discord</a></footer>
 </body>
 </html>

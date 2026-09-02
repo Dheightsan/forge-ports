@@ -177,7 +177,7 @@ main > * { position: relative; z-index: 2; }
   <h2>3. Mixins: separate the accessors from the real ones</h2>
   <p>This is the single most useful distinction when estimating a port, and the one most often got wrong.</p>
   <p>An <code>@Accessor</code> or <code>@Invoker</code> mixin exists only to expose a private field or method. On<span translate="no"> Forge </span>you usually delete it and write <strong>one line of an access transformer</strong> instead. It costs minutes.</p>
-  <p>A behavioural mixin, an <code>@Inject</code> or <code>@Redirect</code> into a vanilla class, is different. It has to be re-checked against the target class, and injection points that were valid on one mapping may not exist on the other. That is where the hours go.</p>
+  <p>A behavioural mixin, an <code>@Inject</code> or <code>@Redirect</code> into a vanilla class, is different. It has to be re-checked against the target class, and injection points that were valid on one mapping may not exist on the other, and that re-checking is where the hours go.</p>
   <p>A mod with thirty mixin files where twenty-five are accessors is a small job. A mod with eight mixins that are all injections into rendering or world generation is not. Counting them together produces an estimate that is wrong in both directions.</p>
 
   <h2>4. Spawns move from tags to biome modifiers</h2>
@@ -187,7 +187,7 @@ main > * { position: relative; z-index: 2; }
   </div>
 
   <h2>5. Bundled libraries</h2>
-  <p>A<span translate="no"> Fabric </span>build that shades a small library needs the equivalent on<span translate="no"> Forge</span>, which is <code>jarJar</code>.<span translate="no"> Boids </span>bundles a config library this way, and the practical consequence is that the shipped artifact is the fat jar, not the thin one. Ship the wrong file and the mod fails at class load with an error that names the library, not your mod.</p>
+  <p>A<span translate="no"> Fabric </span>build that shades a small library needs the equivalent on<span translate="no"> Forge</span>, which is <code>jarJar</code>.<span translate="no"> Boids </span>bundles a config library this way, and the practical consequence is that the shipped artifact is the fat jar rather than the thin one. Ship the wrong file and the mod fails at class load with an error naming the library instead of your mod.</p>
 
   <h2>6. Libraries with no direct equivalent</h2>
   <p>This is the honest cost driver. Some are a swap; some mean reimplementing a feature.</p>
@@ -207,16 +207,16 @@ main > * { position: relative; z-index: 2; }
   <p>A mod already built on<span translate="no"> Architectury</span>, with a <code>forge/src</code> directory in the tree, is a different conversation entirely. Much of the work is done and the job is often closer to a version bump.</p>
 
   <h2>7. The failures that produce no error</h2>
-  <p>Compiling is not the finish line. These are the ones that cost real time, because there is nothing in the log to search for.</p>
+  <p>A clean compile only gets you to the starting line here. These are the ones that cost real time, because there is nothing in the log to search for.</p>
 
   <h3>An access transformer that did not make it across</h3>
-  <p>A field that was public in your development mappings can be private at runtime. The result is an <code>IllegalAccessError</code> thrown inside world generation, where it is swallowed by the generation thread. The game does not crash. It hangs, or the chunk simply arrives empty.</p>
+  <p>A field that was public in your development mappings can be private at runtime. The result is an <code>IllegalAccessError</code> thrown inside world generation, where it is swallowed by the generation thread. Instead of crashing, the game hangs, or the chunk simply arrives empty.</p>
 
   <h3>A missing block colour handler</h3>
-  <p>Biome-tinted foliage on<span translate="no"> Forge </span>needs a colour handler registered on the client. Without it the plants render grey. There is no warning, no exception, and the model and texture are both correct. It looks like an art bug and it is a registration bug.</p>
+  <p>Biome-tinted foliage on<span translate="no"> Forge </span>needs a colour handler registered on the client. Without it the plants render grey. There is no warning, no exception, and the model and texture are both correct. Nothing is wrong with the art itself: the colour handler was never registered.</p>
 
   <h3>Resources dropped from the jar</h3>
-  <p>A parity check that compares classes will happily report that nothing was lost while the licence file is missing from the built jar. For an MIT mod that is not cosmetic: shipping the copyright notice is the one obligation the licence imposes, so a jar without it is a licence violation, not an oversight.</p>
+  <p>A parity check that compares classes will happily report that nothing was lost while the licence file is missing from the built jar. For an MIT mod that is not cosmetic: shipping the copyright notice is the one obligation the licence imposes, so a jar without it breaks the licence outright, however unintentional.</p>
 
   <h3>Testing a stale artifact</h3>
   <p>The oldest one and still the most common. The build succeeded, the instance is running the previous jar, and you spend an hour debugging a fix that was never loaded. Compare file sizes or hashes before concluding anything about behaviour.</p>
@@ -226,29 +226,29 @@ main > * { position: relative; z-index: 2; }
 
   <h2>8. Knowing when it is actually done</h2>
   <p>Compiling proves the syntax. What proves the port is starting the game, creating a fresh world, and confirming that each thing the mod adds is present: items in the creative tab, entities spawning naturally rather than only by command, animations playing, config reload responding, and a clean exit.</p>
-  <p>The command <code>/summon</code> is not a substitute for a natural spawn. It skips part of the spawn path, so a mob that appears when summoned can still be absent from every world you generate.</p>
+  <p>The command <code>/summon</code> proves less than it looks like it does. It skips part of the spawn path, so a mob that appears when summoned can still be absent from every world you generate.</p>
 
   <h2>9. So how long does it take</h2>
   <p>Honest ranges, assuming source is available and the licence permits it:</p>
   <ul>
     <li><strong>Small content mod</strong>, a few entities or items, no behavioural mixins: an afternoon.</li>
     <li><strong>Medium mod</strong>, natural spawns, an animation library, a handful of injections: a couple of days, most of it in testing rather than typing.</li>
-    <li><strong>Anything reimplementing a missing library</strong>: the library, not the mod, is now the job. Estimate it separately.</li>
+    <li><strong>Anything reimplementing a missing library</strong>: the library has become the job. Estimate it separately.</li>
   </ul>
-  <p>The variance is not in the code volume. It is in how much of the mod reaches into vanilla behaviour, and in how much of it fails quietly.</p>
+  <p>Code volume is a poor predictor. What drives the variance is how deep the mod reaches into vanilla behaviour, and how quietly it fails when it does.</p>
 
   <div class="cta">
     <p><strong>If you would rather not do this yourself.</strong></p>
     <p>I port, backport and revive Minecraft mods, and<span translate="no"> Forge </span>1.20.1 is where I work most. I check the licence before quoting, give a fixed price in writing before any payment, and boot test every build in a real instance before it goes out.</p>
-    <p><a class="btn" href="./#estimator">Price your mod</a></p>
+    <p><a class="btn" href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer">Price your mod on Discord</a></p>
   </div>
 <hr>
-<p><strong>What this costs.</strong> Every failure on this page is work somebody has to do, and that work is what you are paying for when you commission a port. I broke the pricing down in <a href="mod-porting-cost.html">what a Minecraft mod port costs, and why</a>. If you want yours quoted, the <a href="./">main page</a> has an estimator and my Discord.</p>
-  <p class="byline">Written by <strong translate="no">josda</strong>,<span translate="no"> Forge </span>1.20.1 mod porting. Last updated August 2026. Questions, corrections or a mod you need moved: <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer">Discord</a> or <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20porting">email</a>.</p>
+<p><strong>What this costs.</strong> Every failure on this page is work somebody has to do, and that work is what you are paying for when you commission a port. I broke the pricing down in <a href="mod-porting-cost.html">what a Minecraft mod port costs, and why</a>. If you want yours quoted, message me on <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer">Discord</a>.</p>
+  <p class="byline">Written by <strong translate="no">josda</strong>,<span translate="no"> Forge </span>1.20.1 mod porting. Last updated August 2026. Questions, corrections or a mod you need moved: open a ticket on <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer">my<span translate="no"> Discord</span></a>.</p>
 </main>
 
 <footer>
  <span translate="no"> Modwright </span>&middot; <a href="./">Services and pricing</a> &middot; <a href="./#legal">Terms</a>
- &middot; <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer">Discord</a> &middot; <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20porting">Email</a></footer>
+ &middot; <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer">Discord</a></footer>
 </body>
 </html>

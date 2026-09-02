@@ -205,14 +205,14 @@ main > * { position: relative; z-index: 2; }
 
   <h2>3. What the mod touches</h2>
 
-  <p>Effort scales by subsystem crossed with wall, not by size. The same wall lands very differently depending on what the mod does:</p>
+  <p>Effort scales by subsystem crossed with wall. Raw size barely matters. The same wall lands very differently depending on what the mod does:</p>
 
   <ul>
     <li><strong>Items, blocks, recipes, creative tabs.</strong> Cheap almost everywhere, except across data components.</li>
     <li><strong>Worldgen, biomes, structures.</strong> Cheap now, brutal across 1.18.</li>
     <li><strong>Entities with custom rendering or animation.</strong> Mid, and it is where silent breakage lives. Animation libraries have initialisation order rules that produce no error when you get them wrong.</li>
     <li><strong>Anything storing data on an <code>ItemStack</code>.</strong> Cheap below 1.20.5, expensive above it.</li>
-    <li><strong>Heavy networking.</strong> Cheap below 1.20.2, expensive above it.</li>
+    <li><strong>Heavy networking.</strong> Below 1.20.2 it is routine; above it, the packet layer has to be rebuilt by hand.</li>
   </ul>
 
   <p>This is why I ask what the mod does before I quote, rather than just how many files it has.</p>
@@ -223,8 +223,8 @@ main > * { position: relative; z-index: 2; }
 
   <ul>
     <li><strong>Permissive licences</strong> such as MIT and Apache mean a public port with credit to the original author is fine.</li>
-    <li><strong>Copyleft licences</strong> such as GPL and LGPL allow the port, but it inherits the same licence, so the ported source has to stay open. That is a decision you should make on purpose, not discover afterwards.</li>
-    <li><strong>No licence file at all</strong> means all rights reserved by default. That is not a grey area, and assuming otherwise is a mistake. That job needs written permission from the author first.</li>
+    <li><strong>Copyleft licences</strong> such as GPL and LGPL allow the port, but it inherits the same licence, so the ported source has to stay open. Decide that deliberately, before it surprises you.</li>
+    <li><strong>No licence file at all</strong> means all rights reserved by default. There is no grey area there, and assuming otherwise is a mistake. That job needs written permission from the author first.</li>
     <li><strong>All rights reserved with permission</strong> is billable, delivered privately to you, and priced higher, because it cannot be reused and it carries the paperwork.</li>
   </ul>
 
@@ -232,7 +232,7 @@ main > * { position: relative; z-index: 2; }
 
   <h2>The actual numbers</h2>
 
-  <p>These are the figures the <a href="./#estimator">estimator on the front page</a> runs on, so the two always agree. Everything stacks additively rather than as a chain of percentages, which is what makes it checkable.</p>
+  <p>These are the base figures I price from, so this table and any quote I give agree. Everything stacks additively rather than as a chain of percentages, which is what makes it checkable.</p>
 
   <div class="tablewrap">
   <table>
@@ -266,7 +266,7 @@ main > * { position: relative; z-index: 2; }
   <p><strong>Minimum of $20 on any job</strong>, including the one line fixes, because every job carries the same intake, licence check, build and boot test regardless of how small the change is.</p>
 
   <div class="note silent">
-    <p><strong>The estimate is a range, and the range is honest about what it is.</strong> It is built from the mod as you describe it. The fixed price comes in writing after I have actually opened the source, and it is the number you pay. If what I find makes the job bigger than described, you get told before any work starts, not after.</p>
+    <p><strong>The estimate is a range, and the range is honest about what it is.</strong> It is built from the mod as you describe it. The fixed price comes in writing after I have actually opened the source, and it is the number you pay. If what I find makes the job bigger than described, you get told before any work starts.</p>
   </div>
 
   <h2>A real job, added up</h2>
@@ -295,7 +295,7 @@ main > * { position: relative; z-index: 2; }
   </div>
 
   <div class="note">
-    <p><strong>Being straight about this one.</strong> That is where the job lands on my own table, not an invoice. I did this port for the mod's creator and handed it back to him for his official page, so nobody paid me for it. I am using it because it is a job I can describe end to end with his name on it, and a worked example you cannot verify is worth nothing.</p>
+    <p><strong>Being straight about this one.</strong> This job landed on my own table, with no invoice attached. I did this port for the mod's creator and handed it back to him for his official page, so nobody paid me for it. I am using it because it is a job I can describe end to end with his name on it, and a worked example you cannot verify is worth nothing.</p>
   </div>
 
   <h2>What is not in the price</h2>
@@ -309,15 +309,15 @@ main > * { position: relative; z-index: 2; }
 
   <h2>When you should not pay me at all</h2>
 
-  <p>Three cases where this costs you nothing. Better you read this here than after you've opened a ticket.</p>
+  <p>Three cases where this costs you nothing, and you should know them before you open a ticket.</p>
 
   <ul>
     <li><strong>The mod already runs through a bridge.</strong> <a href="https://modrinth.com/mod/connector" target="_blank" rel="noopener noreferrer"><span translate="no">Sinytra Connector</span></a> runs<span translate="no"> Fabric </span>mods on<span translate="no"> Forge </span>and<span translate="no"> NeoForge</span>, including 1.20.1, and it is free. Try it first. I wrote up <a href="fabric-to-forge-1-20-1.html">when it works and when it does not</a>.</li>
-    <li><strong>The mod is built on<span translate="no"> Architectury</span>.</strong> If the source tree already has a <code>forge/src</code> directory, most of the work you would be paying for is done. That is usually a version bump, not a port, and often something you can finish yourself in an evening.</li>
-    <li><strong>You want to learn how.</strong> Everything I know about the failures that produce no error is written down for free: <a href="fabric-to-forge-1-20-1.html">what breaks in a<span translate="no"> Fabric </span>to<span translate="no"> Forge </span>port</a> and <a href="geckolib-bone-name-crash.html">the crash no compiler can catch</a>. If you would rather spend a weekend than money, spend the weekend.</li>
+    <li><strong>The mod is built on<span translate="no"> Architectury</span>.</strong> If the source tree already has a <code>forge/src</code> directory, most of the work you would be paying for is done. Usually that is a version bump more than a port, and often something you can finish yourself in an evening.</li>
+    <li><strong>You want to learn how.</strong> Everything I know about the failures that produce no error is written down for free: <a href="fabric-to-forge-1-20-1.html">what breaks in a<span translate="no"> Fabric </span>to<span translate="no"> Forge </span>port</a> and <a href="geckolib-bone-name-crash.html">the crash no compiler can catch</a>. If a weekend of your own time is cheaper than my invoice, spend the weekend.</li>
   </ul>
 
-  <p>What you are actually buying when you do pay is not the typing. It is somebody who has already hit the failures that build clean and break silently, and who checks for them before the jar leaves.</p>
+  <p>When you do pay, what you are buying is somebody who has already hit the failures that build clean and break silently, and who checks for them before the jar leaves.</p>
 
   <h2>How to get a number you can trust</h2>
 
@@ -330,14 +330,14 @@ main > * { position: relative; z-index: 2; }
   </ol>
 
   <div class="cta">
-    <p><strong>Want the number for your mod?</strong> The estimator asks for the version pair, the loader direction, the rough size and the licence, and gives you a range immediately. No email required to see it.</p>
-    <p><a class="btn" href="./#estimator">Price my port</a></p>
+    <p><strong>Want the number for your mod?</strong> Tell me the version pair, the loader direction, the rough size and the licence, and I'll give you a range.</p>
+    <p><a class="btn" href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer">Price my port on Discord</a></p>
   </div>
-  <p class="byline">Written by <strong translate="no">josda</strong>,<span translate="no"> Forge </span>1.20.1 mod porting. Last updated August 2026. Questions, corrections or a mod you need moved: <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer">Discord</a> or <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20porting">email</a>.</p>
+  <p class="byline">Written by <strong translate="no">josda</strong>,<span translate="no"> Forge </span>1.20.1 mod porting. Last updated August 2026. Questions, corrections or a mod you need moved: open a ticket on <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer">my<span translate="no"> Discord</span></a>.</p>
 </main>
 
 <footer>
  <span translate="no"> Modwright </span>&middot;<span translate="no"> Forge </span>1.20.1 mod porting &middot; <a href="./">Services and pricing</a> &middot; <a href="fabric-to-forge-1-20-1.html"><span translate="no">Fabric </span>to<span translate="no"> Forge</span>: what breaks</a>
- &middot; <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer">Discord</a> &middot; <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20porting">Email</a></footer>
+ &middot; <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer">Discord</a></footer>
 </body>
 </html>
