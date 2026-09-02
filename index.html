@@ -133,7 +133,7 @@
       "name": "Is this legal?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. You pay for my time writing the port, not for distribution rights. I publish only open-source mods or mods with written permission; anything else is delivered privately to whoever holds the right to use it. See the Licenses section below."
+        "text": "Yes. The fee covers my time writing the port; distribution rights are a separate question, settled by the mod's licence. I publish only open-source mods or mods with written permission; anything else is delivered privately to whoever holds the right to use it. See the Licenses section below."
       }
     },
     {
@@ -165,7 +165,7 @@
       "name": "Can I put the ported mod in my public modpack?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "It depends on the original mod's licence, and I tell you which case you are in before you pay, not after. Open-source: yes, and I publish it with credit to the original author so your pack links to something real. Your own mod, or one where you hold written permission: yes, and I tell you exactly what credit to include. All rights reserved with no permission: no, and I will not take the job on those terms, because the takedown would land on your account and not mine."
+        "text": "It depends on the original mod's licence, and I tell you which case you are in before you pay. Open-source: yes, and I publish it with credit to the original author so your pack links to something real. Your own mod, or one where you hold written permission: yes, and I tell you exactly what credit to include. All rights reserved with no permission: no, and I will not take the job on those terms, because the takedown would land on your account and not mine."
       }
     },
     {
@@ -363,7 +363,6 @@
     html[data-theme="light"] a.btn-ghost { color: var(--text); }
     html[data-theme="light"] .nav-links a { color: var(--text-soft); }
     html[data-theme="light"] .nav-links a:hover { color: var(--text); }
-    html[data-theme="light"] .eyebrow,
     html[data-theme="light"] .faq-icon,
     html[data-theme="light"] .est-copy.done { color: #89531e; }
     html[data-theme="light"] .badge { color: #89531e; background: rgba(192,126,60,0.10); }
@@ -484,7 +483,6 @@
     /* El hover del CTA oscurecia el fondo manteniendo texto oscuro (3.9:1).
        En claro el hover tiene que ACLARAR para que el texto siga leyendose. */
     html[data-accent="green"][data-theme="light"] .btn-nav:hover { background: #35ab5f !important; }
-    html[data-accent="green"][data-theme="light"] .eyebrow,
     html[data-accent="green"][data-theme="light"] .faq-icon,
     html[data-accent="green"][data-theme="light"] .est-copy.done { color: #1b733b; }
     html[data-accent="green"][data-theme="light"] .badge { color: #1b733b; background: rgba(47,158,87,0.10); }
@@ -660,10 +658,6 @@
        cruzaba de borde a borde. Centrado, la franja entera lee como un bloque. */
     .ls-disclaimer { margin: 0.9rem auto 0; padding-top: 0.85rem; border-top: 1px dashed var(--border); font-size: 0.74rem; color: var(--text-mute); line-height: 1.55; max-width: 36em; text-align: center; }
 
-    .eyebrow {
-      font-size: 0.8rem; font-weight: 700; letter-spacing: 0.13em;
-      color: var(--green-hi); margin-bottom: 0.9rem; text-transform: uppercase;
-    }
     h2 { font-family: var(--font-display); font-size: clamp(1.65rem, 3vw, 2.2rem); font-weight: 600; letter-spacing: 0; line-height: 1.18; margin-bottom: 0.85rem; }
     .sub { color: var(--text-soft); max-width: 560px; font-size: 0.96rem; }
 
@@ -857,14 +851,6 @@
        que trae los encargos. La pastilla FREE de dentro NO la hereda: a 0.62em
        una letra de pixeles no se lee. */
     .btn-nav { background: var(--terracotta); color: #2a1302 !important; font-family: 'Monocraft', 'Space Grotesk', system-ui, sans-serif; font-weight: 700; font-size: 0.95rem; letter-spacing: 0.01em; padding: 0.48rem 1rem; border-radius: var(--radius); white-space: nowrap; box-shadow: 0 0 0 2px rgba(210,112,63,0.30); transition: background 0.15s, box-shadow 0.15s; }
-    .nav-free { font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 0.62em; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; border: 1.4px solid currentColor; border-radius: 999px; padding: 0.12em 0.5em; margin-left: 0.5em; vertical-align: 0.12em; }
-    /* Sin `opacity: 0.85`: bajaba la pildora "free" a 4,19:1 sobre el naranja del
-       boton, por debajo del 4,5 que pide texto normal. Que se distinga del rotulo
-       ya lo hacen el tamano (0,62em), la versalita y el borde redondeado; la
-       opacidad solo restaba legibilidad al unico dato que dice que es gratis. */
-    /* El chip se retira cuando el nav no tiene sitio: su trabajo es persuadir
-       en escritorio, y a 414px cuesta 33px de un presupuesto que no da. */
-    @media (max-width: 520px) { .nav-free { display: none; } }
     /* El wordmark se retiraba solo por debajo de 400px, y a 414 la marca ocupa
        170px: el nav no cabia. El logo solo ya identifica la marca a ese ancho. */
     @media (max-width: 430px) { .brand .wordmark { display: none; } }
@@ -1025,11 +1011,6 @@
     .est-group { margin-bottom: 1.5rem; opacity: 1; transition: opacity 0.18s ease, display 0.18s allow-discrete; }
     .est-group:last-child { margin-bottom: 0; }
     .est-group.hidden { display: none; opacity: 0; }
-    .est-adv-toggle { display: inline-flex; align-items: center; gap: 0.4rem; background: transparent; border: 1px dashed var(--border-lt); color: var(--text-soft); font-family: inherit; font-size: 0.86rem; font-weight: 600; padding: 0.55rem 0.95rem; border-radius: var(--radius); cursor: pointer; transition: background-color 0.15s, color 0.15s, border-color 0.15s; margin-bottom: 1.5rem; }
-    .est-adv-toggle:hover { border-color: var(--green-ring); color: var(--text); }
-    .est-adv-toggle .adv-caret { transition: transform 0.18s; font-size: 0.78rem; }
-    .est-adv-toggle[aria-expanded="true"] .adv-caret { transform: rotate(180deg); }
-    .est-advanced.hidden { display: none; }
     .est-label { font-size: 0.96rem; font-weight: 700; color: var(--text); margin-bottom: 0.7rem; display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; }
     .est-hint { font-size: 0.78rem; color: var(--text-mute); font-weight: 400; }
     .est-options { display: flex; flex-wrap: wrap; gap: 0.55rem; }
@@ -1152,13 +1133,14 @@
     .est-opt.ac-bridge.active { background: #5f86ad; color: #eaf2fb; border-color: #5f86ad; box-shadow: 0 0 0 3px rgba(95,134,173,0.28); }
     .est-opt.ac-steel.active  { background: #8b9099; color: #15171a; border-color: #8b9099; box-shadow: 0 0 0 3px rgba(139,144,153,0.26); }
     .est-opt.ac-spark.active  { background: #e0b441; color: #2a2008; border-color: #e0b441; box-shadow: 0 0 0 3px rgba(224,180,65,0.24); }
-    .est-result { background: linear-gradient(180deg, rgba(203,161,74,0.06), var(--bg)); padding: var(--pad-card); position: sticky; top: 80px; border: 1px solid rgba(203,161,74,0.22); border-radius: var(--radius-lg); box-shadow: 0 0 0 1px rgba(203,161,74,0.10), 0 12px 30px -18px rgba(0,0,0,0.8); }
+    .est-result { background: var(--bg); padding: var(--pad-card); position: sticky; top: 80px; border: 1px solid rgba(203,161,74,0.22); border-radius: var(--radius-lg); box-shadow: 0 12px 30px -18px rgba(0,0,0,0.8); }
     .est-result-label { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.09em; color: var(--text-mute); margin-bottom: 0.5rem; }
-    .est-price { font-size: clamp(3.1rem, 6vw, 3.8rem); font-weight: 700; color: var(--gold); line-height: 1; margin-bottom: 0.55rem; font-variant-numeric: tabular-nums; letter-spacing: -0.01em; text-shadow: 0 0 24px rgba(203,161,74,0.25); }
-    @keyframes estpulse { 0% { color: #ffe6ab; text-shadow: 0 0 30px rgba(203,161,74,0.55); } 100% { color: var(--gold); text-shadow: 0 0 24px rgba(203,161,74,0.25); } }
+    .est-price { font-size: clamp(3.1rem, 6vw, 3.8rem); font-weight: 700; color: var(--gold); line-height: 1; margin-bottom: 0.55rem; font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+    @keyframes estpulse { 0% { color: #ffe6ab; } 100% { color: var(--gold); } }
     .est-price.pulse { animation: estpulse 0.5s ease-out; }
-    /* Con movimiento reducido el destello se QUEDA, solo mas corto. Es color y
-       resplandor, cero desplazamiento, o sea de los efectos que la guia deja pasar,
+    /* Con movimiento reducido el destello se QUEDA, solo mas corto. Es un cambio
+       de color y nada mas, cero desplazamiento, o sea de los efectos que la guia
+       deja pasar,
        y ahora que el numero salta en vez de interpolarse es el unico aviso de que
        el precio cambio: apagarlo dejaba el estimador sin respuesta ninguna. Lleva
        !important porque el reset global de arriba apaga toda animacion con !important. */
@@ -1261,7 +1243,12 @@
        timidos y el bloque parecia muerto. 56px es el tamano al que un logo de
        mod se reconoce. Los que no tienen arte llevan monograma, nunca un hueco. */
     .shelf-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 0.5rem; }
-    .tile { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; text-align: center; padding: 0.85rem 0.5rem; background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-lg); font-size: 0.74rem; line-height: 1.3; color: var(--text-soft); transition: transform 0.18s ease, border-color 0.18s ease; }
+    /* Sin caja. 23 tarjetas identicas en rejilla es el componente que mas se lee
+       como plantilla, y aqui no aportan nada: el logo ya delimita cada mod y el
+       `gap` los separa. Se conserva el `border: 1px` en transparente para que el
+       modelo de caja no cambie ni un pixel (las caricaturas de esta seccion van
+       posicionadas con `top` medido), y el borde reaparece al pasar el raton. */
+    .tile { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; text-align: center; padding: 0.85rem 0.5rem; background: transparent; border: 1px solid transparent; border-radius: var(--radius-lg); font-size: 0.74rem; line-height: 1.3; color: var(--text-soft); transition: transform 0.18s ease, border-color 0.18s ease; }
     .tile:hover { transform: translateY(-2px); border-color: var(--border-lt); }
     .tile img { width: 56px; height: 56px; border-radius: 8px; image-rendering: pixelated; flex-shrink: 0; }
     .tile-mono { width: 56px; height: 56px; border-radius: 8px; display: grid; place-items: center; background: var(--brown-glow); border: 1px solid var(--brown-ring); color: var(--brown-hi); font-weight: 700; font-size: 1.05rem; letter-spacing: 0.02em; }
@@ -1316,11 +1303,23 @@
 
     /* ── FAQ ── */
     #faq { border-top: 1px solid var(--border); }
-    .faq-list { margin-top: 2.5rem; }
-    .faq-item { border: 1px solid var(--border); border-left: 3px solid transparent; border-radius: var(--radius); margin-bottom: 0.7rem; background: var(--surface); overflow: hidden; transition: border-color 0.15s; }
-    .faq-item:hover { border-color: var(--green-ring); border-left-color: var(--green-hi); }
+    /* Las 9 preguntas eran 9 CAJAS: borde entero, esquinas redondeadas, fondo
+       propio y una barra de acento a la izquierda. Nueve rectangulos identicos
+       apilados es la forma mas reconocible de una plantilla, y encima no aportaba
+       nada: una pregunta y su respuesta no necesitan una caja para saberse
+       separadas de la siguiente, basta una linea. Pasan a lista con filete y el
+       texto se alinea con el h2 y con el resto de la seccion (antes iba 1,3rem
+       metido hacia dentro por el relleno de la caja); esa alineacion es lo que
+       hace que se lea como una pagina escrita y no como una rejilla de tarjetas.
+       El realce al pasar por encima lo lleva ya el texto de la pregunta, asi que
+       el de la caja sobra: en una lista con filete solo encenderia UNA raya.
+       `overflow: hidden` SE QUEDA aunque ya no haya esquinas que recortar: de el
+       depende el anillo de foco de la linea ~584, y es la red que recorta el "+"
+       si el texto vuelve a desbordar. */
+    .faq-list { margin-top: 2.5rem; border-top: 1px solid var(--border); }
+    .faq-item { border-bottom: 1px solid var(--border); overflow: hidden; }
     .faq-q:hover { color: var(--green-hi); }
-    .faq-q { width: 100%; text-align: left; background: none; border: none; color: var(--text); font-family: inherit; font-size: 0.94rem; font-weight: 700; padding: 1.1rem 1.3rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+    .faq-q { width: 100%; text-align: left; background: none; border: none; color: var(--text); font-family: inherit; font-size: 0.94rem; font-weight: 700; padding: 1.15rem 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1rem; transition: color 0.15s; }
     /* El texto de la pregunta va en UN elemento, y no suelto, porque `.faq-q` es
        flex con `space-between`: cada `<span translate="no">` a media frase se
        convertia en un item flex mas y la pregunta se repartia por todo el ancho.
@@ -1331,7 +1330,12 @@
        `min-width: 0` es obligatorio: sin el, el flex-item no baja de su
        contenido y a 375 vuelve a desbordar. */
     .faq-txt { flex: 1; min-width: 0; }
-    .faq-icon { display: inline-grid; place-items: center; flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--green-glow); font-size: 1.15rem; font-weight: 400; color: var(--green-hi); line-height: 1; }
+    /* Sin la pastilla verde de 28 px: era el segundo adorno repetido nueve veces,
+       y una pastilla de color pide una caja alrededor que ya no existe. Queda el
+       signo solo, con ancho fijo para que al pasar de "+" a "-" no se mueva nada
+       a su lado. El color NO se toca: asi siguen valiendo las dos reglas de tema
+       claro que lo reasignan (lineas ~366 y ~486). */
+    .faq-icon { display: inline-grid; place-items: center; flex-shrink: 0; width: 1.1rem; font-size: 1.3rem; font-weight: 400; color: var(--green-hi); line-height: 1; }
     /* Abre con grid-template-rows 0fr->1fr, no con max-height. Con max-height habia
        que fijar un techo (360px) y la respuesta mas larga lo rozaba en movil: un
        parrafo mas y se cortaba en silencio. Ademas la curva se aplicaba al TECHO, no
@@ -1343,9 +1347,9 @@
        `auto`, cuyo minimo es el min-content: la respuesta no encogia por debajo
        de su palabra mas larga y en español se salia de la pantalla. Tercera vez
        el mismo fallo en esta hoja, despues de `.mp-list` y `.estimator`. */
-    .faq-a { display: grid; grid-template-rows: 0fr; grid-template-columns: minmax(0, 1fr); overflow: hidden; transition: grid-template-rows 0.25s ease; padding: 0 1.3rem; color: var(--text-soft); font-size: 0.88rem; line-height: 1.65; }
+    .faq-a { display: grid; grid-template-rows: 0fr; grid-template-columns: minmax(0, 1fr); overflow: hidden; transition: grid-template-rows 0.25s ease; padding: 0; color: var(--text-soft); font-size: 0.88rem; line-height: 1.65; }
     /* Medido: 129 caracteres por linea, lo mas ilegible de la pagina. El borde y la
-       flecha los pone .faq-item, asi que limitar aqui no rompe la caja.
+       filete lo pone .faq-item, asi que limitar aqui no rompe la fila.
        Ni relleno ni margen abajo en el hijo: es la casilla de la rejilla y su caja
        no se puede comprimir a cero, asi que el relleno se quedaba visible como una
        franja de 19px con el acordeon cerrado. El aire de abajo va como ::after, que
@@ -1540,7 +1544,6 @@
        con bigote con una captura de partida. La banda del taller no lleva el
        recorte de las otras porque su gracia esta en los bordes (la estanteria
        de cargadores a la izquierda, la lista de pasos abajo). */
-    .scene-band--art img { background: #1a1512; }
     /* Ocupa el sitio de .mascots, que se fue el 16-08 con Tesla y Einstein.
        SIN borde ni fondo, al reves que aquella: esta viene recortada a
        transparente, asi que un marco dibujaria un rectangulo alrededor de aire.
@@ -2020,6 +2023,12 @@
        salia 26 px de la pantalla a 320 px. Es el mismo minimo implicito que tenian
        las tres rejillas (`.mp-list`, `.estimator`, `.faq-a`), en su version flex. */
     .hero-me span { font-size: 0.82rem; line-height: 1.45; color: var(--text-mute); min-width: 0; }
+    /* Subrayado OBLIGATORIO. El dorado que hereda del `a` global contrasta
+       1,52:1 con el texto de al lado: a color solo, el enlace no se ve que es
+       un enlace, y ademas incumple 1.4.1 (no distinguir por color unicamente).
+       Mismo trato que `.hero-contact a`, que va dos parrafos mas arriba. */
+    .hero-me a { text-decoration: underline; text-decoration-color: var(--text-mute); text-underline-offset: 3px; }
+    .hero-me a:hover { text-decoration-color: currentColor; }
   </style>
   <script>
     (function(){
@@ -2060,9 +2069,10 @@
       
       <li><a href="#authors">Mod authors</a></li>
       <li><a href="#legal">Legal</a></li>
-      <li class="nav-cta"><a href="#estimator" class="btn-nav">Price my mod<span class="nav-free">free</span></a></li>
+      <li class="nav-cta"><a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" class="btn-nav">Get a quote</a></li>
       <li class="nav-tog"><a class="nav-chan nav-chan--discord" href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" aria-label="Message me on Discord" title="Discord"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg></a></li>
-      <li class="nav-tog"><a class="nav-chan nav-chan--mail" href="mailto:modwrightstudios@gmail.com?subject=Mod%20commission" aria-label="Send me an email" title="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a></li>
+      <!-- Aqui iba el icono de correo. Fuera: al lado esta el de Discord, que es
+           por donde entra todo, y en la barra el ancho es el recurso escaso. -->
       <li class="nav-tog"><button type="button" id="accent-toggle" class="theme-toggle" aria-label="Toggle green accent" title="Warm / green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19c0-7 4.5-12.5 13-13-0.5 8.5-6 13-13 13z"/><path d="M5 19c3-4.5 6.5-8 10.5-10.5"/></svg></button></li>
       <li class="nav-tog"><button type="button" id="theme-toggle" class="theme-toggle" aria-label="Switch between light and dark theme" title="Light / dark"><svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button></li>
     </ul>
@@ -2167,7 +2177,7 @@
     <h1 class="hero-h1-img"><span class="h1-texto"><span translate="no">Port,</span><span translate="no"> backport </span>&amp; revive<span translate="no"> </span><span class="mc" translate="no" data-word="Minecraft">Minecraft</span><span translate="no"> </span>mods, any version, any loader</span><picture><source media="(max-width: 700px)" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"><img src="titulo-hero.webp" width="2537" height="731" alt="" aria-hidden="true" fetchpriority="high" decoding="async"></picture><img class="h1-es" src="titulo-hero-es.webp" width="2533" height="1142" alt="" aria-hidden="true" loading="lazy" decoding="async"></h1>
     <p class="hero-who"><picture><source media="(prefers-reduced-motion: reduce)" srcset="wave-me-still.webp"><img class="hero-wave" src="wave-me.webp" width="192" height="190" alt="" aria-hidden="true" loading="eager" decoding="async"></picture>I'm <strong><span translate="no">josda</span></strong>. I build<span translate="no"> modpacks</span>; I got fed up with mods dying off on old versions, so I started<span translate="no"> porting </span>them myself.</p>
     <p class="hero-desc">
-      A mod only runs on the version of<span translate="no"> Minecraft </span>it was built for. I rebuild it so it runs on yours instead, or on a different mod loader:<span translate="no"> Forge</span>,<span translate="no"> Fabric </span>and<span translate="no"> NeoForge</span>, in any direction.<span translate="no"> Forge </span>1.20.1 is where most of my work lands, not the limit of what I take. I check the licence first, and I run every build in the game before it goes out.
+      A mod only runs on the version of<span translate="no"> Minecraft </span>it was built for. I rebuild it so it runs on yours instead, or on a different mod loader:<span translate="no"> Forge</span>,<span translate="no"> Fabric </span>and<span translate="no"> NeoForge</span>, in any direction.<span translate="no"> Forge </span>1.20.1 is where most of my work lands, though I take other versions and loaders too.
     </p>
     <div class="pills">
       <!-- 🚨 AQUI YA NO VA LA CIFRA (josda, 2026-08-31): "no pongas el precio
@@ -2185,11 +2195,9 @@
       <span class="pill">5 checks on every build before it ships</span>
       <span class="pill">Licence checked up front</span>
     </div>
-    <p class="hero-hook">Is your favourite mod missing on the version you actually play? Price it in about a minute.</p>
+    <p class="hero-hook">Is your favourite mod missing on the version you actually play? Tell me which one and I'll tell you what it takes.</p>
     <div class="ctas">
-      <a href="#estimator" class="btn btn-go">Price my mod</a>
-      <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" class="btn btn-discord"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg><span>Chat on<span translate="no"> Discord</span></span></a>
-      <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20commission" class="btn btn-gmail"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Email me</a>
+      <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" class="btn btn-go"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg><span>Get a quote</span></a>
       <!-- 🚨 APUNTA A #portfolio Y NO A #services, MEDIDO: la portada ya tiene
            SIETE enlaces a #services (las 6 pildoras de arriba y este) y CERO al
            portafolio. Y en la barra fija "Portfolio" esta OCULTO a 375 y a 768,
@@ -2198,10 +2206,10 @@
            los dos textos a 1440 y a 768, y 289 a 375. -->
       <span class="cta-with-eyes"><a href="#portfolio" class="btn btn-ghost">See the work</a><svg class="bicon-eyes" viewBox="0 0 30 18" width="30" height="17" aria-hidden="true"><ellipse cx="9" cy="9" rx="7.6" ry="8.2" fill="#fff" stroke="#2a2014" stroke-width="0.9"/><ellipse cx="21" cy="9" rx="7.6" ry="8.2" fill="#fff" stroke="#2a2014" stroke-width="0.9"/><circle cx="12.6" cy="8.2" r="3.5" fill="#15110b"/><circle cx="24.6" cy="8.2" r="3.5" fill="#15110b"/><circle cx="13.85" cy="7" r="1.05" fill="#fff"/><circle cx="25.85" cy="7" r="1.05" fill="#fff"/></svg></span>
     </div>
-    <p class="hero-contact">Quickest reply is on <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer">my<span translate="no"> Discord</span></a>. <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20commission">Email</a> works too.</p>
+    <p class="hero-contact">It all runs through <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer">my<span translate="no"> Discord</span></a>: open a ticket and I look at your mod there, one case at a time.</p>
     <div class="hero-me">
       <img src="h1024-11.webp" width="256" height="236" alt="" aria-hidden="true" decoding="async">
-      <span>That's my character. The rest around the page are from the same world.</span>
+      <span>That's my character. The rest around the page are from the same world.<span translate="no"> Criss </span>plays the<span translate="no"> ports </span>and shows them around on <a href="https://www.tiktok.com/@crisxx_xx" target="_blank" rel="noopener noreferrer" translate="no">TikTok</a>.</span>
     </div>
     <!-- El tiempo de respuesta se decia TRES veces y las tres con "usually":
          aqui, en #contact y en el aviso del motor. Repetir una promesa
@@ -2237,155 +2245,16 @@
   </div>
 </section>
 <!-- ESTIMATOR -->
-<section id="estimator">
-  <!-- Caricaturas de pixel art (tanda del 19-08). Se suman al sistema
-       `.ch--borde` que ya existe: mismo anclaje en pixeles, mismo
-       apagado por debajo de 1360. Cada una lleva su alto REAL en --h,
-       asi que se pinta 1:1 y no hay escalado que la emborrone. Los
-       `top` estan MEDIDOS sobre la pagina renderizada, no estimados:
-       cada uno cae en un tramo comprobado libre en ese lado. -->
-  <img class="ch ch--borde" src="h9478c-33.webp" width="256" height="235" style="right:calc(50% + 530px + 18px);top:1565px;--h:205px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="hsunny-23.webp" width="256" height="245" style="left:calc(50% + 530px + 18px);top:890px;--h:205px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="h1024-23.webp" width="256" height="235" style="right:calc(50% + 530px + 18px);top:700px;--h:205px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="h512-21.webp" width="256" height="245" style="left:calc(50% + 530px + 18px);top:450px;--h:205px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="h9478c-32.webp" width="256" height="236" style="right:calc(50% + 530px + 18px);top:201px;--h:205px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <div class="wrap">
-    <div class="eyebrow" translate="no">Angel Engine</div>
-    <h2>Price your mod</h2>
-    <p class="sub">Pick what you need and the number moves as you go, and it writes a summary you can paste straight into a message. Every price on this site comes from here.</p>
-
-    <div class="estimator reveal">
-      <div class="est-form">
-        <div class="est-group" id="grp-service">
-          <div class="est-label">What kind of job is it?</div>
-          <div class="est-options" data-group="service">
-            <button type="button" class="est-opt ac-copper active" data-value="backport"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v13"/><path d="M6 12l6 6 6-6"/></svg><span translate="no">Backport</span><small>newer → older</small></button>
-            <button type="button" class="est-opt ac-life" data-value="forward"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V6"/><path d="M6 12l6-6 6 6"/></svg><span translate="no">Forward-port </span>/ revive<small>old → modern</small></button>
-            <button type="button" class="est-opt ac-bridge" data-value="compat"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7h4a4 4 0 0 1 0 8h-1"/><path d="M15 17h-4a4 4 0 0 1 0-8h1"/></svg>Compatibility<small>make mods coexist</small></button>
-            <button type="button" class="est-opt ac-steel" data-value="maintain"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.6 5.6L3 18l3 3 6.1-6.1a4 4 0 0 0 5.6-5.6l-2.9 2.9a1.5 1.5 0 0 1-2-2l2.9-2.9z"/></svg>Maintenance<small>fix mixins / crashes</small></button>
-            <button type="button" class="est-opt ac-spark" data-value="optimize"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Optimization<small>less lag / resources</small></button>
-            <button type="button" class="est-opt ac-steel" data-value="quickfix"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15.5 4.5a4.5 4.5 0 0 0-5.9 5.6L4 15.7V20h4.3l5.6-5.6a4.5 4.5 0 0 0 5.6-5.9L17 11l-2.5-.5L14 8z"/></svg>Quick fix<small>small tweaks, same loader</small></button>
-          </div>
-        </div>
-        <div class="est-group" id="grp-loader">
-          <div class="est-label">Source mod loader</div>
-          <div class="est-options" data-group="loader">
-            <button type="button" class="est-opt brand-forge active" data-value="forge"><svg class="loglyph" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M2 8h10l-1.2 2.4H15v2h-1.9L12 17H8L6.2 12.4H2z"/><rect x="6" y="18" width="9" height="2" rx="0.4" fill="currentColor"/></svg><span translate="no">Forge</span><small>same loader, least work</small></button>
-            <button type="button" class="est-opt brand-neoforge" data-value="neoforge"><svg class="loglyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 16.5V7.5l7 9v-9" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span translate="no">NeoForge</span><small>mostly a rename</small></button>
-            <button type="button" class="est-opt brand-fabric" data-value="fabric"><svg class="loglyph" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="3" fill="currentColor"/><g stroke="#0e0d0b" stroke-width="1.2" opacity="0.32"><path d="M3.5 9.7h17M3.5 14.3h17M9.7 3.5v17M14.3 3.5v17"/></g></svg>From<span translate="no"> Fabric</span><small>near-rewrite</small></button>
-          </div>
-        </div>
-        <div class="est-group" id="grp-size">
-          <div class="est-label">How big is the mod?</div>
-          <div class="est-options" data-group="size">
-            <button type="button" class="est-opt t1" data-value="small"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3.5" y="14" width="4" height="6" rx="0.9"/><rect x="9.5" y="9" width="4" height="11" rx="0.9" opacity="0.22"/><rect x="15.5" y="4" width="4" height="16" rx="0.9" opacity="0.22"/></svg>Small<small>items, blocks, recipes</small></button>
-            <button type="button" class="est-opt t2 active" data-value="medium"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3.5" y="14" width="4" height="6" rx="0.9"/><rect x="9.5" y="9" width="4" height="11" rx="0.9"/><rect x="15.5" y="4" width="4" height="16" rx="0.9" opacity="0.22"/></svg>Medium<small>mechanics, entities, GUI</small></button>
-            <button type="button" class="est-opt t3" data-value="large"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3.5" y="14" width="4" height="6" rx="0.9"/><rect x="9.5" y="9" width="4" height="11" rx="0.9"/><rect x="15.5" y="4" width="4" height="16" rx="0.9"/></svg>Large<small>tech mod, worldgen</small></button>
-          </div>
-        </div>
-        <div class="est-group" id="grp-wall">
-          <div class="est-label" title="Most jobs cross none or one.">Version jump <span class="est-hint">(the biggest cost driver)</span></div>
-          <div class="est-options" data-group="wall">
-            <button type="button" class="est-opt t1 active" data-value="none"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="2.8" y="15" width="3.2" height="5" rx="0.8"/><rect x="7.6" y="11" width="3.2" height="9" rx="0.8" opacity="0.22"/><rect x="12.4" y="7" width="3.2" height="13" rx="0.8" opacity="0.22"/><rect x="17.2" y="3" width="3.2" height="17" rx="0.8" opacity="0.22"/></svg>None / tiny<small>e.g. 1.19.2 ↔ 1.20.1</small></button>
-            <button type="button" class="est-opt t2" data-value="moderate"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="2.8" y="15" width="3.2" height="5" rx="0.8"/><rect x="7.6" y="11" width="3.2" height="9" rx="0.8"/><rect x="12.4" y="7" width="3.2" height="13" rx="0.8" opacity="0.22"/><rect x="17.2" y="3" width="3.2" height="17" rx="0.8" opacity="0.22"/></svg>Moderate<small>e.g. 1.20.4 &#8594; 1.20.1</small></button>
-            <button type="button" class="est-opt t3" data-value="hard"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="2.8" y="15" width="3.2" height="5" rx="0.8"/><rect x="7.6" y="11" width="3.2" height="9" rx="0.8"/><rect x="12.4" y="7" width="3.2" height="13" rx="0.8"/><rect x="17.2" y="3" width="3.2" height="17" rx="0.8" opacity="0.22"/></svg>Hard<small>e.g. 1.21 &#8594; 1.20.1</small></button>
-            <button type="button" class="est-opt t4" data-value="brutal"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="2.8" y="15" width="3.2" height="5" rx="0.8"/><rect x="7.6" y="11" width="3.2" height="9" rx="0.8"/><rect x="12.4" y="7" width="3.2" height="13" rx="0.8"/><rect x="17.2" y="3" width="3.2" height="17" rx="0.8"/></svg>Brutal<small>e.g. 1.12.2 &#8594; 1.20.1</small></button>
-          </div>
-        </div>
-        <div class="est-group hidden" id="grp-scope">
-          <div class="est-label" id="scope-label">Compatibility scope</div>
-          <div class="est-options" data-group="scope">
-            <button type="button" class="est-opt t1 active" data-value="small"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3.5" y="14" width="4" height="6" rx="0.9"/><rect x="9.5" y="9" width="4" height="11" rx="0.9" opacity="0.22"/><rect x="15.5" y="4" width="4" height="16" rx="0.9" opacity="0.22"/></svg>Simple<small>one fix</small></button>
-            <button type="button" class="est-opt t2" data-value="medium"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3.5" y="14" width="4" height="6" rx="0.9"/><rect x="9.5" y="9" width="4" height="11" rx="0.9"/><rect x="15.5" y="4" width="4" height="16" rx="0.9" opacity="0.22"/></svg>Moderate<small>a few systems</small></button>
-            <button type="button" class="est-opt t3" data-value="large"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3.5" y="14" width="4" height="6" rx="0.9"/><rect x="9.5" y="9" width="4" height="11" rx="0.9"/><rect x="15.5" y="4" width="4" height="16" rx="0.9"/></svg>Deep<small>complex</small></button>
-          </div>
-        </div>
-        <button type="button" class="est-adv-toggle" id="est-adv-toggle" aria-expanded="false" aria-controls="est-advanced">Advanced: license &amp; priority <span class="adv-caret" aria-hidden="true">▾</span></button>
-        <div class="est-advanced hidden" id="est-advanced">
-        <div class="est-group" id="grp-license">
-          <div class="est-label">Mod license <span class="est-hint">(sets how it's delivered)</span></div>
-          <div class="est-options" data-group="license">
-            <button type="button" class="est-opt ac-life active" data-value="open"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a13 13 0 0 1 0 18"/><path d="M12 3a13 13 0 0 0 0 18"/></svg>Open-source / I have permission<small>publishable</small></button>
-            <button type="button" class="est-opt ac-steel" data-value="closed"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Closed-source (ARR)<small>private delivery</small></button>
-          </div>
-        </div>
-        <div class="est-group" id="grp-rush">
-          <div class="est-label">Priority <span class="est-hint">(optional, jump the queue)</span></div>
-          <div class="est-options" data-group="rush">
-            <button type="button" class="est-opt t1 active" data-value="standard"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 8v4.2l2.6 1.6"/></svg>Standard<small>normal queue</small></button>
-            <button type="button" class="est-opt t2" data-value="prio"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 15l7-6 7 6"/></svg>Priority<small>+25%</small></button>
-            <button type="button" class="est-opt t3" data-value="top"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l7-5 7 5"/><path d="M5 18l7-5 7 5"/></svg>Top priority<small>+50%</small></button>
-          </div>
-        </div>
-        </div>
-      </div>
-
-      <div class="est-result">
-        <!-- "Estimate" y no "quote". Lo que sale aqui es un RANGO calculado de lo
-             que ha marcado el visitante; el presupuesto es UN numero, por escrito,
-             despues de mirar el mod. Llamar "quote" a las dos cosas hacia que
-             pareciera que el numero ya estaba cerrado. -->
-        <div class="est-result-label">Your estimate</div>
-        <div class="est-price" id="est-price" aria-live="polite">$65 – $75</div>
-        <div class="est-note" id="est-note">Same loader, no version wall to cross.</div>
-        <div class="est-breakdown" id="est-breakdown"></div>
-        <div class="est-summary" id="est-summary"></div>
-        <a class="btn btn-discord est-discord" id="est-discord" href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg><span>Copy &amp; open<span translate="no"> Discord</span></span></a>
-        <button type="button" class="btn btn-ghost est-copy" id="est-copy">Just copy it</button>
-        <a class="btn btn-gmail est-email" id="est-email" href="mailto:modwrightstudios@gmail.com?subject=Mod%20porting%20commission"><svg class="bicon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Email it instead</a>
-        <div class="est-disclaimer"><strong>This is an estimate, not a quote.</strong> It is a range, worked out from what you picked. The quote is a single number, and it comes on<span translate="no"> Discord </span>once I have looked at the actual mod. That one is in writing and it does not move.</div>
-        <p class="est-skip">Prefer to just talk? <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer"><span>Message me on<span translate="no"> Discord</span></span></a> or <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20commission">email</a>.</p>
-      </div>
-    </div>
-  </div>
-
-    <!-- intro offer: parked. re-enable this block when ready
-    <div class="price-promo">
-      <span class="price-promo-tag">Intro offer</span>
-      <span>First clients get a <strong>discount on their first port</strong> in exchange for an honest review. Lock in a low rate before prices settle.</span>
-    </div>
-    -->
-    <div class="floors">
-      <div class="floors-head">Starting prices</div>
-      <ul class="floors-list">
-        <li><span>Quick fix</span><b>from $20</b></li>
-        <li><span>Compatibility patch</span><b>from $25</b></li>
-        <li><span>Maintenance</span><b>from $25</b></li>
-        <li><span translate="no">Backport</span><b>from $35</b></li>
-        <li><span>Optimization</span><b>from $45</b></li>
-        <li><span translate="no">Forward-port </span>/ revive<b>quoted per job</b></li>
-      </ul>
-      <p class="floors-note">These are floors, not the price. Every job is quoted as one fixed number once I have looked at the mod, and agreed in writing before any work begins.</p>
-    </div>
-    <p class="pnote"><strong>Reviving an old mod, converting<span translate="no"> Fabric </span>to<span translate="no"> Forge</span>, or private closed-source work?</strong> Those are quoted as one flat number for your specific mod, never a stack of surcharges.</p>
-    <div class="price-promo">
-      <span class="price-promo-tag">Returning clients</span>
-      <span>When your pack moves to a new<span translate="no"> Minecraft </span>version,<span translate="no"> re-porting </span>work I originally built for you is <strong>40% of the original price</strong>, and past clients jump the queue.</span>
-    </div>
-    <div class="paystrip">
-      <div class="paystrip-head">How you pay</div>
-      <div class="paycards">
-        <div class="paycard">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#5aa84a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h13l-3-3"/><path d="M20 16H7l3 3"/></svg>
-          <div class="paycard-name"><span translate="no">Wise</span></div>
-          <div class="paycard-sub">The default. Low-fee bank transfer, paid from anywhere worldwide.</div>
-        </div>
-        <div class="paycard">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#4a7fc4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/></svg>
-          <div class="paycard-name"><span translate="no">PayPal</span></div>
-          <div class="paycard-sub">On request. Goods and Services only, never Friends and Family.</div>
-        </div>
-      </div>
-    </div>
-    <div class="softcta">
-      <p><strong>Not sure it can even be done?</strong> Send me the mod link and I'll tell you whether it's possible and what gets in the way. No charge, and no obligation to take it further.</p>
-      <div class="softcta-row">
-        <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" class="btn btn-discord"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg><span>Ask me on<span translate="no"> Discord</span></span></a>
-        <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20commission" class="btn btn-ghost">Or email me</a>
-      </div>
-    </div>
-  
-</section>
+<!-- Aqui vivia #estimator, el sistema de precios automatico. Retirado por
+     completo el 2026-09-02 a peticion de josda: el presupuesto se acuerda
+     ahora en un ticket del servidor de Discord, caso por caso. Los precios
+     de referencia siguen publicados en mod-porting-cost.html y la eleccion
+     de servicio en #services, que es lo que se conserva.
+     El .softcta que estaba DENTRO de esta seccion ("Not sure it can even be
+     done?") no era del formulario: se ha mudado al final de #services.
+     Queda sin usar el CSS `#estimator` y `.est-*` (~180 lineas): varias de
+     sus reglas de tema son listas por comas compartidas con otros
+     selectores, asi que se limpia en una pasada aparte, no a ciegas. -->
 <figure class="scene-band">
   <img src="band-flight.webp" width="1800" height="1012" alt="My character hanging in the air above an open sea, with the sun going down behind him." loading="lazy" decoding="async">
 </figure>
@@ -2401,9 +2270,13 @@
   <img class="ch ch--borde" src="pix-c27.webp" width="135" height="143" style="left:calc(50% + 530px + 18px);top:755px;--h:143px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="ch ch--borde" src="pix-b04.webp" width="128" height="101" style="right:calc(50% + 530px + 18px);top:1705px;--h:101px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="ch ch--borde" src="pix-c31.webp" width="158" height="141" style="left:calc(50% + 530px + 18px);top:2300px;--h:141px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="h9478c-22.webp" width="256" height="236" style="left:calc(50% + 530px + 18px);top:3831px;--h:215px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="h512-23.webp" width="256" height="235" style="right:calc(50% + 530px + 18px);top:3528px;--h:215px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="h1024-21.webp" width="256" height="236" style="left:calc(50% + 530px + 18px);top:3225px;--h:215px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch ch--borde" src="h9478c-22.webp" width="256" height="236" style="left:calc(50% + 530px + 18px);top:2726px;--h:215px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch ch--borde" src="h512-23.webp" width="256" height="235" style="right:calc(50% + 530px + 18px);top:3026px;--h:215px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch ch--borde" src="h1024-21.webp" width="256" height="236" style="left:calc(50% + 530px + 18px);top:3051px;--h:215px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <!-- h9478c-22 y h512-23 estaban en top 3831 y 3528, y esta seccion mide
+       3377: se salian por abajo y aterrizaban encima de las de #proof.
+       El `top` es relativo a la SECCION, no a la pagina: si pasa del alto
+       de la seccion, la caricatura invade la siguiente. -->
   <img class="ch ch--borde" src="h9478c-21.webp" width="256" height="236" style="right:calc(50% + 530px + 18px);top:2620px;--h:215px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="ch ch--borde" src="h9478c-13.webp" width="256" height="235" style="left:calc(50% + 530px + 18px);top:2015px;--h:215px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="ch ch--borde" src="h1024-13.webp" width="256" height="235" style="right:calc(50% + 530px + 18px);top:1410px;--h:215px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
@@ -2478,7 +2351,7 @@
         <div class="port-cta-text">
           <strong>Your mod could be next</strong>
         </div>
-        <a href="#estimator" class="btn btn-quote btn-sm">Price my mod</a>
+        <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" class="btn btn-quote btn-sm">Get a quote</a>
       </div>
     </div>
 
@@ -2503,7 +2376,7 @@
 
     <div class="shelf">
       <h3>Two I can show you. Twenty-three I can&rsquo;t.</h3>
-      <p>Some are personal-use licences, mine to run but not mine to hand out. The rest are open licences where I am still waiting on the author's yes before I put a build out. That is the whole reason I do <a href="#authors">free work for the people who wrote them</a>.</p>
+      <p>Some are personal-use licences, mine to run but not mine to hand out. The rest are open licences where I am still waiting on the author's yes before I put a build out. It is why I do <a href="#authors">free work for the people who wrote them</a>.</p>
       <ul class="shelf-grid">
         <li class="tile"><img src="tile-boids.png" width="56" height="56" alt="" loading="lazy" decoding="async"><span translate="no">Boids</span></li>
         <li class="tile"><img src="tile-birds.png" width="56" height="56" alt="" loading="lazy" decoding="async"><span translate="no">Birds</span></li>
@@ -2548,7 +2421,7 @@
         <p class="mp-hook">Everything was configured correctly and<span translate="no"> Epic Fight </span>kept winning anyway. The datapack was never loading: a missing <code>pack.mcmeta</code>, and not one line in the log.</p>
         <details class="more more--card">
           <summary>Reading the split</summary>
-        <p><span translate="no">Fresh Animations </span>on almost every creature,<span translate="no"> Epic Fight </span>on my character alone. Taking a mob off<span translate="no"> Epic Fight </span>needs two changes, not one: a datapack entry stops its combat patch, but the mob still draws through its own renderer, so<span translate="no"> Fresh Animations </span>never gets a look in. The other half is a script that pulls the mob out of that renderer map on world load. I found the split by decompiling the render engine, not by guessing.</p>
+        <p><span translate="no">Fresh Animations </span>on almost every creature,<span translate="no"> Epic Fight </span>on my character alone. Taking a mob off<span translate="no"> Epic Fight </span>takes two changes: a datapack entry stops its combat patch, but the mob still draws through its own renderer, so<span translate="no"> Fresh Animations </span>never gets a look in. The other half is a script that pulls the mob out of that renderer map on world load. I found the split by decompiling the render engine.</p>
         <p class="mp-catch"><strong>The half that hid the longest.</strong> The datapack was not loading at all. It was missing its <code>pack.mcmeta</code>, so the loader skipped the entire folder and said nothing about it in the log. Both halves now name the same 24 mobs, and they still match today.</p>
         </details>
         <p class="mp-credit"><a href="https://modrinth.com/resourcepack/fresh-animations" target="_blank" rel="noopener noreferrer"><span translate="no">Fresh Animations</span></a> is by<span translate="no"> FreshLX</span>, <a href="https://modrinth.com/mod/epic-fight" target="_blank" rel="noopener noreferrer"><span translate="no">Epic Fight</span></a> by its own team. All I did was make them share a world.</p>
@@ -2569,7 +2442,7 @@
         <p class="mp-hook"><strong>48% of their creatures were already animated</strong> and never needed<span translate="no"> Fresh Animations </span>at all. I scanned the bytecode of <strong>645<span translate="no"> jars</span></strong> instead of guessing.</p>
         <details class="more more--card">
           <summary>The numbers</summary>
-        <p><span translate="no">Fresh Animations </span>does nothing for a mod that animates its own creatures, so before touching anything I scanned the bytecode of <strong>645<span translate="no"> jars</span></strong> for<span translate="no"> GeckoLib</span>,<span translate="no"> AzureLib </span>and<span translate="no"> Citadel</span>. 305 add creatures, 3,951 creatures between them, and <strong>48% of those creatures were already animated</strong>. That is the difference between a job with no edges and a short list.</p>
+        <p><span translate="no">Fresh Animations </span>does nothing for a mod that animates its own creatures, so before touching anything I scanned the bytecode of <strong>645<span translate="no"> jars</span></strong> for<span translate="no"> GeckoLib</span>,<span translate="no"> AzureLib </span>and<span translate="no"> Citadel</span>. 305 add creatures, 3,951 creatures between them, and <strong>48% of those creatures were already animated</strong>. The scan turned an open-ended job into a short list.</p>
         </details>
       </article>
 
@@ -2604,7 +2477,7 @@
         <div class="mp-head">
           <h3>I read 414<span translate="no"> jars </span>before letting one of them into my pack</h3>
         </div>
-        <p class="mp-hook">Sixty-seven of them contradicted my own notes, and <strong>eight could never have loaded at all</strong>. I found that out by opening them, not by trusting the list I had been keeping.</p>
+        <p class="mp-hook">Sixty-seven of them contradicted my own notes, and <strong>eight could never have loaded at all</strong>. I found that out by opening every one of them.</p>
         <details class="more more--card">
           <summary>What was actually inside them</summary>
         <p>I keep a store of mods I might want one day. Nothing goes from there into the pack until it has been read: the metadata, the loader it was built for, the version it targets, and whether anything already installed collides with it. 414 candidates went through that and came out sorted into <strong>103 ready to go in, 192 in due course, 44 that needed a decision, and 75 on hold</strong> behind a missing dependency or ruled out on purpose.</p>
@@ -2707,8 +2580,8 @@
        `top` estan MEDIDOS sobre la pagina renderizada, no estimados:
        cada uno cae en un tramo comprobado libre en ese lado. -->
   <img class="ch ch--borde" src="pix-b09.webp" width="89" height="97" style="right:calc(50% + 530px + 18px);top:355px;--h:97px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="hari-13.webp" width="256" height="246" style="left:calc(50% + 530px + 18px);top:1252px;--h:170px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="hari-22.webp" width="256" height="245" style="right:calc(50% + 530px + 18px);top:726px;--h:170px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch ch--borde" src="hari-13.webp" width="256" height="246" style="left:calc(50% + 530px + 18px);top:448px;--h:170px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch ch--borde" src="hari-22.webp" width="256" height="245" style="right:calc(50% + 530px + 18px);top:489px;--h:170px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="ch ch--borde" src="h512-11.webp" width="256" height="245" style="left:calc(50% + 530px + 18px);top:200px;--h:170px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
         <h2>It compiles. That proves nothing.</h2>
@@ -2725,7 +2598,7 @@
       <div class="port-card">
         <h3 class="port-name">Files that vanish in the repack</h3>
         <details class="more more--card"><summary aria-label="Read the detail: Files that vanish in the repack">Read the detail</summary>
-          <p class="port-desc">A<span translate="no"> port </span>is a rebuild, not a copy. Recipes, loot tables and textures can go missing when the<span translate="no"> jar </span>is repackaged, and nothing errors. The mod loads and quietly does less than it did before.</p>
+          <p class="port-desc">A<span translate="no"> port </span>is a rebuild of the mod from source. Recipes, loot tables and textures can go missing when the<span translate="no"> jar </span>is repackaged, and nothing errors. The mod loads and quietly does less than it did before.</p>
           <p class="port-footer-note"><strong>Proof.</strong> I diff every asset, data and licence file against the<span translate="no"> jar </span>the original author published. Across<span translate="no"> Boids </span>and<span translate="no"> Birds </span>(<span translate="no">Tomate0613</span>, MIT) and<span translate="no"> Capybara </span>(<span translate="no">39Choko</span>, MIT): 22 of the 28 are byte identical. 6 are<span translate="no"> JSON </span>the build reformatted, and they parse to exactly the same data. Two files are added, both<span translate="no"> Forge </span>biome modifiers so spawns work on this loader. Loader metadata is replaced on purpose,<span translate="no"> mods.toml </span>where<span translate="no"> Fabric </span>had<span translate="no"> fabric.mod.json</span>. Unzip both<span translate="no"> jars </span>and run the same diff.</p></details>
       </div>
 
@@ -2733,21 +2606,21 @@
         <h3 class="port-name"><span translate="no">Yarn </span>names and<span translate="no"> Mojang </span>names do not line up</h3>
         <details class="more more--card"><summary aria-label="Read the detail: Yarn names and Mojang names do not line up">Read the detail</summary>
           <p class="port-desc"><span translate="no">Fabric </span>source is written in<span translate="no"> Yarn </span>names.<span translate="no"> Forge </span>builds against<span translate="no"> Mojang</span>'s. I bridge them in two hops through intermediary mappings, and the translator only rewrites a name when it has exactly one possible target. Anything ambiguous is left for the compiler to reject.</p>
-          <p class="port-footer-note"><strong>Proof.</strong> It still gets things wrong, and those mistakes compile. On<span translate="no"> Capybara </span>the jungle spawn biome came out of the translator as<span translate="no"> JUNGLE_PLANKS</span>. That is why I read translated output back against the original source before it goes into a build. The jungle, mangrove swamp and sparse jungle spawns in that<span translate="no"> port </span>came from the original, not from the translated text.</p></details>
+          <p class="port-footer-note"><strong>Proof.</strong> It still gets things wrong, and those mistakes compile. On<span translate="no"> Capybara </span>the jungle spawn biome came out of the translator as<span translate="no"> JUNGLE_PLANKS</span>. I read translated output back against the original source before it goes into a build. The jungle, mangrove swamp and sparse jungle spawns in that<span translate="no"> port </span>were copied straight from the original source.</p></details>
       </div>
 
       <div class="port-card">
         <h3 class="port-name">Fine in singleplayer, dead on the server</h3>
         <details class="more more--card"><summary aria-label="Read the detail: Fine in singleplayer, dead on the server">Read the detail</summary>
           <p class="port-desc">A clientbound packet handler written as a method reference is resolved where it is registered. A dedicated server has no client class to resolve, so registration can take the server down at startup while singleplayer never complains.</p>
-          <p class="port-footer-note"><strong>Proof.</strong> On a network layer<span translate="no"> backport </span>from 1.21 to<span translate="no"> Forge </span>1.20.1, on my own<span translate="no"> modpack</span>, I rebuilt every packet payload by hand: 22 serverbound, 19 clientbound. All 19 clientbound handlers are explicit lambdas with the client call behind a<span translate="no"> Dist.CLIENT </span>guard, and all 41 register from one shared method with sequential IDs, so the two sides cannot drift. That is how the code is written, not a test result. I do not name the mod here: it is a personal-use<span translate="no"> port </span>and I have no written permission from the author to put its name on a commercial page.</p></details>
+          <p class="port-footer-note"><strong>Proof.</strong> On a network layer<span translate="no"> backport </span>from 1.21 to<span translate="no"> Forge </span>1.20.1, on my own<span translate="no"> modpack</span>, I rebuilt every packet payload by hand: 22 serverbound, 19 clientbound. All 19 clientbound handlers are explicit lambdas with the client call behind a<span translate="no"> Dist.CLIENT </span>guard, and all 41 register from one shared method with sequential IDs, so the two sides cannot drift. This describes the source itself. I am not claiming a test run here. I do not name the mod here: it is a personal-use<span translate="no"> port </span>and I have no written permission from the author to put its name on a commercial page.</p></details>
       </div>
 
       <div class="port-card">
         <h3 class="port-name"><span translate="no">Mixins </span>that quietly do not load</h3>
         <details class="more more--card"><summary aria-label="Read the detail: Mixins that quietly do not load">Read the detail</summary>
           <p class="port-desc">Repackaging a<span translate="no"> jar </span>can drop the manifest entry that declares its mixin configs.<span translate="no"> Forge </span>then loads the mod without complaint and none of the mixins apply. The mod is installed, part of its behaviour is missing, and nothing in the log says so.</p>
-          <p class="port-footer-note"><strong>Proof.</strong> Same class of bug, same answer: it became a check. The manifest one in the <a href="#portfolio">five checks I run</a> is this exact bug, turned into something a script can catch. They are a colander, not a proof. The bone check only sees literal names, and it needs a<span translate="no"> JDK </span>to read the bytecode.</p></details>
+          <p class="port-footer-note"><strong>Proof.</strong> Same class of bug, same answer: it became a check. The manifest one in the <a href="#portfolio">five checks I run</a> is this exact bug, turned into something a script can catch. Each one catches a single class of bug and claims nothing beyond it. The bone check only sees literal names, and it needs a<span translate="no"> JDK </span>to read the bytecode.</p></details>
       </div>
     </div>
   </div>
@@ -2767,7 +2640,7 @@
        438 px por debajo del borde, dentro de la seccion siguiente. Lo caza la
        guarda "se salen de seccion" de verificar.py. Al tocar el contenido de
        una seccion hay que re-medir SUS personajes. -->
-  <img class="ch ch--borde" src="hsunny-22.webp" width="256" height="245" style="right:calc(50% + 530px + 18px);top:1240px;--h:185px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch ch--borde" src="hsunny-22.webp" width="256" height="245" style="right:calc(50% + 530px + 18px);top:445px;--h:185px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="ch ch--borde" src="hsunny-21.webp" width="256" height="235" style="left:calc(50% + 530px + 18px);top:720px;--h:185px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="ch ch--borde" src="h1024-32.webp" width="256" height="236" style="right:calc(50% + 530px + 18px);top:201px;--h:185px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
@@ -2825,12 +2698,12 @@
         <h2>How a job works</h2>
     <p class="sub">All in writing. No calls and no meetings.</p>
     <div class="steps">
-      <div class="step"><div class="step-n">01</div><h3>Send me the mod</h3><p>Message the mod link and what you need. Open-source or licensed, both work. Use the<span translate="no"> Angel Engine </span>to pre-fill the details.</p></div>
+      <div class="step"><div class="step-n">01</div><h3>Send me the mod</h3><p>Message the mod link and what you need. Open-source or licensed, both work.</p></div>
       <div class="step"><div class="step-n">02</div><h3>Flat quote</h3><p>I look over the mod and reply with a fixed price and a timeline. No scope creep once we've agreed.</p></div>
       <div class="step"><div class="step-n">03</div><h3>Agree &amp; start</h3><p>We lock the scope and price in writing. <strong>Your first job with me carries no deposit, whatever the size:</strong> you pay once you have seen it run. After that, bigger jobs start on a deposit we agree in writing.</p></div>
       <div class="step"><div class="step-n">04</div><h3>I build it</h3><p>Every job gets its own timeline, agreed before I touch anything. <strong>If you have a hard date, say so first:</strong> I will either commit to it in writing or turn the job down.</p></div>
       <div class="step"><div class="step-n">05</div><h3>Delivery + final payment</h3><p>You get the finished mod file and try it yourself. Final payment before release. Open-source<span translate="no"> ports </span>get published with author credit.</p></div>
-      <div class="step"><div class="step-n">06</div><h3>I check back</h3><p>Once it has actually run in your pack, not just on my machine. <strong>Any defect I introduced inside the agreed scope, on the setup we agreed, is on me for 30 days.</strong> Anything after that, or anything new you need, comes back to me as a returning client.</p></div>
+      <div class="step"><div class="step-n">06</div><h3>I check back</h3><p>Once it has actually run inside your pack, past my own test machine. <strong>Any defect I introduced inside the agreed scope, on the setup we agreed, is on me for 30 days.</strong> Anything after that, or anything new you need, comes back to me as a returning client.</p></div>
     </div>
     <figure class="mascotas">
       <!-- La ilustracion traia dos placas horneadas con CARGOS INVENTADOS
@@ -2858,7 +2731,7 @@
        `top` estan MEDIDOS sobre la pagina renderizada, no estimados:
        cada uno cae en un tramo comprobado libre en ese lado. -->
   <img class="ch ch--borde" src="pix-c12.webp" width="180" height="150" style="right:calc(50% + 530px + 18px);top:480px;--h:150px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="h1024-22.webp" width="256" height="236" style="right:calc(50% + 530px + 18px);top:1263px;--h:195px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch ch--borde" src="h1024-22.webp" width="256" height="236" style="right:calc(50% + 530px + 18px);top:750px;--h:195px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="ch ch--borde" src="h512-13.webp" width="256" height="245" style="left:calc(50% + 530px + 18px);top:731px;--h:195px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="ch ch--borde" src="h9478c-23.webp" width="256" height="244" style="right:calc(50% + 530px + 18px);top:200px;--h:195px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
@@ -2868,7 +2741,7 @@
          Vive en el hero, donde ademas lleva lo que solo el puede decir ("not
          because it is all I do"), y en la pregunta del FAQ que existe justo para
          eso. Aqui el dato util es la tarifa. -->
-    <p class="sub">Any of the three loaders, into any of the others.<span translate="no"> Forge </span>1.20.1 is the shortest route. Anything harder is priced by the real work it adds, not some made-up percentage. The full reasoning is written up in <a href="mod-porting-cost.html">what a<span translate="no"> port </span>costs, and why</a>.</p>
+    <p class="sub">Anything harder is priced by the real work it adds, measured job by job. The full reasoning is written up in <a href="mod-porting-cost.html">what a<span translate="no"> port </span>costs, and why</a>.</p>
 <div class="cards">
       <div class="card card--base">
         <div class="icon-wrap svc-copper"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v13"/><path d="M6 11l6 6 6-6"/></svg></div>
@@ -2932,11 +2805,17 @@
       </div>
     </div>
     <p class="svc-shape"><strong>None of these is all-or-nothing.</strong> Leave a feature out, change spawn rates, damage, effects, recipes or loot. <a href="#faq">Say so when you send it</a> and it goes in the same fixed quote.</p>
-    <!-- "above", no "below" (parche 30, reorden por arquetipos 2026-09-01): el
-         motor pasa a la posicion 2, ANTES de esta seccion. Si el orden vuelve a
-         cambiar, revisa esta frase antes que ninguna otra: es la unica que
-         afirma una posicion relativa en la pagina. -->
-    <p class="svc-price-note">Every one of these is priced in the <a href="#estimator"><span translate="no">Angel Engine</span></a> above.</p>
+    <!-- La nota que citaba el formulario ("priced in the form above") se fue con
+         el formulario. En su sitio baja el .softcta que vivia DENTRO de
+         #estimator: ofrece mirar el mod gratis y no tenia nada que ver con la
+         calculadora, asi que al esconder la seccion se escondio tambien sin
+         querer. Aqui es donde le toca: justo despues de lo que hago. -->
+    <div class="softcta">
+      <p><strong>Not sure it can even be done?</strong> Send me the mod link and I'll tell you whether it's possible and what gets in the way. No charge, and no obligation to take it further.</p>
+      <div class="softcta-row">
+        <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" class="btn btn-discord"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg><span>Ask me on<span translate="no"> Discord</span></span></a>
+      </div>
+    </div>
   </div>
 </section>
 <!-- FAQ -->
@@ -2948,7 +2827,7 @@
        `top` estan MEDIDOS sobre la pagina renderizada, no estimados:
        cada uno cae en un tramo comprobado libre en ese lado. -->
   <img class="ch ch--borde" src="pix-b01.webp" width="111" height="117" style="left:calc(50% + 530px + 18px);top:480px;--h:117px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="h1024-31.webp" width="256" height="236" style="left:calc(50% + 530px + 18px);top:849px;--h:195px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch ch--borde" src="h1024-31.webp" width="256" height="236" style="left:calc(50% + 530px + 18px);top:634px;--h:195px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="ch ch--borde" src="hari-23.webp" width="256" height="245" style="right:calc(50% + 530px + 18px);top:524px;--h:195px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="ch ch--borde" src="hsunny-11.webp" width="256" height="246" style="left:calc(50% + 530px + 18px);top:200px;--h:195px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
@@ -2956,11 +2835,11 @@
     <div class="faq-list">
       <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">Why is 1.20.1 the shortest route?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">It sits just below every recent version wall, so it takes the least work. Other versions have to cross walls (networking, data components, worldgen) that genuinely take longer, so they carry a flat premium per wall.</div></div></div>
       <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">What exactly is a compatibility patch?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">Making two or more mods work together without adding new content. For example: getting one mod's mobs to spawn in another mod's biomes, or fixing a conflict that breaks a feature. Each one is custom, so I quote it by scope.</div></div></div>
-      <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">Is this legal?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">Yes. You pay for my time writing the<span translate="no"> port</span>, not for distribution rights. I publish only open-source mods or mods with written permission; anything else is delivered privately to whoever holds the right to use it. See the Licenses section below.</div></div></div>
+      <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">Is this legal?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">Yes. The fee covers my time writing the<span translate="no"> port</span>; distribution rights are a separate question, settled by the mod's licence. I publish only open-source mods or mods with written permission; anything else is delivered privately to whoever holds the right to use it. See the Licenses section below.</div></div></div>
       <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">How do I pay safely?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body"><span translate="no">Wise </span>is how I invoice by default, wherever you are. If you would rather use<span translate="no"> PayPal</span>, ask and I will send a Goods and Services invoice instead. I never take Friends and Family, because it is the one payment type that leaves you with nothing to fall back on. Either way, your first job carries no deposit whatever its size, you watch the build running in your own setup, and the final payment comes after that.</div></div></div>
       <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">How long does it take?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">It depends on the mod. We agree a timeline before I start, but I won't quote a fixed turnaround I can't stand behind. Under-promising costs me a job now and then. Missing a date costs you a launch.</div></div></div>
       <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">What if the<span translate="no"> port </span>doesn't work?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">You watch the build running before you make final payment, so you never pay for something you have not seen work. The deliverable is what we agree in writing up front, and for 30 days after delivery I correct, at no charge, any defect I introduced inside that agreed scope, on the setup we agreed. After that, or for problems caused by<span translate="no"> Minecraft </span>updates, other mods, or server changes, it becomes a maintenance job.</div></div></div>
-      <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">Can I put the<span translate="no"> ported </span>mod in my public<span translate="no"> modpack</span>?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">It depends on the original mod's licence, and I tell you which case you are in before you pay, not after. Open-source: yes, and I publish it with credit to the original author so your pack links to something real. Your own mod, or one where you hold written permission: yes, and I tell you exactly what credit to include. All rights reserved with no permission: no, and I will not take the job on those terms, because the takedown would land on your account and not mine.</div></div></div>
+      <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">Can I put the<span translate="no"> ported </span>mod in my public<span translate="no"> modpack</span>?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">It depends on the original mod's licence, and I tell you which case you are in before you pay. Open-source: yes, and I publish it with credit to the original author so your pack links to something real. Your own mod, or one where you hold written permission: yes, and I tell you exactly what credit to include. All rights reserved with no permission: no, and I will not take the job on those terms, because the takedown would land on your account and not mine.</div></div></div>
       <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">Can you leave parts of the mod out, or change what it does?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">Yes, and it is worth asking. A<span translate="no"> port </span>does not have to be the whole mod: I can drop a feature you do not want, change values like spawn rates, durability or damage, retune or remove effects, and adjust recipes and loot. Tell me when you send it and it goes into the fixed quote, instead of turning into a second job later. The line is between tweaks and a redesign: rebalancing the whole mod is its own job and I quote it separately.</div></div></div>
       <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">What's out of scope?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">The mod's original textures and assets come across with the<span translate="no"> port</span>. What doesn't: brand-new textures, 3D models or animations, full gameplay or balance redesigns, and ongoing maintenance across future<span translate="no"> Minecraft </span>versions. Those get quoted separately, so tell me upfront and I'll fold it into the price.</div></div></div>
     </div>
@@ -2968,7 +2847,6 @@
       <p>Still got a question? Ask me the awkward one. <strong>I'd rather deal with it now than after you've paid.</strong></p>
       <div class="softcta-row">
         <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" class="btn btn-discord"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg><span>Ask me on<span translate="no"> Discord</span></span></a>
-        <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20commission" class="btn btn-ghost">Or send an email</a>
       </div>
     </div>
   </div>
@@ -2991,7 +2869,7 @@
          de aqui, dentro de #about. La afirmacion vive donde mas pesa, y para
          esta la portada pesa mas que el "sobre mi". Las palabras son distintas
          a las de alli a proposito ("stopped updating" y no "dead mod"). -->
-    <p class="sub"><span translate="no">Porting </span>means rebuilding. I take the mod apart and put it back together for the version and the loader you actually run, and the same content comes out the other side. So a pack does not have to die because one mod stopped updating, and moving to a new version does not have to mean dropping half of what you built.</p>
+    <p class="sub">The same content comes out the other side. Your pack keeps the mod instead of losing it to a version bump.</p>
 
     <figure class="loomd-wrap">
       <svg class="loomd" viewBox="0 0 600 432" role="img" aria-labelledby="ldt ldd" preserveAspectRatio="xMidYMid meet">
@@ -3053,20 +2931,19 @@
       </div>
     </div>
 
-    <p class="deal-why">Most of what I have<span translate="no"> ported </span>is sitting on my own machine, unreleased, because I never had the author's permission to put it out. That is what actually holds this back, not the money. The permission is worth more to me than the fee.</p>
+    <p class="deal-why">Most of what I have<span translate="no"> ported </span>is sitting on my own machine, unreleased, because I never had the author's permission to put it out. Permission is what holds this back, and it is worth more to me than the fee.</p>
 
     <p class="deal-why">It has already happened twice, before I thought to call it an offer.<span translate="no"> Mindful Eating </span>went back to<span translate="no"> camcam_burger </span>for his own<span translate="no"> CurseForge </span>page.<span translate="no"> Shaunt </span>read through the<span translate="no"> Puppy Paws</span><span translate="no"> port </span>himself and told me it was fine.</p>
 
     <ul class="deal-list deal-fine">
       <li>You have to actually hold the rights to the mod. If it is a team, I need the team's yes.</li>
       <li>One of these at a time, so paying clients keep their place in the queue.</li>
-      <li>I can turn it down. A large tech mod is a month of work, not a favour.</li>
+      <li>I can turn it down. A large tech mod means a month of real work, however friendly the ask.</li>
       <li>Otherwise it runs like any job: scope agreed in writing before I start, and any defect I introduce inside that scope, on the setup we agreed, corrected free for 30 days.</li>
     </ul>
 
     <div class="deal-row">
       <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" class="btn btn-discord"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg><span>I wrote a mod, let's talk</span></a>
-      <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20author%20collaboration" class="btn btn-ghost">Or send an email</a>
     </div>
   </div>
 </section>
@@ -3085,24 +2962,27 @@
        asi que uno que se va a la de al lado le pasa por delante. Van a 150/360/
        570 (a tamano completo el ultimo acaba en 760, dentro de los 764) y el lado no se toca: se calcula por orden de
        documento y moverlos de sitio le cambiaria el lado a media pagina. -->
-  <img class="ch ch--borde" src="hari-11.webp" width="256" height="246" style="left:calc(50% + 530px + 18px);top:570px;--h:190px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch ch--borde" src="hari-11.webp" width="256" height="246" style="left:calc(50% + 530px + 18px);top:432px;--h:190px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="ch ch--borde" src="h512-22.webp" width="256" height="235" style="right:calc(50% + 530px + 18px);top:360px;--h:190px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="ch ch--borde" src="h1024-33.webp" width="256" height="235" style="left:calc(50% + 530px + 18px);top:150px;--h:190px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
         <h2>Send me the mod</h2>
-    <p class="sub">Message me or build your request in the<span translate="no"> Angel Engine </span>above. You get a fixed price in writing before any work starts, and it does not move afterwards.</p>
+    <p class="sub">Everything starts with a ticket in my server, and each case gets looked at on its own.</p>
     <div class="contact-cards">
       <div class="contact-card contact-card--primary">
         <div class="ci ci--discord"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4V5z"/><circle cx="9.5" cy="10.5" r="0.6" fill="currentColor" stroke="none"/><circle cx="14.5" cy="10.5" r="0.6" fill="currentColor" stroke="none"/></svg></div>
-        <h3><span translate="no">Discord </span>(best way to reach me)</h3>
-        <p>The link opens my server. Post the mod link and what you need, and I tell you there what it would take. It runs in a browser tab, so there is nothing to install. This is where I'm quickest to reply.</p>
+        <h3><span translate="no">Discord </span>(open a ticket)</h3>
+        <p>The link opens my server. There are channels for opening a ticket: post the mod link and what you need, and your case gets assessed in that ticket, on its own thread. It runs in a browser tab, so there is nothing to install.</p>
         <a href="https://discord.gg/EV8F84fheJ" class="btn btn-discord contact-btn" target="_blank" rel="noopener noreferrer"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg><span>Open my<span translate="no"> Discord</span></span></a>
       </div>
       <div class="contact-card">
-        <div class="ci ci--gmail"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/></svg></div>
-        <h3>Email (backup)</h3>
-        <p>Prefer email? Send the mod link and what you want done, or just the<span translate="no"> Angel Engine </span>summary.</p>
-        <a href="mailto:modwrightstudios@gmail.com?subject=Mod%20porting%20commission" class="btn btn-gmail contact-btn"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Send me an email</a>
+        <!-- Era la ficha "Email (backup)". Pasa a explicar el ticket: sin boton
+             propio, porque el boton de al lado ya lleva al mismo sitio y dos
+             botones a un mismo destino es ruido. Sin `ci--` porque la clase base
+             `.ci` ya trae el dorado de la pagina. -->
+        <div class="ci"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8V6a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a2 2 0 0 0 0 4v2a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-2a2 2 0 0 0 0-4z"/><path d="M14 5v14"/></svg></div>
+        <h3>What happens in the ticket</h3>
+        <p>You post the mod link and what you want done. I check the licence and tell you whether it can be done at all. Then you get a fixed price in writing, and it does not move afterwards.</p>
       </div>
     </div>
     <p class="contact-note">I take two jobs at a time, so the queue stays short.</p>
@@ -3119,7 +2999,7 @@
        `top` estan MEDIDOS sobre la pagina renderizada, no estimados:
        cada uno cae en un tramo comprobado libre en ese lado. -->
   <img class="ch ch--borde" src="pix-b02.webp" width="97" height="104" style="left:calc(50% + 530px + 18px);top:80px;--h:104px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="h512-12.webp" width="256" height="245" style="left:calc(50% + 530px + 18px);top:799px;--h:165px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch ch--borde" src="h512-12.webp" width="256" height="245" style="left:calc(50% + 530px + 18px);top:380px;--h:165px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="ch ch--borde" src="hari-21.webp" width="256" height="245" style="right:calc(50% + 530px + 18px);top:200px;--h:165px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
         <h2>I only<span translate="no"> port </span>what I have rights to<span translate="no"> port</span></h2>
@@ -3136,15 +3016,15 @@
         <summary>Terms of Service</summary>
         <div class="legal-doc-body">
           <p><strong>Service.</strong><span translate="no"> Modwright </span>does paid<span translate="no"> Minecraft </span>mod work:<span translate="no"> porting</span>, backporting, reviving, loader conversion, compatibility patches, maintenance and optimization.</p>
-          <p><strong>Quotes &amp; pricing.</strong> The<span translate="no"> Angel Engine </span>gives a non-binding ballpark. The final price is fixed and agreed in writing before any work begins. Your first job carries no deposit, whatever its size. After that, larger jobs start on a deposit agreed in writing.</p>
+          <p><strong>Quotes &amp; pricing.</strong> I give you a non-binding ballpark once I have seen the mod. The final price is fixed and agreed in writing before any work begins. Your first job carries no deposit, whatever its size. After that, larger jobs start on a deposit agreed in writing.</p>
           <p><strong>Returning clients.</strong> When your pack moves to a new<span translate="no"> Minecraft </span>version,<span translate="no"> re-porting </span>work I originally built for you is 40% of the original price, and past clients come ahead of new ones in the queue.</p>
           <p><strong>Payment.</strong><span translate="no"> Wise </span>is the default and is how I invoice unless we agree otherwise in writing.<span translate="no"> PayPal </span>is available if you ask for it, as Goods and Services only; I do not take Friends and Family. Currency and schedule are set out in our written agreement.</p>
-          <p><strong>Delivery &amp; timelines.</strong> Every build is booted on a dedicated server before it leaves my machine, and you watch it running in your own setup before you make final payment. Timelines are honest estimates based on the work in front of me, not guarantees, and I do not commit to hard deadlines. If a date is genuinely critical for you, say so before we agree: I will either commit to it in writing or turn the job down.</p>
+          <p><strong>Delivery &amp; timelines.</strong> Every build is booted on a dedicated server before it leaves my machine, and you watch it running in your own setup before you make final payment. Timelines are honest estimates based on the work in front of me. Treat them as estimates: I do not commit to hard deadlines. If a date is genuinely critical for you, say so before we agree: I will either commit to it in writing or turn the job down.</p>
           <p><strong>Scope &amp; acceptance.</strong> The deliverable is exactly what our written agreement describes: the mod, the loader, the<span translate="no"> Minecraft </span>version, and the mod list it was built against. You run the build and confirm it before you make final payment, and that confirmation closes the scope. If you have not raised a problem within seven days of delivery, the build counts as accepted and the final payment falls due. Anything outside that agreement is a separate job, quoted separately.</p>
           <p><strong>Corrections.</strong> For 30 days after delivery I correct, at no charge, any defect I introduced that appears inside the agreed scope and reproduces on the setup we agreed. The remedy is that I fix it. After those 30 days, and for anything caused by a<span translate="no"> Minecraft </span>update, another mod, a change to your server, or a change to the mod list we agreed on, fixes are quoted as maintenance work.</p>
-          <p><strong>Your responsibilities.</strong> You must have the right to have the mod worked on: it's open-source, your own, or you have the author's permission. If that turns out not to be the case, I stop the job, and what you have already paid covers the work already done. How you run, monetise or advertise your server is between you and<span translate="no"> Mojang</span>'s own rules, not something I take on. I work on the mod as you supply it, so defects that were already in the original, and problems caused by the other mods, plugins or server software you run it alongside, sit outside the job unless we agreed to cover them. You are responsible for how you use the delivered files.</p>
+          <p><strong>Your responsibilities.</strong> You must have the right to have the mod worked on: it's open-source, your own, or you have the author's permission. If that turns out not to be the case, I stop the job, and what you have already paid covers the work already done. How you run, monetise or advertise your server is between you and<span translate="no"> Mojang</span>'s own rules. I take none of that on. I work on the mod as you supply it, so defects that were already in the original, and problems caused by the other mods, plugins or server software you run it alongside, sit outside the job unless we agreed to cover them. You are responsible for how you use the delivered files.</p>
           <p><strong>Claims about the mod you bring me.</strong> If someone brings a claim against me over the mod you supplied, or over how you use what I deliver, you cover the cost of dealing with it. This is not me expecting trouble. It is the reason I check the licence before I write a line, so that neither of us ever ends up there.</p>
-          <p><strong>Rights &amp; redistribution.</strong> You pay for my time, not for distribution rights. Closed-source (ARR) work is delivered privately to you only and is never published. I will not publicly redistribute an ARR mod without the author's written permission.</p>
+          <p><strong>Rights &amp; redistribution.</strong> The fee buys my time on the work. Distribution rights stay with the licence holder: closed-source (ARR) work is delivered privately to you only and is never published. I will not publicly redistribute an ARR mod without the author's written permission.</p>
           <p><strong>What stays mine.</strong> You get the delivered work and a permanent licence to use it in your own packs and servers. The general techniques, tools and libraries I build stay mine and I reuse them from one job to the next. That reuse is exactly why your second job costs less than your first.</p>
           <p><strong>Showing the work.</strong> Unless we agree otherwise in writing, I may describe a finished job and show the result. Closed-source work stays private either way: no files, no code, and no client named without your say so.</p>
           <p><strong>If a job stops.</strong> Either of us can stop a job before it is finished. If you stop it, you pay for the work done up to that point and I hand over what exists. If I stop it, I return anything you paid for work I had not done. A deposit covers work already scheduled and started, so it stays with me once the work has begun.</p>
@@ -3158,7 +3038,7 @@
         <summary>Privacy Policy</summary>
         <div class="legal-doc-body">
           <p><strong>Short version:</strong> this is a static page with no accounts and no tracking cookies. I only ever see what you choose to send me.</p>
-          <p><strong>What I collect.</strong> Only the information you include when you contact me: your email address and the job details you provide. The<span translate="no"> Angel Engine </span>runs entirely in your browser; nothing you enter there leaves your device until you click to email it.</p>
+          <p><strong>What I collect.</strong> Only the information you include when you contact me: your email address and the job details you provide.</p>
           <p><strong>How I use it.</strong> Solely to reply to you and carry out the work you ask for. I never sell, rent, or share your information.</p>
           <p><strong>Third parties.</strong> If you pay, the payment runs through<span translate="no"> Wise</span>, or through<span translate="no"> PayPal </span>if you asked for it, under their own policies. Email is handled through Gmail.</p>
           <p><strong>Analytics.</strong> I don't use tracking cookies. If I ever add analytics, it'll be cookieless and won't collect personal data.</p>
@@ -3199,226 +3079,19 @@
   </div>
 </section>
 
-<figure class="scene-band scene-band--art">
-  <img src="band-lab.webp" width="1536" height="1024" alt="An illustrated workshop: a hedgehog dressed as Einstein and a guinea pig dressed as Nikola Tesla at a workbench. A blackboard behind them reads Modwright, bridging Minecraft mods across versions; a shelf holds books named after each mod loader, and a scroll lists the steps of a job." loading="lazy" decoding="async">
-</figure>
-
 <footer>
-  <div><strong style="color:var(--text-soft)"><span translate="no">Modwright</span></strong> <span class="sep">·</span><span translate="no"> Forge </span>1.20.1 mod<span translate="no"> porting </span><span class="sep">·</span> <a href="mod-porting-cost.html">What a<span translate="no"> port </span>costs</a> <span class="sep">·</span> <a href="fabric-to-forge-1-20-1.html"><span translate="no">Fabric </span>to<span translate="no"> Forge</span>: what breaks</a> <span class="sep">·</span> <a href="#terms">Terms</a> <span class="sep">·</span> <a href="#privacy">Privacy</a> <span class="sep">·</span> <a href="#licenses">Licenses</a> <span class="sep">·</span> <a href="mailto:modwrightstudios@gmail.com">Contact</a></div>
+  <div><strong style="color:var(--text-soft)"><span translate="no">Modwright</span></strong> <span class="sep">·</span><span translate="no"> Forge </span>1.20.1 mod<span translate="no"> porting </span><span class="sep">·</span> <a href="mod-porting-cost.html">What a<span translate="no"> port </span>costs</a> <span class="sep">·</span> <a href="fabric-to-forge-1-20-1.html"><span translate="no">Fabric </span>to<span translate="no"> Forge</span>: what breaks</a> <span class="sep">·</span> <a href="#terms">Terms</a> <span class="sep">·</span> <a href="#privacy">Privacy</a> <span class="sep">·</span> <a href="#licenses">Licenses</a> <span class="sep">·</span> <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer">Contact</a></div>
   <div class="perfiles">Talk to me on <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" translate="no">Discord</a> <span class="sep">·</span> also on <a href="https://www.curseforge.com/members/danisansietev/projects" target="_blank" rel="noopener noreferrer" translate="no">CurseForge</a> <span class="sep">·</span> <a href="https://github.com/Dheightsan" target="_blank" rel="noopener noreferrer" translate="no">GitHub</a> <span class="sep">·</span> <a href="https://builtbybit.com/members/modwrightstudios.891720/" target="_blank" rel="noopener noreferrer" translate="no">BuiltByBit</a></div>
+  <div class="perfiles">This website was built with AI assistance. The<span translate="no"> porting </span>work is done by hand.</div>
 </footer>
 
 <script>
 (function () {
   'use strict';
-  var state = { service: 'backport', size: 'medium', wall: 'none', loader: 'forge', license: 'open', scope: 'small', rush: 'standard' };
-  var BASE = { small: 35, medium: 65, large: 120 };
-  var COMPAT = { small: 25, medium: 60, large: 130 };
-  var WALL = { none: 0, moderate: 25, hard: 60, brutal: 110 };
-  var LOADER = { forge: 0, neoforge: 20, fabric: 250 };
-  var RUSH = { standard: 1, prio: 1.25, top: 1.5 };
-  var MAINT = { small: 25, medium: 50, large: 95 };
-  var OPT = { small: 45, medium: 85, large: 150 };
-  /* Precio PLANO y una sola cifra a proposito: es la unica que dio el dueño.
-     Un medium y un large aqui serian precios inventados. Si algun dia escala,
-     hacen falta sus otros dos numeros. */
-  var QUICK = 20;
-  var MIN = 20;
-  var priceEl = document.getElementById('est-price');
-  var noteEl = document.getElementById('est-note');
-  var summaryEl = document.getElementById('est-summary');
-  var copyBtn = document.getElementById('est-copy');
-  var emailBtn = document.getElementById('est-email');
-  var breakdownEl = document.getElementById('est-breakdown');
-  var advToggle = document.getElementById('est-adv-toggle');
-  var advPanel = document.getElementById('est-advanced');
-  if (advToggle && advPanel) {
-    advToggle.addEventListener('click', function () {
-      var nowHidden = advPanel.classList.toggle('hidden');
-      advToggle.setAttribute('aria-expanded', nowHidden ? 'false' : 'true');
-    });
-  }
-  // Misma lista que el bloque de CSS del fade. Si se toca una, se toca la otra.
-  var REVEAL_SEL = '.reveal, section > .wrap > h2, section > .wrap > .sub, .card, .port-card,' +
-    ' .contact-card, .step, .paycard, .softcta, .deal-col, .big-quote';
-  // En movil se marca todo visible de entrada, igual que con movimiento reducido:
-  // el CSS ya lo deja a opacity 1 ahi, esto evita ademas montar el observador.
-  var rmReveal = window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
-    window.matchMedia('(max-width: 767px)').matches;
-  if (!rmReveal && 'IntersectionObserver' in window) {
-    var revIO = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in-view'); revIO.unobserve(en.target); } });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll(REVEAL_SEL).forEach(function (el) { revIO.observe(el); });
-  } else {
-    document.querySelectorAll(REVEAL_SEL).forEach(function (el) { el.classList.add('in-view'); });
-  }
-  function money(n) { return '$' + Math.round(n); }
-  /* `scopeMode` vivia duplicado en compute() y en syncGroups(). El modo nuevo
-     se define UNA vez para no repetir ese error: si se toca, se toca aqui. */
-  function modoDe(svc) {
-    return {
-      flat: svc === 'quickfix',
-      scope: (svc === 'compat' || svc === 'maintain' || svc === 'optimize')
-    };
-  }
-  function compute() {
-    var svc = state.service;
-    var modo = modoDe(svc);
-    var scopeMode = modo.scope;
-    var sub;
-    if (modo.flat) sub = QUICK;
-    else if (svc === 'compat') sub = COMPAT[state.scope];
-    else if (svc === 'maintain') sub = MAINT[state.scope];
-    else if (svc === 'optimize') sub = OPT[state.scope];
-    else sub = BASE[state.size] + WALL[state.wall] + LOADER[state.loader];
-    if (state.license === 'closed') sub = sub * 1.35;
-    sub = sub * RUSH[state.rush];
-    sub = Math.max(sub, MIN);
-    return { low: Math.max(Math.round(sub), MIN), high: Math.round(sub * 1.15), scopeMode: scopeMode, flat: modo.flat };
-  }
-  function buildNote(r) {
-    var bits = [];
-    if (state.service === 'quickfix') { bits.push('Quick fix: same loader, neighbouring version, small tweaks.'); }
-    else if (state.service === 'compat') { bits.push('Compatibility patch (my own publishable code).'); }
-    else if (state.service === 'maintain') { bits.push('Mod maintenance (mixin / crash / dependency fixes).'); }
-    else if (state.service === 'optimize') { bits.push('Mod optimization (less lag, lighter on resources).'); }
-    else {
-      if (state.wall !== 'none') bits.push('<span class="premium">' + state.wall + ' version wall</span> crossed');
-      if (state.loader === 'fabric') bits.push('<span class="premium">Fabric→Forge</span> rewrite');
-      else if (state.loader === 'neoforge') bits.push('NeoForge→Forge rename');
-      if (bits.length === 0) bits.push('Same loader, no version wall to cross.');
-    }
-    if (state.license === 'closed') bits.push('private ARR delivery');
-    if (state.rush === 'prio') bits.push('<span class="premium">priority</span>');
-    if (state.rush === 'top') bits.push('<span class="premium">top priority</span>');
-    return bits.join(' · ');
-  }
-  function buildSummary(r) {
-    var svc = ({ backport: 'Backport: adapt a newer mod down to an older version', forward: 'Forward-port / revive: bring an old or abandoned mod to a modern version', compat: 'Compatibility patch: make mods coexist', maintain: 'Mod maintenance: fix mixins / crashes / dependencies', optimize: 'Mod optimization: reduce lag and resource use', quickfix: 'Quick fix: same loader, neighbouring version, small tweaks' })[state.service];
-    var L = [];
-    L.push("Hi! I'd like to commission a mod job.");
-    L.push('');
-    L.push('What I need: ' + svc);
-    L.push('Mod: <paste the mod name + link here>');
-    if (r.flat) {
-      /* Sin linea de detalle: en modo plano no se enseña ningun selector, asi
-         que meter aqui un tamaño o un muro seria inventar lo que el cliente
-         no ha elegido. */
-    } else if (r.scopeMode) {
-      L.push('Scope: ' + ({ small: 'small, one fix', medium: 'moderate, a few systems', large: 'deep, complex' })[state.scope]);
-    } else {
-      L.push('Details: ' + ({ small: 'small mod', medium: 'medium mod', large: 'large mod' })[state.size] + ' · ' + ({ none: 'no version wall', moderate: 'crosses 1.20.2', hard: 'crosses 1.21', brutal: 'crosses 1.13/1.18' })[state.wall] + ' · ' + ({ forge: 'Forge', neoforge: 'NeoForge', fabric: 'Fabric' })[state.loader] + ' source');
-    }
-    L.push('Delivery: ' + (state.license === 'closed' ? 'private (closed-source / ARR, to me only)' : 'open-source or I have permission (publishable)'));
-    if (state.rush !== 'standard') L.push('Priority: ' + (state.rush === 'prio' ? 'priority (+25%)' : 'top priority (+50%)'));
-    L.push('Quick quote: ' + money(r.low) + ' to ' + money(r.high) + ' (you confirm the exact fixed price after a look)');
-    L.push('');
-    L.push('Thanks!');
-    return L.join('\n');
-  }
-  function buildBreakdown(r) {
-    var sw = ({ small: 'simple', medium: 'moderate', large: 'deep' })[state.scope];
-    var parts = [];
-    if (state.service === 'quickfix') parts.push('Quick fix $' + QUICK);
-    else if (state.service === 'compat') parts.push('Compatibility · ' + sw + ' $' + COMPAT[state.scope]);
-    else if (state.service === 'maintain') parts.push('Maintenance · ' + sw + ' $' + MAINT[state.scope]);
-    else if (state.service === 'optimize') parts.push('Optimization · ' + sw + ' $' + OPT[state.scope]);
-    else {
-      parts.push('Forge 1.20.1 base $' + BASE[state.size]);
-      if (WALL[state.wall] > 0) parts.push('+$' + WALL[state.wall] + ' ' + state.wall + ' wall');
-      if (LOADER[state.loader] > 0) parts.push('+$' + LOADER[state.loader] + ' ' + (state.loader === 'fabric' ? 'Fabric' : 'NeoForge'));
-    }
-    if (state.license === 'closed') parts.push('×1.35 private');
-    if (state.rush === 'prio') parts.push('×1.25 priority');
-    if (state.rush === 'top') parts.push('×1.5 top priority');
-    return parts.join('   ·   ');
-  }
-  var firstPrice = true;
-  function setPriceText(lo, hi) { priceEl.textContent = money(lo) + ' – ' + money(hi); }
-  function pulsePrice() { priceEl.classList.remove('pulse'); void priceEl.offsetWidth; priceEl.classList.add('pulse'); }
-  /* El precio SALTA a su valor final; antes se interpolaba durante 360ms y eso
-     pintaba una veintena de precios por clic que ninguna regla de la tarifa puede
-     producir. Peor: #est-price es aria-live, asi que un lector de pantalla cantaba
-     esas cifras inventadas como si fueran cotizaciones, y prefers-reduced-motion no
-     protege de eso porque no es una senal de lector de pantalla. Lo que cambia se
-     anuncia con el destello de color, que no afirma ningun numero.
-     tabular-nums ya esta en .est-price, asi que el salto no da tirones de ancho. */
-  function showPrice(lo, hi) { setPriceText(lo, hi); pulsePrice(); }
-  function render() {
-    var r = compute();
-    if (firstPrice) { firstPrice = false; setPriceText(r.low, r.high); }
-    else { showPrice(r.low, r.high); }
-    noteEl.innerHTML = buildNote(r);
-    breakdownEl.textContent = buildBreakdown(r);
-    summaryEl.textContent = buildSummary(r);
-    copyBtn.classList.remove('done'); copyBtn.textContent = 'Just copy it';
-    // El de Discord tambien se queda en "copiado" tras pulsarlo. Si luego
-    // cambias una opcion, el resumen ya es otro y el boton estaria mintiendo,
-    // asi que vuelve a su etiqueta. `var` sube la declaracion al principio de
-    // esta funcion anonima, asi que se puede nombrar antes de asignarla; la
-    // guarda cubre el primer render, cuando todavia no existe.
-    if (resetDiscord) resetDiscord();
-    emailBtn.href = 'mailto:modwrightstudios@gmail.com?subject=' + encodeURIComponent('Mod port commission ' + money(r.low) + '-' + money(r.high)) + '&body=' + encodeURIComponent(buildSummary(r));
-  }
-  function syncGroups() {
-    var svc = state.service;
-    var modo = modoDe(svc);
-    var scopeMode = modo.scope;
-    document.getElementById('grp-size').classList.toggle('hidden', scopeMode || modo.flat);
-    document.getElementById('grp-wall').classList.toggle('hidden', scopeMode || modo.flat);
-    document.getElementById('grp-loader').classList.toggle('hidden', scopeMode || modo.flat);
-    document.getElementById('grp-scope').classList.toggle('hidden', !scopeMode);
-    var sl = document.getElementById('scope-label');
-    if (sl) sl.textContent = svc === 'maintain' ? 'Maintenance scope' : (svc === 'optimize' ? 'Optimization scope' : 'Compatibility scope');
-  }
-  document.querySelectorAll('.est-options').forEach(function (grp) {
-    var key = grp.getAttribute('data-group');
-    grp.querySelectorAll('.est-opt').forEach(function (b) { b.setAttribute('aria-pressed', b.classList.contains('active') ? 'true' : 'false'); });
-    grp.addEventListener('click', function (e) {
-      var btn = e.target.closest('.est-opt');
-      if (!btn) return;
-      grp.querySelectorAll('.est-opt').forEach(function (b) { b.classList.remove('active'); b.setAttribute('aria-pressed', 'false'); });
-      btn.classList.add('active'); btn.setAttribute('aria-pressed', 'true');
-      state[key] = btn.getAttribute('data-value');
-      if (key === 'service') syncGroups();
-      render();
-    });
-  });
-  function fallbackCopy(text, done) {
-    var ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select();
-    try { document.execCommand('copy'); done(); } catch (e) {} document.body.removeChild(ta);
-  }
-  copyBtn.addEventListener('click', function () {
-    var text = summaryEl.textContent;
-    var done = function () { copyBtn.classList.add('done'); copyBtn.textContent = 'Copied! Paste it in your message'; };
-    if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(done).catch(function () { fallbackCopy(text, done); }); }
-    else { fallbackCopy(text, done); }
-  });
-  var discordBtn = document.getElementById('est-discord');
-  var resetDiscord = null;
-  if (discordBtn) {
-    var etiquetaDiscord = discordBtn.querySelector('span');
-    var textoDiscord = etiquetaDiscord ? etiquetaDiscord.innerHTML : '';
-    resetDiscord = function () {
-      var e = discordBtn.querySelector('span');
-      if (e && textoDiscord) e.innerHTML = textoDiscord;
-    };
-    // Antes copiaba el resumen SIN decirlo: el unico aviso era un "Tip:"
-    // enterrado en el parrafo del aviso del motor. Ahora lo anuncia el boton
-    // antes (su etiqueta) y lo confirma despues, que es justo cuando el
-    // visitante vuelve de la pestana de Discord y necesita saber que lleva
-    // algo que pegar.
-    discordBtn.addEventListener('click', function () {
-      var text = summaryEl.textContent;
-      var hecho = function () {
-        var etiqueta = discordBtn.querySelector('span');
-        if (etiqueta) etiqueta.textContent = 'Estimate copied, paste it in the chat';
-      };
-      if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(hecho).catch(function () { fallbackCopy(text, hecho); }); }
-      else { fallbackCopy(text, hecho); }
-    });
-  }
+  /* Aqui iban las ~195 lineas del estimador (tabla de precios, render, resumen
+     y el boton de copiar). Se van con la seccion: el presupuesto se acuerda en
+     un ticket. Lo unico que quedaba vivo de este bloque era el acordeon del
+     FAQ, que sigue justo debajo. */
   document.querySelectorAll('.faq-q').forEach(function (q) {
     q.setAttribute('aria-expanded', 'false');
     q.addEventListener('click', function () {
@@ -3428,7 +3101,6 @@
       if (icon) icon.textContent = open ? '–' : '+';
     });
   });
-  syncGroups(); render();
 })();
 </script>
 
