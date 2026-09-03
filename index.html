@@ -2069,7 +2069,7 @@
       
       <li><a href="#authors">Mod authors</a></li>
       <li><a href="#legal">Legal</a></li>
-      <li class="nav-cta"><a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" class="btn-nav">Get a quote</a></li>
+      <li class="nav-cta"><a href="#estimator" class="btn-nav">Get a quote</a></li>
       <li class="nav-tog"><a class="nav-chan nav-chan--discord" href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" aria-label="Message me on Discord" title="Discord"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg></a></li>
       <!-- Aqui iba el icono de correo. Fuera: al lado esta el de Discord, que es
            por donde entra todo, y en la barra el ancho es el recurso escaso. -->
@@ -2197,7 +2197,7 @@
     </div>
     <p class="hero-hook">Is your favourite mod missing on the version you actually play? Tell me which one and I'll tell you what it takes.</p>
     <div class="ctas">
-      <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" class="btn btn-go"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg><span>Get a quote</span></a>
+      <a href="#estimator" class="btn btn-go"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg><span>Get a quote</span></a>
       <!-- 🚨 APUNTA A #portfolio Y NO A #services, MEDIDO: la portada ya tiene
            SIETE enlaces a #services (las 6 pildoras de arriba y este) y CERO al
            portafolio. Y en la barra fija "Portfolio" esta OCULTO a 375 y a 768,
@@ -2244,17 +2244,6 @@
     </div>
   </div>
 </section>
-<!-- ESTIMATOR -->
-<!-- Aqui vivia #estimator, el sistema de precios automatico. Retirado por
-     completo el 2026-09-02 a peticion de josda: el presupuesto se acuerda
-     ahora en un ticket del servidor de Discord, caso por caso. Los precios
-     de referencia siguen publicados en mod-porting-cost.html y la eleccion
-     de servicio en #services, que es lo que se conserva.
-     El .softcta que estaba DENTRO de esta seccion ("Not sure it can even be
-     done?") no era del formulario: se ha mudado al final de #services.
-     Queda sin usar el CSS `#estimator` y `.est-*` (~180 lineas): varias de
-     sus reglas de tema son listas por comas compartidas con otros
-     selectores, asi que se limpia en una pasada aparte, no a ciegas. -->
 <figure class="scene-band">
   <img src="band-flight.webp" width="1800" height="1012" alt="My character hanging in the air above an open sea, with the sun going down behind him." loading="lazy" decoding="async">
 </figure>
@@ -2351,7 +2340,7 @@
         <div class="port-cta-text">
           <strong>Your mod could be next</strong>
         </div>
-        <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" class="btn btn-quote btn-sm">Get a quote</a>
+        <a href="#estimator" class="btn btn-quote btn-sm">Get a quote</a>
       </div>
     </div>
 
@@ -2818,6 +2807,85 @@
     </div>
   </div>
 </section>
+<!-- ESTIMATOR -->
+<!-- Repuesto el 2026-09-02 (tarde), version ligera: SIN precios (eran $ que
+     salian de una tabla interna, y josda pidio que no se vea el sistema de
+     precios). Es un generador de texto: 5 grupos de opciones describen el
+     trabajo, el resumen se arma en 3-4 frases sueltas (nada de "Hi! ...
+     Thanks!": eso fue lo que antes leia como mensaje de bot, varias visitas
+     identicas aterrizando en el mismo Discord) y un boton copia y abre
+     Discord a la vez. El texto de abajo nombra el canal #pedidos porque el
+     enlace de invitacion es generico: no hay forma de que caiga directo en
+     un canal sin que josda genere un enlace propio desde ESE canal. -->
+<section id="estimator">
+  <div class="wrap">
+    <h2>Set up your ticket</h2>
+    <p class="sub">Pick what fits, then copy the summary into <span translate="no">#pedidos</span> on Discord.</p>
+
+    <div class="estimator reveal">
+      <div class="est-form">
+        <div class="est-group" id="grp-service">
+          <div class="est-label">What kind of job?</div>
+          <div class="est-options" data-group="service">
+            <button type="button" class="est-opt ac-copper active" data-value="backport"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v13"/><path d="M6 12l6 6 6-6"/></svg>Backport<small>newer &rarr; older</small></button>
+            <button type="button" class="est-opt ac-life" data-value="forward"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V6"/><path d="M6 12l6-6 6 6"/></svg>Forward-port / revive<small>old &rarr; modern</small></button>
+            <button type="button" class="est-opt ac-bridge" data-value="compat"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7h4a4 4 0 0 1 0 8h-1"/><path d="M15 17h-4a4 4 0 0 1 0-8h1"/></svg>Compatibility<small>make mods coexist</small></button>
+            <button type="button" class="est-opt ac-steel" data-value="maintain"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.6 5.6L3 18l3 3 6.1-6.1a4 4 0 0 0 5.6-5.6l-2.9 2.9a1.5 1.5 0 0 1-2-2l2.9-2.9z"/></svg>Maintenance<small>fix mixins / crashes</small></button>
+            <button type="button" class="est-opt ac-spark" data-value="optimize"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Optimization<small>less lag / resources</small></button>
+          </div>
+        </div>
+        <div class="est-group" id="grp-loader">
+          <div class="est-label">Source mod loader</div>
+          <div class="est-options" data-group="loader">
+            <button type="button" class="est-opt brand-forge active" data-value="forge"><svg class="loglyph" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M2 8h10l-1.2 2.4H15v2h-1.9L12 17H8L6.2 12.4H2z"/><rect x="6" y="18" width="9" height="2" rx="0.4" fill="currentColor"/></svg><span translate="no">Forge</span></button>
+            <button type="button" class="est-opt brand-neoforge" data-value="neoforge"><svg class="loglyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 16.5V7.5l7 9v-9" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span translate="no">NeoForge</span></button>
+            <button type="button" class="est-opt brand-fabric" data-value="fabric"><svg class="loglyph" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="3" fill="currentColor"/><g stroke="#0e0d0b" stroke-width="1.2" opacity="0.32"><path d="M3.5 9.7h17M3.5 14.3h17M9.7 3.5v17M14.3 3.5v17"/></g></svg>From <span translate="no">Fabric</span></button>
+          </div>
+        </div>
+        <div class="est-group" id="grp-size">
+          <div class="est-label">Mod size</div>
+          <div class="est-options" data-group="size">
+            <button type="button" class="est-opt t1" data-value="small"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3.5" y="14" width="4" height="6" rx="0.9"/><rect x="9.5" y="9" width="4" height="11" rx="0.9" opacity="0.22"/><rect x="15.5" y="4" width="4" height="16" rx="0.9" opacity="0.22"/></svg>Small<small>items, blocks, recipes</small></button>
+            <button type="button" class="est-opt t2 active" data-value="medium"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3.5" y="14" width="4" height="6" rx="0.9"/><rect x="9.5" y="9" width="4" height="11" rx="0.9"/><rect x="15.5" y="4" width="4" height="16" rx="0.9" opacity="0.22"/></svg>Medium<small>mechanics, entities, GUI</small></button>
+            <button type="button" class="est-opt t3" data-value="large"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3.5" y="14" width="4" height="6" rx="0.9"/><rect x="9.5" y="9" width="4" height="11" rx="0.9"/><rect x="15.5" y="4" width="4" height="16" rx="0.9"/></svg>Large<small>tech mod, worldgen</small></button>
+          </div>
+        </div>
+        <div class="est-group" id="grp-wall">
+          <div class="est-label">Version jump</div>
+          <div class="est-options" data-group="wall">
+            <button type="button" class="est-opt t1 active" data-value="none"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="2.8" y="15" width="3.2" height="5" rx="0.8"/><rect x="7.6" y="11" width="3.2" height="9" rx="0.8" opacity="0.22"/><rect x="12.4" y="7" width="3.2" height="13" rx="0.8" opacity="0.22"/><rect x="17.2" y="3" width="3.2" height="17" rx="0.8" opacity="0.22"/></svg>None / tiny<small>e.g. 1.19.2 &harr; 1.20.1</small></button>
+            <button type="button" class="est-opt t2" data-value="moderate"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="2.8" y="15" width="3.2" height="5" rx="0.8"/><rect x="7.6" y="11" width="3.2" height="9" rx="0.8"/><rect x="12.4" y="7" width="3.2" height="13" rx="0.8" opacity="0.22"/><rect x="17.2" y="3" width="3.2" height="17" rx="0.8" opacity="0.22"/></svg>Moderate<small>crosses 1.20.2</small></button>
+            <button type="button" class="est-opt t3" data-value="hard"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="2.8" y="15" width="3.2" height="5" rx="0.8"/><rect x="7.6" y="11" width="3.2" height="9" rx="0.8"/><rect x="12.4" y="7" width="3.2" height="13" rx="0.8"/><rect x="17.2" y="3" width="3.2" height="17" rx="0.8" opacity="0.22"/></svg>Hard<small>crosses 1.21</small></button>
+            <button type="button" class="est-opt t4" data-value="brutal"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="2.8" y="15" width="3.2" height="5" rx="0.8"/><rect x="7.6" y="11" width="3.2" height="9" rx="0.8"/><rect x="12.4" y="7" width="3.2" height="13" rx="0.8"/><rect x="17.2" y="3" width="3.2" height="17" rx="0.8"/></svg>Brutal<small>crosses 1.13 / 1.18</small></button>
+          </div>
+        </div>
+        <div class="est-group hidden" id="grp-scope">
+          <div class="est-label" id="scope-label">Compatibility scope</div>
+          <div class="est-options" data-group="scope">
+            <button type="button" class="est-opt t1 active" data-value="small"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3.5" y="14" width="4" height="6" rx="0.9"/><rect x="9.5" y="9" width="4" height="11" rx="0.9" opacity="0.22"/><rect x="15.5" y="4" width="4" height="16" rx="0.9" opacity="0.22"/></svg>Simple<small>one fix</small></button>
+            <button type="button" class="est-opt t2" data-value="medium"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3.5" y="14" width="4" height="6" rx="0.9"/><rect x="9.5" y="9" width="4" height="11" rx="0.9"/><rect x="15.5" y="4" width="4" height="16" rx="0.9" opacity="0.22"/></svg>Moderate<small>a few systems</small></button>
+            <button type="button" class="est-opt t3" data-value="large"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3.5" y="14" width="4" height="6" rx="0.9"/><rect x="9.5" y="9" width="4" height="11" rx="0.9"/><rect x="15.5" y="4" width="4" height="16" rx="0.9"/></svg>Deep<small>complex</small></button>
+          </div>
+        </div>
+        <div class="est-group" id="grp-license">
+          <div class="est-label">Mod licence</div>
+          <div class="est-options" data-group="license">
+            <button type="button" class="est-opt ac-life active" data-value="open"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a13 13 0 0 1 0 18"/><path d="M12 3a13 13 0 0 0 0 18"/></svg>Open-source / I have permission</button>
+            <button type="button" class="est-opt ac-steel" data-value="closed"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Closed-source (ARR)</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="est-result">
+        <div class="est-result-label">Ready to send</div>
+        <div class="est-summary" id="est-summary"></div>
+        <a class="btn btn-discord est-discord" id="est-discord" href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg><span>Copy &amp; open Discord</span></a>
+        <button type="button" class="btn btn-ghost est-copy" id="est-copy">Copy summary</button>
+        <div class="est-disclaimer">Head to <span translate="no">#pedidos</span> once you're in &mdash; that's where tickets start. Add your mod's link before you paste.</div>
+      </div>
+    </div>
+  </div>
+</section>
 <!-- FAQ -->
 <section id="faq">
   <!-- Caricaturas de pixel art (tanda del 19-08). Se suman al sistema
@@ -3088,10 +3156,77 @@
 <script>
 (function () {
   'use strict';
-  /* Aqui iban las ~195 lineas del estimador (tabla de precios, render, resumen
-     y el boton de copiar). Se van con la seccion: el presupuesto se acuerda en
-     un ticket. Lo unico que quedaba vivo de este bloque era el acordeon del
-     FAQ, que sigue justo debajo. */
+  var state = { service: 'backport', loader: 'forge', size: 'medium', wall: 'none', scope: 'small', license: 'open' };
+  var JOB = { backport: 'backport', forward: 'forward-port / revive', compat: 'compatibility patch', maintain: 'maintenance job', optimize: 'optimization pass' };
+  var LOADER = { forge: 'Forge', neoforge: 'NeoForge', fabric: 'Fabric, moving to Forge' };
+  var SIZE = { small: 'small', medium: 'medium-size', large: 'large' };
+  var WALL = { none: 'no version wall to cross', moderate: 'crosses one version wall', hard: 'crosses a hard wall (1.21+)', brutal: 'crosses a brutal wall (1.13 / 1.18)' };
+  var SCOPE = { small: 'a simple fix', medium: 'a few systems', large: 'a deep, complex fix' };
+
+  function buildSummary(r) {
+    var bits = [];
+    bits.push(JOB[r.service] + ', ' + LOADER[r.loader] + ', ' + SIZE[r.size] + ' mod, ' + WALL[r.wall] + '.');
+    if (r.service === 'compat') bits.push('Scope: ' + SCOPE[r.scope] + '.');
+    bits.push(r.license === 'open' ? "Open-source, so it can be published once it's done." : "Closed-source, so it stays private.");
+    bits.push('Mod link: ');
+    return bits.join(' ');
+  }
+
+  var summaryEl = document.getElementById('est-summary');
+  function render() { if (summaryEl) summaryEl.textContent = buildSummary(state); }
+
+  var scopeGroup = document.getElementById('grp-scope');
+  function syncGroups() { if (scopeGroup) scopeGroup.classList.toggle('hidden', state.service !== 'compat'); }
+
+  document.querySelectorAll('.est-options').forEach(function (grp) {
+    grp.addEventListener('click', function (e) {
+      var btn = e.target.closest('.est-opt');
+      if (!btn) return;
+      var key = grp.dataset.group;
+      state[key] = btn.dataset.value;
+      grp.querySelectorAll('.est-opt').forEach(function (b) { b.classList.toggle('active', b === btn); });
+      if (key === 'service') syncGroups();
+      render();
+    });
+  });
+
+  function fallbackCopy(text, cb) {
+    var ta = document.createElement('textarea');
+    ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); } catch (e) { /* nada mas que intentar */ }
+    document.body.removeChild(ta); cb();
+  }
+  function copiarResumen(cb) {
+    var text = buildSummary(state);
+    if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(cb).catch(function () { fallbackCopy(text, cb); }); }
+    else { fallbackCopy(text, cb); }
+  }
+
+  var copyBtn = document.getElementById('est-copy');
+  if (copyBtn) {
+    copyBtn.addEventListener('click', function () {
+      copiarResumen(function () {
+        copyBtn.textContent = 'Copied';
+        copyBtn.classList.add('done');
+        setTimeout(function () { copyBtn.textContent = 'Copy summary'; copyBtn.classList.remove('done'); }, 2200);
+      });
+    });
+  }
+  var discordBtn = document.getElementById('est-discord');
+  if (discordBtn) {
+    discordBtn.addEventListener('click', function () {
+      var label = discordBtn.querySelector('span');
+      copiarResumen(function () {
+        if (!label) return;
+        var previo = label.textContent;
+        label.textContent = 'Copied \u2014 paste it in #pedidos';
+        setTimeout(function () { label.textContent = previo; }, 2500);
+      });
+    });
+  }
+  syncGroups(); render();
+
   document.querySelectorAll('.faq-q').forEach(function (q) {
     q.setAttribute('aria-expanded', 'false');
     q.addEventListener('click', function () {
