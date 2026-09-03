@@ -712,7 +712,6 @@
        contacto, es una prueba verificable de quien es danisansietev. */
     .btn-cf { background: #F16436; color: #2a1302; border: 1px solid #F16436; box-shadow: 0 0 0 3px rgba(241,100,54,0.28); }
     .btn-cf:hover { background: #F3774E; border-color: #F3774E; text-decoration: none; transform: translateY(-1px); box-shadow: 0 0 0 4px rgba(241,100,54,0.34); }
-    .hero-cf { margin-top: 1.1rem; }
     /* Rosa/rojo OFICIAL de TikTok (#FE2C55, uno de sus 4 colores de marca junto
        a negro/blanco/cian). El negro puro no sirve aqui: el hero en oscuro es
        casi negro (#14100c / #0c120e) y un boton negro se hunde sin anillo
@@ -721,9 +720,6 @@
        de texto oscuro. */
     .btn-tiktok { background: #FE2C55; color: #2a1302; border: 1px solid #FE2C55; box-shadow: 0 0 0 3px rgba(254,44,85,0.30); }
     .btn-tiktok:hover { background: #FF4A72; border-color: #FF4A72; text-decoration: none; transform: translateY(-1px); box-shadow: 0 0 0 4px rgba(254,44,85,0.36); }
-    .hero-credit { margin-top: 0.6rem; display: flex; align-items: center; gap: 0.6rem; }
-    .hero-credit-avatar { display: block; width: 40px; height: 40px; }
-    .hero-credit-label { font-size: 0.85rem; color: var(--text-mute); }
     .cta-with-eyes { display: inline-flex; align-items: center; gap: 0.5rem; }
     .btn-ghost { background: transparent; color: var(--text); border-color: var(--border-lt); }
     .btn-ghost:hover { border-color: var(--green); color: var(--green-hi); text-decoration: none; }
@@ -2035,25 +2031,18 @@
           image-rendering: pixelated;
           filter: drop-shadow(0 4px 10px rgba(0,0,0,0.45)); }
     @media (max-width: 420px) { .ch--autor { width: 84px; margin-right: 0.65rem; } }
-    .hero-me { display: flex; align-items: center; gap: 0.75rem; margin-top: 1.6rem; }
-    /* ⚠️ SIN `image-rendering: pixelated` A PROPOSITO. La imagen es de 256 px
-       y se pinta a 116, o sea a factor 0,453: con pixelado, los bloques de 9 px
-       del original salen en tiras de 1 px y la cara se deshilacha. Es el mismo
-       reparto desigual que ya se corrigio en los `.ch` el 29-08 y en los logos
-       de CurseForge a 54 px. El navegador reescala mejor que el pixelado
-       cuando el factor no es entero. */
-    .hero-me img { width: 116px; height: auto; flex-shrink: 0; }
-    /* `min-width: 0` porque una casilla de flex vale por defecto `min-width: auto`,
-       o sea que NO encoge por debajo de su contenido. Con el texto en español se
-       salia 26 px de la pantalla a 320 px. Es el mismo minimo implicito que tenian
-       las tres rejillas (`.mp-list`, `.estimator`, `.faq-a`), en su version flex. */
-    .hero-me span { font-size: 0.82rem; line-height: 1.45; color: var(--text-mute); min-width: 0; }
-    /* Subrayado OBLIGATORIO. El dorado que hereda del `a` global contrasta
-       1,52:1 con el texto de al lado: a color solo, el enlace no se ve que es
-       un enlace, y ademas incumple 1.4.1 (no distinguir por color unicamente).
-       Mismo trato que `.hero-contact a`, que va dos parrafos mas arriba. */
-    .hero-me a { text-decoration: underline; text-decoration-color: var(--text-mute); text-underline-offset: 3px; }
-    .hero-me a:hover { text-decoration-color: currentColor; }
+    .hero-team { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 0.9rem 1.2rem; margin-top: 1.6rem; }
+    .hero-person { display: flex; flex-direction: column; align-items: center; gap: 0.4rem; }
+    /* ⚠️ SIN `image-rendering: pixelated` A PROPOSITO, en los 3 retratos. Las
+       fuentes (256 px danisansietev, 300 px Criss/Alex) se pintan a 116, factor
+       no entero (0,453 / 0,386 respectivamente): con pixelado, los bloques del
+       original salen en tiras de 1 px y la cara se deshilacha. Mismo caso que
+       `.ch--autor` y los logos de CurseForge a 54 px: el navegador reescala
+       mejor que el pixelado cuando el factor no es entero. */
+    .hero-person-img { width: 116px; height: auto; display: block; }
+    .hero-person-name { font-size: 0.78rem; font-weight: 600; color: var(--text-mute); }
+    .hero-team-note { margin-top: 0.9rem; font-size: 0.85rem; color: var(--text-mute); }
+    .hero-team-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 0.9rem; }
   </style>
   <script>
     (function(){
@@ -2221,18 +2210,24 @@
       <span class="cta-with-eyes"><a href="#portfolio" class="btn btn-ghost">See the work</a><svg class="bicon-eyes" viewBox="0 0 30 18" width="30" height="17" aria-hidden="true"><ellipse cx="9" cy="9" rx="7.6" ry="8.2" fill="#fff" stroke="#2a2014" stroke-width="0.9"/><ellipse cx="21" cy="9" rx="7.6" ry="8.2" fill="#fff" stroke="#2a2014" stroke-width="0.9"/><circle cx="12.6" cy="8.2" r="3.5" fill="#15110b"/><circle cx="24.6" cy="8.2" r="3.5" fill="#15110b"/><circle cx="13.85" cy="7" r="1.05" fill="#fff"/><circle cx="25.85" cy="7" r="1.05" fill="#fff"/></svg></span>
     </div>
     <p class="hero-contact">It all runs through <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer">my<span translate="no"> Discord</span></a>: open a ticket and I look at your mod there, one case at a time.</p>
-    <div class="hero-me">
-      <img src="h1024-11.webp" width="256" height="236" alt="" aria-hidden="true" decoding="async">
-      <span>That's my character. The rest around the page are from the same world.<span translate="no"> Criss </span>plays the<span translate="no"> ports </span>and shows them around.</span>
+    <div class="hero-team">
+      <div class="hero-person">
+        <img src="h1024-11.webp" width="256" height="236" class="hero-person-img" alt="" aria-hidden="true" decoding="async">
+        <span class="hero-person-name" translate="no">danisansietev</span>
+      </div>
+      <div class="hero-person">
+        <img src="criss-avatar.webp" width="300" height="300" class="hero-person-img" alt="" aria-hidden="true" decoding="async">
+        <span class="hero-person-name" translate="no">Criss</span>
+      </div>
+      <div class="hero-person">
+        <img src="alex-avatar.webp" width="300" height="300" class="hero-person-img" alt="" aria-hidden="true" decoding="async">
+        <span class="hero-person-name" translate="no">Alex</span>
+      </div>
     </div>
-    <a class="btn btn-cf btn-sm hero-cf" href="https://www.curseforge.com/members/danisansietev/projects" target="_blank" rel="noopener noreferrer"><svg class="bicon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg><span>My<span translate="no"> CurseForge</span> profile</span></a>
-    <div class="hero-credit">
-      <img src="criss-avatar.webp" width="40" height="40" class="hero-credit-avatar" alt="" aria-hidden="true" decoding="async">
+    <p class="hero-team-note">The rest of the art around the page is from the same world.<span translate="no"> Criss </span>plays the<span translate="no"> ports </span>and shows them around;<span translate="no"> Alex </span>codes and draws with me.</p>
+    <div class="hero-team-actions">
+      <a class="btn btn-cf btn-sm" href="https://www.curseforge.com/members/danisansietev/projects" target="_blank" rel="noopener noreferrer"><svg class="bicon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg><span>My<span translate="no"> CurseForge</span> profile</span></a>
       <a class="btn btn-tiktok btn-sm" href="https://www.tiktok.com/@crisxx_xx" target="_blank" rel="noopener noreferrer"><svg class="bicon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg><span><span translate="no">Criss</span> on<span translate="no"> TikTok</span></span></a>
-    </div>
-    <div class="hero-credit">
-      <img src="alex-avatar.webp" width="40" height="40" class="hero-credit-avatar" alt="" aria-hidden="true" decoding="async">
-      <span class="hero-credit-label"><span translate="no">Alex</span> codes and draws with me.</span>
     </div>
     <!-- El tiempo de respuesta se decia TRES veces y las tres con "usually":
          aqui, en #contact y en el aviso del motor. Repetir una promesa
