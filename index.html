@@ -88,7 +88,7 @@
   "areaServed": "Worldwide",
   "provider": {
     "@type": "Person",
-    "name": "josda",
+    "name": "danisansietev",
     "alternateName": "Modwright",
     "url": "https://dheightsan.github.io/forge-ports/",
     "email": "modwrightstudios@gmail.com",
@@ -699,6 +699,16 @@
     .btn-neo:hover { background: #e27d44; border-color: #e27d44; text-decoration: none; transform: translateY(-1px); box-shadow: 0 0 0 4px rgba(210,112,63,0.36); }
     .btn-go { background: #6cb33e; color: #102506; border: 1px solid #6cb33e; box-shadow: 0 0 0 3px rgba(108,179,62,0.28); }
     .btn-go:hover { background: #7ac24a; border-color: #7ac24a; text-decoration: none; transform: translateY(-1px); box-shadow: 0 0 0 4px rgba(108,179,62,0.34); }
+    /* Naranja OFICIAL de CurseForge (#F16436), no un tono aproximado. Con
+       texto blanco da 3,17:1 y no pasa AA a este tamano (regla 3 del
+       playbook: umbral 4,5:1 por debajo de 18,66 px). Con el marron oscuro
+       que ya usan `.btn-quote`/`.btn-neo` da 5,55:1, y ademas asocia visualmente
+       este boton con esa misma familia calida en vez de con el azul/rojo de
+       Discord/Gmail, que es justo lo que corresponde: no es un canal de
+       contacto, es una prueba verificable de quien es danisansietev. */
+    .btn-cf { background: #F16436; color: #2a1302; border: 1px solid #F16436; box-shadow: 0 0 0 3px rgba(241,100,54,0.28); }
+    .btn-cf:hover { background: #F3774E; border-color: #F3774E; text-decoration: none; transform: translateY(-1px); box-shadow: 0 0 0 4px rgba(241,100,54,0.34); }
+    .hero-cf { margin-top: 1.1rem; }
     .cta-with-eyes { display: inline-flex; align-items: center; gap: 0.5rem; }
     .btn-ghost { background: transparent; color: var(--text); border-color: var(--border-lt); }
     .btn-ghost:hover { border-color: var(--green); color: var(--green-hi); text-decoration: none; }
@@ -2175,26 +2185,15 @@
     </div>
     <div class="badge"><span class="badge-dot"></span>Open for work</div>
     <h1 class="hero-h1-img"><span class="h1-texto"><span translate="no">Port,</span><span translate="no"> backport </span>&amp; revive<span translate="no"> </span><span class="mc" translate="no" data-word="Minecraft">Minecraft</span><span translate="no"> </span>mods, any version, any loader</span><picture><source media="(max-width: 700px)" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"><img src="titulo-hero.webp" width="2537" height="731" alt="" aria-hidden="true" fetchpriority="high" decoding="async"></picture><img class="h1-es" src="titulo-hero-es.webp" width="2533" height="1142" alt="" aria-hidden="true" loading="lazy" decoding="async"></h1>
-    <p class="hero-who"><picture><source media="(prefers-reduced-motion: reduce)" srcset="wave-me-still.webp"><img class="hero-wave" src="wave-me.webp" width="192" height="190" alt="" aria-hidden="true" loading="eager" decoding="async"></picture>I'm <strong><span translate="no">josda</span></strong>. I build<span translate="no"> modpacks</span>; I got fed up with mods dying off on old versions, so I started<span translate="no"> porting </span>them myself.</p>
+    <p class="hero-who"><picture><source media="(prefers-reduced-motion: reduce)" srcset="wave-me-still.webp"><img class="hero-wave" src="wave-me.webp" width="192" height="190" alt="" aria-hidden="true" loading="eager" decoding="async"></picture>I'm <strong><span translate="no">danisansietev</span></strong>. I build<span translate="no"> modpacks</span>; I got fed up with mods dying off on old versions, so I started<span translate="no"> porting </span>them myself.</p>
     <p class="hero-desc">
       A mod only runs on the version of<span translate="no"> Minecraft </span>it was built for. I rebuild it so it runs on yours instead, or on a different mod loader:<span translate="no"> Forge</span>,<span translate="no"> Fabric </span>and<span translate="no"> NeoForge</span>, in any direction.<span translate="no"> Forge </span>1.20.1 is where most of my work lands, though I take other versions and loaders too.
     </p>
-    <div class="pills">
-      <!-- 🚨 AQUI YA NO VA LA CIFRA (josda, 2026-08-31): "no pongas el precio
-           tan rapido eso desanima". Quien llega a la portada todavia no sabe
-           que compra, y un numero ahi solo sirve para que descarte antes de
-           leer. El precio vive en el presupuestador, que es donde el visitante
-           va A BUSCARLO.
-           ⚠️ PERO NO SE BORRA LA PILDORA, SE SUSTITUYE. Medido en su dia: con
-           un texto corto los 4 distintivos caen 3+1 a 768 px, y un distintivo
-           huerfano se lee como un fallo de maqueta. El texto nuevo tiene largo
-           parecido (32 caracteres contra 35) para que sigan cayendo 2+2. Si se
-           cambia otra vez, hay que volver a medirlo a 768. -->
-      <span class="pill pill-price">One flat quote, agreed in writing</span>
-      <span class="pill pill-trust"><span translate="no">Forge</span>,<span translate="no"> Fabric </span>&amp;<span translate="no"> NeoForge</span></span>
-      <span class="pill">5 checks on every build before it ships</span>
-      <span class="pill">Licence checked up front</span>
-    </div>
+    <!-- Aqui iban 4 pildoras de confianza generica ("5 checks on every build",
+         "Licence checked up front"...): sonaban a justificacion de marketing,
+         no a algo comprobable. Se retiran a peticion de danisansietev
+         (2026-09-03). Lo que las sustituye no es otra pildora: es el boton
+         real a su perfil de CurseForge, un poco mas abajo junto a su foto. -->
     <p class="hero-hook">Is your favourite mod missing on the version you actually play? Tell me which one and I'll tell you what it takes.</p>
     <div class="ctas">
       <a href="#estimator" class="btn btn-go"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg><span>Get a quote</span></a>
@@ -2211,6 +2210,7 @@
       <img src="h1024-11.webp" width="256" height="236" alt="" aria-hidden="true" decoding="async">
       <span>That's my character. The rest around the page are from the same world.<span translate="no"> Criss </span>plays the<span translate="no"> ports </span>and shows them around on <a href="https://www.tiktok.com/@crisxx_xx" target="_blank" rel="noopener noreferrer" translate="no">TikTok</a>.</span>
     </div>
+    <a class="btn btn-cf btn-sm hero-cf" href="https://www.curseforge.com/members/danisansietev/projects" target="_blank" rel="noopener noreferrer"><svg class="bicon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg><span>My<span translate="no"> CurseForge</span> profile</span></a>
     <!-- El tiempo de respuesta se decia TRES veces y las tres con "usually":
          aqui, en #contact y en el aviso del motor. Repetir una promesa
          debilitada la debilita mas. Se queda una sola vez, en el aviso del
