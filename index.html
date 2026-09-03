@@ -721,7 +721,9 @@
        de texto oscuro. */
     .btn-tiktok { background: #FE2C55; color: #2a1302; border: 1px solid #FE2C55; box-shadow: 0 0 0 3px rgba(254,44,85,0.30); }
     .btn-tiktok:hover { background: #FF4A72; border-color: #FF4A72; text-decoration: none; transform: translateY(-1px); box-shadow: 0 0 0 4px rgba(254,44,85,0.36); }
-    .hero-criss { margin-top: 0.6rem; display: flex; align-items: center; gap: 0.6rem; }
+    .hero-credit { margin-top: 0.6rem; display: flex; align-items: center; gap: 0.6rem; }
+    .hero-credit-avatar { display: block; width: 40px; height: 40px; }
+    .hero-credit-label { font-size: 0.85rem; color: var(--text-mute); }
     .cta-with-eyes { display: inline-flex; align-items: center; gap: 0.5rem; }
     .btn-ghost { background: transparent; color: var(--text); border-color: var(--border-lt); }
     .btn-ghost:hover { border-color: var(--green); color: var(--green-hi); text-decoration: none; }
@@ -2224,10 +2226,13 @@
       <span>That's my character. The rest around the page are from the same world.<span translate="no"> Criss </span>plays the<span translate="no"> ports </span>and shows them around.</span>
     </div>
     <a class="btn btn-cf btn-sm hero-cf" href="https://www.curseforge.com/members/danisansietev/projects" target="_blank" rel="noopener noreferrer"><svg class="bicon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg><span>My<span translate="no"> CurseForge</span> profile</span></a>
-    <!-- Avatar de Criss pendiente: en cuanto exista el archivo en disco, un
-         <img> entra aqui delante del boton, sin tocar el resto de esta fila. -->
-    <div class="hero-criss">
+    <div class="hero-credit">
+      <img src="criss-avatar.webp" width="40" height="40" class="hero-credit-avatar" alt="" aria-hidden="true" decoding="async">
       <a class="btn btn-tiktok btn-sm" href="https://www.tiktok.com/@crisxx_xx" target="_blank" rel="noopener noreferrer"><svg class="bicon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg><span><span translate="no">Criss</span> on<span translate="no"> TikTok</span></span></a>
+    </div>
+    <div class="hero-credit">
+      <img src="alex-avatar.webp" width="40" height="40" class="hero-credit-avatar" alt="" aria-hidden="true" decoding="async">
+      <span class="hero-credit-label"><span translate="no">Alex</span> codes and draws with me.</span>
     </div>
     <!-- El tiempo de respuesta se decia TRES veces y las tres con "usually":
          aqui, en #contact y en el aviso del motor. Repetir una promesa
