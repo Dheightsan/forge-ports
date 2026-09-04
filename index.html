@@ -1455,24 +1455,6 @@
     .port-stats > div { display: flex; flex-direction: column; gap: 0.12rem; }
     .port-stats dt { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-mute); }
     .port-stats dd { font-size: 0.82rem; font-weight: 700; color: var(--text); }
-    /* ── las tres cifras ──
-       Nacieron abriendo #proof, para dar descanso antes de cinco parrafos densos.
-       Ahora abren el portafolio y los cinco parrafos se fueron al final: de todo
-       #proof, esto es lo unico que se lee de un vistazo, asi que es lo unico que
-       merece estar arriba. El resto es consulta, no argumento.
-       El peso lo da un numero, no una foto: una foto bonita no puede estar
-       equivocada, asi que no afirma nada; estos tres si pueden, y por eso pesan.
-       Van en HTML vivo y no como imagen para que se seleccionen, se traduzcan, los
-       lea el buscador y respondan a los cuatro temas, cosas que un PNG no hace.
-       La frase de debajo no es adorno: un numero suelto no dice nada, lo que
-       convence es la frase que le dice al numero que esta demostrando. */
-    .figrow { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.4rem; margin: 2.2rem 0 2.6rem; }
-    /* Tres columnas a 320 px dan ~90 px cada una, y ahi ya no cabe una palabra
-       larga en español: la cifra y su texto se salian de la pantalla. Por debajo
-       de 420 px van en una sola columna. `overflow-wrap` es la red de seguridad
-       para una palabra que no quepa ni asi (nombres de mod, rutas). */
-    @media (max-width: 420px) { .figrow { grid-template-columns: minmax(0, 1fr); gap: 1rem; } }
-    .fig-t, .fig-n { overflow-wrap: anywhere; }
     /* Red de seguridad para palabras que no caben en una pantalla estrecha:
        nombres propios largos (BuiltByBit, CurseForge, los ids de los mods) y los
        <code>. Sin esto se salian de la pantalla en español, y como `html` lleva
@@ -1485,16 +1467,6 @@
     p, li, h1, h2, h3, h4, dd, dt, td, th, summary, code,
     .fig-t, .est-label, .card-stats .v, .port-name,
     .faq-body, .est-disclaimer { overflow-wrap: anywhere; }
-    .fig { display: flex; flex-direction: column; gap: 0.5rem; }
-    .fig-n { font-family: var(--font-display); font-size: clamp(2.4rem, 6vw, 3.4rem); font-weight: 700; line-height: 0.95; color: var(--gold); font-variant-numeric: tabular-nums; }
-    .fig-rule { width: 44px; height: 2px; background: var(--border-lt); }
-    .fig-t { font-size: 0.86rem; line-height: 1.55; color: var(--text-soft); max-width: 32ch; }
-    .fig-t strong { color: var(--text); font-weight: 700; }
-    @media (max-width: 720px) { .figrow { grid-template-columns: 1fr; gap: 1.5rem; margin: 1.8rem 0 2rem; } .fig-t { max-width: none; } }
-    /* El enlace a los cinco casos. Sin el, mandar el detalle al final de la
-       pagina seria esconderlo; con el, es un apendice al que se llega. */
-    .figrow-note { font-size: 0.84rem; color: var(--text-mute); margin: -1rem 0 0; }
-    .figrow-note a { color: var(--text-soft); }
     /* ── editorial pull-quote band + hand-inked rule (textured divider) ── */
     .quote-band { position: relative; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: linear-gradient(180deg, var(--surface), var(--bg)); padding: 3.6rem 1.5rem; }
     .q-rule { width: 100px; height: 8px; display: block; margin: 0 auto 1.5rem; }
@@ -1836,7 +1808,7 @@
        milagro; con el texto en español (un 28% mas largo) la tarjeta se salia
        ~100 px a 375 y 414 px, y como `html` lleva `overflow-x: clip` no se podia
        ni arrastrar para verlo: quedaba cortado y punto.
-       Es el mismo patron que la pagina ya usa en `.mp-head` y en `.figrow`. */
+       Es el mismo patron que la pagina ya usa en `.mp-head`. */
     .mp-list { margin-top: 1.6rem; display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.1rem; }
     .mp-item { background: linear-gradient(180deg, #1a1814, #131210); border: 1px solid var(--border); border-top: 2px solid var(--border-lt); border-radius: var(--radius-lg); padding: var(--pad-card); }
     /* Cabecera en rejilla y no en linea: cuando lleve el logo del mod al lado,
@@ -2436,28 +2408,8 @@
       </div>
     </div>
 
-    <div class="figrow">
-      <div class="fig">
-        <span class="fig-n">5</span>
-        <span class="fig-rule" aria-hidden="true"></span>
-        <p class="fig-t"><strong>checks</strong> on every<span translate="no"> jar </span>before it leaves my machine: metadata, pack format, bytecode version, mixin declarations and model bones.</p>
-      </div>
-      <div class="fig">
-        <span class="fig-n">0</span>
-        <span class="fig-rule" aria-hidden="true"></span>
-        <p class="fig-t"><strong>files lost</strong> in the repack, out of 28 diffed against the<span translate="no"> jars </span>the original authors published.</p>
-      </div>
-      <div class="fig">
-        <span class="fig-n">41</span>
-        <span class="fig-rule" aria-hidden="true"></span>
-        <p class="fig-t"><strong>packet payloads</strong> rebuilt by hand, because the clientbound ones kill a dedicated server at startup and never fail in singleplayer.</p>
-      </div>
-    </div>
-    <p class="figrow-note">Every one of those three exists because something got past me first. <a href="#proof">The five that did</a>, in full.</p>
-
     <div class="shelf">
-      <h3>Two I can show you. Twenty-three I can&rsquo;t.</h3>
-      <p>Some are personal-use licences, mine to run but not mine to hand out. The rest are open licences where I am still waiting on the author's yes before I put a build out. It is why I do <a href="#authors">free work for the people who wrote them</a>.</p>
+      <p>I like working with the people who make these mods, and I like making their communities happy.</p>
       <ul class="shelf-grid">
         <li class="tile"><img src="tile-boids.png" width="56" height="56" alt="" loading="lazy" decoding="async"><span translate="no">Boids</span></li>
         <li class="tile"><img src="tile-birds.png" width="56" height="56" alt="" loading="lazy" decoding="async"><span translate="no">Birds</span></li>
@@ -2880,7 +2832,7 @@
         <h3 class="port-name"><span translate="no">Mixins </span>that quietly do not load</h3>
         <details class="more more--card"><summary aria-label="Read the detail: Mixins that quietly do not load">Read the detail</summary>
           <p class="port-desc">Repackaging a<span translate="no"> jar </span>can drop the manifest entry that declares its mixin configs.<span translate="no"> Forge </span>then loads the mod without complaint and none of the mixins apply. The mod is installed, part of its behaviour is missing, and nothing in the log says so.</p>
-          <p class="port-footer-note"><strong>Proof.</strong> Same class of bug, same answer: it became a check. The manifest one in the <a href="#portfolio">five checks I run</a> is this exact bug, turned into something a script can catch. Each one catches a single class of bug and claims nothing beyond it. The bone check only sees literal names, and it needs a<span translate="no"> JDK </span>to read the bytecode.</p></details>
+          <p class="port-footer-note"><strong>Proof.</strong> Same class of bug, same answer: it became a check. The manifest one in the five checks I run is this exact bug, turned into something a script can catch. Each one catches a single class of bug and claims nothing beyond it. The bone check only sees literal names, and it needs a<span translate="no"> JDK </span>to read the bytecode.</p></details>
       </div>
     </div>
   </div>
@@ -2926,10 +2878,11 @@
     <div class="credit">
       <h3><span data-i18n-en>Thank you</span><span data-i18n-es hidden>Gracias</span></h3>
       <!-- Las tres frases del medio contaban por TERCERA vez lo mismo: el
-           portafolio ya lo dice con sus dos fichas y con "Two I can show you.
-           Twenty-three I can't.", y #authors lo cuenta con nombres a menos de una
-           pantalla de aqui. Se queda la apertura y el cierre, que es lo unico que
-           esta seccion aporta: el balance del ano. -->
+           portafolio ya lo dice con sus dos fichas, y #authors lo cuenta con nombres
+           a menos de una pantalla de aqui. Se queda la apertura y el cierre, que es
+           lo unico que esta seccion aporta: el balance del ano. (2026-09-04: se quito
+           la frase "Two I can show you..." del portafolio por sobrejustificada -- la
+           razon de fondo de este recorte sigue siendo la misma). -->
       <!-- "this" y no "that": las tres frases del medio se quitaron por contarse
            ya en el portafolio, y el "that" del remate apuntaba justo a ellas.
            Quedaba un pronombre sin antecedente. "This" se refiere a todo esto
