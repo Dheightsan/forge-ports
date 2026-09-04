@@ -1035,24 +1035,20 @@
     .est-label { font-size: 0.96rem; font-weight: 700; color: var(--text); margin-bottom: 0.7rem; display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; }
     .est-hint { font-size: 0.78rem; color: var(--text-mute); font-weight: 400; }
     .est-options { display: flex; flex-wrap: wrap; gap: 0.55rem; }
-    /* La letra de pixeles tambien aqui: es la peticion de josda de que TODOS
-       los botones lleven la del CTA. Medido antes de aplicarlo, porque
-       Monocraft es monoespaciada y ocupa bastante mas:
-         movil 375 .... 1413 -> 1363 px  (el formulario se ACORTA 50)
-         escritorio ... 760 -> 934 px    (+174, en una sola seccion)
-         se parte ..... nada a 1440; a 375 "Forward-port / revive" sube a
-                        79 px, pero ahi cada opcion va sola en su fila y no
-                        descuadra a ninguna otra.
-       Se descarto "solo la etiqueta en pixeles y la descripcion no": cuesta
-       casi lo mismo (891 px) y ademas parte esa opcion en tres lineas. */
-    .est-opt { background: var(--surface2); color: var(--text-soft); border: 1px solid var(--border); padding: 0.7rem 1.05rem; min-height: 48px; border-radius: var(--radius); font-size: 0.95rem; font-weight: 600; cursor: pointer; font-family: 'Monocraft', 'Space Grotesk', system-ui, sans-serif; transition: background-color 0.13s, color 0.13s, border-color 0.13s; }
+    /* 2026-09-03: vuelta atras de la decision de arriba. La letra de pixeles
+       aqui competia con la del CTA en vez de ayudar a leer: son 8 grupos de
+       opciones con etiqueta + descripcion, no un boton suelto, y josda la
+       sintio fuera de lugar precisamente por MISMA que "Get a quote". Vuelve
+       a `--font` (Space Grotesk), mas grande y con mas contraste; ver tambien
+       #estimator .btn mas abajo para los dos botones de accion del final. */
+    .est-opt { background: var(--surface2); color: var(--text); border: 1px solid var(--border); padding: 0.85rem 1.3rem; min-height: 54px; border-radius: var(--radius); font-size: 1.02rem; font-weight: 600; cursor: pointer; font-family: var(--font); transition: background-color 0.13s, color 0.13s, border-color 0.13s; }
     .est-opt:hover { border-color: var(--green-ring); color: var(--text); }
     /* Acuse fisico del clic, ademas del de color. Es solo un transform de 1px, asi
        que con movimiento reducido se quita y queda el cambio de color de siempre. */
     .est-opt:active { transform: translateY(1px); }
     @media (prefers-reduced-motion: reduce) { .est-opt:active { transform: none; } }
     .est-opt.active { background: var(--green-hi); color: #2a1808; border-color: var(--green-hi); font-weight: 700; box-shadow: 0 0 0 3px var(--green-glow); }
-    .est-opt small { display: block; font-size: 0.8rem; font-weight: 400; opacity: 0.82; margin-top: 0.15rem; }
+    .est-opt small { display: block; font-size: 0.84rem; font-weight: 400; opacity: 0.92; margin-top: 0.2rem; }
     /* tier colour-coding: easy/cheap up to brutal */
     .est-opt .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 0.5rem; vertical-align: middle; background: var(--text-mute); }
     .est-opt.t1 .dot { background: #5aa83f; }
@@ -1119,7 +1115,7 @@
        hermana de arriba, en vez de alinearse a la izquierda como hacia el pie. */
     .loomd-claim--sub { margin-top: 0.7rem; font-family: inherit; font-weight: 400;
       font-size: 0.9rem; line-height: 1.6; color: var(--text-mute); max-width: 46ch; }
-    .est-opt .loglyph { width: 16px; height: 16px; margin-right: 0.5rem; vertical-align: middle; }
+    .est-opt .loglyph { width: 19px; height: 19px; margin-right: 0.55rem; vertical-align: middle; }
     .est-opt.brand-forge .loglyph { color: #b9b3a7; }
     .est-opt.brand-neoforge .loglyph { color: var(--terracotta); }
     .est-opt.brand-fabric .loglyph { color: #cdae7e; }
@@ -1133,7 +1129,7 @@
     .est-opt.brand-neoforge.active .loglyph { color: #2a1302; }
     .est-opt.brand-fabric.active .loglyph { color: #34260f; }
     /* representative option accents: each service / state carries a meaningful hue */
-    .est-opt .optglyph { width: 17px; height: 17px; margin-right: 0.5rem; vertical-align: middle; }
+    .est-opt .optglyph { width: 20px; height: 20px; margin-right: 0.55rem; vertical-align: middle; }
     .est-opt.ac-copper .optglyph { color: #cc8049; }   /* backport: copper, bring it across */
     .est-opt.ac-life   .optglyph { color: #5aa83f; }   /* revive / open: green, life and freedom */
     .est-opt.ac-bridge .optglyph { color: #6f93b8; }   /* compatibility: blue, two sides linked */
@@ -1177,7 +1173,7 @@
     .pexample strong { color: var(--text); }
     /* las tres acciones del presupuesto son UNA pila: mismo ancho y mismo hueco.
        El de Discord no tenia regla y salia a ancho de contenido, 186px contra 297px. */
-    .est-discord, .est-copy, .est-email { display: flex; width: 100%; justify-content: center; margin-top: 0.6rem; }
+    .est-discord, .est-copy, .est-email { display: flex; width: 100%; justify-content: center; margin-top: 0.6rem; font-family: var(--font); }
     /* Los tres botones del resultado se apretan por debajo de 980: ahi la
        columna baja a ~241 px y la etiqueta mas larga se partia en dos lineas,
        que ademas descuadraba la fila (60 px contra 43 de sus hermanos). El
