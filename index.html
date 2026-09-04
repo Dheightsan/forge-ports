@@ -1827,10 +1827,11 @@
     /* Cabecera en rejilla y no en linea: cuando lleve el logo del mod al lado,
        el titulo tiene que poder ocupar dos lineas sin empujarlo. */
     .mp-head { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0.85rem; align-items: center; margin-bottom: 0.75rem; }
-    .mp-logos { display: flex; gap: 0.45rem; }
-    /* pixelated: los iconos vienen a 96 px y se pintan a 40. Sin esto el
-       navegador los suaviza y un icono de Minecraft suavizado canta. */
-    .mp-logo { width: 40px; height: 40px; border-radius: 7px; object-fit: contain; background: var(--surface2); border: 1px solid var(--border); }
+    .mp-logos { display: flex; gap: 0.5rem; }
+    /* pixelated: los iconos vienen a 96 px y se pintan a 56. El comentario
+       decia esto desde antes pero la propiedad nunca estaba en la regla: se
+       veian suavizados, no nitidos. Ya esta puesta. */
+    .mp-logo { width: 56px; height: 56px; border-radius: 8px; object-fit: contain; background: var(--surface2); border: 1px solid var(--border); image-rendering: pixelated; }
     .mp-credit { margin-top: 0.9rem; font-size: 0.82rem; color: var(--text-mute); }
     .mp-credit a { color: var(--text-soft); }
     .mp-item h3 { font-size: 1.02rem; font-weight: 700; line-height: 1.35; margin: 0; }
@@ -2458,7 +2459,7 @@
         <details class="more more--card">
           <summary>Reading the split</summary>
         <p><span translate="no">Fresh Animations </span>on almost every creature,<span translate="no"> Epic Fight </span>on my character alone. Taking a mob off<span translate="no"> Epic Fight </span>takes two changes: a datapack entry stops its combat patch, but the mob still draws through its own renderer, so<span translate="no"> Fresh Animations </span>never gets a look in. The other half is a script that pulls the mob out of that renderer map on world load. I found the split by decompiling the render engine.</p>
-        <p class="mp-catch"><strong>The half that hid the longest.</strong> The datapack was not loading at all. It was missing its <code>pack.mcmeta</code>, so the loader skipped the entire folder and said nothing about it in the log. Both halves now name the same 24 mobs, and they still match today.</p>
+        <p class="mp-catch"><strong>The half that hid the longest.</strong> It was missing its <code>pack.mcmeta</code>, so the loader skipped the whole folder without a word. Both halves now name the same 24 mobs, and they still match today.</p>
         </details>
         <p class="mp-credit"><a href="https://modrinth.com/resourcepack/fresh-animations" target="_blank" rel="noopener noreferrer"><span translate="no">Fresh Animations</span></a> is by<span translate="no"> FreshLX</span>, <a href="https://modrinth.com/mod/epic-fight" target="_blank" rel="noopener noreferrer"><span translate="no">Epic Fight</span></a> by its own team. All I did was make them share a world.</p>
       </article>
@@ -2478,7 +2479,7 @@
         <p class="mp-hook"><strong>48% of their creatures were already animated</strong> and never needed<span translate="no"> Fresh Animations </span>at all. I scanned the bytecode of <strong>645<span translate="no"> jars</span></strong> instead of guessing.</p>
         <details class="more more--card">
           <summary>The numbers</summary>
-        <p><span translate="no">Fresh Animations </span>does nothing for a mod that animates its own creatures, so before touching anything I scanned the bytecode of <strong>645<span translate="no"> jars</span></strong> for<span translate="no"> GeckoLib</span>,<span translate="no"> AzureLib </span>and<span translate="no"> Citadel</span>. 305 add creatures, 3,951 creatures between them, and <strong>48% of those creatures were already animated</strong>. The scan turned an open-ended job into a short list.</p>
+        <p><span translate="no">Fresh Animations </span>does nothing for a mod that already animates its own creatures. Between<span translate="no"> GeckoLib</span>,<span translate="no"> AzureLib </span>and<span translate="no"> Citadel</span>: <strong>305 mods, 3,951 creatures</strong>. The scan turned an open-ended job into a short list.</p>
         </details>
       </article>
 
@@ -2489,7 +2490,7 @@
         <p class="mp-hook">Seven mods loaded perfectly and their creatures never appeared anywhere. Their folder was <code>biome_modifier</code>.<span translate="no"> Forge </span>reads <code>biome_modifiers</code>.</p>
         <details class="more more--card">
           <summary>Why nothing warned me</summary>
-        <p><span translate="no">Forge </span>reads biome modifiers from a folder called <code>biome_modifiers</code>. A folder called <code>biome_modifier</code> is ignored: no warning, no error, nothing in the log. Seven mods in my pack had the singular, so they loaded perfectly and their creatures simply never appeared anywhere in the world. It looks exactly like a mod that is broken, and it is a plural.</p>
+        <p><span translate="no">Forge </span>reads biome modifiers from a folder called <code>biome_modifiers</code>. Seven mods in my pack had the singular, <code>biome_modifier</code>, so<span translate="no"> Forge </span>quietly skipped the whole folder: no warning, no error. It looks exactly like a broken mod. It's one missing letter.</p>
         </details>
       </article>
 
@@ -2504,7 +2505,7 @@
         <details class="more more--card">
           <summary>The one word</summary>
         <p><span translate="no">Mutant More </span>had been sitting out of my pack for weeks, crashing on load. The previous read was that its bytecode would have to be rewritten. It did not. Its mixin config declared <code>compatibilityLevel: "JAVA_16"</code> while <strong>all 577 of its classes were compiled as Java 17</strong>, so the mixin loader refused every one of them. Java 16 caps at class version 60; the classes were 61.</p>
-        <p class="mp-catch"><strong>The fix was one word.</strong> <code>JAVA_16</code> became <code>JAVA_17</code>. Before touching it I opened<span translate="no"> mixin-0.8.5.jar</span>, the version<span translate="no"> Forge </span>1.20.1 loads, and read its<span translate="no"> CompatibilityLevel </span>enum to confirm<span translate="no"> JAVA_17 </span>was a value it would actually accept rather than assuming. Original<span translate="no"> jar </span>backed up first, repacked, and the pack went from 588 mods loading to 589 of 589.</p>
+        <p class="mp-catch"><code>JAVA_16</code> became <code>JAVA_17</code>. Before touching it I opened<span translate="no"> mixin-0.8.5.jar</span>, the version<span translate="no"> Forge </span>1.20.1 loads, and read its<span translate="no"> CompatibilityLevel </span>enum to confirm<span translate="no"> JAVA_17 </span>was a value it would actually accept, rather than assuming. Original<span translate="no"> jar </span>backed up first, then repacked.</p>
         </details>
         <p class="mp-credit"><span translate="no">Mutant More </span>is by <a href="https://modrinth.com/mod/new-mutant-more" target="_blank" rel="noopener noreferrer"><span translate="no">AlexandersFunAndGames</span></a>. That config line was the only thing I touched, and only in my own copy.</p>
       </article>
