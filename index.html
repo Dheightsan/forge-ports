@@ -2751,6 +2751,85 @@
     </div>
   </div>
 </section>
+<!-- ESTIMATOR -->
+<!-- Repuesto el 2026-09-02 (tarde), version ligera: SIN precios (eran $ que
+     salian de una tabla interna, y josda pidio que no se vea el sistema de
+     precios). Es un generador de texto: 5 grupos de opciones describen el
+     trabajo, el resumen se arma en 3-4 frases sueltas (nada de "Hi! ...
+     Thanks!": eso fue lo que antes leia como mensaje de bot, varias visitas
+     identicas aterrizando en el mismo Discord) y un boton copia y abre
+     Discord a la vez. El texto de abajo nombra el canal #pedidos porque el
+     enlace de invitacion es generico: no hay forma de que caiga directo en
+     un canal sin que josda genere un enlace propio desde ESE canal. -->
+<section id="estimator">
+  <div class="wrap">
+    <h2>Set up your ticket</h2>
+    <p class="sub">Pick what fits, then copy the summary into <span translate="no">#pedidos</span> on <span translate="no">Discord</span>.</p>
+
+    <div class="estimator reveal">
+      <div class="est-form">
+        <div class="est-group" id="grp-service">
+          <div class="est-label">What kind of job?</div>
+          <div class="est-options" data-group="service">
+            <button type="button" class="est-opt ac-copper active" data-value="backport"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v13"/><path d="M6 12l6 6 6-6"/></svg><span translate="no">Backport</span><small>newer &rarr; older</small></button>
+            <button type="button" class="est-opt ac-life" data-value="forward"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V6"/><path d="M6 12l6-6 6 6"/></svg><span translate="no">Forward-port</span> / revive<small>old &rarr; modern</small></button>
+            <button type="button" class="est-opt ac-bridge" data-value="compat"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7h4a4 4 0 0 1 0 8h-1"/><path d="M15 17h-4a4 4 0 0 1 0-8h1"/></svg>Compatibility<small>make mods coexist</small></button>
+            <button type="button" class="est-opt ac-steel" data-value="maintain"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.6 5.6L3 18l3 3 6.1-6.1a4 4 0 0 0 5.6-5.6l-2.9 2.9a1.5 1.5 0 0 1-2-2l2.9-2.9z"/></svg>Maintenance<small>fix mixins / crashes</small></button>
+            <button type="button" class="est-opt ac-spark" data-value="optimize"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Optimization<small>less lag / resources</small></button>
+          </div>
+        </div>
+        <div class="est-group" id="grp-loader">
+          <div class="est-label">Source mod loader</div>
+          <div class="est-options" data-group="loader">
+            <button type="button" class="est-opt brand-forge active" data-value="forge"><svg class="loglyph" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M2 8h10l-1.2 2.4H15v2h-1.9L12 17H8L6.2 12.4H2z"/><rect x="6" y="18" width="9" height="2" rx="0.4" fill="currentColor"/></svg><span translate="no">Forge</span></button>
+            <button type="button" class="est-opt brand-neoforge" data-value="neoforge"><svg class="loglyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 16.5V7.5l7 9v-9" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span translate="no">NeoForge</span></button>
+            <button type="button" class="est-opt brand-fabric" data-value="fabric"><svg class="loglyph" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="3" fill="currentColor"/><g stroke="#0e0d0b" stroke-width="1.2" opacity="0.32"><path d="M3.5 9.7h17M3.5 14.3h17M9.7 3.5v17M14.3 3.5v17"/></g></svg>From <span translate="no">Fabric</span></button>
+          </div>
+        </div>
+        <div class="est-group" id="grp-size">
+          <div class="est-label">Mod size</div>
+          <div class="est-options" data-group="size">
+            <button type="button" class="est-opt t1" data-value="small"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3.5" y="14" width="4" height="6" rx="0.9"/><rect x="9.5" y="9" width="4" height="11" rx="0.9" opacity="0.22"/><rect x="15.5" y="4" width="4" height="16" rx="0.9" opacity="0.22"/></svg>Small<small>items, blocks, recipes</small></button>
+            <button type="button" class="est-opt t2 active" data-value="medium"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3.5" y="14" width="4" height="6" rx="0.9"/><rect x="9.5" y="9" width="4" height="11" rx="0.9"/><rect x="15.5" y="4" width="4" height="16" rx="0.9" opacity="0.22"/></svg>Medium<small>mechanics, entities, GUI</small></button>
+            <button type="button" class="est-opt t3" data-value="large"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3.5" y="14" width="4" height="6" rx="0.9"/><rect x="9.5" y="9" width="4" height="11" rx="0.9"/><rect x="15.5" y="4" width="4" height="16" rx="0.9"/></svg>Large<small>tech mod, worldgen</small></button>
+          </div>
+        </div>
+        <div class="est-group" id="grp-wall">
+          <div class="est-label">Version jump</div>
+          <div class="est-options" data-group="wall">
+            <button type="button" class="est-opt t1 active" data-value="none"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="2.8" y="15" width="3.2" height="5" rx="0.8"/><rect x="7.6" y="11" width="3.2" height="9" rx="0.8" opacity="0.22"/><rect x="12.4" y="7" width="3.2" height="13" rx="0.8" opacity="0.22"/><rect x="17.2" y="3" width="3.2" height="17" rx="0.8" opacity="0.22"/></svg>None / tiny<small>e.g. 1.19.2 &harr; 1.20.1</small></button>
+            <button type="button" class="est-opt t2" data-value="moderate"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="2.8" y="15" width="3.2" height="5" rx="0.8"/><rect x="7.6" y="11" width="3.2" height="9" rx="0.8"/><rect x="12.4" y="7" width="3.2" height="13" rx="0.8" opacity="0.22"/><rect x="17.2" y="3" width="3.2" height="17" rx="0.8" opacity="0.22"/></svg>Moderate<small>crosses 1.20.2</small></button>
+            <button type="button" class="est-opt t3" data-value="hard"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="2.8" y="15" width="3.2" height="5" rx="0.8"/><rect x="7.6" y="11" width="3.2" height="9" rx="0.8"/><rect x="12.4" y="7" width="3.2" height="13" rx="0.8"/><rect x="17.2" y="3" width="3.2" height="17" rx="0.8" opacity="0.22"/></svg>Hard<small>crosses 1.21</small></button>
+            <button type="button" class="est-opt t4" data-value="brutal"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="2.8" y="15" width="3.2" height="5" rx="0.8"/><rect x="7.6" y="11" width="3.2" height="9" rx="0.8"/><rect x="12.4" y="7" width="3.2" height="13" rx="0.8"/><rect x="17.2" y="3" width="3.2" height="17" rx="0.8"/></svg>Brutal<small>crosses 1.13 / 1.18</small></button>
+          </div>
+        </div>
+        <div class="est-group hidden" id="grp-scope">
+          <div class="est-label" id="scope-label">Compatibility scope</div>
+          <div class="est-options" data-group="scope">
+            <button type="button" class="est-opt t1 active" data-value="small"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3.5" y="14" width="4" height="6" rx="0.9"/><rect x="9.5" y="9" width="4" height="11" rx="0.9" opacity="0.22"/><rect x="15.5" y="4" width="4" height="16" rx="0.9" opacity="0.22"/></svg>Simple<small>one fix</small></button>
+            <button type="button" class="est-opt t2" data-value="medium"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3.5" y="14" width="4" height="6" rx="0.9"/><rect x="9.5" y="9" width="4" height="11" rx="0.9"/><rect x="15.5" y="4" width="4" height="16" rx="0.9" opacity="0.22"/></svg>Moderate<small>a few systems</small></button>
+            <button type="button" class="est-opt t3" data-value="large"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3.5" y="14" width="4" height="6" rx="0.9"/><rect x="9.5" y="9" width="4" height="11" rx="0.9"/><rect x="15.5" y="4" width="4" height="16" rx="0.9"/></svg>Deep<small>complex</small></button>
+          </div>
+        </div>
+        <div class="est-group" id="grp-license">
+          <div class="est-label">Mod licence</div>
+          <div class="est-options" data-group="license">
+            <button type="button" class="est-opt ac-life active" data-value="open"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a13 13 0 0 1 0 18"/><path d="M12 3a13 13 0 0 0 0 18"/></svg>Open-source / I have permission</button>
+            <button type="button" class="est-opt ac-steel" data-value="closed"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Closed-source (ARR)</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="est-result">
+        <div class="est-result-label">Ready to send</div>
+        <div class="est-summary" id="est-summary"></div>
+        <a class="btn btn-discord est-discord" id="est-discord" href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg><span>Copy &amp; open <span translate="no">Discord</span></span></a>
+        <button type="button" class="btn btn-ghost est-copy" id="est-copy">Copy summary</button>
+        <div class="est-disclaimer">Head to <span translate="no">#pedidos</span> once you're in &mdash; that's where tickets start. Add your mod's link before you paste.</div>
+      </div>
+    </div>
+  </div>
+</section>
 <!-- PROOF -->
 <section id="proof">
   <!-- Caricaturas de pixel art (tanda del 19-08). Se suman al sistema
@@ -2902,85 +2981,7 @@
 
 </div>
 
-<!-- ESTIMATOR -->
-<!-- Repuesto el 2026-09-02 (tarde), version ligera: SIN precios (eran $ que
-     salian de una tabla interna, y josda pidio que no se vea el sistema de
-     precios). Es un generador de texto: 5 grupos de opciones describen el
-     trabajo, el resumen se arma en 3-4 frases sueltas (nada de "Hi! ...
-     Thanks!": eso fue lo que antes leia como mensaje de bot, varias visitas
-     identicas aterrizando en el mismo Discord) y un boton copia y abre
-     Discord a la vez. El texto de abajo nombra el canal #pedidos porque el
-     enlace de invitacion es generico: no hay forma de que caiga directo en
-     un canal sin que josda genere un enlace propio desde ESE canal. -->
-<section id="estimator">
-  <div class="wrap">
-    <h2>Set up your ticket</h2>
-    <p class="sub">Pick what fits, then copy the summary into <span translate="no">#pedidos</span> on <span translate="no">Discord</span>.</p>
 
-    <div class="estimator reveal">
-      <div class="est-form">
-        <div class="est-group" id="grp-service">
-          <div class="est-label">What kind of job?</div>
-          <div class="est-options" data-group="service">
-            <button type="button" class="est-opt ac-copper active" data-value="backport"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v13"/><path d="M6 12l6 6 6-6"/></svg><span translate="no">Backport</span><small>newer &rarr; older</small></button>
-            <button type="button" class="est-opt ac-life" data-value="forward"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V6"/><path d="M6 12l6-6 6 6"/></svg><span translate="no">Forward-port</span> / revive<small>old &rarr; modern</small></button>
-            <button type="button" class="est-opt ac-bridge" data-value="compat"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7h4a4 4 0 0 1 0 8h-1"/><path d="M15 17h-4a4 4 0 0 1 0-8h1"/></svg>Compatibility<small>make mods coexist</small></button>
-            <button type="button" class="est-opt ac-steel" data-value="maintain"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.6 5.6L3 18l3 3 6.1-6.1a4 4 0 0 0 5.6-5.6l-2.9 2.9a1.5 1.5 0 0 1-2-2l2.9-2.9z"/></svg>Maintenance<small>fix mixins / crashes</small></button>
-            <button type="button" class="est-opt ac-spark" data-value="optimize"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Optimization<small>less lag / resources</small></button>
-          </div>
-        </div>
-        <div class="est-group" id="grp-loader">
-          <div class="est-label">Source mod loader</div>
-          <div class="est-options" data-group="loader">
-            <button type="button" class="est-opt brand-forge active" data-value="forge"><svg class="loglyph" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M2 8h10l-1.2 2.4H15v2h-1.9L12 17H8L6.2 12.4H2z"/><rect x="6" y="18" width="9" height="2" rx="0.4" fill="currentColor"/></svg><span translate="no">Forge</span></button>
-            <button type="button" class="est-opt brand-neoforge" data-value="neoforge"><svg class="loglyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 16.5V7.5l7 9v-9" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span translate="no">NeoForge</span></button>
-            <button type="button" class="est-opt brand-fabric" data-value="fabric"><svg class="loglyph" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="3" fill="currentColor"/><g stroke="#0e0d0b" stroke-width="1.2" opacity="0.32"><path d="M3.5 9.7h17M3.5 14.3h17M9.7 3.5v17M14.3 3.5v17"/></g></svg>From <span translate="no">Fabric</span></button>
-          </div>
-        </div>
-        <div class="est-group" id="grp-size">
-          <div class="est-label">Mod size</div>
-          <div class="est-options" data-group="size">
-            <button type="button" class="est-opt t1" data-value="small"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3.5" y="14" width="4" height="6" rx="0.9"/><rect x="9.5" y="9" width="4" height="11" rx="0.9" opacity="0.22"/><rect x="15.5" y="4" width="4" height="16" rx="0.9" opacity="0.22"/></svg>Small<small>items, blocks, recipes</small></button>
-            <button type="button" class="est-opt t2 active" data-value="medium"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3.5" y="14" width="4" height="6" rx="0.9"/><rect x="9.5" y="9" width="4" height="11" rx="0.9"/><rect x="15.5" y="4" width="4" height="16" rx="0.9" opacity="0.22"/></svg>Medium<small>mechanics, entities, GUI</small></button>
-            <button type="button" class="est-opt t3" data-value="large"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3.5" y="14" width="4" height="6" rx="0.9"/><rect x="9.5" y="9" width="4" height="11" rx="0.9"/><rect x="15.5" y="4" width="4" height="16" rx="0.9"/></svg>Large<small>tech mod, worldgen</small></button>
-          </div>
-        </div>
-        <div class="est-group" id="grp-wall">
-          <div class="est-label">Version jump</div>
-          <div class="est-options" data-group="wall">
-            <button type="button" class="est-opt t1 active" data-value="none"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="2.8" y="15" width="3.2" height="5" rx="0.8"/><rect x="7.6" y="11" width="3.2" height="9" rx="0.8" opacity="0.22"/><rect x="12.4" y="7" width="3.2" height="13" rx="0.8" opacity="0.22"/><rect x="17.2" y="3" width="3.2" height="17" rx="0.8" opacity="0.22"/></svg>None / tiny<small>e.g. 1.19.2 &harr; 1.20.1</small></button>
-            <button type="button" class="est-opt t2" data-value="moderate"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="2.8" y="15" width="3.2" height="5" rx="0.8"/><rect x="7.6" y="11" width="3.2" height="9" rx="0.8"/><rect x="12.4" y="7" width="3.2" height="13" rx="0.8" opacity="0.22"/><rect x="17.2" y="3" width="3.2" height="17" rx="0.8" opacity="0.22"/></svg>Moderate<small>crosses 1.20.2</small></button>
-            <button type="button" class="est-opt t3" data-value="hard"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="2.8" y="15" width="3.2" height="5" rx="0.8"/><rect x="7.6" y="11" width="3.2" height="9" rx="0.8"/><rect x="12.4" y="7" width="3.2" height="13" rx="0.8"/><rect x="17.2" y="3" width="3.2" height="17" rx="0.8" opacity="0.22"/></svg>Hard<small>crosses 1.21</small></button>
-            <button type="button" class="est-opt t4" data-value="brutal"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="2.8" y="15" width="3.2" height="5" rx="0.8"/><rect x="7.6" y="11" width="3.2" height="9" rx="0.8"/><rect x="12.4" y="7" width="3.2" height="13" rx="0.8"/><rect x="17.2" y="3" width="3.2" height="17" rx="0.8"/></svg>Brutal<small>crosses 1.13 / 1.18</small></button>
-          </div>
-        </div>
-        <div class="est-group hidden" id="grp-scope">
-          <div class="est-label" id="scope-label">Compatibility scope</div>
-          <div class="est-options" data-group="scope">
-            <button type="button" class="est-opt t1 active" data-value="small"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3.5" y="14" width="4" height="6" rx="0.9"/><rect x="9.5" y="9" width="4" height="11" rx="0.9" opacity="0.22"/><rect x="15.5" y="4" width="4" height="16" rx="0.9" opacity="0.22"/></svg>Simple<small>one fix</small></button>
-            <button type="button" class="est-opt t2" data-value="medium"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3.5" y="14" width="4" height="6" rx="0.9"/><rect x="9.5" y="9" width="4" height="11" rx="0.9"/><rect x="15.5" y="4" width="4" height="16" rx="0.9" opacity="0.22"/></svg>Moderate<small>a few systems</small></button>
-            <button type="button" class="est-opt t3" data-value="large"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3.5" y="14" width="4" height="6" rx="0.9"/><rect x="9.5" y="9" width="4" height="11" rx="0.9"/><rect x="15.5" y="4" width="4" height="16" rx="0.9"/></svg>Deep<small>complex</small></button>
-          </div>
-        </div>
-        <div class="est-group" id="grp-license">
-          <div class="est-label">Mod licence</div>
-          <div class="est-options" data-group="license">
-            <button type="button" class="est-opt ac-life active" data-value="open"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a13 13 0 0 1 0 18"/><path d="M12 3a13 13 0 0 0 0 18"/></svg>Open-source / I have permission</button>
-            <button type="button" class="est-opt ac-steel" data-value="closed"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Closed-source (ARR)</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="est-result">
-        <div class="est-result-label">Ready to send</div>
-        <div class="est-summary" id="est-summary"></div>
-        <a class="btn btn-discord est-discord" id="est-discord" href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg><span>Copy &amp; open <span translate="no">Discord</span></span></a>
-        <button type="button" class="btn btn-ghost est-copy" id="est-copy">Copy summary</button>
-        <div class="est-disclaimer">Head to <span translate="no">#pedidos</span> once you're in &mdash; that's where tickets start. Add your mod's link before you paste.</div>
-      </div>
-    </div>
-  </div>
-</section>
 <!-- FAQ -->
 <section id="faq">
   <!-- Caricaturas de pixel art (tanda del 19-08). Se suman al sistema
