@@ -983,21 +983,33 @@
        de 2, que tambien cierra en recto). */
     @media (min-width: 900px) { .cards { grid-template-columns: repeat(3, 1fr); } }
     .card { background: linear-gradient(180deg, #1a1814, #131210); padding: var(--pad-card-lg); border: 1px solid var(--border); border-radius: var(--radius-lg); transition: border-color 0.15s, transform 0.1s; position: relative; overflow: hidden; box-shadow: inset 0 1px 0 rgba(234,228,214,0.04), 0 8px 24px -16px rgba(0,0,0,0.7); }
-    .card:hover { border-color: var(--green-ring); transform: translateY(-3px); }
+    .card:hover { transform: translateY(-3px); }
+    /* La franja de arriba existia en CSS pero nunca se pintaba: un ::before
+       sin `content` no genera caja. Ahora si dibuja. Dos ejes de color
+       independientes: la franja dice nivel de precio (base=verde,
+       premium=oro); el borde en hover dice que tipo de servicio es. */
+    .card--base::before, .card--premium::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+    .card--base::before { background: var(--green); }
     .card--premium::before { background: var(--gold); }
+    .card.svc-copper:hover { border-color: #cc8049; }
+    .card.svc-life:hover   { border-color: #5aa83f; }
+    .card.svc-loom:hover   { border-color: #cdae7e; }
+    .card.svc-bridge:hover { border-color: #6f93b8; }
+    .card.svc-steel:hover  { border-color: #9aa0a8; }
+    .card.svc-spark:hover  { border-color: #e0b441; }
     .card-stats { display: flex; flex-wrap: wrap; gap: 0.5rem 1.3rem; margin: 0.2rem 0 1rem; padding-top: 0.85rem; border-top: 1px solid var(--border); }
     .card-stats > div { display: flex; flex-direction: column; gap: 0.1rem; }
     .card-stats .k { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-mute); }
     .card-stats .v { font-size: 0.8rem; font-weight: 700; color: var(--text); }
-    .icon-wrap { width: 44px; height: 44px; display: grid; place-items: center; background: var(--brown-glow); border-radius: var(--radius); margin-bottom: 1rem; color: var(--brown-hi); }
-    .icon-wrap svg { width: 24px; height: 24px; stroke: currentColor; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .icon-wrap { width: 52px; height: 52px; display: grid; place-items: center; background: var(--brown-glow); border-radius: var(--radius); margin-bottom: 1rem; color: var(--brown-hi); }
+    .icon-wrap svg { width: 28px; height: 28px; stroke: currentColor; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
     /* per-service representative icon colours (matches the estimator's accent system) */
-    .icon-wrap.svc-copper { color: #cc8049; background: rgba(204,128,73,0.13); }
-    .icon-wrap.svc-life   { color: #5aa83f; background: rgba(90,168,63,0.13); }
-    .icon-wrap.svc-loom   { color: #cdae7e; background: rgba(205,174,126,0.15); }
-    .icon-wrap.svc-bridge { color: #6f93b8; background: rgba(111,147,184,0.15); }
-    .icon-wrap.svc-steel  { color: #9aa0a8; background: rgba(154,160,168,0.15); }
-    .icon-wrap.svc-spark  { color: #e0b441; background: rgba(224,180,65,0.13); }
+    .icon-wrap.svc-copper { color: #cc8049; background: rgba(204,128,73,0.13); border: 1px solid rgba(204,128,73,0.4); }
+    .icon-wrap.svc-life   { color: #5aa83f; background: rgba(90,168,63,0.13); border: 1px solid rgba(90,168,63,0.4); }
+    .icon-wrap.svc-loom   { color: #cdae7e; background: rgba(205,174,126,0.15); border: 1px solid rgba(205,174,126,0.4); }
+    .icon-wrap.svc-bridge { color: #6f93b8; background: rgba(111,147,184,0.15); border: 1px solid rgba(111,147,184,0.4); }
+    .icon-wrap.svc-steel  { color: #9aa0a8; background: rgba(154,160,168,0.15); border: 1px solid rgba(154,160,168,0.4); }
+    .icon-wrap.svc-spark  { color: #e0b441; background: rgba(224,180,65,0.13); border: 1px solid rgba(224,180,65,0.4); }
     /* Las dos lineas que cierran #services. Estaban FUERA de .wrap y sin una
        sola regla, o sea pegadas al borde de la pantalla mientras la seccion se
        queda en 1060. La de arriba quita un pero ("no es todo o nada") y por eso
@@ -2542,7 +2554,7 @@
          eso. Aqui el dato util es la tarifa. -->
     <p class="sub">Anything harder is priced by the real work it adds, measured job by job. The full reasoning is written up in <a href="mod-porting-cost.html">what a<span translate="no"> port </span>costs, and why</a>.</p>
 <div class="cards">
-      <div class="card card--base">
+      <div class="card card--base svc-copper">
         <div class="icon-wrap svc-copper"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v13"/><path d="M6 11l6 6 6-6"/></svg></div>
         <h3><span translate="no">Backport</span></h3>
         <p>A newer mod (1.21+) your pack needs running on something older like<span translate="no"> Forge </span>1.20.1. That means<span translate="no"> porting </span>the items, blocks, mechanics and textures across.<span translate="no"> Backporting </span>a mod to<span translate="no"> Forge </span>1.20.1 is the job I do most.</p>
@@ -2552,7 +2564,7 @@
         </div>
         <span class="card-tag tag-base">By version wall</span>
       </div>
-      <div class="card card--premium">
+      <div class="card card--premium svc-life">
         <div class="icon-wrap svc-life"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V7"/><path d="M6 13l6-6 6 6"/></svg></div>
         <h3><span translate="no">Forward-port </span>&amp; revive</h3>
         <p>An old or abandoned mod you love, stuck on 1.12 / 1.16 / 1.18, that you want running on a modern version. It's the hardest kind of<span translate="no"> port</span>, which is exactly why most<span translate="no"> porters </span>won't take it. The price scales with how many version walls it has to cross.</p>
@@ -2562,27 +2574,27 @@
         </div>
         <span class="card-tag tag-premium">By complexity</span>
       </div>
-      <div class="card card--premium">
+      <div class="card card--premium svc-loom">
         <div class="icon-wrap svc-loom"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h13l-3-3"/><path d="M20 16H7l3 3"/></svg></div>
         <h3>Loader conversion</h3>
-        <p>Moving a mod between<span translate="no"> Fabric</span>,<span translate="no"> NeoForge </span>and<span translate="no"> Forge</span>. <strong>Porting a<span translate="no"> Fabric </span>mod to<span translate="no"> Forge </span>is close to a rewrite</strong> because the two are built on completely different plumbing, so most of the code has to be written again. I wrote up <a href="fabric-to-forge-1-20-1.html">what actually breaks in a<span translate="no"> Fabric </span>to<span translate="no"> Forge</span><span translate="no"> port</span></a>, with the failures that never show an error.</p>
+        <p>Moving a mod between<span translate="no"> Fabric</span>,<span translate="no"> NeoForge </span>and<span translate="no"> Forge</span>. <strong><span translate="no">Fabric </span>to<span translate="no"> Forge </span>is close to a rewrite</strong>, the two are built on completely different plumbing, so most of the code has to be written again.<span translate="no"> Forge </span>and<span translate="no"> NeoForge </span>share far more, so that direction goes faster. I wrote up <a href="fabric-to-forge-1-20-1.html">what actually breaks in a<span translate="no"> Fabric </span>to<span translate="no"> Forge</span><span translate="no"> port</span></a>, with the failures that never show an error.</p>
         <div class="card-stats">
           
           
         </div>
         <span class="card-tag tag-premium">By complexity</span>
       </div>
-      <div class="card card--base">
+      <div class="card card--base svc-bridge">
         <div class="icon-wrap svc-bridge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7h5a4 4 0 0 1 0 8h-1"/><path d="M15 17h-5a4 4 0 0 1 0-8h1"/></svg></div>
         <h3>Compatibility patches</h3>
-        <p>Getting mods to coexist: two native mods, a<span translate="no"> ported </span>one alongside a native one, mobs spawning across mods, or a conflict that breaks a feature. This works <strong>even on mods whose code was never published</strong>, and what you get is a separate add-on you are free to publish.</p>
+        <p>Getting mods to coexist: two mods that clash, a<span translate="no"> ported </span>mod that needs to fit alongside a native one, or mobs from one mod spawning correctly in another's biomes. This works <strong>even on mods whose code was never published</strong>, and what you get is a separate add-on you are free to publish.</p>
         <div class="card-stats">
           <div><span class="k">Works with</span><span class="v">Closed-source too</span></div>
           
         </div>
         <span class="card-tag tag-base">Publishable</span>
       </div>
-      <div class="card card--base">
+      <div class="card card--base svc-steel">
         <div class="icon-wrap svc-steel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.6 5.6L3 18l3 3 6.1-6.1a4 4 0 0 0 5.6-5.6l-2.9 2.9a1.5 1.5 0 0 1-2-2l2.9-2.9z"/></svg></div>
         <h3>Mod maintenance</h3>
         <p>A mod that stopped working after an update. It crashes on load, or it starts and half of what it used to do is gone. I find what broke and fix it on your version.</p>
@@ -2592,7 +2604,7 @@
         </div>
         <span class="card-tag tag-base">By scope</span>
       </div>
-      <div class="card card--premium">
+      <div class="card card--premium svc-spark">
         <div class="icon-wrap svc-spark"><svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
         <h3>Mod optimization</h3>
         <p>A mod or pack that <strong>drops your frame rate or drags the server down</strong>. I find what is eating the time and make it cheaper to run. Nothing you can see in the game changes.</p>
