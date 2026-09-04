@@ -642,7 +642,7 @@
     #faq, #legal { padding-top: 4.25rem; padding-bottom: 4.5rem; }
     #about { padding-top: 4.75rem; }
     /* perf: skip rendering off-screen sections until needed (auto remembers size → no jank) */
-    #legal, #faq, #proof, #about, #contact { content-visibility: auto; contain-intrinsic-size: auto 700px; }
+    #legal, #faq, #about, #contact { content-visibility: auto; contain-intrinsic-size: auto 700px; }
     /* El portafolio se lleva las fichas, las cifras, el estante, los cuatro
        arreglos y la galeria: 700px de estimacion daban un salto de barra feo
        en el primer render. */
@@ -1388,6 +1388,8 @@
     /* ── PORTFOLIO ── */
     #portfolio { background: var(--surface); border-top: 1px solid var(--border); }
     .port-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(252px, 1fr)); gap: 1.1rem; margin-top: 2.75rem; }
+    .proof-note { margin-top: 1.4rem; font-size: 0.86rem; color: var(--text-mute); max-width: 62ch; }
+    .proof-note a { color: var(--text-soft); }
     .port-card { background: linear-gradient(180deg, #1a1814, #131210); padding: var(--pad-card); border: 1px solid var(--border); border-radius: var(--radius-lg); position: relative; overflow: hidden; box-shadow: inset 0 1px 0 rgba(234,228,214,0.04), 0 8px 24px -16px rgba(0,0,0,0.7); }
     /* MOD PUBLICADO: EL TITULO ES EL ENLACE, Y HAY UNA SOLA IMAGEN.
        Antes habia el icono del jar arriba y, debajo, un boton con el logo
@@ -1483,11 +1485,6 @@
 
     /* ── ABOUT ── */
     #about { border-top: 1px solid var(--border); }
-    /* #proof cerraba en medio de la pagina y ahora es el apendice: cinco casos
-       largos, justo encima de lo legal, que es el otro sitio donde el que lee
-       ya viene buscando letra. Fondo distinto para que se lea como anexo y no
-       como una seccion mas de venta. */
-    #proof { background: var(--surface); border-top: 1px solid var(--border); }
     .about-body { margin-top: 2rem; max-width: 980px; display: grid; grid-template-columns: minmax(0, 1fr) 240px; gap: 1.6rem 2.6rem; align-items: start; }
     .about-body p { color: var(--text-soft); font-size: 0.94rem; line-height: 1.78; max-width: 36em; }
     .about-body p + p { margin-top: 1rem; }
@@ -2407,6 +2404,7 @@
         <a href="#estimator" class="btn btn-quote btn-sm">Get a quote</a>
       </div>
     </div>
+    <p class="proof-note">It compiles. That proves nothing. I diff every jar against the original by hand before it ships: bone names, packet payloads, mixin configs, all of it. <a href="geckolib-bone-name-crash.html">One of those checks, in detail</a>.</p>
 
     <div class="shelf">
       <p>I like working with the people who make these mods, and I like making their communities happy.</p>
@@ -2783,60 +2781,7 @@
     </div>
   </div>
 </section>
-<!-- PROOF -->
-<section id="proof">
-  <!-- Caricaturas de pixel art (tanda del 19-08). Se suman al sistema
-       `.ch--borde` que ya existe: mismo anclaje en pixeles, mismo
-       apagado por debajo de 1360. Cada una lleva su alto REAL en --h,
-       asi que se pinta 1:1 y no hay escalado que la emborrone. Los
-       `top` estan MEDIDOS sobre la pagina renderizada, no estimados:
-       cada uno cae en un tramo comprobado libre en ese lado. -->
-  <img class="ch ch--borde" src="pix-b09.webp" width="89" height="97" style="right:calc(50% + 530px + 18px);top:355px;--h:97px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="hari-13.webp" width="256" height="246" style="left:calc(50% + 530px + 18px);top:448px;--h:170px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="hari-22.webp" width="256" height="245" style="right:calc(50% + 530px + 18px);top:489px;--h:170px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="h512-11.webp" width="256" height="245" style="left:calc(50% + 530px + 18px);top:200px;--h:170px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <div class="wrap">
-        <h2>It compiles. That proves nothing.</h2>
-    <p class="sub">The long version, for whoever wants it. Five mistakes of my own that no automatic check would have caught: it built, it started, nothing complained, and the mod was still wrong.</p>
 
-    <div class="port-grid">
-      <div class="port-card">
-        <h3 class="port-name">A crash the compiler cannot see</h3>
-        <details class="more more--card"><summary aria-label="Read the detail: A crash the compiler cannot see">Read the detail</summary>
-          <p class="port-desc">In my<span translate="no"> port </span>of<span translate="no"> Capybara </span>(<span translate="no">39Choko</span>, MIT) the model asked for a bone called<span translate="no"> saddleParts</span>. In the model file that bone is called<span translate="no"> saddle</span>. The name lives inside a text string, so nothing checked it. The build passed. The resource diff passed. It crashed the first time a capybara was drawn, in my own test instance.<span translate="no"> GeckoLib</span>'s<span translate="no"> AnimationProcessor.getBone </span>returns null for a name the model does not have, and the renderer runs every frame.</p>
-          <p class="port-footer-note"><strong>Proof.</strong> I kept the broken<span translate="no"> jar</span>. The check now reads bone names straight out of the compiled bytecode with<span translate="no"> javap </span>and compares them against the model file. On the fixed<span translate="no"> jar</span>: one bone found, zero failures. On the broken<span translate="no"> jar</span>: it fails, names<span translate="no"> saddleParts</span>, and prints the 11 bones that do exist. I wrote up <a href="geckolib-bone-name-crash.html">how to run that check on your own<span translate="no"> jar</span></a>.</p></details>
-      </div>
-
-      <div class="port-card">
-        <h3 class="port-name">Files that vanish in the repack</h3>
-        <details class="more more--card"><summary aria-label="Read the detail: Files that vanish in the repack">Read the detail</summary>
-          <p class="port-desc">A<span translate="no"> port </span>is a rebuild of the mod from source. Recipes, loot tables and textures can go missing when the<span translate="no"> jar </span>is repackaged, and nothing errors. The mod loads and quietly does less than it did before.</p>
-          <p class="port-footer-note"><strong>Proof.</strong> I diff every asset, data and licence file against the<span translate="no"> jar </span>the original author published. Across<span translate="no"> Boids </span>and<span translate="no"> Birds </span>(<span translate="no">Tomate0613</span>, MIT) and<span translate="no"> Capybara </span>(<span translate="no">39Choko</span>, MIT): 22 of the 28 are byte identical. 6 are<span translate="no"> JSON </span>the build reformatted, and they parse to exactly the same data. Two files are added, both<span translate="no"> Forge </span>biome modifiers so spawns work on this loader. Loader metadata is replaced on purpose,<span translate="no"> mods.toml </span>where<span translate="no"> Fabric </span>had<span translate="no"> fabric.mod.json</span>. Unzip both<span translate="no"> jars </span>and run the same diff.</p></details>
-      </div>
-
-      <div class="port-card">
-        <h3 class="port-name"><span translate="no">Yarn </span>names and<span translate="no"> Mojang </span>names do not line up</h3>
-        <details class="more more--card"><summary aria-label="Read the detail: Yarn names and Mojang names do not line up">Read the detail</summary>
-          <p class="port-desc"><span translate="no">Fabric </span>source is written in<span translate="no"> Yarn </span>names.<span translate="no"> Forge </span>builds against<span translate="no"> Mojang</span>'s. I bridge them in two hops through intermediary mappings, and the translator only rewrites a name when it has exactly one possible target. Anything ambiguous is left for the compiler to reject.</p>
-          <p class="port-footer-note"><strong>Proof.</strong> It still gets things wrong, and those mistakes compile. On<span translate="no"> Capybara </span>the jungle spawn biome came out of the translator as<span translate="no"> JUNGLE_PLANKS</span>. I read translated output back against the original source before it goes into a build. The jungle, mangrove swamp and sparse jungle spawns in that<span translate="no"> port </span>were copied straight from the original source.</p></details>
-      </div>
-
-      <div class="port-card">
-        <h3 class="port-name">Fine in singleplayer, dead on the server</h3>
-        <details class="more more--card"><summary aria-label="Read the detail: Fine in singleplayer, dead on the server">Read the detail</summary>
-          <p class="port-desc">A clientbound packet handler written as a method reference is resolved where it is registered. A dedicated server has no client class to resolve, so registration can take the server down at startup while singleplayer never complains.</p>
-          <p class="port-footer-note"><strong>Proof.</strong> On a network layer<span translate="no"> backport </span>from 1.21 to<span translate="no"> Forge </span>1.20.1, on my own<span translate="no"> modpack</span>, I rebuilt every packet payload by hand: 22 serverbound, 19 clientbound. All 19 clientbound handlers are explicit lambdas with the client call behind a<span translate="no"> Dist.CLIENT </span>guard, and all 41 register from one shared method with sequential IDs, so the two sides cannot drift. This describes the source itself. I am not claiming a test run here. I do not name the mod here: it is a personal-use<span translate="no"> port </span>and I have no written permission from the author to put its name on a commercial page.</p></details>
-      </div>
-
-      <div class="port-card">
-        <h3 class="port-name"><span translate="no">Mixins </span>that quietly do not load</h3>
-        <details class="more more--card"><summary aria-label="Read the detail: Mixins that quietly do not load">Read the detail</summary>
-          <p class="port-desc">Repackaging a<span translate="no"> jar </span>can drop the manifest entry that declares its mixin configs.<span translate="no"> Forge </span>then loads the mod without complaint and none of the mixins apply. The mod is installed, part of its behaviour is missing, and nothing in the log says so.</p>
-          <p class="port-footer-note"><strong>Proof.</strong> Same class of bug, same answer: it became a check. The manifest one in the five checks I run is this exact bug, turned into something a script can catch. Each one catches a single class of bug and claims nothing beyond it. The bone check only sees literal names, and it needs a<span translate="no"> JDK </span>to read the bytecode.</p></details>
-      </div>
-    </div>
-  </div>
-</section>
 <!-- ABOUT -->
 <section id="about">
   <img class="ch ch--borde" src="pix-a11.webp" width="87" height="84" style="right:calc(50% + 530px + 18px);top:700px;--h:84px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
@@ -3155,7 +3100,7 @@
   <img src="band-flight.webp" width="1800" height="1012" alt="My character hanging in the air above an open sea, with the sun going down behind him." loading="lazy" decoding="async">
 </figure>
 <footer>
-  <div><strong style="color:var(--text-soft)"><span translate="no">Modwright</span></strong> <span class="sep">·</span><span translate="no"> Forge </span>1.20.1 mod<span translate="no"> porting </span><span class="sep">·</span> <a href="mod-porting-cost.html">What a<span translate="no"> port </span>costs</a> <span class="sep">·</span> <a href="fabric-to-forge-1-20-1.html"><span translate="no">Fabric </span>to<span translate="no"> Forge</span>: what breaks</a> <span class="sep">·</span> <a href="#terms">Terms</a> <span class="sep">·</span> <a href="#privacy">Privacy</a> <span class="sep">·</span> <a href="#licenses">Licenses</a> <span class="sep">·</span> <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer">Contact</a></div>
+  <div><strong style="color:var(--text-soft)"><span translate="no">Modwright</span></strong> <span class="sep">·</span><span translate="no"> Forge </span>1.20.1 mod<span translate="no"> porting </span><span class="sep">·</span> <a href="mod-porting-cost.html">What a<span translate="no"> port </span>costs</a> <span class="sep">·</span> <a href="fabric-to-forge-1-20-1.html"><span translate="no">Fabric </span>to<span translate="no"> Forge</span>: what breaks</a> <span class="sep">·</span> <a href="geckolib-bone-name-crash.html">A crash the compiler can't see</a> <span class="sep">·</span> <a href="#terms">Terms</a> <span class="sep">·</span> <a href="#privacy">Privacy</a> <span class="sep">·</span> <a href="#licenses">Licenses</a> <span class="sep">·</span> <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer">Contact</a></div>
   <div class="perfiles">Talk to me on <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" translate="no">Discord</a> <span class="sep">·</span> also on <a href="https://www.curseforge.com/members/danisansietev/projects" target="_blank" rel="noopener noreferrer" translate="no">CurseForge</a> <span class="sep">·</span> <a href="https://github.com/Dheightsan" target="_blank" rel="noopener noreferrer" translate="no">GitHub</a> <span class="sep">·</span> <a href="https://builtbybit.com/members/modwrightstudios.891720/" target="_blank" rel="noopener noreferrer" translate="no">BuiltByBit</a></div>
   <div class="perfiles">This website was built with AI assistance. The<span translate="no"> porting </span>work is done by hand.</div>
 </footer>
