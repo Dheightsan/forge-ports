@@ -1595,8 +1595,6 @@
     .pack-lead img { display: block; width: 100%; height: auto; border-radius: var(--radius); border: 1px solid var(--border); }
     .pack-grid { columns: 3; column-gap: 0.7rem; margin-top: 0.7rem; }
     .pack-grid img { display: block; width: 100%; height: auto; margin-bottom: 0.7rem; break-inside: avoid; border-radius: var(--radius); border: 1px solid var(--border); }
-    .pack-note { margin-top: 1.2rem; font-size: 0.82rem; line-height: 1.65; color: var(--text-mute); max-width: 62ch; }
-    .pack-note strong { color: var(--text-soft); }
     @media (max-width: 860px) { .pack-grid { columns: 2; } }
     /* 🚨 La rejilla de MUESTRA se queda en 2 columnas hasta el ancho mas
        estrecho. En 1 columna las 6 fotos elegidas son ~1.400 px de muro en un
@@ -2580,77 +2578,6 @@
         </details>
       </article>
       </div>
-
-    <div class="pack-shots">
-      <figure class="pack-lead">
-        <img src="pack-01.webp" width="1200" height="675" alt="A villager outside a wooden house in a heavily modded world, with custom flowers and trees around it." loading="lazy" decoding="async">
-      </figure>
-      <!-- 🚨 LA GALERIA NO SE ABRE ENTERA (peticion de josda 2026-08-30).
-           Eran 50 fotos seguidas: un muro que enterraba todo lo que va debajo.
-           A la vista quedan la principal y SEIS elegidas por variedad (dos
-           construcciones, un paisaje, el Nether, una criatura, un amanecer);
-           el resto entra tras un clic. Para cambiar cuales salen, mueve el
-           nombre en la lista PORTADA de `parche6.py` o el <img> a mano: el
-           orden de ESTA rejilla es el orden en que se ven. -->
-      <div class="pack-grid">
-        <img src="pack-02.webp" width="760" height="428" alt="An enormous skeleton lying across a flooded clearing between giant redwoods, seen from above." loading="lazy" decoding="async">
-        <img src="pack-04.webp" width="760" height="428" alt="A large ornate structure of dark stone and gold beside a lava fall in the Nether, lit by soul fire." loading="lazy" decoding="async">
-        <img src="pack-26.webp" width="760" height="428" alt="A stone castle courtyard with a garden, several armored villagers gathered together, red mushrooms nearby and autumn trees beyond the walls." loading="lazy" decoding="async">
-        <img src="pack-31.webp" width="760" height="428" alt="An orange-striped tiger resting among pink blossoms under a dark tree, with a red-eyed creature watching from behind." loading="lazy" decoding="async">
-        <img src="pack-44.webp" width="760" height="428" alt="A small palm-tree island reflected in calm water at sunrise, with a black and white bird flying overhead." loading="lazy" decoding="async">
-        <img src="pack-52.webp" width="760" height="428" alt="A tall wooden house with a spiral shingled roof, on a grassy cliff overlooking the sea." loading="lazy" decoding="async">
-      </div>
-      <details class="pack-more">
-        <summary>Show the other 44 photos</summary>
-        <div class="pack-grid">
-          <img src="pack-05.webp" width="760" height="428" alt="Three bears gathered on a stone platform in a birch and pine forest." loading="lazy" decoding="async">
-          <img src="pack-06.webp" width="760" height="428" alt="A window set into the trunk of a huge tree at sunset, with birch trees behind it." loading="lazy" decoding="async">
-          <img src="pack-08.webp" width="760" height="428" alt="A pillager riding an orange boar through bright green forest undergrowth." loading="lazy" decoding="async">
-          <img src="pack-10.webp" width="760" height="428" alt="A capybara resting on open grassland under a clear sky." loading="lazy" decoding="async">
-          <img src="pack-11.webp" width="669" height="578" alt="A tall red villager and a blue-robed wizard holding a staff, standing on a snow field." loading="lazy" decoding="async">
-          <img src="pack-13.webp" width="760" height="428" alt="A pale moth flying at night over a patch of pumpkins in a dark forest, with a snowy peak on the horizon." loading="lazy" decoding="async">
-          <img src="pack-14.webp" width="760" height="428" alt="My character standing beside a large bear on a grassy slope in early morning light." loading="lazy" decoding="async">
-          <img src="pack-15.webp" width="760" height="428" alt="My character sitting on a pale stone shore between a bear and its cub." loading="lazy" decoding="async">
-          <img src="pack-16.webp" width="760" height="428" alt="A small white and blue creature with wide eyes sitting among bright jungle leaves." loading="lazy" decoding="async">
-          <img src="pack-17.webp" width="760" height="562" alt="A pig standing next to my character on open grassland under a clear sky." loading="lazy" decoding="async">
-          <img src="pack-18.webp" width="760" height="428" alt="My character on a mossy ledge at sunset, facing a large pink animal across a canyon." loading="lazy" decoding="async">
-          <img src="pack-19.webp" width="760" height="428" alt="A tall white wading bird on a sandy shore beside turquoise water and sandstone cliffs." loading="lazy" decoding="async">
-          <img src="pack-20.webp" width="760" height="428" alt="A brown and white cow standing in tall savanna grass under acacia trees." loading="lazy" decoding="async">
-          <img src="pack-21.webp" width="760" height="428" alt="Inside a raised wooden lodge with villagers and lanterns, looking out over a green forest." loading="lazy" decoding="async">
-          <img src="pack-22.webp" width="760" height="428" alt="A pig on the orange terraces of a badlands canyon at sunset." loading="lazy" decoding="async">
-          <img src="pack-23.webp" width="760" height="428" alt="A black and white cow in savanna grass beneath acacia trees." loading="lazy" decoding="async">
-          <img src="pack-24.webp" width="760" height="428" alt="A small pink-eared rabbit-like creature and a gray hedgehog near a patch of purple flowers." loading="lazy" decoding="async">
-          <img src="pack-25.webp" width="760" height="428" alt="A close view of several villagers in diamond and iron armor gathered in a stone courtyard garden." loading="lazy" decoding="async">
-          <img src="pack-27.webp" width="760" height="428" alt="A red panda-like creature in tall grass beside a lake, with dark woven structures and pink terracotta nearby." loading="lazy" decoding="async">
-          <img src="pack-28.webp" width="760" height="428" alt="A small flock of white and black sheep in a grass field, with a floating jungle island in the distance." loading="lazy" decoding="async">
-          <img src="pack-29.webp" width="760" height="428" alt="A yellow lion-like creature standing in golden savanna grass among baobab trees." loading="lazy" decoding="async">
-          <img src="pack-30.webp" width="760" height="428" alt="Two pigs standing in a meadow of purple flowers." loading="lazy" decoding="async">
-          <img src="pack-32.webp" width="760" height="428" alt="A group of monkeys sitting beneath a banana-leaf palm, with a player in dark armor and glowing eyes crouching nearby." loading="lazy" decoding="async">
-          <img src="pack-33.webp" width="760" height="428" alt="A duck standing among reeds beside a small boat at sunrise over a misty lake." loading="lazy" decoding="async">
-          <img src="pack-34.webp" width="760" height="428" alt="A player character drawing a bow in mid-air over grassy hills near a village." loading="lazy" decoding="async">
-          <img src="pack-35.webp" width="760" height="428" alt="A wooden chicken coop with chickens inside and a small hedgehog-like creature outside, near a large windmill building and sunflowers." loading="lazy" decoding="async">
-          <img src="pack-36.webp" width="760" height="428" alt="A player character sitting atop pink and white blossom-covered hills, with buildings in the distance." loading="lazy" decoding="async">
-          <img src="pack-37.webp" width="760" height="428" alt="A tall wooden house on stilts with a red dragonfly-like creature flying above, and a red mushroom nearby." loading="lazy" decoding="async">
-          <img src="pack-38.webp" width="760" height="428" alt="A white and brown goat-like creature standing in a dark forest among purple flowers." loading="lazy" decoding="async">
-          <img src="pack-39.webp" width="760" height="428" alt="A forest clearing at dusk with a stone monument among purple flowers and tall tree trunks." loading="lazy" decoding="async">
-          <img src="pack-40.webp" width="760" height="428" alt="An orange crab-like creature in grass near a stone monument and a small wooden shrine, with red autumn trees and mountains behind." loading="lazy" decoding="async">
-          <img src="pack-41.webp" width="760" height="428" alt="An orange crab-like creature perched on a rocky stone ledge in a forest." loading="lazy" decoding="async">
-          <img src="pack-42.webp" width="760" height="428" alt="A desert oasis with tall palm-like trees on sandstone terrain, and a small colorful bird among the rocks." loading="lazy" decoding="async">
-          <img src="pack-43.webp" width="760" height="428" alt="A rooster-like creature riding a pack animal through tall grass near honeycomb blocks and autumn trees." loading="lazy" decoding="async">
-          <img src="pack-45.webp" width="760" height="428" alt="Underwater shipwreck ruins in deep blue water." loading="lazy" decoding="async">
-          <img src="pack-46.webp" width="760" height="428" alt="Pigs grazing on a mossy hillside among purple flowers at sunset." loading="lazy" decoding="async">
-          <img src="pack-47.webp" width="760" height="428" alt="A dark, bony horse-like creature standing near a wooden house, with a village visible in the distance." loading="lazy" decoding="async">
-          <img src="pack-48.webp" width="760" height="428" alt="A player character beside a spotted cow at sunset by a wooden farmhouse." loading="lazy" decoding="async">
-          <img src="pack-49.webp" width="760" height="428" alt="Pumpkin-topped wooden totems on a lake shore among autumn-orange trees." loading="lazy" decoding="async">
-          <img src="pack-50.webp" width="760" height="428" alt="A green parrot standing in golden savanna grass among acacia trees." loading="lazy" decoding="async">
-          <img src="pack-51.webp" width="760" height="428" alt="A large elephant standing in golden savanna grass among flat-topped trees." loading="lazy" decoding="async">
-          <img src="pack-53.webp" width="760" height="428" alt="Two dark crow-like birds flying over a grassy field, with ruins in the distance." loading="lazy" decoding="async">
-          <img src="pack-54.webp" width="760" height="428" alt="A player character beside a large white-antlered deer, near a stone and timber house." loading="lazy" decoding="async">
-          <img src="pack-55.webp" width="760" height="428" alt="Two villagers indoors, one dressed as a chef in white, beside a stove lit by lantern light." loading="lazy" decoding="async">
-        </div>
-      </details>
-      <p class="pack-note"><strong>More than 600 mods</strong> on<span translate="no"> Forge </span>1.20.1, and <strong>not one block in any of these frames is mine</strong>. I am a player first; this is the thing the work is for.</p>
-    </div>
     </div>
   </div>
 </section>
@@ -2827,6 +2754,80 @@
         <button type="button" class="btn btn-ghost est-copy" id="est-copy">Copy summary</button>
         <div class="est-disclaimer">Head to <span translate="no">#pedidos</span> once you're in &mdash; that's where tickets start. Add your mod's link before you paste.</div>
       </div>
+    </div>
+  </div>
+</section>
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="wrap">
+    <div class="pack-shots">
+      <figure class="pack-lead">
+        <img src="pack-01.webp" width="1200" height="675" alt="A villager outside a wooden house in a heavily modded world, with custom flowers and trees around it." loading="lazy" decoding="async">
+      </figure>
+      <!-- 🚨 LA GALERIA NO SE ABRE ENTERA (peticion de josda 2026-08-30).
+           Eran 50 fotos seguidas: un muro que enterraba todo lo que va debajo.
+           A la vista quedan la principal y SEIS elegidas por variedad (dos
+           construcciones, un paisaje, el Nether, una criatura, un amanecer);
+           el resto entra tras un clic. Para cambiar cuales salen, mueve el
+           nombre en la lista PORTADA de `parche6.py` o el <img> a mano: el
+           orden de ESTA rejilla es el orden en que se ven. -->
+      <div class="pack-grid">
+        <img src="pack-02.webp" width="760" height="428" alt="An enormous skeleton lying across a flooded clearing between giant redwoods, seen from above." loading="lazy" decoding="async">
+        <img src="pack-04.webp" width="760" height="428" alt="A large ornate structure of dark stone and gold beside a lava fall in the Nether, lit by soul fire." loading="lazy" decoding="async">
+        <img src="pack-26.webp" width="760" height="428" alt="A stone castle courtyard with a garden, several armored villagers gathered together, red mushrooms nearby and autumn trees beyond the walls." loading="lazy" decoding="async">
+        <img src="pack-31.webp" width="760" height="428" alt="An orange-striped tiger resting among pink blossoms under a dark tree, with a red-eyed creature watching from behind." loading="lazy" decoding="async">
+        <img src="pack-44.webp" width="760" height="428" alt="A small palm-tree island reflected in calm water at sunrise, with a black and white bird flying overhead." loading="lazy" decoding="async">
+        <img src="pack-52.webp" width="760" height="428" alt="A tall wooden house with a spiral shingled roof, on a grassy cliff overlooking the sea." loading="lazy" decoding="async">
+      </div>
+      <details class="pack-more">
+        <summary>Show the other 44 photos</summary>
+        <div class="pack-grid">
+          <img src="pack-05.webp" width="760" height="428" alt="Three bears gathered on a stone platform in a birch and pine forest." loading="lazy" decoding="async">
+          <img src="pack-06.webp" width="760" height="428" alt="A window set into the trunk of a huge tree at sunset, with birch trees behind it." loading="lazy" decoding="async">
+          <img src="pack-08.webp" width="760" height="428" alt="A pillager riding an orange boar through bright green forest undergrowth." loading="lazy" decoding="async">
+          <img src="pack-10.webp" width="760" height="428" alt="A capybara resting on open grassland under a clear sky." loading="lazy" decoding="async">
+          <img src="pack-11.webp" width="669" height="578" alt="A tall red villager and a blue-robed wizard holding a staff, standing on a snow field." loading="lazy" decoding="async">
+          <img src="pack-13.webp" width="760" height="428" alt="A pale moth flying at night over a patch of pumpkins in a dark forest, with a snowy peak on the horizon." loading="lazy" decoding="async">
+          <img src="pack-14.webp" width="760" height="428" alt="My character standing beside a large bear on a grassy slope in early morning light." loading="lazy" decoding="async">
+          <img src="pack-15.webp" width="760" height="428" alt="My character sitting on a pale stone shore between a bear and its cub." loading="lazy" decoding="async">
+          <img src="pack-16.webp" width="760" height="428" alt="A small white and blue creature with wide eyes sitting among bright jungle leaves." loading="lazy" decoding="async">
+          <img src="pack-17.webp" width="760" height="562" alt="A pig standing next to my character on open grassland under a clear sky." loading="lazy" decoding="async">
+          <img src="pack-18.webp" width="760" height="428" alt="My character on a mossy ledge at sunset, facing a large pink animal across a canyon." loading="lazy" decoding="async">
+          <img src="pack-19.webp" width="760" height="428" alt="A tall white wading bird on a sandy shore beside turquoise water and sandstone cliffs." loading="lazy" decoding="async">
+          <img src="pack-20.webp" width="760" height="428" alt="A brown and white cow standing in tall savanna grass under acacia trees." loading="lazy" decoding="async">
+          <img src="pack-21.webp" width="760" height="428" alt="Inside a raised wooden lodge with villagers and lanterns, looking out over a green forest." loading="lazy" decoding="async">
+          <img src="pack-22.webp" width="760" height="428" alt="A pig on the orange terraces of a badlands canyon at sunset." loading="lazy" decoding="async">
+          <img src="pack-23.webp" width="760" height="428" alt="A black and white cow in savanna grass beneath acacia trees." loading="lazy" decoding="async">
+          <img src="pack-24.webp" width="760" height="428" alt="A small pink-eared rabbit-like creature and a gray hedgehog near a patch of purple flowers." loading="lazy" decoding="async">
+          <img src="pack-25.webp" width="760" height="428" alt="A close view of several villagers in diamond and iron armor gathered in a stone courtyard garden." loading="lazy" decoding="async">
+          <img src="pack-27.webp" width="760" height="428" alt="A red panda-like creature in tall grass beside a lake, with dark woven structures and pink terracotta nearby." loading="lazy" decoding="async">
+          <img src="pack-28.webp" width="760" height="428" alt="A small flock of white and black sheep in a grass field, with a floating jungle island in the distance." loading="lazy" decoding="async">
+          <img src="pack-29.webp" width="760" height="428" alt="A yellow lion-like creature standing in golden savanna grass among baobab trees." loading="lazy" decoding="async">
+          <img src="pack-30.webp" width="760" height="428" alt="Two pigs standing in a meadow of purple flowers." loading="lazy" decoding="async">
+          <img src="pack-32.webp" width="760" height="428" alt="A group of monkeys sitting beneath a banana-leaf palm, with a player in dark armor and glowing eyes crouching nearby." loading="lazy" decoding="async">
+          <img src="pack-33.webp" width="760" height="428" alt="A duck standing among reeds beside a small boat at sunrise over a misty lake." loading="lazy" decoding="async">
+          <img src="pack-34.webp" width="760" height="428" alt="A player character drawing a bow in mid-air over grassy hills near a village." loading="lazy" decoding="async">
+          <img src="pack-35.webp" width="760" height="428" alt="A wooden chicken coop with chickens inside and a small hedgehog-like creature outside, near a large windmill building and sunflowers." loading="lazy" decoding="async">
+          <img src="pack-36.webp" width="760" height="428" alt="A player character sitting atop pink and white blossom-covered hills, with buildings in the distance." loading="lazy" decoding="async">
+          <img src="pack-37.webp" width="760" height="428" alt="A tall wooden house on stilts with a red dragonfly-like creature flying above, and a red mushroom nearby." loading="lazy" decoding="async">
+          <img src="pack-38.webp" width="760" height="428" alt="A white and brown goat-like creature standing in a dark forest among purple flowers." loading="lazy" decoding="async">
+          <img src="pack-39.webp" width="760" height="428" alt="A forest clearing at dusk with a stone monument among purple flowers and tall tree trunks." loading="lazy" decoding="async">
+          <img src="pack-40.webp" width="760" height="428" alt="An orange crab-like creature in grass near a stone monument and a small wooden shrine, with red autumn trees and mountains behind." loading="lazy" decoding="async">
+          <img src="pack-41.webp" width="760" height="428" alt="An orange crab-like creature perched on a rocky stone ledge in a forest." loading="lazy" decoding="async">
+          <img src="pack-42.webp" width="760" height="428" alt="A desert oasis with tall palm-like trees on sandstone terrain, and a small colorful bird among the rocks." loading="lazy" decoding="async">
+          <img src="pack-43.webp" width="760" height="428" alt="A rooster-like creature riding a pack animal through tall grass near honeycomb blocks and autumn trees." loading="lazy" decoding="async">
+          <img src="pack-45.webp" width="760" height="428" alt="Underwater shipwreck ruins in deep blue water." loading="lazy" decoding="async">
+          <img src="pack-46.webp" width="760" height="428" alt="Pigs grazing on a mossy hillside among purple flowers at sunset." loading="lazy" decoding="async">
+          <img src="pack-47.webp" width="760" height="428" alt="A dark, bony horse-like creature standing near a wooden house, with a village visible in the distance." loading="lazy" decoding="async">
+          <img src="pack-48.webp" width="760" height="428" alt="A player character beside a spotted cow at sunset by a wooden farmhouse." loading="lazy" decoding="async">
+          <img src="pack-49.webp" width="760" height="428" alt="Pumpkin-topped wooden totems on a lake shore among autumn-orange trees." loading="lazy" decoding="async">
+          <img src="pack-50.webp" width="760" height="428" alt="A green parrot standing in golden savanna grass among acacia trees." loading="lazy" decoding="async">
+          <img src="pack-51.webp" width="760" height="428" alt="A large elephant standing in golden savanna grass among flat-topped trees." loading="lazy" decoding="async">
+          <img src="pack-53.webp" width="760" height="428" alt="Two dark crow-like birds flying over a grassy field, with ruins in the distance." loading="lazy" decoding="async">
+          <img src="pack-54.webp" width="760" height="428" alt="A player character beside a large white-antlered deer, near a stone and timber house." loading="lazy" decoding="async">
+          <img src="pack-55.webp" width="760" height="428" alt="Two villagers indoors, one dressed as a chef in white, beside a stove lit by lantern light." loading="lazy" decoding="async">
+        </div>
+      </details>
     </div>
   </div>
 </section>
