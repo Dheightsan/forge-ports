@@ -1001,14 +1001,6 @@
     .card h3 { font-size: 1.18rem; font-weight: 800; letter-spacing: -0.01em; margin-bottom: 0.5rem; }
     .card p { color: var(--text-soft); font-size: 0.92rem; line-height: 1.5; margin-bottom: 1rem; }
     .card p strong { color: var(--text); font-weight: 700; }
-    /* Las dos lineas que cierran #services. Estaban FUERA de .wrap y sin una
-       sola regla, o sea pegadas al borde de la pantalla mientras la seccion se
-       queda en 1060. La de arriba quita un pero ("no es todo o nada") y por eso
-       pesa mas que la de abajo, que es una nota de precio. */
-    .svc-shape { margin-top: 2.2rem; padding-top: 1.6rem; border-top: 1px solid var(--border);
-                 max-width: 62ch; font-size: 0.95rem; line-height: 1.7; color: var(--text-soft); }
-    .svc-shape strong { color: var(--text); font-weight: 700; }
-    .svc-price-note { margin-top: 0.9rem; font-size: 0.82rem; color: var(--text-mute); }
     .card-tag { display: inline-block; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; padding: 0.25rem 0.6rem; border-radius: 999px; white-space: nowrap; }
     .tag-base { background: var(--green-glow); color: var(--green-hi); border: 1px solid var(--green-ring); }
     .tag-premium { background: var(--brown-glow); color: var(--brown-hi); border: 1px solid var(--brown-ring); }
@@ -2570,7 +2562,6 @@
         <span class="card-tag tag-premium">By scope</span>
       </div>
     </div>
-    <p class="svc-shape"><strong>None of these is all-or-nothing.</strong> Leave a feature out, change spawn rates, damage, effects, recipes or loot. <a href="#faq">Say so when you send it</a> and it goes in the same fixed quote.</p>
     <!-- La nota que citaba el formulario ("priced in the form above") se fue con
          el formulario. En su sitio baja el .softcta que vivia DENTRO de
          #estimator: ofrece mirar el mod gratis y no tenia nada que ver con la
