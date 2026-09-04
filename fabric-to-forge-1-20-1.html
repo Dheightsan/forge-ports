@@ -33,7 +33,7 @@ r.setAttribute('data-theme',s==='light'?'light':'dark');}catch(e){}})();
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"TechArticle",
       "image": "https://dheightsan.github.io/forge-ports/og-2026-0901b.jpg",
-"datePublished":"2026-08-10","dateModified": "2026-08-18",
+"datePublished":"2026-08-10","dateModified": "2026-09-04",
 "headline":"Porting a Fabric mod to Forge 1.20.1: what actually breaks",
 "description":"A practical account of what breaks when moving a Fabric mod to Forge 1.20.1, including the failures that produce no error message.",
 "author":{"@type":"Person","name":"danisansietev"},
@@ -160,7 +160,7 @@ main > * { position: relative; z-index: 2; }
     <li><strong>You ship the bridge as a dependency.</strong> Everyone on the server needs<span translate="no"> Connector </span>and<span translate="no"> Forgified Fabric API </span>installed. For a private<span translate="no"> SMP </span>that is nothing. For a modpack you distribute, it is two more moving parts in your dependency tree.</li>
     <li><strong>The mod is still a<span translate="no"> Fabric </span>mod.</strong> If you need it to interoperate with<span translate="no"> Forge </span>mods at the code level, a compat patch against the real<span translate="no"> Forge </span>API, or an addon of your own, then you need a native build to work against.</li>
   </ul>
-  <p>So the honest split: if<span translate="no"> Connector </span>runs your mod and you are happy, you are done and this page is just reading material. Porting earns its price when<span translate="no"> Connector </span>cannot run it, when you are shipping something public and want one fewer dependency, or when the mod has to be extended rather than just launched.</p>
+  <p>The split, then: if<span translate="no"> Connector </span>runs your mod and you are happy, you are done and this page is just reading material. Porting earns its price when<span translate="no"> Connector </span>cannot run it, when you are shipping something public and want one fewer dependency, or when the mod has to be extended rather than just launched.</p>
 
   <h2>1. Registration is the easy part, and it is most of the diff</h2>
   <p><span translate="no">Fabric </span>registers things by calling <code>Registry.register</code> during initialisation.<span translate="no"> Forge </span>wants a <code>DeferredRegister</code> per registry type, created up front and bound to the mod event bus. Mechanical work: items, blocks, entities, sounds, the creative tab, spawn eggs.</p>
@@ -175,7 +175,7 @@ main > * { position: relative; z-index: 2; }
   </div>
 
   <h2>3. Mixins: separate the accessors from the real ones</h2>
-  <p>This is the single most useful distinction when estimating a port, and the one most often got wrong.</p>
+  <p>Confusing these two costs more estimates than anything else in a<span translate="no"> Fabric</span>-to-<span translate="no">Forge </span>port.</p>
   <p>An <code>@Accessor</code> or <code>@Invoker</code> mixin exists only to expose a private field or method. On<span translate="no"> Forge </span>you usually delete it and write <strong>one line of an access transformer</strong> instead. It costs minutes.</p>
   <p>A behavioural mixin, an <code>@Inject</code> or <code>@Redirect</code> into a vanilla class, is different. It has to be re-checked against the target class, and injection points that were valid on one mapping may not exist on the other, and that re-checking is where the hours go.</p>
   <p>A mod with thirty mixin files where twenty-five are accessors is a small job. A mod with eight mixins that are all injections into rendering or world generation is not. Counting them together produces an estimate that is wrong in both directions.</p>
@@ -190,7 +190,7 @@ main > * { position: relative; z-index: 2; }
   <p>A<span translate="no"> Fabric </span>build that shades a small library needs the equivalent on<span translate="no"> Forge</span>, which is <code>jarJar</code>.<span translate="no"> Boids </span>bundles a config library this way, and the practical consequence is that the shipped artifact is the fat jar rather than the thin one. Ship the wrong file and the mod fails at class load with an error naming the library instead of your mod.</p>
 
   <h2>6. Libraries with no direct equivalent</h2>
-  <p>This is the honest cost driver. Some are a swap; some mean reimplementing a feature.</p>
+  <p>Cost lives here, not in the mixins. Some libraries are a straight swap; others mean reimplementing a feature from scratch.</p>
   <div class="tablewrap">
     <table>
       <thead><tr><th>Fabric library</th><th>On Forge 1.20.1</th></tr></thead>
@@ -219,7 +219,7 @@ main > * { position: relative; z-index: 2; }
   <p>A parity check that compares classes will happily report that nothing was lost while the licence file is missing from the built jar. For an MIT mod that is not cosmetic: shipping the copyright notice is the one obligation the licence imposes, so a jar without it breaks the licence outright, however unintentional.</p>
 
   <h3>Testing a stale artifact</h3>
-  <p>The oldest one and still the most common. The build succeeded, the instance is running the previous jar, and you spend an hour debugging a fix that was never loaded. Compare file sizes or hashes before concluding anything about behaviour.</p>
+  <p>Every porter hits this one sooner or later. The build succeeds, the instance is running the previous jar, and you spend an hour debugging a fix that was never loaded. Compare file sizes or hashes before concluding anything about behaviour.</p>
 
     <h3>A bone name that only exists in a string</h3>
   <p>An animation library asks for a bone by name. If the model file calls it something else, the lookup returns <code>null</code> and the renderer dies the first frame the entity is drawn, having built and loaded perfectly. The name lives in a string literal, so nothing checks it. Full write-up, including how to verify a jar with <code>javap</code> before you ship it: <a href="geckolib-bone-name-crash.html">the crash no compiler can catch</a>.</p>
@@ -229,7 +229,7 @@ main > * { position: relative; z-index: 2; }
   <p>The command <code>/summon</code> proves less than it looks like it does. It skips part of the spawn path, so a mob that appears when summoned can still be absent from every world you generate.</p>
 
   <h2>9. So how long does it take</h2>
-  <p>Honest ranges, assuming source is available and the licence permits it:</p>
+  <p>Rough ranges, assuming source is available and the licence permits it:</p>
   <ul>
     <li><strong>Small content mod</strong>, a few entities or items, no behavioural mixins: an afternoon.</li>
     <li><strong>Medium mod</strong>, natural spawns, an animation library, a handful of injections: a couple of days, most of it in testing rather than typing.</li>
@@ -244,7 +244,7 @@ main > * { position: relative; z-index: 2; }
   </div>
 <hr>
 <p><strong>What this costs.</strong> Every failure on this page is work somebody has to do, and that work is what you are paying for when you commission a port. I broke the pricing down in <a href="mod-porting-cost.html">what a Minecraft mod port costs, and why</a>. If you want yours quoted, message me on <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer">Discord</a>.</p>
-  <p class="byline">Written by <strong translate="no">danisansietev</strong>,<span translate="no"> Forge </span>1.20.1 mod porting. Last updated August 2026. Questions, corrections or a mod you need moved: open a ticket on <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer">my<span translate="no"> Discord</span></a>.</p>
+  <p class="byline">Written by <strong translate="no">danisansietev</strong>,<span translate="no"> Forge </span>1.20.1 mod porting. Last updated September 2026. Questions, corrections or a mod you need moved: open a ticket on <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer">my<span translate="no"> Discord</span></a>.</p>
 </main>
 
 <footer>
