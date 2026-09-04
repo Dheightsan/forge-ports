@@ -976,26 +976,31 @@
 
     /* ── SERVICES ── */
     #services { background: var(--surface); border-top: 1px solid var(--border); }
-    /* 2026-09-04: la rejilla de tarjetas con fondo degradado por color y
-       resplandor en hover se sintio como "iluminacion" ajena al resto del
-       sitio, no como diseño propio. Pasa a lista con filete: mismo patron que
-       ya usan .legal-rows y .mp-item para lo mismo, evitar que un vistazo lea
-       "plantilla". Sin fondo tenido, sin resplandor: solo el icono, chico y
-       plano, lleva el color de cada servicio. */
-    .svc-list { margin-top: 2.75rem; border-top: 1px solid var(--border); }
-    .svc-row { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 1.1rem; align-items: center; padding: 1.35rem 0; border-bottom: 1px solid var(--border); }
-    .svc-icon { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; flex-shrink: 0; }
-    .svc-icon svg { width: 22px; height: 22px; stroke: currentColor; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
-    .svc-icon.svc-copper { color: #cc8049; background: rgba(204,128,73,0.14); }
-    .svc-icon.svc-life   { color: #5aa83f; background: rgba(90,168,63,0.14); }
-    .svc-icon.svc-loom   { color: #cdae7e; background: rgba(205,174,126,0.16); }
-    .svc-icon.svc-bridge { color: #6f93b8; background: rgba(111,147,184,0.16); }
-    .svc-icon.svc-steel  { color: #9aa0a8; background: rgba(154,160,168,0.16); }
-    .svc-icon.svc-spark  { color: #e0b441; background: rgba(224,180,65,0.14); }
-    .svc-row h3 { font-size: 1.02rem; font-weight: 700; margin-bottom: 0.3rem; }
-    .svc-row p { color: var(--text-soft); font-size: 0.88rem; line-height: 1.6; margin: 0; max-width: 58ch; }
-    .svc-row p strong { color: var(--text); font-weight: 600; }
-    @media (max-width: 640px) { .svc-row { grid-template-columns: auto minmax(0, 1fr); row-gap: 0.6rem; } .svc-row > .card-tag { grid-column: 2; justify-self: start; } }
+    /* 2026-09-04, tercera vuelta: la lista con filete se sintio bien pero
+       josda queria tarjetas despues de todo, solo que con color SOLIDO (una
+       tinta plana, no un degradado) y sin resplandor -- eso era lo que no le
+       gustaba, no las tarjetas en si. Letra mas grande y mas gruesa, texto
+       recortado a una frase corta por tarjeta. */
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(238px, 1fr)); gap: 1.1rem; margin-top: 2.75rem; }
+    @media (min-width: 900px) { .cards { grid-template-columns: repeat(3, 1fr); } }
+    .card { padding: var(--pad-card-lg); border: 1px solid var(--border); border-radius: var(--radius-lg); transition: transform 0.1s; }
+    .card:hover { transform: translateY(-3px); }
+    .card.svc-copper { background: #402d1f; }
+    .card.svc-life   { background: #253a1c; }
+    .card.svc-loom   { background: #3d3527; }
+    .card.svc-bridge { background: #2b333c; }
+    .card.svc-steel  { background: #34343a; }
+    .card.svc-spark  { background: #453a1e; }
+    .card svg { display: block; width: 30px; height: 30px; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; margin-bottom: 0.9rem; }
+    .card.svc-copper svg { color: #cc8049; }
+    .card.svc-life   svg { color: #5aa83f; }
+    .card.svc-loom   svg { color: #cdae7e; }
+    .card.svc-bridge svg { color: #6f93b8; }
+    .card.svc-steel  svg { color: #9aa0a8; }
+    .card.svc-spark  svg { color: #e0b441; }
+    .card h3 { font-size: 1.18rem; font-weight: 800; letter-spacing: -0.01em; margin-bottom: 0.5rem; }
+    .card p { color: var(--text-soft); font-size: 0.92rem; line-height: 1.5; margin-bottom: 1rem; }
+    .card p strong { color: var(--text); font-weight: 700; }
     /* Las dos lineas que cierran #services. Estaban FUERA de .wrap y sin una
        sola regla, o sea pegadas al borde de la pantalla mientras la seccion se
        queda en 1060. La de arriba quita un pero ("no es todo o nada") y por eso
@@ -2527,53 +2532,41 @@
          because it is all I do"), y en la pregunta del FAQ que existe justo para
          eso. Aqui el dato util es la tarifa. -->
     <p class="sub">Anything harder is priced by the real work it adds, measured job by job. The full reasoning is written up in <a href="mod-porting-cost.html">what a<span translate="no"> port </span>costs, and why</a>.</p>
-<div class="svc-list">
-      <div class="svc-row">
-        <div class="svc-icon svc-copper"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v13"/><path d="M6 11l6 6 6-6"/></svg></div>
-        <div>
-          <h3><span translate="no">Backport</span></h3>
-          <p>A newer mod your pack needs on something older, like<span translate="no"> Forge </span>1.20.1. It's most of what I do.</p>
-        </div>
+<div class="cards">
+      <div class="card svc-copper">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v13"/><path d="M6 11l6 6 6-6"/></svg>
+        <h3><span translate="no">Backport</span></h3>
+        <p>A newer mod, running on<span translate="no"> Forge </span>1.20.1 instead.</p>
         <span class="card-tag tag-base">By version wall</span>
       </div>
-      <div class="svc-row">
-        <div class="svc-icon svc-life"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V7"/><path d="M6 13l6-6 6 6"/></svg></div>
-        <div>
-          <h3><span translate="no">Forward-port </span>&amp; revive</h3>
-          <p>An old, abandoned mod you love, stuck on 1.12 to 1.18. <strong>The hardest kind of<span translate="no"> port </span>there is</strong>, and I still take it on.</p>
-        </div>
+      <div class="card svc-life">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V7"/><path d="M6 13l6-6 6 6"/></svg>
+        <h3><span translate="no">Forward-port </span>&amp; revive</h3>
+        <p>An old, abandoned mod, brought back on a modern version.</p>
         <span class="card-tag tag-premium">By complexity</span>
       </div>
-      <div class="svc-row">
-        <div class="svc-icon svc-loom"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h13l-3-3"/><path d="M20 16H7l3 3"/></svg></div>
-        <div>
-          <h3>Loader conversion</h3>
-          <p>Moving a mod between<span translate="no"> Fabric</span>,<span translate="no"> NeoForge </span>and<span translate="no"> Forge</span>. <strong><span translate="no">Fabric </span>to<span translate="no"> Forge </span>is close to a rewrite</strong>;<span translate="no"> Forge </span>and<span translate="no"> NeoForge </span>share far more. <a href="fabric-to-forge-1-20-1.html">What actually breaks</a>, in detail.</p>
-        </div>
+      <div class="card svc-loom">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h13l-3-3"/><path d="M20 16H7l3 3"/></svg>
+        <h3>Loader conversion</h3>
+        <p>Moving a mod between<span translate="no"> Fabric</span>,<span translate="no"> NeoForge </span>and<span translate="no"> Forge</span>.</p>
         <span class="card-tag tag-premium">By complexity</span>
       </div>
-      <div class="svc-row">
-        <div class="svc-icon svc-bridge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7h5a4 4 0 0 1 0 8h-1"/><path d="M15 17h-5a4 4 0 0 1 0-8h1"/></svg></div>
-        <div>
-          <h3>Compatibility patches</h3>
-          <p>Getting mods to coexist, <strong>even ones with no public source</strong>. What you get is a separate add-on, yours to publish.</p>
-        </div>
+      <div class="card svc-bridge">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7h5a4 4 0 0 1 0 8h-1"/><path d="M15 17h-5a4 4 0 0 1 0-8h1"/></svg>
+        <h3>Compatibility patches</h3>
+        <p>Getting two mods to work together, even closed-source ones.</p>
         <span class="card-tag tag-base">Publishable</span>
       </div>
-      <div class="svc-row">
-        <div class="svc-icon svc-steel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.6 5.6L3 18l3 3 6.1-6.1a4 4 0 0 0 5.6-5.6l-2.9 2.9a1.5 1.5 0 0 1-2-2l2.9-2.9z"/></svg></div>
-        <div>
-          <h3>Mod maintenance</h3>
-          <p>A mod that stopped working after an update. I find what broke and fix it for your version.</p>
-        </div>
+      <div class="card svc-steel">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.6 5.6L3 18l3 3 6.1-6.1a4 4 0 0 0 5.6-5.6l-2.9 2.9a1.5 1.5 0 0 1-2-2l2.9-2.9z"/></svg>
+        <h3>Mod maintenance</h3>
+        <p>Broken after an update. I find out why, and fix it.</p>
         <span class="card-tag tag-base">By scope</span>
       </div>
-      <div class="svc-row">
-        <div class="svc-icon svc-spark"><svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
-        <div>
-          <h3>Mod optimization</h3>
-          <p><strong>Frame rate dropping, or the server dragging.</strong> I find what's eating the time and cut it. Nothing changes but the lag.</p>
-        </div>
+      <div class="card svc-spark">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        <h3>Mod optimization</h3>
+        <p>Cutting lag without changing anything you see.</p>
         <span class="card-tag tag-premium">By scope</span>
       </div>
     </div>
