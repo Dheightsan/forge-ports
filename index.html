@@ -2304,9 +2304,47 @@
     </div>
   </div>
 </section>
-<figure class="scene-band">
-  <img src="band-flight.webp" width="1800" height="1012" alt="My character hanging in the air above an open sea, with the sun going down behind him." loading="lazy" decoding="async">
-</figure>
+<!-- LOADERS -->
+<section id="loaders">
+  <img class="ch ch--borde" src="pix-c04.webp" width="146" height="118" style="left:calc(50% + 530px + 18px);top:560px;--h:118px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <!-- Caricaturas de pixel art (tanda del 19-08). Se suman al sistema
+       `.ch--borde` que ya existe: mismo anclaje en pixeles, mismo
+       apagado por debajo de 1360. Cada una lleva su alto REAL en --h,
+       asi que se pinta 1:1 y no hay escalado que la emborrone. Los
+       `top` estan MEDIDOS sobre la pagina renderizada, no estimados:
+       cada uno cae en un tramo comprobado libre en ese lado. -->
+  <img class="ch ch--borde" src="h1024-12.webp" width="256" height="236" style="right:calc(50% + 530px + 18px);top:362px;--h:185px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <div class="wrap">
+        <h2>Same mod, your version</h2>
+    <p class="sub">The same content comes out the other side. Your pack keeps the mod instead of losing it to a version bump.</p>
+
+    <figure class="loomd-wrap">
+      <svg class="loomd" viewBox="0 0 600 432" role="img" aria-labelledby="ldt ldd" preserveAspectRatio="xMidYMid meet">
+      <title id="ldt">Moving a mod between loaders</title>
+      <desc id="ldd"><span translate="no">Fabric</span>,<span translate="no"> NeoForge </span>and<span translate="no"> Forge</span>, each joined to the other two, with arrows pointing both ways.</desc>
+      <defs><linearGradient id="lg-fabric-neo" gradientUnits="userSpaceOnUse" x1="361.0" y1="113.0" x2="449.2" y2="265.7"><stop class="st-fabric" offset="0"/><stop class="st-neo" offset="1"/></linearGradient><linearGradient id="lg-neo-forge" gradientUnits="userSpaceOnUse" x1="388.2" y1="371.4" x2="211.8" y2="371.4"><stop class="st-neo" offset="0"/><stop class="st-forge" offset="1"/></linearGradient><linearGradient id="lg-forge-fabric" gradientUnits="userSpaceOnUse" x1="150.8" y1="265.7" x2="239.0" y2="113.0"><stop class="st-forge" offset="0"/><stop class="st-fabric" offset="1"/></linearGradient></defs>
+      <path class="loomd-link" stroke="url(#lg-fabric-neo)" d="M361.0 113.0 A150 150 0 0 1 449.2 265.7"/>
+      <g style="color:var(--ld-fabric)"><path class="loomd-tip" d="M361.0 113.0 L376.9 111.8 M361.0 113.0 L370.7 125.5"/></g>
+      <g style="color:var(--ld-neo)"><path class="loomd-tip" d="M449.2 265.7 L443.2 251.0 M449.2 265.7 L458.1 252.5"/></g>
+      <path class="loomd-link" stroke="url(#lg-neo-forge)" d="M388.2 371.4 A150 150 0 0 1 211.8 371.4"/>
+      <g style="color:var(--ld-neo)"><path class="loomd-tip" d="M388.2 371.4 L381.2 385.6 M388.2 371.4 L372.4 373.5"/></g>
+      <g style="color:var(--ld-forge)"><path class="loomd-tip" d="M211.8 371.4 L227.6 373.5 M211.8 371.4 L218.8 385.6"/></g>
+      <path class="loomd-link" stroke="url(#lg-forge-fabric)" d="M150.8 265.7 A150 150 0 0 1 239.0 113.0"/>
+      <g style="color:var(--ld-forge)"><path class="loomd-tip" d="M150.8 265.7 L141.9 252.5 M150.8 265.7 L156.8 251.0"/></g>
+      <g style="color:var(--ld-fabric)"><path class="loomd-tip" d="M239.0 113.0 L229.3 125.5 M239.0 113.0 L223.1 111.8"/></g>
+      <g style="color:var(--ld-fabric)"><circle class="loomd-node" cx="300.0" cy="100.0" r="54"/><circle class="loomd-node-fill" cx="300.0" cy="100.0" r="54"/><g class="loomd-glyph"><g transform="translate(279.6,79.6) scale(1.700)"><rect x="3.5" y="3.5" width="17" height="17" rx="3" fill="currentColor"/><g stroke="var(--bg)" stroke-width="1.2" opacity="0.34" fill="none"><path d="M3.5 9.7h17M3.5 14.3h17M9.7 3.5v17M14.3 3.5v17"/></g></g></g><text translate="no" class="loomd-t" x="300.0" y="26.0" font-size="28" text-anchor="middle">Fabric</text></g>
+      <g style="color:var(--ld-neo)"><circle class="loomd-node" cx="429.9" cy="325.0" r="54"/><circle class="loomd-node-fill" cx="429.9" cy="325.0" r="54"/><g class="loomd-glyph"><g transform="translate(409.5,304.6) scale(1.700)"><path d="M8.5 16.5V7.5l7 9v-9" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g></g><text translate="no" class="loomd-t" x="429.9" y="413.0" font-size="28" text-anchor="middle">NeoForge</text></g>
+      <g style="color:var(--ld-forge)"><circle class="loomd-node" cx="170.1" cy="325.0" r="54"/><circle class="loomd-node-fill" cx="170.1" cy="325.0" r="54"/><g class="loomd-glyph"><g transform="translate(149.7,304.6) scale(1.700)"><path fill="currentColor" d="M2 8h10l-1.2 2.4H15v2h-1.9L12 17H8L6.2 12.4H2z"/><rect x="6" y="18" width="9" height="2" rx="0.4" fill="currentColor"/></g></g><text translate="no" class="loomd-t" x="170.1" y="413.0" font-size="28" text-anchor="middle">Forge</text></g>
+      </svg>
+      <p class="loomd-claim">Any version, any loader.</p>
+      <!-- Esto NO es un pie de foto, es la afirmacion del diagrama, asi que va
+           como parrafo y no como <figcaption>: josda no quiere texto explicando
+           imagenes debajo de ellas, y un <figcaption> es exactamente eso. Aqui
+           el texto no describe el dibujo, dice lo que el hace. -->
+      <p class="loomd-claim loomd-claim--sub">I work in all three.<span translate="no"> Fabric </span>to<span translate="no"> Forge </span>is the hard one, and I do it.</p>
+    </figure>
+  </div>
+</section>
 <!-- PORTFOLIO -->
 <section id="portfolio">
   <!-- Caricaturas de pixel art (tanda del 19-08). Se suman al sistema
@@ -2978,53 +3016,7 @@
     </div>
   </div>
 </section>
-<!-- LOADERS -->
-<section id="loaders">
-  <img class="ch ch--borde" src="pix-c04.webp" width="146" height="118" style="left:calc(50% + 530px + 18px);top:560px;--h:118px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <!-- Caricaturas de pixel art (tanda del 19-08). Se suman al sistema
-       `.ch--borde` que ya existe: mismo anclaje en pixeles, mismo
-       apagado por debajo de 1360. Cada una lleva su alto REAL en --h,
-       asi que se pinta 1:1 y no hay escalado que la emborrone. Los
-       `top` estan MEDIDOS sobre la pagina renderizada, no estimados:
-       cada uno cae en un tramo comprobado libre en ese lado. -->
-  <img class="ch ch--borde" src="h1024-12.webp" width="256" height="236" style="right:calc(50% + 530px + 18px);top:362px;--h:185px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <div class="wrap">
-        <h2>Same mod, your version</h2>
-    <!-- Esta seccion iba justo despues del hero explicando solo el MECANISMO
-         (los tres cargadores se convierten entre si) y no decia en ningun
-         momento que hay en juego. El problema estaba escrito, pero a 13.000 px
-         de aqui, dentro de #about. La afirmacion vive donde mas pesa, y para
-         esta la portada pesa mas que el "sobre mi". Las palabras son distintas
-         a las de alli a proposito ("stopped updating" y no "dead mod"). -->
-    <p class="sub">The same content comes out the other side. Your pack keeps the mod instead of losing it to a version bump.</p>
 
-    <figure class="loomd-wrap">
-      <svg class="loomd" viewBox="0 0 600 432" role="img" aria-labelledby="ldt ldd" preserveAspectRatio="xMidYMid meet">
-      <title id="ldt">Moving a mod between loaders</title>
-      <desc id="ldd"><span translate="no">Fabric</span>,<span translate="no"> NeoForge </span>and<span translate="no"> Forge</span>, each joined to the other two, with arrows pointing both ways.</desc>
-      <defs><linearGradient id="lg-fabric-neo" gradientUnits="userSpaceOnUse" x1="361.0" y1="113.0" x2="449.2" y2="265.7"><stop class="st-fabric" offset="0"/><stop class="st-neo" offset="1"/></linearGradient><linearGradient id="lg-neo-forge" gradientUnits="userSpaceOnUse" x1="388.2" y1="371.4" x2="211.8" y2="371.4"><stop class="st-neo" offset="0"/><stop class="st-forge" offset="1"/></linearGradient><linearGradient id="lg-forge-fabric" gradientUnits="userSpaceOnUse" x1="150.8" y1="265.7" x2="239.0" y2="113.0"><stop class="st-forge" offset="0"/><stop class="st-fabric" offset="1"/></linearGradient></defs>
-      <path class="loomd-link" stroke="url(#lg-fabric-neo)" d="M361.0 113.0 A150 150 0 0 1 449.2 265.7"/>
-      <g style="color:var(--ld-fabric)"><path class="loomd-tip" d="M361.0 113.0 L376.9 111.8 M361.0 113.0 L370.7 125.5"/></g>
-      <g style="color:var(--ld-neo)"><path class="loomd-tip" d="M449.2 265.7 L443.2 251.0 M449.2 265.7 L458.1 252.5"/></g>
-      <path class="loomd-link" stroke="url(#lg-neo-forge)" d="M388.2 371.4 A150 150 0 0 1 211.8 371.4"/>
-      <g style="color:var(--ld-neo)"><path class="loomd-tip" d="M388.2 371.4 L381.2 385.6 M388.2 371.4 L372.4 373.5"/></g>
-      <g style="color:var(--ld-forge)"><path class="loomd-tip" d="M211.8 371.4 L227.6 373.5 M211.8 371.4 L218.8 385.6"/></g>
-      <path class="loomd-link" stroke="url(#lg-forge-fabric)" d="M150.8 265.7 A150 150 0 0 1 239.0 113.0"/>
-      <g style="color:var(--ld-forge)"><path class="loomd-tip" d="M150.8 265.7 L141.9 252.5 M150.8 265.7 L156.8 251.0"/></g>
-      <g style="color:var(--ld-fabric)"><path class="loomd-tip" d="M239.0 113.0 L229.3 125.5 M239.0 113.0 L223.1 111.8"/></g>
-      <g style="color:var(--ld-fabric)"><circle class="loomd-node" cx="300.0" cy="100.0" r="54"/><circle class="loomd-node-fill" cx="300.0" cy="100.0" r="54"/><g class="loomd-glyph"><g transform="translate(279.6,79.6) scale(1.700)"><rect x="3.5" y="3.5" width="17" height="17" rx="3" fill="currentColor"/><g stroke="var(--bg)" stroke-width="1.2" opacity="0.34" fill="none"><path d="M3.5 9.7h17M3.5 14.3h17M9.7 3.5v17M14.3 3.5v17"/></g></g></g><text translate="no" class="loomd-t" x="300.0" y="26.0" font-size="28" text-anchor="middle">Fabric</text></g>
-      <g style="color:var(--ld-neo)"><circle class="loomd-node" cx="429.9" cy="325.0" r="54"/><circle class="loomd-node-fill" cx="429.9" cy="325.0" r="54"/><g class="loomd-glyph"><g transform="translate(409.5,304.6) scale(1.700)"><path d="M8.5 16.5V7.5l7 9v-9" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g></g><text translate="no" class="loomd-t" x="429.9" y="413.0" font-size="28" text-anchor="middle">NeoForge</text></g>
-      <g style="color:var(--ld-forge)"><circle class="loomd-node" cx="170.1" cy="325.0" r="54"/><circle class="loomd-node-fill" cx="170.1" cy="325.0" r="54"/><g class="loomd-glyph"><g transform="translate(149.7,304.6) scale(1.700)"><path fill="currentColor" d="M2 8h10l-1.2 2.4H15v2h-1.9L12 17H8L6.2 12.4H2z"/><rect x="6" y="18" width="9" height="2" rx="0.4" fill="currentColor"/></g></g><text translate="no" class="loomd-t" x="170.1" y="413.0" font-size="28" text-anchor="middle">Forge</text></g>
-      </svg>
-      <p class="loomd-claim">Any version, any loader.</p>
-      <!-- Esto NO es un pie de foto, es la afirmacion del diagrama, asi que va
-           como parrafo y no como <figcaption>: josda no quiere texto explicando
-           imagenes debajo de ellas, y un <figcaption> es exactamente eso. Aqui
-           el texto no describe el dibujo, dice lo que el hace. -->
-      <p class="loomd-claim loomd-claim--sub">I work in all three.<span translate="no"> Fabric </span>to<span translate="no"> Forge </span>is the hard one, and I do it.</p>
-    </figure>
-  </div>
-</section>
 <!-- MOD AUTHORS -->
 <section id="authors">
   <!-- Caricaturas de pixel art (tanda del 19-08). Se suman al sistema
@@ -3206,6 +3198,9 @@
   </div>
 </section>
 
+<figure class="scene-band">
+  <img src="band-flight.webp" width="1800" height="1012" alt="My character hanging in the air above an open sea, with the sun going down behind him." loading="lazy" decoding="async">
+</figure>
 <footer>
   <div><strong style="color:var(--text-soft)"><span translate="no">Modwright</span></strong> <span class="sep">·</span><span translate="no"> Forge </span>1.20.1 mod<span translate="no"> porting </span><span class="sep">·</span> <a href="mod-porting-cost.html">What a<span translate="no"> port </span>costs</a> <span class="sep">·</span> <a href="fabric-to-forge-1-20-1.html"><span translate="no">Fabric </span>to<span translate="no"> Forge</span>: what breaks</a> <span class="sep">·</span> <a href="#terms">Terms</a> <span class="sep">·</span> <a href="#privacy">Privacy</a> <span class="sep">·</span> <a href="#licenses">Licenses</a> <span class="sep">·</span> <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer">Contact</a></div>
   <div class="perfiles">Talk to me on <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" translate="no">Discord</a> <span class="sep">·</span> also on <a href="https://www.curseforge.com/members/danisansietev/projects" target="_blank" rel="noopener noreferrer" translate="no">CurseForge</a> <span class="sep">·</span> <a href="https://github.com/Dheightsan" target="_blank" rel="noopener noreferrer" translate="no">GitHub</a> <span class="sep">·</span> <a href="https://builtbybit.com/members/modwrightstudios.891720/" target="_blank" rel="noopener noreferrer" translate="no">BuiltByBit</a></div>
