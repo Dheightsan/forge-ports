@@ -3177,6 +3177,21 @@
       if (icon) icon.textContent = open ? '–' : '+';
     });
   });
+
+  // La galeria del pack (pack-lead queda fija; los dos .pack-grid, el de 6
+  // a la vista y el de 44 detras del clic, se barajan cada carga). No cambia
+  // que fotos se ven, solo el orden: la seleccion sigue siendo la elegida
+  // por variedad (dos construcciones, paisaje, Nether, criatura, amanecer).
+  function shuffle(arr) {
+    for (var i = arr.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = arr[i]; arr[i] = arr[j]; arr[j] = t;
+    }
+    return arr;
+  }
+  document.querySelectorAll('.pack-grid').forEach(function (grid) {
+    shuffle(Array.prototype.slice.call(grid.children)).forEach(function (img) { grid.appendChild(img); });
+  });
 })();
 </script>
 
