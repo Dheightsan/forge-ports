@@ -1827,11 +1827,11 @@
     /* Cabecera en rejilla y no en linea: cuando lleve el logo del mod al lado,
        el titulo tiene que poder ocupar dos lineas sin empujarlo. */
     .mp-head { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0.85rem; align-items: center; margin-bottom: 0.75rem; }
-    .mp-logos { display: flex; gap: 0.5rem; }
+    .mp-logos { display: flex; gap: 0.6rem; }
     /* pixelated: los iconos vienen a 96 px y se pintan a 56. El comentario
        decia esto desde antes pero la propiedad nunca estaba en la regla: se
        veian suavizados, no nitidos. Ya esta puesta. */
-    .mp-logo { width: 56px; height: 56px; border-radius: 8px; object-fit: contain; background: var(--surface2); border: 1px solid var(--border); image-rendering: pixelated; }
+    .mp-logo { width: 96px; height: 96px; border-radius: 10px; object-fit: contain; background: var(--surface2); border: 1px solid var(--border); image-rendering: pixelated; }
     .mp-credit { margin-top: 0.9rem; font-size: 0.82rem; color: var(--text-mute); }
     .mp-credit a { color: var(--text-soft); }
     .mp-item h3 { font-size: 1.02rem; font-weight: 700; line-height: 1.35; margin: 0; }
@@ -2455,7 +2455,7 @@
           </div>
           <h3><span translate="no">Fresh Animations </span>on the mobs,<span translate="no"> Epic Fight </span>on the player</h3>
         </div>
-        <p class="mp-hook">Everything was configured correctly and<span translate="no"> Epic Fight </span>kept winning anyway. The datapack was never loading: a missing <code>pack.mcmeta</code>, and not one line in the log.</p>
+        <p class="mp-hook">Everything was set up right, and<span translate="no"> Epic Fight </span>kept winning anyway. The datapack was not loading, and nothing in the log said so.</p>
         <details class="more more--card">
           <summary>Reading the split</summary>
         <p><span translate="no">Fresh Animations </span>on almost every creature,<span translate="no"> Epic Fight </span>on my character alone. Taking a mob off<span translate="no"> Epic Fight </span>takes two changes: a datapack entry stops its combat patch, but the mob still draws through its own renderer, so<span translate="no"> Fresh Animations </span>never gets a look in. The other half is a script that pulls the mob out of that renderer map on world load. I found the split by decompiling the render engine.</p>
@@ -2471,12 +2471,12 @@
             <img class="mp-logo" src="logo-azurelib.webp" width="96" height="96" alt="" aria-hidden="true" loading="lazy" decoding="async">
             <img class="mp-logo" src="logo-citadel.webp" width="96" height="96" alt="" aria-hidden="true" loading="lazy" decoding="async">
           </div>
-          <h3>I measured which mods animate themselves instead of assuming</h3>
+          <h3>I checked which mods animate themselves</h3>
         </div>
         <!-- "of their creatures" y no "of them": a la vista hay TRES cantidades
              (645 jars, 305 mods, 3.951 criaturas) y el porcentaje es todo el caso.
              Con "them" el lector no sabe de cual de las tres es el 48%. -->
-        <p class="mp-hook"><strong>48% of their creatures were already animated</strong> and never needed<span translate="no"> Fresh Animations </span>at all. I scanned the bytecode of <strong>645<span translate="no"> jars</span></strong> instead of guessing.</p>
+        <p class="mp-hook"><strong>48% of their creatures were already animated.</strong> They never needed<span translate="no"> Fresh Animations </span>at all. I checked <strong>645<span translate="no"> jars</span></strong> instead of guessing.</p>
         <details class="more more--card">
           <summary>The numbers</summary>
         <p><span translate="no">Fresh Animations </span>does nothing for a mod that already animates its own creatures. Between<span translate="no"> GeckoLib</span>,<span translate="no"> AzureLib </span>and<span translate="no"> Citadel</span>: <strong>305 mods, 3,951 creatures</strong>. The scan turned an open-ended job into a short list.</p>
@@ -2487,7 +2487,7 @@
         <div class="mp-head">
           <h3>One missing letter that silenced the spawns of seven mods</h3>
         </div>
-        <p class="mp-hook">Seven mods loaded perfectly and their creatures never appeared anywhere. Their folder was <code>biome_modifier</code>.<span translate="no"> Forge </span>reads <code>biome_modifiers</code>.</p>
+        <p class="mp-hook">Seven mods loaded fine. Their creatures never showed up anywhere. The folder name was missing one letter.</p>
         <details class="more more--card">
           <summary>Why nothing warned me</summary>
         <p><span translate="no">Forge </span>reads biome modifiers from a folder called <code>biome_modifiers</code>. Seven mods in my pack had the singular, <code>biome_modifier</code>, so<span translate="no"> Forge </span>quietly skipped the whole folder: no warning, no error. It looks exactly like a broken mod. It's one missing letter.</p>
@@ -2499,9 +2499,9 @@
           <div class="mp-logos">
             <img class="mp-logo" src="logo-mutantmore.webp" width="96" height="96" alt="" aria-hidden="true" loading="lazy" decoding="async">
           </div>
-          <h3>A mod that was written off as unfixable, and the one word that fixed it</h3>
+          <h3>A mod written off as unfixable, fixed with one word</h3>
         </div>
-        <p class="mp-hook">Written off as needing its bytecode rewritten. <strong>The fix was one word</strong>, and the pack went from 588 mods loading to 589 of 589.</p>
+        <p class="mp-hook">Everyone thought it needed a full rewrite. <strong>The fix was one word.</strong> The pack went from 588 mods loading to all 589.</p>
         <details class="more more--card">
           <summary>The one word</summary>
         <p><span translate="no">Mutant More </span>had been sitting out of my pack for weeks, crashing on load. The previous read was that its bytecode would have to be rewritten. It did not. Its mixin config declared <code>compatibilityLevel: "JAVA_16"</code> while <strong>all 577 of its classes were compiled as Java 17</strong>, so the mixin loader refused every one of them. Java 16 caps at class version 60; the classes were 61.</p>
@@ -2514,7 +2514,7 @@
         <div class="mp-head">
           <h3>I read 414<span translate="no"> jars </span>before letting one of them into my pack</h3>
         </div>
-        <p class="mp-hook">Sixty-seven of them contradicted my own notes, and <strong>eight could never have loaded at all</strong>. I found that out by opening every one of them.</p>
+        <p class="mp-hook">Sixty-seven contradicted my own notes. <strong>Eight could never have loaded at all.</strong> I only found out by opening every single one.</p>
         <details class="more more--card">
           <summary>What was actually inside them</summary>
         <p>I keep a store of mods I might want one day. Nothing goes from there into the pack until it has been read: the metadata, the loader it was built for, the version it targets, and whether anything already installed collides with it. 414 candidates went through that and came out sorted into <strong>103 ready to go in, 192 in due course, 44 that needed a decision, and 75 on hold</strong> behind a missing dependency or ruled out on purpose.</p>
@@ -2526,7 +2526,7 @@
         <div class="mp-head">
           <h3>Six mods whose only job was making other mods get along</h3>
         </div>
-        <p class="mp-hook">I wrote all six, then I deleted all six. <strong>Five of their names still live inside the mod that absorbed them</strong>, and that part is deliberate.</p>
+        <p class="mp-hook">I wrote all six. Then I deleted all six. <strong>Five of their names still live inside the mod that absorbed them</strong>, on purpose.</p>
         <details class="more more--card">
           <summary>Why the names stayed</summary>
         <p>Making a pack behave means writing glue: spawn entries, tags, recipes and loot that teach one mod about another. Mine had grown into six separate add-on<span translate="no"> jars </span>that did nothing on their own. Six more entries in the mod list, six things to keep in step, and two of them shipped the same file path, so <strong>which one won was decided fresh on every launch</strong>. I folded all six into the two mods I already owned and deleted the<span translate="no"> jars</span>.</p>
