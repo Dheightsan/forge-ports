@@ -2657,6 +2657,103 @@
     </div>
   </div>
 </section>
+<!-- SERVICES -->
+<section id="services">
+  <img class="ch ch--borde" src="pix-a20.webp" width="116" height="108" style="left:calc(50% + 530px + 18px);top:950px;--h:108px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <!-- Caricaturas de pixel art (tanda del 19-08). Se suman al sistema
+       `.ch--borde` que ya existe: mismo anclaje en pixeles, mismo
+       apagado por debajo de 1360. Cada una lleva su alto REAL en --h,
+       asi que se pinta 1:1 y no hay escalado que la emborrone. Los
+       `top` estan MEDIDOS sobre la pagina renderizada, no estimados:
+       cada uno cae en un tramo comprobado libre en ese lado. -->
+  <img class="ch ch--borde" src="pix-c12.webp" width="180" height="150" style="right:calc(50% + 530px + 18px);top:480px;--h:150px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch ch--borde" src="h1024-22.webp" width="256" height="236" style="right:calc(50% + 530px + 18px);top:750px;--h:195px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch ch--borde" src="h512-13.webp" width="256" height="245" style="left:calc(50% + 530px + 18px);top:731px;--h:195px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch ch--borde" src="h9478c-23.webp" width="256" height="244" style="right:calc(50% + 530px + 18px);top:200px;--h:195px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <div class="wrap">
+        <h2>Backports,<span translate="no"> ports </span>and loader conversions</h2>
+    <!-- El "por que" del 1.20.1 se decia TRES veces, dos de ellas con las mismas
+         doce palabras seguidas ("it sits just below every recent version wall").
+         Vive en el hero, donde ademas lleva lo que solo el puede decir ("not
+         because it is all I do"), y en la pregunta del FAQ que existe justo para
+         eso. Aqui el dato util es la tarifa. -->
+    <p class="sub">Anything harder is priced by the real work it adds, measured job by job. The full reasoning is written up in <a href="mod-porting-cost.html">what a<span translate="no"> port </span>costs, and why</a>.</p>
+<div class="cards">
+      <div class="card card--base">
+        <div class="icon-wrap svc-copper"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v13"/><path d="M6 11l6 6 6-6"/></svg></div>
+        <h3><span translate="no">Backport</span></h3>
+        <p>A newer mod (1.21+) your pack needs running on something older like<span translate="no"> Forge </span>1.20.1. That means<span translate="no"> porting </span>the items, blocks, mechanics and textures across.<span translate="no"> Backporting </span>a mod to<span translate="no"> Forge </span>1.20.1 is the job I do most.</p>
+        <div class="card-stats">
+          <div><span class="k">Target</span><span class="v"><span translate="no">Forge </span>1.20.1</span></div>
+          
+        </div>
+        <span class="card-tag tag-base">By version wall</span>
+      </div>
+      <div class="card card--premium">
+        <div class="icon-wrap svc-life"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V7"/><path d="M6 13l6-6 6 6"/></svg></div>
+        <h3><span translate="no">Forward-port </span>&amp; revive</h3>
+        <p>An old or abandoned mod you love, stuck on 1.12 / 1.16 / 1.18, that you want running on a modern version. It's the hardest kind of<span translate="no"> port</span>, which is exactly why most<span translate="no"> porters </span>won't take it. The price scales with how many version walls it has to cross.</p>
+        <div class="card-stats">
+          <div><span class="k">Range</span><span class="v">1.12 → modern</span></div>
+          <div><span class="k">Driver</span><span class="v">Version walls</span></div>
+        </div>
+        <span class="card-tag tag-premium">By complexity</span>
+      </div>
+      <div class="card card--premium">
+        <div class="icon-wrap svc-loom"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h13l-3-3"/><path d="M20 16H7l3 3"/></svg></div>
+        <h3>Loader conversion</h3>
+        <p>Moving a mod between<span translate="no"> Fabric</span>,<span translate="no"> NeoForge </span>and<span translate="no"> Forge</span>. <strong>Porting a<span translate="no"> Fabric </span>mod to<span translate="no"> Forge </span>is close to a rewrite</strong> because the two are built on completely different plumbing, so most of the code has to be written again. I wrote up <a href="fabric-to-forge-1-20-1.html">what actually breaks in a<span translate="no"> Fabric </span>to<span translate="no"> Forge</span><span translate="no"> port</span></a>, with the failures that never show an error.</p>
+        <div class="card-stats">
+          
+          
+        </div>
+        <span class="card-tag tag-premium">By complexity</span>
+      </div>
+      <div class="card card--base">
+        <div class="icon-wrap svc-bridge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7h5a4 4 0 0 1 0 8h-1"/><path d="M15 17h-5a4 4 0 0 1 0-8h1"/></svg></div>
+        <h3>Compatibility patches</h3>
+        <p>Getting mods to coexist: two native mods, a<span translate="no"> ported </span>one alongside a native one, mobs spawning across mods, or a conflict that breaks a feature. This works <strong>even on mods whose code was never published</strong>, and what you get is a separate add-on you are free to publish.</p>
+        <div class="card-stats">
+          <div><span class="k">Works with</span><span class="v">Closed-source too</span></div>
+          
+        </div>
+        <span class="card-tag tag-base">Publishable</span>
+      </div>
+      <div class="card card--base">
+        <div class="icon-wrap svc-steel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.6 5.6L3 18l3 3 6.1-6.1a4 4 0 0 0 5.6-5.6l-2.9 2.9a1.5 1.5 0 0 1-2-2l2.9-2.9z"/></svg></div>
+        <h3>Mod maintenance</h3>
+        <p>A mod that stopped working after an update. It crashes on load, or it starts and half of what it used to do is gone. I find what broke and fix it on your version.</p>
+        <div class="card-stats">
+          <div><span class="k">Fixes</span><span class="v"><span translate="no">Mixins </span>· crashes · deps</span></div>
+          
+        </div>
+        <span class="card-tag tag-base">By scope</span>
+      </div>
+      <div class="card card--premium">
+        <div class="icon-wrap svc-spark"><svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+        <h3>Mod optimization</h3>
+        <p>A mod or pack that <strong>drops your frame rate or drags the server down</strong>. I find what is eating the time and make it cheaper to run. Nothing you can see in the game changes.</p>
+        <div class="card-stats">
+          <div><span class="k">Cuts</span><span class="v">Lag · RAM · tick time</span></div>
+          
+        </div>
+        <span class="card-tag tag-premium">By scope</span>
+      </div>
+    </div>
+    <p class="svc-shape"><strong>None of these is all-or-nothing.</strong> Leave a feature out, change spawn rates, damage, effects, recipes or loot. <a href="#faq">Say so when you send it</a> and it goes in the same fixed quote.</p>
+    <!-- La nota que citaba el formulario ("priced in the form above") se fue con
+         el formulario. En su sitio baja el .softcta que vivia DENTRO de
+         #estimator: ofrece mirar el mod gratis y no tenia nada que ver con la
+         calculadora, asi que al esconder la seccion se escondio tambien sin
+         querer. Aqui es donde le toca: justo despues de lo que hago. -->
+    <div class="softcta">
+      <p><strong>Not sure it can even be done?</strong> Send me the mod link and I'll tell you whether it's possible and what gets in the way. No charge, and no obligation to take it further.</p>
+      <div class="softcta-row">
+        <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" class="btn btn-discord"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg><span>Ask me on<span translate="no"> Discord</span></span></a>
+      </div>
+    </div>
+  </div>
+</section>
 <!-- PROOF -->
 <section id="proof">
   <!-- Caricaturas de pixel art (tanda del 19-08). Se suman al sistema
@@ -2807,103 +2904,7 @@
 <div class="torn-sep" aria-hidden="true"><svg viewBox="0 0 1440 24" preserveAspectRatio="none"><path d="M0 24 L0 12 L48 16 L96 8 L150 17 L210 7 L280 15 L356 9 L432 17 L510 7 L590 15 L676 9 L760 17 L846 7 L932 15 L1018 9 L1104 17 L1190 7 L1276 15 L1356 10 L1440 14 L1440 24 Z"/></svg>
 
 </div>
-<!-- SERVICES -->
-<section id="services">
-  <img class="ch ch--borde" src="pix-a20.webp" width="116" height="108" style="left:calc(50% + 530px + 18px);top:950px;--h:108px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <!-- Caricaturas de pixel art (tanda del 19-08). Se suman al sistema
-       `.ch--borde` que ya existe: mismo anclaje en pixeles, mismo
-       apagado por debajo de 1360. Cada una lleva su alto REAL en --h,
-       asi que se pinta 1:1 y no hay escalado que la emborrone. Los
-       `top` estan MEDIDOS sobre la pagina renderizada, no estimados:
-       cada uno cae en un tramo comprobado libre en ese lado. -->
-  <img class="ch ch--borde" src="pix-c12.webp" width="180" height="150" style="right:calc(50% + 530px + 18px);top:480px;--h:150px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="h1024-22.webp" width="256" height="236" style="right:calc(50% + 530px + 18px);top:750px;--h:195px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="h512-13.webp" width="256" height="245" style="left:calc(50% + 530px + 18px);top:731px;--h:195px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="h9478c-23.webp" width="256" height="244" style="right:calc(50% + 530px + 18px);top:200px;--h:195px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <div class="wrap">
-        <h2>Backports,<span translate="no"> ports </span>and loader conversions</h2>
-    <!-- El "por que" del 1.20.1 se decia TRES veces, dos de ellas con las mismas
-         doce palabras seguidas ("it sits just below every recent version wall").
-         Vive en el hero, donde ademas lleva lo que solo el puede decir ("not
-         because it is all I do"), y en la pregunta del FAQ que existe justo para
-         eso. Aqui el dato util es la tarifa. -->
-    <p class="sub">Anything harder is priced by the real work it adds, measured job by job. The full reasoning is written up in <a href="mod-porting-cost.html">what a<span translate="no"> port </span>costs, and why</a>.</p>
-<div class="cards">
-      <div class="card card--base">
-        <div class="icon-wrap svc-copper"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v13"/><path d="M6 11l6 6 6-6"/></svg></div>
-        <h3><span translate="no">Backport</span></h3>
-        <p>A newer mod (1.21+) your pack needs running on something older like<span translate="no"> Forge </span>1.20.1. That means<span translate="no"> porting </span>the items, blocks, mechanics and textures across.<span translate="no"> Backporting </span>a mod to<span translate="no"> Forge </span>1.20.1 is the job I do most.</p>
-        <div class="card-stats">
-          <div><span class="k">Target</span><span class="v"><span translate="no">Forge </span>1.20.1</span></div>
-          
-        </div>
-        <span class="card-tag tag-base">By version wall</span>
-      </div>
-      <div class="card card--premium">
-        <div class="icon-wrap svc-life"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V7"/><path d="M6 13l6-6 6 6"/></svg></div>
-        <h3><span translate="no">Forward-port </span>&amp; revive</h3>
-        <p>An old or abandoned mod you love, stuck on 1.12 / 1.16 / 1.18, that you want running on a modern version. It's the hardest kind of<span translate="no"> port</span>, which is exactly why most<span translate="no"> porters </span>won't take it. The price scales with how many version walls it has to cross.</p>
-        <div class="card-stats">
-          <div><span class="k">Range</span><span class="v">1.12 → modern</span></div>
-          <div><span class="k">Driver</span><span class="v">Version walls</span></div>
-        </div>
-        <span class="card-tag tag-premium">By complexity</span>
-      </div>
-      <div class="card card--premium">
-        <div class="icon-wrap svc-loom"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h13l-3-3"/><path d="M20 16H7l3 3"/></svg></div>
-        <h3>Loader conversion</h3>
-        <p>Moving a mod between<span translate="no"> Fabric</span>,<span translate="no"> NeoForge </span>and<span translate="no"> Forge</span>. <strong>Porting a<span translate="no"> Fabric </span>mod to<span translate="no"> Forge </span>is close to a rewrite</strong> because the two are built on completely different plumbing, so most of the code has to be written again. I wrote up <a href="fabric-to-forge-1-20-1.html">what actually breaks in a<span translate="no"> Fabric </span>to<span translate="no"> Forge</span><span translate="no"> port</span></a>, with the failures that never show an error.</p>
-        <div class="card-stats">
-          
-          
-        </div>
-        <span class="card-tag tag-premium">By complexity</span>
-      </div>
-      <div class="card card--base">
-        <div class="icon-wrap svc-bridge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7h5a4 4 0 0 1 0 8h-1"/><path d="M15 17h-5a4 4 0 0 1 0-8h1"/></svg></div>
-        <h3>Compatibility patches</h3>
-        <p>Getting mods to coexist: two native mods, a<span translate="no"> ported </span>one alongside a native one, mobs spawning across mods, or a conflict that breaks a feature. This works <strong>even on mods whose code was never published</strong>, and what you get is a separate add-on you are free to publish.</p>
-        <div class="card-stats">
-          <div><span class="k">Works with</span><span class="v">Closed-source too</span></div>
-          
-        </div>
-        <span class="card-tag tag-base">Publishable</span>
-      </div>
-      <div class="card card--base">
-        <div class="icon-wrap svc-steel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.6 5.6L3 18l3 3 6.1-6.1a4 4 0 0 0 5.6-5.6l-2.9 2.9a1.5 1.5 0 0 1-2-2l2.9-2.9z"/></svg></div>
-        <h3>Mod maintenance</h3>
-        <p>A mod that stopped working after an update. It crashes on load, or it starts and half of what it used to do is gone. I find what broke and fix it on your version.</p>
-        <div class="card-stats">
-          <div><span class="k">Fixes</span><span class="v"><span translate="no">Mixins </span>· crashes · deps</span></div>
-          
-        </div>
-        <span class="card-tag tag-base">By scope</span>
-      </div>
-      <div class="card card--premium">
-        <div class="icon-wrap svc-spark"><svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
-        <h3>Mod optimization</h3>
-        <p>A mod or pack that <strong>drops your frame rate or drags the server down</strong>. I find what is eating the time and make it cheaper to run. Nothing you can see in the game changes.</p>
-        <div class="card-stats">
-          <div><span class="k">Cuts</span><span class="v">Lag · RAM · tick time</span></div>
-          
-        </div>
-        <span class="card-tag tag-premium">By scope</span>
-      </div>
-    </div>
-    <p class="svc-shape"><strong>None of these is all-or-nothing.</strong> Leave a feature out, change spawn rates, damage, effects, recipes or loot. <a href="#faq">Say so when you send it</a> and it goes in the same fixed quote.</p>
-    <!-- La nota que citaba el formulario ("priced in the form above") se fue con
-         el formulario. En su sitio baja el .softcta que vivia DENTRO de
-         #estimator: ofrece mirar el mod gratis y no tenia nada que ver con la
-         calculadora, asi que al esconder la seccion se escondio tambien sin
-         querer. Aqui es donde le toca: justo despues de lo que hago. -->
-    <div class="softcta">
-      <p><strong>Not sure it can even be done?</strong> Send me the mod link and I'll tell you whether it's possible and what gets in the way. No charge, and no obligation to take it further.</p>
-      <div class="softcta-row">
-        <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" class="btn btn-discord"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg><span>Ask me on<span translate="no"> Discord</span></span></a>
-      </div>
-    </div>
-  </div>
-</section>
+
 <!-- ESTIMATOR -->
 <!-- Repuesto el 2026-09-02 (tarde), version ligera: SIN precios (eran $ que
      salian de una tabla interna, y josda pidio que no se vea el sistema de
