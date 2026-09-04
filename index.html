@@ -985,31 +985,37 @@
     .card { background: linear-gradient(180deg, #1a1814, #131210); padding: var(--pad-card-lg); border: 1px solid var(--border); border-radius: var(--radius-lg); transition: border-color 0.15s, transform 0.1s; position: relative; overflow: hidden; box-shadow: inset 0 1px 0 rgba(234,228,214,0.04), 0 8px 24px -16px rgba(0,0,0,0.7); }
     .card:hover { transform: translateY(-3px); }
     /* La franja de arriba existia en CSS pero nunca se pintaba: un ::before
-       sin `content` no genera caja. Ahora si dibuja. Dos ejes de color
-       independientes: la franja dice nivel de precio (base=verde,
-       premium=oro); el borde en hover dice que tipo de servicio es. */
-    .card--base::before, .card--premium::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
-    .card--base::before { background: var(--green); }
-    .card--premium::before { background: var(--gold); }
-    .card.svc-copper:hover { border-color: #cc8049; }
-    .card.svc-life:hover   { border-color: #5aa83f; }
-    .card.svc-loom:hover   { border-color: #cdae7e; }
-    .card.svc-bridge:hover { border-color: #6f93b8; }
-    .card.svc-steel:hover  { border-color: #9aa0a8; }
-    .card.svc-spark:hover  { border-color: #e0b441; }
+       sin `content` no genera caja. Iba por nivel (base/premium), pero en
+       este tema `--green` (#c07e3c) y `--gold` (#cba14a) son casi el mismo
+       cobre: no se distinguian. Ahora es del color de CADA servicio -- los
+       6 ya son bien distintos entre si -- y el nivel lo sigue diciendo la
+       pastilla de abajo (base=verde, premium=oro), sin competir con esto. */
+    .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; }
+    .card.svc-copper::before { background: #cc8049; }
+    .card.svc-life::before   { background: #5aa83f; }
+    .card.svc-loom::before   { background: #cdae7e; }
+    .card.svc-bridge::before { background: #6f93b8; }
+    .card.svc-steel::before  { background: #9aa0a8; }
+    .card.svc-spark::before  { background: #e0b441; }
+    .card.svc-copper:hover { border-color: #cc8049; box-shadow: 0 0 0 3px rgba(204,128,73,0.18), inset 0 1px 0 rgba(234,228,214,0.04), 0 8px 24px -16px rgba(0,0,0,0.7); }
+    .card.svc-life:hover   { border-color: #5aa83f; box-shadow: 0 0 0 3px rgba(90,168,63,0.18), inset 0 1px 0 rgba(234,228,214,0.04), 0 8px 24px -16px rgba(0,0,0,0.7); }
+    .card.svc-loom:hover   { border-color: #cdae7e; box-shadow: 0 0 0 3px rgba(205,174,126,0.18), inset 0 1px 0 rgba(234,228,214,0.04), 0 8px 24px -16px rgba(0,0,0,0.7); }
+    .card.svc-bridge:hover { border-color: #6f93b8; box-shadow: 0 0 0 3px rgba(111,147,184,0.18), inset 0 1px 0 rgba(234,228,214,0.04), 0 8px 24px -16px rgba(0,0,0,0.7); }
+    .card.svc-steel:hover  { border-color: #9aa0a8; box-shadow: 0 0 0 3px rgba(154,160,168,0.18), inset 0 1px 0 rgba(234,228,214,0.04), 0 8px 24px -16px rgba(0,0,0,0.7); }
+    .card.svc-spark:hover  { border-color: #e0b441; box-shadow: 0 0 0 3px rgba(224,180,65,0.18), inset 0 1px 0 rgba(234,228,214,0.04), 0 8px 24px -16px rgba(0,0,0,0.7); }
     .card-stats { display: flex; flex-wrap: wrap; gap: 0.5rem 1.3rem; margin: 0.2rem 0 1rem; padding-top: 0.85rem; border-top: 1px solid var(--border); }
     .card-stats > div { display: flex; flex-direction: column; gap: 0.1rem; }
     .card-stats .k { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-mute); }
     .card-stats .v { font-size: 0.8rem; font-weight: 700; color: var(--text); }
-    .icon-wrap { width: 52px; height: 52px; display: grid; place-items: center; background: var(--brown-glow); border-radius: var(--radius); margin-bottom: 1rem; color: var(--brown-hi); }
-    .icon-wrap svg { width: 28px; height: 28px; stroke: currentColor; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .icon-wrap { width: 60px; height: 60px; display: grid; place-items: center; background: var(--brown-glow); border-radius: 50%; margin-bottom: 1.1rem; color: var(--brown-hi); }
+    .icon-wrap svg { width: 32px; height: 32px; stroke: currentColor; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
     /* per-service representative icon colours (matches the estimator's accent system) */
-    .icon-wrap.svc-copper { color: #cc8049; background: rgba(204,128,73,0.13); border: 1px solid rgba(204,128,73,0.4); }
-    .icon-wrap.svc-life   { color: #5aa83f; background: rgba(90,168,63,0.13); border: 1px solid rgba(90,168,63,0.4); }
-    .icon-wrap.svc-loom   { color: #cdae7e; background: rgba(205,174,126,0.15); border: 1px solid rgba(205,174,126,0.4); }
-    .icon-wrap.svc-bridge { color: #6f93b8; background: rgba(111,147,184,0.15); border: 1px solid rgba(111,147,184,0.4); }
-    .icon-wrap.svc-steel  { color: #9aa0a8; background: rgba(154,160,168,0.15); border: 1px solid rgba(154,160,168,0.4); }
-    .icon-wrap.svc-spark  { color: #e0b441; background: rgba(224,180,65,0.13); border: 1px solid rgba(224,180,65,0.4); }
+    .icon-wrap.svc-copper { color: #cc8049; background: rgba(204,128,73,0.20); border: 2px solid rgba(204,128,73,0.55); }
+    .icon-wrap.svc-life   { color: #5aa83f; background: rgba(90,168,63,0.20); border: 2px solid rgba(90,168,63,0.55); }
+    .icon-wrap.svc-loom   { color: #cdae7e; background: rgba(205,174,126,0.22); border: 2px solid rgba(205,174,126,0.55); }
+    .icon-wrap.svc-bridge { color: #6f93b8; background: rgba(111,147,184,0.22); border: 2px solid rgba(111,147,184,0.55); }
+    .icon-wrap.svc-steel  { color: #9aa0a8; background: rgba(154,160,168,0.22); border: 2px solid rgba(154,160,168,0.55); }
+    .icon-wrap.svc-spark  { color: #e0b441; background: rgba(224,180,65,0.20); border: 2px solid rgba(224,180,65,0.55); }
     /* Las dos lineas que cierran #services. Estaban FUERA de .wrap y sin una
        sola regla, o sea pegadas al borde de la pantalla mientras la seccion se
        queda en 1060. La de arriba quita un pero ("no es todo o nada") y por eso
@@ -1018,7 +1024,7 @@
                  max-width: 62ch; font-size: 0.95rem; line-height: 1.7; color: var(--text-soft); }
     .svc-shape strong { color: var(--text); font-weight: 700; }
     .svc-price-note { margin-top: 0.9rem; font-size: 0.82rem; color: var(--text-mute); }
-    .card h3 { font-size: 1.04rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.55rem; }
     .card p { color: var(--text-soft); font-size: 0.86rem; line-height: 1.65; margin-bottom: 0.9rem; }
     .card p strong { color: var(--text); font-weight: 600; }
     .card-tag { display: inline-block; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; padding: 0.25rem 0.6rem; border-radius: 999px; }
@@ -2577,7 +2583,7 @@
       <div class="card card--premium svc-loom">
         <div class="icon-wrap svc-loom"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h13l-3-3"/><path d="M20 16H7l3 3"/></svg></div>
         <h3>Loader conversion</h3>
-        <p>Moving a mod between<span translate="no"> Fabric</span>,<span translate="no"> NeoForge </span>and<span translate="no"> Forge</span>. <strong><span translate="no">Fabric </span>to<span translate="no"> Forge </span>is close to a rewrite</strong>, the two are built on completely different plumbing, so most of the code has to be written again.<span translate="no"> Forge </span>and<span translate="no"> NeoForge </span>share far more, so that direction goes faster. I wrote up <a href="fabric-to-forge-1-20-1.html">what actually breaks in a<span translate="no"> Fabric </span>to<span translate="no"> Forge</span><span translate="no"> port</span></a>, with the failures that never show an error.</p>
+        <p>Moving a mod between<span translate="no"> Fabric</span>,<span translate="no"> NeoForge </span>and<span translate="no"> Forge</span>. <strong><span translate="no">Fabric </span>to<span translate="no"> Forge </span>is close to a rewrite</strong>: the two are built on completely different plumbing, so most of the code has to be written again.<span translate="no"> Forge </span>and<span translate="no"> NeoForge </span>share far more, so that direction goes faster. I wrote up <a href="fabric-to-forge-1-20-1.html">what actually breaks in a<span translate="no"> Fabric </span>to<span translate="no"> Forge</span><span translate="no"> port</span></a>, with the failures that never show an error.</p>
         <div class="card-stats">
           
           
