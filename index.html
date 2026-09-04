@@ -639,10 +639,10 @@
     section { padding: 5.5rem 1.5rem; }
     /* per-section rhythm: the estimator gets extra air, reference sections sit tighter */
     #estimator { padding-top: 6.5rem; }
-    #faq, #legal { padding-top: 4.25rem; padding-bottom: 4.5rem; }
+    #legal { padding-top: 4.25rem; padding-bottom: 4.5rem; }
     #about { padding-top: 4.75rem; }
     /* perf: skip rendering off-screen sections until needed (auto remembers size → no jank) */
-    #legal, #faq, #about, #contact { content-visibility: auto; contain-intrinsic-size: auto 700px; }
+    #legal, #about, #contact { content-visibility: auto; contain-intrinsic-size: auto 700px; }
     /* El portafolio se lleva las fichas, las cifras, el estante, los cuatro
        arreglos y la galeria: 700px de estimacion daban un salto de barra feo
        en el primer render. */
@@ -1328,24 +1328,14 @@
 
     /* ── LEGAL ── */
     #legal { background: linear-gradient(180deg, #15130e, #0f0e0b); border-top: 1px solid var(--border); }
-    /* Legal: filas tipograficas, NO tarjetas. La pagina ya resuelve cinco
-       secciones con rejilla de tarjetas; repetir la receta aqui es lo que hace
-       que un vistazo lea "plantilla". Una lista con filetes cambia el ritmo. */
-    .legal-rows { margin-top: 2.6rem; border-top: 1px solid var(--border); }
-    .legal-row { border-bottom: 1px solid var(--border); padding: 1.45rem 0; display: grid; grid-template-columns: minmax(0, 14rem) minmax(0, 1fr); gap: 0.5rem 2.6rem; align-items: baseline; }
-    .legal-row h3 { font-size: 1rem; font-weight: 700; margin: 0; }
-    .legal-row p { color: var(--text-soft); font-size: 0.9rem; line-height: 1.65; margin: 0; max-width: 36em; }
-    @media (max-width: 720px) { .legal-row { grid-template-columns: minmax(0, 1fr); gap: 0.45rem; padding: 1.2rem 0; } }
     /* Ritmo de seccion: espaciados deliberadamente distintos. Todas las secciones
        con el mismo padding es la firma visual de una plantilla. */
     #services { padding-top: 6.5rem; padding-bottom: 4.5rem; }
     #how-it-works { padding-top: 4.5rem; }
-    #faq { padding-top: 4.25rem; padding-bottom: 4.25rem; }
     #legal { padding-top: 4.75rem; padding-bottom: 6.5rem; }
     .legal-quote { margin-top: 1.6rem; padding: 1.2rem 1.4rem; background: var(--green-glow); border-left: 3px solid var(--green); border-radius: var(--radius); font-size: 0.92rem; color: var(--text); }
 
     /* ── FAQ ── */
-    #faq { border-top: 1px solid var(--border); }
     /* Las 9 preguntas eran 9 CAJAS: borde entero, esquinas redondeadas, fondo
        propio y una barra de acento a la izquierda. Nueve rectangulos identicos
        apilados es la forma mas reconocible de una plantilla, y encima no aportaba
@@ -2896,40 +2886,6 @@
 </div>
 
 
-<!-- FAQ -->
-<section id="faq">
-  <!-- Caricaturas de pixel art (tanda del 19-08). Se suman al sistema
-       `.ch--borde` que ya existe: mismo anclaje en pixeles, mismo
-       apagado por debajo de 1360. Cada una lleva su alto REAL en --h,
-       asi que se pinta 1:1 y no hay escalado que la emborrone. Los
-       `top` estan MEDIDOS sobre la pagina renderizada, no estimados:
-       cada uno cae en un tramo comprobado libre en ese lado. -->
-  <img class="ch ch--borde" src="pix-b01.webp" width="111" height="117" style="left:calc(50% + 530px + 18px);top:480px;--h:117px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="h1024-31.webp" width="256" height="236" style="left:calc(50% + 530px + 18px);top:634px;--h:195px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="hari-23.webp" width="256" height="245" style="right:calc(50% + 530px + 18px);top:524px;--h:195px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="hsunny-11.webp" width="256" height="246" style="left:calc(50% + 530px + 18px);top:200px;--h:195px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <div class="wrap">
-        <h2>Before you ask</h2>
-    <div class="faq-list">
-      <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">Why is 1.20.1 the shortest route?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">It sits just below every recent version wall, so it takes the least work. Other versions have to cross walls (networking, data components, worldgen) that genuinely take longer, so they carry a flat premium per wall.</div></div></div>
-      <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">What exactly is a compatibility patch?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">Making two or more mods work together without adding new content. For example: getting one mod's mobs to spawn in another mod's biomes, or fixing a conflict that breaks a feature. Each one is custom, so I quote it by scope.</div></div></div>
-      <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">Is this legal?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">Yes. The fee covers my time writing the<span translate="no"> port</span>; distribution rights are a separate question, settled by the mod's licence. I publish only open-source mods or mods with written permission; anything else is delivered privately to whoever holds the right to use it. See the Licenses section below.</div></div></div>
-      <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">How do I pay safely?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body"><span translate="no">Wise </span>is how I invoice by default, wherever you are. If you would rather use<span translate="no"> PayPal</span>, ask and I will send a Goods and Services invoice instead. I never take Friends and Family, because it is the one payment type that leaves you with nothing to fall back on. Either way, your first job carries no deposit whatever its size, you watch the build running in your own setup, and the final payment comes after that.</div></div></div>
-      <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">How long does it take?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">It depends on the mod. We agree a timeline before I start, but I won't quote a fixed turnaround I can't stand behind. Under-promising costs me a job now and then. Missing a date costs you a launch.</div></div></div>
-      <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">What if the<span translate="no"> port </span>doesn't work?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">You watch the build running before you make final payment, so you never pay for something you have not seen work. The deliverable is what we agree in writing up front, and for 30 days after delivery I correct, at no charge, any defect I introduced inside that agreed scope, on the setup we agreed. After that, or for problems caused by<span translate="no"> Minecraft </span>updates, other mods, or server changes, it becomes a maintenance job.</div></div></div>
-      <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">Can I put the<span translate="no"> ported </span>mod in my public<span translate="no"> modpack</span>?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">It depends on the original mod's licence, and I tell you which case you are in before you pay. Open-source: yes, and I publish it with credit to the original author so your pack links to something real. Your own mod, or one where you hold written permission: yes, and I tell you exactly what credit to include. All rights reserved with no permission: no, and I will not take the job on those terms, because the takedown would land on your account and not mine.</div></div></div>
-      <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">Can you leave parts of the mod out, or change what it does?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">Yes, and it is worth asking. A<span translate="no"> port </span>does not have to be the whole mod: I can drop a feature you do not want, change values like spawn rates, durability or damage, retune or remove effects, and adjust recipes and loot. Tell me when you send it and it goes into the fixed quote, instead of turning into a second job later. The line is between tweaks and a redesign: rebalancing the whole mod is its own job and I quote it separately.</div></div></div>
-      <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">What's out of scope?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">The mod's original textures and assets come across with the<span translate="no"> port</span>. What doesn't: brand-new textures, 3D models or animations, full gameplay or balance redesigns, and ongoing maintenance across future<span translate="no"> Minecraft </span>versions. Those get quoted separately, so tell me upfront and I'll fold it into the price.</div></div></div>
-    </div>
-    <div class="softcta">
-      <p>Still got a question? Ask me the awkward one. <strong>I'd rather deal with it now than after you've paid.</strong></p>
-      <div class="softcta-row">
-        <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" class="btn btn-discord"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg><span>Ask me on<span translate="no"> Discord</span></span></a>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- MOD AUTHORS -->
 <section id="authors">
   <!-- Caricaturas de pixel art (tanda del 19-08). Se suman al sistema
@@ -3033,15 +2989,31 @@
   <img class="ch ch--borde" src="pix-b02.webp" width="97" height="104" style="left:calc(50% + 530px + 18px);top:80px;--h:104px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="ch ch--borde" src="h512-12.webp" width="256" height="245" style="left:calc(50% + 530px + 18px);top:380px;--h:165px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="ch ch--borde" src="hari-21.webp" width="256" height="245" style="right:calc(50% + 530px + 18px);top:200px;--h:165px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch ch--borde" src="pix-b01.webp" width="111" height="117" style="left:calc(50% + 530px + 18px);top:480px;--h:117px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch ch--borde" src="h1024-31.webp" width="256" height="236" style="left:calc(50% + 530px + 18px);top:634px;--h:195px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch ch--borde" src="hari-23.webp" width="256" height="245" style="right:calc(50% + 530px + 18px);top:524px;--h:195px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch ch--borde" src="hsunny-11.webp" width="256" height="246" style="left:calc(50% + 530px + 18px);top:200px;--h:195px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
-        <h2>I only<span translate="no"> port </span>what I have rights to<span translate="no"> port</span></h2>
-    <p class="sub">Most devs in this space ignore licensing. I don't, because a DMCA takedown or account ban hits your account harder than it hits me.</p>
-    <div class="legal-rows">
-      <div class="legal-row"><h3>Public: open-source &amp; compatibility</h3><p>Open-source mods (MIT · Apache · LGPL), mods with written permission, and compatibility add-ons (my own code, depending on mods you install yourself) get published to<span translate="no"> CurseForge </span>&amp;<span translate="no"> Modrinth</span>, with full credit to the original authors.</p></div>
-      <div class="legal-row"><h3>Private: closed-source mods</h3><p>Most requested mods are closed-source. You bring one you have the right to use; I modify it for you and deliver privately, to you only, never published.</p></div>
-      <div class="legal-row"><h3>What I won't do</h3><p>Publicly redistribute a closed-source (All Rights Reserved) mod without written permission from the author. I don't bend on this.</p></div>
+        <h2 id="faq">Before you ask</h2>
+    <p class="sub">Practical answers first, then the paperwork: licences, terms and privacy. Most devs in this space ignore licensing. I don't, because a takedown or an account ban lands on you harder than it lands on me.</p>
+    <div class="faq-list">
+      <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">Why is 1.20.1 the shortest route?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">It sits just below every recent version wall, so it takes the least work. Other versions have to cross walls (networking, data components, worldgen) that genuinely take longer, so they carry a flat premium per wall.</div></div></div>
+      <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">What exactly is a compatibility patch?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">Making two or more mods work together without adding new content. For example: getting one mod's mobs to spawn in another mod's biomes, or fixing a conflict that breaks a feature. Each one is custom, so I quote it by scope.</div></div></div>
+      <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">Is this legal?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">Yes. The fee covers my time writing the<span translate="no"> port</span>; distribution rights are a separate question, settled by the mod's licence. I publish only open-source mods or mods with written permission; anything else is delivered privately to whoever holds the right to use it. See the Licenses section below.</div></div></div>
+      <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">How do I pay safely?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body"><span translate="no">Wise </span>is how I invoice by default, wherever you are. If you would rather use<span translate="no"> PayPal</span>, ask and I will send a Goods and Services invoice instead. I never take Friends and Family, because it is the one payment type that leaves you with nothing to fall back on. Either way, your first job carries no deposit whatever its size, you watch the build running in your own setup, and the final payment comes after that.</div></div></div>
+      <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">How long does it take?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">It depends on the mod. We agree a timeline before I start, but I won't quote a fixed turnaround I can't stand behind. Under-promising costs me a job now and then. Missing a date costs you a launch.</div></div></div>
+      <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">What if the<span translate="no"> port </span>doesn't work?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">You watch the build running before you make final payment, so you never pay for something you have not seen work. The deliverable is what we agree in writing up front, and for 30 days after delivery I correct, at no charge, any defect I introduced inside that agreed scope, on the setup we agreed. After that, or for problems caused by<span translate="no"> Minecraft </span>updates, other mods, or server changes, it becomes a maintenance job.</div></div></div>
+      <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">Can I put the<span translate="no"> ported </span>mod in my public<span translate="no"> modpack</span>?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">It depends on the original mod's licence, and I tell you which case you are in before you pay. Open-source: yes, and I publish it with credit to the original author so your pack links to something real. Your own mod, or one where you hold written permission: yes, and I tell you exactly what credit to include. All rights reserved with no permission: no, and I will not take the job on those terms, because the takedown would land on your account and not mine.</div></div></div>
+      <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">Can you leave parts of the mod out, or change what it does?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">Yes, and it is worth asking. A<span translate="no"> port </span>does not have to be the whole mod: I can drop a feature you do not want, change values like spawn rates, durability or damage, retune or remove effects, and adjust recipes and loot. Tell me when you send it and it goes into the fixed quote, instead of turning into a second job later. The line is between tweaks and a redesign: rebalancing the whole mod is its own job and I quote it separately.</div></div></div>
+      <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt">What's out of scope?</span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body">The mod's original textures and assets come across with the<span translate="no"> port</span>. What doesn't: brand-new textures, 3D models or animations, full gameplay or balance redesigns, and ongoing maintenance across future<span translate="no"> Minecraft </span>versions. Those get quoted separately, so tell me upfront and I'll fold it into the price.</div></div></div>
     </div>
     <div class="legal-quote"><strong>The principle:</strong> you're paying for my time writing the work, not for the right to distribute it. The right to publish stays with whoever holds the licence.</div>
+    <div class="softcta">
+      <p>Still got a question? Ask me the awkward one. <strong>Better now than after you've paid.</strong></p>
+      <div class="softcta-row">
+        <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" class="btn btn-discord"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg><span>Ask me on<span translate="no"> Discord</span></span></a>
+      </div>
+    </div>
 
     <div class="legal-docs">
       <details class="legal-doc" id="terms">
