@@ -2014,7 +2014,8 @@
       var root=document.documentElement, KEY='mw-theme', KEYA='mw-accent', KEYL='mw-lang';
       function apply(t){ if(t==='light'){ root.setAttribute('data-theme','light'); } else { root.removeAttribute('data-theme'); } }
       function applyA(a){ if(a==='green'){ root.setAttribute('data-accent','green'); } else { root.removeAttribute('data-accent'); } }
-      function applyL(l){ if(l==='es'){ root.setAttribute('data-lang','es'); root.lang='es'; } else { root.removeAttribute('data-lang'); root.lang='en'; } }
+      var TIT={en:'Minecraft Mod Porting & Backporting Service | Modwright',es:'Servicio de porting y backporting de mods de Minecraft | Modwright'};
+      function applyL(l){ if(l==='es'){ root.setAttribute('data-lang','es'); root.lang='es'; } else { root.removeAttribute('data-lang'); root.lang='en'; } document.title = l==='es' ? TIT.es : TIT.en; }
       var s=null, sa=null, sl=null; try{ s=localStorage.getItem(KEY); sa=localStorage.getItem(KEYA); sl=localStorage.getItem(KEYL); }catch(e){}
       if(s){ apply(s); } else if(window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches){ apply('light'); }
       if(sa){ applyA(sa); }
@@ -2044,7 +2045,7 @@
   </script>
 </head>
 <body>
-<a href="#hero" class="skip">Skip to content</a>
+<a href="#hero" class="skip"><span data-i18n-en>Skip to content</span><span data-i18n-es hidden>Saltar al contenido</span></a>
 
 <!-- NAV -->
 <nav aria-label="Primary">
@@ -2054,12 +2055,12 @@
      <span class="wordmark" style="font-weight:700;font-size:1.2rem;letter-spacing:-0.01em" translate="no"> Modwright</span>
     </span>
     <ul class="nav-links">
-      <li><a href="#portfolio">Portfolio</a></li>
-      <li><a href="#services">Services</a></li>
+      <li><a href="#portfolio"><span data-i18n-en>Portfolio</span><span data-i18n-es hidden>Portafolio</span></a></li>
+      <li><a href="#services"><span data-i18n-en>Services</span><span data-i18n-es hidden>Servicios</span></a></li>
       
-      <li><a href="#authors">Mod authors</a></li>
-      <li><a href="#legal">Legal</a></li>
-      <li class="nav-cta"><a href="#estimator" class="btn-nav">Get a quote</a></li>
+      <li><a href="#authors"><span data-i18n-en>Mod authors</span><span data-i18n-es hidden>Autores de mods</span></a></li>
+      <li><a href="#legal"><span data-i18n-en>Legal</span><span data-i18n-es hidden>Legal</span></a></li>
+      <li class="nav-cta"><a href="#estimator" class="btn-nav"><span data-i18n-en>Get a quote</span><span data-i18n-es hidden>Cotizar</span></a></li>
       <li class="nav-tog"><a class="nav-chan nav-chan--discord" href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" aria-label="Message me on Discord" title="Discord"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg></a></li>
       <!-- Aqui iba el icono de correo. Fuera: al lado esta el de Discord, que es
            por donde entra todo, y en la barra el ancho es el recurso escaso. -->
@@ -2161,12 +2162,12 @@
     <div class="hero-services-row">
       <a class="hs-chip svc-copper" href="#services"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v13"/><path d="M6 11l6 6 6-6"/></svg><span translate="no">Backport</span></a>
       <a class="hs-chip svc-life" href="#services"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V7"/><path d="M6 13l6-6 6 6"/></svg><span translate="no">Forward-port</span></a>
-      <a class="hs-chip svc-loom" href="#services"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h13l-3-3"/><path d="M20 16H7l3 3"/></svg><span>Loader conversion</span></a>
-      <a class="hs-chip svc-bridge" href="#services"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7h5a4 4 0 0 1 0 8h-1"/><path d="M15 17h-5a4 4 0 0 1 0-8h1"/></svg><span>Compatibility</span></a>
-      <a class="hs-chip svc-steel" href="#services"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.6 5.6L3 18l3 3 6.1-6.1a4 4 0 0 0 5.6-5.6l-2.9 2.9a1.5 1.5 0 0 1-2-2l2.9-2.9z"/></svg><span>Maintenance</span></a>
-      <a class="hs-chip svc-spark" href="#services"><svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg><span>Optimization</span></a>
+      <a class="hs-chip svc-loom" href="#services"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h13l-3-3"/><path d="M20 16H7l3 3"/></svg><span><span data-i18n-en>Loader conversion</span><span data-i18n-es hidden>Conversión de cargador</span></span></a>
+      <a class="hs-chip svc-bridge" href="#services"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7h5a4 4 0 0 1 0 8h-1"/><path d="M15 17h-5a4 4 0 0 1 0-8h1"/></svg><span><span data-i18n-en>Compatibility</span><span data-i18n-es hidden>Compatibilidad</span></span></a>
+      <a class="hs-chip svc-steel" href="#services"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.6 5.6L3 18l3 3 6.1-6.1a4 4 0 0 0 5.6-5.6l-2.9 2.9a1.5 1.5 0 0 1-2-2l2.9-2.9z"/></svg><span><span data-i18n-en>Maintenance</span><span data-i18n-es hidden>Mantenimiento</span></span></a>
+      <a class="hs-chip svc-spark" href="#services"><svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg><span><span data-i18n-en>Optimization</span><span data-i18n-es hidden>Optimización</span></span></a>
     </div>
-    <div class="badge"><span class="badge-dot"></span>Open for work</div>
+    <div class="badge"><span class="badge-dot"></span><span data-i18n-en>Open for work</span><span data-i18n-es hidden>Disponible para trabajar</span></div>
     <h1 class="hero-h1-img"><span class="h1-texto" data-i18n-en><span class="w-port" translate="no">Port,</span><span class="w-back" translate="no"> backport </span><span class="w-amp">&amp;</span> <span class="w-rev">revive</span><span translate="no"> </span><span class="mc" translate="no" data-word="Minecraft">Minecraft</span><span translate="no"> </span><span class="w-mods">mods,</span> <span class="w-any">any</span> <span class="w-ver">version,</span> <span class="w-any">any</span> <span class="w-load">loader</span></span><span class="h1-texto" data-i18n-es hidden><span class="w-port" translate="no">Portar,</span> <span class="w-back">retroportar</span> <span class="w-amp">y</span> <span class="w-rev">revivir</span> <span class="w-mods">mods</span> <span class="w-any">de</span><span translate="no"> </span><span class="mc" translate="no" data-word="Minecraft">Minecraft</span>, <span class="w-any">en cualquier</span> <span class="w-ver">versión</span> <span class="w-amp">y</span> <span class="w-load">cargador</span></span><picture data-i18n-en><source media="(max-width: 700px)" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"><img src="titulo-hero.webp" width="2537" height="731" alt="" aria-hidden="true" fetchpriority="high" decoding="async"></picture><img class="h1-es" data-i18n-es hidden src="titulo-hero-es.webp" width="2533" height="1142" alt="" aria-hidden="true" loading="lazy" decoding="async"></h1>
     <p class="hero-who"><picture><source media="(prefers-reduced-motion: reduce)" srcset="wave-me-still.webp"><img class="hero-wave" src="wave-me.webp" width="192" height="190" alt="" aria-hidden="true" loading="eager" decoding="async"></picture><span data-i18n-en>I'm <strong><span translate="no">danisansietev</span></strong>. I build<span translate="no"> modpacks</span>; I got fed up with mods dying off on old versions, so I started<span translate="no"> porting </span>them myself.</span><span data-i18n-es hidden>Soy <strong><span translate="no">danisansietev</span></strong>. Armo<span translate="no"> modpacks</span>; me canse de que los mods se murieran en versiones viejas, asi que empecé a portarlos yo mismo.</span></p>
     <p class="hero-desc">
@@ -2262,8 +2263,8 @@
 
     <figure class="loomd-wrap">
       <svg class="loomd" viewBox="0 0 600 432" role="img" aria-labelledby="ldt ldd" preserveAspectRatio="xMidYMid meet">
-      <title id="ldt">Moving a mod between loaders</title>
-      <desc id="ldd"><span translate="no">Fabric</span>,<span translate="no"> NeoForge </span>and<span translate="no"> Forge</span>, each joined to the other two, with arrows pointing both ways.</desc>
+      <title id="ldt"><span data-i18n-en>Moving a mod between loaders</span><span data-i18n-es hidden>Mover un mod entre cargadores</span></title>
+      <desc id="ldd"><span data-i18n-en><span translate="no">Fabric</span>,<span translate="no"> NeoForge </span>and<span translate="no"> Forge</span>, each joined to the other two, with arrows pointing both ways.</span><span data-i18n-es hidden><span translate="no">Fabric</span>,<span translate="no"> NeoForge </span>y<span translate="no"> Forge</span>, unidos cada uno con los otros dos y con flechas en ambos sentidos.</span></desc>
       <defs><linearGradient id="lg-fabric-neo" gradientUnits="userSpaceOnUse" x1="361.0" y1="113.0" x2="449.2" y2="265.7"><stop class="st-fabric" offset="0"/><stop class="st-neo" offset="1"/></linearGradient><linearGradient id="lg-neo-forge" gradientUnits="userSpaceOnUse" x1="388.2" y1="371.4" x2="211.8" y2="371.4"><stop class="st-neo" offset="0"/><stop class="st-forge" offset="1"/></linearGradient><linearGradient id="lg-forge-fabric" gradientUnits="userSpaceOnUse" x1="150.8" y1="265.7" x2="239.0" y2="113.0"><stop class="st-forge" offset="0"/><stop class="st-fabric" offset="1"/></linearGradient></defs>
       <path class="loomd-link" stroke="url(#lg-fabric-neo)" d="M361.0 113.0 A150 150 0 0 1 449.2 265.7"/>
       <g style="color:var(--ld-fabric)"><path class="loomd-tip" d="M361.0 113.0 L376.9 111.8 M361.0 113.0 L370.7 125.5"/></g>
@@ -2312,8 +2313,8 @@
   <img class="ch ch--borde" src="h512-32.webp" width="256" height="242" style="left:calc(50% + 530px + 18px);top:1107px;--h:215px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="ch ch--borde" src="h512-31.webp" width="256" height="242" style="right:calc(50% + 530px + 18px);top:502px;--h:215px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
-        <h2>The work</h2>
-    <p class="sub">Anything I build for you stays private unless you want it shown here.</p>
+        <h2><span data-i18n-en>The work</span><span data-i18n-es hidden>El trabajo</span></h2>
+    <p class="sub"><span data-i18n-en>Anything I build for you stays private unless you want it shown here.</span><span data-i18n-es hidden>Lo que haga para ti queda privado salvo que quieras verlo aquí.</span></p>
 
     <div class="port-grid">
       <div class="port-card">
@@ -2322,70 +2323,70 @@
            <span class="badge--lic-mit" translate="no"> LGPL-2.1</span>
            <span class="badge--loader" translate="no"> NeoForge 1.21.1</span>
           </div>
-          <span class="port-status">Live on<span translate="no"> CurseForge</span></span>
+          <span class="port-status"><span data-i18n-en>Live on<span translate="no"> CurseForge</span></span><span data-i18n-es hidden>Publicado en<span translate="no"> CurseForge</span></span></span>
         </div>
         <a class="port-title port-title--link" href="https://www.curseforge.com/minecraft/mc-mods/mindful-eating" target="_blank" rel="noopener noreferrer">
           <img class="port-icon port-icon--cf" src="mod-mindful-eating.webp" width="108" height="108" alt="" loading="lazy" decoding="async">
           <span class="port-title-t">
             <h3 class="port-name" translate="no">Mindful Eating</h3>
-            <span class="port-go">Open on<span translate="no"> CurseForge </span>&rarr;</span>
+            <span class="port-go"><span data-i18n-en>Open on<span translate="no"> CurseForge </span>&rarr;</span><span data-i18n-es hidden>Abrir en<span translate="no"> CurseForge </span>&rarr;</span></span>
           </span>
         </a>
-        <p class="port-desc"><span translate="no">Forward-port </span>of<span translate="no"> camcam_burger</span>'s food-variety mod, delivered to its creator for the mod's official page.</p>
+        <p class="port-desc"><span data-i18n-en><span translate="no">Forward-port </span>of<span translate="no"> camcam_burger</span>'s food-variety mod, delivered to its creator for the mod's official page.</span><span data-i18n-es hidden><span translate="no">Forward-port </span>del mod de variedad de comida de<span translate="no"> camcam_burger</span>, entregado a su creador para la página oficial del mod.</span></p>
         <dl class="port-stats">
-          <div><dt>Jump</dt><dd>1.20.1 → 1.21.1</dd></div>
-          <div><dt>Loader</dt><dd><span translate="no">Forge </span>→<span translate="no"> NeoForge</span></dd></div>
-          <div><dt>Library mods</dt><dd>Cut from 2 to 1</dd></div>
-          <div><dt>Tested</dt><dd>In-game, survival</dd></div>
+          <div><dt><span data-i18n-en>Jump</span><span data-i18n-es hidden>Salto</span></dt><dd>1.20.1 → 1.21.1</dd></div>
+          <div><dt><span data-i18n-en>Loader</span><span data-i18n-es hidden>Cargador</span></dt><dd><span translate="no">Forge </span>→<span translate="no"> NeoForge</span></dd></div>
+          <div><dt><span data-i18n-en>Library mods</span><span data-i18n-es hidden>Mods de librería</span></dt><dd><span data-i18n-en>Cut from 2 to 1</span><span data-i18n-es hidden>De 2 a 1</span></dd></div>
+          <div><dt><span data-i18n-en>Tested</span><span data-i18n-es hidden>Probado</span></dt><dd><span data-i18n-en>In-game, survival</span><span data-i18n-es hidden>En el juego, supervivencia</span></dd></div>
         </dl>
         <details class="more more--card">
-          <summary>What it took</summary>
-          <p>Rebuilt the per-player data system on native data attachments, dropping the<span translate="no"> Blueprint </span>dependency at the creator's suggestion, and moved the food-stat tweaks to the 1.21 component system. Boot-tested in-game, in survival.</p>
+          <summary><span data-i18n-en>What it took</span><span data-i18n-es hidden>Lo que costó</span></summary>
+          <p><span data-i18n-en>Rebuilt the per-player data system on native data attachments, dropping the<span translate="no"> Blueprint </span>dependency at the creator's suggestion, and moved the food-stat tweaks to the 1.21 component system. Boot-tested in-game, in survival.</span><span data-i18n-es hidden>Rehíce el sistema de datos por jugador sobre los data attachments nativos, quitando la dependencia de<span translate="no"> Blueprint </span>a sugerencia del creador, y pasé los ajustes de comida al sistema de componentes de 1.21. Probado arrancando el juego, en supervivencia.</span></p>
         </details>
-        <p class="port-link-ph port-link-ph--autor"><img class="ch ch--autor" src="h9478c-12.webp" width="256" height="236" alt="" aria-hidden="true" loading="lazy" decoding="async"><span>Original by<span translate="no"> camcam_burger</span>. The page above is his.</span></p>
+        <p class="port-link-ph port-link-ph--autor"><img class="ch ch--autor" src="h9478c-12.webp" width="256" height="236" alt="" aria-hidden="true" loading="lazy" decoding="async"><span><span data-i18n-en>Original by<span translate="no"> camcam_burger</span>. The page above is his.</span><span data-i18n-es hidden>Original de<span translate="no"> camcam_burger</span>. La página de arriba es suya.</span></span></p>
       </div>
 
       <div class="port-card">
         <div class="port-card-head">
           <div class="port-badges">
-            <span class="badge--lic-arr">All rights reserved</span>
+            <span class="badge--lic-arr"><span data-i18n-en>All rights reserved</span><span data-i18n-es hidden>Todos los derechos reservados</span></span>
            <span class="badge--loader" translate="no"> Forge 1.20.1</span>
           </div>
-          <span class="port-status">Reviewed by its creator</span>
+          <span class="port-status"><span data-i18n-en>Reviewed by its creator</span><span data-i18n-es hidden>Revisado por su creador</span></span>
         </div>
         <a class="port-title port-title--link" href="https://www.curseforge.com/minecraft/mc-mods/puppy-paws" target="_blank" rel="noopener noreferrer">
           <img class="port-icon port-icon--cf port-icon--tile" src="mod-puppy-paws.webp" width="108" height="108" alt="" loading="lazy" decoding="async">
           <span class="port-title-t">
           <h3 class="port-name" translate="no">Puppy Paws</h3>
-            <span class="port-go">Open on<span translate="no"> CurseForge </span>&rarr;</span>
+            <span class="port-go"><span data-i18n-en>Open on<span translate="no"> CurseForge </span>&rarr;</span><span data-i18n-es hidden>Abrir en<span translate="no"> CurseForge </span>&rarr;</span></span>
           </span>
         </a>
-        <p class="port-desc">Loader conversion of<span translate="no"> Shaunt </span>and<span translate="no"> Caf&eacute;</span>'s companion-dog mod. <strong>The code was never published</strong>, so I rebuilt it from the finished mod file.</p>
+        <p class="port-desc"><span data-i18n-en>Loader conversion of<span translate="no"> Shaunt </span>and<span translate="no"> Caf&eacute;</span>'s companion-dog mod. <strong>The code was never published</strong>, so I rebuilt it from the finished mod file.</span><span data-i18n-es hidden>Conversión de cargador del mod de perros de compañía de<span translate="no"> Shaunt </span>y<span translate="no"> Caf&eacute;</span>. <strong>El código nunca se publicó</strong>, así que lo rehíce a partir del archivo terminado del mod.</span></p>
         <dl class="port-stats">
-          <div><dt>Loader</dt><dd><span translate="no">Fabric </span>&rarr;<span translate="no"> Forge</span></dd></div>
-          <div><dt>Version</dt><dd>1.20.1, unchanged</dd></div>
-          <div><dt>Source</dt><dd>Rebuilt from the<span translate="no"> jar</span></dd></div>
-          <div><dt>Tested</dt><dd>Dedicated server</dd></div>
+          <div><dt><span data-i18n-en>Loader</span><span data-i18n-es hidden>Cargador</span></dt><dd><span translate="no">Fabric </span>&rarr;<span translate="no"> Forge</span></dd></div>
+          <div><dt><span data-i18n-en>Version</span><span data-i18n-es hidden>Versión</span></dt><dd><span data-i18n-en>1.20.1, unchanged</span><span data-i18n-es hidden>1.20.1, sin cambio</span></dd></div>
+          <div><dt><span data-i18n-en>Source</span><span data-i18n-es hidden>Origen</span></dt><dd><span data-i18n-en>Rebuilt from the<span translate="no"> jar</span></span><span data-i18n-es hidden>Rehecho desde el<span translate="no"> jar</span></span></dd></div>
+          <div><dt><span data-i18n-en>Tested</span><span data-i18n-es hidden>Probado</span></dt><dd><span data-i18n-en>Dedicated server</span><span data-i18n-es hidden>Servidor dedicado</span></dd></div>
         </dl>
         <details class="more more--card">
-          <summary>What it took</summary>
-          <p>Five breeds, twelve coat variants, the golden retriever's digging behaviour and the<span translate="no"> Melody </span>disc, all rebuilt on<span translate="no"> Forge </span>registries and events, with spawns moved to data-driven biome modifiers. I diffed the rebuild back against the original<span translate="no"> jar</span>, boot-tested it on a dedicated server, and its creators reviewed the result.</p>
+          <summary><span data-i18n-en>What it took</span><span data-i18n-es hidden>Lo que costó</span></summary>
+          <p><span data-i18n-en>Five breeds, twelve coat variants, the golden retriever's digging behaviour and the<span translate="no"> Melody </span>disc, all rebuilt on<span translate="no"> Forge </span>registries and events, with spawns moved to data-driven biome modifiers. I diffed the rebuild back against the original<span translate="no"> jar</span>, boot-tested it on a dedicated server, and its creators reviewed the result.</span><span data-i18n-es hidden>Cinco razas, doce variantes de pelaje, el cavado del golden retriever y el disco<span translate="no"> Melody</span>, todo rehecho sobre los registros y eventos de<span translate="no"> Forge</span>, con los spawns pasados a biome modifiers por datos. Comparé lo rehecho contra el<span translate="no"> jar </span>original, lo probé en un servidor dedicado y sus creadores revisaron el resultado.</span></p>
         </details>
-        <p class="port-link-ph port-link-ph--autor"><img class="ch ch--autor" src="hshaun-11.webp" width="256" height="235" alt="" aria-hidden="true" loading="lazy" decoding="async"><span>Original by<span translate="no"> Shaunt</span>,<span translate="no"> Caf&eacute; </span>and<span translate="no"> @Hecco</span>. Nothing downloads from here: the page above is theirs.</span></p>
+        <p class="port-link-ph port-link-ph--autor"><img class="ch ch--autor" src="hshaun-11.webp" width="256" height="235" alt="" aria-hidden="true" loading="lazy" decoding="async"><span><span data-i18n-en>Original by<span translate="no"> Shaunt</span>,<span translate="no"> Caf&eacute; </span>and<span translate="no"> @Hecco</span>. Nothing downloads from here: the page above is theirs.</span><span data-i18n-es hidden>Original de<span translate="no"> Shaunt</span>,<span translate="no"> Caf&eacute; </span>y<span translate="no"> @Hecco</span>. De aquí no se descarga nada: la página de arriba es suya.</span></span></p>
       </div>
 
       <div class="port-card port-card--cta">
     <img class="ch ch--tarjeta" src="h512-33.webp" width="256" height="242" style="height:168px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <div class="port-cta-text">
-          <strong>Your mod could be next</strong>
+          <strong><span data-i18n-en>Your mod could be next</span><span data-i18n-es hidden>Tu mod puede ser el próximo</span></strong>
         </div>
-        <a href="#estimator" class="btn btn-quote btn-sm">Get a quote</a>
+        <a href="#estimator" class="btn btn-quote btn-sm"><span data-i18n-en>Get a quote</span><span data-i18n-es hidden>Cotizar</span></a>
       </div>
     </div>
-    <p class="proof-note">It compiles. That proves nothing. I diff every <span translate="no">jar</span> against the original by hand before it ships: bone names, packet payloads, mixin configs, all of it. <a href="geckolib-bone-name-crash.html">One of those checks, in detail</a>.</p>
+    <p class="proof-note"><span data-i18n-en>It compiles. That proves nothing. I diff every <span translate="no">jar</span> against the original by hand before it ships: bone names, packet payloads, mixin configs, all of it. <a href="geckolib-bone-name-crash.html">One of those checks, in detail</a>.</span><span data-i18n-es hidden>Compila. Eso no prueba nada. Antes de entregar comparo a mano cada<span translate="no"> jar </span>contra el original: nombres de huesos, contenido de paquetes, configs de mixins, todo. <a href="geckolib-bone-name-crash.html">Una de esas comprobaciones, en detalle</a>.</span></p>
 
     <div class="shelf">
-      <p>I like working with the people who make these mods, and I like making their communities happy.</p>
+      <p><span data-i18n-en>I like working with the people who make these mods, and I like making their communities happy.</span><span data-i18n-es hidden>Me gusta trabajar con quienes hacen estos mods, y me gusta que sus comunidades queden contentas.</span></p>
       <ul class="shelf-grid">
         <li class="tile"><img src="tile-boids.png" width="56" height="56" alt="" loading="lazy" decoding="async"><span translate="no">Boids</span></li>
         <li class="tile"><img src="tile-birds.png" width="56" height="56" alt="" loading="lazy" decoding="async"><span translate="no">Birds</span></li>
@@ -2411,12 +2412,12 @@
         <li class="tile"><img src="tile-toastys-mobs.png" width="56" height="56" alt="" loading="lazy" decoding="async"><span translate="no">Toasty's Mobs</span></li>
         <li class="tile"><img src="tile-wildex.png" width="56" height="56" alt="" loading="lazy" decoding="async"><span translate="no">Wildex</span></li>
       </ul>
-      <p class="shelf-foot">Every mod and every logo here belongs to whoever wrote it, shown to identify their work.</p>
+      <p class="shelf-foot"><span data-i18n-en>Every mod and every logo here belongs to whoever wrote it, shown to identify their work.</span><span data-i18n-es hidden>Cada mod y cada logo de aquí es de quien lo escribió, y se muestran para identificar su trabajo.</span></p>
     </div>
 
     <div class="packwork">
-      <h3>Inside my own pack</h3>
-      <p class="packwork-lead">Other people's mods, in my own world, made to work together. Nobody pays me for this one: it is where I find out what breaks before a client does.</p>
+      <h3><span data-i18n-en>Inside my own pack</span><span data-i18n-es hidden>Dentro de mi propio pack</span></h3>
+      <p class="packwork-lead"><span data-i18n-en>Other people's mods, in my own world, made to work together. Nobody pays me for this one: it is where I find out what breaks before a client does.</span><span data-i18n-es hidden>Mods de otros, en mi propio mundo, obligados a convivir. Esto no me lo paga nadie: es donde descubro qué se rompe antes de que lo descubra un cliente.</span></p>
       <div class="mp-list">
 
       <article class="mp-item">
@@ -2425,15 +2426,15 @@
             <img class="mp-logo" src="logo-freshanimations.webp" width="96" height="96" alt="" aria-hidden="true" loading="lazy" decoding="async">
             <img class="mp-logo" src="logo-epicfight.webp" width="96" height="96" alt="" aria-hidden="true" loading="lazy" decoding="async">
           </div>
-          <h3><span translate="no">Fresh Animations </span>on the mobs,<span translate="no"> Epic Fight </span>on the player</h3>
+          <h3><span data-i18n-en><span translate="no">Fresh Animations </span>on the mobs,<span translate="no"> Epic Fight </span>on the player</span><span data-i18n-es hidden><span translate="no">Fresh Animations </span>en los mobs,<span translate="no"> Epic Fight </span>en el jugador</span></h3>
         </div>
-        <p class="mp-hook">Everything was set up right, and<span translate="no"> Epic Fight </span>kept winning anyway. The datapack was not loading, and nothing in the log said so.</p>
+        <p class="mp-hook"><span data-i18n-en>Everything was set up right, and<span translate="no"> Epic Fight </span>kept winning anyway. The datapack was not loading, and nothing in the log said so.</span><span data-i18n-es hidden>Todo estaba bien configurado y<span translate="no"> Epic Fight </span>seguía ganando igual. El datapack no cargaba, y en el log no lo decía nada.</span></p>
         <details class="more more--card">
-          <summary>Reading the split</summary>
-        <p><span translate="no">Fresh Animations </span>on almost every creature,<span translate="no"> Epic Fight </span>on my character alone. Taking a mob off<span translate="no"> Epic Fight </span>takes two changes: a datapack entry stops its combat patch, but the mob still draws through its own renderer, so<span translate="no"> Fresh Animations </span>never gets a look in. The other half is a script that pulls the mob out of that renderer map on world load. I found the split by decompiling the render engine.</p>
-        <p class="mp-catch"><strong>The half that hid the longest.</strong> It was missing its <code>pack.mcmeta</code>, so the loader skipped the whole folder without a word. Both halves now name the same 24 mobs, and they still match today.</p>
+          <summary><span data-i18n-en>Reading the split</span><span data-i18n-es hidden>Leyendo el reparto</span></summary>
+        <p><span data-i18n-en><span translate="no">Fresh Animations </span>on almost every creature,<span translate="no"> Epic Fight </span>on my character alone. Taking a mob off<span translate="no"> Epic Fight </span>takes two changes: a datapack entry stops its combat patch, but the mob still draws through its own renderer, so<span translate="no"> Fresh Animations </span>never gets a look in. The other half is a script that pulls the mob out of that renderer map on world load. I found the split by decompiling the render engine.</span><span data-i18n-es hidden><span translate="no">Fresh Animations </span>en casi toda criatura,<span translate="no"> Epic Fight </span>solo en mi personaje. Sacar a un mob de<span translate="no"> Epic Fight </span>son dos cambios: una entrada del datapack corta su parche de combate, pero el mob se sigue dibujando por su propio renderer, así que<span translate="no"> Fresh Animations </span>nunca llega a verlo. La otra mitad es un script que saca al mob de ese mapa de renderers al cargar el mundo. Encontré el reparto decompilando el motor de render.</span></p>
+        <p class="mp-catch"><span data-i18n-en><strong>The half that hid the longest.</strong> It was missing its <code>pack.mcmeta</code>, so the loader skipped the whole folder without a word. Both halves now name the same 24 mobs, and they still match today.</span><span data-i18n-es hidden><strong>La mitad que más tardó en aparecer.</strong> Le faltaba su <code>pack.mcmeta</code>, así que el cargador se saltó la carpeta entera sin decir nada. Ahora las dos mitades nombran los mismos 24 mobs, y siguen cuadrando hoy.</span></p>
         </details>
-        <p class="mp-credit"><a href="https://modrinth.com/resourcepack/fresh-animations" target="_blank" rel="noopener noreferrer"><span translate="no">Fresh Animations</span></a> is by<span translate="no"> FreshLX</span>, <a href="https://modrinth.com/mod/epic-fight" target="_blank" rel="noopener noreferrer"><span translate="no">Epic Fight</span></a> by its own team. All I did was make them share a world.</p>
+        <p class="mp-credit"><a href="https://modrinth.com/resourcepack/fresh-animations" target="_blank" rel="noopener noreferrer"><span translate="no">Fresh Animations</span></a><span data-i18n-en> is by<span translate="no"> FreshLX</span>, <a href="https://modrinth.com/mod/epic-fight" target="_blank" rel="noopener noreferrer"><span translate="no">Epic Fight</span></a> by its own team. All I did was make them share a world.</span><span data-i18n-es hidden> es de<span translate="no"> FreshLX</span>, y <a href="https://modrinth.com/mod/epic-fight" target="_blank" rel="noopener noreferrer"><span translate="no">Epic Fight</span></a> de su propio equipo. Yo solo hice que compartieran mundo.</span></p>
       </article>
 
       <article class="mp-item">
@@ -2443,26 +2444,26 @@
             <img class="mp-logo" src="logo-azurelib.webp" width="96" height="96" alt="" aria-hidden="true" loading="lazy" decoding="async">
             <img class="mp-logo" src="logo-citadel.webp" width="96" height="96" alt="" aria-hidden="true" loading="lazy" decoding="async">
           </div>
-          <h3>I checked which mods animate themselves</h3>
+          <h3><span data-i18n-en>I checked which mods animate themselves</span><span data-i18n-es hidden>Comprobé qué mods se animan solos</span></h3>
         </div>
         <!-- "of their creatures" y no "of them": a la vista hay TRES cantidades
              (645 jars, 305 mods, 3.951 criaturas) y el porcentaje es todo el caso.
              Con "them" el lector no sabe de cual de las tres es el 48%. -->
-        <p class="mp-hook"><strong>48% of their creatures were already animated.</strong> They never needed<span translate="no"> Fresh Animations </span>at all. I checked <strong>645<span translate="no"> jars</span></strong> instead of guessing.</p>
+        <p class="mp-hook"><span data-i18n-en><strong>48% of their creatures were already animated.</strong> They never needed<span translate="no"> Fresh Animations </span>at all. I checked <strong>645<span translate="no"> jars</span></strong> instead of guessing.</span><span data-i18n-es hidden><strong>El 48% de sus criaturas ya venía animado.</strong> Nunca necesitaron<span translate="no"> Fresh Animations</span>. Abrí <strong>645<span translate="no"> jars</span></strong> en vez de suponer.</span></p>
         <details class="more more--card">
-          <summary>The numbers</summary>
-        <p><span translate="no">Fresh Animations </span>does nothing for a mod that already animates its own creatures. Between<span translate="no"> GeckoLib</span>,<span translate="no"> AzureLib </span>and<span translate="no"> Citadel</span>: <strong>305 mods, 3,951 creatures</strong>. The scan turned an open-ended job into a short list.</p>
+          <summary><span data-i18n-en>The numbers</span><span data-i18n-es hidden>Los números</span></summary>
+        <p><span data-i18n-en><span translate="no">Fresh Animations </span>does nothing for a mod that already animates its own creatures. Between<span translate="no"> GeckoLib</span>,<span translate="no"> AzureLib </span>and<span translate="no"> Citadel</span>: <strong>305 mods, 3,951 creatures</strong>. The scan turned an open-ended job into a short list.</span><span data-i18n-es hidden><span translate="no">Fresh Animations </span>no hace nada por un mod que ya anima sus propias criaturas. Entre<span translate="no"> GeckoLib</span>,<span translate="no"> AzureLib </span>y<span translate="no"> Citadel</span>: <strong>305 mods, 3.951 criaturas</strong>. El escaneo convirtió un trabajo sin final en una lista corta.</span></p>
         </details>
       </article>
 
       <article class="mp-item">
         <div class="mp-head">
-          <h3>One missing letter that silenced the spawns of seven mods</h3>
+          <h3><span data-i18n-en>One missing letter that silenced the spawns of seven mods</span><span data-i18n-es hidden>Una letra de menos que dejó mudos los spawns de siete mods</span></h3>
         </div>
-        <p class="mp-hook">Seven mods loaded fine. Their creatures never showed up anywhere. The folder name was missing one letter.</p>
+        <p class="mp-hook"><span data-i18n-en>Seven mods loaded fine. Their creatures never showed up anywhere. The folder name was missing one letter.</span><span data-i18n-es hidden>Siete mods cargaban bien. Sus criaturas no aparecían por ningún lado. Al nombre de la carpeta le faltaba una letra.</span></p>
         <details class="more more--card">
-          <summary>Why nothing warned me</summary>
-        <p><span translate="no">Forge </span>reads biome modifiers from a folder called <code>biome_modifiers</code>. Seven mods in my pack had the singular, <code>biome_modifier</code>, so<span translate="no"> Forge </span>quietly skipped the whole folder: no warning, no error. It looks exactly like a broken mod. It's one missing letter.</p>
+          <summary><span data-i18n-en>Why nothing warned me</span><span data-i18n-es hidden>Por qué nada me avisó</span></summary>
+        <p><span data-i18n-en><span translate="no">Forge </span>reads biome modifiers from a folder called <code>biome_modifiers</code>. Seven mods in my pack had the singular, <code>biome_modifier</code>, so<span translate="no"> Forge </span>quietly skipped the whole folder: no warning, no error. It looks exactly like a broken mod. It's one missing letter.</span><span data-i18n-es hidden><span translate="no">Forge </span>lee los biome modifiers de una carpeta llamada <code>biome_modifiers</code>. Siete mods de mi pack la tenían en singular, <code>biome_modifier</code>, así que<span translate="no"> Forge </span>se saltó la carpeta entera en silencio: ni aviso ni error. Se ve igual que un mod roto. Es una letra.</span></p>
         </details>
       </article>
 
@@ -2471,38 +2472,38 @@
           <div class="mp-logos">
             <img class="mp-logo" src="logo-mutantmore.webp" width="96" height="96" alt="" aria-hidden="true" loading="lazy" decoding="async">
           </div>
-          <h3>A mod written off as unfixable, fixed with one word</h3>
+          <h3><span data-i18n-en>A mod written off as unfixable, fixed with one word</span><span data-i18n-es hidden>Un mod dado por perdido, arreglado con una palabra</span></h3>
         </div>
-        <p class="mp-hook">Everyone thought it needed a full rewrite. <strong>The fix was one word.</strong> The pack went from 588 mods loading to all 589.</p>
+        <p class="mp-hook"><span data-i18n-en>Everyone thought it needed a full rewrite. <strong>The fix was one word.</strong> The pack went from 588 mods loading to all 589.</span><span data-i18n-es hidden>Todo el mundo pensaba que había que reescribirlo entero. <strong>El arreglo fue una palabra.</strong> El pack pasó de cargar 588 mods a cargar los 589.</span></p>
         <details class="more more--card">
-          <summary>The one word</summary>
-        <p><span translate="no">Mutant More </span>had been sitting out of my pack for weeks, crashing on load. The previous read was that its bytecode would have to be rewritten. It did not. Its mixin config declared <code>compatibilityLevel: "JAVA_16"</code> while <strong>all 577 of its classes were compiled as Java 17</strong>, so the mixin loader refused every one of them. Java 16 caps at class version 60; the classes were 61.</p>
-        <p class="mp-catch"><code>JAVA_16</code> became <code>JAVA_17</code>. Before touching it I opened<span translate="no"> mixin-0.8.5.jar</span>, the version<span translate="no"> Forge </span>1.20.1 loads, and read its<span translate="no"> CompatibilityLevel </span>enum to confirm<span translate="no"> JAVA_17 </span>was a value it would actually accept, rather than assuming. Original<span translate="no"> jar </span>backed up first, then repacked.</p>
+          <summary><span data-i18n-en>The one word</span><span data-i18n-es hidden>La palabra</span></summary>
+        <p><span data-i18n-en><span translate="no">Mutant More </span>had been sitting out of my pack for weeks, crashing on load. The previous read was that its bytecode would have to be rewritten. It did not. Its mixin config declared <code>compatibilityLevel: "JAVA_16"</code> while <strong>all 577 of its classes were compiled as Java 17</strong>, so the mixin loader refused every one of them. Java 16 caps at class version 60; the classes were 61.</span><span data-i18n-es hidden><span translate="no">Mutant More </span>llevaba semanas fuera de mi pack, reventando al cargar. La lectura anterior era que había que reescribir su bytecode. No hacía falta. Su config de mixins declaraba <code>compatibilityLevel: "JAVA_16"</code> mientras <strong>sus 577 clases estaban compiladas como Java 17</strong>, así que el cargador de mixins las rechazaba todas. Java 16 llega hasta la versión de clase 60; las clases eran 61.</span></p>
+        <p class="mp-catch"><span data-i18n-en><code>JAVA_16</code> became <code>JAVA_17</code>. Before touching it I opened<span translate="no"> mixin-0.8.5.jar</span>, the version<span translate="no"> Forge </span>1.20.1 loads, and read its<span translate="no"> CompatibilityLevel </span>enum to confirm<span translate="no"> JAVA_17 </span>was a value it would actually accept, rather than assuming. Original<span translate="no"> jar </span>backed up first, then repacked.</span><span data-i18n-es hidden><code>JAVA_16</code> pasó a <code>JAVA_17</code>. Antes de tocar nada abrí<span translate="no"> mixin-0.8.5.jar</span>, la versión que carga<span translate="no"> Forge </span>1.20.1, y leí su enum<span translate="no"> CompatibilityLevel </span>para confirmar que<span translate="no"> JAVA_17 </span>era un valor que aceptaría de verdad, en vez de suponerlo. Copia del<span translate="no"> jar </span>original primero, y luego reempaquetado.</span></p>
         </details>
-        <p class="mp-credit"><span translate="no">Mutant More </span>is by <a href="https://modrinth.com/mod/new-mutant-more" target="_blank" rel="noopener noreferrer"><span translate="no">AlexandersFunAndGames</span></a>. That config line was the only thing I touched, and only in my own copy.</p>
+        <p class="mp-credit"><span translate="no">Mutant More </span><span data-i18n-en>is by </span><span data-i18n-es hidden>es de </span><a href="https://modrinth.com/mod/new-mutant-more" target="_blank" rel="noopener noreferrer"><span translate="no">AlexandersFunAndGames</span></a><span data-i18n-en>. That config line was the only thing I touched, and only in my own copy.</span><span data-i18n-es hidden>. Esa línea de config fue lo único que toqué, y solo en mi propia copia.</span></p>
       </article>
 
       <article class="mp-item">
         <div class="mp-head">
-          <h3>I read 414<span translate="no"> jars </span>before letting one of them into my pack</h3>
+          <h3><span data-i18n-en>I read 414<span translate="no"> jars </span>before letting one of them into my pack</span><span data-i18n-es hidden>Leí 414<span translate="no"> jars </span>antes de dejar entrar uno solo a mi pack</span></h3>
         </div>
-        <p class="mp-hook">Sixty-seven contradicted my own notes. <strong>Eight could never have loaded at all.</strong> I only found out by opening every single one.</p>
+        <p class="mp-hook"><span data-i18n-en>Sixty-seven contradicted my own notes. <strong>Eight could never have loaded at all.</strong> I only found out by opening every single one.</span><span data-i18n-es hidden>Sesenta y siete contradecían mis propias notas. <strong>Ocho no podrían haber cargado nunca.</strong> Solo me enteré abriéndolos uno por uno.</span></p>
         <details class="more more--card">
-          <summary>What was actually inside them</summary>
-        <p>I keep a store of mods I might want one day. Nothing goes from there into the pack until it has been read: the metadata, the loader it was built for, the version it targets, and whether anything already installed collides with it. 414 candidates went through that and came out sorted into <strong>103 ready to go in, 192 in due course, 44 that needed a decision, and 75 on hold</strong> behind a missing dependency or ruled out on purpose.</p>
-        <p class="mp-catch"><strong>Eight of them were never going to load.</strong> Three had no <code>mods.toml</code>, which means they were not mods at all. Three carried malformed<span translate="no"> JSON</span>. One was a<span translate="no"> NeoForge </span>build and one was compiled for a different<span translate="no"> Minecraft </span>version. Every one of them sat in that folder looking exactly like a working mod, and my own spreadsheet said they were fine.</p>
+          <summary><span data-i18n-en>What was actually inside them</span><span data-i18n-es hidden>Qué había dentro de verdad</span></summary>
+        <p><span data-i18n-en>I keep a store of mods I might want one day. Nothing goes from there into the pack until it has been read: the metadata, the loader it was built for, the version it targets, and whether anything already installed collides with it. 414 candidates went through that and came out sorted into <strong>103 ready to go in, 192 in due course, 44 that needed a decision, and 75 on hold</strong> behind a missing dependency or ruled out on purpose.</span><span data-i18n-es hidden>Guardo un almacén de mods que quizá quiera algún día. De ahí no pasa nada al pack hasta haberlo leído: los metadatos, el cargador para el que se compiló, la versión a la que apunta y si choca con algo ya instalado. Por ahí pasaron 414 candidatos y salieron repartidos en <strong>103 listos para entrar, 192 a su debido tiempo, 44 que pedían una decisión y 75 en espera</strong> por una dependencia que falta o descartados a propósito.</span></p>
+        <p class="mp-catch"><span data-i18n-en><strong>Eight of them were never going to load.</strong> Three had no <code>mods.toml</code>, which means they were not mods at all. Three carried malformed<span translate="no"> JSON</span>. One was a<span translate="no"> NeoForge </span>build and one was compiled for a different<span translate="no"> Minecraft </span>version. Every one of them sat in that folder looking exactly like a working mod, and my own spreadsheet said they were fine.</span><span data-i18n-es hidden><strong>Ocho no iban a cargar jamás.</strong> Tres no tenían <code>mods.toml</code>, o sea que ni siquiera eran mods. Tres traían<span translate="no"> JSON </span>mal formado. Uno era una compilación de<span translate="no"> NeoForge </span>y otro estaba compilado para otra versión de<span translate="no"> Minecraft</span>. Todos estaban en esa carpeta con pinta de mod funcional, y mi propia hoja de cálculo decía que estaban bien.</span></p>
         </details>
       </article>
 
       <article class="mp-item">
         <div class="mp-head">
-          <h3>Six mods whose only job was making other mods get along</h3>
+          <h3><span data-i18n-en>Six mods whose only job was making other mods get along</span><span data-i18n-es hidden>Seis mods cuyo único trabajo era que otros mods se llevaran bien</span></h3>
         </div>
-        <p class="mp-hook">I wrote all six. Then I deleted all six. <strong>Five of their names still live inside the mod that absorbed them</strong>, on purpose.</p>
+        <p class="mp-hook"><span data-i18n-en>I wrote all six. Then I deleted all six. <strong>Five of their names still live inside the mod that absorbed them</strong>, on purpose.</span><span data-i18n-es hidden>Escribí los seis. Después borré los seis. <strong>Cinco de sus nombres siguen viviendo dentro del mod que se los tragó</strong>, a propósito.</span></p>
         <details class="more more--card">
-          <summary>Why the names stayed</summary>
-        <p>Making a pack behave means writing glue: spawn entries, tags, recipes and loot that teach one mod about another. Mine had grown into six separate add-on<span translate="no"> jars </span>that did nothing on their own. Six more entries in the mod list, six things to keep in step, and two of them shipped the same file path, so <strong>which one won was decided fresh on every launch</strong>. I folded all six into the two mods I already owned and deleted the<span translate="no"> jars</span>.</p>
-        <p class="mp-catch"><strong>I did not rename a single file.</strong> Data loads from the<span translate="no"> jar </span>that carries it, not from the mod whose name is on the folder, so paths like <code>omega_ssg_compat</code> and <code>omega_toasty_compat</code> still sit inside a mod none of them belongs to any more. Renaming them would have meant touching every reference for no gain. It reads wrong and the game does not care.</p>
+          <summary><span data-i18n-en>Why the names stayed</span><span data-i18n-es hidden>Por qué siguen los nombres</span></summary>
+        <p><span data-i18n-en>Making a pack behave means writing glue: spawn entries, tags, recipes and loot that teach one mod about another. Mine had grown into six separate add-on<span translate="no"> jars </span>that did nothing on their own. Six more entries in the mod list, six things to keep in step, and two of them shipped the same file path, so <strong>which one won was decided fresh on every launch</strong>. I folded all six into the two mods I already owned and deleted the<span translate="no"> jars</span>.</span><span data-i18n-es hidden>Que un pack se porte bien significa escribir pegamento: entradas de spawn, tags, recetas y loot que le enseñan a un mod que existe otro. El mío había crecido hasta seis<span translate="no"> jars </span>aparte que solos no hacían nada. Seis entradas más en la lista, seis cosas que mantener a la par, y dos de ellos traían la misma ruta de archivo, así que <strong>cuál ganaba se decidía de nuevo en cada arranque</strong>. Metí los seis dentro de los dos mods que ya eran míos y borré los<span translate="no"> jars</span>.</span></p>
+        <p class="mp-catch"><span data-i18n-en><strong>I did not rename a single file.</strong> Data loads from the<span translate="no"> jar </span>that carries it, not from the mod whose name is on the folder, so paths like <code>omega_ssg_compat</code> and <code>omega_toasty_compat</code> still sit inside a mod none of them belongs to any more. Renaming them would have meant touching every reference for no gain. It reads wrong and the game does not care.</span><span data-i18n-es hidden><strong>No renombré ni un archivo.</strong> Los datos cargan desde el<span translate="no"> jar </span>que los lleva, no desde el mod cuyo nombre está en la carpeta, así que rutas como <code>omega_ssg_compat</code> y <code>omega_toasty_compat</code> siguen dentro de un mod al que ya no pertenecen. Renombrarlas habría sido tocar todas las referencias sin ganar nada. Se lee raro y al juego le da igual.</span></p>
         </details>
       </article>
       </div>
@@ -2588,7 +2589,7 @@
     <div class="softcta">
       <p><span data-i18n-en><strong>Not sure it can even be done?</strong> Send me the mod link and I'll tell you whether it's possible and what gets in the way. No charge, and no obligation to take it further.</span><span data-i18n-es hidden><strong>¿No sabes si se puede?</strong> Mándame el enlace del mod y te digo si es posible y qué se interpone. Sin coste y sin compromiso de seguir.</span></p>
       <div class="softcta-row">
-        <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" class="btn btn-discord"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg><span>Ask me on<span translate="no"> Discord</span></span></a>
+        <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" class="btn btn-discord"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg><span><span data-i18n-en>Ask me on<span translate="no"> Discord</span></span><span data-i18n-es hidden>Pregúntame por<span translate="no"> Discord</span></span></span></a>
       </div>
     </div>
   </div>
@@ -2605,69 +2606,69 @@
      un canal sin que josda genere un enlace propio desde ESE canal. -->
 <section id="estimator">
   <div class="wrap">
-    <h2>Set up your ticket</h2>
-    <p class="sub">Pick what fits, then copy the summary into <span translate="no">#pedidos</span> on <span translate="no">Discord</span>.</p>
+    <h2><span data-i18n-en>Set up your ticket</span><span data-i18n-es hidden>Arma tu ticket</span></h2>
+    <p class="sub"><span data-i18n-en>Pick what fits, then copy the summary into <span translate="no">#pedidos</span> on <span translate="no">Discord</span>.</span><span data-i18n-es hidden>Elige lo que encaje y copia el resumen en <span translate="no">#pedidos</span> de <span translate="no">Discord</span>.</span></p>
 
     <div class="estimator reveal">
       <div class="est-form">
         <div class="est-group" id="grp-service">
-          <div class="est-label">What kind of job?</div>
+          <div class="est-label"><span data-i18n-en>What kind of job?</span><span data-i18n-es hidden>¿Qué tipo de trabajo?</span></div>
           <div class="est-options" data-group="service">
-            <button type="button" class="est-opt ac-copper active" data-value="backport"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v13"/><path d="M6 12l6 6 6-6"/></svg><span translate="no">Backport</span><small>newer &rarr; older</small></button>
-            <button type="button" class="est-opt ac-life" data-value="forward"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V6"/><path d="M6 12l6-6 6 6"/></svg><span translate="no">Forward-port</span> / revive<small>old &rarr; modern</small></button>
-            <button type="button" class="est-opt ac-bridge" data-value="compat"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7h4a4 4 0 0 1 0 8h-1"/><path d="M15 17h-4a4 4 0 0 1 0-8h1"/></svg>Compatibility<small>make mods coexist</small></button>
-            <button type="button" class="est-opt ac-steel" data-value="maintain"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.6 5.6L3 18l3 3 6.1-6.1a4 4 0 0 0 5.6-5.6l-2.9 2.9a1.5 1.5 0 0 1-2-2l2.9-2.9z"/></svg>Maintenance<small>fix mixins / crashes</small></button>
-            <button type="button" class="est-opt ac-spark" data-value="optimize"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Optimization<small>less lag / resources</small></button>
+            <button type="button" class="est-opt ac-copper active" data-value="backport"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v13"/><path d="M6 12l6 6 6-6"/></svg><span translate="no">Backport</span><small><span data-i18n-en>newer &rarr; older</span><span data-i18n-es hidden>más nuevo &rarr; más viejo</span></small></button>
+            <button type="button" class="est-opt ac-life" data-value="forward"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V6"/><path d="M6 12l6-6 6 6"/></svg><span translate="no">Forward-port</span><span data-i18n-en> / revive</span><span data-i18n-es hidden> / revivir</span><small><span data-i18n-en>old &rarr; modern</span><span data-i18n-es hidden>viejo &rarr; moderno</span></small></button>
+            <button type="button" class="est-opt ac-bridge" data-value="compat"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7h4a4 4 0 0 1 0 8h-1"/><path d="M15 17h-4a4 4 0 0 1 0-8h1"/></svg><span data-i18n-en>Compatibility</span><span data-i18n-es hidden>Compatibilidad</span><small><span data-i18n-en>make mods coexist</span><span data-i18n-es hidden>que los mods convivan</span></small></button>
+            <button type="button" class="est-opt ac-steel" data-value="maintain"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.6 5.6L3 18l3 3 6.1-6.1a4 4 0 0 0 5.6-5.6l-2.9 2.9a1.5 1.5 0 0 1-2-2l2.9-2.9z"/></svg><span data-i18n-en>Maintenance</span><span data-i18n-es hidden>Mantenimiento</span><small><span data-i18n-en>fix mixins / crashes</span><span data-i18n-es hidden>arreglar mixins / crashes</span></small></button>
+            <button type="button" class="est-opt ac-spark" data-value="optimize"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg><span data-i18n-en>Optimization</span><span data-i18n-es hidden>Optimización</span><small><span data-i18n-en>less lag / resources</span><span data-i18n-es hidden>menos lag / recursos</span></small></button>
           </div>
         </div>
         <div class="est-group" id="grp-loader">
-          <div class="est-label">Source mod loader</div>
+          <div class="est-label"><span data-i18n-en>Source mod loader</span><span data-i18n-es hidden>Cargador de origen</span></div>
           <div class="est-options" data-group="loader">
             <button type="button" class="est-opt brand-forge active" data-value="forge"><svg class="loglyph" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M2 8h10l-1.2 2.4H15v2h-1.9L12 17H8L6.2 12.4H2z"/><rect x="6" y="18" width="9" height="2" rx="0.4" fill="currentColor"/></svg><span translate="no">Forge</span></button>
             <button type="button" class="est-opt brand-neoforge" data-value="neoforge"><svg class="loglyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 16.5V7.5l7 9v-9" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span translate="no">NeoForge</span></button>
-            <button type="button" class="est-opt brand-fabric" data-value="fabric"><svg class="loglyph" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="3" fill="currentColor"/><g stroke="#0e0d0b" stroke-width="1.2" opacity="0.32"><path d="M3.5 9.7h17M3.5 14.3h17M9.7 3.5v17M14.3 3.5v17"/></g></svg>From <span translate="no">Fabric</span></button>
+            <button type="button" class="est-opt brand-fabric" data-value="fabric"><svg class="loglyph" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="3" fill="currentColor"/><g stroke="#0e0d0b" stroke-width="1.2" opacity="0.32"><path d="M3.5 9.7h17M3.5 14.3h17M9.7 3.5v17M14.3 3.5v17"/></g></svg><span data-i18n-en>From </span><span data-i18n-es hidden>Desde </span><span translate="no">Fabric</span></button>
           </div>
         </div>
         <div class="est-group" id="grp-size">
-          <div class="est-label">Mod size</div>
+          <div class="est-label"><span data-i18n-en>Mod size</span><span data-i18n-es hidden>Tamaño del mod</span></div>
           <div class="est-options" data-group="size">
-            <button type="button" class="est-opt t1" data-value="small"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3.5" y="14" width="4" height="6" rx="0.9"/><rect x="9.5" y="9" width="4" height="11" rx="0.9" opacity="0.22"/><rect x="15.5" y="4" width="4" height="16" rx="0.9" opacity="0.22"/></svg>Small<small>items, blocks, recipes</small></button>
-            <button type="button" class="est-opt t2 active" data-value="medium"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3.5" y="14" width="4" height="6" rx="0.9"/><rect x="9.5" y="9" width="4" height="11" rx="0.9"/><rect x="15.5" y="4" width="4" height="16" rx="0.9" opacity="0.22"/></svg>Medium<small>mechanics, entities, GUI</small></button>
-            <button type="button" class="est-opt t3" data-value="large"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3.5" y="14" width="4" height="6" rx="0.9"/><rect x="9.5" y="9" width="4" height="11" rx="0.9"/><rect x="15.5" y="4" width="4" height="16" rx="0.9"/></svg>Large<small>tech mod, worldgen</small></button>
+            <button type="button" class="est-opt t1" data-value="small"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3.5" y="14" width="4" height="6" rx="0.9"/><rect x="9.5" y="9" width="4" height="11" rx="0.9" opacity="0.22"/><rect x="15.5" y="4" width="4" height="16" rx="0.9" opacity="0.22"/></svg><span data-i18n-en>Small</span><span data-i18n-es hidden>Pequeño</span><small><span data-i18n-en>items, blocks, recipes</span><span data-i18n-es hidden>ítems, bloques, recetas</span></small></button>
+            <button type="button" class="est-opt t2 active" data-value="medium"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3.5" y="14" width="4" height="6" rx="0.9"/><rect x="9.5" y="9" width="4" height="11" rx="0.9"/><rect x="15.5" y="4" width="4" height="16" rx="0.9" opacity="0.22"/></svg><span data-i18n-en>Medium</span><span data-i18n-es hidden>Mediano</span><small><span data-i18n-en>mechanics, entities, GUI</span><span data-i18n-es hidden>mecánicas, entidades, GUI</span></small></button>
+            <button type="button" class="est-opt t3" data-value="large"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3.5" y="14" width="4" height="6" rx="0.9"/><rect x="9.5" y="9" width="4" height="11" rx="0.9"/><rect x="15.5" y="4" width="4" height="16" rx="0.9"/></svg><span data-i18n-en>Large</span><span data-i18n-es hidden>Grande</span><small><span data-i18n-en>tech mod, worldgen</span><span data-i18n-es hidden>mod técnico, worldgen</span></small></button>
           </div>
         </div>
         <div class="est-group" id="grp-wall">
-          <div class="est-label">Version jump</div>
+          <div class="est-label"><span data-i18n-en>Version jump</span><span data-i18n-es hidden>Salto de versión</span></div>
           <div class="est-options" data-group="wall">
-            <button type="button" class="est-opt t1 active" data-value="none"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="2.8" y="15" width="3.2" height="5" rx="0.8"/><rect x="7.6" y="11" width="3.2" height="9" rx="0.8" opacity="0.22"/><rect x="12.4" y="7" width="3.2" height="13" rx="0.8" opacity="0.22"/><rect x="17.2" y="3" width="3.2" height="17" rx="0.8" opacity="0.22"/></svg>None / tiny<small>e.g. 1.19.2 &harr; 1.20.1</small></button>
-            <button type="button" class="est-opt t2" data-value="moderate"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="2.8" y="15" width="3.2" height="5" rx="0.8"/><rect x="7.6" y="11" width="3.2" height="9" rx="0.8"/><rect x="12.4" y="7" width="3.2" height="13" rx="0.8" opacity="0.22"/><rect x="17.2" y="3" width="3.2" height="17" rx="0.8" opacity="0.22"/></svg>Moderate<small>crosses 1.20.2</small></button>
-            <button type="button" class="est-opt t3" data-value="hard"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="2.8" y="15" width="3.2" height="5" rx="0.8"/><rect x="7.6" y="11" width="3.2" height="9" rx="0.8"/><rect x="12.4" y="7" width="3.2" height="13" rx="0.8"/><rect x="17.2" y="3" width="3.2" height="17" rx="0.8" opacity="0.22"/></svg>Hard<small>crosses 1.21</small></button>
-            <button type="button" class="est-opt t4" data-value="brutal"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="2.8" y="15" width="3.2" height="5" rx="0.8"/><rect x="7.6" y="11" width="3.2" height="9" rx="0.8"/><rect x="12.4" y="7" width="3.2" height="13" rx="0.8"/><rect x="17.2" y="3" width="3.2" height="17" rx="0.8"/></svg>Brutal<small>crosses 1.13 / 1.18</small></button>
+            <button type="button" class="est-opt t1 active" data-value="none"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="2.8" y="15" width="3.2" height="5" rx="0.8"/><rect x="7.6" y="11" width="3.2" height="9" rx="0.8" opacity="0.22"/><rect x="12.4" y="7" width="3.2" height="13" rx="0.8" opacity="0.22"/><rect x="17.2" y="3" width="3.2" height="17" rx="0.8" opacity="0.22"/></svg><span data-i18n-en>None / tiny</span><span data-i18n-es hidden>Ninguno / mínimo</span><small><span data-i18n-en>e.g. 1.19.2 &harr; 1.20.1</span><span data-i18n-es hidden>p. ej. 1.19.2 &harr; 1.20.1</span></small></button>
+            <button type="button" class="est-opt t2" data-value="moderate"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="2.8" y="15" width="3.2" height="5" rx="0.8"/><rect x="7.6" y="11" width="3.2" height="9" rx="0.8"/><rect x="12.4" y="7" width="3.2" height="13" rx="0.8" opacity="0.22"/><rect x="17.2" y="3" width="3.2" height="17" rx="0.8" opacity="0.22"/></svg><span data-i18n-en>Moderate</span><span data-i18n-es hidden>Moderado</span><small><span data-i18n-en>crosses 1.20.2</span><span data-i18n-es hidden>cruza 1.20.2</span></small></button>
+            <button type="button" class="est-opt t3" data-value="hard"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="2.8" y="15" width="3.2" height="5" rx="0.8"/><rect x="7.6" y="11" width="3.2" height="9" rx="0.8"/><rect x="12.4" y="7" width="3.2" height="13" rx="0.8"/><rect x="17.2" y="3" width="3.2" height="17" rx="0.8" opacity="0.22"/></svg><span data-i18n-en>Hard</span><span data-i18n-es hidden>Difícil</span><small><span data-i18n-en>crosses 1.21</span><span data-i18n-es hidden>cruza 1.21</span></small></button>
+            <button type="button" class="est-opt t4" data-value="brutal"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="2.8" y="15" width="3.2" height="5" rx="0.8"/><rect x="7.6" y="11" width="3.2" height="9" rx="0.8"/><rect x="12.4" y="7" width="3.2" height="13" rx="0.8"/><rect x="17.2" y="3" width="3.2" height="17" rx="0.8"/></svg><span data-i18n-en>Brutal</span><span data-i18n-es hidden>Brutal</span><small><span data-i18n-en>crosses 1.13 / 1.18</span><span data-i18n-es hidden>cruza 1.13 / 1.18</span></small></button>
           </div>
         </div>
         <div class="est-group hidden" id="grp-scope">
-          <div class="est-label" id="scope-label">Compatibility scope</div>
+          <div class="est-label" id="scope-label"><span data-i18n-en>Compatibility scope</span><span data-i18n-es hidden>Alcance de la compatibilidad</span></div>
           <div class="est-options" data-group="scope">
-            <button type="button" class="est-opt t1 active" data-value="small"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3.5" y="14" width="4" height="6" rx="0.9"/><rect x="9.5" y="9" width="4" height="11" rx="0.9" opacity="0.22"/><rect x="15.5" y="4" width="4" height="16" rx="0.9" opacity="0.22"/></svg>Simple<small>one fix</small></button>
-            <button type="button" class="est-opt t2" data-value="medium"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3.5" y="14" width="4" height="6" rx="0.9"/><rect x="9.5" y="9" width="4" height="11" rx="0.9"/><rect x="15.5" y="4" width="4" height="16" rx="0.9" opacity="0.22"/></svg>Moderate<small>a few systems</small></button>
-            <button type="button" class="est-opt t3" data-value="large"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3.5" y="14" width="4" height="6" rx="0.9"/><rect x="9.5" y="9" width="4" height="11" rx="0.9"/><rect x="15.5" y="4" width="4" height="16" rx="0.9"/></svg>Deep<small>complex</small></button>
+            <button type="button" class="est-opt t1 active" data-value="small"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3.5" y="14" width="4" height="6" rx="0.9"/><rect x="9.5" y="9" width="4" height="11" rx="0.9" opacity="0.22"/><rect x="15.5" y="4" width="4" height="16" rx="0.9" opacity="0.22"/></svg><span data-i18n-en>Simple</span><span data-i18n-es hidden>Simple</span><small><span data-i18n-en>one fix</span><span data-i18n-es hidden>un solo arreglo</span></small></button>
+            <button type="button" class="est-opt t2" data-value="medium"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3.5" y="14" width="4" height="6" rx="0.9"/><rect x="9.5" y="9" width="4" height="11" rx="0.9"/><rect x="15.5" y="4" width="4" height="16" rx="0.9" opacity="0.22"/></svg><span data-i18n-en>Moderate</span><span data-i18n-es hidden>Moderado</span><small><span data-i18n-en>a few systems</span><span data-i18n-es hidden>algunos sistemas</span></small></button>
+            <button type="button" class="est-opt t3" data-value="large"><svg class="optglyph" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3.5" y="14" width="4" height="6" rx="0.9"/><rect x="9.5" y="9" width="4" height="11" rx="0.9"/><rect x="15.5" y="4" width="4" height="16" rx="0.9"/></svg><span data-i18n-en>Deep</span><span data-i18n-es hidden>Profundo</span><small><span data-i18n-en>complex</span><span data-i18n-es hidden>complejo</span></small></button>
           </div>
         </div>
         <div class="est-group" id="grp-license">
-          <div class="est-label">Mod licence</div>
+          <div class="est-label"><span data-i18n-en>Mod licence</span><span data-i18n-es hidden>Licencia del mod</span></div>
           <div class="est-options" data-group="license">
-            <button type="button" class="est-opt ac-life active" data-value="open"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a13 13 0 0 1 0 18"/><path d="M12 3a13 13 0 0 0 0 18"/></svg>Open-source / I have permission</button>
-            <button type="button" class="est-opt ac-steel" data-value="closed"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Closed-source (ARR)</button>
+            <button type="button" class="est-opt ac-life active" data-value="open"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a13 13 0 0 1 0 18"/><path d="M12 3a13 13 0 0 0 0 18"/></svg><span data-i18n-en>Open-source / I have permission</span><span data-i18n-es hidden>Código abierto / tengo permiso</span></button>
+            <button type="button" class="est-opt ac-steel" data-value="closed"><svg class="optglyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><span data-i18n-en>Closed-source (ARR)</span><span data-i18n-es hidden>Código cerrado (ARR)</span></button>
           </div>
         </div>
       </div>
 
       <div class="est-result">
-        <div class="est-result-label">Ready to send</div>
+        <div class="est-result-label"><span data-i18n-en>Ready to send</span><span data-i18n-es hidden>Listo para enviar</span></div>
         <div class="est-summary" id="est-summary"></div>
-        <a class="btn btn-discord est-discord" id="est-discord" href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg><span>Copy &amp; open <span translate="no">Discord</span></span></a>
-        <button type="button" class="btn btn-ghost est-copy" id="est-copy">Copy summary</button>
-        <div class="est-disclaimer">Head to <span translate="no">#pedidos</span> once you're in &mdash; that's where tickets start. Add your mod's link before you paste.</div>
+        <a class="btn btn-discord est-discord" id="est-discord" href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg><span><span data-i18n-en>Copy &amp; open <span translate="no">Discord</span></span><span data-i18n-es hidden>Copiar y abrir <span translate="no">Discord</span></span></span></a>
+        <button type="button" class="btn btn-ghost est-copy" id="est-copy"><span data-i18n-en>Copy summary</span><span data-i18n-es hidden>Copiar resumen</span></button>
+        <div class="est-disclaimer"><span data-i18n-en>Head to <span translate="no">#pedidos</span> once you're in &mdash; that's where tickets start. Add your mod's link before you paste.</span><span data-i18n-es hidden>Cuando entres, ve a <span translate="no">#pedidos</span>: ahí empiezan los tickets. Añade el enlace de tu mod antes de pegar.</span></div>
       </div>
     </div>
   </div>
@@ -2818,15 +2819,15 @@
   <img class="ch ch--borde" src="pix-c26.webp" width="111" height="107" style="left:calc(50% + 530px + 18px);top:560px;--h:107px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="ch ch--borde" src="h9478c-31.webp" width="256" height="236" style="left:calc(50% + 530px + 18px);top:273px;--h:200px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
-        <h2>How a job works</h2>
-    <p class="sub">All in writing. No calls and no meetings.</p>
+        <h2><span data-i18n-en>How a job works</span><span data-i18n-es hidden>Cómo va un encargo</span></h2>
+    <p class="sub"><span data-i18n-en>All in writing. No calls and no meetings.</span><span data-i18n-es hidden>Todo por escrito. Sin llamadas ni reuniones.</span></p>
     <div class="steps">
-      <div class="step"><div class="step-n">01</div><h3>Send me the mod</h3><p>Message the mod link and what you need. Open-source or licensed, both work.</p></div>
-      <div class="step"><div class="step-n">02</div><h3>Flat quote</h3><p>I look over the mod and reply with a fixed price and a timeline. No scope creep once we've agreed.</p></div>
-      <div class="step"><div class="step-n">03</div><h3>Agree &amp; start</h3><p>We lock the scope and price in writing. <strong>Your first job with me carries no deposit, whatever the size:</strong> you pay once you have seen it run. After that, bigger jobs start on a deposit we agree in writing.</p></div>
-      <div class="step"><div class="step-n">04</div><h3>I build it</h3><p>Every job gets its own timeline, agreed before I touch anything. <strong>If you have a hard date, say so first:</strong> I will either commit to it in writing or turn the job down.</p></div>
-      <div class="step"><div class="step-n">05</div><h3>Delivery + final payment</h3><p>You get the finished mod file and try it yourself. Final payment before release. Open-source<span translate="no"> ports </span>get published with author credit.</p></div>
-      <div class="step"><div class="step-n">06</div><h3>I check back</h3><p>Once it has actually run inside your pack, past my own test machine. <strong>Any defect I introduced inside the agreed scope, on the setup we agreed, is on me for 30 days.</strong> Anything after that, or anything new you need, comes back to me as a returning client.</p></div>
+      <div class="step"><div class="step-n">01</div><h3><span data-i18n-en>Send me the mod</span><span data-i18n-es hidden>Mándame el mod</span></h3><p><span data-i18n-en>Message the mod link and what you need. Open-source or licensed, both work.</span><span data-i18n-es hidden>Escríbeme con el enlace del mod y lo que necesitas. Sirve tanto de código abierto como con licencia.</span></p></div>
+      <div class="step"><div class="step-n">02</div><h3><span data-i18n-en>Flat quote</span><span data-i18n-es hidden>Precio cerrado</span></h3><p><span data-i18n-en>I look over the mod and reply with a fixed price and a timeline. No scope creep once we've agreed.</span><span data-i18n-es hidden>Reviso el mod y te contesto con un precio fijo y un plazo. Una vez acordado, el alcance no crece.</span></p></div>
+      <div class="step"><div class="step-n">03</div><h3><span data-i18n-en>Agree &amp; start</span><span data-i18n-es hidden>Acordar y empezar</span></h3><p><span data-i18n-en>We lock the scope and price in writing. <strong>Your first job with me carries no deposit, whatever the size:</strong> you pay once you have seen it run. After that, bigger jobs start on a deposit we agree in writing.</span><span data-i18n-es hidden>Dejamos el alcance y el precio por escrito. <strong>Tu primer encargo conmigo no lleva adelanto, sea del tamaño que sea:</strong> pagas cuando lo has visto funcionar. Después, los encargos grandes empiezan con un adelanto que acordamos por escrito.</span></p></div>
+      <div class="step"><div class="step-n">04</div><h3><span data-i18n-en>I build it</span><span data-i18n-es hidden>Lo hago</span></h3><p><span data-i18n-en>Every job gets its own timeline, agreed before I touch anything. <strong>If you have a hard date, say so first:</strong> I will either commit to it in writing or turn the job down.</span><span data-i18n-es hidden>Cada encargo lleva su propio plazo, acordado antes de que toque nada. <strong>Si tienes una fecha que no se mueve, dilo desde el principio:</strong> o me comprometo por escrito o rechazo el trabajo.</span></p></div>
+      <div class="step"><div class="step-n">05</div><h3><span data-i18n-en>Delivery + final payment</span><span data-i18n-es hidden>Entrega y pago final</span></h3><p><span data-i18n-en>You get the finished mod file and try it yourself. Final payment before release. Open-source<span translate="no"> ports </span>get published with author credit.</span><span data-i18n-es hidden>Recibes el archivo del mod terminado y lo pruebas tú. El pago final va antes de publicar. Los<span translate="no"> ports </span>de código abierto se publican con crédito al autor.</span></p></div>
+      <div class="step"><div class="step-n">06</div><h3><span data-i18n-en>I check back</span><span data-i18n-es hidden>Vuelvo a preguntar</span></h3><p><span data-i18n-en>Once it has actually run inside your pack, past my own test machine. <strong>Any defect I introduced inside the agreed scope, on the setup we agreed, is on me for 30 days.</strong> Anything after that, or anything new you need, comes back to me as a returning client.</span><span data-i18n-es hidden>Cuando de verdad ha corrido dentro de tu pack, más allá de mi máquina de pruebas. <strong>Cualquier fallo que yo haya metido dentro del alcance acordado, en el montaje acordado, corre por mi cuenta durante 30 días.</strong> Lo que venga después, o lo nuevo que necesites, vuelve a mí como cliente que repite.</span></p></div>
     </div>
     <figure class="mascotas">
       <!-- La ilustracion traia dos placas horneadas con CARGOS INVENTADOS
@@ -2858,40 +2859,40 @@
   <img class="ch ch--borde" src="hsunny-13.webp" width="256" height="236" style="left:calc(50% + 530px + 18px);top:749px;--h:190px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="ch ch--borde" src="hsunny-12.webp" width="256" height="246" style="right:calc(50% + 530px + 18px);top:200px;--h:190px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
-        <h2>Free if you wrote the mod</h2>
-    <p class="sub">There is a version of this that costs you nothing. Here's why it isn't charity.</p>
+        <h2><span data-i18n-en>Free if you wrote the mod</span><span data-i18n-es hidden>Gratis si tú escribiste el mod</span></h2>
+    <p class="sub"><span data-i18n-en>There is a version of this that costs you nothing. Here's why it isn't charity.</span><span data-i18n-es hidden>Hay una versión de esto que no te cuesta nada. Y no es caridad, por esto.</span></p>
 
     <div class="deal-cols">
       <div class="deal-col">
-        <div class="deal-head">You get</div>
+        <div class="deal-head"><span data-i18n-en>You get</span><span data-i18n-es hidden>Tú te llevas</span></div>
         <ul class="deal-list">
-          <li>The<span translate="no"> port</span>, at no cost.</li>
-          <li>It stays yours. Your page, your licence, your download counts. I am not taking anything over.</li>
-          <li>Your name stays on the mod. Mine goes in the credits as the person who did the<span translate="no"> port</span>, and nowhere else.</li>
+          <li><span data-i18n-en>The<span translate="no"> port</span>, at no cost.</span><span data-i18n-es hidden>El<span translate="no"> port</span>, sin coste.</span></li>
+          <li><span data-i18n-en>It stays yours. Your page, your licence, your download counts. I am not taking anything over.</span><span data-i18n-es hidden>Sigue siendo tuyo. Tu página, tu licencia, tus descargas. No me quedo con nada.</span></li>
+          <li><span data-i18n-en>Your name stays on the mod. Mine goes in the credits as the person who did the<span translate="no"> port</span>, and nowhere else.</span><span data-i18n-es hidden>Tu nombre se queda en el mod. El mío va en los créditos como quien hizo el<span translate="no"> port</span>, y en ningún otro sitio.</span></li>
         </ul>
       </div>
       <div class="deal-col deal-col--mine">
-        <div class="deal-head">I get</div>
+        <div class="deal-head"><span data-i18n-en>I get</span><span data-i18n-es hidden>Yo me llevo</span></div>
         <ul class="deal-list">
-          <li>Your permission to release the<span translate="no"> port </span>publicly and to show it on this page as my work.</li>
-          <li>Nothing else.</li>
+          <li><span data-i18n-en>Your permission to release the<span translate="no"> port </span>publicly and to show it on this page as my work.</span><span data-i18n-es hidden>Tu permiso para publicar el<span translate="no"> port </span>y enseñarlo en esta página como trabajo mío.</span></li>
+          <li><span data-i18n-en>Nothing else.</span><span data-i18n-es hidden>Nada más.</span></li>
         </ul>
       </div>
     </div>
 
-    <p class="deal-why">Most of what I have<span translate="no"> ported </span>is sitting on my own machine, unreleased, because I never had the author's permission to put it out. Permission is what holds this back, and it is worth more to me than the fee.</p>
+    <p class="deal-why"><span data-i18n-en>Most of what I have<span translate="no"> ported </span>is sitting on my own machine, unreleased, because I never had the author's permission to put it out. Permission is what holds this back, and it is worth more to me than the fee.</span><span data-i18n-es hidden>Casi todo lo que he<span translate="no"> porteado </span>está en mi máquina sin publicar, porque nunca tuve el permiso del autor para sacarlo. El permiso es lo que frena esto, y para mí vale más que el dinero.</span></p>
 
-    <p class="deal-why">It has already happened twice, before I thought to call it an offer.<span translate="no"> Mindful Eating </span>went back to<span translate="no"> camcam_burger </span>for his own<span translate="no"> CurseForge </span>page.<span translate="no"> Shaunt </span>read through the<span translate="no"> Puppy Paws</span><span translate="no"> port </span>himself and told me it was fine.</p>
+    <p class="deal-why"><span data-i18n-en>It has already happened twice, before I thought to call it an offer.<span translate="no"> Mindful Eating </span>went back to<span translate="no"> camcam_burger </span>for his own<span translate="no"> CurseForge </span>page.<span translate="no"> Shaunt </span>read through the<span translate="no"> Puppy Paws</span><span translate="no"> port </span>himself and told me it was fine.</span><span data-i18n-es hidden>Ya ha pasado dos veces, antes de que se me ocurriera llamarlo oferta.<span translate="no"> Mindful Eating </span>volvió a<span translate="no"> camcam_burger </span>para su propia página de<span translate="no"> CurseForge</span>.<span translate="no"> Shaunt </span>se leyó él mismo el<span translate="no"> port </span>de<span translate="no"> Puppy Paws </span>y me dijo que estaba bien.</span></p>
 
     <ul class="deal-list deal-fine">
-      <li>You have to actually hold the rights to the mod. If it is a team, I need the team's yes.</li>
-      <li>One of these at a time, so paying clients keep their place in the queue.</li>
-      <li>I can turn it down. A large tech mod means a month of real work, however friendly the ask.</li>
-      <li>Otherwise it runs like any job: scope agreed in writing before I start, and any defect I introduce inside that scope, on the setup we agreed, corrected free for 30 days.</li>
+      <li><span data-i18n-en>You have to actually hold the rights to the mod. If it is a team, I need the team's yes.</span><span data-i18n-es hidden>Tienes que tener de verdad los derechos del mod. Si es un equipo, necesito el sí del equipo.</span></li>
+      <li><span data-i18n-en>One of these at a time, so paying clients keep their place in the queue.</span><span data-i18n-es hidden>Uno de estos a la vez, para que los clientes que pagan no pierdan su sitio en la cola.</span></li>
+      <li><span data-i18n-en>I can turn it down. A large tech mod means a month of real work, however friendly the ask.</span><span data-i18n-es hidden>Puedo decir que no. Un mod técnico grande es un mes de trabajo real, por muy amable que sea la petición.</span></li>
+      <li><span data-i18n-en>Otherwise it runs like any job: scope agreed in writing before I start, and any defect I introduce inside that scope, on the setup we agreed, corrected free for 30 days.</span><span data-i18n-es hidden>Por lo demás va como cualquier encargo: alcance acordado por escrito antes de empezar, y cualquier fallo que yo meta dentro de ese alcance, en el montaje acordado, se corrige gratis durante 30 días.</span></li>
     </ul>
 
     <div class="deal-row">
-      <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" class="btn btn-discord"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg><span>I wrote a mod, let's talk</span></a>
+      <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" class="btn btn-discord"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg><span><span data-i18n-en>I wrote a mod, let's talk</span><span data-i18n-es hidden>Escribí un mod, hablemos</span></span></a>
     </div>
   </div>
 </section>
@@ -2914,14 +2915,14 @@
   <img class="ch ch--borde" src="h512-22.webp" width="256" height="235" style="right:calc(50% + 530px + 18px);top:360px;--h:190px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="ch ch--borde" src="h1024-33.webp" width="256" height="235" style="left:calc(50% + 530px + 18px);top:150px;--h:190px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
-        <h2>Send me the mod</h2>
-    <p class="sub">Everything starts with a ticket in my server, and each case gets looked at on its own.</p>
+        <h2><span data-i18n-en>Send me the mod</span><span data-i18n-es hidden>Mándame el mod</span></h2>
+    <p class="sub"><span data-i18n-en>Everything starts with a ticket in my server, and each case gets looked at on its own.</span><span data-i18n-es hidden>Todo empieza con un ticket en mi servidor, y cada caso se mira por separado.</span></p>
     <div class="contact-cards">
       <div class="contact-card contact-card--primary">
         <div class="ci ci--discord"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4V5z"/><circle cx="9.5" cy="10.5" r="0.6" fill="currentColor" stroke="none"/><circle cx="14.5" cy="10.5" r="0.6" fill="currentColor" stroke="none"/></svg></div>
-        <h3><span translate="no">Discord </span>(open a ticket)</h3>
-        <p>The link opens my server. There are channels for opening a ticket: post the mod link and what you need, and your case gets assessed in that ticket, on its own thread. It runs in a browser tab, so there is nothing to install.</p>
-        <a href="https://discord.gg/EV8F84fheJ" class="btn btn-discord contact-btn" target="_blank" rel="noopener noreferrer"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg><span>Open my<span translate="no"> Discord</span></span></a>
+        <h3><span translate="no">Discord </span><span data-i18n-en>(open a ticket)</span><span data-i18n-es hidden>(abre un ticket)</span></h3>
+        <p><span data-i18n-en>The link opens my server. There are channels for opening a ticket: post the mod link and what you need, and your case gets assessed in that ticket, on its own thread. It runs in a browser tab, so there is nothing to install.</span><span data-i18n-es hidden>El enlace abre mi servidor. Hay canales para abrir un ticket: pon el enlace del mod y lo que necesitas, y tu caso se estudia en ese ticket, en su propio hilo. Funciona en una pestaña del navegador, no hay nada que instalar.</span></p>
+        <a href="https://discord.gg/EV8F84fheJ" class="btn btn-discord contact-btn" target="_blank" rel="noopener noreferrer"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg><span><span data-i18n-en>Open my<span translate="no"> Discord</span></span><span data-i18n-es hidden>Abrir mi<span translate="no"> Discord</span></span></span></a>
       </div>
       <div class="contact-card">
         <!-- Era la ficha "Email (backup)". Pasa a explicar el ticket: sin boton
@@ -2929,12 +2930,12 @@
              botones a un mismo destino es ruido. Sin `ci--` porque la clase base
              `.ci` ya trae el dorado de la pagina. -->
         <div class="ci"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8V6a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a2 2 0 0 0 0 4v2a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-2a2 2 0 0 0 0-4z"/><path d="M14 5v14"/></svg></div>
-        <h3>What happens in the ticket</h3>
-        <p>You post the mod link and what you want done. I check the licence and tell you whether it can be done at all. Then you get a fixed price in writing, and it does not move afterwards.</p>
+        <h3><span data-i18n-en>What happens in the ticket</span><span data-i18n-es hidden>Qué pasa en el ticket</span></h3>
+        <p><span data-i18n-en>You post the mod link and what you want done. I check the licence and tell you whether it can be done at all. Then you get a fixed price in writing, and it does not move afterwards.</span><span data-i18n-es hidden>Pones el enlace del mod y lo que quieres. Reviso la licencia y te digo si se puede hacer. Después recibes un precio fijo por escrito, y ya no se mueve.</span></p>
       </div>
     </div>
-    <p class="contact-note">I take two jobs at a time, so the queue stays short.</p>
-    <p class="contact-note"><strong>Real client references land here the day I have any to show</strong>, with names attached.</p>
+    <p class="contact-note"><span data-i18n-en>I take two jobs at a time, so the queue stays short.</span><span data-i18n-es hidden>Llevo dos encargos a la vez, así la cola no se alarga.</span></p>
+    <p class="contact-note"><span data-i18n-en><strong>Real client references land here the day I have any to show</strong>, with names attached.</span><span data-i18n-es hidden><strong>Las referencias reales de clientes aparecerán aquí el día que tenga alguna que enseñar</strong>, con nombre y apellido.</span></p>
 
   </div>
 </section>
@@ -2976,7 +2977,7 @@
     <div class="softcta">
       <p>Still got a question? Ask me the awkward one. <strong>Better now than after you've paid.</strong></p>
       <div class="softcta-row">
-        <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" class="btn btn-discord"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg><span>Ask me on<span translate="no"> Discord</span></span></a>
+        <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" class="btn btn-discord"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg><span><span data-i18n-en>Ask me on<span translate="no"> Discord</span></span><span data-i18n-es hidden>Pregúntame por<span translate="no"> Discord</span></span></span></a>
       </div>
     </div>
 
@@ -3058,6 +3059,10 @@
     return bits.join(' ');
   }
 
+  // Estos dos botones los pinta el JS (mas abajo reescribe su textContent,
+  // lo que borraria cualquier span de i18n), asi que el idioma se resuelve
+  // aqui y el conmutador los repinta.
+  function enEspanol() { return document.documentElement.getAttribute('data-lang') === 'es'; }
   var summaryEl = document.getElementById('est-summary');
   function render() { if (summaryEl) summaryEl.textContent = buildSummary(state); }
 
@@ -3091,23 +3096,24 @@
 
   var copyBtn = document.getElementById('est-copy');
   if (copyBtn) {
+    var copyHtml = copyBtn.innerHTML;
     copyBtn.addEventListener('click', function () {
       copiarResumen(function () {
-        copyBtn.textContent = 'Copied';
+        copyBtn.textContent = enEspanol() ? 'Copiado' : 'Copied';
         copyBtn.classList.add('done');
-        setTimeout(function () { copyBtn.textContent = 'Copy summary'; copyBtn.classList.remove('done'); }, 2200);
+        setTimeout(function () { copyBtn.innerHTML = copyHtml; copyBtn.classList.remove('done'); }, 2200);
       });
     });
   }
   var discordBtn = document.getElementById('est-discord');
   if (discordBtn) {
+    var label = discordBtn.querySelector('span');
+    var discordHtml = label ? label.innerHTML : '';
     discordBtn.addEventListener('click', function () {
-      var label = discordBtn.querySelector('span');
       copiarResumen(function () {
         if (!label) return;
-        var previo = label.textContent;
-        label.textContent = 'Copied \u2014 paste it in #pedidos';
-        setTimeout(function () { label.textContent = previo; }, 2500);
+        label.textContent = enEspanol() ? 'Copiado, pegalo en #pedidos' : 'Copied \u2014 paste it in #pedidos';
+        setTimeout(function () { label.innerHTML = discordHtml; }, 2500);
       });
     });
   }
