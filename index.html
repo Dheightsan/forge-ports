@@ -3117,7 +3117,7 @@
     discordBtn.addEventListener('click', function () {
       copiarResumen(function () {
         if (!label) return;
-        label.textContent = enEspanol() ? 'Copiado, pegalo en #pedidos' : 'Copied \u2014 paste it in #pedidos';
+        label.textContent = enEspanol() ? 'Copiado, pégalo en #pedidos' : 'Copied \u2014 paste it in #pedidos';
         setTimeout(function () { label.innerHTML = discordHtml; }, 2500);
       });
     });
