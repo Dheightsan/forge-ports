@@ -183,6 +183,30 @@
         "@type": "Answer",
         "text": "The mod's original textures and assets come across with the port. What doesn't: brand-new textures, 3D models or animations, full gameplay or balance redesigns, and ongoing maintenance across future Minecraft versions. Those get quoted separately, so tell me upfront and I'll fold it into the price."
       }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you port a specific mod I have in mind?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Send me the mod, a link or the file, and I'll check two things: whether the license allows a port and whether the jump from Fabric or NeoForge to Forge 1.20.1 is realistic for that specific mod. If both hold up you get a fixed price in writing before I touch any code; if one doesn't, I'll tell you why instead of taking the job anyway."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you need the mod's source code to work on it?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. I work straight from the compiled mod file and decompile whatever needs to change for the new loader, so I don't need the original .java source or a public repository. What actually decides if I can touch the mod is the license, which I check separately before starting."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you work from a private build, not something public on CurseForge or Modrinth?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, I can work from whatever file you send me directly, it doesn't need to be listed anywhere public. I still need to know what license or permission applies to that build before I start, since that's what decides whether I can touch it, not where it's hosted."
+      }
     }
   ]
 }
@@ -2552,7 +2576,7 @@
         <div class="svc-icon svc-copper"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v13"/><path d="M6 11l6 6 6-6"/></svg></div>
         <div>
           <h3><span translate="no">Backport</span></h3>
-          <p><span data-i18n-en>A newer mod, running on<span translate="no"> Forge </span>1.20.1 instead.</span><span data-i18n-es hidden>Un mod más nuevo, corriendo en<span translate="no"> Forge </span>1.20.1.</span></p>
+          <p><span data-i18n-en>The mod you need only exists for a newer version? I bring it back to<span translate="no"> Forge </span>1.20.1, so your pack doesn't have to move.</span><span data-i18n-es hidden>¿El mod que necesitas solo existe para una versión más nueva? Lo traigo de vuelta a<span translate="no"> Forge </span>1.20.1, así tu pack no tiene que moverse.</span></p>
         </div>
         <span class="card-tag tag-base"><span data-i18n-en>By version wall</span><span data-i18n-es hidden>Por muro de versión</span></span>
       </div>
@@ -2560,7 +2584,7 @@
         <div class="svc-icon svc-life"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V7"/><path d="M6 13l6-6 6 6"/></svg></div>
         <div>
           <h3><span data-i18n-en><span translate="no">Forward-port </span>&amp; revive</span><span data-i18n-es hidden><span translate="no">Forward-port </span>y revivir</span></h3>
-          <p><span data-i18n-en>An old, abandoned mod, brought back on a modern version.</span><span data-i18n-es hidden>Un mod viejo y abandonado, de vuelta en una versión moderna.</span></p>
+          <p><span data-i18n-en>Your favorite mod isn't getting updates anymore? I forward-port it so it runs on a modern version again.</span><span data-i18n-es hidden>¿Tu mod favorito dejó de recibir actualizaciones? Lo actualizo para que vuelva a correr en una versión moderna.</span></p>
         </div>
         <span class="card-tag tag-premium"><span data-i18n-en>By complexity</span><span data-i18n-es hidden>Por complejidad</span></span>
       </div>
@@ -2568,7 +2592,7 @@
         <div class="svc-icon svc-loom"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h13l-3-3"/><path d="M20 16H7l3 3"/></svg></div>
         <div>
           <h3><span data-i18n-en>Loader conversion</span><span data-i18n-es hidden>Conversión de cargador</span></h3>
-          <p><span data-i18n-en>Moving a mod between<span translate="no"> Fabric</span>,<span translate="no"> NeoForge </span>and<span translate="no"> Forge</span>.</span><span data-i18n-es hidden>Mover un mod entre<span translate="no"> Fabric</span>,<span translate="no"> NeoForge </span>y<span translate="no"> Forge</span>.</span></p>
+          <p><span data-i18n-en>Stuck with a mod that only ships for one loader? I move it across<span translate="no"> Forge</span>,<span translate="no"> Fabric </span>and<span translate="no"> NeoForge </span>to fit your pack.</span><span data-i18n-es hidden>¿Atrapado con un mod que solo existe para un loader? Lo muevo entre<span translate="no"> Forge</span>,<span translate="no"> Fabric </span>y<span translate="no"> NeoForge </span>según lo que necesite tu pack.</span></p>
         </div>
         <span class="card-tag tag-premium"><span data-i18n-en>By complexity</span><span data-i18n-es hidden>Por complejidad</span></span>
       </div>
@@ -2576,7 +2600,7 @@
         <div class="svc-icon svc-bridge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7h5a4 4 0 0 1 0 8h-1"/><path d="M15 17h-5a4 4 0 0 1 0-8h1"/></svg></div>
         <div>
           <h3><span data-i18n-en>Compatibility patches</span><span data-i18n-es hidden>Parches de compatibilidad</span></h3>
-          <p><span data-i18n-en>Getting two mods to work together, even closed-source ones.</span><span data-i18n-es hidden>Hacer que dos mods convivan, incluso los de código cerrado.</span></p>
+          <p><span data-i18n-en>Two mods crash the moment you run them together? I track down what's colliding and patch it, closed-source included.</span><span data-i18n-es hidden>¿Dos mods fallan apenas los corres juntos? Rastreo qué está chocando y lo parcheo, incluso si son de código cerrado.</span></p>
         </div>
         <span class="card-tag tag-base"><span data-i18n-en>Publishable</span><span data-i18n-es hidden>Publicable</span></span>
       </div>
@@ -2584,7 +2608,7 @@
         <div class="svc-icon svc-steel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.6 5.6L3 18l3 3 6.1-6.1a4 4 0 0 0 5.6-5.6l-2.9 2.9a1.5 1.5 0 0 1-2-2l2.9-2.9z"/></svg></div>
         <div>
           <h3><span data-i18n-en>Mod maintenance</span><span data-i18n-es hidden>Mantenimiento de mods</span></h3>
-          <p><span data-i18n-en>Broken after an update. I find out why, and fix it.</span><span data-i18n-es hidden>Se rompió con una actualización. Encuentro por qué y lo arreglo.</span></p>
+          <p><span data-i18n-en>A mod that worked fine breaks after an update? I track down the cause and get it running again.</span><span data-i18n-es hidden>¿Un mod que funcionaba bien se rompe después de una actualización? Rastreo la causa y lo dejo funcionando otra vez.</span></p>
         </div>
         <span class="card-tag tag-base"><span data-i18n-en>By scope</span><span data-i18n-es hidden>Por alcance</span></span>
       </div>
@@ -2592,7 +2616,7 @@
         <div class="svc-icon svc-spark"><svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
         <div>
           <h3><span data-i18n-en>Mod optimization</span><span data-i18n-es hidden>Optimización de mods</span></h3>
-          <p><span data-i18n-en>Cutting lag without changing anything you see.</span><span data-i18n-es hidden>Menos lag sin cambiar nada de lo que ves.</span></p>
+          <p><span data-i18n-en>Lag getting worse as your pack grows? I find what's actually eating performance before cutting anything players see.</span><span data-i18n-es hidden>¿El lag empeora a medida que crece tu pack? Encuentro qué está consumiendo el rendimiento antes de tocar algo que los jugadores ven.</span></p>
         </div>
         <span class="card-tag tag-premium"><span data-i18n-en>By scope</span><span data-i18n-es hidden>Por alcance</span></span>
       </div>
@@ -2785,7 +2809,7 @@
   <img class="ch ch--borde" src="h1024-32.webp" width="256" height="236" style="right:calc(50% + 530px + 18px);top:201px;--h:185px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
         <h2><span data-i18n-en>Who you're actually hiring</span><span data-i18n-es hidden>A quién estás contratando en realidad</span></h2>
-    <p class="sub"><span data-i18n-en>The person who takes the job is the person who writes and debugs it. <strong>This has been going well</strong>, and I have had help getting here.</span><span data-i18n-es hidden>La persona que toma el trabajo es la misma que lo escribe y depura. <strong>Esto ha ido bien</strong>, y he tenido ayuda para llegar hasta aquí.</span></p>
+    <p class="sub"><span data-i18n-en>Right now, the person who takes the job is the person who writes and debugs it. <strong>This has been going well</strong>, and I have had help getting here.</span><span data-i18n-es hidden>Ahora mismo, la persona que toma el trabajo es la misma que lo escribe y depura. <strong>Esto ha ido bien</strong>, y he tenido ayuda para llegar hasta aquí.</span></p>
     <div class="about-body">
       <figure class="me-shot">
         <img src="me.webp" width="351" height="408" alt="Close view of my character in a red and gold armour set with glowing green trim, standing in a field of purple flowers." loading="lazy" decoding="async">
@@ -2817,7 +2841,7 @@
            (el trabajo, la pagina) y se sostiene solo, sin devolver la redundancia. -->
       <p><span data-i18n-en><strong>This is going better than I expected.</strong> A year ago none of this existed.</span><span data-i18n-es hidden><strong>Esto va mejor de lo que esperaba.</strong> Hace un año nada de esto existía.</span></p>
       <p><span data-i18n-en><strong>And none of it happened on my own.</strong><span translate="no"> Nightwhitey </span>is the one I talk the hard calls through with, and we are on the same course.<span translate="no"> Criss </span>puts the work in front of people and plays the<span translate="no"> ports</span>. Around them there are people who test what I build, who send me mods worth looking at, and who tell me straight when something is wrong. And before any of them, the authors who wrote these mods and let me near their work.</span><span data-i18n-es hidden><strong>Y nada de esto pasó solo.</strong> Con<span translate="no"> Nightwhitey </span>hablo las decisiones difíciles, y vamos en el mismo rumbo.<span translate="no"> Criss </span>pone el trabajo frente a la gente y juega los<span translate="no"> ports</span>. Alrededor de ellos hay gente que prueba lo que construyo, que me manda mods que vale la pena mirar, y que me dice de frente cuando algo está mal. Y antes que todos ellos, los autores que escribieron estos mods y me dejaron acercarme a su trabajo.</span></p>
-      <p><span data-i18n-en><strong>Pretending it was all me would be easier to write. It wouldn't be true.</strong> Your job is still written and debugged by the person you are talking to; what I am not going to claim is that I got here by myself.</span><span data-i18n-es hidden><strong>Fingir que todo esto fue solo mío sería más fácil de escribir. No sería cierto.</strong> Tu trabajo lo sigue escribiendo y depurando la misma persona con la que hablas; lo que no voy a decir es que llegué hasta aquí solo.</span></p>
+      <p><span data-i18n-en><strong>Pretending it was all me would be easier to write. It wouldn't be true.</strong> Your job is written and debugged by the person you are talking to, at least for now; what I am not going to claim is that I got here by myself.</span><span data-i18n-es hidden><strong>Fingir que todo esto fue solo mío sería más fácil de escribir. No sería cierto.</strong> Tu trabajo lo escribe y lo depura la misma persona con la que hablas, al menos por ahora; lo que no voy a decir es que llegué hasta aquí solo.</span></p>
     </div>
   </div>
 </section>
@@ -2877,7 +2901,7 @@
   <img class="ch ch--borde" src="hsunny-12.webp" width="256" height="246" style="right:calc(50% + 530px + 18px);top:200px;--h:190px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
         <h2><span data-i18n-en>Free if you wrote the mod</span><span data-i18n-es hidden>Gratis si tú escribiste el mod</span></h2>
-    <p class="sub"><span data-i18n-en>There is a version of this that costs you nothing. Here's why it isn't charity.</span><span data-i18n-es hidden>Hay una versión de esto que no te cuesta nada. Y no es caridad, por esto.</span></p>
+    <p class="sub"><span data-i18n-en>I keep this separate from the services above: it only applies if you wrote the mod yourself. There is a version of this that costs you nothing. Here's why it isn't charity.</span><span data-i18n-es hidden>Esto lo mantengo aparte de los servicios de arriba: solo aplica si tú mismo escribiste el mod. Hay una versión de esto que no te cuesta nada. Y no es caridad, por esto.</span></p>
 
     <div class="deal-cols">
       <div class="deal-col">
@@ -2987,6 +3011,9 @@
       <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt"><span data-i18n-en>Can I put the<span translate="no"> ported </span>mod in my public<span translate="no"> modpack</span>?</span><span data-i18n-es hidden>¿Puedo meter el mod<span translate="no"> porteado </span>en mi<span translate="no"> modpack </span>público?</span></span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body"><span data-i18n-en>It depends on the original mod's licence, and I tell you which case you are in before you pay. Open-source: yes, and I publish it with credit to the original author so your pack links to something real. Your own mod, or one where you hold written permission: yes, and I tell you exactly what credit to include. All rights reserved with no permission: no, and I will not take the job on those terms, because the takedown would land on your account and not mine.</span><span data-i18n-es hidden>Depende de la licencia del mod original, y te digo en qué caso estás antes de que pagues. Código abierto: sí, y lo publico con crédito al autor original para que tu pack enlace a algo real. Tu propio mod, o uno del que tengas permiso por escrito: sí, y te digo exactamente qué crédito incluir. Todos los derechos reservados y sin permiso: no, y no acepto el encargo en esas condiciones, porque la retirada caería sobre tu cuenta y no sobre la mía.</span></div></div></div>
       <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt"><span data-i18n-en>Can you leave parts of the mod out, or change what it does?</span><span data-i18n-es hidden>¿Puedes dejar fuera partes del mod, o cambiar lo que hace?</span></span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body"><span data-i18n-en>Yes, and it is worth asking. A<span translate="no"> port </span>does not have to be the whole mod: I can drop a feature you do not want, change values like spawn rates, durability or damage, retune or remove effects, and adjust recipes and loot. Tell me when you send it and it goes into the fixed quote, instead of turning into a second job later. The line is between tweaks and a redesign: rebalancing the whole mod is its own job and I quote it separately.</span><span data-i18n-es hidden>Sí, y vale la pena pedirlo. Un<span translate="no"> port </span>no tiene por qué ser el mod entero: puedo quitar una función que no quieras, cambiar valores como frecuencia de aparición, durabilidad o daño, retocar o quitar efectos, y ajustar recetas y botín. Dímelo cuando me lo mandes y entra en el precio cerrado, en vez de volverse un segundo encargo más tarde. La raya está entre retocar y rediseñar: reequilibrar el mod entero es un encargo aparte y lo cotizo aparte.</span></div></div></div>
       <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt"><span data-i18n-en>What's out of scope?</span><span data-i18n-es hidden>¿Qué queda fuera?</span></span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body"><span data-i18n-en>The mod's original textures and assets come across with the<span translate="no"> port</span>. What doesn't: brand-new textures, 3D models or animations, full gameplay or balance redesigns, and ongoing maintenance across future<span translate="no"> Minecraft </span>versions. Those get quoted separately, so tell me upfront and I'll fold it into the price.</span><span data-i18n-es hidden>Las texturas y recursos originales del mod vienen con el<span translate="no"> port</span>. Lo que no: texturas nuevas, modelos 3D o animaciones, rediseños completos de jugabilidad o equilibrio, y el mantenimiento continuo en futuras versiones de<span translate="no"> Minecraft</span>. Eso se cotiza aparte, así que dímelo desde el principio y lo meto en el precio.</span></div></div></div>
+      <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt"><span data-i18n-en>Can you port a specific mod I have in mind?</span><span data-i18n-es hidden>¿Puedes portear un mod específico que tengo en mente?</span></span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body"><span data-i18n-en>Send me the mod, a link or the file, and I'll check two things: whether the license allows a<span translate="no"> port </span>and whether the jump from<span translate="no"> Fabric </span>or<span translate="no"> NeoForge </span>to<span translate="no"> Forge </span>1.20.1 is realistic for that specific mod. If both hold up you get a fixed price in writing before I touch any code; if one doesn't, I'll tell you why instead of taking the job anyway.</span><span data-i18n-es hidden>Mándame el mod, un enlace o el archivo, y reviso dos cosas: si la licencia permite<span translate="no"> portearlo </span>y si el salto de<span translate="no"> Fabric </span>o<span translate="no"> NeoForge </span>a<span translate="no"> Forge </span>1.20.1 es realista para ese mod en concreto. Si las dos se cumplen recibes un precio fijo por escrito antes de tocar código; si alguna no se cumple, te digo por qué en vez de aceptar el trabajo de todos modos.</span></div></div></div>
+      <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt"><span data-i18n-en>Do you need the mod's source code to work on it?</span><span data-i18n-es hidden>¿Necesitas el código fuente del mod para trabajar en él?</span></span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body"><span data-i18n-en>No. I work straight from the compiled mod file and decompile whatever needs to change for the new loader, so I don't need the original .java source or a public repository. What actually decides if I can touch the mod is the licence, which I check separately before starting.</span><span data-i18n-es hidden>No. Trabajo directamente desde el mod compilado y descompilo lo que haga falta cambiar para el nuevo loader, así que no necesito el .java original ni un repositorio público. Lo que de verdad decide si puedo tocar el mod es la licencia, que reviso aparte antes de empezar.</span></div></div></div>
+      <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt"><span data-i18n-en>Can you work from a private build, not something public on<span translate="no"> CurseForge </span>or<span translate="no"> Modrinth</span>?</span><span data-i18n-es hidden>¿Puedes trabajar con un build privado, algo que no está público en<span translate="no"> CurseForge </span>ni<span translate="no"> Modrinth</span>?</span></span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body"><span data-i18n-en>Yes, I can work from whatever file you send me directly, it doesn't need to be listed anywhere public. I still need to know what license or permission applies to that build before I start, since that's what decides whether I can touch it, not where it's hosted.</span><span data-i18n-es hidden>Sí, puedo trabajar con el archivo que me mandes directamente, no hace falta que esté listado en ningún sitio público. Aun así necesito saber qué licencia o permiso aplica a ese build antes de empezar, porque eso decide si puedo tocarlo, no dónde está alojado.</span></div></div></div>
     </div>
     <div class="legal-quote"><span data-i18n-en><strong>The principle:</strong> you're paying for my time writing the work, not for the right to distribute it. The right to publish stays with whoever holds the licence.</span><span data-i18n-es hidden><strong>El principio:</strong> pagas mi tiempo escribiendo el trabajo, no el derecho a distribuirlo. El derecho a publicar se queda con quien tenga la licencia.</span></div>
     <div class="softcta">
