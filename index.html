@@ -227,6 +227,8 @@
        tarjeta del enlace. Y por eso tampoco se renombran los dos que quedan. */
     @font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 300 700; font-display: swap; src: url('fonts/space-grotesk-400-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
     @font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 300 700; font-display: swap; src: url('fonts/space-grotesk-400-latin-ext.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+    @font-face { font-family: 'IBM Plex Sans'; font-style: normal; font-weight: 300 700; font-display: swap; src: url('fonts/ibm-plex-sans-300-700-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+    @font-face { font-family: 'IBM Plex Sans'; font-style: normal; font-weight: 300 700; font-display: swap; src: url('fonts/ibm-plex-sans-300-700-latin-ext.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
     /* Monocraft, SIL OFL 1.1, autoalojada como Space Grotesk. Calca los glifos
        de Mojangles, que es la fuente de la interfaz de Minecraft y la que pidio
        josda: aquella es un asset de Mojang y este repo es publico, asi que
@@ -329,6 +331,13 @@
       --max:       1060px;
       --font:      'Space Grotesk', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
       --font-display: 'Space Grotesk', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      /* Fuente de LECTURA, no de barra/botones: IBM Plex Sans, auto-alojada,
+         solo en <p> y listas reales. Investigado 2026-09-17 (v-fonts.com +
+         API de Google Fonts): variable de verdad (fvar wght 100-700,
+         verificado con fontTools), OFL, cubre el español completo. El nav
+         NO la usa: su ancho ya se desbordo 3 veces con Space Grotesk y este
+         cambio no lo toca. */
+      --font-body: 'IBM Plex Sans', 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
     }
 
     /* ===== LIGHT THEME ===== */
@@ -973,7 +982,7 @@
       .ctas > .btn, .ctas > .cta-with-eyes { width: 100%; justify-content: center; }
       .cta-with-eyes .btn { flex: 1 1 auto; justify-content: center; }
     }
-    .hero-trust { margin-top: 1.4rem; font-size: 0.9rem; color: var(--text-mute); }
+    .hero-trust { margin-top: 1.4rem; font-size: 0.9rem; color: var(--text-mute);font-family: var(--font-body); }
     .hero-contact { margin-top: 1.05rem; font-size: 1.02rem; color: var(--text-soft); }
     .hero-contact a { color: var(--text); font-weight: 700; text-decoration: underline; text-decoration-color: var(--text-mute); text-underline-offset: 3px; }
     .hero-contact a:hover { text-decoration-color: var(--text); }
@@ -983,7 +992,7 @@
     .legal-doc > summary::-webkit-details-marker { display: none; }
     .legal-doc > summary::after { content: '+'; color: var(--text-mute); font-weight: 700; font-size: 1.15rem; }
     .legal-doc[open] > summary::after { content: '\2212'; }
-    .legal-doc-body { padding: 0 1.1rem 1.1rem; color: var(--text-soft); font-size: 0.95rem; line-height: 1.65; }
+    .legal-doc-body { padding: 0 1.1rem 1.1rem; color: var(--text-soft); font-size: 0.95rem; line-height: 1.65;font-family: var(--font-body); }
     .legal-doc-body p { margin-bottom: 0.7rem; }
     .legal-doc-body strong { color: var(--text); }
     .legal-doc-note { font-size: 0.8rem; color: var(--text-mute); margin-top: 0.4rem; }
@@ -1004,7 +1013,7 @@
     .svc-icon.svc-steel  { color: #9aa0a8; background: rgba(154,160,168,0.16); }
     .svc-icon.svc-spark  { color: #e0b441; background: rgba(224,180,65,0.14); }
     .svc-row h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.3rem; }
-    .svc-row p { color: var(--text-soft); font-size: 0.95rem; line-height: 1.55; margin: 0; max-width: 58ch; }
+    .svc-row p { color: var(--text-soft); font-size: 0.95rem; line-height: 1.55; margin: 0; max-width: 58ch;font-family: var(--font-body); }
     .svc-row p strong { color: var(--text); font-weight: 600; }
     @media (max-width: 640px) { .svc-row { grid-template-columns: auto minmax(0, 1fr); row-gap: 0.6rem; } .svc-row > .card-tag { grid-column: 2; justify-self: start; } }
     .card-tag { display: inline-block; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; padding: 0.25rem 0.6rem; border-radius: 999px; white-space: nowrap; }
@@ -1193,7 +1202,7 @@
     .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.8rem 2.2rem; margin-top: 2.75rem; }
     .step-n { font-size: 1.9rem; font-weight: 700; color: var(--gold); line-height: 1; margin-bottom: 0.6rem; font-variant-numeric: tabular-nums; }
     .step h3 { font-size: 0.96rem; font-weight: 700; margin-bottom: 0.4rem; }
-    .step p { color: var(--text-soft); font-size: 0.9rem; line-height: 1.6; }
+    .step p { color: var(--text-soft); font-size: 0.9rem; line-height: 1.6;font-family: var(--font-body); }
 
     /* ── PRICING ── */
     .price-promo { display: flex; align-items: center; gap: 0.85rem; flex-wrap: wrap; margin-top: 1.6rem; padding: 0.9rem 1.2rem; background: linear-gradient(90deg, rgba(192,126,60,0.13), rgba(203,161,74,0.10)); border: 1px solid var(--green-ring); border-radius: var(--radius); font-size: 0.9rem; color: var(--text); line-height: 1.5; }
@@ -1241,7 +1250,7 @@
        que le digan si se puede. No es tarjeta a proposito; la pagina ya tiene
        tres rejillas y una cuarta la volveria uniforme. */
     .softcta { max-width: 640px; margin: 3rem auto 0; padding-top: 2rem; border-top: 1px solid var(--border); text-align: center; }
-    .softcta p { color: var(--text-soft); font-size: 1rem; line-height: 1.6; margin: 0 0 1.1rem; }
+    .softcta p { color: var(--text-soft); font-size: 1rem; line-height: 1.6; margin: 0 0 1.1rem;font-family: var(--font-body); }
     .softcta strong { color: var(--text); }
     .softcta-row { display: flex; flex-wrap: wrap; gap: 0.7rem; justify-content: center; }
     @media (max-width: 520px) { .softcta-row .btn { width: 100%; } }
@@ -1253,7 +1262,7 @@
        como variedad y no como una imagen rota. */
     .shelf { margin-top: 2.6rem; padding-top: 2rem; border-top: 1px solid var(--border); }
     .shelf h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .shelf p { max-width: 36em; color: var(--text-soft); font-size: 0.9rem; line-height: 1.65; margin: 0 0 1.3rem; }
+    .shelf p { max-width: 36em; color: var(--text-soft); font-size: 0.9rem; line-height: 1.65; margin: 0 0 1.3rem;font-family: var(--font-body); }
     /* Rejilla de baldosas, no pastillas de texto: a 20px los iconos se leian
        timidos y el bloque parecia muerto. 56px es el tamano al que un logo de
        mod se reconoce. Los que no tienen arte llevan monograma, nunca un hueco. */
@@ -1280,11 +1289,11 @@
     .deal-head { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-mute); margin-bottom: 0.75rem; }
     .deal-col--mine .deal-head { color: var(--green-hi); }
     .deal-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.6rem; }
-    .deal-list li { color: var(--text-soft); font-size: 0.95rem; line-height: 1.55; padding-left: 1.15rem; position: relative; }
+    .deal-list li { color: var(--text-soft); font-size: 0.95rem; line-height: 1.55; padding-left: 1.15rem; position: relative;font-family: var(--font-body); }
     .deal-list li::before { content: "·"; position: absolute; left: 0.3rem; color: var(--text-mute); font-weight: 700; }
     .deal-why { max-width: 36em; color: var(--text-soft); line-height: 1.7; margin: 0 0 1rem; }
     .deal-fine { max-width: 36em; margin: 1.4rem 0 1.5rem; padding-top: 1.1rem; border-top: 1px solid var(--border); }
-    .deal-fine li { font-size: 0.88rem; color: var(--text-mute); line-height: 1.55; }
+    .deal-fine li { font-size: 0.88rem; color: var(--text-mute); line-height: 1.55;font-family: var(--font-body); }
     /* A la izquierda, no centrados: esta seccion alinea a la izquierda y los botones
        tienen que seguirla. Centrar solo vale en las islas .softcta, que son un corte aparte. */
     .deal-row { display: flex; flex-wrap: wrap; gap: 0.7rem; }
@@ -1352,7 +1361,7 @@
        `auto`, cuyo minimo es el min-content: la respuesta no encogia por debajo
        de su palabra mas larga y en español se salia de la pantalla. Tercera vez
        el mismo fallo en esta hoja, despues de `.mp-list` y `.estimator`. */
-    .faq-a { display: grid; grid-template-rows: 0fr; grid-template-columns: minmax(0, 1fr); overflow: hidden; transition: grid-template-rows 0.25s ease; padding: 0; color: var(--text-soft); font-size: 0.95rem; line-height: 1.65; }
+    .faq-a { display: grid; grid-template-rows: 0fr; grid-template-columns: minmax(0, 1fr); overflow: hidden; transition: grid-template-rows 0.25s ease; padding: 0; color: var(--text-soft); font-size: 0.95rem; line-height: 1.65;font-family: var(--font-body); }
     /* Medido: 129 caracteres por linea, lo mas ilegible de la pagina. El borde y la
        filete lo pone .faq-item, asi que limitar aqui no rompe la fila.
        Ni relleno ni margen abajo en el hijo: es la casilla de la rejilla y su caja
@@ -1424,14 +1433,14 @@
        escalones. El archivo se guarda a 108 para que se vea fino en pantallas
        de doble densidad. */
     .port-icon--cf { width: 54px; height: 54px; image-rendering: auto; }
-    .port-desc { color: var(--text-soft); font-size: 0.9rem; line-height: 1.6; margin-bottom: 0.9rem; }
+    .port-desc { color: var(--text-soft); font-size: 0.9rem; line-height: 1.6; margin-bottom: 0.9rem;font-family: var(--font-body); }
     .port-meta { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.9rem; }
     .port-ver, .port-origin { font-size: 0.72rem; color: var(--text-mute); background: var(--surface2); border: 1px solid var(--border); border-radius: 999px; padding: 0.2rem 0.55rem; }
     .port-links { display: flex; gap: 0.6rem; flex-wrap: wrap; }
     .port-link-ph { font-size: 0.74rem; color: var(--text-mute); }
     .port-card--cta { display: flex; flex-direction: column; gap: 0.8rem; justify-content: center; background: var(--green-glow); border-color: var(--green-ring); }
     .port-cta-text strong { display: block; font-size: 1.04rem; margin-bottom: 0.3rem; }
-    .port-cta-text p { font-size: 0.83rem; color: var(--text-soft); line-height: 1.55; }
+    .port-cta-text p { font-size: 0.83rem; color: var(--text-soft); line-height: 1.55;font-family: var(--font-body); }
     .btn-sm { align-self: flex-start; font-size: 0.85rem; padding: 0.56rem 1.1rem; }
     .port-footer-note { margin-top: 1.6rem; font-size: 0.85rem; color: var(--text-mute); }
     .port-footer-note strong { color: var(--text-soft); }
@@ -1474,7 +1483,7 @@
     /* ── ABOUT ── */
     #about { border-top: 1px solid var(--border); }
     .about-body { margin-top: 2rem; max-width: 980px; display: grid; grid-template-columns: minmax(0, 1fr) 240px; gap: 1.6rem 2.6rem; align-items: start; }
-    .about-body p { color: var(--text-soft); font-size: 0.94rem; line-height: 1.78; max-width: 36em; }
+    .about-body p { color: var(--text-soft); font-size: 0.94rem; line-height: 1.78; max-width: 36em;font-family: var(--font-body); }
     .about-body p + p { margin-top: 1rem; }
     .about-body strong { color: var(--text); font-weight: 600; }
     details.more { margin-top: 1rem; }
@@ -1610,7 +1619,7 @@
        colabora); nada de inventarle aportaciones concretas. */
     .credit { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border); max-width: 36em; }
     .credit h3 { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-mute); margin-bottom: 0.6rem; }
-    .credit p { color: var(--text-soft); font-size: 0.95rem; line-height: 1.7; margin: 0; }
+    .credit p { color: var(--text-soft); font-size: 0.95rem; line-height: 1.7; margin: 0;font-family: var(--font-body); }
     .credit strong { color: var(--text); }
     /* El bloque de gracias dejo de ser una nota al pie. Lleva imagen, asi que
        necesita respirar mas que un parrafo suelto. */
@@ -1646,7 +1655,7 @@
     .ci--discord { background: rgba(125,134,207,0.14); color: #7d86cf; }
     .ci--gmail   { background: rgba(217,107,88,0.14);  color: #d96b58; }
     .contact-card h3 { font-size: 0.98rem; font-weight: 700; margin-bottom: 0.4rem; }
-    .contact-card p { color: var(--text-soft); font-size: 0.9rem; line-height: 1.55; }
+    .contact-card p { color: var(--text-soft); font-size: 0.9rem; line-height: 1.55;font-family: var(--font-body); }
     /* Antes se enseñaba la URL cruda como texto ("discord.gg/EV8F84fheJ →"). Ahora es
        un boton con el color de la marca y nuestro propio icono, que es como lo resuelve
        cualquier web seria. La direccion sigue viva en el href. */
@@ -1662,7 +1671,7 @@
     .weave::before { background: linear-gradient(to right, transparent, var(--border-lt)); }
     .weave::after { background: linear-gradient(to left, transparent, var(--border-lt)); }
     .weave svg { width: 60px; height: 38px; display: block; }
-    footer { border-top: 1px solid var(--border); padding: 2rem 1.5rem; text-align: center; color: var(--text-mute); font-size: 0.88rem; }
+    footer { border-top: 1px solid var(--border); padding: 2rem 1.5rem; text-align: center; color: var(--text-mute); font-size: 0.88rem;font-family: var(--font-body); }
     /* El separador iba con `--border-lt`, que es un color pensado para LINEAS y
        no para texto: daba 1,39-1,82:1 en los cuatro modos. Pero es un caracter,
        asi que o se lee o no se lee. Con `--text-mute` sube a 4,76-6,22. */
@@ -1807,7 +1816,7 @@
     .mp-credit { margin-top: 0.9rem; font-size: 0.82rem; color: var(--text-mute); }
     .mp-credit a { color: var(--text-soft); }
     .mp-item h3 { font-size: 1.02rem; font-weight: 700; line-height: 1.35; margin: 0; }
-    .mp-item p { color: var(--text-soft); font-size: 0.95rem; line-height: 1.72; max-width: 68ch; }
+    .mp-item p { color: var(--text-soft); font-size: 0.95rem; line-height: 1.72; max-width: 68ch;font-family: var(--font-body); }
     .mp-item p + p { margin-top: 0.85rem; }
     .mp-item code { font-size: 0.86em; background: var(--surface2); border: 1px solid var(--border); border-radius: 4px; padding: 0.05em 0.35em; }
     .mp-catch { border-left: 2px solid var(--gold); padding-left: 0.9rem; }
@@ -2356,6 +2365,7 @@
           <div class="port-badges">
             <span class="badge--lic-arr"><span data-i18n-en>All rights reserved</span><span data-i18n-es hidden>Todos los derechos reservados</span></span>
            <span class="badge--loader" translate="no"> Forge 1.20.1</span>
+           <span class="badge--loader" translate="no"> NeoForge 1.21.1</span>
           </div>
           <span class="port-status"><span data-i18n-en>Reviewed by its creator</span><span data-i18n-es hidden>Revisado por su creador</span></span>
         </div>
@@ -2366,7 +2376,7 @@
             <span class="port-go"><span data-i18n-en>Open on<span translate="no"> CurseForge </span>&rarr;</span><span data-i18n-es hidden>Abrir en<span translate="no"> CurseForge </span>&rarr;</span></span>
           </span>
         </a>
-        <p class="port-desc"><span data-i18n-en>Loader conversion of<span translate="no"> Shaunt </span>and<span translate="no"> Caf&eacute;</span>'s companion-dog mod. <strong>The code was never published</strong>, so I rebuilt it from the finished mod file.</span><span data-i18n-es hidden>Conversión de cargador del mod de perros de compañía de<span translate="no"> Shaunt </span>y<span translate="no"> Caf&eacute;</span>. <strong>El código nunca se publicó</strong>, así que lo rehíce a partir del archivo terminado del mod.</span></p>
+        <p class="port-desc"><span data-i18n-en>Loader conversion of<span translate="no"> Shaunt </span>and<span translate="no"> Caf&eacute;</span>'s companion-dog mod. <strong>The code was never published</strong>, so I rebuilt it from the finished mod file. A<span translate="no"> NeoForge </span>1.21.1 port followed the same way.</span><span data-i18n-es hidden>Conversión de cargador del mod de perros de compañía de<span translate="no"> Shaunt </span>y<span translate="no"> Caf&eacute;</span>. <strong>El código nunca se publicó</strong>, así que lo rehíce a partir del archivo terminado del mod. Un port a<span translate="no"> NeoForge </span>1.21.1 siguió el mismo camino.</span></p>
         <dl class="port-stats">
           <div><dt><span data-i18n-en>Loader</span><span data-i18n-es hidden>Cargador</span></dt><dd><span translate="no">Fabric </span>&rarr;<span translate="no"> Forge</span></dd></div>
           <div><dt><span data-i18n-en>Version</span><span data-i18n-es hidden>Versión</span></dt><dd><span data-i18n-en>1.20.1, unchanged</span><span data-i18n-es hidden>1.20.1, sin cambio</span></dd></div>
@@ -2376,6 +2386,7 @@
         <details class="more more--card">
           <summary><span data-i18n-en>What it took</span><span data-i18n-es hidden>Lo que costó</span></summary>
           <p><span data-i18n-en>Five breeds, twelve coat variants, the golden retriever's digging behaviour and the<span translate="no"> Melody </span>disc, all rebuilt on<span translate="no"> Forge </span>registries and events, with spawns moved to data-driven biome modifiers. I diffed the rebuild back against the original<span translate="no"> jar</span>, boot-tested it on a dedicated server, and its creators reviewed the result.</span><span data-i18n-es hidden>Cinco razas, doce variantes de pelaje, el cavado del golden retriever y el disco<span translate="no"> Melody</span>, todo rehecho sobre los registros y eventos de<span translate="no"> Forge</span>, con los spawns pasados a biome modifiers por datos. Comparé lo rehecho contra el<span translate="no"> jar </span>original, lo probé en un servidor dedicado y sus creadores revisaron el resultado.</span></p>
+          <p><span data-i18n-en>Later, a<span translate="no"> NeoForge </span>1.21.1 port on<span translate="no"> GeckoLib </span>4.8.3: same models, textures and behaviour, rebuilt on<span translate="no"> NeoForge's </span>registries instead of<span translate="no"> Forge's</span>. Boot-tested, and every class and asset checked byte-for-byte against the tested build.</span><span data-i18n-es hidden>Más tarde, un port a<span translate="no"> NeoForge </span>1.21.1 sobre<span translate="no"> GeckoLib </span>4.8.3: mismos modelos, texturas y comportamiento, rehechos sobre los registros de<span translate="no"> NeoForge </span>en vez de los de<span translate="no"> Forge</span>. Probado arrancando el juego, y cada clase y archivo comprobados byte a byte contra la compilación probada.</span></p>
         </details>
         <p class="port-link-ph port-link-ph--autor"><img class="ch ch--autor" src="hshaun-11.webp" width="256" height="235" alt="" aria-hidden="true" loading="lazy" decoding="async"><span><span data-i18n-en>Original by<span translate="no"> Shaunt</span>,<span translate="no"> Caf&eacute; </span>and<span translate="no"> @Hecco</span>. Nothing downloads from here: the page above is theirs.</span><span data-i18n-es hidden>Original de<span translate="no"> Shaunt</span>,<span translate="no"> Caf&eacute; </span>y<span translate="no"> @Hecco</span>. De aquí no se descarga nada: la página de arriba es suya.</span></span></p>
       </div>
