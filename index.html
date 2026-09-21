@@ -220,6 +220,18 @@
   <link rel="preload" as="image" fetchpriority="high"
         imagesrcset="hero-main-654.webp 654w, hero-main-1000.webp 1000w, hero-main.webp 1400w"
         imagesizes="(max-width: 1080px) calc(100vw - 48px), 648px">
+  <!-- Las dos letras que se ven ANTES de nada: la de los titulares y la del
+       boton del menu, que ademas ES el titular entero de 700px para abajo.
+       El navegador no las descubria hasta terminar de leer la hoja, que son
+       146 KB, asi que el primer pintado salia con la letra sustituta y luego
+       saltaba. IBM Plex NO se precarga a proposito: es el cuerpo del texto,
+       va mas abajo, y una cuarta descarga prioritaria le quita ancho de banda
+       a la imagen del hero, que es la que decide el LCP.
+       🚨 crossorigin es OBLIGATORIO aunque el archivo sea del mismo origen:
+       una fuente SIEMPRE se pide en modo CORS, y sin el atributo la precarga
+       no casa con la peticion real y el navegador se la baja DOS veces. -->
+  <link rel="preload" as="font" type="font/woff2" href="fonts/space-grotesk-400-latin.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="fonts/monocraft-700-latin.woff2" crossorigin>
   <link rel="icon" href="favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
@@ -676,11 +688,25 @@
     #legal { padding-top: 4.25rem; padding-bottom: 4.5rem; }
     #about { padding-top: 4.75rem; }
     /* perf: skip rendering off-screen sections until needed (auto remembers size → no jank) */
-    #legal, #about, #contact { content-visibility: auto; contain-intrinsic-size: auto 700px; }
+    #legal { content-visibility: auto; contain-intrinsic-size: auto 1700px; }
+    #about { content-visibility: auto; contain-intrinsic-size: auto 1550px; }
+    #contact { content-visibility: auto; contain-intrinsic-size: auto 680px; }
     /* El portafolio se lleva las fichas, las cifras, el estante, los cuatro
        arreglos y la galeria: 700px de estimacion daban un salto de barra feo
        en el primer render. */
     #portfolio { content-visibility: auto; contain-intrinsic-size: auto 3200px; }
+    /* Tres secciones mas, y las tres de arriba recalibradas. Todos los
+       numeros salen de MEDIR en el navegador a 375 y a 1440 px, no de
+       estimar: es justo lo que fallo con #portfolio, donde 700px contra
+       3.300 reales daban un salto de barra feo.
+       🚨 Y hay una trampa en la propia medida: una seccion que YA lleva
+       content-visibility: auto NO devuelve su altura real en
+       getBoundingClientRect, devuelve el marcador de posicion. Por eso
+       legal/about/contact parecian medir 860px las tres cuando en realidad
+       miden 1.820, 1.713 y 768. Hay que forzarlas a `visible` para medir. */
+    #gallery { content-visibility: auto; contain-intrinsic-size: auto 1000px; }
+    #how-it-works { content-visibility: auto; contain-intrinsic-size: auto 1450px; }
+    #authors { content-visibility: auto; contain-intrinsic-size: auto 1300px; }
 
     /* loaders strip */
     .loaders-strip { padding: 1.4rem 1.5rem; background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
@@ -2042,6 +2068,94 @@
     @media (min-width: 701px) {
       html[data-lang="es"] #hero h1.hero-h1-img img.h1-es { display: block; }
     }
+    /* ────────────────────────── LA LUZ ──────────────────────────
+       Una sola indireccion para toda la pagina: --green-hi, --green-glow y
+       --green-ring YA estan redefinidos en los cuatro combos de tema x acento,
+       asi que --lume los sigue solo. La luz es siempre la del acento activo y
+       aqui no se estrena ni un color: los de los chips y las filas son los que
+       ya llevan sus propios iconos desde antes.
+
+       🚨 Nada de lo de abajo redeclara `transition` en .port-card ni en
+       .contact-card: esa propiedad la usa el fundido de entrada del scroll y
+       redeclararla lo mataria. El encendido va en una capa ::after aparte, que
+       solo anima `opacity` y por tanto no provoca ni layout ni repintado. */
+    :root { --lume: var(--green-hi); --lume-glow: var(--green-glow); --lume-ring: var(--green-ring); }
+
+    /* Luz de ambiente del hero: cae desde arriba y por detras del contenido,
+       como un foco fuera de cuadro. #hero::before ya lleva el vineteado, asi
+       que esta capa va en ::after; #hero recorta con overflow:hidden. */
+    #hero::after { content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+      background: radial-gradient(ellipse 95% 70% at 50% -10%, var(--lume-glow), transparent 62%); }
+
+    /* El punto de "Open for work" respira. Es el unico movimiento de la pagina
+       que no lo dispara el raton, y dice algo: es un piloto de estado, no un
+       adorno. 🚨 El reset global de movimiento reducido deja animation-duration
+       en 0.01ms !important, que con `infinite` seria un parpadeo epilectico en
+       vez de una pausa; por eso aqui se apaga la animacion ENTERA a mano en
+       lugar de confiar en ese reset. */
+    .badge-dot { position: relative; }
+    .badge-dot::after { content: ''; position: absolute; inset: 0; border-radius: 50%;
+      box-shadow: 0 0 0 2px var(--green-hi); animation: lumepulse 2.8s ease-out infinite; }
+    @keyframes lumepulse {
+      0% { transform: scale(1); opacity: 0.55; }
+      70%, 100% { transform: scale(2.6); opacity: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) { .badge-dot::after { animation: none; opacity: 0; } }
+
+    /* Los seis chips del hero se encienden en el color de SU servicio: el mismo
+       que ya lleva el icono del chip y el de su fila en #services. Asi el color
+       significa algo en vez de decorar. */
+    .hs-chip { --chip: var(--lume); --chip-ring: var(--lume-ring); --chip-halo: var(--lume-glow);
+      transition: border-color 0.18s, transform 0.18s, box-shadow 0.18s, color 0.18s; }
+    .hs-chip.svc-copper { --chip: #cc8049; --chip-ring: rgba(204,128,73,0.55);  --chip-halo: rgba(204,128,73,0.13); }
+    .hs-chip.svc-life   { --chip: #5aa83f; --chip-ring: rgba(90,168,63,0.55);   --chip-halo: rgba(90,168,63,0.13); }
+    .hs-chip.svc-loom   { --chip: #cdae7e; --chip-ring: rgba(205,174,126,0.55); --chip-halo: rgba(205,174,126,0.14); }
+    .hs-chip.svc-bridge { --chip: #6f93b8; --chip-ring: rgba(111,147,184,0.55); --chip-halo: rgba(111,147,184,0.14); }
+    .hs-chip.svc-steel  { --chip: #9aa0a8; --chip-ring: rgba(154,160,168,0.55); --chip-halo: rgba(154,160,168,0.14); }
+    .hs-chip.svc-spark  { --chip: #e0b441; --chip-ring: rgba(224,180,65,0.55);  --chip-halo: rgba(224,180,65,0.13); }
+    .hs-chip:hover { border-color: var(--chip-ring); color: var(--text); transform: translateY(-1px);
+      box-shadow: 0 0 0 3px var(--chip-halo), 0 8px 18px -14px var(--chip); }
+    .hs-chip:focus-visible { outline-color: var(--chip); }
+
+    /* Las filas de #services se encienden igual, y sin tocar el HTML: :has() lee
+       el color del icono que ya esta dentro de la fila. Si algun navegador no
+       soportara :has(), la regla se cae sola y la fila se enciende con la luz
+       del acento, que es el valor de partida. */
+    .svc-row { position: relative; --svc: var(--lume); --svc-soft: var(--lume-glow);
+      transition: border-color 0.22s ease; }
+    .svc-row:has(.svc-copper) { --svc: #cc8049; --svc-soft: rgba(204,128,73,0.10); }
+    .svc-row:has(.svc-life)   { --svc: #5aa83f; --svc-soft: rgba(90,168,63,0.10); }
+    .svc-row:has(.svc-loom)   { --svc: #cdae7e; --svc-soft: rgba(205,174,126,0.11); }
+    .svc-row:has(.svc-bridge) { --svc: #6f93b8; --svc-soft: rgba(111,147,184,0.11); }
+    .svc-row:has(.svc-steel)  { --svc: #9aa0a8; --svc-soft: rgba(154,160,168,0.11); }
+    .svc-row:has(.svc-spark)  { --svc: #e0b441; --svc-soft: rgba(224,180,65,0.10); }
+    /* El -0.9rem sale del aire de la seccion (1.5rem), asi que la luz desborda
+       la fila pero NO la caja: comprobado que no aparece barra horizontal. */
+    .svc-row::before { content: ''; position: absolute; inset: 0 -0.9rem; border-radius: var(--radius);
+      pointer-events: none; opacity: 0; transition: opacity 0.22s ease;
+      background: linear-gradient(90deg, var(--svc-soft), transparent 62%); }
+    .svc-row:hover::before, .svc-row:focus-within::before { opacity: 1; }
+    .svc-row:hover, .svc-row:focus-within { border-bottom-color: var(--svc); }
+    .svc-icon { transition: box-shadow 0.22s ease; }
+    .svc-row:hover .svc-icon, .svc-row:focus-within .svc-icon { box-shadow: 0 0 0 5px var(--svc-soft); }
+
+    /* Filo encendido en las fichas. La sombra va por DENTRO a proposito:
+       .port-card y .contact-card llevan overflow:hidden y recortarian cualquier
+       halo que saliera fuera, asi que un halo exterior no se veria nunca. */
+    .port-card::after, .contact-card::after {
+      content: ''; position: absolute; inset: 0; border-radius: inherit;
+      pointer-events: none; opacity: 0; transition: opacity 0.22s ease;
+      box-shadow: inset 0 0 0 1px var(--lume-ring), inset 0 26px 44px -34px var(--lume); }
+    .port-card:hover::after, .contact-card:hover::after,
+    .port-card:focus-within::after, .contact-card:focus-within::after { opacity: 1; }
+
+    /* Las casillas del estante toman la luz del acento en vez del gris de antes. */
+    .tile:hover { border-color: var(--lume-ring); box-shadow: 0 0 0 3px var(--lume-glow); }
+
+    /* El filo del papel rasgado atrapa la luz, como un canto iluminado. */
+    .torn-sep::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 1px;
+      pointer-events: none; opacity: 0.55;
+      background: linear-gradient(90deg, transparent, var(--lume-ring) 25%, var(--lume-ring) 75%, transparent); }
   </style>
   <script>
     (function(){
