@@ -2170,7 +2170,45 @@
     .torn-sep::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 1px;
       pointer-events: none; opacity: 0.55;
       background: linear-gradient(90deg, transparent, var(--lume-ring) 25%, var(--lume-ring) 75%, transparent); }
-  </style>
+      /* -- DETALLES DE PIXEL ART (josda 2026-09-23) ---------------------------
+       Las lineas finas de la pagina hacen de SUELO: casi todos van posados
+       sobre un borde que ya existia, cada uno en un sitio distinto. Nada de
+       `pixelated`: ninguno llego en rejilla entera (medido) y todos se
+       REDUCEN. Los animados llevan un <picture> que da el primer frame quieto
+       a quien pide menos movimiento. Son decoracion: aria-hidden y sin alt. */
+    .px { display: block; height: auto; pointer-events: none; user-select: none; }
+    .px img { display: block; width: 100%; height: auto; }
+    .shelf, .packwork, .credit, .deal-col, .loomd-wrap { position: relative; }
+    .px--cerdo { position: absolute; bottom: 100%; right: 9%; width: 56px; margin-bottom: -2px; }
+    .px--pato { position: absolute; bottom: 100%; right: 22%; width: 42px; margin-bottom: -3px; }
+    .px--girasol { position: absolute; bottom: 100%; right: 0; width: 34px; margin-bottom: -2px; }
+    .px--gota { position: absolute; top: -13px; right: 18px; width: 18px; }
+    /* El logo de Fabric junto a SU nombre en el diagrama. Anclado al centro,
+       como el salmon: el diagrama esta centrado y encoge (x0,584 a 375 px). */
+    .px--fabric { position: absolute; left: calc(50% - min(72px, 12.4vw)); top: 3px; width: 22px; }
+    .est-form { position: relative; }
+    .px-bodegon { position: absolute; bottom: 100%; left: 1.3rem; display: flex; align-items: flex-end; gap: 0.25rem; margin-bottom: -3px; }
+    .px--loro { position: absolute; bottom: 100%; right: 1.4rem; width: 32px; margin-bottom: -3px; }
+    /* el salmon nada CONTRA la flecha Fabric -> NeoForge (va hacia la izquierda y
+       la flecha baja hacia la derecha): el backport es eso, ir contra corriente.
+       Anclado al centro porque el diagrama esta centrado y encoge con la pantalla. */
+    .px--salmon { position: absolute; left: calc(50% + min(150px, 26vw)); top: min(150px, 27vw); width: 64px; }
+    .px--sobre { display: inline-block; width: 22px; vertical-align: -4px; margin-right: 0.45rem; border-radius: 4px; }
+    .px--paloma { display: inline-block; width: 50px; margin-left: 0.7rem; vertical-align: 0.1em; transform: rotate(-7deg); }
+    .px-fogon { display: flex; justify-content: center; align-items: flex-end; gap: 0.35rem; margin: -0.4rem 0 1.1rem; }
+    .px--capibara { width: 64px; }
+    .px--fogata { width: 42px; }
+    .px--firma { display: inline-block; width: 18px; vertical-align: -3px; margin-right: 0.4rem; }
+    .px-frutas { display: flex; justify-content: flex-end; align-items: flex-end; gap: 0.3rem; margin-top: 0.9rem; }
+    .px--ciruela { width: 24px; }
+    .px--naranja, .px--manzana { width: 20px; }
+    @media (max-width: 600px) {
+      .px--cerdo { width: 46px; right: 4%; }
+      .px--salmon { width: 46px; }
+      .px--fabric { width: 16px; left: calc(50% - 11.6vw); }
+      .px--paloma { width: 40px; }
+    }
+</style>
   <script>
     (function(){
       var root=document.documentElement, KEY='mw-theme', KEYA='mw-accent', KEYL='mw-lang';
@@ -2419,6 +2457,8 @@
     <p class="sub"><span data-i18n-en>The same content comes out the other side. Your pack keeps the mod instead of losing it to a version bump.</span><span data-i18n-es hidden>Sale el mismo contenido del otro lado. Tu pack se queda con el mod en vez de perderlo por un salto de versión.</span></p>
 
     <figure class="loomd-wrap">
+      <img class="px px--fabric" src="deco-fabric.webp" width="89" height="96" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      <picture class="px px--salmon" aria-hidden="true"><source media="(prefers-reduced-motion: reduce)" srcset="deco-salmon-quieto.webp"><img src="deco-salmon.webp" width="144" height="100" alt="" loading="lazy" decoding="async"></picture>
       <svg class="loomd" viewBox="0 0 600 432" role="img" aria-labelledby="ldt ldd" preserveAspectRatio="xMidYMid meet">
       <title id="ldt"><span data-i18n-en>Moving a mod between loaders</span><span data-i18n-es hidden>Mover un mod entre cargadores</span></title>
       <desc id="ldd"><span data-i18n-en><span translate="no">Fabric</span>,<span translate="no"> NeoForge </span>and<span translate="no"> Forge</span>, each joined to the other two, with arrows pointing both ways.</span><span data-i18n-es hidden><span translate="no">Fabric</span>,<span translate="no"> NeoForge </span>y<span translate="no"> Forge</span>, unidos cada uno con los otros dos y con flechas en ambos sentidos.</span></desc>
@@ -2501,6 +2541,7 @@
           <p><span data-i18n-en>Rebuilt the per-player data system on native data attachments, dropping the<span translate="no"> Blueprint </span>dependency at the creator's suggestion, and moved the food-stat tweaks to the 1.21 component system. Boot-tested in-game, in survival.</span><span data-i18n-es hidden>Rehíce el sistema de datos por jugador sobre los data attachments nativos, quitando la dependencia de<span translate="no"> Blueprint </span>a sugerencia del creador, y pasé los ajustes de comida al sistema de componentes de 1.21. Probado arrancando el juego, en supervivencia.</span></p>
         </details>
         <p class="port-link-ph port-link-ph--autor"><img class="ch ch--autor" src="h9478c-12.webp" width="256" height="236" alt="" aria-hidden="true" loading="lazy" decoding="async"><span><span data-i18n-en>Original by<span translate="no"> camcam_burger</span>. The page above is his.</span><span data-i18n-es hidden>Original de<span translate="no"> camcam_burger</span>. La página de arriba es suya.</span></span></p>
+        <div class="px-frutas" aria-hidden="true"><img class="px px--manzana" src="deco-manzana.webp" width="51" height="64" alt="" aria-hidden="true" loading="lazy" decoding="async"></div>
       </div>
 
       <div class="port-card">
@@ -2778,6 +2819,7 @@
 
     <div class="estimator reveal">
       <div class="est-form">
+        <div class="px-bodegon" aria-hidden="true"><img class="px px--ciruela" src="deco-ciruela.webp" width="74" height="96" alt="" aria-hidden="true" loading="lazy" decoding="async"></div>
         <div class="est-group" id="grp-service">
           <div class="est-label"><span data-i18n-en>What kind of job?</span><span data-i18n-es hidden>¿Qué tipo de trabajo?</span></div>
           <div class="est-options" data-group="service">
@@ -2831,6 +2873,7 @@
       </div>
 
       <div class="est-result">
+        <img class="px px--gota" src="deco-gota.webp" width="35" height="43" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <div class="est-result-label"><span data-i18n-en>Ready to send</span><span data-i18n-es hidden>Listo para enviar</span></div>
         <div class="est-summary" id="est-summary"></div>
         <a class="btn btn-discord est-discord" id="est-discord" href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg><span><span data-i18n-en>Copy &amp; open <span translate="no">Discord</span></span><span data-i18n-es hidden>Copiar y abrir <span translate="no">Discord</span></span></span></a>
@@ -2916,7 +2959,7 @@
         <h2><span data-i18n-en>How a job works</span><span data-i18n-es hidden>Cómo va un encargo</span></h2>
     <p class="sub"><span data-i18n-en>All in writing. No calls and no meetings.</span><span data-i18n-es hidden>Todo por escrito. Sin llamadas ni reuniones.</span></p>
     <div class="steps">
-      <div class="step"><div class="step-n">01</div><h3><span data-i18n-en>Send me the mod</span><span data-i18n-es hidden>Mándame el mod</span></h3><p><span data-i18n-en>Message the mod link and what you need. Open-source or licensed, both work.</span><span data-i18n-es hidden>Escríbeme con el enlace del mod y lo que necesitas. Sirve tanto de código abierto como con licencia.</span></p></div>
+      <div class="step"><div class="step-n">01</div><h3><img class="px px--sobre" src="tile-envelope.png" width="56" height="56" alt="" aria-hidden="true" loading="lazy" decoding="async"><span data-i18n-en>Send me the mod</span><span data-i18n-es hidden>Mándame el mod</span></h3><p><span data-i18n-en>Message the mod link and what you need. Open-source or licensed, both work.</span><span data-i18n-es hidden>Escríbeme con el enlace del mod y lo que necesitas. Sirve tanto de código abierto como con licencia.</span></p></div>
       <div class="step"><div class="step-n">02</div><h3><span data-i18n-en>Flat quote</span><span data-i18n-es hidden>Precio cerrado</span></h3><p><span data-i18n-en>I look over the mod and reply with a fixed price and a timeline. No scope creep once we've agreed.</span><span data-i18n-es hidden>Reviso el mod y te contesto con un precio fijo y un plazo. Una vez acordado, el alcance no crece.</span></p></div>
       <div class="step"><div class="step-n">03</div><h3><span data-i18n-en>Agree &amp; start</span><span data-i18n-es hidden>Acordar y empezar</span></h3><p><span data-i18n-en>We lock the scope and price in writing. <strong>Payment terms depend on the size of the job:</strong> smaller jobs are typically paid once you have seen the build run, larger jobs can be split into milestones agreed in writing before I start.</span><span data-i18n-es hidden>Dejamos el alcance y el precio por escrito. <strong>La forma de pago depende del tamaño del encargo:</strong> los pequeños suelen pagarse cuando ya has visto la compilación funcionando, y los grandes se pueden dividir en hitos acordados por escrito antes de empezar.</span></p></div>
       <div class="step"><div class="step-n">04</div><h3><span data-i18n-en>I build it</span><span data-i18n-es hidden>Lo hago</span></h3><p><span data-i18n-en>Every job gets its own timeline, agreed before I touch anything. <strong>If you have a hard date, say so first:</strong> I will either commit to it in writing or turn the job down.</span><span data-i18n-es hidden>Cada encargo lleva su propio plazo, acordado antes de que toque nada. <strong>Si tienes una fecha que no se mueve, dilo desde el principio:</strong> o me comprometo por escrito o rechazo el trabajo.</span></p></div>
@@ -2958,6 +3001,7 @@
 
     <div class="deal-cols">
       <div class="deal-col">
+        <picture class="px px--loro" aria-hidden="true"><source media="(prefers-reduced-motion: reduce)" srcset="deco-loro-quieto.webp"><img src="deco-loro.webp" width="76" height="104" alt="" loading="lazy" decoding="async"></picture>
         <div class="deal-head"><span data-i18n-en>You get</span><span data-i18n-es hidden>Tú te llevas</span></div>
         <ul class="deal-list">
           <li><span data-i18n-en>The<span translate="no"> port</span>, at no cost.</span><span data-i18n-es hidden>El<span translate="no"> port</span>, sin coste.</span></li>
@@ -3009,7 +3053,7 @@
   <img class="ch ch--borde" src="h512-22.webp" width="256" height="235" style="right:calc(50% + 530px + 18px);top:360px;--h:190px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="ch ch--borde" src="h1024-33.webp" width="256" height="235" style="left:calc(50% + 530px + 18px);top:150px;--h:190px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
-        <h2><span data-i18n-en>Send me the mod</span><span data-i18n-es hidden>Mándame el mod</span></h2>
+        <h2><span data-i18n-en>Send me the mod</span><span data-i18n-es hidden>Mándame el mod</span><img class="px px--paloma" src="deco-paloma.webp" width="90" height="60" alt="" aria-hidden="true" loading="lazy" decoding="async"></h2>
     <p class="sub"><span data-i18n-en>Everything starts with a ticket in my server, and each case gets looked at on its own.</span><span data-i18n-es hidden>Todo empieza con un ticket en mi servidor, y cada caso se mira por separado.</span></p>
     <div class="contact-cards">
       <div class="contact-card contact-card--primary">
@@ -3117,9 +3161,10 @@
         <div class="legal-doc-body">
           <p><span data-i18n-en><strong>Mods.</strong> I only work on mods you have the right to modify: open-source, your own, or with the author's permission. Open-source<span translate="no"> ports </span>I publish keep the original licence and credit the original author; closed-source work stays private.</span><span data-i18n-es hidden><strong>Mods.</strong> Solo trabajo sobre mods que tengas derecho a modificar: de código abierto, tuyos, o con permiso del autor. Los<span translate="no"> ports </span>de código abierto que publico mantienen la licencia original y acreditan al autor original; el trabajo de código cerrado se queda privado.</span></p>
           <p><span data-i18n-en><strong>This website.</strong> The design, the words and the artwork here are ©<span translate="no"> Modwright</span>. Please don't reuse them without asking me first. Mod logos, mod icons and in-game captures belong to their authors and to<span translate="no"> Mojang Studios</span>, and appear here only to identify the work they refer to.</span><span data-i18n-es hidden><strong>Esta web.</strong> El diseño, los textos y el arte de aquí son ©<span translate="no"> Modwright</span>. No los reutilices sin pedírmelo antes. Los logos e iconos de mods y las capturas del juego pertenecen a sus autores y a<span translate="no"> Mojang Studios</span>, y aparecen aquí solo para identificar el trabajo al que se refieren.</span></p>
+          <p><span data-i18n-en><strong>Small pixel-art details.</strong> A few of the little figures around the page are not mine, and belong to their authors: the parrot, the salmon and the campfire come from<span translate="no"> Minecraft </span>(<span translate="no">Mojang Studios</span>); the messenger pigeon from<span translate="no"> Envelope </span>(GPLv3); the water drop from<span translate="no"> Thirst Was Taken </span>by<span translate="no"> ghen </span>(MIT); the apple is the<span translate="no"> Mindful Eating </span>logo by<span translate="no"> camcam_burger</span>, and the plum the icon of<span translate="no"> flierfish</span>'s unofficial port (both LGPL); and the roll next to the word<span translate="no"> Fabric </span>is the<span translate="no"> Fabric </span>logo (<span translate="no">FabricMC</span>).</span><span data-i18n-es hidden><strong>Los detalles de pixel art.</strong> Algunas de las figuritas de la página no son mías y pertenecen a sus autores: el loro, el salmón y la fogata son de<span translate="no"> Minecraft </span>(<span translate="no">Mojang Studios</span>); la paloma mensajera, de<span translate="no"> Envelope </span>(GPLv3); la gota de agua, de<span translate="no"> Thirst Was Taken</span>, de<span translate="no"> ghen </span>(MIT); la manzana es el logo de<span translate="no"> Mindful Eating</span>, de<span translate="no"> camcam_burger</span>, y la ciruela el icono del port no oficial de<span translate="no"> flierfish </span>(los dos LGPL); y el rollo junto a la palabra<span translate="no"> Fabric </span>es el logo de<span translate="no"> Fabric </span>(<span translate="no">FabricMC</span>).</span></p>
           <p><span data-i18n-en><strong>Fonts.</strong> “Space Grotesk” and “Monocraft” are used under the SIL Open Font License.</span><span data-i18n-es hidden><strong>Tipografías.</strong> “Space Grotesk” y “Monocraft” se usan bajo la licencia SIL Open Font License.</span></p>
           <p><span data-i18n-en><strong>Trademarks.</strong><span translate="no"> Minecraft </span>is a trademark of<span translate="no"> Mojang Studios</span>.<span translate="no"> Forge</span>,<span translate="no"> NeoForge</span>,<span translate="no"> Fabric</span>,<span translate="no"> CurseForge</span>,<span translate="no"> Modrinth </span>and<span translate="no"> BuiltByBit </span>belong to their respective owners. Their names are used here for identification only. This is an independent service with no affiliation or endorsement.</span><span data-i18n-es hidden><strong>Marcas.</strong><span translate="no"> Minecraft </span>es una marca de<span translate="no"> Mojang Studios</span>.<span translate="no"> Forge</span>,<span translate="no"> NeoForge</span>,<span translate="no"> Fabric</span>,<span translate="no"> CurseForge</span>,<span translate="no"> Modrinth </span>y<span translate="no"> BuiltByBit </span>son de sus respectivos dueños. Sus nombres se usan aquí solo para identificar. Este es un servicio independiente, sin afiliación ni respaldo de ninguno.</span></p>
-          <p class="legal-doc-note"><span data-i18n-en>Last updated August 2026.</span><span data-i18n-es hidden>Si algo no coincide, la versión de referencia es la inglesa. Última actualización: agosto de 2026.</span></p>
+          <p class="legal-doc-note"><span data-i18n-en>Last updated September 2026.</span><span data-i18n-es hidden>Si algo no coincide, la versión de referencia es la inglesa. Última actualización: septiembre de 2026.</span></p>
         </div>
       </details>
     </div>
@@ -3217,7 +3262,8 @@
   <img src="band-flight.webp" width="1800" height="1012" alt="My character hanging in the air above an open sea, with the sun going down behind him." loading="lazy" decoding="async">
 </figure>
 <footer>
-  <div><strong style="color:var(--text-soft)"><span translate="no">Modwright</span></strong> <span class="sep">·</span><span translate="no"> Forge </span><span data-i18n-en>1.20.1 mod<span translate="no"> porting </span></span><span data-i18n-es hidden><span translate="no">porting </span>de mods en 1.20.1 </span><span class="sep">·</span> <a href="mod-porting-cost.html">What a<span translate="no"> port </span>costs</a> <span class="sep">·</span> <a href="fabric-to-forge-1-20-1.html"><span translate="no">Fabric </span>to<span translate="no"> Forge</span>: what breaks</a> <span class="sep">·</span> <a href="geckolib-bone-name-crash.html">A crash the compiler can't see</a> <span class="sep">·</span> <a href="#terms"><span data-i18n-en>Terms</span><span data-i18n-es hidden>Condiciones</span></a> <span class="sep">·</span> <a href="#privacy"><span data-i18n-en>Privacy</span><span data-i18n-es hidden>Privacidad</span></a> <span class="sep">·</span> <a href="#licenses"><span data-i18n-en>Licenses</span><span data-i18n-es hidden>Licencias</span></a> <span class="sep">·</span> <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer"><span data-i18n-en>Contact</span><span data-i18n-es hidden>Contacto</span></a></div>
+  <div class="px-fogon" aria-hidden="true"><picture class="px px--fogata" aria-hidden="true"><source media="(prefers-reduced-motion: reduce)" srcset="deco-fogata-quieto.webp"><img src="deco-fogata.webp" width="96" height="90" alt="" loading="lazy" decoding="async"></picture></div>
+  <div><img class="px px--firma" src="deco-cuy-cara.webp" width="96" height="91" alt="" aria-hidden="true" loading="lazy" decoding="async"><strong style="color:var(--text-soft)"><span translate="no">Modwright</span></strong> <span class="sep">·</span><span translate="no"> Forge </span><span data-i18n-en>1.20.1 mod<span translate="no"> porting </span></span><span data-i18n-es hidden><span translate="no">porting </span>de mods en 1.20.1 </span><span class="sep">·</span> <a href="mod-porting-cost.html">What a<span translate="no"> port </span>costs</a> <span class="sep">·</span> <a href="fabric-to-forge-1-20-1.html"><span translate="no">Fabric </span>to<span translate="no"> Forge</span>: what breaks</a> <span class="sep">·</span> <a href="geckolib-bone-name-crash.html">A crash the compiler can't see</a> <span class="sep">·</span> <a href="#terms"><span data-i18n-en>Terms</span><span data-i18n-es hidden>Condiciones</span></a> <span class="sep">·</span> <a href="#privacy"><span data-i18n-en>Privacy</span><span data-i18n-es hidden>Privacidad</span></a> <span class="sep">·</span> <a href="#licenses"><span data-i18n-en>Licenses</span><span data-i18n-es hidden>Licencias</span></a> <span class="sep">·</span> <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer"><span data-i18n-en>Contact</span><span data-i18n-es hidden>Contacto</span></a></div>
   <div class="perfiles"><img class="discord-badge" src="discord-server-icon.webp" width="120" height="120" alt="" loading="lazy" decoding="async"><span data-i18n-en>Talk to me on </span><span data-i18n-es hidden>Háblame por </span><a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" translate="no">Discord</a> <span class="sep">·</span> <span data-i18n-en>also on </span><span data-i18n-es hidden>también en </span><a href="https://www.curseforge.com/members/danisansietev/projects" target="_blank" rel="noopener noreferrer" translate="no">CurseForge</a> <span class="sep">·</span> <a href="https://github.com/Dheightsan" target="_blank" rel="noopener noreferrer" translate="no">GitHub</a> <span class="sep">·</span> <a href="https://builtbybit.com/members/modwrightstudios.891720/" target="_blank" rel="noopener noreferrer" translate="no">BuiltByBit</a></div>
   <div class="perfiles"><span data-i18n-en>The same<span translate="no"> Discord </span>is also a small community: people share their own ports and builds there and help each other out, not just tickets.</span><span data-i18n-es hidden>Ese mismo<span translate="no"> Discord </span>es también una pequeña comunidad: ahí la gente comparte sus propios ports y builds, y se ayuda entre todos, no solo tickets.</span></div>
   <div class="perfiles"><span data-i18n-en>This website was built with AI assistance. The<span translate="no"> porting </span>work is done by hand.</span><span data-i18n-es hidden>Esta web se hizo con ayuda de IA. El trabajo de<span translate="no"> porting </span>está hecho a mano.</span></div>
