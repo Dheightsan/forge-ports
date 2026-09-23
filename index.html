@@ -211,15 +211,15 @@
   ]
 }
   </script>
-  <!-- El LCP (la captura del hero) se descubria en el byte 145.221 del HTML, o
+  <!-- 2026-09-23: el LCP ya no es la captura sino el banner de la comunidad
+       (comunidad.webp, un solo tamano, sin srcset), asi que basta el href.
+       El LCP (la captura del hero) se descubria en el byte 145.221 del HTML, o
        sea al 46% del flujo: el navegador no sabia que existia hasta leer medio
        documento. Con el precargado empieza a pedirla de inmediato.
        ⚠️ Lleva `imagesrcset` e `imagesizes` COPIADOS del <img>, no un `href`
        pelado: si no coinciden, el navegador precarga un tamano y luego pide OTRO
        al encontrar la etiqueta, o sea que se descargan las dos. -->
-  <link rel="preload" as="image" fetchpriority="high"
-        imagesrcset="hero-main-654.webp 654w, hero-main-1000.webp 1000w, hero-main.webp 1400w"
-        imagesizes="(max-width: 1080px) calc(100vw - 48px), 648px">
+  <link rel="preload" as="image" fetchpriority="high" href="comunidad.webp">
   <!-- Las dos letras que se ven ANTES de nada: la de los titulares y la del
        boton del menu, que ademas ES el titular entero de 700px para abajo.
        El navegador no las descubria hasta terminar de leer la hoja, que son
@@ -668,10 +668,9 @@
     /* "You get" iba con --text-mute y daba 4,14:1 en oscuro+calido: el UNICO
        fallo de contraste de los 847 fragmentos de ese modo. Con --text-soft, 7,4. */
     .deal-head { color: var(--text-soft); }
-    /* El pie de la captura del hero cae sobre el degradado de sombra de la propia
-       imagen, asi que su fondo NO es plano: en claro va de 4,77 a 2,63:1 segun el
-       tramo. Con --text-soft el peor tramo sube a 4,0 y el resto a 7,0. */
-    html[data-theme="light"] .hero-art-note { color: var(--text-soft); }
+    /* El pie de josda, ya en la galeria: en claro con --text-soft (en el hero
+       caia sobre la sombra de la foto y --text-mute no llegaba a 4,5:1). */
+    html[data-theme="light"] .pack-note { color: var(--text-soft); }
     /* El rotulo NeoForge del diagrama usaba --terracotta, pensado para fondo
        oscuro: 2,88:1 sobre crema, por debajo del 3,0 de texto grande. Se cambia
        SOLO la variable del diagrama, no --terracotta, que es FONDO de tres
@@ -1607,8 +1606,25 @@
        comiera la seccion ahora que hay retrato, y quedaba peor: la rejilla de debajo
        si va a 1060 y el borde derecho quedaba desigual, que se lee como fallo y no
        como decision. */
-    .pack-lead { margin: 0; }
-    .pack-lead img { display: block; width: 100%; height: auto; border-radius: var(--radius); border: 1px solid var(--border); }
+    .pack-yo { margin: 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-areas: "a b" "n n"; gap: 0.7rem; }
+    .pack-yo > img { display: block; width: 100%; height: auto; border-radius: var(--radius); border: 1px solid var(--border); }
+    .pack-yo-a { grid-area: a; }
+    .pack-yo-b { grid-area: b; }
+    .pack-note { grid-area: n; display: flex; align-items: center; gap: 0.9rem; font-size: 0.82rem; line-height: 1.5; color: var(--text-mute); }
+    .retrato { display: block; height: auto; border-radius: 50%; flex-shrink: 0; }
+    .retrato--cuy { width: 64px; }
+    @media (max-width: 720px) { .pack-yo { grid-template-columns: minmax(0, 1fr); grid-template-areas: "a" "n" "b"; } }
+    /* El erizo de la bata y el libro: justo encima de licencias y DMCA. */
+    #legal .retrato--erizo { float: right; width: 128px; margin: 0 0 0.8rem 1.4rem; shape-outside: circle(50%); }
+    #legal .faq-list { clear: both; }
+    @media (max-width: 600px) { #legal .retrato--erizo { width: 80px; margin-left: 0.9rem; } }
+    /* Hito de Puppy Paws: miniatura del cartel + la cifra, con su fuente. */
+    .port-hito { display: flex; align-items: center; gap: 0.7rem; margin: 0 0 0.85rem; padding: 0.4rem 0.6rem; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); }
+    .port-hito-img { flex-shrink: 0; line-height: 0; }
+    .port-hito-img img { width: 38px; height: auto; border-radius: 6px; border: 1px solid var(--border); }
+    .port-hito-img:hover img { border-color: var(--copper); }
+    .port-hito-t { display: flex; flex-direction: column; gap: 0.1rem; margin: 0; font-size: 0.76rem; line-height: 1.35; }
+    .port-hito-t strong { color: var(--text); font-size: 0.86rem; }
     .pack-grid { columns: 3; column-gap: 0.7rem; margin-top: 0.7rem; }
     .pack-grid img { display: block; width: 100%; height: auto; margin-bottom: 0.7rem; break-inside: avoid; border-radius: var(--radius); border: 1px solid var(--border); }
     @media (max-width: 860px) { .pack-grid { columns: 2; } }
@@ -1920,25 +1936,24 @@
     .hero-art { min-width: 0; }
     .hero-art figure { margin: 0; }
     .hero-art img { display: block; width: 100%; height: auto; border-radius: var(--radius-lg); border: 1px solid var(--border-lt); }
-    /* El que posiciona es el stack, NO .hero-art: .hero-art incluye el pie, y
-       colgar la foto pequeña de el la mandaba por debajo del pie y se pisaban. */
-    .hero-art-stack { position: relative; }
-    .hero-art-main img { box-shadow: 0 26px 52px -26px rgba(0,0,0,0.8); }
-    /* Descolgada por abajo a la izquierda: dos rectangulos alineados parecen
-       una galeria; descolgada parece una ventana a un mundo. */
-    .hero-art-note { margin-top: 1.1rem; font-size: 0.78rem; line-height: 1.5; color: var(--text-mute); text-align: right; }
-    /* SEGUNDA captura: el hueco muerto de la derecha volvio.
-       Medido a 1440: la columna de texto acaba en 1224 px y la de la imagen en
-       535, o sea ~690 px de vacio justo en la primera pantalla. Es EL MISMO
-       fallo que creo este hero a dos columnas ("media pantalla vacia al lado"),
-       reabierto porque la columna izquierda fue creciendo despues.
-       Se rellena siguiendo la intencion que ya estaba escrita aqui: subir las
-       panoramicas del pack al hero, en vez de dejarlas a 6000 px de scroll.
-       Solo en escritorio: por debajo de 1080 la columna pasa a `order: -1` y una
-       segunda imagen empujaria el titular aun mas abajo. */
-    .hero-art-extra { margin-top: 1.6rem; }
-    .hero-art-extra img { box-shadow: 0 20px 44px -26px rgba(0,0,0,0.75); }
-    @media (max-width: 1080px) { .hero-art-extra { display: none; } }
+    /* COMUNIDAD en la columna del hero (2026-09-23). El dibujo es recorte a
+       transparente: sin marco ni radio, que dibujarian un rectangulo alrededor
+       de aire. La sombra va con drop-shadow para que siga la silueta. */
+    .hero-comunidad { margin: 0; text-align: center; }
+    .hero-art .hero-comunidad img { width: 100%; max-width: 682px; margin: 0 auto; border: 0; border-radius: 0; filter: drop-shadow(0 18px 24px rgba(0,0,0,0.45)); }
+    html[data-theme="light"] .hero-art .hero-comunidad img { filter: drop-shadow(0 10px 16px rgba(0,0,0,0.16)); }
+    .hc-title { font-family: 'Monocraft', 'Space Grotesk', system-ui, sans-serif; font-weight: 700; font-size: clamp(1.05rem, 2vw, 1.5rem); line-height: 1.25; color: var(--text); margin: 0.9rem 0 0.9rem; }
+    .hc-hi { color: #7d8bff; }
+    html[data-theme="light"] .hc-hi { color: #4753c8; }
+    /* El texto del hero mide ~1.320 px y el banner ~425: quedaban 900 px de
+       hueco a la derecha (el mismo fallo del 29-08). En escritorio el banner
+       ACOMPANA al texto al bajar. #hero pasa de overflow:hidden a clip porque
+       hidden crea contenedor de scroll y ahi sticky no se pega a nada; clip
+       recorta exactamente igual sin crearlo. */
+    @media (min-width: 1081px) {
+      #hero { overflow: clip; }
+      .hero-art { position: sticky; top: 5.5rem; }
+    }
     /* Por debajo de 1080 no caben dos columnas con el titular a este cuerpo. La
        imagen pasa ARRIBA DEL TODO y en banda: lo visual tiene que aparecer
        antes que el muro de texto, que es justo lo que fallaba. */
@@ -1946,9 +1961,8 @@
       #hero { min-height: 0; padding-top: 2rem; }
       .hero-inner { grid-template-columns: minmax(0, 1fr); gap: 1.6rem; }
       .hero-art { order: -1; }
-      /* sin aspect-ratio ni cover: en movil tambien se estaban recortando */
-      
-      .hero-art-note { margin-top: 0.7rem; text-align: left; }
+      .hero-art { padding-top: 0; }
+      .hc-title { margin: 0.6rem 0 0.7rem; }
     }
 
     /* -- PERSONAJES --------------------------------------------------------
@@ -2375,27 +2389,17 @@
     <p class="hero-trust"><span data-i18n-en>Quotes are free. Nothing is due until the scope, the price and the payment structure are agreed in writing.</span><span data-i18n-es hidden>Cotizar no cuesta nada. No se paga nada hasta que el alcance, el precio y la forma de pago queden acordados por escrito.</span></p>
     </div><!--/hero-copy-->
     <div class="hero-art">
-      <div class="hero-art-stack">
-        <figure class="hero-art-main">
-          <!-- Esta captura es el LCP de la pagina en los dos anchos, o sea la
-               imagen por la que Google mide si carga rapido. Se servia igual a
-               todo el mundo: 1400x788 y 80 KB para un hueco de 327 px en un
-               movil. El `sizes` NO es una estimacion, sale medido: el canal
-               (100vw menos el aire) es constante de 320 a 1080 px, y por encima
-               de 1080 la columna de arte se clava en 648 CSS px (igual a 1440,
-               1600 y 1920). El corte de 1080 es el @media que ya existe.
-               El original se queda como tramo grande: a viewport 1024 se pinta a
-               976 CSS px, que con densidad 2 pide 1952 fisicos, mas de los 1400
-               que tiene. Ahi no sobra nada. Se regenera con tools_hero_srcset.py. -->
-          <img src="hero-main.webp"
-               srcset="hero-main-654.webp 654w, hero-main-1000.webp 1000w, hero-main.webp 1400w"
-               sizes="(max-width: 1080px) calc(100vw - 48px), 648px"
-               width="1400" height="788" alt="My character standing at the edge of a river inside a towering redwood forest, in a heavily modded world." loading="eager" fetchpriority="high" decoding="async">
-        </figure>
-      </div>
-      <p class="hero-art-note"><span data-i18n-en>Me taking in the view from the 600+ Mod Compatibility Lab I run for testing. Like you, I know the version problem first-hand, and every other headache that comes with it.</span><span data-i18n-es hidden>Yo, disfrutando la vista en el Laboratorio de Compatibilidad de 600+ mods que uso para hacer pruebas. Como tú, conozco el problema de versiones de primera mano, y todos los otros dolores de cabeza que trae.</span></p>
-      <figure class="hero-art-extra">
-        <img src="pack-05.webp" width="760" height="428" alt="A modded Minecraft landscape from the 600+ Mod Compatibility Lab." loading="lazy" decoding="async">
+      <!-- La columna del hero es de la COMUNIDAD desde el 2026-09-23 (josda).
+           La captura que habia aqui y su pie, que escribio el, estan ahora
+           al principio de #gallery. El dibujo viene SIN el rotulo ni el boton
+           que traia horneados: el rotulo tiene que traducirse y el boton
+           pulsarse, asi que los dos son HTML. Es el LCP en los dos anchos. -->
+      <figure class="hero-comunidad">
+        <img src="comunidad.webp" width="682" height="287" alt="Pixel-art banner of the Modwright community: the guinea pig in work overalls holding a wrench, a flying moth, a grass block shaped like the Discord logo, and the hedgehog in a lab coat holding a book." loading="eager" fetchpriority="high" decoding="async">
+        <figcaption>
+          <p class="hc-title"><span data-i18n-en><span class="hc-hi">Modded</span><span translate="no"> Minecraft </span>community</span><span data-i18n-es hidden>Comunidad de<span translate="no"> Minecraft </span><span class="hc-hi">modded</span></span></p>
+          <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" class="btn btn-discord"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg><span><span data-i18n-en>Join the<span translate="no"> Discord</span></span><span data-i18n-es hidden>Entra al<span translate="no"> Discord</span></span></span></a>
+        </figcaption>
       </figure>
     </div>
   </div>
@@ -2522,6 +2526,14 @@
           <div><dt><span data-i18n-en>Source</span><span data-i18n-es hidden>Origen</span></dt><dd><span data-i18n-en>Rebuilt from the<span translate="no"> jar</span></span><span data-i18n-es hidden>Rehecho desde el<span translate="no"> jar</span></span></dd></div>
           <div><dt><span data-i18n-en>Tested</span><span data-i18n-es hidden>Probado</span></dt><dd><span data-i18n-en>Dedicated server</span><span data-i18n-es hidden>Servidor dedicado</span></dd></div>
         </dl>
+        <!-- El cartel lo hizo josda. La cifra esta COMPROBADA (2026-09-23) en la
+             pestana Files de CurseForge: el archivo de Forge 1.0.2 marca 1,0 K.
+             Ojo, el 8,7 K del proyecto NO es nuestro, suma el Fabric original.
+             Miniatura para no estirar la fila de fichas; el clic abre el cartel. -->
+        <div class="port-hito">
+          <a class="port-hito-img" href="puppy-paws-1000.webp" target="_blank" rel="noopener"><img src="puppy-paws-1000-mini.webp" width="112" height="140" alt="Open the poster celebrating 1,000 Forge downloads of Puppy Paws" loading="lazy" decoding="async"></a>
+          <p class="port-hito-t"><strong><span data-i18n-en>1,000+ downloads on<span translate="no"> Forge</span></span><span data-i18n-es hidden>Más de 1.000 descargas en<span translate="no"> Forge</span></span></strong><a href="https://www.curseforge.com/minecraft/mc-mods/puppy-paws/files/all" target="_blank" rel="noopener noreferrer"><span data-i18n-en>Counted on<span translate="no"> CurseForge</span> &rarr;</span><span data-i18n-es hidden>Contadas en<span translate="no"> CurseForge</span> &rarr;</span></a></p>
+        </div>
         <details class="more more--card">
           <summary><span data-i18n-en>What it took</span><span data-i18n-es hidden>Lo que costó</span></summary>
           <p><span data-i18n-en>Five breeds, twelve coat variants, the golden retriever's digging behaviour and the<span translate="no"> Melody </span>disc, all rebuilt on<span translate="no"> Forge </span>registries and events, with spawns moved to data-driven biome modifiers. I diffed the rebuild back against the original<span translate="no"> jar</span>, boot-tested it on a dedicated server, and its creators reviewed the result.</span><span data-i18n-es hidden>Cinco razas, doce variantes de pelaje, el cavado del golden retriever y el disco<span translate="no"> Melody</span>, todo rehecho sobre los registros y eventos de<span translate="no"> Forge</span>, con los spawns pasados a biome modifiers por datos. Comparé lo rehecho contra el<span translate="no"> jar </span>original, lo probé en un servidor dedicado y sus creadores revisaron el resultado.</span></p>
@@ -2829,80 +2841,6 @@
   </div>
 </section>
 <!-- GALLERY -->
-<section id="gallery">
-  <div class="wrap">
-    <div class="pack-shots">
-      <figure class="pack-lead">
-        <img src="pack-01.webp" width="1200" height="675" alt="A villager outside a wooden house in a heavily modded world, with custom flowers and trees around it." loading="lazy" decoding="async">
-      </figure>
-      <!-- 🚨 LA GALERIA NO SE ABRE ENTERA (peticion de josda 2026-08-30).
-           Eran 50 fotos seguidas: un muro que enterraba todo lo que va debajo.
-           A la vista quedan la principal y SEIS; el resto entra tras un clic.
-           ⚠ CUALES son esas seis ya NO lo decide este orden: desde el 11-09 el
-           JS del pie baraja las 50 de las dos rejillas juntas y reparte, asi
-           que en cada carga salen seis distintas. Este orden solo manda si el
-           JS no corre. Lo que SI sigue fijo: la foto grande de arriba
-           (.pack-lead) y las tres ultimas de la rejilla de abajo. -->
-      <div class="pack-grid">
-        <img src="pack-02.webp" width="760" height="428" alt="An enormous skeleton lying across a flooded clearing between giant redwoods, seen from above." loading="lazy" decoding="async">
-        <img src="pack-04.webp" width="760" height="428" alt="A large ornate structure of dark stone and gold beside a lava fall in the Nether, lit by soul fire." loading="lazy" decoding="async">
-        <img src="pack-26.webp" width="760" height="428" alt="A stone castle courtyard with a garden, several armored villagers gathered together, red mushrooms nearby and autumn trees beyond the walls." loading="lazy" decoding="async">
-        <img src="pack-31.webp" width="760" height="428" alt="An orange-striped tiger resting among pink blossoms under a dark tree, with a red-eyed creature watching from behind." loading="lazy" decoding="async">
-        <img src="pack-44.webp" width="760" height="428" alt="A small palm-tree island reflected in calm water at sunrise, with a black and white bird flying overhead." loading="lazy" decoding="async">
-        <img src="pack-52.webp" width="760" height="428" alt="A tall wooden house with a spiral shingled roof, on a grassy cliff overlooking the sea." loading="lazy" decoding="async">
-      </div>
-      <details class="pack-more">
-        <summary><span data-i18n-en>Show the other 44 photos</span><span data-i18n-es hidden>Ver las otras 44 fotos</span></summary>
-        <div class="pack-grid">
-          <img src="pack-05.webp" width="760" height="428" alt="Three bears gathered on a stone platform in a birch and pine forest." loading="lazy" decoding="async">
-          <img src="pack-06.webp" width="760" height="428" alt="A window set into the trunk of a huge tree at sunset, with birch trees behind it." loading="lazy" decoding="async">
-          <img src="pack-08.webp" width="760" height="428" alt="A pillager riding an orange boar through bright green forest undergrowth." loading="lazy" decoding="async">
-          <img src="pack-10.webp" width="760" height="428" alt="A capybara resting on open grassland under a clear sky." loading="lazy" decoding="async">
-          <img src="pack-11.webp" width="669" height="578" alt="A tall red villager and a blue-robed wizard holding a staff, standing on a snow field." loading="lazy" decoding="async">
-          <img src="pack-13.webp" width="760" height="428" alt="A pale moth flying at night over a patch of pumpkins in a dark forest, with a snowy peak on the horizon." loading="lazy" decoding="async">
-          <img src="pack-14.webp" width="760" height="428" alt="My character standing beside a large bear on a grassy slope in early morning light." loading="lazy" decoding="async">
-          <img src="pack-15.webp" width="760" height="428" alt="My character sitting on a pale stone shore between a bear and its cub." loading="lazy" decoding="async">
-          <img src="pack-16.webp" width="760" height="428" alt="A small white and blue creature with wide eyes sitting among bright jungle leaves." loading="lazy" decoding="async">
-          <img src="pack-17.webp" width="760" height="562" alt="A pig standing next to my character on open grassland under a clear sky." loading="lazy" decoding="async">
-          <img src="pack-18.webp" width="760" height="428" alt="My character on a mossy ledge at sunset, facing a large pink animal across a canyon." loading="lazy" decoding="async">
-          <img src="pack-19.webp" width="760" height="428" alt="A tall white wading bird on a sandy shore beside turquoise water and sandstone cliffs." loading="lazy" decoding="async">
-          <img src="pack-20.webp" width="760" height="428" alt="A brown and white cow standing in tall savanna grass under acacia trees." loading="lazy" decoding="async">
-          <img src="pack-21.webp" width="760" height="428" alt="Inside a raised wooden lodge with villagers and lanterns, looking out over a green forest." loading="lazy" decoding="async">
-          <img src="pack-22.webp" width="760" height="428" alt="A pig on the orange terraces of a badlands canyon at sunset." loading="lazy" decoding="async">
-          <img src="pack-23.webp" width="760" height="428" alt="A black and white cow in savanna grass beneath acacia trees." loading="lazy" decoding="async">
-          <img src="pack-24.webp" width="760" height="428" alt="A small pink-eared rabbit-like creature and a gray hedgehog near a patch of purple flowers." loading="lazy" decoding="async">
-          <img src="pack-25.webp" width="760" height="428" alt="A close view of several villagers in diamond and iron armor gathered in a stone courtyard garden." loading="lazy" decoding="async">
-          <img src="pack-27.webp" width="760" height="428" alt="A red panda-like creature in tall grass beside a lake, with dark woven structures and pink terracotta nearby." loading="lazy" decoding="async">
-          <img src="pack-28.webp" width="760" height="428" alt="A small flock of white and black sheep in a grass field, with a floating jungle island in the distance." loading="lazy" decoding="async">
-          <img src="pack-29.webp" width="760" height="428" alt="A yellow lion-like creature standing in golden savanna grass among baobab trees." loading="lazy" decoding="async">
-          <img src="pack-30.webp" width="760" height="428" alt="Two pigs standing in a meadow of purple flowers." loading="lazy" decoding="async">
-          <img src="pack-32.webp" width="760" height="428" alt="A group of monkeys sitting beneath a banana-leaf palm, with a player in dark armor and glowing eyes crouching nearby." loading="lazy" decoding="async">
-          <img src="pack-33.webp" width="760" height="428" alt="A duck standing among reeds beside a small boat at sunrise over a misty lake." loading="lazy" decoding="async">
-          <img src="pack-34.webp" width="760" height="428" alt="A player character drawing a bow in mid-air over grassy hills near a village." loading="lazy" decoding="async">
-          <img src="pack-35.webp" width="760" height="428" alt="A wooden chicken coop with chickens inside and a small hedgehog-like creature outside, near a large windmill building and sunflowers." loading="lazy" decoding="async">
-          <img src="pack-36.webp" width="760" height="428" alt="A player character sitting atop pink and white blossom-covered hills, with buildings in the distance." loading="lazy" decoding="async">
-          <img src="pack-37.webp" width="760" height="428" alt="A tall wooden house on stilts with a red dragonfly-like creature flying above, and a red mushroom nearby." loading="lazy" decoding="async">
-          <img src="pack-38.webp" width="760" height="428" alt="A white and brown goat-like creature standing in a dark forest among purple flowers." loading="lazy" decoding="async">
-          <img src="pack-39.webp" width="760" height="428" alt="A forest clearing at dusk with a stone monument among purple flowers and tall tree trunks." loading="lazy" decoding="async">
-          <img src="pack-40.webp" width="760" height="428" alt="An orange crab-like creature in grass near a stone monument and a small wooden shrine, with red autumn trees and mountains behind." loading="lazy" decoding="async">
-          <img src="pack-41.webp" width="760" height="428" alt="An orange crab-like creature perched on a rocky stone ledge in a forest." loading="lazy" decoding="async">
-          <img src="pack-42.webp" width="760" height="428" alt="A desert oasis with tall palm-like trees on sandstone terrain, and a small colorful bird among the rocks." loading="lazy" decoding="async">
-          <img src="pack-43.webp" width="760" height="428" alt="A rooster-like creature riding a pack animal through tall grass near honeycomb blocks and autumn trees." loading="lazy" decoding="async">
-          <img src="pack-45.webp" width="760" height="428" alt="Underwater shipwreck ruins in deep blue water." loading="lazy" decoding="async">
-          <img src="pack-46.webp" width="760" height="428" alt="Pigs grazing on a mossy hillside among purple flowers at sunset." loading="lazy" decoding="async">
-          <img src="pack-47.webp" width="760" height="428" alt="A dark, bony horse-like creature standing near a wooden house, with a village visible in the distance." loading="lazy" decoding="async">
-          <img src="pack-48.webp" width="760" height="428" alt="A player character beside a spotted cow at sunset by a wooden farmhouse." loading="lazy" decoding="async">
-          <img src="pack-49.webp" width="760" height="428" alt="Pumpkin-topped wooden totems on a lake shore among autumn-orange trees." loading="lazy" decoding="async">
-          <img src="pack-50.webp" width="760" height="428" alt="A green parrot standing in golden savanna grass among acacia trees." loading="lazy" decoding="async">
-          <img src="pack-51.webp" width="760" height="428" alt="A large elephant standing in golden savanna grass among flat-topped trees." loading="lazy" decoding="async">
-          <img src="pack-53.webp" width="760" height="428" alt="Two dark crow-like birds flying over a grassy field, with ruins in the distance." loading="lazy" decoding="async">
-          <img src="pack-54.webp" width="760" height="428" alt="A player character beside a large white-antlered deer, near a stone and timber house." loading="lazy" decoding="async">
-          <img src="pack-55.webp" width="760" height="428" alt="Two villagers indoors, one dressed as a chef in white, beside a stove lit by lantern light." loading="lazy" decoding="async">
-        </div>
-      </details>
-    </div>
-  </div>
-</section>
 
 <!-- ABOUT -->
 <section id="about">
@@ -3114,6 +3052,7 @@
   <img class="ch ch--borde" src="h512-12.webp" width="256" height="245" style="right:calc(50% + 530px + 18px);top:935px;--h:165px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="ch ch--borde" src="h1024-31.webp" width="256" height="236" style="left:calc(50% + 530px + 18px);top:1100px;--h:195px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
+        <img class="retrato retrato--erizo" src="retrato-erizo.webp" width="300" height="300" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <h2 id="faq"><span data-i18n-en>Before you ask</span><span data-i18n-es hidden>Antes de preguntar</span></h2>
     <p class="sub"><span data-i18n-en>Practical answers first, then the paperwork: licences, terms and privacy. Most devs in this space ignore licensing. I don't, because a takedown or an account ban lands on you harder than it lands on me.</span><span data-i18n-es hidden>Primero las respuestas prácticas y después el papeleo: licencias, condiciones y privacidad. Casi nadie en esto se fija en las licencias. Yo sí, porque una retirada o un baneo de cuenta te cae encima a ti más fuerte que a mí.</span></p>
     <div class="faq-list">
@@ -3181,6 +3120,92 @@
           <p><span data-i18n-en><strong>Fonts.</strong> “Space Grotesk” and “Monocraft” are used under the SIL Open Font License.</span><span data-i18n-es hidden><strong>Tipografías.</strong> “Space Grotesk” y “Monocraft” se usan bajo la licencia SIL Open Font License.</span></p>
           <p><span data-i18n-en><strong>Trademarks.</strong><span translate="no"> Minecraft </span>is a trademark of<span translate="no"> Mojang Studios</span>.<span translate="no"> Forge</span>,<span translate="no"> NeoForge</span>,<span translate="no"> Fabric</span>,<span translate="no"> CurseForge</span>,<span translate="no"> Modrinth </span>and<span translate="no"> BuiltByBit </span>belong to their respective owners. Their names are used here for identification only. This is an independent service with no affiliation or endorsement.</span><span data-i18n-es hidden><strong>Marcas.</strong><span translate="no"> Minecraft </span>es una marca de<span translate="no"> Mojang Studios</span>.<span translate="no"> Forge</span>,<span translate="no"> NeoForge</span>,<span translate="no"> Fabric</span>,<span translate="no"> CurseForge</span>,<span translate="no"> Modrinth </span>y<span translate="no"> BuiltByBit </span>son de sus respectivos dueños. Sus nombres se usan aquí solo para identificar. Este es un servicio independiente, sin afiliación ni respaldo de ninguno.</span></p>
           <p class="legal-doc-note"><span data-i18n-en>Last updated August 2026.</span><span data-i18n-es hidden>Si algo no coincide, la versión de referencia es la inglesa. Última actualización: agosto de 2026.</span></p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIA al final (josda 2026-09-23): detras de #legal, que es donde
+     busca quien viene a buscar huecos. Ahi las fotos son la prueba de que
+     el laboratorio de 600+ mods existe. -->
+<section id="gallery">
+  <div class="wrap">
+    <div class="pack-shots">
+      <!-- La captura con la que abria el hero, y su pie tal cual lo escribio
+           josda, viven aqui desde el 2026-09-23. En escritorio van en dos
+           columnas porque pack-05 solo mide 760 px y a todo el ancho se
+           ampliaria; en movil, apiladas con el pie EN MEDIO, que es como
+           las pidio. La foto que abria la galeria (pack-01) pasa a la
+           rejilla, al hueco que deja pack-05: siguen siendo 50 barajadas. -->
+      <figure class="pack-yo">
+        <img class="pack-yo-a" src="hero-main.webp" srcset="hero-main-654.webp 654w, hero-main-1000.webp 1000w, hero-main.webp 1400w" sizes="(max-width: 720px) calc(100vw - 48px), (max-width: 1108px) calc(50vw - 30px), 525px" width="1400" height="788" alt="My character standing at the edge of a river inside a towering redwood forest, in a heavily modded world." loading="lazy" decoding="async">
+        <figcaption class="pack-note"><img class="retrato retrato--cuy" src="retrato-cuy.webp" width="300" height="300" alt="" aria-hidden="true" loading="lazy" decoding="async"><span><span data-i18n-en>Me taking in the view from the 600+ Mod Compatibility Lab I run for testing. Like you, I know the version problem first-hand, and every other headache that comes with it.</span><span data-i18n-es hidden>Yo, disfrutando la vista en el Laboratorio de Compatibilidad de 600+ mods que uso para hacer pruebas. Como tú, conozco el problema de versiones de primera mano, y todos los otros dolores de cabeza que trae.</span></span></figcaption>
+        <img class="pack-yo-b" src="pack-05.webp" width="760" height="428" alt="Three bears gathered on a stone platform in a birch and pine forest." loading="lazy" decoding="async">
+      </figure>
+      <!-- 🚨 LA GALERIA NO SE ABRE ENTERA (peticion de josda 2026-08-30).
+           Eran 50 fotos seguidas: un muro que enterraba todo lo que va debajo.
+           A la vista quedan la principal y SEIS; el resto entra tras un clic.
+           ⚠ CUALES son esas seis ya NO lo decide este orden: desde el 11-09 el
+           JS del pie baraja las 50 de las dos rejillas juntas y reparte, asi
+           que en cada carga salen seis distintas. Este orden solo manda si el
+           JS no corre. Lo que SI sigue fijo: la foto grande de arriba
+           (.pack-yo) y las tres ultimas de la rejilla de abajo. -->
+      <div class="pack-grid">
+        <img src="pack-02.webp" width="760" height="428" alt="An enormous skeleton lying across a flooded clearing between giant redwoods, seen from above." loading="lazy" decoding="async">
+        <img src="pack-04.webp" width="760" height="428" alt="A large ornate structure of dark stone and gold beside a lava fall in the Nether, lit by soul fire." loading="lazy" decoding="async">
+        <img src="pack-26.webp" width="760" height="428" alt="A stone castle courtyard with a garden, several armored villagers gathered together, red mushrooms nearby and autumn trees beyond the walls." loading="lazy" decoding="async">
+        <img src="pack-31.webp" width="760" height="428" alt="An orange-striped tiger resting among pink blossoms under a dark tree, with a red-eyed creature watching from behind." loading="lazy" decoding="async">
+        <img src="pack-44.webp" width="760" height="428" alt="A small palm-tree island reflected in calm water at sunrise, with a black and white bird flying overhead." loading="lazy" decoding="async">
+        <img src="pack-52.webp" width="760" height="428" alt="A tall wooden house with a spiral shingled roof, on a grassy cliff overlooking the sea." loading="lazy" decoding="async">
+      </div>
+      <details class="pack-more">
+        <summary><span data-i18n-en>Show the other 44 photos</span><span data-i18n-es hidden>Ver las otras 44 fotos</span></summary>
+        <div class="pack-grid">
+          <img src="pack-01.webp" width="1200" height="675" alt="A villager outside a wooden house in a heavily modded world, with custom flowers and trees around it." loading="lazy" decoding="async">
+          <img src="pack-06.webp" width="760" height="428" alt="A window set into the trunk of a huge tree at sunset, with birch trees behind it." loading="lazy" decoding="async">
+          <img src="pack-08.webp" width="760" height="428" alt="A pillager riding an orange boar through bright green forest undergrowth." loading="lazy" decoding="async">
+          <img src="pack-10.webp" width="760" height="428" alt="A capybara resting on open grassland under a clear sky." loading="lazy" decoding="async">
+          <img src="pack-11.webp" width="669" height="578" alt="A tall red villager and a blue-robed wizard holding a staff, standing on a snow field." loading="lazy" decoding="async">
+          <img src="pack-13.webp" width="760" height="428" alt="A pale moth flying at night over a patch of pumpkins in a dark forest, with a snowy peak on the horizon." loading="lazy" decoding="async">
+          <img src="pack-14.webp" width="760" height="428" alt="My character standing beside a large bear on a grassy slope in early morning light." loading="lazy" decoding="async">
+          <img src="pack-15.webp" width="760" height="428" alt="My character sitting on a pale stone shore between a bear and its cub." loading="lazy" decoding="async">
+          <img src="pack-16.webp" width="760" height="428" alt="A small white and blue creature with wide eyes sitting among bright jungle leaves." loading="lazy" decoding="async">
+          <img src="pack-17.webp" width="760" height="562" alt="A pig standing next to my character on open grassland under a clear sky." loading="lazy" decoding="async">
+          <img src="pack-18.webp" width="760" height="428" alt="My character on a mossy ledge at sunset, facing a large pink animal across a canyon." loading="lazy" decoding="async">
+          <img src="pack-19.webp" width="760" height="428" alt="A tall white wading bird on a sandy shore beside turquoise water and sandstone cliffs." loading="lazy" decoding="async">
+          <img src="pack-20.webp" width="760" height="428" alt="A brown and white cow standing in tall savanna grass under acacia trees." loading="lazy" decoding="async">
+          <img src="pack-21.webp" width="760" height="428" alt="Inside a raised wooden lodge with villagers and lanterns, looking out over a green forest." loading="lazy" decoding="async">
+          <img src="pack-22.webp" width="760" height="428" alt="A pig on the orange terraces of a badlands canyon at sunset." loading="lazy" decoding="async">
+          <img src="pack-23.webp" width="760" height="428" alt="A black and white cow in savanna grass beneath acacia trees." loading="lazy" decoding="async">
+          <img src="pack-24.webp" width="760" height="428" alt="A small pink-eared rabbit-like creature and a gray hedgehog near a patch of purple flowers." loading="lazy" decoding="async">
+          <img src="pack-25.webp" width="760" height="428" alt="A close view of several villagers in diamond and iron armor gathered in a stone courtyard garden." loading="lazy" decoding="async">
+          <img src="pack-27.webp" width="760" height="428" alt="A red panda-like creature in tall grass beside a lake, with dark woven structures and pink terracotta nearby." loading="lazy" decoding="async">
+          <img src="pack-28.webp" width="760" height="428" alt="A small flock of white and black sheep in a grass field, with a floating jungle island in the distance." loading="lazy" decoding="async">
+          <img src="pack-29.webp" width="760" height="428" alt="A yellow lion-like creature standing in golden savanna grass among baobab trees." loading="lazy" decoding="async">
+          <img src="pack-30.webp" width="760" height="428" alt="Two pigs standing in a meadow of purple flowers." loading="lazy" decoding="async">
+          <img src="pack-32.webp" width="760" height="428" alt="A group of monkeys sitting beneath a banana-leaf palm, with a player in dark armor and glowing eyes crouching nearby." loading="lazy" decoding="async">
+          <img src="pack-33.webp" width="760" height="428" alt="A duck standing among reeds beside a small boat at sunrise over a misty lake." loading="lazy" decoding="async">
+          <img src="pack-34.webp" width="760" height="428" alt="A player character drawing a bow in mid-air over grassy hills near a village." loading="lazy" decoding="async">
+          <img src="pack-35.webp" width="760" height="428" alt="A wooden chicken coop with chickens inside and a small hedgehog-like creature outside, near a large windmill building and sunflowers." loading="lazy" decoding="async">
+          <img src="pack-36.webp" width="760" height="428" alt="A player character sitting atop pink and white blossom-covered hills, with buildings in the distance." loading="lazy" decoding="async">
+          <img src="pack-37.webp" width="760" height="428" alt="A tall wooden house on stilts with a red dragonfly-like creature flying above, and a red mushroom nearby." loading="lazy" decoding="async">
+          <img src="pack-38.webp" width="760" height="428" alt="A white and brown goat-like creature standing in a dark forest among purple flowers." loading="lazy" decoding="async">
+          <img src="pack-39.webp" width="760" height="428" alt="A forest clearing at dusk with a stone monument among purple flowers and tall tree trunks." loading="lazy" decoding="async">
+          <img src="pack-40.webp" width="760" height="428" alt="An orange crab-like creature in grass near a stone monument and a small wooden shrine, with red autumn trees and mountains behind." loading="lazy" decoding="async">
+          <img src="pack-41.webp" width="760" height="428" alt="An orange crab-like creature perched on a rocky stone ledge in a forest." loading="lazy" decoding="async">
+          <img src="pack-42.webp" width="760" height="428" alt="A desert oasis with tall palm-like trees on sandstone terrain, and a small colorful bird among the rocks." loading="lazy" decoding="async">
+          <img src="pack-43.webp" width="760" height="428" alt="A rooster-like creature riding a pack animal through tall grass near honeycomb blocks and autumn trees." loading="lazy" decoding="async">
+          <img src="pack-45.webp" width="760" height="428" alt="Underwater shipwreck ruins in deep blue water." loading="lazy" decoding="async">
+          <img src="pack-46.webp" width="760" height="428" alt="Pigs grazing on a mossy hillside among purple flowers at sunset." loading="lazy" decoding="async">
+          <img src="pack-47.webp" width="760" height="428" alt="A dark, bony horse-like creature standing near a wooden house, with a village visible in the distance." loading="lazy" decoding="async">
+          <img src="pack-48.webp" width="760" height="428" alt="A player character beside a spotted cow at sunset by a wooden farmhouse." loading="lazy" decoding="async">
+          <img src="pack-49.webp" width="760" height="428" alt="Pumpkin-topped wooden totems on a lake shore among autumn-orange trees." loading="lazy" decoding="async">
+          <img src="pack-50.webp" width="760" height="428" alt="A green parrot standing in golden savanna grass among acacia trees." loading="lazy" decoding="async">
+          <img src="pack-51.webp" width="760" height="428" alt="A large elephant standing in golden savanna grass among flat-topped trees." loading="lazy" decoding="async">
+          <img src="pack-53.webp" width="760" height="428" alt="Two dark crow-like birds flying over a grassy field, with ruins in the distance." loading="lazy" decoding="async">
+          <img src="pack-54.webp" width="760" height="428" alt="A player character beside a large white-antlered deer, near a stone and timber house." loading="lazy" decoding="async">
+          <img src="pack-55.webp" width="760" height="428" alt="Two villagers indoors, one dressed as a chef in white, beside a stove lit by lantern light." loading="lazy" decoding="async">
         </div>
       </details>
     </div>
