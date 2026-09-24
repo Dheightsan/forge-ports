@@ -1726,7 +1726,8 @@
        no para texto: daba 1,39-1,82:1 en los cuatro modos. Pero es un caracter,
        asi que o se lee o no se lee. Con `--text-mute` sube a 4,76-6,22. */
     footer .sep { margin: 0 0.5rem; color: var(--text-mute); }
-    footer a { color: var(--text-soft); }
+    footer a { color: var(--text-soft); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--text-mute); }
+    footer a:hover { text-decoration-color: currentColor; }
     /* Los perfiles. Hasta hoy GitHub y BuiltByBit SOLO existian dentro del
        `sameAs` del schema, o sea que los veia Google y no los veia nadie mas.
        En un oficio donde el comprador desconfia por defecto, tener cuenta en
@@ -1735,9 +1736,6 @@
        Van en su propia linea y no metidos en la fila de enlaces legales: ahi
        serian el septimo `·` de una fila que ya es larga. */
     .perfiles { margin-top: 0.85rem; font-size: 0.82rem; color: var(--text-mute); }
-    .perfiles a { color: var(--text-soft); text-decoration: underline;
-      text-underline-offset: 3px; text-decoration-color: var(--border-lt); }
-    .perfiles a:hover { text-decoration-color: currentColor; }
     .discord-badge { width: 18px; height: 18px; vertical-align: -3px; margin-right: 0.35rem; }
 
     @media (max-width: 760px) {
@@ -2179,7 +2177,6 @@
     .px--gota { position: absolute; bottom: calc(100% + 50px); right: 3.1rem; width: 12px; }
     /* El logo de Fabric junto a SU nombre en el diagrama. */
     .px--fabric { position: absolute; left: calc(50% - min(72px, 12.4vw)); top: 3px; width: 22px; }
-    .px--sobre { display: inline-block; width: 22px; vertical-align: -4px; margin-right: 0.45rem; border-radius: 4px; }
     .px-fogon { display: flex; justify-content: center; margin: -0.5rem 0 1rem; }
     .px--fogata { width: 60px; }
     @media (max-width: 600px) {
@@ -2218,9 +2215,10 @@
     .bench-tab { display: inline-flex; align-items: center; gap: 0.5rem; min-height: 44px; padding: 0.5rem 0.95rem; border-radius: 999px; border: 1px solid var(--border-lt); background: transparent; color: var(--text-soft); font: 600 0.84rem/1 var(--font); white-space: nowrap; cursor: pointer; transition: border-color 0.18s ease, background-color 0.18s ease, color 0.18s ease; }
     .bench-tab:hover { border-color: var(--green-ring); color: var(--text); }
     .bench-tab[aria-selected="true"] { background: var(--green-glow); border-color: var(--green-ring); color: var(--text); }
-    .bench-tab:focus-visible { outline: 2px solid var(--green-hi); outline-offset: 2px; }
+    .bench-tab:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
     .bench-n { min-width: 1.6em; padding: 0.2rem 0.45rem; border-radius: 999px; background: var(--surface); color: var(--text-mute); font-size: 0.72rem; text-align: center; font-variant-numeric: tabular-nums; }
-    .bench-tab[aria-selected="true"] .bench-n { color: var(--green-hi); }
+    .bench-tab[aria-selected="true"] .bench-n { color: var(--gold); }
+    .sub a, .proof-note a, .mp-credit a { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
     .bench-panel + .bench-panel { margin-top: 1.8rem; }
     .js-bench .bench-panel + .bench-panel { margin-top: 0; }
     .bench-h { font-size: 0.95rem; font-weight: 700; margin: 0 0 0.4rem; }
@@ -2229,7 +2227,7 @@
     .shelf-grid > li { display: flex; }
     .shelf-grid > li > .tile { flex: 1; min-width: 0; }
     a.tile { text-decoration: none; }
-    a.tile:focus-visible { outline: 2px solid var(--green-hi); outline-offset: 2px; }
+    a.tile:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
     .shelf-grid--rows { grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr)); }
     .tile--row { flex-direction: row; align-items: center; text-align: left; gap: 0.75rem; padding: 0.6rem 0.75rem; border-color: var(--border); }
     .tile--row img, .tile--row .tile-mono { width: 52px; height: 52px; font-size: 0.88rem; }
@@ -2239,6 +2237,41 @@
     .tile-mono--own { background: var(--green-glow); border-color: var(--green-ring); color: var(--green-hi); }
     .tile--row .tile-mono--x { font-size: 1.35rem; font-weight: 400; }
     @media (prefers-reduced-motion: reduce) { .bench-tab { transition: none; } }
+    :root { --mc-slot-bg: #1b1612; --mc-slot-dk: #080605; --mc-slot-lt: #4d4238; }
+    html[data-theme="light"] { --mc-slot-bg: #a8957c; --mc-slot-dk: #4a3a2a; --mc-slot-lt: #efe4d2; }
+    html[data-accent="green"]:not([data-theme="light"]) { --mc-slot-bg: #17211a; --mc-slot-dk: #070a08; --mc-slot-lt: #3a4a3f; }
+    html[data-accent="green"][data-theme="light"] { --mc-slot-bg: #8fa38c; --mc-slot-dk: #2e3f31; --mc-slot-lt: #e3eee0; }
+    html[data-theme="light"] .tile img, html[data-theme="light"] .mc-inv { box-shadow: 0 0 0 1px var(--border-lt); }
+    html[data-theme="light"] .tile:hover img { box-shadow: 0 0 0 1px var(--border-lt), inset 0 0 0 999px rgba(255, 255, 255, 0.12); }
+    html[data-theme="light"] .svc-row:hover .svc-icon.mc-inv, html[data-theme="light"] .svc-row:focus-within .svc-icon.mc-inv { box-shadow: 0 0 0 1px var(--border-lt), 0 0 0 5px var(--svc-soft); }
+    .tile img { box-sizing: content-box; padding: 6px; background: var(--mc-slot-bg); border: 2px solid; border-color: var(--mc-slot-dk) var(--mc-slot-lt) var(--mc-slot-lt) var(--mc-slot-dk); border-radius: 0; }
+    .tile--row img { padding: 4px; }
+    .tile:hover img { box-shadow: inset 0 0 0 999px rgba(255, 255, 255, 0.12); }
+    .bench-tab { border-radius: 3px; border-width: 2px; }
+    .bench-tab[aria-selected="true"] { box-shadow: 0 0 0 1px var(--mc-slot-dk); }
+    .mc-hotbar { display: flex; flex-wrap: wrap; justify-content: center; gap: 0; width: max-content; max-width: 100%; margin: -0.6rem auto 1.8rem; padding: 3px; background: #1f1f1f; border: 2px solid #000; box-shadow: inset 0 0 0 2px #5a5a5a; }
+    .mc-slot { position: relative; display: grid; place-items: center; width: 44px; height: 44px; background: rgba(139, 139, 139, 0.18); border: 2px solid #3a3a3a; }
+    .mc-slot img { width: 32px; height: 32px; image-rendering: pixelated; }
+    .mc-slot.is-sel { border-color: #f2f2f2; box-shadow: 0 0 0 2px #000, inset 0 0 0 1px #000; z-index: 1; }
+    .mc-tip { position: absolute; left: 50%; bottom: calc(100% + 10px); transform: translateX(-50%); display: none; flex-direction: column; gap: 2px; white-space: nowrap; padding: 5px 8px; text-align: left; font: 600 0.8rem/1.25 var(--font); color: var(--text); background: var(--surface); border: 2px solid var(--green); box-shadow: 0 0 0 2px var(--bg); pointer-events: none; }
+    .mc-slot:hover .mc-tip, .mc-slot:focus-visible .mc-tip { display: flex; }
+    .mc-slot:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; z-index: 2; }
+    .mc-tip-m { color: var(--gold); font-style: italic; font-weight: 500; }
+    .px--item { height: 32px; width: auto; image-rendering: pixelated; }
+    @media (max-width: 420px) { .mc-slot { width: 34px; height: 34px; } .mc-slot img { width: 24px; height: 24px; } }
+    .svc-row .svc-icon.mc-inv { width: 44px; height: 44px; border-radius: 0; box-sizing: border-box; background: var(--mc-slot-bg); border: 2px solid; border-color: var(--mc-slot-dk) var(--mc-slot-lt) var(--mc-slot-lt) var(--mc-slot-dk); }
+    .svc-icon.mc-inv img { width: 32px; height: 32px; image-rendering: pixelated; }
+    .mc-ground { height: 32px; background: url(mc-ground.png) repeat-x 0 0 / 128px 32px; image-rendering: pixelated; }
+    .mc-ground + footer { border-top: 0; }
+    .mc-inv { display: inline-grid; place-items: center; box-sizing: border-box; background: var(--mc-slot-bg); border: 2px solid; border-color: var(--mc-slot-dk) var(--mc-slot-lt) var(--mc-slot-lt) var(--mc-slot-dk); }
+    .mc-inv img { image-rendering: pixelated; }
+    .mc-inv--step { width: 44px; height: 44px; margin-left: 0.7rem; vertical-align: middle; }
+    .mc-inv--step img { width: 32px; height: 32px; }
+    .mc-inv--step img[src^="tile-"] { image-rendering: auto; }
+    .step-n { display: flex; align-items: center; }
+    .mc-shelf { height: 14px; margin-top: 0.9rem; background: url(tex-walnut-planks.png) repeat-x 0 0 / 32px 32px; image-rendering: pixelated; box-shadow: 0 6px 0 rgba(40, 26, 14, 0.34); }
+    html[data-theme="light"] .mc-shelf { box-shadow: 0 6px 0 rgba(120, 90, 50, 0.22); }
+    .pack-yo > img, .pack-grid img { border: 8px solid #5b3d22; border-image: url(tex-walnut-planks.png) 8 repeat; border-radius: 0; image-rendering: auto; }
 </style>
   <script>
     (function(){
@@ -2263,17 +2296,31 @@
           apply(n); try{ localStorage.setItem(KEY,n); }catch(e){}
         }); }
         var ba=document.getElementById('accent-toggle');
-        if(ba){ ba.addEventListener('click',function(){
+        if(ba){ var pa = function(){ ba.setAttribute('aria-pressed', root.getAttribute('data-accent')==='green' ? 'true' : 'false'); };
+          pa();
+          ba.addEventListener('click',function(){
           var na = root.getAttribute('data-accent')==='green' ? 'warm' : 'green';
           applyA(na); try{ localStorage.setItem(KEYA,na); }catch(e){}
+          pa();
         }); }
         var bl=document.getElementById('lang-toggle');
         if(bl){
-          bl.textContent = root.getAttribute('data-lang')==='es' ? 'EN' : 'ES';
+          var lblL = function(){ var es = root.getAttribute('data-lang')==='es';
+            bl.textContent = es ? 'EN' : 'ES';
+            bl.setAttribute('aria-label', es ? 'EN, cambiar a inglés' : 'ES, switch to Spanish');
+            [].forEach.call(document.querySelectorAll('[data-aria-es],[data-title-es]'), function(e){
+              ['aria-label','title'].forEach(function(a){
+                var k = a==='title' ? 'titleEs' : 'ariaEs', en = a==='title' ? 'titleEn' : 'ariaEn';
+                if(!e.dataset[k]) return;
+                if(!e.dataset[en]) e.dataset[en] = e.getAttribute(a) || '';
+                e.setAttribute(a, es ? e.dataset[k] : e.dataset[en]);
+              });
+            }); };
+          lblL();
           bl.addEventListener('click',function(){
             var nl = root.getAttribute('data-lang')==='es' ? 'en' : 'es';
             applyL(nl); try{ localStorage.setItem(KEYL,nl); }catch(e){}
-            bl.textContent = nl==='es' ? 'EN' : 'ES';
+            lblL();
           });
         }
       });
@@ -2284,10 +2331,10 @@
 <a href="#hero" class="skip"><span data-i18n-en>Skip to content</span><span data-i18n-es hidden>Saltar al contenido</span></a>
 
 <!-- NAV -->
-<nav aria-label="Primary">
+<nav aria-label="Primary" data-aria-es="Principal">
   <div class="nav-inner wrap">
     <span class="brand">
-      <span class="brand-cuy" role="img" aria-label="Modwright logo"></span>
+      <span class="brand-cuy" role="img" aria-label="Modwright logo" data-aria-es="Logo de Modwright"></span>
      <span class="wordmark" style="font-weight:700;font-size:1.2rem;letter-spacing:-0.01em" translate="no"> Modwright</span>
     </span>
     <ul class="nav-links">
@@ -2297,14 +2344,14 @@
       <li><a href="#authors"><span data-i18n-en>Mod authors</span><span data-i18n-es hidden>Autores de mods</span></a></li>
       <li><a href="#legal"><span data-i18n-en>Legal</span><span data-i18n-es hidden>Legal</span></a></li>
       <li class="nav-cta"><a href="#estimator" class="btn-nav"><span data-i18n-en>Get a quote</span><span data-i18n-es hidden>Cotizar</span></a></li>
-      <li class="nav-tog"><a class="nav-chan nav-chan--discord" href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" aria-label="Message me on Discord" title="Discord"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg></a></li>
+      <li class="nav-tog"><a class="nav-chan nav-chan--discord" href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" aria-label="Message me on Discord" data-aria-es="Escríbeme por Discord" title="Discord"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg></a></li>
       <!-- Aqui iba el icono de correo. Fuera: al lado esta el de Discord, que es
            por donde entra todo, y en la barra el ancho es el recurso escaso. -->
-      <li class="nav-tog"><button type="button" id="accent-toggle" class="theme-toggle" aria-label="Toggle green accent" title="Warm / green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19c0-7 4.5-12.5 13-13-0.5 8.5-6 13-13 13z"/><path d="M5 19c3-4.5 6.5-8 10.5-10.5"/></svg></button></li>
-      <li class="nav-tog"><button type="button" id="theme-toggle" class="theme-toggle" aria-label="Switch between light and dark theme" title="Light / dark"><svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button></li>
+      <li class="nav-tog"><button type="button" id="accent-toggle" class="theme-toggle" aria-label="Toggle green accent" title="Warm / green" data-aria-es="Alternar el acento verde" data-title-es="Cálido / verde"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19c0-7 4.5-12.5 13-13-0.5 8.5-6 13-13 13z"/><path d="M5 19c3-4.5 6.5-8 10.5-10.5"/></svg></button></li>
+      <li class="nav-tog"><button type="button" id="theme-toggle" class="theme-toggle" aria-label="Switch between light and dark theme" title="Light / dark" data-aria-es="Cambiar entre tema claro y oscuro" data-title-es="Claro / oscuro"><svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button></li>
       <!-- Piloto S7.1: solo el hero y #about tienen espanol real por ahora.
            El resto de la pagina sigue en ingles -- ver DEV_ROADMAP.md S7. -->
-      <li class="nav-tog"><button type="button" id="lang-toggle" class="theme-toggle lang-toggle" aria-label="Cambiar a espanol / Switch to Spanish" title="ES / EN">ES</button></li>
+      <li class="nav-tog"><button type="button" id="lang-toggle" class="theme-toggle lang-toggle" aria-label="ES, switch to Spanish" title="ES / EN">ES</button></li>
     </ul>
   </div>
 </nav>
@@ -2398,6 +2445,7 @@
     <p class="hero-eyebrow"><span data-i18n-en><span translate="no">Ports</span>, backports and compatibility for modded<span translate="no"> Minecraft</span></span><span data-i18n-es hidden><span translate="no">Ports</span>, backports y compatibilidad para<span translate="no"> Minecraft </span>modded</span></p>
     <div class="badge"><span class="badge-dot"></span><span data-i18n-en>Open for work</span><span data-i18n-es hidden>Disponible para trabajar</span></div>
     <h1 class="hero-h1-img"><span class="h1-texto" data-i18n-en>That <span class="w-key">mod</span> missing from your <span class="w-key">version</span> can <span class="w-key">come back</span>.</span><span class="h1-texto" data-i18n-es hidden>Ese <span class="w-key">mod</span> que falta en tu <span class="w-key">versión</span> puede <span class="w-key">volver</span>.</span><picture data-i18n-en><source media="(max-width: 700px)" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"><img src="titulo-hero.webp" width="1934" height="731" alt="" aria-hidden="true" fetchpriority="high" decoding="async"></picture><img class="h1-es" data-i18n-es hidden src="titulo-hero-es.webp" width="1938" height="843" alt="" aria-hidden="true" loading="lazy" decoding="async"></h1>
+    <script>(function(){var i=document.querySelector('#hero img.h1-es');if(i&&document.documentElement.getAttribute('data-lang')==='es'&&window.matchMedia('(min-width: 701px)').matches){i.loading='eager';i.setAttribute('fetchpriority','high');}})();</script>
     <p class="hero-who"><picture><source media="(prefers-reduced-motion: reduce)" srcset="wave-me-still.webp"><img class="hero-wave" src="wave-me.webp" width="192" height="190" alt="" aria-hidden="true" loading="eager" decoding="async"></picture><span data-i18n-en>I'm <strong><span translate="no">danisansietev</span></strong>, founder of<span translate="no"> Modwright</span>.</span><span data-i18n-es hidden>Soy <strong><span translate="no">danisansietev</span></strong>, fundador de<span translate="no"> Modwright</span>.</span></p>
     <p class="hero-desc"><span data-i18n-en>I port and adapt mods between<span translate="no"> Forge</span>,<span translate="no"> Fabric </span>and<span translate="no"> NeoForge</span>, mostly around<span translate="no"> Forge </span>1.20.1.</span><span data-i18n-es hidden>Porto y adapto mods entre<span translate="no"> Forge</span>,<span translate="no"> Fabric </span>y<span translate="no"> NeoForge</span>, sobre todo alrededor de<span translate="no"> Forge </span>1.20.1.</span></p>
     <!-- Aqui iban 4 pildoras de confianza generica ("5 checks on every build",
@@ -2459,6 +2507,7 @@
   </div>
 </section>
 <!-- LOADERS -->
+<div class="mc-ground" aria-hidden="true"></div>
 <section id="loaders">
   <img class="ch ch--borde" src="pix-c04.webp" width="146" height="118" style="left:calc(50% + 530px + 18px);top:560px;--h:118px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <!-- Caricaturas de pixel art (tanda del 19-08). Se suman al sistema
@@ -2598,12 +2647,24 @@
         <a href="#estimator" class="btn btn-quote btn-sm"><span data-i18n-en>Get a quote</span><span data-i18n-es hidden>Cotizar</span></a>
       </div>
     </div>
+    <div class="mc-shelf" aria-hidden="true"></div>
     <p class="proof-note"><span data-i18n-en>It compiles. That proves nothing. Before I deliver, I test the mod in-game and check the parts that could actually break during the<span translate="no"> port</span>. <a href="geckolib-bone-name-crash.html">One of those checks, in detail</a>.</span><span data-i18n-es hidden>Compila. Eso no prueba nada. Antes de entregar pruebo el mod dentro del juego y reviso las partes que realmente podían romperse durante el<span translate="no"> port</span>. <a href="geckolib-bone-name-crash.html">Una de esas comprobaciones, en detalle</a>.</span></p>
 
     <div class="shelf bench">
+      <div class="mc-hotbar" role="group" aria-label="Mods I have worked with" data-aria-es="Mods con los que he trabajado">
+        <span class="mc-slot is-sel" tabindex="0" role="button" aria-label="Crab · Crabber&#x27;s Delight"><img src="item-crab.png" width="16" height="16" alt="" loading="lazy" decoding="async"><span class="mc-tip" aria-hidden="true"><span class="mc-tip-n" translate="no">Crab</span><span class="mc-tip-m" translate="no">Crabber's Delight</span></span></span>
+        <span class="mc-slot" tabindex="0" role="button" aria-label="Blue Morpho · Naturalist"><img src="item-blue-morpho.png" width="16" height="16" alt="" loading="lazy" decoding="async"><span class="mc-tip" aria-hidden="true"><span class="mc-tip-n" translate="no">Blue Morpho</span><span class="mc-tip-m" translate="no">Naturalist</span></span></span>
+        <span class="mc-slot" tabindex="0" role="button" aria-label="Pink Ball Cactus Flower · Habitat"><img src="item-ball-cactus-flower.png" width="16" height="16" alt="" loading="lazy" decoding="async"><span class="mc-tip" aria-hidden="true"><span class="mc-tip-n" translate="no">Pink Ball Cactus Flower</span><span class="mc-tip-m" translate="no">Habitat</span></span></span>
+        <span class="mc-slot" tabindex="0" role="button" aria-label="Starfish · Seafarer"><img src="item-starfish.png" width="16" height="16" alt="" loading="lazy" decoding="async"><span class="mc-tip" aria-hidden="true"><span class="mc-tip-n" translate="no">Starfish</span><span class="mc-tip-m" translate="no">Seafarer</span></span></span>
+        <span class="mc-slot" tabindex="0" role="button" aria-label="Kiwano · Primal"><img src="item-kiwano.png" width="16" height="16" alt="" loading="lazy" decoding="async"><span class="mc-tip" aria-hidden="true"><span class="mc-tip-n" translate="no">Kiwano</span><span class="mc-tip-m" translate="no">Primal</span></span></span>
+        <span class="mc-slot" tabindex="0" role="button" aria-label="Peanut · Sprout"><img src="item-peanut.png" width="16" height="16" alt="" loading="lazy" decoding="async"><span class="mc-tip" aria-hidden="true"><span class="mc-tip-n" translate="no">Peanut</span><span class="mc-tip-m" translate="no">Sprout</span></span></span>
+        <span class="mc-slot" tabindex="0" role="button" aria-label="Blade of Ender · Goety"><img src="item-blade-of-ender.png" width="16" height="16" alt="" loading="lazy" decoding="async"><span class="mc-tip" aria-hidden="true"><span class="mc-tip-n" translate="no">Blade of Ender</span><span class="mc-tip-m" translate="no">Goety</span></span></span>
+        <span class="mc-slot" tabindex="0" role="button" aria-label="Hotdog · My Nether&#x27;s Delight"><img src="item-hotdog.png" width="16" height="16" alt="" loading="lazy" decoding="async"><span class="mc-tip" aria-hidden="true"><span class="mc-tip-n" translate="no">Hotdog</span><span class="mc-tip-m" translate="no">My Nether's Delight</span></span></span>
+        <span class="mc-slot" tabindex="0" role="button" aria-label="Prickly Pear · Ecologics"><img src="item-prickly-pear.png" width="16" height="16" alt="" loading="lazy" decoding="async"><span class="mc-tip" aria-hidden="true"><span class="mc-tip-n" translate="no">Prickly Pear</span><span class="mc-tip-m" translate="no">Ecologics</span></span></span>
+      </div>
       <h3><span data-i18n-en>Everything else I&rsquo;ve worked on</span><span data-i18n-es hidden>Todo lo demás en lo que he trabajado</span></h3>
       <p><span data-i18n-en>Ports, fixes and compatibility work, most of it for my own 600+ mod pack. Where the original is public, the tile takes you to it.</span><span data-i18n-es hidden>Ports, arreglos y compatibilidad, casi todo para mi propio pack de 600+ mods. Si el original es público, el recuadro te lleva a él.</span></p>
-      <div class="bench-tabs" role="tablist" aria-label="Portfolio">
+      <div class="bench-tabs" role="tablist" aria-label="Portfolio" data-aria-es="Portafolio">
         <button type="button" class="bench-tab" role="tab" id="tab-ports" aria-controls="bench-ports" aria-selected="true"><span data-i18n-en>Ports</span><span data-i18n-es hidden>Ports</span><span class="bench-n">28</span></button>
         <button type="button" class="bench-tab" role="tab" id="tab-fixes" aria-controls="bench-fixes" aria-selected="false"><span data-i18n-en>Fixes</span><span data-i18n-es hidden>Arreglos</span><span class="bench-n">25</span></button>
         <button type="button" class="bench-tab" role="tab" id="tab-compat" aria-controls="bench-compat" aria-selected="false"><span data-i18n-en>Compatibility</span><span data-i18n-es hidden>Compatibilidad</span><span class="bench-n">10</span></button>
@@ -2731,6 +2792,12 @@
           n.focus(); sel(n);
         });
       });
+      [].forEach.call(b.querySelectorAll('.mc-slot'), function (s) {
+        s.addEventListener('mouseenter', function () {
+          var o = b.querySelector('.mc-slot.is-sel'); if (o) o.classList.remove('is-sel');
+          s.classList.add('is-sel');
+        });
+      });
       b.classList.add('js-bench');
       sel(tabs[0]);
     })();
@@ -2761,28 +2828,28 @@
     <p class="sub"><span data-i18n-en>If you want to know how I price a<span translate="no"> port</span>, I explain it in <a href="mod-porting-cost.html">what a<span translate="no"> port </span>costs, and why</a>.</span><span data-i18n-es hidden>Si quieres saber cómo pongo precio a un<span translate="no"> port</span>, lo explico en <a href="mod-porting-cost.html">cuánto cuesta un<span translate="no"> port</span>, y por qué</a>.</span></p>
 <div class="svc-list">
       <div class="svc-row">
-        <div class="svc-icon svc-copper"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v13"/><path d="M6 11l6 6 6-6"/></svg></div>
+        <div class="svc-icon svc-copper mc-inv"><img src="item-horn-pickaxe.png" width="16" height="16" alt="" aria-hidden="true" loading="lazy" decoding="async"></div>
         <div>
           <h3><span data-i18n-en><span translate="no">Ports</span> and backports</span><span data-i18n-es hidden><span translate="no">Ports</span> y backports</span></h3>
           <p><span data-i18n-en>Moving a mod to another<span translate="no"> Minecraft </span>version, forward or back, keeping it as close as possible to how the original behaves.</span><span data-i18n-es hidden>Mover un mod a otra versión de<span translate="no"> Minecraft</span>, hacia delante o hacia atrás, intentando conservar el comportamiento del original.</span></p>
         </div>
       </div>
       <div class="svc-row">
-        <div class="svc-icon svc-loom"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h13l-3-3"/><path d="M20 16H7l3 3"/></svg></div>
+        <div class="svc-icon svc-loom mc-inv"><img src="item-magnetic-track.png" width="16" height="16" alt="" aria-hidden="true" loading="lazy" decoding="async"></div>
         <div>
           <h3><span data-i18n-en>Loader changes</span><span data-i18n-es hidden>Cambio de loader</span></h3>
           <p><span data-i18n-en>Adapting a mod between<span translate="no"> Forge</span>,<span translate="no"> Fabric </span>and<span translate="no"> NeoForge </span>when a pack needs a different platform.</span><span data-i18n-es hidden>Adaptar un mod entre<span translate="no"> Forge</span>,<span translate="no"> Fabric </span>y<span translate="no"> NeoForge </span>cuando un pack necesita otra plataforma.</span></p>
         </div>
       </div>
       <div class="svc-row">
-        <div class="svc-icon svc-bridge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7h5a4 4 0 0 1 0 8h-1"/><path d="M15 17h-5a4 4 0 0 1 0-8h1"/></svg></div>
+        <div class="svc-icon svc-bridge mc-inv"><img src="item-bug-net.png" width="16" height="16" alt="" aria-hidden="true" loading="lazy" decoding="async"></div>
         <div>
           <h3><span data-i18n-en>Compatibility and crashes</span><span data-i18n-es hidden>Compatibilidad y crashes</span></h3>
           <p><span data-i18n-en>Finding why two mods clash, why something stopped loading, or what is breaking one specific feature.</span><span data-i18n-es hidden>Encontrar por qué dos mods chocan, por qué algo deja de cargar o qué está rompiendo una función concreta.</span></p>
         </div>
       </div>
       <div class="svc-row">
-        <div class="svc-icon svc-steel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.6 5.6L3 18l3 3 6.1-6.1a4 4 0 0 0 5.6-5.6l-2.9 2.9a1.5 1.5 0 0 1-2-2l2.9-2.9z"/></svg></div>
+        <div class="svc-icon svc-steel mc-inv"><img src="item-clam-shovel.png" width="16" height="16" alt="" aria-hidden="true" loading="lazy" decoding="async"></div>
         <div>
           <h3><span data-i18n-en>Maintenance and performance</span><span data-i18n-es hidden>Mantenimiento y rendimiento</span></h3>
           <p><span data-i18n-en>Fixing existing<span translate="no"> ports</span>, dependency changes and performance problems when the cause is in the mod or in how it fits into the pack.</span><span data-i18n-es hidden>Arreglar<span translate="no"> ports </span>existentes, cambios de dependencias y problemas de rendimiento cuando el origen está en el mod o en su integración.</span></p>
@@ -2877,12 +2944,12 @@
         <h2><span data-i18n-en>How a job works</span><span data-i18n-es hidden>Cómo va un encargo</span></h2>
     <p class="sub"><span data-i18n-en>All in writing. No calls and no meetings.</span><span data-i18n-es hidden>Todo por escrito. Sin llamadas ni reuniones.</span></p>
     <div class="steps">
-      <div class="step"><div class="step-n">01</div><h3><img class="px px--sobre" src="tile-envelope.png" width="56" height="56" alt="" aria-hidden="true" loading="lazy" decoding="async"><span data-i18n-en>Send me the mod</span><span data-i18n-es hidden>Mándame el mod</span></h3><p><span data-i18n-en>Send me the link or the file and tell me what you need. That's enough for me to start looking at it.</span><span data-i18n-es hidden>Pásame el enlace o el archivo y cuéntame qué necesitas. Con eso puedo empezar a revisarlo.</span></p></div>
-      <div class="step"><div class="step-n">02</div><h3><span data-i18n-en>I review it and give you a price</span><span data-i18n-es hidden>Lo reviso y te doy un precio</span></h3><p><span data-i18n-en>I check whether the job is doable and which permission or licence applies. Then I tell you what's included, what it costs and roughly how long it should take.</span><span data-i18n-es hidden>Compruebo si el trabajo es viable y qué permiso o licencia aplica. Después te digo qué incluye, cuánto cuesta y cuánto debería tardar.</span></p></div>
-      <div class="step"><div class="step-n">03</div><h3><span data-i18n-en>We agree and I start</span><span data-i18n-es hidden>Acordamos y empiezo</span></h3><p><span data-i18n-en>We put the scope, the price and the payment terms in writing. Bigger jobs can be split into stages.</span><span data-i18n-es hidden>Dejamos por escrito el alcance, el precio y la forma de pago. Los trabajos grandes pueden dividirse en etapas.</span></p></div>
-      <div class="step"><div class="step-n">04</div><h3><span data-i18n-en>I port it and test it</span><span data-i18n-es hidden>Lo porto y lo pruebo</span></h3><p><span data-i18n-en>I do the work on the version and setup we agreed. I don't stop at it compiling: I launch it and test the parts that matter.</span><span data-i18n-es hidden>Hago el trabajo sobre la versión y el entorno acordados. No me quedo en que compile: lo arranco y pruebo las partes importantes.</span></p></div>
-      <div class="step"><div class="step-n">05</div><h3><span data-i18n-en>You try it</span><span data-i18n-es hidden>Lo pruebas tú</span></h3><p><span data-i18n-en>You see the build running in your own pack or server. If something within what we agreed isn't right, I fix it before we close the job.</span><span data-i18n-es hidden>Ves la build funcionando en tu propio pack o servidor. Si algo dentro de lo acordado no está bien, lo corrijo antes de cerrar el trabajo.</span></p></div>
-      <div class="step"><div class="step-n">06</div><h3><span data-i18n-en>If something of mine breaks, I fix it</span><span data-i18n-es hidden>Si algo mío falla, lo arreglo</span></h3><p><span data-i18n-en>For 30 days I fix, at no cost, any bug I introduced within the agreed scope and setup. If you need something new after that, we handle it separately.</span><span data-i18n-es hidden>Durante 30 días corrijo sin coste los fallos que haya introducido yo dentro del alcance y entorno acordados. Si después necesitas algo nuevo, lo vemos aparte.</span></p></div>
+      <div class="step"><div class="step-n">01<span class="mc-inv mc-inv--step"><img src="tile-envelope.png" width="56" height="56" alt="" aria-hidden="true" loading="lazy" decoding="async"></span></div><h3><span data-i18n-en>Send me the mod</span><span data-i18n-es hidden>Mándame el mod</span></h3><p><span data-i18n-en>Send me the link or the file and tell me what you need. That's enough for me to start looking at it.</span><span data-i18n-es hidden>Pásame el enlace o el archivo y cuéntame qué necesitas. Con eso puedo empezar a revisarlo.</span></p></div>
+      <div class="step"><div class="step-n">02<span class="mc-inv mc-inv--step"><img src="item-decree.png" width="16" height="16" alt="" aria-hidden="true" loading="lazy" decoding="async"></span></div><h3><span data-i18n-en>I review it and give you a price</span><span data-i18n-es hidden>Lo reviso y te doy un precio</span></h3><p><span data-i18n-en>I check whether the job is doable and which permission or licence applies. Then I tell you what's included, what it costs and roughly how long it should take.</span><span data-i18n-es hidden>Compruebo si el trabajo es viable y qué permiso o licencia aplica. Después te digo qué incluye, cuánto cuesta y cuánto debería tardar.</span></p></div>
+      <div class="step"><div class="step-n">03<span class="mc-inv mc-inv--step"><img src="item-wax-seal.png" width="16" height="16" alt="" aria-hidden="true" loading="lazy" decoding="async"></span></div><h3><span data-i18n-en>We agree and I start</span><span data-i18n-es hidden>Acordamos y empiezo</span></h3><p><span data-i18n-en>We put the scope, the price and the payment terms in writing. Bigger jobs can be split into stages.</span><span data-i18n-es hidden>Dejamos por escrito el alcance, el precio y la forma de pago. Los trabajos grandes pueden dividirse en etapas.</span></p></div>
+      <div class="step"><div class="step-n">04<span class="mc-inv mc-inv--step"><img src="item-swirl-axe.png" width="16" height="16" alt="" aria-hidden="true" loading="lazy" decoding="async"></span></div><h3><span data-i18n-en>I port it and test it</span><span data-i18n-es hidden>Lo porto y lo pruebo</span></h3><p><span data-i18n-en>I do the work on the version and setup we agreed. I don't stop at it compiling: I launch it and test the parts that matter.</span><span data-i18n-es hidden>Hago el trabajo sobre la versión y el entorno acordados. No me quedo en que compile: lo arranco y pruebo las partes importantes.</span></p></div>
+      <div class="step"><div class="step-n">05<span class="mc-inv mc-inv--step"><img src="item-clam-chowder.png" width="16" height="16" alt="" aria-hidden="true" loading="lazy" decoding="async"></span></div><h3><span data-i18n-en>You try it</span><span data-i18n-es hidden>Lo pruebas tú</span></h3><p><span data-i18n-en>You see the build running in your own pack or server. If something within what we agreed isn't right, I fix it before we close the job.</span><span data-i18n-es hidden>Ves la build funcionando en tu propio pack o servidor. Si algo dentro de lo acordado no está bien, lo corrijo antes de cerrar el trabajo.</span></p></div>
+      <div class="step"><div class="step-n">06<span class="mc-inv mc-inv--step"><img src="item-cracked-bucket.png" width="16" height="16" alt="" aria-hidden="true" loading="lazy" decoding="async"></span></div><h3><span data-i18n-en>If something of mine breaks, I fix it</span><span data-i18n-es hidden>Si algo mío falla, lo arreglo</span></h3><p><span data-i18n-en>For 30 days I fix, at no cost, any bug I introduced within the agreed scope and setup. If you need something new after that, we handle it separately.</span><span data-i18n-es hidden>Durante 30 días corrijo sin coste los fallos que haya introducido yo dentro del alcance y entorno acordados. Si después necesitas algo nuevo, lo vemos aparte.</span></p></div>
     </div>
     <figure class="mascotas">
       <!-- La ilustracion traia dos placas horneadas con CARGOS INVENTADOS
@@ -3128,7 +3195,7 @@
   <img class="ch ch--borde" src="h1024-31.webp" width="256" height="236" style="left:calc(50% + 530px + 18px);top:722px;--h:195px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
         <img class="retrato retrato--erizo" src="retrato-erizo.webp" width="300" height="300" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <h2 id="faq"><span data-i18n-en>Before you ask</span><span data-i18n-es hidden>Antes de preguntar</span></h2>
+        <h2 id="faq"><span data-i18n-en>Before you ask</span><span data-i18n-es hidden>Antes de preguntar</span><img class="px px--h2 px--item" src="item-message-bottle.png" width="16" height="16" alt="" aria-hidden="true" loading="lazy" decoding="async"></h2>
     <div class="faq-list">
       <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt"><span data-i18n-en>What do you need for a quote?</span><span data-i18n-es hidden>¿Qué necesitas para cotizar?</span></span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body"><span data-i18n-en>The mod (link or file), the version and loader it's on now, and where you want it. If you're the author or have their permission, say so too. With that I can tell you whether it can be done and what it would cost.</span><span data-i18n-es hidden>El mod (enlace o archivo), la versión y el loader en los que está, y dónde lo quieres. Si eres el autor o tienes su permiso, dilo también. Con eso te digo si se puede hacer y cuánto costaría.</span></div></div></div>
       <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt"><span data-i18n-en>Do you need the source code?</span><span data-i18n-es hidden>¿Necesitas el código fuente?</span></span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body"><span data-i18n-en>No. I can work from the compiled mod and decompile whatever needs to change. It doesn't have to be on<span translate="no"> CurseForge </span>or<span translate="no"> Modrinth </span>either: the file you send me is enough. What decides whether I can touch it is the licence or the permission, not where it's hosted.</span><span data-i18n-es hidden>No. Puedo trabajar desde el mod compilado y descompilar lo que haga falta cambiar. Tampoco hace falta que esté en<span translate="no"> CurseForge </span>o<span translate="no"> Modrinth</span>: me sirve el archivo que me mandes. Lo que decide si puedo tocarlo es la licencia o el permiso, no dónde esté alojado.</span></div></div></div>
@@ -3187,7 +3254,7 @@
         <div class="legal-doc-body">
           <p><span data-i18n-en><strong>Mods.</strong> I only work on mods you have the right to modify: open-source, your own, or with the author's permission. Open-source<span translate="no"> ports </span>I publish keep the original licence and credit the original author; closed-source work stays private.</span><span data-i18n-es hidden><strong>Mods.</strong> Solo trabajo sobre mods que tengas derecho a modificar: de código abierto, tuyos, o con permiso del autor. Los<span translate="no"> ports </span>de código abierto que publico mantienen la licencia original y acreditan al autor original; el trabajo de código cerrado se queda privado.</span></p>
           <p><span data-i18n-en><strong>This website.</strong> The design, the words and the artwork here are ©<span translate="no"> Modwright</span>. Please don't reuse them without asking me first. Mod logos, mod icons and in-game captures belong to their authors and to<span translate="no"> Mojang Studios</span>, and appear here only to identify the work they refer to.</span><span data-i18n-es hidden><strong>Esta web.</strong> El diseño, los textos y el arte de aquí son ©<span translate="no"> Modwright</span>. No los reutilices sin pedírmelo antes. Los logos e iconos de mods y las capturas del juego pertenecen a sus autores y a<span translate="no"> Mojang Studios</span>, y aparecen aquí solo para identificar el trabajo al que se refieren.</span></p>
-          <p><span data-i18n-en><strong>Small pixel-art details.</strong> A few of the little figures around the page are not mine, and belong to their authors: the parrot, the salmon and the campfire come from<span translate="no"> Minecraft </span>(<span translate="no">Mojang Studios</span>); the messenger pigeon from<span translate="no"> Envelope </span>(GPLv3); the water drop from<span translate="no"> Thirst Was Taken </span>by<span translate="no"> ghen </span>(MIT); the apple is the<span translate="no"> Mindful Eating </span>logo by<span translate="no"> camcam_burger</span>, and the plum the icon of<span translate="no"> flierfish</span>'s unofficial port (both LGPL); and the roll next to the word<span translate="no"> Fabric </span>is the<span translate="no"> Fabric </span>logo (<span translate="no">FabricMC</span>). The duck is from<span translate="no"> Untitled Duck Mod </span>(<span translate="no">ArtistMonster24</span>, with<span translate="no"> Suel_ki </span>and<span translate="no"> Okabintaro</span>); the capybara from<span translate="no"> Re:Animal </span>(<span translate="no">SSKirillSS</span>); the orange is the icon of<span translate="no"> outrightwings</span>'s unofficial<span translate="no"> Mindful Eating </span>port; I could not find who drew the pig and the sunflower: if one is yours, tell me and I will credit you or take it down.</span><span data-i18n-es hidden><strong>Los detalles de pixel art.</strong> Algunas de las figuritas de la página no son mías y pertenecen a sus autores: el loro, el salmón y la fogata son de<span translate="no"> Minecraft </span>(<span translate="no">Mojang Studios</span>); la paloma mensajera, de<span translate="no"> Envelope </span>(GPLv3); la gota de agua, de<span translate="no"> Thirst Was Taken</span>, de<span translate="no"> ghen </span>(MIT); la manzana es el logo de<span translate="no"> Mindful Eating</span>, de<span translate="no"> camcam_burger</span>, y la ciruela el icono del port no oficial de<span translate="no"> flierfish </span>(los dos LGPL); y el rollo junto a la palabra<span translate="no"> Fabric </span>es el logo de<span translate="no"> Fabric </span>(<span translate="no">FabricMC</span>). El pato es de<span translate="no"> Untitled Duck Mod </span>(<span translate="no">ArtistMonster24</span>, con<span translate="no"> Suel_ki </span>y<span translate="no"> Okabintaro</span>); la capibara, de<span translate="no"> Re:Animal </span>(<span translate="no">SSKirillSS</span>); la naranja es el icono del port no oficial de<span translate="no"> Mindful Eating </span>de<span translate="no"> outrightwings</span>; No encontré quién dibujó el cerdo y el girasol: si alguno es tuyo, dímelo y te doy el crédito o lo quito.</span></p>
+          <p><span data-i18n-en><strong>Small pixel-art details.</strong> A few of the little figures around the page are not mine, and belong to their authors: the parrot, the salmon and the campfire come from<span translate="no"> Minecraft </span>(<span translate="no">Mojang Studios</span>); the messenger pigeon from<span translate="no"> Envelope </span>(GPLv3); the water drop from<span translate="no"> Thirst Was Taken </span>by<span translate="no"> ghen </span>(MIT); the apple is the<span translate="no"> Mindful Eating </span>logo by<span translate="no"> camcam_burger</span>, and the plum the icon of<span translate="no"> flierfish</span>'s unofficial port (both LGPL); and the roll next to the word<span translate="no"> Fabric </span>is the<span translate="no"> Fabric </span>logo (<span translate="no">FabricMC</span>). The duck is from<span translate="no"> Untitled Duck Mod </span>(<span translate="no">ArtistMonster24</span>, with<span translate="no"> Suel_ki </span>and<span translate="no"> Okabintaro</span>); the capybara from<span translate="no"> Re:Animal </span>(<span translate="no">SSKirillSS</span>); the orange is the icon of<span translate="no"> outrightwings</span>'s unofficial<span translate="no"> Mindful Eating </span>port; I could not find who drew the pig and the sunflower: if one is yours, tell me and I will credit you or take it down. The item sprites and the wooden textures come from <span translate="no">Splinecart</span>, <span translate="no">Crabber's Delight</span>, <span translate="no">Naturalist</span>, <span translate="no">Habitat</span>, <span translate="no">Seafarer</span>, <span translate="no">Primal</span>, <span translate="no">Sprout</span>, <span translate="no">Goety</span>, <span translate="no">My Nether's Delight</span>, <span translate="no">Ecologics</span>, <span translate="no">Wooden Bucket</span> (all MIT) and <span translate="no">Bountiful</span> (GPL-3.0), and belong to their authors.</span><span data-i18n-es hidden><strong>Los detalles de pixel art.</strong> Algunas de las figuritas de la página no son mías y pertenecen a sus autores: el loro, el salmón y la fogata son de<span translate="no"> Minecraft </span>(<span translate="no">Mojang Studios</span>); la paloma mensajera, de<span translate="no"> Envelope </span>(GPLv3); la gota de agua, de<span translate="no"> Thirst Was Taken</span>, de<span translate="no"> ghen </span>(MIT); la manzana es el logo de<span translate="no"> Mindful Eating</span>, de<span translate="no"> camcam_burger</span>, y la ciruela el icono del port no oficial de<span translate="no"> flierfish </span>(los dos LGPL); y el rollo junto a la palabra<span translate="no"> Fabric </span>es el logo de<span translate="no"> Fabric </span>(<span translate="no">FabricMC</span>). El pato es de<span translate="no"> Untitled Duck Mod </span>(<span translate="no">ArtistMonster24</span>, con<span translate="no"> Suel_ki </span>y<span translate="no"> Okabintaro</span>); la capibara, de<span translate="no"> Re:Animal </span>(<span translate="no">SSKirillSS</span>); la naranja es el icono del port no oficial de<span translate="no"> Mindful Eating </span>de<span translate="no"> outrightwings</span>; No encontré quién dibujó el cerdo y el girasol: si alguno es tuyo, dímelo y te doy el crédito o lo quito. Los sprites de ítems y las texturas de madera son de <span translate="no">Splinecart</span>, <span translate="no">Crabber's Delight</span>, <span translate="no">Naturalist</span>, <span translate="no">Habitat</span>, <span translate="no">Seafarer</span>, <span translate="no">Primal</span>, <span translate="no">Sprout</span>, <span translate="no">Goety</span>, <span translate="no">My Nether's Delight</span>, <span translate="no">Ecologics</span>, <span translate="no">Wooden Bucket</span> (todos MIT) y de <span translate="no">Bountiful</span> (GPL-3.0), y pertenecen a sus autores.</span></p>
           <p><span data-i18n-en><strong>Fonts.</strong> “Space Grotesk” and “Monocraft” are used under the SIL Open Font License.</span><span data-i18n-es hidden><strong>Tipografías.</strong> “Space Grotesk” y “Monocraft” se usan bajo la licencia SIL Open Font License.</span></p>
           <p><span data-i18n-en><strong>Trademarks.</strong><span translate="no"> Minecraft </span>is a trademark of<span translate="no"> Mojang Studios</span>.<span translate="no"> Forge</span>,<span translate="no"> NeoForge</span>,<span translate="no"> Fabric</span>,<span translate="no"> CurseForge</span>,<span translate="no"> Modrinth </span>and<span translate="no"> BuiltByBit </span>belong to their respective owners. Their names are used here for identification only. This is an independent service with no affiliation or endorsement.</span><span data-i18n-es hidden><strong>Marcas.</strong><span translate="no"> Minecraft </span>es una marca de<span translate="no"> Mojang Studios</span>.<span translate="no"> Forge</span>,<span translate="no"> NeoForge</span>,<span translate="no"> Fabric</span>,<span translate="no"> CurseForge</span>,<span translate="no"> Modrinth </span>y<span translate="no"> BuiltByBit </span>son de sus respectivos dueños. Sus nombres se usan aquí solo para identificar. Este es un servicio independiente, sin afiliación ni respaldo de ninguno.</span></p>
           <p class="legal-doc-note"><span data-i18n-en>Last updated September 2026.</span><span data-i18n-es hidden>Si algo no coincide, la versión de referencia es la inglesa. Última actualización: septiembre de 2026.</span></p>
@@ -3308,6 +3375,7 @@
 <figure class="scene-band">
   <img src="band-flight.webp" width="1800" height="1012" alt="My character hanging in the air above an open sea, with the sun going down behind him." loading="lazy" decoding="async">
 </figure>
+<div class="mc-ground" aria-hidden="true"></div>
 <footer>
   <div class="px-fogon" aria-hidden="true"><img class="px px--fogata" src="deco-fogata.webp" width="96" height="90" alt="" aria-hidden="true" loading="lazy" decoding="async"></div>
   <div><strong style="color:var(--text-soft)"><span translate="no">Modwright</span></strong> <span class="sep">·</span><span translate="no"> Forge </span><span data-i18n-en>1.20.1 mod<span translate="no"> porting </span></span><span data-i18n-es hidden><span translate="no">porting </span>de mods en 1.20.1 </span><span class="sep">·</span> <a href="mod-porting-cost.html">What a<span translate="no"> port </span>costs</a> <span class="sep">·</span> <a href="fabric-to-forge-1-20-1.html"><span translate="no">Fabric </span>to<span translate="no"> Forge</span>: what breaks</a> <span class="sep">·</span> <a href="geckolib-bone-name-crash.html">A crash the compiler can't see</a> <span class="sep">·</span> <a href="#terms"><span data-i18n-en>Terms</span><span data-i18n-es hidden>Condiciones</span></a> <span class="sep">·</span> <a href="#privacy"><span data-i18n-en>Privacy</span><span data-i18n-es hidden>Privacidad</span></a> <span class="sep">·</span> <a href="#licenses"><span data-i18n-en>Licenses</span><span data-i18n-es hidden>Licencias</span></a> <span class="sep">·</span> <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer"><span data-i18n-en>Contact</span><span data-i18n-es hidden>Contacto</span></a></div>
