@@ -1307,7 +1307,7 @@
        posicionadas con `top` medido), y el borde reaparece al pasar el raton. */
     .tile { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; text-align: center; padding: 0.85rem 0.5rem; background: transparent; border: 1px solid transparent; border-radius: var(--radius-lg); font-size: 0.74rem; line-height: 1.3; color: var(--text-soft); transition: transform 0.18s ease, border-color 0.18s ease; }
     .tile:hover { transform: translateY(-2px); border-color: var(--border-lt); }
-    .tile img { width: 56px; height: 56px; border-radius: 8px; image-rendering: pixelated; flex-shrink: 0; }
+    .tile img { width: 64px; height: 64px; border-radius: 8px; image-rendering: pixelated; flex-shrink: 0; }
     .tile-mono { width: 56px; height: 56px; border-radius: 8px; display: grid; place-items: center; background: var(--brown-glow); border: 1px solid var(--brown-ring); color: var(--brown-hi); font-weight: 700; font-size: 1.05rem; letter-spacing: 0.02em; }
     @media (prefers-reduced-motion: reduce) { .tile { transition: none; } .tile:hover { transform: none; } }
     .shelf-foot { margin-top: 1.1rem; font-size: 0.78rem; color: var(--text-mute); max-width: 36em; }
@@ -2214,6 +2214,31 @@
     .contact-row { margin-top: 1.6rem; }
     /* objetivo tactil de 44 px en movil para los botones pequenos del hero (medido: 37) */
     @media (max-width: 640px) { .hero-team-actions .btn-sm { min-height: 44px; } }
+    .bench-tabs { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 0 0 1.2rem; }
+    .bench-tab { display: inline-flex; align-items: center; gap: 0.5rem; min-height: 44px; padding: 0.5rem 0.95rem; border-radius: 999px; border: 1px solid var(--border-lt); background: transparent; color: var(--text-soft); font: 600 0.84rem/1 var(--font); white-space: nowrap; cursor: pointer; transition: border-color 0.18s ease, background-color 0.18s ease, color 0.18s ease; }
+    .bench-tab:hover { border-color: var(--green-ring); color: var(--text); }
+    .bench-tab[aria-selected="true"] { background: var(--green-glow); border-color: var(--green-ring); color: var(--text); }
+    .bench-tab:focus-visible { outline: 2px solid var(--green-hi); outline-offset: 2px; }
+    .bench-n { min-width: 1.6em; padding: 0.2rem 0.45rem; border-radius: 999px; background: var(--surface); color: var(--text-mute); font-size: 0.72rem; text-align: center; font-variant-numeric: tabular-nums; }
+    .bench-tab[aria-selected="true"] .bench-n { color: var(--green-hi); }
+    .bench-panel + .bench-panel { margin-top: 1.8rem; }
+    .js-bench .bench-panel + .bench-panel { margin-top: 0; }
+    .bench-h { font-size: 0.95rem; font-weight: 700; margin: 0 0 0.4rem; }
+    .js-bench .bench-h { display: none; }
+    .shelf .bench-note { font-size: 0.84rem; color: var(--text-mute); margin-bottom: 1rem; }
+    .shelf-grid > li { display: flex; }
+    .shelf-grid > li > .tile { flex: 1; min-width: 0; }
+    a.tile { text-decoration: none; }
+    a.tile:focus-visible { outline: 2px solid var(--green-hi); outline-offset: 2px; }
+    .shelf-grid--rows { grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr)); }
+    .tile--row { flex-direction: row; align-items: center; text-align: left; gap: 0.75rem; padding: 0.6rem 0.75rem; border-color: var(--border); }
+    .tile--row img, .tile--row .tile-mono { width: 52px; height: 52px; font-size: 0.88rem; }
+    .tile-t { display: flex; flex-direction: column; gap: 0.2rem; min-width: 0; }
+    .tile-t b { color: var(--text); font-size: 0.82rem; font-weight: 600; overflow-wrap: anywhere; }
+    .tile-t small { color: var(--text-mute); font-size: 0.72rem; line-height: 1.4; }
+    .tile-mono--own { background: var(--green-glow); border-color: var(--green-ring); color: var(--green-hi); }
+    .tile--row .tile-mono--x { font-size: 1.35rem; font-weight: 400; }
+    @media (prefers-reduced-motion: reduce) { .bench-tab { transition: none; } }
 </style>
   <script>
     (function(){
@@ -2489,7 +2514,7 @@
        3377: se salian por abajo y aterrizaban encima de las de #proof.
        El `top` es relativo a la SECCION, no a la pagina: si pasa del alto
        de la seccion, la caricatura invade la siguiente. -->
-  <img class="ch ch--borde" src="h1024-13.webp" width="256" height="235" style="right:calc(50% + 530px + 18px);top:1410px;--h:215px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch ch--borde" src="h1024-13.webp" width="256" height="235" style="right:calc(50% + 530px + 18px);top:1150px;--h:215px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="ch ch--borde" src="h512-32.webp" width="256" height="242" style="left:calc(50% + 530px + 18px);top:1107px;--h:215px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="ch ch--borde" src="h512-31.webp" width="256" height="242" style="right:calc(50% + 530px + 18px);top:502px;--h:215px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
@@ -2575,38 +2600,141 @@
     </div>
     <p class="proof-note"><span data-i18n-en>It compiles. That proves nothing. Before I deliver, I test the mod in-game and check the parts that could actually break during the<span translate="no"> port</span>. <a href="geckolib-bone-name-crash.html">One of those checks, in detail</a>.</span><span data-i18n-es hidden>Compila. Eso no prueba nada. Antes de entregar pruebo el mod dentro del juego y reviso las partes que realmente podían romperse durante el<span translate="no"> port</span>. <a href="geckolib-bone-name-crash.html">Una de esas comprobaciones, en detalle</a>.</span></p>
 
-    <div class="shelf">
-      <p><span data-i18n-en>Other mods I've ported that aren't published yet. To publish a<span translate="no"> port </span>I need a licence that allows it, or the author's permission.</span><span data-i18n-es hidden>Otros mods que he porteado y que todavía no están publicados. Para publicar un<span translate="no"> port </span>necesito que la licencia lo permita o el permiso de su autor.</span></p>
-      <ul class="shelf-grid">
-        <li class="tile"><img src="tile-boids.png" width="56" height="56" alt="" loading="lazy" decoding="async"><span translate="no">Boids</span></li>
-        <li class="tile"><img src="tile-birds.png" width="56" height="56" alt="" loading="lazy" decoding="async"><span translate="no">Birds</span></li>
-        <li class="tile"><img src="tile-capybara.png" width="56" height="56" alt="" loading="lazy" decoding="async"><span translate="no">Capybara</span></li>
-        <li class="tile"><img src="tile-splinecart.png" width="56" height="56" alt="" loading="lazy" decoding="async"><span translate="no">Splinecart</span></li>
-        <li class="tile"><img src="tile-ambers-underground.png" width="56" height="56" alt="" loading="lazy" decoding="async"><span translate="no">Amber's Underground</span></li>
-        <li class="tile"><img src="tile-cave-enhancements.png" width="56" height="56" alt="" loading="lazy" decoding="async"><span translate="no">Cave Enhancements</span></li>
-        <li class="tile"><img src="tile-creature-corner.png" width="56" height="56" alt="" loading="lazy" decoding="async"><span translate="no">Creature Corner</span></li>
-        <li class="tile"><img src="tile-dietary-statistics.png" width="56" height="56" alt="" loading="lazy" decoding="async"><span translate="no">Dietary Statistics</span></li>
-        <li class="tile"><img src="tile-envelope.png" width="56" height="56" alt="" loading="lazy" decoding="async"><span translate="no">Envelope</span></li>
-        <li class="tile"><img src="tile-farmtweaks.png" width="56" height="56" alt="" loading="lazy" decoding="async"><span translate="no">FarmTweaks</span></li>
-        <li class="tile"><img src="tile-frozen-up.png" width="56" height="56" alt="" loading="lazy" decoding="async"><span translate="no">Frozen Up</span></li>
-        <li class="tile"><img src="tile-gator-country.png" width="56" height="56" alt="" loading="lazy" decoding="async"><span translate="no">Gator Country</span></li>
-        <li class="tile"><img src="tile-helpful-wizards.png" width="56" height="56" alt="" loading="lazy" decoding="async"><span translate="no">Helpful Wizards</span></li>
-        <li class="tile"><img src="tile-mining-helmet.png" width="56" height="56" alt="" loading="lazy" decoding="async"><span translate="no">Mining Helmet</span></li>
-        <li class="tile"><img src="tile-no-mans-land.png" width="56" height="56" alt="" loading="lazy" decoding="async"><span translate="no">No Man's Land</span></li>
-        <li class="tile"><img src="tile-oathbound-relics.png" width="56" height="56" alt="" loading="lazy" decoding="async"><span translate="no">Oathbound Relics</span></li>
-        <li class="tile"><img src="tile-pyrologer-and-friends.png" width="56" height="56" alt="" loading="lazy" decoding="async"><span translate="no">Pyrologer &amp; Friends</span></li>
-        <li class="tile"><img src="tile-re-animal.png" width="56" height="56" alt="" loading="lazy" decoding="async"><span translate="no">Re:Animal</span></li>
-        <li class="tile"><img src="tile-reckless-drilling.png" width="56" height="56" alt="" loading="lazy" decoding="async"><span translate="no">Reckless Drilling</span></li>
-        <li class="tile"><img src="tile-rumors.png" width="56" height="56" alt="" loading="lazy" decoding="async"><span translate="no">Rumors</span></li>
-        <li class="tile"><img src="tile-sprout.png" width="56" height="56" alt="" loading="lazy" decoding="async"><span translate="no">Sprout</span></li>
-        <li class="tile"><img src="tile-toastys-delight.png" width="56" height="56" alt="" loading="lazy" decoding="async"><span translate="no">Toasty's Delight</span></li>
-        <li class="tile"><img src="tile-toastys-mobs.png" width="56" height="56" alt="" loading="lazy" decoding="async"><span translate="no">Toasty's Mobs</span></li>
-        <li class="tile"><span class="tile-mono" aria-hidden="true">TV</span><span translate="no">Treevamped</span></li>
-        <li class="tile"><img src="tile-verdance.png" width="56" height="56" alt="" loading="lazy" decoding="async"><span translate="no">Verdance</span></li>
-        <li class="tile"><img src="tile-wildex.png" width="56" height="56" alt="" loading="lazy" decoding="async"><span translate="no">Wildex</span></li>
-      </ul>
+    <div class="shelf bench">
+      <h3><span data-i18n-en>Everything else I&rsquo;ve worked on</span><span data-i18n-es hidden>Todo lo demás en lo que he trabajado</span></h3>
+      <p><span data-i18n-en>Ports, fixes and compatibility work, most of it for my own 600+ mod pack. Where the original is public, the tile takes you to it.</span><span data-i18n-es hidden>Ports, arreglos y compatibilidad, casi todo para mi propio pack de 600+ mods. Si el original es público, el recuadro te lleva a él.</span></p>
+      <div class="bench-tabs" role="tablist" aria-label="Portfolio">
+        <button type="button" class="bench-tab" role="tab" id="tab-ports" aria-controls="bench-ports" aria-selected="true"><span data-i18n-en>Ports</span><span data-i18n-es hidden>Ports</span><span class="bench-n">28</span></button>
+        <button type="button" class="bench-tab" role="tab" id="tab-fixes" aria-controls="bench-fixes" aria-selected="false"><span data-i18n-en>Fixes</span><span data-i18n-es hidden>Arreglos</span><span class="bench-n">25</span></button>
+        <button type="button" class="bench-tab" role="tab" id="tab-compat" aria-controls="bench-compat" aria-selected="false"><span data-i18n-en>Compatibility</span><span data-i18n-es hidden>Compatibilidad</span><span class="bench-n">10</span></button>
+        <button type="button" class="bench-tab" role="tab" id="tab-own" aria-controls="bench-own" aria-selected="false"><span data-i18n-en>Built for my pack</span><span data-i18n-es hidden>Hechos para mi pack</span><span class="bench-n">11</span></button>
+      </div>
+      <div class="bench-panel" id="bench-ports" role="tabpanel" aria-labelledby="tab-ports">
+        <h4 class="bench-h"><span data-i18n-en>Ports</span><span data-i18n-es hidden>Ports</span></h4>
+        <p class="bench-note"><span data-i18n-en>Not published yet. To publish a<span translate="no"> port </span>I need a licence that allows it, or the author&rsquo;s permission.</span><span data-i18n-es hidden>Todavía sin publicar. Para publicar un<span translate="no"> port </span>necesito que la licencia lo permita o el permiso de su autor.</span></p>
+        <ul class="shelf-grid">
+          <li><a class="tile" href="https://modrinth.com/mod/boids" target="_blank" rel="noopener noreferrer"><img src="tile-boids.png" width="64" height="64" alt="" loading="lazy" decoding="async"><span translate="no">Boids</span></a></li>
+          <li><a class="tile" href="https://modrinth.com/mod/birds-boids-addon" target="_blank" rel="noopener noreferrer"><img src="tile-birds.png" width="64" height="64" alt="" loading="lazy" decoding="async"><span translate="no">Birds</span></a></li>
+          <li><a class="tile" href="https://modrinth.com/mod/capybara-fabric" target="_blank" rel="noopener noreferrer"><img src="tile-capybara.png" width="64" height="64" alt="" loading="lazy" decoding="async"><span translate="no">Capybara</span></a></li>
+          <li><a class="tile" href="https://modrinth.com/mod/splinecart" target="_blank" rel="noopener noreferrer"><img src="tile-splinecart.png" width="64" height="64" alt="" loading="lazy" decoding="async"><span translate="no">Splinecart</span></a></li>
+          <li><a class="tile" href="https://www.curseforge.com/minecraft/mc-mods/ambers-underground" target="_blank" rel="noopener noreferrer"><img src="tile-ambers-underground.png" width="64" height="64" alt="" loading="lazy" decoding="async"><span translate="no">Amber's Underground</span></a></li>
+          <li><a class="tile" href="https://modrinth.com/mod/cave-enhancements" target="_blank" rel="noopener noreferrer"><img src="tile-cave-enhancements.png" width="64" height="64" alt="" loading="lazy" decoding="async"><span translate="no">Cave Enhancements</span></a></li>
+          <li><a class="tile" href="https://modrinth.com/mod/creaturecorner" target="_blank" rel="noopener noreferrer"><img src="tile-creature-corner.png" width="64" height="64" alt="" loading="lazy" decoding="async"><span translate="no">Creature Corner</span></a></li>
+          <li><a class="tile" href="https://modrinth.com/mod/dietary_statistics" target="_blank" rel="noopener noreferrer"><img src="tile-dietary-statistics.png" width="64" height="64" alt="" loading="lazy" decoding="async"><span translate="no">Dietary Statistics</span></a></li>
+          <li><a class="tile" href="https://modrinth.com/mod/envelope" target="_blank" rel="noopener noreferrer"><img src="tile-envelope.png" width="64" height="64" alt="" loading="lazy" decoding="async"><span translate="no">Envelope</span></a></li>
+          <li><span class="tile"><img src="tile-farmtweaks.png" width="64" height="64" alt="" loading="lazy" decoding="async"><span translate="no">FarmTweaks</span></span></li>
+          <li><span class="tile"><img src="tile-frozen-up.png" width="64" height="64" alt="" loading="lazy" decoding="async"><span translate="no">Frozen Up</span></span></li>
+          <li><a class="tile" href="https://www.curseforge.com/minecraft/mc-mods/gator-country" target="_blank" rel="noopener noreferrer"><img src="tile-gator-country.png" width="64" height="64" alt="" loading="lazy" decoding="async"><span translate="no">Gator Country</span></a></li>
+          <li><span class="tile"><img src="tile-helpful-wizards.png" width="64" height="64" alt="" loading="lazy" decoding="async"><span translate="no">Helpful Wizards</span></span></li>
+          <li><span class="tile"><img src="tile-mining-helmet.png" width="64" height="64" alt="" loading="lazy" decoding="async"><span translate="no">Mining Helmet</span></span></li>
+          <li><a class="tile" href="https://modrinth.com/mod/mixed-litter" target="_blank" rel="noopener noreferrer"><img src="tile-mixed-litter.png" width="64" height="64" alt="" loading="lazy" decoding="async"><span translate="no">Mixed Litter</span></a></li>
+          <li><a class="tile" href="https://modrinth.com/mod/no-mans-land" target="_blank" rel="noopener noreferrer"><img src="tile-no-mans-land.png" width="64" height="64" alt="" loading="lazy" decoding="async"><span translate="no">No Man's Land</span></a></li>
+          <li><a class="tile" href="https://modrinth.com/mod/oathbound-relics" target="_blank" rel="noopener noreferrer"><img src="tile-oathbound-relics.png" width="64" height="64" alt="" loading="lazy" decoding="async"><span translate="no">Oathbound Relics</span></a></li>
+          <li><a class="tile" href="https://www.curseforge.com/minecraft/mc-mods/pyrologer-and-friends" target="_blank" rel="noopener noreferrer"><img src="tile-pyrologer-and-friends.png" width="64" height="64" alt="" loading="lazy" decoding="async"><span translate="no">Pyrologer &amp; Friends</span></a></li>
+          <li><a class="tile" href="https://modrinth.com/mod/re-animal" target="_blank" rel="noopener noreferrer"><img src="tile-re-animal.png" width="64" height="64" alt="" loading="lazy" decoding="async"><span translate="no">Re:Animal</span></a></li>
+          <li><a class="tile" href="https://www.curseforge.com/minecraft/mc-mods/reckless-drilling" target="_blank" rel="noopener noreferrer"><img src="tile-reckless-drilling.png" width="64" height="64" alt="" loading="lazy" decoding="async"><span translate="no">Reckless Drilling</span></a></li>
+          <li><span class="tile"><img src="tile-reshaded.png" width="64" height="64" alt="" loading="lazy" decoding="async"><span translate="no">ReShaded</span></span></li>
+          <li><a class="tile" href="https://modrinth.com/mod/rumors" target="_blank" rel="noopener noreferrer"><img src="tile-rumors.png" width="64" height="64" alt="" loading="lazy" decoding="async"><span translate="no">Rumors</span></a></li>
+          <li><a class="tile" href="https://modrinth.com/mod/sprout" target="_blank" rel="noopener noreferrer"><img src="tile-sprout.png" width="64" height="64" alt="" loading="lazy" decoding="async"><span translate="no">Sprout</span></a></li>
+          <li><a class="tile" href="https://modrinth.com/mod/toastys-mobs-delight" target="_blank" rel="noopener noreferrer"><img src="tile-toastys-delight.png" width="64" height="64" alt="" loading="lazy" decoding="async"><span translate="no">Toasty's Delight</span></a></li>
+          <li><a class="tile" href="https://modrinth.com/mod/toastys-mobs" target="_blank" rel="noopener noreferrer"><img src="tile-toastys-mobs.png" width="64" height="64" alt="" loading="lazy" decoding="async"><span translate="no">Toasty's Mobs</span></a></li>
+          <li><a class="tile" href="https://modrinth.com/mod/treevamped" target="_blank" rel="noopener noreferrer"><img src="tile-treevamped.png" width="64" height="64" alt="" loading="lazy" decoding="async"><span translate="no">Treevamped</span></a></li>
+          <li><a class="tile" href="https://modrinth.com/mod/verdance" target="_blank" rel="noopener noreferrer"><img src="tile-verdance.png" width="64" height="64" alt="" loading="lazy" decoding="async"><span translate="no">Verdance</span></a></li>
+          <li><a class="tile" href="https://modrinth.com/mod/wildex-bestiary" target="_blank" rel="noopener noreferrer"><img src="tile-wildex.png" width="64" height="64" alt="" loading="lazy" decoding="async"><span translate="no">Wildex</span></a></li>
+        </ul>
+      </div>
+      <div class="bench-panel" id="bench-fixes" role="tabpanel" aria-labelledby="tab-fixes">
+        <h4 class="bench-h"><span data-i18n-en>Fixes</span><span data-i18n-es hidden>Arreglos</span></h4>
+        <p class="bench-note"><span data-i18n-en>Other people&rsquo;s mods that I patched so they run in my pack: crashes, lag and conflicts. The patch stays in my pack; the mod is still theirs.</span><span data-i18n-es hidden>Mods de otras personas que parcheé para que funcionen en mi pack: crashes, lag y conflictos. El parche se queda en mi pack; el mod sigue siendo suyo.</span></p>
+        <ul class="shelf-grid shelf-grid--rows">
+          <li><a class="tile tile--row" href="https://modrinth.com/mod/new-mutant-more" target="_blank" rel="noopener noreferrer"><img src="tile-mutant-more.png" width="52" height="52" alt="" loading="lazy" decoding="async"><span class="tile-t"><b translate="no">Mutant More</b><small><span data-i18n-en>Mixin config JAVA_16 to JAVA_17: it loads again</span><span data-i18n-es hidden>Config de mixins de JAVA_16 a JAVA_17: vuelve a cargar</span></small></span></a></li>
+          <li><a class="tile tile--row" href="https://modrinth.com/mod/yungs-api" target="_blank" rel="noopener noreferrer"><img src="tile-yungs-api.png" width="52" height="52" alt="" loading="lazy" decoding="async"><span class="tile-t"><b translate="no">YUNG's API</b><small><span data-i18n-en>Fixed a crash (NPE) in the beardifier</span><span data-i18n-es hidden>Arreglé un crash (NPE) del beardifier</span></small></span></a></li>
+          <li><a class="tile tile--row" href="https://modrinth.com/mod/goety" target="_blank" rel="noopener noreferrer"><img src="tile-goety.png" width="52" height="52" alt="" loading="lazy" decoding="async"><span class="tile-t"><b translate="no">Goety</b><small><span data-i18n-en>Removed an allocation made on every tick</span><span data-i18n-es hidden>Quité una asignación que se hacía en cada tick</span></small></span></a></li>
+          <li><a class="tile tile--row" href="https://www.curseforge.com/minecraft/mc-mods/wills-hedgehogs" target="_blank" rel="noopener noreferrer"><img src="tile-wills-hedgehogs.png" width="52" height="52" alt="" loading="lazy" decoding="async"><span class="tile-t"><b translate="no">Will's Hedgehogs!</b><small><span data-i18n-en>From 216 blocks per tick to one every 10 ticks</span><span data-i18n-es hidden>De 216 bloques por tick a uno cada 10 ticks</span></small></span></a></li>
+          <li><span class="tile tile--row"><img src="tile-seafarer.png" width="52" height="52" alt="" loading="lazy" decoding="async"><span class="tile-t"><b translate="no">Seafarer</b><small><span data-i18n-en>Fixed a loot table that never loaded</span><span data-i18n-es hidden>Arreglé una loot table que nunca cargaba</span></small></span></span></li>
+          <li><a class="tile tile--row" href="https://modrinth.com/mod/caverns-and-chasms" target="_blank" rel="noopener noreferrer"><img src="tile-caverns-and-chasms.png" width="52" height="52" alt="" loading="lazy" decoding="async"><span class="tile-t"><b translate="no">Caverns &amp; Chasms</b><small><span data-i18n-en>Fixed a loot table pointing at a missing mod</span><span data-i18n-es hidden>Arreglé una loot table que apuntaba a un mod ausente</span></small></span></a></li>
+          <li><span class="tile tile--row"><img src="tile-exotic-birds.png" width="52" height="52" alt="" loading="lazy" decoding="async"><span class="tile-t"><b translate="no">Exotic Birds</b><small><span data-i18n-en>Fixed 3 advancements still in 1.19 format</span><span data-i18n-es hidden>Arreglé 3 logros que seguían en formato 1.19</span></small></span></span></li>
+          <li><a class="tile tile--row" href="https://modrinth.com/mod/ecologics" target="_blank" rel="noopener noreferrer"><img src="tile-ecologics.png" width="52" height="52" alt="" loading="lazy" decoding="async"><span class="tile-t"><b translate="no">Ecologics</b><small><span data-i18n-en>Its walnut trees stop deleting vanilla oaks</span><span data-i18n-es hidden>Sus nogales ya no borran los robles vanilla</span></small></span></a></li>
+          <li><a class="tile tile--row" href="https://modrinth.com/mod/wild-lands" target="_blank" rel="noopener noreferrer"><img src="tile-wild-lands.png" width="52" height="52" alt="" loading="lazy" decoding="async"><span class="tile-t"><b translate="no">Wild Lands</b><small><span data-i18n-en>Its two biomes generate again</span><span data-i18n-es hidden>Sus dos biomas vuelven a generarse</span></small></span></a></li>
+          <li><a class="tile tile--row" href="https://www.curseforge.com/minecraft/mc-mods/biomes-reborn" target="_blank" rel="noopener noreferrer"><img src="tile-biomes-reborn.png" width="52" height="52" alt="" loading="lazy" decoding="async"><span class="tile-t"><b translate="no">Biomes Reborn</b><small><span data-i18n-en>Red pandas, koi and tigers that actually spawn</span><span data-i18n-es hidden>Pandas rojos, kois y tigres que por fin aparecen</span></small></span></a></li>
+          <li><a class="tile tile--row" href="https://modrinth.com/mod/bear-minimum" target="_blank" rel="noopener noreferrer"><img src="tile-bear-minimum.png" width="52" height="52" alt="" loading="lazy" decoding="async"><span class="tile-t"><b translate="no">Bear Minimum</b><small><span data-i18n-en>Bears hunt and fish the pack's own animals</span><span data-i18n-es hidden>Los osos cazan y pescan la fauna del pack</span></small></span></a></li>
+          <li><a class="tile tile--row" href="https://modrinth.com/mod/crabbers-delight" target="_blank" rel="noopener noreferrer"><img src="tile-crabbers-delight.png" width="52" height="52" alt="" loading="lazy" decoding="async"><span class="tile-t"><b translate="no">Crabber's Delight</b><small><span data-i18n-en>Tentacles from the pack's squid variants</span><span data-i18n-es hidden>Tentáculos de las variantes de calamar del pack</span></small></span></a></li>
+          <li><a class="tile tile--row" href="https://www.curseforge.com/minecraft/mc-mods/primal-mobs" target="_blank" rel="noopener noreferrer"><img src="tile-primal-mobs.png" width="52" height="52" alt="" loading="lazy" decoding="async"><span class="tile-t"><b translate="no">Primal Mobs</b><small><span data-i18n-en>The dodo drops loot now</span><span data-i18n-es hidden>El dodo ahora suelta botín</span></small></span></a></li>
+          <li><a class="tile tile--row" href="https://modrinth.com/mod/habitat" target="_blank" rel="noopener noreferrer"><img src="tile-habitat.png" width="52" height="52" alt="" loading="lazy" decoding="async"><span class="tile-t"><b translate="no">Habitat</b><small><span data-i18n-en>Songbirds in the new forests</span><span data-i18n-es hidden>Pájaros cantores en los bosques nuevos</span></small></span></a></li>
+          <li><a class="tile tile--row" href="https://modrinth.com/mod/upgrade-aquatic" target="_blank" rel="noopener noreferrer"><img src="tile-upgrade-aquatic.png" width="52" height="52" alt="" loading="lazy" decoding="async"><span class="tile-t"><b translate="no">Upgrade Aquatic</b><small><span data-i18n-en>Pike and perch in the new rivers</span><span data-i18n-es hidden>Lucios y percas en los ríos nuevos</span></small></span></a></li>
+          <li><a class="tile tile--row" href="https://modrinth.com/mod/project-vibrant-journeys" target="_blank" rel="noopener noreferrer"><img src="tile-vibrant-journeys.png" width="52" height="52" alt="" loading="lazy" decoding="async"><span class="tile-t"><b translate="no">Project: Vibrant Journeys</b><small><span data-i18n-en>Fallen logs matched to the right forests</span><span data-i18n-es hidden>Troncos caídos en el bosque que les toca</span></small></span></a></li>
+          <li><a class="tile tile--row" href="https://modrinth.com/mod/mod-primal" target="_blank" rel="noopener noreferrer"><img src="tile-primal.png" width="52" height="52" alt="" loading="lazy" decoding="async"><span class="tile-t"><b translate="no">Primal</b><small><span data-i18n-en>Spawn rates tuned by config</span><span data-i18n-es hidden>Frecuencias de spawn ajustadas por config</span></small></span></a></li>
+          <li><a class="tile tile--row" href="https://modrinth.com/mod/naturalist" target="_blank" rel="noopener noreferrer"><img src="tile-naturalist.png" width="52" height="52" alt="" loading="lazy" decoding="async"><span class="tile-t"><b translate="no">Naturalist</b><small><span data-i18n-en>Config tuned so savanna animals show up</span><span data-i18n-es hidden>Config ajustada para que aparezca la sabana</span></small></span></a></li>
+          <li><a class="tile tile--row" href="https://modrinth.com/mod/my-nethers-delight" target="_blank" rel="noopener noreferrer"><img src="tile-my-nethers-delight.png" width="52" height="52" alt="" loading="lazy" decoding="async"><span class="tile-t"><b translate="no">My Nether's Delight</b><small><span data-i18n-en>Backport</span><span data-i18n-es hidden>Backport</span></small></span></a></li>
+          <li><a class="tile tile--row" href="https://modrinth.com/mod/treechop" target="_blank" rel="noopener noreferrer"><img src="tile-treechop.png" width="52" height="52" alt="" loading="lazy" decoding="async"><span class="tile-t"><b translate="no">HT's TreeChop</b><small><span data-i18n-en>Fixed jar</span><span data-i18n-es hidden>Jar arreglado</span></small></span></a></li>
+          <li><a class="tile tile--row" href="https://modrinth.com/mod/bountiful-critters" target="_blank" rel="noopener noreferrer"><img src="tile-bountiful-critters.png" width="52" height="52" alt="" loading="lazy" decoding="async"><span class="tile-t"><b translate="no">Bountiful Critters</b></span></a></li>
+          <li><a class="tile tile--row" href="https://modrinth.com/mod/dungeons-and-taverns" target="_blank" rel="noopener noreferrer"><img src="tile-dungeons-taverns.png" width="52" height="52" alt="" loading="lazy" decoding="async"><span class="tile-t"><b translate="no">Dungeons and Taverns</b></span></a></li>
+          <li><span class="tile tile--row"><img src="tile-sorcerer.png" width="52" height="52" alt="" loading="lazy" decoding="async"><span class="tile-t"><b translate="no">Illager Sorcerer</b></span></span></li>
+          <li><a class="tile tile--row" href="https://modrinth.com/mod/tidal-towns" target="_blank" rel="noopener noreferrer"><img src="tile-tidal-towns.png" width="52" height="52" alt="" loading="lazy" decoding="async"><span class="tile-t"><b translate="no">Tidal Towns</b></span></a></li>
+          <li><a class="tile tile--row" href="https://modrinth.com/mod/afk-camera-unofficial-forge-port" target="_blank" rel="noopener noreferrer"><img src="tile-afk-camera.png" width="52" height="52" alt="" loading="lazy" decoding="async"><span class="tile-t"><b translate="no">AFK Camera</b></span></a></li>
+        </ul>
+      </div>
+      <div class="bench-panel" id="bench-compat" role="tabpanel" aria-labelledby="tab-compat">
+        <h4 class="bench-h"><span data-i18n-en>Compatibility</span><span data-i18n-es hidden>Compatibilidad</span></h4>
+        <p class="bench-note"><span data-i18n-en>Small mods of mine whose only job is to make other mods work together.</span><span data-i18n-es hidden>Mods pequeños míos cuyo único trabajo es que otros mods funcionen juntos.</span></p>
+        <ul class="shelf-grid shelf-grid--rows">
+          <li><a class="tile tile--row" href="https://modrinth.com/resourcepack/fresh-animations" target="_blank" rel="noopener noreferrer"><img src="tile-fresh-animations.png" width="52" height="52" alt="" loading="lazy" decoding="async"><span class="tile-t"><b translate="no">Fresh Animations &times; Epic Fight</b></span></a></li>
+          <li><a class="tile tile--row" href="https://modrinth.com/mod/entity-model-features" target="_blank" rel="noopener noreferrer"><img src="tile-emf.png" width="52" height="52" alt="" loading="lazy" decoding="async"><span class="tile-t"><b translate="no">Entity Model Features &times; Physics Mod</b></span></a></li>
+          <li><a class="tile tile--row" href="https://modrinth.com/mod/autumnity" target="_blank" rel="noopener noreferrer"><img src="tile-autumnity.png" width="52" height="52" alt="" loading="lazy" decoding="async"><span class="tile-t"><b translate="no">No Man's Land &times; Autumnity</b></span></a></li>
+          <li><a class="tile tile--row" href="https://modrinth.com/mod/snuffles" target="_blank" rel="noopener noreferrer"><img src="tile-snuffles.png" width="52" height="52" alt="" loading="lazy" decoding="async"><span class="tile-t"><b translate="no">Sprout &times; Snuffles &times; Gator Country</b></span></a></li>
+          <li><span class="tile tile--row"><img src="tile-waterfowl-squid.png" width="52" height="52" alt="" loading="lazy" decoding="async"><span class="tile-t"><b translate="no">Waterfowl &times; Squid</b></span></span></li>
+          <li><a class="tile tile--row" href="https://modrinth.com/mod/butchers-delight" target="_blank" rel="noopener noreferrer"><img src="tile-butchers-delight.png" width="52" height="52" alt="" loading="lazy" decoding="async"><span class="tile-t"><b translate="no">Butcher's Delight</b></span></a></li>
+          <li><a class="tile tile--row" href="https://modrinth.com/mod/domestication-innovation" target="_blank" rel="noopener noreferrer"><img src="tile-domestication-innovation.png" width="52" height="52" alt="" loading="lazy" decoding="async"><span class="tile-t"><b translate="no">Domestication Innovation</b></span></a></li>
+          <li><a class="tile tile--row" href="https://modrinth.com/mod/creaturecorner" target="_blank" rel="noopener noreferrer"><img src="tile-creature-corner.png" width="52" height="52" alt="" loading="lazy" decoding="async"><span class="tile-t"><b translate="no">Creature Corner</b></span></a></li>
+          <li><a class="tile tile--row" href="https://modrinth.com/mod/toastys-mobs" target="_blank" rel="noopener noreferrer"><img src="tile-toastys-mobs.png" width="52" height="52" alt="" loading="lazy" decoding="async"><span class="tile-t"><b translate="no">Toasty's Mobs</b></span></a></li>
+          <li><a class="tile tile--row" href="https://modrinth.com/mod/no-mans-land" target="_blank" rel="noopener noreferrer"><img src="tile-no-mans-land.png" width="52" height="52" alt="" loading="lazy" decoding="async"><span class="tile-t"><b translate="no">No Man's Land worldgen</b></span></a></li>
+        </ul>
+      </div>
+      <div class="bench-panel" id="bench-own" role="tabpanel" aria-labelledby="tab-own">
+        <h4 class="bench-h"><span data-i18n-en>Built for my pack</span><span data-i18n-es hidden>Hechos para mi pack</span></h4>
+        <p class="bench-note"><span data-i18n-en>Code I wrote for the pack. The ones split off from someone else&rsquo;s mod say where they come from.</span><span data-i18n-es hidden>Código que escribí para el pack. Los que salen del mod de otra persona dicen de dónde vienen.</span></p>
+        <ul class="shelf-grid shelf-grid--rows">
+          <li><span class="tile tile--row"><img src="tile-deadlock-fix.png" width="52" height="52" alt="" loading="lazy" decoding="async"><span class="tile-t"><b translate="no">Worldgen Deadlock Fix</b><small><span data-i18n-en>Fixes MC-246262, a world load that hangs forever</span><span data-i18n-es hidden>Arregla MC-246262, una carga de mundo que se cuelga para siempre</span></small></span></span></li>
+          <li><span class="tile tile--row"><img src="tile-spawncap.png" width="52" height="52" alt="" loading="lazy" decoding="async"><span class="tile-t"><b translate="no">SpawnCap</b><small><span data-i18n-en>Moderate mob caps and a thread-safe world random</span><span data-i18n-es hidden>Topes de mobs moderados y un aleatorio a prueba de hilos</span></small></span></span></li>
+          <li><span class="tile tile--row"><img src="tile-pack-fixes.png" width="52" height="52" alt="" loading="lazy" decoding="async"><span class="tile-t"><b translate="no">Pack Fixes</b><small><span data-i18n-en>Fixes that span the whole pack</span><span data-i18n-es hidden>Arreglos que abarcan todo el pack</span></small></span></span></li>
+          <li><span class="tile tile--row"><img src="tile-biome-pigeon.png" width="52" height="52" alt="" loading="lazy" decoding="async"><span class="tile-t"><b translate="no">Biome Pigeon</b><small><span data-i18n-en><span translate="no">Creature Corner </span>pigeons coloured by biome</span><span data-i18n-es hidden>Palomas de<span translate="no"> Creature Corner </span>con el color de su bioma</span></small></span></span></li>
+          <li><span class="tile tile--row"><img src="tile-wild-wolf.png" width="52" height="52" alt="" loading="lazy" decoding="async"><span class="tile-t"><b translate="no">Primal Wild Wolf</b><small><span data-i18n-en><span translate="no">Pyrologer's </span>wild wolf wearing<span translate="no"> Primal's </span>model</span><span data-i18n-es hidden>El lobo salvaje de<span translate="no"> Pyrologer </span>con el modelo de<span translate="no"> Primal</span></span></small></span></span></li>
+          <li><span class="tile tile--row"><img src="tile-hunter-villager.png" width="52" height="52" alt="" loading="lazy" decoding="async"><span class="tile-t"><b translate="no">Hunter Villager</b><small><span data-i18n-en>From<span translate="no"> Pyrologer &amp; Friends </span>1.19.2</span><span data-i18n-es hidden>De<span translate="no"> Pyrologer &amp; Friends </span>1.19.2</span></small></span></span></li>
+          <li><span class="tile tile--row"><img src="tile-pumpkineer.png" width="52" height="52" alt="" loading="lazy" decoding="async"><span class="tile-t"><b translate="no">Pumpkineer</b><small><span data-i18n-en>From<span translate="no"> Pyrologer &amp; Friends </span>1.19.2</span><span data-i18n-es hidden>De<span translate="no"> Pyrologer &amp; Friends </span>1.19.2</span></small></span></span></li>
+          <li><span class="tile tile--row"><img src="tile-rancher.png" width="52" height="52" alt="" loading="lazy" decoding="async"><span class="tile-t"><b translate="no">Rancher</b><small><span data-i18n-en>From<span translate="no"> Pyrologer &amp; Friends </span>1.19.2</span><span data-i18n-es hidden>De<span translate="no"> Pyrologer &amp; Friends </span>1.19.2</span></small></span></span></li>
+          <li><span class="tile tile--row"><img src="tile-ambush-mobs.png" width="52" height="52" alt="" loading="lazy" decoding="async"><span class="tile-t"><b translate="no">Ambush Mobs</b><small><span data-i18n-en>From<span translate="no"> Pyrologer &amp; Friends </span>1.19.2</span><span data-i18n-es hidden>De<span translate="no"> Pyrologer &amp; Friends </span>1.19.2</span></small></span></span></li>
+          <li><span class="tile tile--row"><img src="tile-bosses-addon.png" width="52" height="52" alt="" loading="lazy" decoding="async"><span class="tile-t"><b translate="no">Pyrologer Bosses Addon</b><small><span data-i18n-en>An addon for<span translate="no"> Pyrologer &amp; Friends</span></span><span data-i18n-es hidden>Un addon para<span translate="no"> Pyrologer &amp; Friends</span></span></small></span></span></li>
+          <li><span class="tile tile--row"><img src="tile-tortoise.png" width="52" height="52" alt="" loading="lazy" decoding="async"><span class="tile-t"><b translate="no">Tortoise</b><small><span data-i18n-en>Split off from<span translate="no"> No Man's Land</span>, by<span translate="no"> FarCr</span></span><span data-i18n-es hidden>Sacada de<span translate="no"> No Man's Land</span>, de<span translate="no"> FarCr</span></span></small></span></span></li>
+        </ul>
+      </div>
       <p class="shelf-foot"><span data-i18n-en>Every mod and every logo here belongs to whoever wrote it, shown to identify their work.</span><span data-i18n-es hidden>Cada mod y cada logo de aquí es de quien lo escribió, y se muestran para identificar su trabajo.</span></p>
     </div>
+    <script>
+    (function () {
+      var b = document.querySelector('.bench'); if (!b) return;
+      var tabs = [].slice.call(b.querySelectorAll('[role=tab]'));
+      function sel(t) {
+        tabs.forEach(function (x) {
+          var on = x === t;
+          x.setAttribute('aria-selected', on ? 'true' : 'false');
+          x.tabIndex = on ? 0 : -1;
+          document.getElementById(x.getAttribute('aria-controls')).hidden = !on;
+        });
+      }
+      tabs.forEach(function (t, i) {
+        t.addEventListener('click', function () { sel(t); });
+        t.addEventListener('keydown', function (e) {
+          var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+          if (!d) return;
+          e.preventDefault();
+          var n = tabs[(i + d + tabs.length) % tabs.length];
+          n.focus(); sel(n);
+        });
+      });
+      b.classList.add('js-bench');
+      sel(tabs[0]);
+    })();
+    </script>
 
   </div>
 </section>
