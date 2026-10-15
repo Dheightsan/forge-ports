@@ -141,7 +141,7 @@
         "name": "How do I pay?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "By Wise or PayPal, always as Goods and Services. Small jobs are usually paid at the end; bigger ones can go in stages agreed in writing. Either way, you see the build running before the final payment."
+          "text": "Before starting, we agree in writing on an available payment method, currency and payment stages, including any deposit. I show the agreed test results before requesting final payment. For PayPal, if available, I only accept Goods and Services. File delivery and acceptance follow the written agreement."
         }
       },
       {
@@ -1221,6 +1221,8 @@
     @media (max-width: 980px) {
       .est-discord, .est-copy, .est-email { padding-left: 0.7rem; padding-right: 0.7rem; font-size: 0.8rem; }
     }
+    .tk-origin { display: flex; align-items: flex-start; gap: 0.5rem; text-align: left; }
+    .tk-origin input { flex: none; margin-top: 0.25rem; }
     .est-copy.done { background: var(--surface2); color: var(--green-hi); }
     .est-disclaimer { font-size: 0.74rem; color: var(--text-mute); margin-top: 0.85rem; text-align: center; line-height: 1.5; }
     .est-disclaimer a { color: var(--green-hi); }
@@ -2815,7 +2817,7 @@
 <section id="estimator">
   <div class="wrap">
     <h2><span data-i18n-en>Set up your ticket</span><span data-i18n-es hidden>Arma tu ticket</span><img class="px px--h2 px--pato" src="deco-pato.webp" width="96" height="91" alt="" aria-hidden="true" loading="lazy" decoding="async"></h2>
-    <p class="sub"><span data-i18n-en>Fill in what you know and paste the summary into <span translate="no">#pedidos</span> on <span translate="no">Discord</span>. Leave blank anything you don't know.</span><span data-i18n-es hidden>Rellena lo que sepas y pega el resumen en <span translate="no">#pedidos</span> de <span translate="no">Discord</span>. Lo que no sepas, déjalo en blanco.</span></p>
+    <p class="sub"><span data-i18n-en>Fill in what you know, copy the summary, then open a private ticket from <span translate="no">#pedidos</span> on <span translate="no">Discord</span>. Paste it inside your ticket. Leave blank anything you don't know.</span><span data-i18n-es hidden>Rellena lo que sepas, copia el resumen y abre un ticket privado desde <span translate="no">#pedidos</span> en <span translate="no">Discord</span>. Pégalo dentro de tu ticket. Lo que no sepas, déjalo en blanco.</span></p>
 
     <div class="estimator reveal">
       <div class="est-form">
@@ -2852,8 +2854,10 @@
 
       <div class="est-result">
         <div class="est-result-label"><span data-i18n-en>Ready to send</span><span data-i18n-es hidden>Listo para enviar</span></div>
-        <div class="est-summary" id="est-summary"></div>
-        <a class="btn btn-discord est-discord" id="est-discord" href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg><span><span data-i18n-en>Copy &amp; open <span translate="no">Discord</span></span><span data-i18n-es hidden>Copiar y abrir <span translate="no">Discord</span></span></span></a>
+        <div class="est-summary" id="est-summary" tabindex="0" aria-label="Request summary" data-aria-en="Request summary" data-aria-es="Resumen de solicitud"></div>
+        <label class="est-disclaimer tk-origin" for="tk-origin"><input type="checkbox" id="tk-origin"> <span data-i18n-en>Include where I found this service in my summary (optional)</span><span data-i18n-es hidden>Incluir cómo encontré el servicio en mi resumen (opcional)</span></label>
+        <p class="est-disclaimer" id="est-copy-status" role="status" aria-live="polite"></p>
+        <a class="btn btn-discord est-discord" id="est-discord" href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg><span><span data-i18n-en>Open <span translate="no">Discord</span></span><span data-i18n-es hidden>Abrir <span translate="no">Discord</span></span></span></a>
         <button type="button" class="btn btn-ghost est-copy" id="est-copy"><span data-i18n-en>Copy summary</span><span data-i18n-es hidden>Copiar resumen</span></button>
         <div class="est-disclaimer"><span data-i18n-en>Once you're in, go to <span translate="no">#pedidos</span>: that's where tickets start.</span><span data-i18n-es hidden>Cuando entres, ve a <span translate="no">#pedidos</span>: ahí se abren los tickets.</span></div>
       </div>
@@ -3133,7 +3137,7 @@
       <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt"><span data-i18n-en>What do you need for a quote?</span><span data-i18n-es hidden>¿Qué necesitas para cotizar?</span></span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body"><span data-i18n-en>The mod (link or file), the version and loader it's on now, and where you want it. If you're the author or have their permission, say so too. With that I can tell you whether it can be done and what it would cost.</span><span data-i18n-es hidden>El mod (enlace o archivo), la versión y el loader en los que está, y dónde lo quieres. Si eres el autor o tienes su permiso, dilo también. Con eso te digo si se puede hacer y cuánto costaría.</span></div></div></div>
       <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt"><span data-i18n-en>Do you need the source code?</span><span data-i18n-es hidden>¿Necesitas el código fuente?</span></span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body"><span data-i18n-en>No. I can work from the compiled mod and decompile whatever needs to change. It doesn't have to be on<span translate="no"> CurseForge </span>or<span translate="no"> Modrinth </span>either: the file you send me is enough. What decides whether I can touch it is the licence or the permission, not where it's hosted.</span><span data-i18n-es hidden>No. Puedo trabajar desde el mod compilado y descompilar lo que haga falta cambiar. Tampoco hace falta que esté en<span translate="no"> CurseForge </span>o<span translate="no"> Modrinth</span>: me sirve el archivo que me mandes. Lo que decide si puedo tocarlo es la licencia o el permiso, no dónde esté alojado.</span></div></div></div>
       <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt"><span data-i18n-en>How long does it take?</span><span data-i18n-es hidden>¿Cuánto tarda?</span></span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body"><span data-i18n-en>It depends on the mod. You get an estimated timeline together with the price, before I start. If you have a date that can't move, tell me at the start and I'll tell you whether I can commit to it in writing.</span><span data-i18n-es hidden>Depende del mod. Te doy un plazo estimado junto con el precio, antes de empezar. Si tienes una fecha que no se mueve, dímelo al principio y te digo si puedo comprometerme a ella por escrito.</span></div></div></div>
-      <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt"><span data-i18n-en>How do I pay?</span><span data-i18n-es hidden>¿Cómo se paga?</span></span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body"><span data-i18n-en>By<span translate="no"> Wise </span>or<span translate="no"> PayPal</span>, always as Goods and Services. Small jobs are usually paid at the end; bigger ones can go in stages agreed in writing. Either way, you see the build running before the final payment.</span><span data-i18n-es hidden>Por<span translate="no"> Wise </span>o<span translate="no"> PayPal</span>, siempre como Bienes y Servicios. Los trabajos pequeños suelen pagarse al terminar; los grandes pueden ir por etapas acordadas por escrito. En los dos casos ves la build funcionando antes del pago final.</span></div></div></div>
+      <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt"><span data-i18n-en>How do I pay?</span><span data-i18n-es hidden>¿Cómo se paga?</span></span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body"><span data-i18n-en>Before starting, we agree in writing on an available payment method, currency and payment stages, including any deposit. I show the agreed test results before requesting final payment. For <span translate="no">PayPal</span>, if available, I only accept Goods and Services. File delivery and acceptance follow the written agreement.</span><span data-i18n-es hidden>Antes de empezar acordamos por escrito un medio de pago disponible, la moneda y las etapas de pago, incluido cualquier anticipo. Muestro los resultados de las pruebas acordadas antes de solicitar el pago final. En <span translate="no">PayPal</span>, si está disponible, solo acepto Bienes y Servicios. La entrega de archivos y su aceptación siguen el acuerdo escrito.</span></div></div></div>
       <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt"><span data-i18n-en>Can the<span translate="no"> port </span>be published?</span><span data-i18n-es hidden>¿Se puede publicar el<span translate="no"> port</span>?</span></span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body"><span data-i18n-en>It depends on the original mod's licence, and I tell you which case you're in before you pay. Open source: yes, published with credit to the author. Your own mod, or with written permission: yes, and I tell you what credit to include. All rights reserved and no permission: no, and I don't take the job on those terms.</span><span data-i18n-es hidden>Depende de la licencia del mod original, y te digo en qué caso estás antes de que pagues. Código abierto: sí, y se publica con crédito al autor. Tu propio mod o con permiso por escrito: también, y te digo qué crédito poner. Todos los derechos reservados y sin permiso: no, y en esas condiciones no acepto el encargo.</span></div></div></div>
       <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt"><span data-i18n-en>What if a bug shows up later?</span><span data-i18n-es hidden>¿Qué pasa si aparece un fallo después?</span></span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body"><span data-i18n-en>For 30 days from delivery I fix, at no cost, any bug I introduced within the agreed scope and setup. After that, or if it comes from a<span translate="no"> Minecraft </span>update, other mods or changes to your server, we treat it as maintenance.</span><span data-i18n-es hidden>Durante 30 días desde la entrega corrijo sin coste cualquier fallo que haya introducido yo, dentro del alcance y el montaje acordados. Pasado ese plazo, o si viene de una actualización de<span translate="no"> Minecraft</span>, de otros mods o de cambios en tu servidor, lo vemos como mantenimiento.</span></div></div></div>
     </div>
@@ -3153,21 +3157,21 @@
         <div class="legal-doc-body">
           <p><span data-i18n-en><strong>Service.</strong><span translate="no"> Modwright </span>does paid<span translate="no"> Minecraft </span>mod work:<span translate="no"> porting</span>, backporting, reviving, loader conversion, compatibility patches, maintenance and optimization.</span><span data-i18n-es hidden><strong>Servicio.</strong><span translate="no"> Modwright </span>hace trabajo de pago sobre mods de<span translate="no"> Minecraft</span>:<span translate="no"> porting</span>, backporting, revivir mods, conversión de cargador, parches de compatibilidad, mantenimiento y optimización.</span></p>
           <p><span data-i18n-en><strong>Quotes &amp; pricing.</strong> I give you a non-binding ballpark once I have seen the mod. The final price is fixed and agreed in writing before any work begins. Payment terms depend on the size of the job: smaller jobs are typically paid on completion, larger jobs can be split into milestones agreed in writing before work starts. Either way, you know the total price and the payment structure before any work begins.</span><span data-i18n-es hidden><strong>Presupuestos y precios.</strong> Te doy una cifra orientativa y sin compromiso en cuanto he visto el mod. El precio final es fijo y se acuerda por escrito antes de empezar nada. La forma de pago depende del tamaño del encargo: los pequeños suelen pagarse al terminar, y los grandes se pueden dividir en hitos acordados por escrito antes de empezar. En cualquier caso, sabes el precio total y la forma de pago antes de que empiece nada.</span></p>
-          <p><span data-i18n-en><strong>Returning clients.</strong> When your pack moves to a new<span translate="no"> Minecraft </span>version,<span translate="no"> re-porting </span>work I originally built for you is 40% of the original price, and past clients come ahead of new ones in the queue.</span><span data-i18n-es hidden><strong>Clientes que repiten.</strong> Cuando tu pack pase a una versión nueva de<span translate="no"> Minecraft</span>, volver a portear un trabajo que hice para ti cuesta el 40% del precio original, y los clientes anteriores van antes que los nuevos en la cola.</span></p>
-          <p><span data-i18n-en><strong>Payment.</strong> I invoice through<span translate="no"> Wise </span>or<span translate="no"> PayPal</span>, as Goods and Services only; I do not take Friends and Family. Currency, schedule and any milestones are set out in our written agreement.</span><span data-i18n-es hidden><strong>Pago.</strong> Facturo por<span translate="no"> Wise </span>o<span translate="no"> PayPal</span>, solo como Bienes y Servicios; no acepto Amigos y Familiares. La moneda, el calendario y los hitos, si los hay, quedan fijados en nuestro acuerdo escrito.</span></p>
-          <p><span data-i18n-en><strong>Delivery &amp; timelines.</strong> Every build is booted on a dedicated server before it leaves my machine, and you watch it running in your own setup before you make final payment. Timelines are honest estimates based on the work in front of me. Treat them as estimates: I do not commit to hard deadlines. If a date is genuinely critical for you, say so before we agree: I will either commit to it in writing or turn the job down.</span><span data-i18n-es hidden><strong>Entrega y plazos.</strong> Toda compilación se arranca en un servidor dedicado antes de salir de mi máquina, y tú la ves funcionando en tu propio montaje antes de hacer el pago final. Los plazos son estimaciones honestas según el trabajo que tengo delante. Tómalos como estimaciones: no me comprometo a fechas cerradas. Si una fecha es de verdad crítica para ti, dilo antes de acordar nada: o me comprometo por escrito o rechazo el encargo.</span></p>
-          <p><span data-i18n-en><strong>Scope &amp; acceptance.</strong> The deliverable is exactly what our written agreement describes: the mod, the loader, the<span translate="no"> Minecraft </span>version, and the mod list it was built against. You run the build and confirm it before you make final payment, and that confirmation closes the scope. If you have not raised a problem within seven days of delivery, the build counts as accepted and the final payment falls due. Anything outside that agreement is a separate job, quoted separately.</span><span data-i18n-es hidden><strong>Alcance y aceptación.</strong> Lo que se entrega es exactamente lo que describe nuestro acuerdo escrito: el mod, el cargador, la versión de<span translate="no"> Minecraft </span>y la lista de mods contra la que se compiló. Tú ejecutas la compilación y la confirmas antes de hacer el pago final, y esa confirmación cierra el alcance. Si no has planteado ningún problema en los siete días siguientes a la entrega, la compilación se da por aceptada y el pago final es exigible. Todo lo que quede fuera de ese acuerdo es un encargo aparte y se cotiza aparte.</span></p>
+          <p><span data-i18n-en><strong>Returning clients.</strong> I check what we can reuse before quoting an update. Version, loader and dependency changes determine the work required. The price and place in the queue are confirmed in writing for each job.</span><span data-i18n-es hidden><strong>Clientes que repiten.</strong> Reviso qué podemos reutilizar antes de cotizar una actualización. Los cambios de versión, cargador y dependencias determinan el trabajo necesario. El precio y el lugar en la cola se confirman por escrito para cada encargo.</span></p>
+          <p><span data-i18n-en><strong>Payment.</strong> Before starting, we agree in writing on an available payment method, currency and payment stages, including any deposit. I show the agreed test results before requesting final payment. For <span translate="no">PayPal</span>, if available, I only accept Goods and Services. File delivery and acceptance follow the written agreement.</span><span data-i18n-es hidden><strong>Pago.</strong> Antes de empezar acordamos por escrito un medio de pago disponible, la moneda y las etapas de pago, incluido cualquier anticipo. Muestro los resultados de las pruebas acordadas antes de solicitar el pago final. En <span translate="no">PayPal</span>, si está disponible, solo acepto Bienes y Servicios. La entrega de archivos y su aceptación siguen el acuerdo escrito.</span></p>
+          <p><span data-i18n-en><strong>Delivery &amp; timelines.</strong> I test the agreed functions on the relevant client and server environments. A successful build alone is not a runtime test. You receive a test summary identifying the delivered build and any agreed limitations. Dates are estimates unless we agree otherwise in writing before starting.</span><span data-i18n-es hidden><strong>Entrega y plazos.</strong> Pruebo las funciones acordadas en los entornos de cliente y servidor que correspondan. Compilar sin errores no sustituye una prueba de funcionamiento. Recibes un resumen de pruebas que identifica la build entregada y las limitaciones acordadas. Las fechas son estimaciones salvo acuerdo escrito previo.</span></p>
+          <p><span data-i18n-en><strong>Scope &amp; acceptance.</strong> Before starting, we agree on the mod, loader, <span translate="no">Minecraft</span> version, mod list, deliverable and acceptance tests. The agreement also sets the review period, payment stages and file handover. Changes outside that scope are quoted separately. Report a reproducible problem against the agreed setup so I can check it.</span><span data-i18n-es hidden><strong>Alcance y aceptación.</strong> Antes de empezar acordamos el mod, cargador, versión de <span translate="no">Minecraft</span>, lista de mods, entregable y pruebas de aceptación. El acuerdo también fija el período de revisión, las etapas de pago y la entrega de archivos. Los cambios fuera de ese alcance se cotizan aparte. Si hay un problema, repórtalo con los pasos para reproducirlo en el entorno acordado.</span></p>
           <p><span data-i18n-en><strong>Corrections.</strong> For 30 days after delivery I correct, at no charge, any defect I introduced that appears inside the agreed scope and reproduces on the setup we agreed. The remedy is that I fix it. After those 30 days, and for anything caused by a<span translate="no"> Minecraft </span>update, another mod, a change to your server, or a change to the mod list we agreed on, fixes are quoted as maintenance work.</span><span data-i18n-es hidden><strong>Correcciones.</strong> Durante 30 días desde la entrega corrijo sin coste cualquier fallo que yo haya introducido, que aparezca dentro del alcance acordado y que se reproduzca en el montaje acordado. La solución es que lo arreglo yo. Pasados esos 30 días, y para cualquier cosa causada por una actualización de<span translate="no"> Minecraft</span>, por otro mod, por un cambio en tu servidor o por un cambio en la lista de mods acordada, los arreglos se cotizan como mantenimiento.</span></p>
           <p><span data-i18n-en><strong>Your responsibilities.</strong> You must have the right to have the mod worked on: it's open-source, your own, or you have the author's permission. If that turns out not to be the case, I stop the job, and what you have already paid covers the work already done. How you run, monetise or advertise your server is between you and<span translate="no"> Mojang</span>'s own rules. I take none of that on. I work on the mod as you supply it, so defects that were already in the original, and problems caused by the other mods, plugins or server software you run it alongside, sit outside the job unless we agreed to cover them. You are responsible for how you use the delivered files.</span><span data-i18n-es hidden><strong>Tus responsabilidades.</strong> Tienes que tener derecho a que se trabaje sobre el mod: es de código abierto, es tuyo, o tienes el permiso del autor. Si resulta que no es así, paro el encargo, y lo que ya hayas pagado cubre el trabajo ya hecho. Cómo gestionas, monetizas o anuncias tu servidor es cosa tuya y de las normas de<span translate="no"> Mojang</span>. Yo no asumo nada de eso. Trabajo sobre el mod tal como me lo das, así que los fallos que ya venían en el original, y los problemas causados por los otros mods, plugins o software de servidor con los que lo ejecutes, quedan fuera del encargo salvo que hayamos acordado cubrirlos. Tú eres responsable del uso que hagas de los archivos entregados.</span></p>
-          <p><span data-i18n-en><strong>Claims about the mod you bring me.</strong> If someone brings a claim against me over the mod you supplied, or over how you use what I deliver, you cover the cost of dealing with it. This is not me expecting trouble. It is the reason I check the licence before I write a line, so that neither of us ever ends up there.</span><span data-i18n-es hidden><strong>Reclamaciones sobre el mod que me traes.</strong> Si alguien me reclama por el mod que me diste, o por el uso que hagas de lo que entrego, tú cubres el coste de resolverlo. Esto no es que espere problemas. Es la razón por la que reviso la licencia antes de escribir una línea, para que ninguno de los dos acabe ahí.</span></p>
-          <p><span data-i18n-en><strong>Rights &amp; redistribution.</strong> The fee buys my time on the work. Distribution rights stay with the licence holder: closed-source (ARR) work is delivered privately to you only and is never published. I will not publicly redistribute an ARR mod without the author's written permission.</span><span data-i18n-es hidden><strong>Derechos y redistribución.</strong> Lo que pagas es mi tiempo sobre el trabajo. Los derechos de distribución se quedan con quien tiene la licencia: el trabajo de código cerrado (ARR) se entrega en privado solo a ti y no se publica nunca. No redistribuyo públicamente un mod ARR sin permiso escrito del autor.</span></p>
-          <p><span data-i18n-en><strong>What stays mine.</strong> You get the delivered work and a permanent licence to use it in your own packs and servers. The general techniques, tools and libraries I build stay mine and I reuse them from one job to the next. That reuse is exactly why your second job costs less than your first.</span><span data-i18n-es hidden><strong>Qué sigue siendo mío.</strong> Recibes el trabajo entregado y una licencia permanente para usarlo en tus propios packs y servidores. Las técnicas, herramientas y librerías generales que construyo siguen siendo mías y las reutilizo de un encargo al siguiente. Esa reutilización es justo por lo que tu segundo encargo cuesta menos que el primero.</span></p>
+          <p><span data-i18n-en><strong>Permission to work on the mod.</strong> Before accepting a job, I check the licence or written permission for the proposed modification and delivery. If those rights are unclear, the job waits until they are clarified. Any additional responsibilities must be agreed in writing.</span><span data-i18n-es hidden><strong>Permiso para trabajar sobre el mod.</strong> Antes de aceptar un encargo reviso la licencia o autorización escrita para la modificación y entrega propuestas. Si esos derechos no están claros, el trabajo espera hasta aclararlos. Cualquier responsabilidad adicional debe acordarse por escrito.</span></p>
+          <p><span data-i18n-en><strong>Rights &amp; redistribution.</strong> Paying for development does not grant additional rights over the original mod. Modification, private delivery and public distribution each require an applicable licence or permission. I keep the required licences and author credits with the work.</span><span data-i18n-es hidden><strong>Derechos y redistribución.</strong> Pagar por desarrollo no concede derechos adicionales sobre el mod original. La modificación, la entrega privada y la distribución pública requieren una licencia o autorización aplicable. Conservo las licencias y atribuciones requeridas.</span></p>
+          <p><span data-i18n-en><strong>Tools and reuse.</strong> Usage rights for the delivered files follow their applicable licences and our agreement. I reuse my own general tools and techniques where permitted, without claiming ownership of third-party code. Reuse can reduce the work needed for a later job; its price is quoted separately.</span><span data-i18n-es hidden><strong>Herramientas y reutilización.</strong> Los derechos de uso de los archivos entregados siguen sus licencias aplicables y nuestro acuerdo. Reutilizo mis herramientas y técnicas generales cuando está permitido, sin atribuirme código ajeno. Esa reutilización puede reducir el trabajo de un encargo posterior; su precio se cotiza aparte.</span></p>
           <p><span data-i18n-en><strong>Showing the work.</strong> Unless we agree otherwise in writing, I may describe a finished job and show the result. Closed-source work stays private either way: no files, no code, and no client named without your say so.</span><span data-i18n-es hidden><strong>Enseñar el trabajo.</strong> Salvo que acordemos otra cosa por escrito, puedo describir un encargo terminado y enseñar el resultado. El trabajo de código cerrado se queda privado en cualquier caso: ni archivos, ni código, ni el nombre de ningún cliente sin tu permiso.</span></p>
           <p><span data-i18n-en><strong>If a job stops.</strong> Either of us can stop a job before it is finished. If you stop it, you pay for the work done up to that point and I hand over what exists. If I stop it, I return anything you paid for work I had not done. A deposit covers work already scheduled and started, so it stays with me once the work has begun.</span><span data-i18n-es hidden><strong>Si un encargo se para.</strong> Cualquiera de los dos puede parar un encargo antes de terminarlo. Si lo paras tú, pagas el trabajo hecho hasta ese momento y te entrego lo que exista. Si lo paro yo, te devuelvo lo que hubieras pagado por trabajo que no había hecho. El adelanto cubre trabajo ya reservado y empezado, así que se queda conmigo una vez el trabajo ha empezado.</span></p>
-          <p><span data-i18n-en><strong>Reversed payments.</strong> If a payment is reversed after a build has been accepted, the licence to use that work pauses until the payment is settled. If something is wrong, tell me first: correcting my own work is faster for both of us than a dispute.</span><span data-i18n-es hidden><strong>Pagos revertidos.</strong> Si un pago se revierte después de aceptar una compilación, la licencia para usar ese trabajo queda en pausa hasta que el pago se resuelva. Si algo está mal, dímelo primero: corregir mi propio trabajo es más rápido para los dos que una disputa.</span></p>
+          <p><span data-i18n-en><strong>Payment disputes.</strong> If a payment is disputed, we review the agreement and delivery evidence through the payment provider. A dispute does not let me revoke rights granted by third-party or open-source licences. Report a problem promptly so we can try to resolve it.</span><span data-i18n-es hidden><strong>Disputas de pago.</strong> Si se disputa un pago, revisamos el acuerdo y la evidencia de entrega mediante el proveedor de pago. Una disputa no me permite revocar derechos concedidos por licencias de terceros o de código abierto. Avísame pronto si surge un problema para intentar resolverlo.</span></p>
           <p><span data-i18n-en><strong>Liability.</strong> Work is provided “as is.” To the extent permitted by law, I am not liable for indirect or consequential damages, and total liability is limited to the amount paid for the job in question.</span><span data-i18n-es hidden><strong>Responsabilidad.</strong> El trabajo se entrega “tal cual”. En la medida en que lo permita la ley, no respondo por daños indirectos o derivados, y la responsabilidad total se limita al importe pagado por el encargo en cuestión.</span></p>
           <p><span data-i18n-en><strong>Changes.</strong> These terms may be updated; the version shown here on the day you hire me applies, and the dated history of this page is public in the repository that serves it.</span><span data-i18n-es hidden><strong>Cambios.</strong> Estas condiciones pueden actualizarse; se aplica la versión que se muestre aquí el día que me contrates, y el historial fechado de esta página es público en el repositorio que la sirve.</span></p>
-          <p class="legal-doc-note"><span data-i18n-en>Plain-language summary of how these jobs work, not formal legal advice. Last updated August 2026.</span><span data-i18n-es hidden>Resumen en lenguaje llano de cómo funcionan estos encargos, no es asesoría legal. Si algo no coincide, la versión de referencia es la inglesa. Última actualización: agosto de 2026.</span></p>
+          <p class="legal-doc-note"><span data-i18n-en>Plain-language summary of how these jobs work, not formal legal advice. Last updated October 15, 2026.</span><span data-i18n-es hidden>Resumen en lenguaje llano de cómo funcionan estos encargos, no es asesoría legal. Si algo no coincide, la versión de referencia es la inglesa. Última actualización: 15 de octubre de 2026.</span></p>
         </div>
       </details>
       <details class="legal-doc" id="privacy">
@@ -3176,7 +3180,7 @@
           <p><span data-i18n-en><strong>Short version:</strong> this is a static page with no accounts and no tracking cookies. I only ever see what you choose to send me.</span><span data-i18n-es hidden><strong>Versión corta:</strong> esto es una página estática, sin cuentas y sin cookies de rastreo. Yo solo veo lo que tú decides mandarme.</span></p>
           <p><span data-i18n-en><strong>What I collect.</strong> Only what you send me, in a<span translate="no"> Discord </span>ticket or by email: your username or email address, the job details, and any links or files you share.</span><span data-i18n-es hidden><strong>Qué recojo.</strong> Solo lo que me mandes, en un ticket de<span translate="no"> Discord </span>o por correo: tu nombre de usuario o tu correo, los detalles del encargo y los enlaces o archivos que compartas.</span></p>
           <p><span data-i18n-en><strong>How I use it.</strong> Solely to reply to you and carry out the work you ask for. I never sell, rent, or share your information.</span><span data-i18n-es hidden><strong>Para qué lo uso.</strong> Únicamente para responderte y hacer el trabajo que pides. Nunca vendo, alquilo ni comparto tus datos.</span></p>
-          <p><span data-i18n-en><strong>Third parties.</strong> Tickets and messages go through<span translate="no"> Discord</span>, and email through Gmail. If you pay, the payment runs through<span translate="no"> Wise </span>or<span translate="no"> PayPal</span>. The site is served by<span translate="no"> GitHub Pages</span>. Each works under its own policy.</span><span data-i18n-es hidden><strong>Terceros.</strong> Los tickets y mensajes pasan por<span translate="no"> Discord</span>, y el correo por Gmail. Si pagas, el pago pasa por<span translate="no"> Wise </span>o<span translate="no"> PayPal</span>. La web la sirve<span translate="no"> GitHub Pages</span>. Cada uno funciona bajo su propia política.</span></p>
+          <p><span data-i18n-en><strong>Third parties.</strong> Tickets and messages use <span translate="no">Discord</span>, email uses <span translate="no">Gmail</span> and the site is served by <span translate="no">GitHub Pages</span>. Before requesting payment, I identify the available payment provider in our written agreement. Each provider operates under its own policy.</span><span data-i18n-es hidden><strong>Terceros.</strong> Los tickets y mensajes usan <span translate="no">Discord</span>, el correo usa <span translate="no">Gmail</span> y <span translate="no">GitHub Pages</span> sirve la web. Antes de solicitar un pago identifico el proveedor disponible en nuestro acuerdo escrito. Cada proveedor opera bajo su propia política.</span></p>
           <p><span data-i18n-en><strong>Analytics.</strong> I don't use tracking cookies. If I ever add analytics, it'll be cookieless and won't collect personal data.</span><span data-i18n-es hidden><strong>Analítica.</strong> No uso cookies de rastreo. Si alguna vez añado analítica, será sin cookies y no recogerá datos personales.</span></p>
           <p><span data-i18n-en><strong>Retention &amp; your choices.</strong> I keep job correspondence only as long as needed for the work and records, and you can ask me to delete your data at any time.</span><span data-i18n-es hidden><strong>Conservación y tus opciones.</strong> Guardo la correspondencia de un encargo solo el tiempo necesario para el trabajo y para tener constancia, y puedes pedirme que borre tus datos cuando quieras.</span></p>
           <p class="legal-doc-note"><span data-i18n-en>Questions? Email modwrightstudios@gmail.com. Last updated September 2026.</span><span data-i18n-es hidden>¿Dudas? Escribe a modwrightstudios@gmail.com. Si algo no coincide, la versión de referencia es la inglesa. Última actualización: septiembre de 2026.</span></p>
@@ -3185,7 +3189,7 @@
       <details class="legal-doc" id="licenses">
         <summary><span data-i18n-en>Licenses &amp; attributions</span><span data-i18n-es hidden>Licencias y atribuciones</span></summary>
         <div class="legal-doc-body">
-          <p><span data-i18n-en><strong>Mods.</strong> I only work on mods you have the right to modify: open-source, your own, or with the author's permission. Open-source<span translate="no"> ports </span>I publish keep the original licence and credit the original author; closed-source work stays private.</span><span data-i18n-es hidden><strong>Mods.</strong> Solo trabajo sobre mods que tengas derecho a modificar: de código abierto, tuyos, o con permiso del autor. Los<span translate="no"> ports </span>de código abierto que publico mantienen la licencia original y acreditan al autor original; el trabajo de código cerrado se queda privado.</span></p>
+          <p><span data-i18n-en><strong>Mods.</strong> I only accept modifications and deliveries covered by the relevant licence or written permission. Private delivery does not remove that requirement. Published ports retain the required licences and credits. A permission for one release does not automatically cover another.</span><span data-i18n-es hidden><strong>Mods.</strong> Solo acepto modificaciones y entregas cubiertas por la licencia o autorización escrita correspondiente. La entrega privada no elimina ese requisito. Los ports publicados conservan las licencias y atribuciones requeridas. Un permiso para una versión no cubre automáticamente otra.</span></p>
           <p><span data-i18n-en><strong>This website.</strong> The design, the words and the artwork here are ©<span translate="no"> Modwright</span>. Please don't reuse them without asking me first. Mod logos, mod icons and in-game captures belong to their authors and to<span translate="no"> Mojang Studios</span>, and appear here only to identify the work they refer to.</span><span data-i18n-es hidden><strong>Esta web.</strong> El diseño, los textos y el arte de aquí son ©<span translate="no"> Modwright</span>. No los reutilices sin pedírmelo antes. Los logos e iconos de mods y las capturas del juego pertenecen a sus autores y a<span translate="no"> Mojang Studios</span>, y aparecen aquí solo para identificar el trabajo al que se refieren.</span></p>
           <p><span data-i18n-en><strong>Small pixel-art details.</strong> A few of the little figures around the page are not mine, and belong to their authors: the parrot, the salmon and the campfire come from<span translate="no"> Minecraft </span>(<span translate="no">Mojang Studios</span>); the messenger pigeon from<span translate="no"> Envelope </span>(GPLv3); the water drop from<span translate="no"> Thirst Was Taken </span>by<span translate="no"> ghen </span>(MIT); the apple is the<span translate="no"> Mindful Eating </span>logo by<span translate="no"> camcam_burger</span>, and the plum the icon of<span translate="no"> flierfish</span>'s unofficial port (both LGPL); and the roll next to the word<span translate="no"> Fabric </span>is the<span translate="no"> Fabric </span>logo (<span translate="no">FabricMC</span>). The duck is from<span translate="no"> Untitled Duck Mod </span>(<span translate="no">ArtistMonster24</span>, with<span translate="no"> Suel_ki </span>and<span translate="no"> Okabintaro</span>); the capybara from<span translate="no"> Re:Animal </span>(<span translate="no">SSKirillSS</span>); the orange is the icon of<span translate="no"> outrightwings</span>'s unofficial<span translate="no"> Mindful Eating </span>port; I could not find who drew the pig and the sunflower: if one is yours, tell me and I will credit you or take it down.</span><span data-i18n-es hidden><strong>Los detalles de pixel art.</strong> Algunas de las figuritas de la página no son mías y pertenecen a sus autores: el loro, el salmón y la fogata son de<span translate="no"> Minecraft </span>(<span translate="no">Mojang Studios</span>); la paloma mensajera, de<span translate="no"> Envelope </span>(GPLv3); la gota de agua, de<span translate="no"> Thirst Was Taken</span>, de<span translate="no"> ghen </span>(MIT); la manzana es el logo de<span translate="no"> Mindful Eating</span>, de<span translate="no"> camcam_burger</span>, y la ciruela el icono del port no oficial de<span translate="no"> flierfish </span>(los dos LGPL); y el rollo junto a la palabra<span translate="no"> Fabric </span>es el logo de<span translate="no"> Fabric </span>(<span translate="no">FabricMC</span>). El pato es de<span translate="no"> Untitled Duck Mod </span>(<span translate="no">ArtistMonster24</span>, con<span translate="no"> Suel_ki </span>y<span translate="no"> Okabintaro</span>); la capibara, de<span translate="no"> Re:Animal </span>(<span translate="no">SSKirillSS</span>); la naranja es el icono del port no oficial de<span translate="no"> Mindful Eating </span>de<span translate="no"> outrightwings</span>; No encontré quién dibujó el cerdo y el girasol: si alguno es tuyo, dímelo y te doy el crédito o lo quito.</span></p>
           <p><span data-i18n-en><strong>Fonts.</strong> “Space Grotesk” and “Monocraft” are used under the SIL Open Font License.</span><span data-i18n-es hidden><strong>Tipografías.</strong> “Space Grotesk” y “Monocraft” se usan bajo la licencia SIL Open Font License.</span></p>
@@ -3330,16 +3334,17 @@
     var PERM = es ? { yes: 'S\u00ed', no: 'No', unsure: 'No s\u00e9' } : { yes: 'Yes', no: 'No', unsure: 'Not sure' };
     var L = es ? ['Mod', 'Ahora est\u00e1 en', 'Lo quiero en', 'Necesito', '\u00bfAutor o permiso?']
                : ['Mod', 'Right now it\'s on', 'I want it on', 'What I need', 'Author or permission'];
-    return [
+    var summary = [
       L[0] + ': ' + (val('tk-mod') || '?'),
       L[1] + ': ' + donde(val('tk-from'), state.from),
       L[2] + ': ' + donde(val('tk-to'), state.to),
       L[3] + ': ' + (val('tk-need') || '?'),
       L[4] + ': ' + (PERM[state.perm] || '?')
     ].join('\n');
+    return buildAttributedSummary(summary, location.search, document.getElementById('tk-origin').checked, es ? 'es' : 'en');
   }
   var summaryEl = document.getElementById('est-summary');
-  function render() { if (summaryEl) summaryEl.textContent = buildSummary(); }
+  function render() { if (summaryEl) summaryEl.textContent = buildSummary(); if (copyStatus) copyStatus.textContent = ''; }
   function placeholders() {
     var es = enEspanol();
     document.querySelectorAll('#estimator [data-ph-en]').forEach(function (el) { el.placeholder = es ? el.dataset.phEs : el.dataset.phEn; });
@@ -3365,42 +3370,98 @@
   new MutationObserver(function () { placeholders(); render(); })
     .observe(document.documentElement, { attributes: true, attributeFilter: ['data-lang'] });
 
-  function fallbackCopy(text, cb) {
-    var ta = document.createElement('textarea');
-    ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
-    document.body.appendChild(ta); ta.select();
-    try { document.execCommand('copy'); } catch (e) { /* nada mas que intentar */ }
-    document.body.removeChild(ta); cb();
-  }
-  function copiarResumen(cb) {
-    var text = buildSummary();
-    if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(cb).catch(function () { fallbackCopy(text, cb); }); }
-    else { fallbackCopy(text, cb); }
+// Isolated candidate. No auto-run, analytics, storage, network, or HTML changes.
+// This example campaign is a proposal, not evidence of a published campaign.
+const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'];
+const ALLOWED_CAMPAIGNS = new Set(['reddit|community|port_202610|reply_a', 'reddit|community|clientela_202610|request', 'discord|community|clientela_202610|request', 'builtbybit|forum|clientela_202610|request']);
+
+function parseAttribution(search, consent = false) {
+  if (consent !== true || typeof search !== 'string' || search.length > 512) return null;
+  const params = new URLSearchParams(search);
+  if ([...params.keys()].some(key => !UTM_KEYS.includes(key))) return null;
+  if (UTM_KEYS.some(key => params.getAll(key).length !== 1)) return null;
+  const values = UTM_KEYS.map(key => params.get(key));
+  if (!ALLOWED_CAMPAIGNS.has(values.join('|'))) return null;
+  const [source, medium, campaign, content] = values;
+  return { source, medium, campaign, content, method: 'utm_declared', version: 1 };
+}
+
+function buildAttributedSummary(summary, search, consent, language = 'en') {
+  const origin = parseAttribution(search, consent);
+  if (!origin) return summary;
+  const label = language === 'es' ? 'Origen' : 'Source';
+  return `${summary}\n${label}: web / ${origin.source} / ${origin.medium} / ${origin.campaign} / ${origin.content}`;
+}
+
+async function copySummary(text, { clipboard, document: doc, summaryElement }) {
+  if (clipboard && typeof clipboard.writeText === 'function') {
+    try {
+      await clipboard.writeText(text);
+      return { status: 'copied', method: 'clipboard' };
+    } catch { /* Try the existing legacy fallback. */ }
   }
 
+  let textarea;
+  try {
+    textarea = doc.createElement('textarea');
+    textarea.value = text;
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    doc.body.appendChild(textarea);
+    textarea.select();
+    if (doc.execCommand('copy') === true) {
+      return { status: 'copied', method: 'fallback' };
+    }
+  } catch { /* No success: leave manual copying available. */ }
+  finally {
+    if (textarea) {
+      try { doc.body.removeChild(textarea); } catch { /* No retained fallback node if removable. */ }
+    }
+  }
+
+  // Select the existing visible summary. Selection is never reported as a copy.
+  let selected = false;
+  try {
+    const range = doc.createRange();
+    range.selectNodeContents(summaryElement);
+    const selection = doc.getSelection();
+    if (selection) {
+      selection.removeAllRanges();
+      selection.addRange(range);
+      selected = true;
+    }
+  } catch { /* Caller should keep the visible text available for manual copying. */ }
+  return { status: 'manual', selected };
+}
+
+  var originCheckbox = document.getElementById('tk-origin');
+  var copyStatus = document.getElementById('est-copy-status');
+  originCheckbox.addEventListener('change', function () {
+    render();
+    copyStatus.textContent = originCheckbox.checked && !parseAttribution(location.search, true)
+      ? (enEspanol() ? 'No hay una procedencia reconocida en este enlace. El resumen no incluye origen.' : 'This link has no recognized source. The summary will not include an origin.') : '';
+  });
   var copyBtn = document.getElementById('est-copy');
-  if (copyBtn) {
-    var copyHtml = copyBtn.innerHTML;
-    copyBtn.addEventListener('click', function () {
-      copiarResumen(function () {
-        copyBtn.textContent = enEspanol() ? 'Copiado' : 'Copied';
-        copyBtn.classList.add('done');
-        setTimeout(function () { copyBtn.innerHTML = copyHtml; copyBtn.classList.remove('done'); }, 2200);
-      });
-    });
-  }
-  var discordBtn = document.getElementById('est-discord');
-  if (discordBtn) {
-    var label = discordBtn.querySelector('span');
-    var discordHtml = label ? label.innerHTML : '';
-    discordBtn.addEventListener('click', function () {
-      copiarResumen(function () {
-        if (!label) return;
-        label.textContent = enEspanol() ? 'Copiado, pégalo en #pedidos' : 'Copied, paste it in #pedidos';
-        setTimeout(function () { label.innerHTML = discordHtml; }, 2500);
-      });
-    });
-  }
+  copyBtn.addEventListener('click', async function () {
+    if (copyBtn.disabled) return;
+    copyBtn.disabled = true;
+    copyStatus.textContent = '';
+    var text = buildSummary();
+    summaryEl.textContent = text;
+    try {
+      var result = await copySummary(text, {clipboard: navigator.clipboard, document: document, summaryElement: summaryEl});
+      if (buildSummary() !== text) {
+        copyStatus.textContent = enEspanol() ? 'El resumen cambió. Vuelve a copiarlo.' : 'The summary changed. Copy it again.';
+        return;
+      }
+      copyStatus.textContent = result.status === 'copied'
+        ? (enEspanol() ? 'Resumen copiado. Abre Discord y pégalo dentro de tu ticket privado.' : 'Summary copied. Open Discord and paste it inside your private ticket.')
+        : (enEspanol() ? 'No se pudo copiar. Copia manualmente el resumen visible antes de abrir Discord.' : 'Could not copy. Copy the visible summary manually before opening Discord.');
+    } catch (_) {
+      copyStatus.textContent = enEspanol() ? 'No se pudo copiar. Copia manualmente el resumen visible.' : 'Could not copy. Copy the visible summary manually.';
+    } finally { copyBtn.disabled = false; }
+  });
+  document.getElementById('est-discord').before(copyBtn);
   placeholders(); render();
 
   document.querySelectorAll('.faq-q').forEach(function (q) {
