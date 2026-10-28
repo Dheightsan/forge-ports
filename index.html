@@ -1298,6 +1298,10 @@
     .shelf { margin-top: 2.6rem; padding-top: 2rem; border-top: 1px solid var(--border); }
     .shelf h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
     .shelf p { max-width: 36em; color: var(--text-soft); font-size: 0.9rem; line-height: 1.65; margin: 0 0 1.3rem;font-family: var(--font-body); }
+    .private-work p { max-width: 44em; }
+    .private-list { max-width: 44em; margin: 0; padding-left: 1.15rem; color: var(--text-soft); font-size: 0.9rem; line-height: 1.65; font-family: var(--font-body); }
+    .private-list li + li { margin-top: 0.55rem; }
+    .private-list li::marker { color: var(--copper); }
     /* Rejilla de baldosas, no pastillas de texto: a 20px los iconos se leian
        timidos y el bloque parecia muerto. 56px es el tamano al que un logo de
        mod se reconoce. Los que no tienen arte llevan monograma, nunca un hueco. */
@@ -2010,6 +2014,11 @@
     .port-card--cta { position: relative; }
     .ch--tarjeta { position: static; align-self: center; width: auto; margin: 0.2rem 0 0.4rem; }
     .port-card--cta > *:not(.ch) { position: relative; z-index: 2; }
+    /* Con tres fichas (2026-10-28, entra Gipples) la tarjeta de cotizar quedaba
+       sola en una fila de tres. Ahora es una franja a todo el ancho, en fila. */
+    .port-card--cta { grid-column: 1 / -1; flex-direction: row; align-items: center; justify-content: center; flex-wrap: wrap; gap: 0.6rem 1.4rem; padding-top: 0.9rem; padding-bottom: 0.9rem; }
+    .port-card--cta .ch--tarjeta { height: 96px !important; margin: 0; }
+    .port-card--cta .port-cta-text strong { margin-bottom: 0; }
     /* En las fichas del pack propio acompañaban a la ficha por la derecha.
        EN_MODPACK esta vacia ahora mismo, asi que esto no pinta a nadie; se deja
        porque volver a llenar la lista tiene que bastar para recuperarlos. */
@@ -2594,6 +2603,41 @@
         <p class="port-link-ph port-link-ph--autor"><img class="ch ch--autor" src="hshaun-11.webp" width="256" height="235" alt="" aria-hidden="true" loading="lazy" decoding="async"><span><span data-i18n-en>Original by<span translate="no"> Shaunt</span>,<span translate="no"> Caf&eacute; </span>and<span translate="no"> @Hecco</span>. Nothing downloads from here: the page above is theirs.</span><span data-i18n-es hidden>Original de<span translate="no"> Shaunt</span>,<span translate="no"> Caf&eacute; </span>y<span translate="no"> @Hecco</span>. De aquí no se descarga nada: la página de arriba es suya.</span></span></p>
       </div>
 
+      <!-- Gipples Galore (2026-10-28). Port propio, gratis y con credito; clearance
+           permissions/2026-10-19_gipples_galore.md: verde publicar gratis, amarillo
+           como vitrina de un servicio pagado (josda ya lo usa asi desde el 27-oct).
+           Por eso la ficha dice "unofficial" y que Team Jelly no respalda el servicio.
+           Pruebas: BITACORA_PORTS.md (servidor dedicado 19-oct, cliente 22/22 23-oct).
+           Sin cifra de descargas a proposito: con 68 no suma y caduca. -->
+      <div class="port-card">
+        <div class="port-card-head">
+          <div class="port-badges">
+           <span class="badge--lic-mit" translate="no"> CC BY-NC-SA 4.0</span>
+           <span class="badge--loader" translate="no"> Forge 1.20.1</span>
+          </div>
+          <span class="port-status"><span data-i18n-en>Free, code on<span translate="no"> GitHub</span></span><span data-i18n-es hidden>Gratis, código en<span translate="no"> GitHub</span></span></span>
+        </div>
+        <a class="port-title port-title--link" href="https://www.curseforge.com/minecraft/mc-mods/gipples-galore-forge-port" target="_blank" rel="noopener noreferrer">
+          <img class="port-icon port-icon--cf port-icon--tile" src="mod-gipples-galore.webp" width="108" height="108" alt="" loading="lazy" decoding="async">
+          <span class="port-title-t">
+            <h3 class="port-name" translate="no">Gipples Galore</h3>
+            <span class="port-go"><span data-i18n-en>Open on<span translate="no"> CurseForge </span>&rarr;</span><span data-i18n-es hidden>Abrir en<span translate="no"> CurseForge </span>&rarr;</span></span>
+          </span>
+        </a>
+        <p class="port-desc"><span data-i18n-en><span translate="no">Team Jelly</span>'s cave creature mod, moved from<span translate="no"> Fabric </span>to<span translate="no"> Forge </span>1.20.1. I published it free and credited, and anyone can read the code of the<span translate="no"> port</span>.</span><span data-i18n-es hidden>El mod de criaturas de cueva de<span translate="no"> Team Jelly</span>, pasado de<span translate="no"> Fabric </span>a<span translate="no"> Forge </span>1.20.1. Lo publiqué gratis y con crédito, y cualquiera puede leer el código del<span translate="no"> port</span>.</span></p>
+        <dl class="port-stats">
+          <div><dt><span data-i18n-en>Loader</span><span data-i18n-es hidden>Loader</span></dt><dd><span translate="no">Fabric </span>&rarr;<span translate="no"> Forge</span></dd></div>
+          <div><dt><span data-i18n-en>Version</span><span data-i18n-es hidden>Versión</span></dt><dd><span data-i18n-en>1.20.1, unchanged</span><span data-i18n-es hidden>1.20.1, sin cambio</span></dd></div>
+          <div><dt><span data-i18n-en>Source</span><span data-i18n-es hidden>Código</span></dt><dd><a href="https://github.com/Dheightsan/gipples-galore-forge" target="_blank" rel="noopener noreferrer"><span data-i18n-en>Public on<span translate="no"> GitHub</span></span><span data-i18n-es hidden>Público en<span translate="no"> GitHub</span></span></a></dd></div>
+          <div><dt><span data-i18n-en>Tested</span><span data-i18n-es hidden>Probado</span></dt><dd><span data-i18n-en>Server and client</span><span data-i18n-es hidden>Servidor y cliente</span></dd></div>
+        </dl>
+        <details class="more more--card">
+          <summary><span data-i18n-en>Technical detail</span><span data-i18n-es hidden>Detalle técnico</span></summary>
+          <p><span data-i18n-en>48 classes moved onto<span translate="no"> Forge </span>registry events, with spawns as biome modifiers and the extra loot through<span translate="no"> LootTableLoadEvent</span>. I also fixed a block model that pointed at a missing texture, a bug the<span translate="no"> Fabric </span>original has too. On a dedicated server, natural colonies generate in new chunks and the gelatin shows up in ancient city loot. In the client I checked all 17 jellies and their effects.</span><span data-i18n-es hidden>48 clases pasadas a los eventos de registro de<span translate="no"> Forge</span>, con los spawns como biome modifiers y el botín extra por<span translate="no"> LootTableLoadEvent</span>. También arreglé un modelo de bloque que apuntaba a una textura que no existía, un fallo que también tiene el original de<span translate="no"> Fabric</span>. En un servidor dedicado, las colonias salen solas en chunks nuevos y la gelatina aparece en el botín de las ciudades antiguas. En el cliente revisé las 17 gelatinas y sus efectos.</span></p>
+        </details>
+        <p class="port-link-ph"><span><span data-i18n-en>Original by<span translate="no"> Team Jelly</span>. This is an unofficial<span translate="no"> port</span>, and<span translate="no"> Team Jelly </span>has nothing to do with my paid work.</span><span data-i18n-es hidden>Original de<span translate="no"> Team Jelly</span>. Es un<span translate="no"> port </span>no oficial, y<span translate="no"> Team Jelly </span>no tiene nada que ver con mis encargos de pago.</span></span></p>
+      </div>
+
       <div class="port-card port-card--cta">
     <img class="ch ch--tarjeta" src="h512-33.webp" width="256" height="242" style="height:168px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <div class="port-cta-text">
@@ -2603,6 +2647,22 @@
       </div>
     </div>
     <p class="proof-note"><span data-i18n-en>It compiles. That proves nothing. Before I deliver, I test the mod in-game and check the parts that could actually break during the<span translate="no"> port</span>. <a href="geckolib-bone-name-crash.html">One of those checks, in detail</a>.</span><span data-i18n-es hidden>Compila. Eso no prueba nada. Antes de entregar pruebo el mod dentro del juego y reviso las partes que realmente podían romperse durante el<span translate="no"> port</span>. <a href="geckolib-bone-name-crash.html">Una de esas comprobaciones, en detalle</a>.</span></p>
+
+    <!-- Encargos privados (2026-10-28, pedido de josda). Fuente: ENCARGO_01_*.md.
+         Sin nombre de cliente, sin nombres de mods y sin archivos: lo exigen las
+         Condiciones ("ni el nombre de ningun cliente sin tu permiso") y la decision
+         de 2026-09-24 de no ensenar esos mods. Solo hechos del diario: 597 mods en su
+         lista (28-oct), 724 errores al empezar, 6 fallos del servidor dedicado (7e),
+         fallo post-entrega arreglado gratis (12g, jar del 13-oct). -->
+    <div class="shelf private-work">
+      <h3><span data-i18n-en>Private commissions</span><span data-i18n-es hidden>Encargos privados</span></h3>
+      <p><span data-i18n-en>Most paid work stays private: the files and the client&rsquo;s name are theirs. What I can tell you is that since September I&rsquo;ve been working for the owner of a<span translate="no"> Forge </span>1.20.1 pack with almost 600 mods, and he keeps coming back with more.</span><span data-i18n-es hidden>La mayoría de los encargos pagados son privados: los archivos y el nombre del cliente son suyos. Lo que sí puedo contar es que desde septiembre trabajo para el dueño de un pack de<span translate="no"> Forge </span>1.20.1 con casi 600 mods, y sigue volviendo con más.</span></p>
+      <ul class="private-list">
+        <li><span data-i18n-en>A spell addon taken from<span translate="no"> NeoForge </span>1.21.1 to<span translate="no"> Forge </span>1.20.1. It started at 724 compile errors. Once it built, the dedicated server turned up six more problems that reading the code hadn&rsquo;t, and I fixed them before delivery. One bug that showed up after delivery I fixed for free.</span><span data-i18n-es hidden>Un addon de hechizos llevado de<span translate="no"> NeoForge </span>1.21.1 a<span translate="no"> Forge </span>1.20.1. Empezó con 724 errores de compilación. Ya compilando, el servidor dedicado sacó seis fallos más que leyendo el código no se veían, y los arreglé antes de entregar. Un fallo que apareció después de la entrega lo arreglé sin coste.</span></li>
+        <li><span data-i18n-en>A compatibility resource pack between two mods in his pack, keeping the<span translate="no"> GPLv3 </span>licence and credit of the pack it builds on.</span><span data-i18n-es hidden>Un resource pack de compatibilidad entre dos mods de su pack, respetando la licencia<span translate="no"> GPLv3 </span>y el crédito del pack en el que se apoya.</span></li>
+        <li><span data-i18n-en>Right now, an addon so a movement and combat mod gets along with his stamina and animation mods, with a switch for each move.</span><span data-i18n-es hidden>Ahora mismo, un addon para que un mod de movimiento y combate funcione con sus mods de stamina y animaciones, con un interruptor para cada movimiento.</span></li>
+      </ul>
+    </div>
 
     <div class="shelf bench">
       <h3><span data-i18n-en>Everything else I&rsquo;ve worked on</span><span data-i18n-es hidden>Todo lo demás en lo que he trabajado</span></h3>
@@ -2886,7 +2946,7 @@
       <div class="step"><div class="step-n">01</div><h3><img class="px px--sobre" src="tile-envelope.png" width="56" height="56" alt="" aria-hidden="true" loading="lazy" decoding="async"><span data-i18n-en>Send me the mod</span><span data-i18n-es hidden>Mándame el mod</span></h3><p><span data-i18n-en>Send me the link or the file and tell me what you need. That's enough for me to start looking at it.</span><span data-i18n-es hidden>Pásame el enlace o el archivo y cuéntame qué necesitas. Con eso puedo empezar a revisarlo.</span></p></div>
       <div class="step"><div class="step-n">02</div><h3><span data-i18n-en>I review it and give you a price</span><span data-i18n-es hidden>Lo reviso y te doy un precio</span></h3><p><span data-i18n-en>I check whether the job is doable and which permission or licence applies. Then I tell you what's included, what it costs and roughly how long it should take.</span><span data-i18n-es hidden>Compruebo si el trabajo es viable y qué permiso o licencia aplica. Después te digo qué incluye, cuánto cuesta y cuánto debería tardar.</span></p></div>
       <div class="step"><div class="step-n">03</div><h3><span data-i18n-en>We agree and I start</span><span data-i18n-es hidden>Acordamos y empiezo</span></h3><p><span data-i18n-en>We put the scope, the price and the payment terms in writing. Bigger jobs can be split into stages.</span><span data-i18n-es hidden>Dejamos por escrito el alcance, el precio y la forma de pago. Los trabajos grandes pueden dividirse en etapas.</span></p></div>
-      <div class="step"><div class="step-n">04</div><h3><span data-i18n-en>I port it and test it</span><span data-i18n-es hidden>Lo porto y lo pruebo</span></h3><p><span data-i18n-en>I do the work on the version and setup we agreed. I don't stop at it compiling: I launch it and test the parts that matter.</span><span data-i18n-es hidden>Hago el trabajo sobre la versión y el entorno acordados. No me quedo en que compile: lo arranco y pruebo las partes importantes.</span></p></div>
+      <div class="step"><div class="step-n">04</div><h3><span data-i18n-en>I port it and test it</span><span data-i18n-es hidden>Lo porto y lo pruebo</span></h3><p><span data-i18n-en>I do the work on the version and setup we agreed. I don't stop at it compiling: I launch it and test the parts that matter. On longer jobs I send you screenshots or a short video as it comes along.</span><span data-i18n-es hidden>Hago el trabajo sobre la versión y el entorno acordados. No me quedo en que compile: lo arranco y pruebo las partes importantes. En los trabajos largos te mando capturas o un video corto del avance.</span></p></div>
       <div class="step"><div class="step-n">05</div><h3><span data-i18n-en>You try it</span><span data-i18n-es hidden>Lo pruebas tú</span></h3><p><span data-i18n-en>You see the build running in your own pack or server. If something within what we agreed isn't right, I fix it before we close the job.</span><span data-i18n-es hidden>Ves la build funcionando en tu propio pack o servidor. Si algo dentro de lo acordado no está bien, lo corrijo antes de cerrar el trabajo.</span></p></div>
       <div class="step"><div class="step-n">06</div><h3><span data-i18n-en>If something of mine breaks, I fix it</span><span data-i18n-es hidden>Si algo mío falla, lo arreglo</span></h3><p><span data-i18n-en>For 30 days I fix, at no cost, any bug I introduced within the agreed scope and setup. If you need something new after that, we handle it separately.</span><span data-i18n-es hidden>Durante 30 días corrijo sin coste los fallos que haya introducido yo dentro del alcance y entorno acordados. Si después necesitas algo nuevo, lo vemos aparte.</span></p></div>
     </div>
