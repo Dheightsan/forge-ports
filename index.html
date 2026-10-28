@@ -1316,6 +1316,15 @@
     .tile img { width: 64px; height: 64px; border-radius: 8px; image-rendering: pixelated; flex-shrink: 0; }
     .tile-mono { width: 56px; height: 56px; border-radius: 8px; display: grid; place-items: center; background: var(--brown-glow); border: 1px solid var(--brown-ring); color: var(--brown-hi); font-weight: 700; font-size: 1.05rem; letter-spacing: 0.02em; }
     @media (prefers-reduced-motion: reduce) { .tile { transition: none; } .tile:hover { transform: none; } }
+    .shelf-more { display: none; }
+    /* 2026-10-28: en movil se ocultan las dos ilustraciones decorativas grandes para acortar la pagina; en escritorio siguen. */
+    @media (max-width: 700px) { .mascotas, .brandart { display: none; } }
+    @media (max-width: 900px) {
+      .js-bench .shelf-grid--cap:not(.is-open) > li:nth-child(n+10) { display: none; }
+      .js-bench .shelf-more { display: block; margin: 0.8rem auto 0; min-height: 44px; padding: 0.5rem 1.1rem; border-radius: 999px; border: 1px solid var(--border-lt); background: transparent; color: var(--text-soft); font: inherit; font-size: 0.85rem; cursor: pointer; }
+      .js-bench .shelf-more:hover { border-color: var(--green-ring); color: var(--text); }
+      .js-bench .shelf-more[hidden] { display: none; }
+    }
     .shelf-foot { margin-top: 1.1rem; font-size: 0.78rem; color: var(--text-mute); max-width: 36em; }
 
     /* Trato para autores de mods. Las dos columnas van a proposito: el trueque se lee
@@ -2002,6 +2011,7 @@
        hay 190 y no, por eso ahi se dibujan al 62%. Por debajo de 1360 no hay
        hueco para nadie y se apagan: manda el de la tarjeta y la fila, que van
        en el flujo. */
+    /* 2026-10-28: de 40 personajes de borde quedan 10, uno por seccion y alternando lado (limpieza pedida por josda). Los archivos siguen en el repo. */
     .ch--borde { height: var(--h); }
     @media (max-width: 1600px) { .ch--borde { height: calc(var(--h) * 0.62); } }
     @media (max-width: 1360px) { .ch--borde { display: none; } }
@@ -2209,6 +2219,9 @@
        el marron del dibujo como TEXTO sobre fondo oscuro no llega a contraste. */
     #hero h1 .w-key { color: #6cb33e; }
     .hero-trust--cta { margin-top: 0.9rem; }
+    .hero-links { display: flex; gap: 0.35rem; margin-top: 0.7rem; margin-left: -0.45rem; }
+    .hero-links a { display: inline-flex; align-items: center; justify-content: center; width: 2.4rem; height: 2.4rem; border-radius: 8px; color: var(--text-mute); transition: color 0.15s, background 0.15s; }
+    .hero-links a:hover, .hero-links a:focus-visible { color: var(--copper); background: var(--surface2); }
     .tk-field { margin-bottom: 1.35rem; }
     .tk-field:last-child { margin-bottom: 0; }
     .tk-pair { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0 1.2rem; }
@@ -2432,6 +2445,7 @@
       <span class="cta-with-eyes"><a href="#portfolio" class="btn btn-ghost"><span data-i18n-en>See real work</span><span data-i18n-es hidden>Ver trabajos reales</span></a><svg class="bicon-eyes" viewBox="0 0 30 18" width="30" height="17" aria-hidden="true"><ellipse cx="9" cy="9" rx="7.6" ry="8.2" fill="#fff" stroke="#2a2014" stroke-width="0.9"/><ellipse cx="21" cy="9" rx="7.6" ry="8.2" fill="#fff" stroke="#2a2014" stroke-width="0.9"/><circle cx="12.6" cy="8.2" r="3.5" fill="#15110b"/><circle cx="24.6" cy="8.2" r="3.5" fill="#15110b"/><circle cx="13.85" cy="7" r="1.05" fill="#fff"/><circle cx="25.85" cy="7" r="1.05" fill="#fff"/></svg></span>
     </div>
     <p class="hero-trust hero-trust--cta"><span data-i18n-en>Quotes are free &middot; Everything in writing</span><span data-i18n-es hidden>Cotizar es gratis &middot; Todo queda por escrito</span></p>
+    <div class="hero-links"><a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" aria-label="Discord" title="Discord" translate="no"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg></a><a href="https://www.curseforge.com/members/danisansietev/projects" target="_blank" rel="noopener noreferrer" aria-label="CurseForge" title="CurseForge" translate="no"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg></a><a href="https://github.com/Dheightsan" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub" translate="no"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 8-4 4 4 4"/><path d="m16 8 4 4-4 4"/><path d="m13.5 5-3 14"/></svg></a><a href="mailto:modwrightstudios@gmail.com" aria-label="Email" title="Email" translate="no"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a></div>
     <div class="hero-team">
       <div class="hero-person">
         <img src="h1024-11.webp" width="256" height="236" class="hero-person-img" alt="" aria-hidden="true" decoding="async">
@@ -2475,7 +2489,6 @@
 </section>
 <!-- LOADERS -->
 <section id="loaders">
-  <img class="ch ch--borde" src="pix-c04.webp" width="146" height="118" style="left:calc(50% + 530px + 18px);top:560px;--h:118px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <!-- Caricaturas de pixel art (tanda del 19-08). Se suman al sistema
        `.ch--borde` que ya existe: mismo anclaje en pixeles, mismo
        apagado por debajo de 1360. Cada una lleva su alto REAL en --h,
@@ -2523,15 +2536,11 @@
        asi que se pinta 1:1 y no hay escalado que la emborrone. Los
        `top` estan MEDIDOS sobre la pagina renderizada, no estimados:
        cada uno cae en un tramo comprobado libre en ese lado. -->
-  <img class="ch ch--borde" src="pix-b07.webp" width="151" height="168" style="right:calc(50% + 530px + 18px);top:80px;--h:168px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="ch ch--borde" src="pix-c27.webp" width="135" height="143" style="left:calc(50% + 530px + 18px);top:755px;--h:143px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <!-- h9478c-22 y h512-23 estaban en top 3831 y 3528, y esta seccion mide
        3377: se salian por abajo y aterrizaban encima de las de #proof.
        El `top` es relativo a la SECCION, no a la pagina: si pasa del alto
        de la seccion, la caricatura invade la siguiente. -->
-  <img class="ch ch--borde" src="h1024-13.webp" width="256" height="235" style="right:calc(50% + 530px + 18px);top:1150px;--h:215px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="h512-32.webp" width="256" height="242" style="left:calc(50% + 530px + 18px);top:1107px;--h:215px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="h512-31.webp" width="256" height="242" style="right:calc(50% + 530px + 18px);top:502px;--h:215px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
         <h2><span data-i18n-en>Real work</span><span data-i18n-es hidden>Trabajo real</span><img class="px px--h2 px--capibara" src="deco-capibara.webp" width="144" height="93" alt="" aria-hidden="true" loading="lazy" decoding="async"></h2>
     <p class="sub"><span data-i18n-en>Some of the mods I've already ported. When the work is public, I always link to the original project.</span><span data-i18n-es hidden>Algunos de los mods que ya he porteado. Cuando el trabajo es público, enlazo siempre al proyecto original.</span></p>
@@ -2679,7 +2688,7 @@
       <div class="bench-panel" id="bench-ports" role="tabpanel" aria-labelledby="tab-ports">
         <h4 class="bench-h"><span data-i18n-en>Ports</span><span data-i18n-es hidden>Ports</span></h4>
         <p class="bench-note"><span data-i18n-en>Not published yet. To publish a<span translate="no"> port </span>I need a licence that allows it, or the author&rsquo;s permission.</span><span data-i18n-es hidden>Todavía sin publicar. Para publicar un<span translate="no"> port </span>necesito que la licencia lo permita o el permiso de su autor.</span></p>
-        <ul class="shelf-grid">
+        <ul class="shelf-grid shelf-grid--cap">
           <li><a class="tile" href="https://modrinth.com/mod/boids" target="_blank" rel="noopener noreferrer"><img src="tile-boids.png" width="64" height="64" alt="" loading="lazy" decoding="async"><span translate="no">Boids</span></a></li>
           <li><a class="tile" href="https://modrinth.com/mod/birds-boids-addon" target="_blank" rel="noopener noreferrer"><img src="tile-birds.png" width="64" height="64" alt="" loading="lazy" decoding="async"><span translate="no">Birds</span></a></li>
           <li><a class="tile" href="https://modrinth.com/mod/capybara-fabric" target="_blank" rel="noopener noreferrer"><img src="tile-capybara.png" width="64" height="64" alt="" loading="lazy" decoding="async"><span translate="no">Capybara</span></a></li>
@@ -2708,12 +2717,12 @@
           <li><a class="tile" href="https://modrinth.com/mod/treevamped" target="_blank" rel="noopener noreferrer"><img src="tile-treevamped.png" width="64" height="64" alt="" loading="lazy" decoding="async"><span translate="no">Treevamped</span></a></li>
           <li><a class="tile" href="https://modrinth.com/mod/verdance" target="_blank" rel="noopener noreferrer"><img src="tile-verdance.png" width="64" height="64" alt="" loading="lazy" decoding="async"><span translate="no">Verdance</span></a></li>
           <li><a class="tile" href="https://modrinth.com/mod/wildex-bestiary" target="_blank" rel="noopener noreferrer"><img src="tile-wildex.png" width="64" height="64" alt="" loading="lazy" decoding="async"><span translate="no">Wildex</span></a></li>
-        </ul>
+        </ul><button type="button" class="shelf-more"><span data-i18n-en>See all 28</span><span data-i18n-es hidden>Ver los 28</span></button>
       </div>
       <div class="bench-panel" id="bench-fixes" role="tabpanel" aria-labelledby="tab-fixes">
         <h4 class="bench-h"><span data-i18n-en>Fixes</span><span data-i18n-es hidden>Arreglos</span></h4>
         <p class="bench-note"><span data-i18n-en>Other people&rsquo;s mods that I patched so they run in my pack: crashes, lag and conflicts. The patch stays in my pack; the mod is still theirs.</span><span data-i18n-es hidden>Mods de otras personas que parcheé para que funcionen en mi pack: crashes, lag y conflictos. El parche se queda en mi pack; el mod sigue siendo suyo.</span></p>
-        <ul class="shelf-grid shelf-grid--rows">
+        <ul class="shelf-grid shelf-grid--rows shelf-grid--cap">
           <li><a class="tile tile--row" href="https://modrinth.com/mod/new-mutant-more" target="_blank" rel="noopener noreferrer"><img src="tile-mutant-more.png" width="52" height="52" alt="" loading="lazy" decoding="async"><span class="tile-t"><b translate="no">Mutant More</b><small><span data-i18n-en>Mixin config JAVA_16 to JAVA_17: it loads again</span><span data-i18n-es hidden>Config de mixins de JAVA_16 a JAVA_17: vuelve a cargar</span></small></span></a></li>
           <li><a class="tile tile--row" href="https://modrinth.com/mod/yungs-api" target="_blank" rel="noopener noreferrer"><img src="tile-yungs-api.png" width="52" height="52" alt="" loading="lazy" decoding="async"><span class="tile-t"><b translate="no">YUNG's API</b><small><span data-i18n-en>Fixed a crash (NPE) in the beardifier</span><span data-i18n-es hidden>Arreglé un crash (NPE) del beardifier</span></small></span></a></li>
           <li><a class="tile tile--row" href="https://modrinth.com/mod/goety" target="_blank" rel="noopener noreferrer"><img src="tile-goety.png" width="52" height="52" alt="" loading="lazy" decoding="async"><span class="tile-t"><b translate="no">Goety</b><small><span data-i18n-en>Removed an allocation made on every tick</span><span data-i18n-es hidden>Quité una asignación que se hacía en cada tick</span></small></span></a></li>
@@ -2739,7 +2748,7 @@
           <li><span class="tile tile--row"><img src="tile-sorcerer.png" width="52" height="52" alt="" loading="lazy" decoding="async"><span class="tile-t"><b translate="no">Illager Sorcerer</b></span></span></li>
           <li><a class="tile tile--row" href="https://modrinth.com/mod/tidal-towns" target="_blank" rel="noopener noreferrer"><img src="tile-tidal-towns.png" width="52" height="52" alt="" loading="lazy" decoding="async"><span class="tile-t"><b translate="no">Tidal Towns</b></span></a></li>
           <li><a class="tile tile--row" href="https://modrinth.com/mod/afk-camera-unofficial-forge-port" target="_blank" rel="noopener noreferrer"><img src="tile-afk-camera.png" width="52" height="52" alt="" loading="lazy" decoding="async"><span class="tile-t"><b translate="no">AFK Camera</b></span></a></li>
-        </ul>
+        </ul><button type="button" class="shelf-more"><span data-i18n-en>See all 25</span><span data-i18n-es hidden>Ver los 25</span></button>
       </div>
       <div class="bench-panel" id="bench-compat" role="tabpanel" aria-labelledby="tab-compat">
         <h4 class="bench-h"><span data-i18n-en>Compatibility</span><span data-i18n-es hidden>Compatibilidad</span></h4>
@@ -2798,6 +2807,10 @@
           n.focus(); sel(n);
         });
       });
+      // 2026-10-28: en pantallas chicas las listas largas muestran 9 baldosas y un boton para ver el resto.
+      b.querySelectorAll('.shelf-more').forEach(function (m) {
+        m.addEventListener('click', function () { m.previousElementSibling.classList.add('is-open'); m.hidden = true; });
+      });
       b.classList.add('js-bench');
       sel(tabs[0]);
     })();
@@ -2807,7 +2820,6 @@
 </section>
 <!-- SERVICES -->
 <section id="services">
-  <img class="ch ch--borde" src="pix-a20.webp" width="116" height="108" style="left:calc(50% + 530px + 18px);top:754px;--h:108px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <!-- Caricaturas de pixel art (tanda del 19-08). Se suman al sistema
        `.ch--borde` que ya existe: mismo anclaje en pixeles, mismo
        apagado por debajo de 1360. Cada una lleva su alto REAL en --h,
@@ -2815,9 +2827,6 @@
        `top` estan MEDIDOS sobre la pagina renderizada, no estimados:
        cada uno cae en un tramo comprobado libre en ese lado. -->
   <img class="ch ch--borde" src="pix-c12.webp" width="180" height="150" style="right:calc(50% + 530px + 18px);top:407px;--h:150px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="h1024-22.webp" width="256" height="236" style="right:calc(50% + 530px + 18px);top:754px;--h:195px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="h512-13.webp" width="256" height="245" style="left:calc(50% + 530px + 18px);top:60px;--h:195px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="h9478c-23.webp" width="256" height="244" style="right:calc(50% + 530px + 18px);top:60px;--h:195px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
         <h2><span data-i18n-en><span translate="no">Ports</span>, backports and loader changes</span><span data-i18n-es hidden><span translate="no">Ports</span>, backports y cambios de loader</span><img class="px px--h2 px--cerdo" src="deco-cerdo.webp" width="112" height="75" alt="" aria-hidden="true" loading="lazy" decoding="async"></h2>
     <!-- El "por que" del 1.20.1 se decia TRES veces, dos de ellas con las mismas
@@ -2933,7 +2942,6 @@
 
 <!-- HOW IT WORKS -->
 <section id="how-it-works">
-  <img class="ch ch--borde" src="pix-c10.webp" width="146" height="140" style="right:calc(50% + 530px + 18px);top:780px;--h:140px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <!-- Caricaturas de pixel art (tanda del 19-08). Se suman al sistema
        `.ch--borde` que ya existe: mismo anclaje en pixeles, mismo
        apagado por debajo de 1360. Cada una lleva su alto REAL en --h,
@@ -2941,7 +2949,6 @@
        `top` estan MEDIDOS sobre la pagina renderizada, no estimados:
        cada uno cae en un tramo comprobado libre en ese lado. -->
   <img class="ch ch--borde" src="pix-c26.webp" width="111" height="107" style="left:calc(50% + 530px + 18px);top:560px;--h:107px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="h9478c-31.webp" width="256" height="236" style="left:calc(50% + 530px + 18px);top:273px;--h:200px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
         <h2><span data-i18n-en>How a job works</span><span data-i18n-es hidden>Cómo va un encargo</span></h2>
     <p class="sub"><span data-i18n-en>All in writing. No calls and no meetings.</span><span data-i18n-es hidden>Todo por escrito. Sin llamadas ni reuniones.</span></p>
@@ -2950,7 +2957,7 @@
       <div class="step"><div class="step-n">02</div><h3><span data-i18n-en>I review it and give you a price</span><span data-i18n-es hidden>Lo reviso y te doy un precio</span></h3><p><span data-i18n-en>I check whether the job is doable and which permission or licence applies. Then I tell you what's included, what it costs and roughly how long it should take.</span><span data-i18n-es hidden>Compruebo si el trabajo es viable y qué permiso o licencia aplica. Después te digo qué incluye, cuánto cuesta y cuánto debería tardar.</span></p></div>
       <div class="step"><div class="step-n">03</div><h3><span data-i18n-en>We agree and I start</span><span data-i18n-es hidden>Acordamos y empiezo</span></h3><p><span data-i18n-en>We put the scope, the price and the payment terms in writing. Bigger jobs can be split into stages.</span><span data-i18n-es hidden>Dejamos por escrito el alcance, el precio y la forma de pago. Los trabajos grandes pueden dividirse en etapas.</span></p></div>
       <div class="step"><div class="step-n">04</div><h3><span data-i18n-en>I port it and test it</span><span data-i18n-es hidden>Lo porto y lo pruebo</span></h3><p><span data-i18n-en>I do the work on the version and setup we agreed. I don't stop at it compiling: I launch it and test the parts that matter. On longer jobs I send you screenshots or a short video as it comes along.</span><span data-i18n-es hidden>Hago el trabajo sobre la versión y el entorno acordados. No me quedo en que compile: lo arranco y pruebo las partes importantes. En los trabajos largos te mando capturas o un video corto del avance.</span></p></div>
-      <div class="step"><div class="step-n">05</div><h3><span data-i18n-en>You try it</span><span data-i18n-es hidden>Lo pruebas tú</span></h3><p><span data-i18n-en>You see the build running in your own pack or server. If something within what we agreed isn't right, I fix it before we close the job.</span><span data-i18n-es hidden>Ves la build funcionando en tu propio pack o servidor. Si algo dentro de lo acordado no está bien, lo corrijo antes de cerrar el trabajo.</span></p></div>
+      <div class="step"><div class="step-n">05</div><h3><span data-i18n-en>You try it</span><span data-i18n-es hidden>Lo pruebas tú</span></h3><p><span data-i18n-en>You see the build running in your own pack or server. If something within what we agreed isn't right, I fix it before we close the job. The final payment comes after that, once you've seen it working.</span><span data-i18n-es hidden>Ves la build funcionando en tu propio pack o servidor. Si algo dentro de lo acordado no está bien, lo corrijo antes de cerrar el trabajo. El pago final va después, cuando ya lo viste funcionando.</span></p></div>
       <div class="step"><div class="step-n">06</div><h3><span data-i18n-en>If something of mine breaks, I fix it</span><span data-i18n-es hidden>Si algo mío falla, lo arreglo</span></h3><p><span data-i18n-en>For 30 days I fix, at no cost, any bug I introduced within the agreed scope and setup. If you need something new after that, we handle it separately.</span><span data-i18n-es hidden>Durante 30 días corrijo sin coste los fallos que haya introducido yo dentro del alcance y entorno acordados. Si después necesitas algo nuevo, lo vemos aparte.</span></p></div>
     </div>
     <figure class="mascotas">
@@ -2973,22 +2980,18 @@
 
 <!-- ABOUT -->
 <section id="about">
-  <img class="ch ch--borde" src="pix-a11.webp" width="87" height="84" style="right:calc(50% + 530px + 18px);top:700px;--h:84px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <!-- Caricaturas de pixel art (tanda del 19-08). Se suman al sistema
        `.ch--borde` que ya existe: mismo anclaje en pixeles, mismo
        apagado por debajo de 1360. Cada una lleva su alto REAL en --h,
        asi que se pinta 1:1 y no hay escalado que la emborrone. Los
        `top` estan MEDIDOS sobre la pagina renderizada, no estimados:
        cada uno cae en un tramo comprobado libre en ese lado. -->
-  <img class="ch ch--borde" src="pix-b20.webp" width="149" height="97" style="left:calc(50% + 530px + 18px);top:355px;--h:97px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <!-- 1760 -> 1240: #about paso de 2038 a ~1508 px al irse las mascotas y el
        grupo, y este `top` va en pixeles contra la seccion, asi que se quedaba
        438 px por debajo del borde, dentro de la seccion siguiente. Lo caza la
        guarda "se salen de seccion" de verificar.py. Al tocar el contenido de
        una seccion hay que re-medir SUS personajes. -->
   <img class="ch ch--borde" src="hsunny-22.webp" width="256" height="245" style="right:calc(50% + 530px + 18px);top:445px;--h:185px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="hsunny-21.webp" width="256" height="235" style="left:calc(50% + 530px + 18px);top:720px;--h:185px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="h1024-32.webp" width="256" height="236" style="right:calc(50% + 530px + 18px);top:201px;--h:185px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
         <h2><span data-i18n-en>Who's behind<span translate="no"> Modwright</span></span><span data-i18n-es hidden>Quién está detrás de<span translate="no"> Modwright</span></span><img class="px px--h2 px--cuy" src="deco-cuy-cara.webp" width="96" height="91" alt="" aria-hidden="true" loading="lazy" decoding="async"></h2>
     <p class="sub"><span data-i18n-en>I'm<span translate="no"> danisansietev</span>. Right now, if you open a ticket with me, the person talking to you is also the one who reviews and works on the mod.</span><span data-i18n-es hidden>Soy<span translate="no"> danisansietev</span>. Ahora mismo, si abres un ticket conmigo, la persona que habla contigo también es la que revisa y trabaja sobre el mod.</span></p>
@@ -2999,6 +3002,7 @@
       <div class="about-copy">
       <p><span data-i18n-en>I started<span translate="no"> porting </span>mods for my own<span translate="no"> modpacks</span>, because I was tired of losing them every time I changed version. Over time I ended up doing the same for other people.</span><span data-i18n-es hidden>Empecé porteando mods para mis propios<span translate="no"> modpacks </span>porque estaba cansado de perderlos cada vez que cambiaba de versión. Con el tiempo terminé haciendo lo mismo para otros.</span></p>
       <p><span data-i18n-en>I work mostly with<span translate="no"> Forge </span>1.20.1, and I keep a big pack where I test compatibility. That's where I run into a lot of the odd problems you'll see in the lab below.</span><span data-i18n-es hidden>Trabajo especialmente con<span translate="no"> Forge </span>1.20.1 y mantengo un pack grande donde pruebo compatibilidad. Ahí termino encontrando muchos de los problemas raros que ves en el laboratorio.</span></p>
+      <p><span data-i18n-en>I work in<span translate="no"> Java </span>with<span translate="no"> Gradle </span>and<span translate="no"> Mixin</span>, on<span translate="no"> Forge</span>,<span translate="no"> NeoForge </span>and<span translate="no"> Fabric</span>.</span><span data-i18n-es hidden>Programo en<span translate="no"> Java </span>con<span translate="no"> Gradle </span>y<span translate="no"> Mixin</span>, sobre<span translate="no"> Forge</span>,<span translate="no"> NeoForge </span>y<span translate="no"> Fabric</span>.</span></p>
       </div>
     </div>
 
@@ -3023,13 +3027,7 @@
      en "Mas del laboratorio". El texto tecnico original de las tres
      visibles sigue entero en su "Detalle tecnico". -->
 <section id="lab">
-  <img class="ch ch--borde" src="pix-b04.webp" width="128" height="101" style="right:calc(50% + 530px + 18px);top:60px;--h:101px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="ch ch--borde" src="pix-c31.webp" width="158" height="141" style="left:calc(50% + 530px + 18px);top:419px;--h:141px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="h9478c-22.webp" width="256" height="236" style="left:calc(50% + 530px + 18px);top:777px;--h:215px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="h512-23.webp" width="256" height="235" style="right:calc(50% + 530px + 18px);top:1136px;--h:215px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="h1024-21.webp" width="256" height="236" style="left:calc(50% + 530px + 18px);top:1136px;--h:215px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="h9478c-21.webp" width="256" height="236" style="right:calc(50% + 530px + 18px);top:598px;--h:215px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="h9478c-13.webp" width="256" height="235" style="left:calc(50% + 530px + 18px);top:60px;--h:215px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
     <div class="packwork packwork--seccion">
       <h2><span data-i18n-en>Things that break in a 600+ mod pack</span><span data-i18n-es hidden>Cosas que se rompen en un pack de 600+ mods</span></h2>
@@ -3140,8 +3138,6 @@
        `top` estan MEDIDOS sobre la pagina renderizada, no estimados:
        cada uno cae en un tramo comprobado libre en ese lado. -->
   <img class="ch ch--borde" src="pix-b18.webp" width="231" height="168" style="right:calc(50% + 530px + 18px);top:380px;--h:168px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="hsunny-13.webp" width="256" height="236" style="left:calc(50% + 530px + 18px);top:172px;--h:190px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="hsunny-12.webp" width="256" height="246" style="right:calc(50% + 530px + 18px);top:60px;--h:190px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
         <h2><span data-i18n-en>Did you write the mod?</span><span data-i18n-es hidden>¿Es tu propio mod?</span></h2>
     <p class="sub"><span data-i18n-en>Sometimes I port mods for free for their original authors.</span><span data-i18n-es hidden>A veces hago<span translate="no"> ports </span>sin cobrar para los autores originales.</span></p>
@@ -3188,13 +3184,7 @@
        solape, todas en la mitad de arriba. Ahora alternan lado y bajan
        cada ~165 px. OJO: `left:` pinta a la DERECHA (empuja desde el
        centro), es al reves de como se lee. -->
-  <img class="ch ch--borde" src="pix-b02.webp" width="97" height="104" style="left:calc(50% + 530px + 18px);top:60px;--h:104px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="hari-21.webp" width="256" height="245" style="right:calc(50% + 530px + 18px);top:60px;--h:165px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="hsunny-11.webp" width="256" height="246" style="left:calc(50% + 530px + 18px);top:281px;--h:195px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="hari-23.webp" width="256" height="245" style="right:calc(50% + 530px + 18px);top:391px;--h:195px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="ch ch--borde" src="pix-b01.webp" width="111" height="117" style="left:calc(50% + 530px + 18px);top:501px;--h:117px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="h512-12.webp" width="256" height="245" style="right:calc(50% + 530px + 18px);top:722px;--h:165px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="h1024-31.webp" width="256" height="236" style="left:calc(50% + 530px + 18px);top:722px;--h:195px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
         <img class="retrato retrato--erizo" src="retrato-erizo.webp" width="300" height="300" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <h2 id="faq"><span data-i18n-en>Before you ask</span><span data-i18n-es hidden>Antes de preguntar</span></h2>
@@ -3270,7 +3260,6 @@
      busca quien viene a buscar huecos. Ahi las fotos son la prueba de que
      el laboratorio de 600+ mods existe. -->
 <section id="gallery">
-  <img class="ch ch--borde" src="hari-11.webp" width="256" height="246" style="left:calc(50% + 530px + 18px);top:333px;--h:190px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="ch ch--borde" src="h512-22.webp" width="256" height="235" style="right:calc(50% + 530px + 18px);top:333px;--h:190px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
     <div class="pack-shots">
