@@ -1131,7 +1131,9 @@
        lo que decia ese texto: los tres cuelgan del mismo anillo y los tres radios
        entran al mismo sitio. El precio sigue en el pie y en el articulo.
        La figura se genera con tools_build_loaders.py, no a mano. */
-    .loomd-wrap { margin: 2.1rem 0 2.4rem; }
+    /* clear: la pose flotante del cuy junto al h2 corria el diagrama 63 px a la
+       izquierda y la hoja de Fabric quedaba encima de la palabra (28-oct). */
+    .loomd-wrap { margin: 2.1rem 0 2.4rem; clear: both; }
     .loomd { display: block; width: 100%; max-width: 560px; height: auto; margin-inline: auto; }
     .loomd-node { fill: var(--surface); stroke: currentColor; stroke-width: 2.4; }
     .loomd-node-fill { fill: currentColor; opacity: 0.09; stroke: none; }
@@ -1993,6 +1995,12 @@
     /* iconos pixel de servicios (tools_iconos_servicios.py) */
     .svc-icon:has(img) { width: 58px; height: 58px; border-radius: 12px; background: var(--svc-soft, rgba(255,255,255,0.04)); }
     .svc-icon img { width: 54px; height: 54px; image-rendering: pixelated; display: block; }
+    /* 2026-10-28: separador de isla de bloques (tools_separador_bloques.py) en los
+       cortes que no tienen papel rasgado. Uno de cada dos va espejado. */
+    .sep-bloques { height: 0; line-height: 0; text-align: center; position: relative; z-index: 3; pointer-events: none; }
+    .sep-bloques img { position: relative; top: calc(min(560px, 78vw) * -0.075); width: min(560px, 78vw); height: auto; image-rendering: pixelated; filter: drop-shadow(0 12px 14px rgba(0,0,0,0.38)); }
+    .sep-bloques--b img { transform: scaleX(-1); }
+    html[data-theme="light"] .sep-bloques img { filter: drop-shadow(0 8px 10px rgba(0,0,0,0.14)); }
     /* -- PERSONAJES --------------------------------------------------------
        Los generan tools_build_heads.py y tools_place_heads.py.
        NO tocar a mano: se reescriben enteros al relanzar.
@@ -2547,6 +2555,7 @@
     </div>
   </div>
 </section>
+<div class="sep-bloques" aria-hidden="true"><img src="sep-bloques.png" width="560" height="84" alt="" loading="lazy" decoding="async"></div>
 <!-- LOADERS -->
 <section id="loaders">
   <img class="ch ch--borde" src="mw-cuy1-00.webp" width="292" height="302" style="left:calc(50% + 530px + 18px);top:560px;--h:118px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
@@ -2894,6 +2903,7 @@
 
   </div>
 </section>
+<div class="sep-bloques sep-bloques--b" aria-hidden="true"><img src="sep-bloques.png" width="560" height="84" alt="" loading="lazy" decoding="async"></div>
 <!-- SERVICES -->
 <section id="services">
   <img class="ch ch--borde" src="mw-cuy1-12.webp" width="300" height="286" style="left:calc(50% + 530px + 18px);top:754px;--h:108px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
@@ -3022,6 +3032,7 @@
     </div>
   </div>
 </section>
+<div class="sep-bloques" aria-hidden="true"><img src="sep-bloques.png" width="560" height="84" alt="" loading="lazy" decoding="async"></div>
 <!-- GALLERY -->
 
 <!-- HOW IT WORKS -->
@@ -3471,6 +3482,7 @@
     </div>
   </div>
 </section>
+<div class="sep-bloques sep-bloques--b" aria-hidden="true"><img src="sep-bloques.png" width="560" height="84" alt="" loading="lazy" decoding="async"></div>
 <!-- CONTACT -->
 <section id="contact">
   <img class="ch ch--borde" src="h1024-33.webp" width="256" height="235" style="left:calc(50% + 530px + 18px);top:88px;--h:190px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
