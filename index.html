@@ -51,7 +51,7 @@
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Minecraft Mod Porting &amp; Backporting Service | Modwright</title>
-  <meta name="description" content="I port and adapt Minecraft mods between Forge, Fabric and NeoForge: ports, backports, compatibility and maintenance for modded Minecraft. Free quotes, everything in writing.">
+  <meta name="description" content="I port and adapt Minecraft mods between Forge, Fabric and NeoForge: ports, backports, compatibility fixes and maintenance. Free quotes, everything in writing.">
   <meta name="theme-color" content="#1a1410">
   <link rel="canonical" href="https://dheightsan.github.io/forge-ports/">
   <meta property="og:site_name" content="Modwright">
@@ -59,7 +59,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://dheightsan.github.io/forge-ports/">
   <meta property="og:title" content="Modwright: Minecraft mod porting &amp; backporting">
-  <meta property="og:description" content="I port and adapt Minecraft mods between Forge, Fabric and NeoForge: ports, backports, compatibility and maintenance for modded Minecraft. Free quotes, everything in writing.">
+  <meta property="og:description" content="I port and adapt Minecraft mods between Forge, Fabric and NeoForge: ports, backports, compatibility fixes and maintenance. Free quotes, everything in writing.">
   <!-- 🚨 EL NOMBRE LLEVA FECHA A PROPOSITO. WhatsApp, Discord, Facebook y X
        guardan la tarjeta del enlace CACHEADA POR SU URL, durante dias o semanas.
        Mientras la URL no cambie, siguen enseñando la version vieja aunque el
@@ -75,7 +75,7 @@
   <meta property="og:image:alt" content="A wooden house on a green cliff in a heavily modded Minecraft world, beside the Modwright Studios name.">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Modwright: Minecraft mod porting &amp; backporting">
-  <meta name="twitter:description" content="I port and adapt Minecraft mods between Forge, Fabric and NeoForge: ports, backports, compatibility and maintenance for modded Minecraft. Free quotes, everything in writing.">
+  <meta name="twitter:description" content="I port and adapt Minecraft mods between Forge, Fabric and NeoForge: ports, backports, compatibility fixes and maintenance. Free quotes, everything in writing.">
   <meta name="twitter:image" content="https://dheightsan.github.io/forge-ports/og-2026-0901b.jpg">
   <script type="application/ld+json">
   {
@@ -1940,14 +1940,16 @@
       #hero { overflow: clip; }
       .hero-art { position: sticky; top: 5.5rem; }
     }
-    /* Por debajo de 1080 no caben dos columnas con el titular a este cuerpo. La
-       imagen pasa ARRIBA DEL TODO y en banda: lo visual tiene que aparecer
-       antes que el muro de texto, que es justo lo que fallaba. */
+    /* Por debajo de 1080 no caben dos columnas con el titular a este cuerpo.
+       Hasta 2026-10 la imagen iba ARRIBA (order: -1), pensado para la foto del
+       hero. Desde que esa columna es el banner de la comunidad, a 375 px la
+       primera pantalla vendia el Discord y "Mandame el mod" quedaba bajo el
+       pliegue (auditorias 2026-09-24 y 2026-10-28). Ahora va DESPUES del texto,
+       en el orden del HTML. Revertir = volver a poner order: -1 aqui. */
     @media (max-width: 1080px) {
       #hero { min-height: 0; padding-top: 2rem; }
       .hero-inner { grid-template-columns: minmax(0, 1fr); gap: 1.6rem; }
-      .hero-art { order: -1; }
-      .hero-art { padding-top: 0; }
+      .hero-art { padding-top: 0.4rem; }
       .hc-title { margin: 0.6rem 0 0.7rem; }
     }
 
@@ -2550,7 +2552,7 @@
           <summary><span data-i18n-en>Technical detail</span><span data-i18n-es hidden>Detalle técnico</span></summary>
           <p><span data-i18n-en>Rebuilt the per-player data system on native data attachments, dropping the<span translate="no"> Blueprint </span>dependency at the creator's suggestion, and moved the food-stat tweaks to the 1.21 component system. Boot-tested in-game, in survival.</span><span data-i18n-es hidden>Rehíce el sistema de datos por jugador sobre los data attachments nativos, quitando la dependencia de<span translate="no"> Blueprint </span>a sugerencia del creador, y pasé los ajustes de comida al sistema de componentes de 1.21. Probado arrancando el juego, en supervivencia.</span></p>
         </details>
-        <p class="port-link-ph port-link-ph--autor"><img class="ch ch--autor" src="h9478c-12.webp" width="256" height="236" alt="" aria-hidden="true" loading="lazy" decoding="async"><span><span data-i18n-en>Original by<span translate="no"> camcam_burger</span>. The page above is his.</span><span data-i18n-es hidden>Original de<span translate="no"> camcam_burger</span>. La página de arriba es suya.</span></span></p>
+        <p class="port-link-ph port-link-ph--autor"><img class="ch ch--autor" src="h9478c-12.webp" width="256" height="236" alt="" aria-hidden="true" loading="lazy" decoding="async"><span><span data-i18n-en>Original by<span translate="no"> camcam_burger</span>, and the page above is his. I started from<span translate="no"> outrightwings</span>'s unofficial 1.20.1 port.</span><span data-i18n-es hidden>Original de<span translate="no"> camcam_burger</span>, y la página de arriba es suya. Partí del port no oficial a 1.20.1 de<span translate="no"> outrightwings</span>.</span></span></p>
       </div>
 
       <div class="port-card">
@@ -2832,14 +2834,14 @@
         </div>
         <div class="tk-pair">
           <div class="tk-field">
-            <label class="est-label" for="tk-from"><span data-i18n-en>Right now it's on</span><span data-i18n-es hidden>Ahora está en</span></label>
+            <label class="est-label" for="tk-from" id="tk-from-l"><span data-i18n-en>Right now it's on</span><span data-i18n-es hidden>Ahora está en</span></label>
             <input class="tk-input" type="text" id="tk-from" autocomplete="off" data-ph-en="Version, e.g. 1.21.1" data-ph-es="Versión, p. ej. 1.21.1" placeholder="Version, e.g. 1.21.1">
-            <div class="est-options tk-loaders" data-group="from" role="group"><button type="button" class="est-opt brand-forge" data-value="Forge" aria-pressed="false"><svg class="loglyph" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M2 8h10l-1.2 2.4H15v2h-1.9L12 17H8L6.2 12.4H2z"/><rect x="6" y="18" width="9" height="2" rx="0.4" fill="currentColor"/></svg><span translate="no">Forge</span></button><button type="button" class="est-opt brand-neoforge" data-value="NeoForge" aria-pressed="false"><svg class="loglyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 16.5V7.5l7 9v-9" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span translate="no">NeoForge</span></button><button type="button" class="est-opt brand-fabric" data-value="Fabric" aria-pressed="false"><svg class="loglyph" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="3" fill="currentColor"/><g stroke="#0e0d0b" stroke-width="1.2" opacity="0.32"><path d="M3.5 9.7h17M3.5 14.3h17M9.7 3.5v17M14.3 3.5v17"/></g></svg><span translate="no">Fabric</span></button></div>
+            <div class="est-options tk-loaders" data-group="from" role="group" aria-labelledby="tk-from-l"><button type="button" class="est-opt brand-forge" data-value="Forge" aria-pressed="false"><svg class="loglyph" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M2 8h10l-1.2 2.4H15v2h-1.9L12 17H8L6.2 12.4H2z"/><rect x="6" y="18" width="9" height="2" rx="0.4" fill="currentColor"/></svg><span translate="no">Forge</span></button><button type="button" class="est-opt brand-neoforge" data-value="NeoForge" aria-pressed="false"><svg class="loglyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 16.5V7.5l7 9v-9" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span translate="no">NeoForge</span></button><button type="button" class="est-opt brand-fabric" data-value="Fabric" aria-pressed="false"><svg class="loglyph" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="3" fill="currentColor"/><g stroke="#0e0d0b" stroke-width="1.2" opacity="0.32"><path d="M3.5 9.7h17M3.5 14.3h17M9.7 3.5v17M14.3 3.5v17"/></g></svg><span translate="no">Fabric</span></button></div>
           </div>
           <div class="tk-field">
-            <label class="est-label" for="tk-to"><span data-i18n-en>You want it on</span><span data-i18n-es hidden>Lo quieres en</span></label>
+            <label class="est-label" for="tk-to" id="tk-to-l"><span data-i18n-en>You want it on</span><span data-i18n-es hidden>Lo quieres en</span></label>
             <input class="tk-input" type="text" id="tk-to" autocomplete="off" data-ph-en="Version, e.g. 1.20.1" data-ph-es="Versión, p. ej. 1.20.1" placeholder="Version, e.g. 1.20.1">
-            <div class="est-options tk-loaders" data-group="to" role="group"><button type="button" class="est-opt brand-forge" data-value="Forge" aria-pressed="false"><svg class="loglyph" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M2 8h10l-1.2 2.4H15v2h-1.9L12 17H8L6.2 12.4H2z"/><rect x="6" y="18" width="9" height="2" rx="0.4" fill="currentColor"/></svg><span translate="no">Forge</span></button><button type="button" class="est-opt brand-neoforge" data-value="NeoForge" aria-pressed="false"><svg class="loglyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 16.5V7.5l7 9v-9" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span translate="no">NeoForge</span></button><button type="button" class="est-opt brand-fabric" data-value="Fabric" aria-pressed="false"><svg class="loglyph" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="3" fill="currentColor"/><g stroke="#0e0d0b" stroke-width="1.2" opacity="0.32"><path d="M3.5 9.7h17M3.5 14.3h17M9.7 3.5v17M14.3 3.5v17"/></g></svg><span translate="no">Fabric</span></button></div>
+            <div class="est-options tk-loaders" data-group="to" role="group" aria-labelledby="tk-to-l"><button type="button" class="est-opt brand-forge" data-value="Forge" aria-pressed="false"><svg class="loglyph" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M2 8h10l-1.2 2.4H15v2h-1.9L12 17H8L6.2 12.4H2z"/><rect x="6" y="18" width="9" height="2" rx="0.4" fill="currentColor"/></svg><span translate="no">Forge</span></button><button type="button" class="est-opt brand-neoforge" data-value="NeoForge" aria-pressed="false"><svg class="loglyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 16.5V7.5l7 9v-9" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span translate="no">NeoForge</span></button><button type="button" class="est-opt brand-fabric" data-value="Fabric" aria-pressed="false"><svg class="loglyph" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="3" fill="currentColor"/><g stroke="#0e0d0b" stroke-width="1.2" opacity="0.32"><path d="M3.5 9.7h17M3.5 14.3h17M9.7 3.5v17M14.3 3.5v17"/></g></svg><span translate="no">Fabric</span></button></div>
           </div>
         </div>
         <div class="tk-field">
