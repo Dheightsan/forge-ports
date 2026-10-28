@@ -1631,6 +1631,7 @@
     .pack-note { grid-area: n; display: flex; align-items: center; gap: 0.9rem; font-size: 0.82rem; line-height: 1.5; color: var(--text-mute); }
     .retrato { display: block; height: auto; border-radius: 50%; flex-shrink: 0; }
     .retrato--cuy { width: 64px; }
+    .retrato--pose { border-radius: 0; }
     @media (max-width: 720px) { .pack-yo { grid-template-columns: minmax(0, 1fr); grid-template-areas: "a" "n" "b"; } }
     /* El erizo de la bata y el libro: justo encima de licencias y DMCA. */
     #legal .retrato--erizo { float: right; width: 128px; margin: 0 0 0.8rem 1.4rem; shape-outside: circle(50%); }
@@ -2007,6 +2008,7 @@
        imagenes de marca que salian una sola vez. */
     .dc-invita { display: flex; align-items: center; gap: 1.1rem 1.4rem; flex-wrap: wrap; margin: 2rem auto 0; max-width: 860px; padding: 1rem 1.3rem; border: 1px solid var(--border-lt); border-radius: var(--radius-lg); background: var(--surface, rgba(255,255,255,0.03)); }
     .dc-inv-img { width: 84px; height: 84px; border-radius: 50%; object-fit: cover; flex: none; }
+    .dc-inv-img--pose { width: auto; height: 92px; border-radius: 0; object-fit: contain; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.35)); }
     .dc-inv-img--banner { width: 230px; height: auto; border-radius: 0; filter: drop-shadow(0 8px 12px rgba(0,0,0,0.35)); }
     .dc-inv-txt { flex: 1 1 260px; min-width: 0; }
     .dc-inv-txt p { margin: 0; color: var(--text-soft); }
@@ -2609,7 +2611,7 @@
            que traia horneados: el rotulo tiene que traducirse y el boton
            pulsarse, asi que los dos son HTML. Es el LCP en los dos anchos. -->
       <figure class="hero-comunidad">
-        <img src="comunidad.webp" width="1024" height="427" alt="Pixel-art banner of the Modwright community: the guinea pig in work overalls holding a wrench, a flying moth, a grass block shaped like the Discord logo, and the hedgehog in a lab coat holding a book." loading="eager" fetchpriority="high" decoding="async">
+        <img src="comunidad.webp" width="1024" height="459" alt="Pixel-art banner of the Modwright community: the guinea pig in work overalls holding a wrench, a flying moth, a grass block shaped like the Discord logo, and the hedgehog in a lab coat holding a book." loading="eager" fetchpriority="high" decoding="async">
         <figcaption>
           <p class="hc-title"><span data-i18n-en><span class="hc-hi">Modded</span><span translate="no"> Minecraft </span>community</span><span data-i18n-es hidden>Comunidad de<span translate="no"> Minecraft </span><span class="hc-hi">modded</span></span></p>
           <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" class="btn btn-discord"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg><span><span data-i18n-en>Join the<span translate="no"> Discord</span></span><span data-i18n-es hidden>Entra al<span translate="no"> Discord</span></span></span></a>
@@ -2802,7 +2804,7 @@
     </div>
     <p class="proof-note port-more"><span data-i18n-en>Everything I've published is on my<a href="https://www.curseforge.com/members/danisansietev/projects" target="_blank" rel="noopener noreferrer" translate="no"> CurseForge </a>profile, and part of the code is on<a href="https://github.com/Dheightsan" target="_blank" rel="noopener noreferrer" translate="no"> GitHub</a>.</span><span data-i18n-es hidden>Todo lo que he publicado está en mi perfil de<a href="https://www.curseforge.com/members/danisansietev/projects" target="_blank" rel="noopener noreferrer" translate="no"> CurseForge</a>, y parte del código está en<a href="https://github.com/Dheightsan" target="_blank" rel="noopener noreferrer" translate="no"> GitHub</a>.</span></p>
     <aside class="dc-invita">
-      <img class="dc-inv-img dc-inv-img--banner" src="comunidad.webp" width="1024" height="427" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      <img class="dc-inv-img dc-inv-img--banner" src="comunidad.webp" width="1024" height="459" alt="" aria-hidden="true" loading="lazy" decoding="async">
       <div class="dc-inv-txt"><p class="dc-inv-t"><span data-i18n-en>Every new port gets posted on the<span translate="no"> Discord</span></span><span data-i18n-es hidden>Cada port nuevo lo publico en el<span translate="no"> Discord</span></span></p><p><span data-i18n-en>You can also suggest a mod there and vote on the ones others ask for.</span><span data-i18n-es hidden>Ahí también puedes proponer un mod y votar los que piden los demás.</span></p></div>
       <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" class="btn btn-discord"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg><span><span data-i18n-en>Join the<span translate="no"> Discord</span></span><span data-i18n-es hidden>Entra al<span translate="no"> Discord</span></span></span></a>
     </aside>
@@ -3123,20 +3125,10 @@
       <div class="step"><div class="step-n"><img src="paso-6.png" width="108" height="108" alt="" loading="lazy" decoding="async"></div><div class="step-k"><span data-i18n-en>Step 6</span><span data-i18n-es hidden>Paso 6</span></div><h3><span data-i18n-en>If something of mine breaks, I fix it</span><span data-i18n-es hidden>Si algo mío falla, lo arreglo</span></h3><p><span data-i18n-en>For 30 days I fix, at no cost, any bug I introduced within the agreed scope and setup. If you need something new after that, we handle it separately.</span><span data-i18n-es hidden>Durante 30 días corrijo sin coste los fallos que haya introducido yo dentro del alcance y entorno acordados. Si después necesitas algo nuevo, lo vemos aparte.</span></p></div>
     </div>
     <aside class="dc-invita">
-      <img class="dc-inv-img " src="retrato-cuy.webp" width="300" height="300" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      <img class="dc-inv-img dc-inv-img--pose" src="mw-cuy2-00.webp" width="255" height="301" alt="" aria-hidden="true" loading="lazy" decoding="async">
       <div class="dc-inv-txt"><p class="dc-inv-t"><span data-i18n-en>Questions before you order?</span><span data-i18n-es hidden>¿Dudas antes de encargar?</span></p><p><span data-i18n-en>Send me the mod link on the<span translate="no"> Discord</span> and I'll take a look.</span><span data-i18n-es hidden>Mándame el link del mod por el<span translate="no"> Discord</span> y lo reviso.</span></p></div>
       <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" class="btn btn-discord"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg><span><span data-i18n-en>Join the<span translate="no"> Discord</span></span><span data-i18n-es hidden>Entra al<span translate="no"> Discord</span></span></span></a>
-    </aside><figure class="mascotas">
-      <!-- La ilustracion traia dos placas horneadas con CARGOS INVENTADOS
-           ("Systems Integration Engineer", "Theoretical Architect") en la pagina
-           de un negocio de una persona, y por eso NECESITABA un pie que los
-           desmintiera. Ahora se borra SOLO esa linea (tools_mascotas_sin_placas.py):
-           el nombre es el chiste y se queda, el cargo se va, y el pie sobra.
-           ⚠️ NO se recorta la imagen por encima de las placas, que fue el primer
-           intento: en el dibujo los personajes NO TIENEN PIES y las placas hacen
-           de base, asi que al quitarlas quedaban flotando y cortados. -->
-      <img src="mascotas.webp" width="978" height="902" alt="Two pixel-art mascots on wooden nameplates: a guinea pig with a moustache holding crackling electricity, labelled Nikola Tesla, and a hedgehog in a lab coat holding a galaxy, labelled Einstein." loading="lazy" decoding="async">
-    </figure>
+    </aside>
   </div>
 </section>
 <div class="torn-sep" aria-hidden="true"><svg viewBox="0 0 1440 24" preserveAspectRatio="none"><path d="M0 24 L0 12 L48 16 L96 8 L150 17 L210 7 L280 15 L356 9 L432 17 L510 7 L590 15 L676 9 L760 17 L846 7 L932 15 L1018 9 L1104 17 L1190 7 L1276 15 L1356 10 L1440 14 L1440 24 Z"/></svg>
@@ -3180,9 +3172,6 @@
       </div>
     </div>
 
-    <figure class="brandart">
-      <img src="brandart.webp" width="987" height="760" alt="Modwright brand illustration in pixel art: a guinea pig in work overalls holding a wrench, and a hedgehog in a lab coat holding a book labelled mappings, APIs and logs, next to a checklist reading analyze, adapt, test, fix, repeat. Below them, the Modwright wordmark and the line: build it, port it, keep it alive." loading="lazy" decoding="async">
-    </figure>
 
     <div class="credit">
       <img class="px px--girasol" src="deco-girasol.webp" width="88" height="112" alt="" aria-hidden="true" loading="lazy" decoding="async"><img class="px px--gota" src="deco-gota.webp" width="35" height="43" alt="" aria-hidden="true" loading="lazy" decoding="async">
@@ -3374,7 +3363,6 @@
        cada ~165 px. OJO: `left:` pinta a la DERECHA (empuja desde el
        centro), es al reves de como se lee. -->
   <div class="wrap">
-        <img class="retrato retrato--erizo" src="retrato-erizo.webp" width="300" height="300" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <img class="mw-pose " src="mw-eri2-02.webp" width="184" height="240" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <h2 id="faq"><span data-i18n-en>Before you ask</span><span data-i18n-es hidden>Antes de preguntar</span></h2>
     <div class="faq-list">
@@ -3443,7 +3431,7 @@
       </details>
     </div>
     <aside class="dc-invita">
-      <img class="dc-inv-img " src="retrato-erizo.webp" width="300" height="300" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      <img class="dc-inv-img dc-inv-img--pose" src="mw-eri2-00.webp" width="161" height="240" alt="" aria-hidden="true" loading="lazy" decoding="async">
       <div class="dc-inv-txt"><p class="dc-inv-t"><span data-i18n-en>Something in the terms not clear?</span><span data-i18n-es hidden>¿Algo de las condiciones no queda claro?</span></p><p><span data-i18n-en>Ask me on the<span translate="no"> Discord</span>, I'd rather explain it before we start.</span><span data-i18n-es hidden>Pregúntame por el<span translate="no"> Discord</span>, prefiero explicarlo antes de empezar.</span></p></div>
       <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" class="btn btn-discord"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg><span><span data-i18n-en>Join the<span translate="no"> Discord</span></span><span data-i18n-es hidden>Entra al<span translate="no"> Discord</span></span></span></a>
     </aside>
@@ -3467,7 +3455,7 @@
            rejilla, al hueco que deja pack-05: siguen siendo 50 barajadas. -->
       <figure class="pack-yo">
         <img class="pack-yo-a" src="hero-main.webp" srcset="hero-main-654.webp 654w, hero-main-1000.webp 1000w, hero-main.webp 1400w" sizes="(max-width: 720px) calc(100vw - 48px), (max-width: 1108px) calc(50vw - 30px), 525px" width="1400" height="788" alt="My character standing at the edge of a river inside a towering redwood forest, in a heavily modded world." loading="lazy" decoding="async">
-        <figcaption class="pack-note"><img class="retrato retrato--cuy" src="retrato-cuy.webp" width="300" height="300" alt="" aria-hidden="true" loading="lazy" decoding="async"><span><span data-i18n-en>Me taking in the view from the 600+ Mod Compatibility Lab I run for testing. Like you, I know the version problem first-hand, and every other headache that comes with it.</span><span data-i18n-es hidden>Yo, disfrutando la vista en el Laboratorio de Compatibilidad de 600+ mods que uso para hacer pruebas. Como tú, conozco el problema de versiones de primera mano, y todos los otros dolores de cabeza que trae.</span></span></figcaption>
+        <figcaption class="pack-note"><img class="retrato retrato--cuy retrato--pose" src="mw-cuy2-11.webp" width="278" height="304" alt="" aria-hidden="true" loading="lazy" decoding="async"><span><span data-i18n-en>Me taking in the view from the 600+ Mod Compatibility Lab I run for testing. Like you, I know the version problem first-hand, and every other headache that comes with it.</span><span data-i18n-es hidden>Yo, disfrutando la vista en el Laboratorio de Compatibilidad de 600+ mods que uso para hacer pruebas. Como tú, conozco el problema de versiones de primera mano, y todos los otros dolores de cabeza que trae.</span></span></figcaption>
         <img class="pack-yo-b" src="pack-05.webp" width="760" height="428" alt="Three bears gathered on a stone platform in a birch and pine forest." loading="lazy" decoding="async">
       </figure>
       <!-- 🚨 LA GALERIA NO SE ABRE ENTERA (peticion de josda 2026-08-30).
