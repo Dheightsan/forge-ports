@@ -16,21 +16,21 @@ if(!s&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').mat
 r.setAttribute('data-theme',s==='light'?'light':'dark');}catch(e){}})();
 </script>
 <title>What a Minecraft mod port costs, and why | Modwright</title>
-<meta name="description" content="What drives the price of a Minecraft mod port: the version walls it crosses, the loader direction, and the licence. With real numbers.">
+<meta name="description" content="What drives the price of a Minecraft mod port: the version walls it crosses, the loader direction, what the mod touches and the licence.">
 <link rel="canonical" href="https://dheightsan.github.io/forge-ports/mod-porting-cost.html">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="favicon-180.png">
 <meta property="og:title" content="What a Minecraft mod port costs, and why">
-<meta property="og:description" content="What drives the price of a Minecraft mod port: the version walls it crosses, the loader direction, and the licence. With real numbers.">
+<meta property="og:description" content="What drives the price of a Minecraft mod port: the version walls it crosses, the loader direction, what the mod touches and the licence.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://dheightsan.github.io/forge-ports/mod-porting-cost.html">
 <meta property="og:image" content="https://dheightsan.github.io/forge-ports/og-2026-0901b.jpg">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"TechArticle",
       "image": "https://dheightsan.github.io/forge-ports/og-2026-0901b.jpg",
-"datePublished":"2026-08-10","dateModified": "2026-08-18",
+"datePublished":"2026-08-10","dateModified": "2026-10-28",
 "headline":"What a Minecraft mod port costs, and why",
 "description":"The four drivers behind the price of a Minecraft mod port: version walls crossed, loader direction, subsystems touched and licence terms.",
 "author":{"@type":"Person","name":"danisansietev"},
@@ -126,7 +126,7 @@ main > * { position: relative; z-index: 2; }
   <meta property="og:locale" content="en_US">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="What a Minecraft mod port costs, and why">
-  <meta name="twitter:description" content="What drives the price of a Minecraft mod port: the version walls it crosses, the loader direction, and the licence. With real numbers.">
+  <meta name="twitter:description" content="What drives the price of a Minecraft mod port: the version walls it crosses, the loader direction, what the mod touches and the licence.">
   <meta name="twitter:image" content="https://dheightsan.github.io/forge-ports/og-2026-0901b.jpg"></head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -153,7 +153,7 @@ main > * { position: relative; z-index: 2; }
 
   <p class="lede">Almost every quote you will get for a mod port is a number with no reasoning attached, which makes it impossible to tell a fair one from a guess. Four things actually set the price, and only one of them has anything to do with how big the mod is.</p>
 
-  <p>This is the model I quote from, written out in full. You can use it to sanity check my price, or anyone else's.</p>
+  <p>This is how I work out a quote. You can use it to sanity check my price, or anyone else's.</p>
 
   <h2>The thing that does not drive the price: file count</h2>
 
@@ -178,7 +178,7 @@ main > * { position: relative; z-index: 2; }
   </div>
 
   <div class="note">
-    <p><strong>Why 1.20.1 is the cheap destination.</strong> It is the last<span translate="no"> Forge </span>long term support version, it sits underneath every recent wall, and it still carries an enormous modpack base. A port <em>to</em> 1.20.1 from a neighbouring version crosses nothing, which is why it is the cheapest work on the list and the version I specialise in.</p>
+    <p><strong>Why 1.20.1 is the cheap destination.</strong> It is the last<span translate="no"> Forge </span>long term support version, it sits underneath every recent wall, and it still carries an enormous modpack base. A port <em>to</em> 1.20.1 from a neighbouring version crosses nothing, which is why it is usually the cheapest kind of port and the version I specialise in.</p>
   </div>
 
   <p>Some jumps that look large are trivial: 1.19.2 to 1.20.1, 1.20 to 1.20.1, and 1.20.2 to 1.20.4 are mostly recompiles. Some jumps that look small are not: 1.20.4 to 1.21 crosses data components.</p>
@@ -230,48 +230,17 @@ main > * { position: relative; z-index: 2; }
 
   <p>I would rather lose a job at this step than hand you something that gets taken down later.</p>
 
-  <h2>The actual numbers</h2>
+  <h2>How the pieces add up</h2>
 
-  <p>These are the base figures I price from, so this table and any quote I give agree. Everything stacks additively rather than as a chain of percentages, which is what makes it checkable.</p>
-
-  <div class="tablewrap">
-  <table>
-    <thead><tr><th>Component</th><th>Small</th><th>Medium</th><th>Large</th></tr></thead>
-    <tbody>
-      <tr><td><strong><span translate="no">Forge </span>1.20.1 port, base</strong></td><td class="num">$35</td><td class="num">$65</td><td class="num">$120</td></tr>
-      <tr><td>Compatibility patch between two mods</td><td class="num">$25</td><td class="num">$60</td><td class="num">$130</td></tr>
-      <tr><td>Maintenance on an existing port</td><td class="num">$25</td><td class="num">$50</td><td class="num">$95</td></tr>
-      <tr><td>Performance work</td><td class="num">$45</td><td class="num">$85</td><td class="num">$150</td></tr>
-    </tbody>
-  </table>
-  </div>
-
-  <div class="tablewrap">
-  <table>
-    <thead><tr><th>Added on top</th><th>Amount</th></tr></thead>
-    <tbody>
-      <tr><td>No wall crossed</td><td class="num">$0</td></tr>
-      <tr><td>Moderate wall, crossing 1.20.2 networking</td><td class="num">+$25</td></tr>
-      <tr><td>Hard wall, crossing 1.21 data components</td><td class="num">+$60</td></tr>
-      <tr><td>Brutal wall, the Flattening or worldgen across 1.18</td><td class="num">+$110</td></tr>
-      <tr><td><span translate="no">Forge </span>to<span translate="no"> NeoForge </span>in either direction</td><td class="num">+$20</td></tr>
-      <tr><td><span translate="no">Fabric </span>to<span translate="no"> Forge</span></td><td class="num">+$250</td></tr>
-      <tr><td>Private delivery, all rights reserved source</td><td class="num">&times;1.35</td></tr>
-      <tr><td>Priority in the queue</td><td class="num">&times;1.25</td></tr>
-      <tr><td>Top of the queue</td><td class="num">&times;1.5</td></tr>
-    </tbody>
-  </table>
-  </div>
-
-  <p><strong>Minimum of $20 on any job</strong>, including the one line fixes, because every job carries the same intake, licence check, build and boot test regardless of how small the change is.</p>
+  <p>A quote starts from what the mod does and how much of it there is. Each wall the port crosses adds on top, and so does the loader direction: a<span translate="no"> Forge </span>to<span translate="no"> NeoForge </span>move adds little, a<span translate="no"> Fabric </span>to<span translate="no"> Forge </span>move adds a lot. A private delivery of an all rights reserved mod costs more, for the reasons in the licence section. The pieces add up one by one, so you can ask me where each part of the number comes from.</p>
 
   <div class="note silent">
     <p><strong>The estimate is a range, and the range is honest about what it is.</strong> It is built from the mod as you describe it. The fixed price comes in writing after I have actually opened the source, and it is the number you pay. If what I find makes the job bigger than described, you get told before any work starts.</p>
   </div>
 
-  <h2>A real job, added up</h2>
+  <h2>A real job, broken down</h2>
 
-  <p><span translate="no">Mindful Eating </span>by<span translate="no"> camcam_burger</span>, a food variety mod. It ran on<span translate="no"> Forge </span>1.20.1 and had to end up on<span translate="no"> NeoForge </span>1.21.1. What that actually involved:</p>
+  <p><span translate="no">Mindful Eating </span>by<span translate="no"> camcam_burger</span>, a food variety mod. I started from<span translate="no"> outrightwings</span>'s unofficial<span translate="no"> Forge </span>1.20.1 port, and it had to end up on<span translate="no"> NeoForge </span>1.21.1. What that actually involved:</p>
 
   <ul>
     <li>The per player data system rebuilt on native data attachments, which also let the<span translate="no"> Blueprint </span>dependency go, at the creator's own suggestion.</li>
@@ -279,17 +248,16 @@ main > * { position: relative; z-index: 2; }
     <li>A<span translate="no"> HUD</span>, so client and server behaviour both had to be checked rather than assumed.</li>
   </ul>
 
-  <p>Priced off the tables above, nothing hidden:</p>
+  <p>What set the size of the job, piece by piece:</p>
 
   <div class="tablewrap">
   <table>
-    <thead><tr><th>Component</th><th>Why</th><th>Amount</th></tr></thead>
+    <thead><tr><th>Piece</th><th>In this job</th></tr></thead>
     <tbody>
-      <tr><td>Base, medium mod</td><td>mechanics plus a<span translate="no"> GUI</span>, not just items</td><td class="num">$65</td></tr>
-      <tr><td>Hard wall</td><td>crosses 1.21 data components</td><td class="num">+$60</td></tr>
-      <tr><td>Loader change</td><td><span translate="no">Forge </span>to<span translate="no"> NeoForge</span></td><td class="num">+$20</td></tr>
-      <tr><td>Licence multiplier</td><td><span translate="no">LGPL</span>, publishable, so none applies</td><td class="num">&times;1</td></tr>
-      <tr><td><strong>Total</strong></td><td>the arithmetic is additive on purpose, so you can check it</td><td class="num"><strong>$145</strong></td></tr>
+      <tr><td>Size of the mod</td><td>Medium: mechanics plus a<span translate="no"> GUI</span>, not just items</td></tr>
+      <tr><td>Version wall</td><td>Hard: it crosses 1.21 data components</td></tr>
+      <tr><td>Loader direction</td><td>Easy:<span translate="no"> Forge </span>to<span translate="no"> NeoForge</span></td></tr>
+      <tr><td>Licence</td><td><span translate="no">LGPL</span>, publishable, so nothing extra</td></tr>
     </tbody>
   </table>
   </div>
@@ -304,7 +272,7 @@ main > * { position: relative; z-index: 2; }
     <li><strong>New artwork.</strong> The mod's original assets travel with the port at no extra cost. Textures or models drawn from scratch are quoted separately, because that is a different craft.</li>
     <li><strong>Features that did not exist in the original.</strong> A port makes the mod run on the new target. Adding to it is commission work with its own quote.</li>
     <li><strong>Hosting or publishing on your behalf.</strong> Public listings are yours to control, unless you ask me to handle it.</li>
-    <li><strong>Support past the correction window.</strong> Corrections against the written scope are included for thirty days. After that it is maintenance, and maintenance has its own line in the table above.</li>
+    <li><strong>Support past the correction window.</strong> Corrections against the written scope are included for thirty days. After that it is maintenance, quoted on its own.</li>
   </ul>
 
   <h2>When you should not pay me at all</h2>
@@ -333,7 +301,7 @@ main > * { position: relative; z-index: 2; }
     <p><strong>Want the number for your mod?</strong> Tell me the version pair, the loader direction, the rough size and the licence, and I'll give you a range.</p>
     <p><a class="btn" href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer">Price my port on Discord</a></p>
   </div>
-  <p class="byline">Written by <strong translate="no">danisansietev</strong>,<span translate="no"> Forge </span>1.20.1 mod porting. Last updated August 2026. Questions, corrections or a mod you need moved: open a ticket on <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer">my<span translate="no"> Discord</span></a>.</p>
+  <p class="byline">Written by <strong translate="no">danisansietev</strong>,<span translate="no"> Forge </span>1.20.1 mod porting. Last updated October 2026. Questions, corrections or a mod you need moved: open a ticket on <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer">my<span translate="no"> Discord</span></a>.</p>
 </main>
 
 <footer>
