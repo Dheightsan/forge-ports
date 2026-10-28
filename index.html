@@ -1761,6 +1761,23 @@
        asi que o se lee o no se lee. Con `--text-mute` sube a 4,76-6,22. */
     footer .sep { margin: 0 0.5rem; color: var(--text-mute); }
     footer a { color: var(--text-soft); }
+    /* Detalles pixel propios (tools_detalles_pixel.py): vinetas de las listas,
+       el "+" del FAQ y de los documentos como boton de bloque, y una franja de
+       tablones encima del pie. */
+    .deal-list li { padding-left: 1.75rem; }
+    .deal-list li::before { content: ''; left: 0; top: 0.18em; width: 20px; height: 20px; background: url(vin-bloque.png) center / 20px 20px no-repeat; image-rendering: pixelated; }
+    .deal-col--mine .deal-list li::before { background-image: url(vin-lingote.png); }
+    .private-list { list-style: none; padding-left: 0; }
+    .private-list li { position: relative; padding-left: 1.75rem; }
+    .private-list li::before { content: ''; position: absolute; left: 0; top: 0.2em; width: 20px; height: 20px; background: url(vin-gema.png) center / 20px 20px no-repeat; image-rendering: pixelated; }
+    .faq-icon, .legal-doc > summary::after { width: 26px; height: 26px; flex: none; display: inline-grid; place-items: center; font-family: 'Monocraft', 'Space Grotesk', system-ui, sans-serif; font-size: 1rem; font-weight: 700; line-height: 1; color: #fff4e2; background: #b8642c; border: 2px solid #1b120c; box-shadow: inset 2px 2px 0 rgba(255,255,255,0.28), inset -2px -2px 0 rgba(0,0,0,0.3); }
+    .faq-q:hover .faq-icon, .legal-doc > summary:hover::after { background: #d2783a; }
+    html[data-theme="light"] .faq-icon, html[data-theme="light"] .legal-doc > summary::after { color: #fff4e2; }
+    html[data-accent="green"] .faq-icon, html[data-accent="green"] .legal-doc > summary::after { background: #2f8f52; }
+    html[data-accent="green"] .faq-q:hover .faq-icon, html[data-accent="green"] .legal-doc > summary:hover::after { background: #35ab5f; }
+    html[data-accent="green"][data-theme="light"] .faq-icon { color: #fff4e2; }
+    footer { border-top: 0; }
+    footer::before { content: ''; display: block; height: 24px; margin: -2rem -1.5rem 1.8rem; background: url(tablones-pie.png) 0 0 / 128px 24px repeat-x; image-rendering: pixelated; }
     /* Los perfiles. Hasta hoy GitHub y BuiltByBit SOLO existian dentro del
        `sameAs` del schema, o sea que los veia Google y no los veia nadie mas.
        En un oficio donde el comprador desconfia por defecto, tener cuenta en
