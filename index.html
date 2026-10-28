@@ -1981,6 +1981,18 @@
     .dc-inv-txt .dc-inv-t { font-weight: 700; color: var(--text); margin-bottom: 0.25rem; }
     .dc-invita .btn-discord { flex: none; }
     @media (max-width: 600px) { .dc-invita { justify-content: center; text-align: center; } .dc-inv-img--banner { width: 100%; max-width: 300px; } }
+    /* 2026-10-28: rotulos de seccion con la letra y el relieve del titular. Texto real
+       (traducible), sin background-clip: contorno y canto salen de text-shadow. Un color
+       de loader por seccion: gris Forge, papel Fabric, naranja NeoForge. */
+    h2 { --rot: #e4d9bc; --rot-d: #7a6644; font-family: 'Monocraft', 'Space Grotesk', system-ui, sans-serif; font-weight: 700; font-size: clamp(1.3rem, 2.5vw, 1.85rem); letter-spacing: 0.01em; line-height: 1.3; color: var(--rot);
+      text-shadow: 2px 0 0 #1b120c, -2px 0 0 #1b120c, 0 2px 0 #1b120c, 0 -2px 0 #1b120c, 2px 2px 0 #1b120c, -2px 2px 0 #1b120c, 2px -2px 0 #1b120c, -2px -2px 0 #1b120c,
+                   0 4px 0 var(--rot-d), 2px 4px 0 var(--rot-d), -2px 4px 0 var(--rot-d), 0 6px 0 #1b120c, 2px 6px 0 #1b120c, -2px 6px 0 #1b120c; padding-bottom: 6px; }
+    #loaders h2, #estimator h2, #lab h2, #contact h2 { --rot: #bdc1c9; --rot-d: #5d626b; }
+    #services h2, #about h2, #faq, #legal h2 { --rot: #df7932; --rot-d: #8a3f12; }
+    @media (max-width: 640px) { h2 { font-size: clamp(1.1rem, 5.4vw, 1.4rem); } }
+    /* iconos pixel de servicios (tools_iconos_servicios.py) */
+    .svc-icon:has(img) { width: 58px; height: 58px; border-radius: 12px; background: var(--svc-soft, rgba(255,255,255,0.04)); }
+    .svc-icon img { width: 54px; height: 54px; image-rendering: pixelated; display: block; }
     /* -- PERSONAJES --------------------------------------------------------
        Los generan tools_build_heads.py y tools_place_heads.py.
        NO tocar a mano: se reescriben enteros al relanzar.
@@ -2906,28 +2918,28 @@
     <p class="sub"><span data-i18n-en>If you want to know how I price a<span translate="no"> port</span>, I explain it in <a href="mod-porting-cost.html">what a<span translate="no"> port </span>costs, and why</a>.</span><span data-i18n-es hidden>Si quieres saber cómo pongo precio a un<span translate="no"> port</span>, lo explico en <a href="mod-porting-cost.html">cuánto cuesta un<span translate="no"> port</span>, y por qué</a>.</span></p>
 <div class="svc-list">
       <div class="svc-row">
-        <div class="svc-icon svc-copper"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v13"/><path d="M6 11l6 6 6-6"/></svg></div>
+        <div class="svc-icon svc-copper"><img src="svc-ports.png" width="54" height="54" alt="" aria-hidden="true" loading="lazy" decoding="async"></div>
         <div>
           <h3><span data-i18n-en><span translate="no">Ports</span> and backports</span><span data-i18n-es hidden><span translate="no">Ports</span> y backports</span></h3>
           <p><span data-i18n-en>Moving a mod to another<span translate="no"> Minecraft </span>version, forward or back, keeping it as close as possible to how the original behaves.</span><span data-i18n-es hidden>Mover un mod a otra versión de<span translate="no"> Minecraft</span>, hacia delante o hacia atrás, intentando conservar el comportamiento del original.</span></p>
         </div>
       </div>
       <div class="svc-row">
-        <div class="svc-icon svc-loom"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h13l-3-3"/><path d="M20 16H7l3 3"/></svg></div>
+        <div class="svc-icon svc-loom"><img src="svc-loader.png" width="54" height="54" alt="" aria-hidden="true" loading="lazy" decoding="async"></div>
         <div>
           <h3><span data-i18n-en>Loader changes</span><span data-i18n-es hidden>Cambio de loader</span></h3>
           <p><span data-i18n-en>Adapting a mod between<span translate="no"> Forge</span>,<span translate="no"> Fabric </span>and<span translate="no"> NeoForge </span>when a pack needs a different platform.</span><span data-i18n-es hidden>Adaptar un mod entre<span translate="no"> Forge</span>,<span translate="no"> Fabric </span>y<span translate="no"> NeoForge </span>cuando un pack necesita otra plataforma.</span></p>
         </div>
       </div>
       <div class="svc-row">
-        <div class="svc-icon svc-bridge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7h5a4 4 0 0 1 0 8h-1"/><path d="M15 17h-5a4 4 0 0 1 0-8h1"/></svg></div>
+        <div class="svc-icon svc-bridge"><img src="svc-compat.png" width="54" height="54" alt="" aria-hidden="true" loading="lazy" decoding="async"></div>
         <div>
           <h3><span data-i18n-en>Compatibility and crashes</span><span data-i18n-es hidden>Compatibilidad y crashes</span></h3>
           <p><span data-i18n-en>Finding why two mods clash, why something stopped loading, or what is breaking one specific feature.</span><span data-i18n-es hidden>Encontrar por qué dos mods chocan, por qué algo deja de cargar o qué está rompiendo una función concreta.</span></p>
         </div>
       </div>
       <div class="svc-row">
-        <div class="svc-icon svc-steel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.6 5.6L3 18l3 3 6.1-6.1a4 4 0 0 0 5.6-5.6l-2.9 2.9a1.5 1.5 0 0 1-2-2l2.9-2.9z"/></svg></div>
+        <div class="svc-icon svc-steel"><img src="svc-mant.png" width="54" height="54" alt="" aria-hidden="true" loading="lazy" decoding="async"></div>
         <div>
           <h3><span data-i18n-en>Maintenance and performance</span><span data-i18n-es hidden>Mantenimiento y rendimiento</span></h3>
           <p><span data-i18n-en>Fixing existing<span translate="no"> ports</span>, dependency changes and performance problems when the cause is in the mod or in how it fits into the pack.</span><span data-i18n-es hidden>Arreglar<span translate="no"> ports </span>existentes, cambios de dependencias y problemas de rendimiento cuando el origen está en el mod o en su integración.</span></p>
