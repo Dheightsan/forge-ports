@@ -409,15 +409,16 @@
     html[data-theme="light"] .port-card,
     html[data-theme="light"] .mp-item,
     html[data-theme="light"] .contact-card { background: linear-gradient(180deg, #fdfaf4, #f3ead9); box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), 0 8px 22px -18px rgba(120,90,50,0.30); }
-    /* light-mode: hero words hold contrast on cream */
+    /* light-mode: los mismos tres colores de loader, oscurecidos para pasar 4,5:1
+       sobre crema (2026-10-28: gris Forge 6,3 · papel Fabric 5,2 · naranja NeoForge 4,6) */
     html[data-theme="light"] #hero h1 .w-port,
-    html[data-theme="light"] #hero h1 .w-back,
-    html[data-theme="light"] #hero h1 .w-amp,
     html[data-theme="light"] #hero h1 .w-mods,
-    html[data-theme="light"] #hero h1 .w-any,
-    html[data-theme="light"] #hero h1 .w-ver { color: #2b2117; }
+    html[data-theme="light"] #hero h1 .w-any { color: #4f5560; }
+    html[data-theme="light"] #hero h1 .w-back,
+    html[data-theme="light"] #hero h1 .w-load { color: #7a5c24; }
     html[data-theme="light"] #hero h1 .w-rev,
-    html[data-theme="light"] #hero h1 .w-load { color: #3e7a1f; }
+    html[data-theme="light"] #hero h1 .w-ver,
+    html[data-theme="light"] #hero h1 .w-amp { color: #a5521a; }
     html[data-theme="light"] #hero h1 .mc { color: #4f8a2a; }
     html[data-theme="light"] #hero h1 .mc::before { color: #7a5738; }
     html[data-theme="light"] .pill-price { background: rgba(192,126,60,0.12); border-color: rgba(192,126,60,0.36); color: #89531e; }
@@ -462,11 +463,7 @@
     html[data-accent="green"][data-theme="light"] .torn-sep path { fill: #eef4ec; stroke: rgba(47,138,92,0.20); }
     html[data-accent="green"] .btn-nav { background: var(--green); color: #08170d !important; box-shadow: 0 0 0 2px var(--green-ring); }
     html[data-accent="green"] .btn-nav:hover { background: var(--green-hi) !important; box-shadow: 0 0 0 3px var(--green-ring); }
-    html[data-accent="green"]:not([data-theme="light"]) #hero h1 .w-port,
-    html[data-accent="green"]:not([data-theme="light"]) #hero h1 .w-back,
-    html[data-accent="green"]:not([data-theme="light"]) #hero h1 .w-amp,
-    html[data-accent="green"]:not([data-theme="light"]) #hero h1 .w-mods,
-    html[data-accent="green"]:not([data-theme="light"]) #hero h1 .w-ver { color: #e9f2e9; }
+    /* acento verde: el titular conserva los colores de loader (2026-10-28) */
     /* light + green */
     html[data-accent="green"][data-theme="light"] {
       --bg: #eef4ec; --surface: #f8fbf6; --surface2: #e3efe0;
@@ -523,10 +520,13 @@
     html[data-accent="green"][data-theme="light"] .pill-trust { color: #1b733b; background: rgba(47,158,87,0.12); }
     html[data-accent="green"][data-theme="light"] .pill-price { background: rgba(47,158,87,0.10); border-color: rgba(47,158,87,0.34); color: #1b733b; }
     html[data-accent="green"][data-theme="light"] #hero h1 .w-port,
-    html[data-accent="green"][data-theme="light"] #hero h1 .w-back,
-    html[data-accent="green"][data-theme="light"] #hero h1 .w-amp,
     html[data-accent="green"][data-theme="light"] #hero h1 .w-mods,
-    html[data-accent="green"][data-theme="light"] #hero h1 .w-ver { color: #1e2a20; }
+    html[data-accent="green"][data-theme="light"] #hero h1 .w-any { color: #4f5560; }
+    html[data-accent="green"][data-theme="light"] #hero h1 .w-back,
+    html[data-accent="green"][data-theme="light"] #hero h1 .w-load { color: #7a5c24; }
+    html[data-accent="green"][data-theme="light"] #hero h1 .w-rev,
+    html[data-accent="green"][data-theme="light"] #hero h1 .w-ver,
+    html[data-accent="green"][data-theme="light"] #hero h1 .w-amp { color: #a5521a; }
 
     /* theme toggle */
     .theme-toggle { display: inline-grid; place-items: center; width: 34px; height: 34px; position: relative; border-radius: var(--radius); background: var(--surface2); border: 1px solid var(--border-lt); color: var(--text-soft); cursor: pointer; transition: color 0.15s, border-color 0.15s; }
@@ -957,14 +957,16 @@
        salen medidos de titulo-hero.webp palabra por palabra, o sea son los
        mismos pixeles del dibujo que se ve en el ordenador. Se midio tambien
        titulo-hero-es.webp y usa la misma paleta. */
+    /* 2026-10-28: vuelve el titular de servicios con los colores de los logos oficiales,
+       medidos sobre el titulo-hero.webp regenerado. */
     #hero h1 .w-port,
     #hero h1 .w-mods,
-    #hero h1 .w-any { color: #a9b1bc; }   /* plata */
+    #hero h1 .w-any { color: #bdc1c9; }   /* gris del yunque de Forge */
     #hero h1 .w-back,
-    #hero h1 .w-load { color: #e3c08c; }   /* oro */
+    #hero h1 .w-load { color: #e4d9bc; }   /* papel de Fabric */
     #hero h1 .w-rev,
-    #hero h1 .w-ver { color: #ea7d47; }   /* naranja */
-    #hero h1 .w-amp { color: #d37040; }   /* el conector */
+    #hero h1 .w-ver,
+    #hero h1 .w-amp { color: #df7932; }   /* naranja de NeoForge */
     /* service line: clean, readable, secondary (no rainbow, normal size) */
     .hero-services { font-size: 1.05rem; font-weight: 600; line-height: 1.5; color: var(--text-soft); margin-bottom: 1.2rem; max-width: 560px; }
     /* grass-to-dirt gradient on "Minecraft": solid green base + brown overlay that fades
@@ -1968,6 +1970,17 @@
       .hc-title { margin: 0.6rem 0 0.7rem; }
     }
 
+    /* 2026-10-28 r7: tarjetas de invitacion al Discord en tres puntos de lectura
+       (despues del portafolio, de los pasos y de las condiciones). Reusan las
+       imagenes de marca que salian una sola vez. */
+    .dc-invita { display: flex; align-items: center; gap: 1.1rem 1.4rem; flex-wrap: wrap; margin: 2rem auto 0; max-width: 860px; padding: 1rem 1.3rem; border: 1px solid var(--border-lt); border-radius: var(--radius-lg); background: var(--surface, rgba(255,255,255,0.03)); }
+    .dc-inv-img { width: 84px; height: 84px; border-radius: 50%; object-fit: cover; flex: none; }
+    .dc-inv-img--banner { width: 230px; height: auto; border-radius: 0; filter: drop-shadow(0 8px 12px rgba(0,0,0,0.35)); }
+    .dc-inv-txt { flex: 1 1 260px; min-width: 0; }
+    .dc-inv-txt p { margin: 0; color: var(--text-soft); }
+    .dc-inv-txt .dc-inv-t { font-weight: 700; color: var(--text); margin-bottom: 0.25rem; }
+    .dc-invita .btn-discord { flex: none; }
+    @media (max-width: 600px) { .dc-invita { justify-content: center; text-align: center; } .dc-inv-img--banner { width: 100%; max-width: 300px; } }
     /* -- PERSONAJES --------------------------------------------------------
        Los generan tools_build_heads.py y tools_place_heads.py.
        NO tocar a mano: se reescriben enteros al relanzar.
@@ -2460,7 +2473,7 @@
     <img class="hero-title" src="titulo-modwright.webp" width="1024" height="97" alt="Modwright Studios" fetchpriority="high" decoding="async">
     <p class="hero-eyebrow"><span data-i18n-en><span translate="no">Ports</span>, backports and compatibility for modded<span translate="no"> Minecraft</span></span><span data-i18n-es hidden><span translate="no">Ports</span>, backports y compatibilidad para<span translate="no"> Minecraft </span>modded</span></p>
     <div class="badge"><span class="badge-dot"></span><span data-i18n-en>Open for work</span><span data-i18n-es hidden>Disponible para trabajar</span></div>
-    <h1 class="hero-h1-img"><span class="h1-texto" data-i18n-en>That <span class="w-key">mod</span> missing from your <span class="w-key">version</span> can <span class="w-key">come back</span>.</span><span class="h1-texto" data-i18n-es hidden>Ese <span class="w-key">mod</span> que falta en tu <span class="w-key">versión</span> puede <span class="w-key">volver</span>.</span><picture data-i18n-en><source media="(max-width: 700px)" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"><img src="titulo-hero.webp" width="1934" height="731" alt="" aria-hidden="true" fetchpriority="high" decoding="async"></picture><img class="h1-es" data-i18n-es hidden src="titulo-hero-es.webp" width="1938" height="843" alt="" aria-hidden="true" loading="lazy" decoding="async"></h1>
+    <h1 class="hero-h1-img"><span class="h1-texto" data-i18n-en><span class="w-port" translate="no">Port,</span><span class="w-back" translate="no"> backport </span><span class="w-amp">&amp;</span> <span class="w-rev">revive</span><span translate="no"> </span><span class="mc" translate="no" data-word="Minecraft">Minecraft</span><span translate="no"> </span><span class="w-mods">mods,</span> <span class="w-any">any</span> <span class="w-ver">version,</span> <span class="w-any">any</span> <span class="w-load">loader</span></span><span class="h1-texto" data-i18n-es hidden><span class="w-port" translate="no">Portar,</span> <span class="w-back">retroportar</span> <span class="w-amp">y</span> <span class="w-rev">revivir</span> <span class="w-mods">mods</span> <span class="w-any">de</span><span translate="no"> </span><span class="mc" translate="no" data-word="Minecraft">Minecraft</span>, <span class="w-any">en cualquier</span> <span class="w-ver">versión</span> <span class="w-amp">y</span> <span class="w-load">cargador</span></span><picture data-i18n-en><source media="(max-width: 700px)" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"><img src="titulo-hero.webp" width="2537" height="731" alt="" aria-hidden="true" fetchpriority="high" decoding="async"></picture><img class="h1-es" data-i18n-es hidden src="titulo-hero-es.webp" width="2533" height="1142" alt="" aria-hidden="true" loading="lazy" decoding="async"></h1>
     <p class="hero-who"><picture><source media="(prefers-reduced-motion: reduce)" srcset="wave-me-still.webp"><img class="hero-wave" src="wave-me.webp" width="192" height="190" alt="" aria-hidden="true" loading="eager" decoding="async"></picture><span data-i18n-en>I'm <strong><span translate="no">danisansietev</span></strong>, founder of<span translate="no"> Modwright</span>.</span><span data-i18n-es hidden>Soy <strong><span translate="no">danisansietev</span></strong>, fundador de<span translate="no"> Modwright</span>.</span></p>
     <p class="hero-desc"><span data-i18n-en>I port and adapt mods between<span translate="no"> Forge</span>,<span translate="no"> Fabric </span>and<span translate="no"> NeoForge</span>, mostly around<span translate="no"> Forge </span>1.20.1.</span><span data-i18n-es hidden>Porto y adapto mods entre<span translate="no"> Forge</span>,<span translate="no"> Fabric </span>y<span translate="no"> NeoForge</span>, sobre todo alrededor de<span translate="no"> Forge </span>1.20.1.</span></p>
     <!-- Aqui iban 4 pildoras de confianza generica ("5 checks on every build",
@@ -2701,6 +2714,11 @@
       </div>
     </div>
     <p class="proof-note port-more"><span data-i18n-en>Everything I've published is on my<a href="https://www.curseforge.com/members/danisansietev/projects" target="_blank" rel="noopener noreferrer" translate="no"> CurseForge </a>profile, and part of the code is on<a href="https://github.com/Dheightsan" target="_blank" rel="noopener noreferrer" translate="no"> GitHub</a>.</span><span data-i18n-es hidden>Todo lo que he publicado está en mi perfil de<a href="https://www.curseforge.com/members/danisansietev/projects" target="_blank" rel="noopener noreferrer" translate="no"> CurseForge</a>, y parte del código está en<a href="https://github.com/Dheightsan" target="_blank" rel="noopener noreferrer" translate="no"> GitHub</a>.</span></p>
+    <aside class="dc-invita">
+      <img class="dc-inv-img dc-inv-img--banner" src="comunidad.webp" width="682" height="287" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      <div class="dc-inv-txt"><p class="dc-inv-t"><span data-i18n-en>Every new port gets posted on the<span translate="no"> Discord</span></span><span data-i18n-es hidden>Cada port nuevo lo publico en el<span translate="no"> Discord</span></span></p><p><span data-i18n-en>You can also suggest a mod there and vote on the ones others ask for.</span><span data-i18n-es hidden>Ahí también puedes proponer un mod y votar los que piden los demás.</span></p></div>
+      <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" class="btn btn-discord"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg><span><span data-i18n-en>Join the<span translate="no"> Discord</span></span><span data-i18n-es hidden>Entra al<span translate="no"> Discord</span></span></span></a>
+    </aside>
     <img class="mw-pose mw-pose--sm" src="mw-eri1-22.webp" width="205" height="240" alt="" aria-hidden="true" loading="lazy" decoding="async">
     <p class="proof-note"><span data-i18n-en>It compiles. That proves nothing. Before I deliver, I test the mod in-game and check the parts that could actually break during the<span translate="no"> port</span>. <a href="geckolib-bone-name-crash.html">One of those checks, in detail</a>.</span><span data-i18n-es hidden>Compila. Eso no prueba nada. Antes de entregar pruebo el mod dentro del juego y reviso las partes que realmente podían romperse durante el<span translate="no"> port</span>. <a href="geckolib-bone-name-crash.html">Una de esas comprobaciones, en detalle</a>.</span></p>
 
@@ -3017,6 +3035,11 @@
       <div class="step"><div class="step-n">05</div><h3><span data-i18n-en>You try it</span><span data-i18n-es hidden>Lo pruebas tú</span></h3><p><span data-i18n-en>You see the build running in your own pack or server. If something within what we agreed isn't right, I fix it before we close the job. The final payment comes after that, once you've seen it working.</span><span data-i18n-es hidden>Ves la build funcionando en tu propio pack o servidor. Si algo dentro de lo acordado no está bien, lo corrijo antes de cerrar el trabajo. El pago final va después, cuando ya lo viste funcionando.</span></p></div>
       <div class="step"><div class="step-n">06</div><h3><span data-i18n-en>If something of mine breaks, I fix it</span><span data-i18n-es hidden>Si algo mío falla, lo arreglo</span></h3><p><span data-i18n-en>For 30 days I fix, at no cost, any bug I introduced within the agreed scope and setup. If you need something new after that, we handle it separately.</span><span data-i18n-es hidden>Durante 30 días corrijo sin coste los fallos que haya introducido yo dentro del alcance y entorno acordados. Si después necesitas algo nuevo, lo vemos aparte.</span></p></div>
     </div>
+    <aside class="dc-invita">
+      <img class="dc-inv-img " src="retrato-cuy.webp" width="300" height="300" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      <div class="dc-inv-txt"><p class="dc-inv-t"><span data-i18n-en>Questions before you order?</span><span data-i18n-es hidden>¿Dudas antes de encargar?</span></p><p><span data-i18n-en>Send me the mod link on the<span translate="no"> Discord</span> and I'll take a look.</span><span data-i18n-es hidden>Mándame el link del mod por el<span translate="no"> Discord</span> y lo reviso.</span></p></div>
+      <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" class="btn btn-discord"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg><span><span data-i18n-en>Join the<span translate="no"> Discord</span></span><span data-i18n-es hidden>Entra al<span translate="no"> Discord</span></span></span></a>
+    </aside>
     <img class="mw-pose mw-pose--center mw-pose--sm" src="mw-eri1-20.webp" width="242" height="240" alt="" aria-hidden="true" loading="lazy" decoding="async"><figure class="mascotas">
       <!-- La ilustracion traia dos placas horneadas con CARGOS INVENTADOS
            ("Systems Integration Engineer", "Theoretical Architect") en la pagina
@@ -3340,6 +3363,11 @@
         </div>
       </details>
     </div>
+    <aside class="dc-invita">
+      <img class="dc-inv-img " src="retrato-erizo.webp" width="300" height="300" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      <div class="dc-inv-txt"><p class="dc-inv-t"><span data-i18n-en>Something in the terms not clear?</span><span data-i18n-es hidden>¿Algo de las condiciones no queda claro?</span></p><p><span data-i18n-en>Ask me on the<span translate="no"> Discord</span>, I'd rather explain it before we start.</span><span data-i18n-es hidden>Pregúntame por el<span translate="no"> Discord</span>, prefiero explicarlo antes de empezar.</span></p></div>
+      <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" class="btn btn-discord"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg><span><span data-i18n-en>Join the<span translate="no"> Discord</span></span><span data-i18n-es hidden>Entra al<span translate="no"> Discord</span></span></span></a>
+    </aside>
   </div>
 </section>
 
