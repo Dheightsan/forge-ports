@@ -2406,6 +2406,39 @@
     .port-title--link:hover .port-icon--cf { border-color: #df7932; }
     html[data-theme="light"] .port-icon--cf { background: #c9b99c; border-color: #3a2a1a; box-shadow: inset 2px 2px 0 #8f7d61, inset -2px -2px 0 #f3e8d2; }
     html[data-theme="light"] .port-title--link:hover .port-icon--cf { border-color: #a5521a; }
+    /* Menu como botones pixel (solo donde se ven los enlaces, desde 1001 px) */
+    @media (min-width: 1001px) {
+      .nav-links { gap: 0.45rem; }
+      .nav-links .nav-cta { margin-left: 0.5rem; }
+      .nav-links li:not(.nav-cta):not(.nav-tog) a { display: inline-block; padding: 0.36rem 0.7rem; border: 2px solid #1b120c; border-radius: 4px; background: #2a2019; color: var(--text); font-weight: 600; font-size: 0.84rem; box-shadow: 0 3px 0 rgba(0,0,0,0.38), inset 0 2px 0 rgba(255,255,255,0.06); }
+      .nav-links li:not(.nav-cta):not(.nav-tog) a:hover { background: #3a2c20; color: #f6ecd6; }
+      .nav-links li:not(.nav-cta):not(.nav-tog) a:active { transform: translateY(2px); box-shadow: 0 1px 0 rgba(0,0,0,0.38); }
+      html[data-theme="light"] .nav-links li:not(.nav-cta):not(.nav-tog) a { background: #efe3cc; color: #3a2a1d; box-shadow: 0 3px 0 rgba(60,40,20,0.16), inset 0 2px 0 rgba(255,255,255,0.5); }
+      html[data-theme="light"] .nav-links li:not(.nav-cta):not(.nav-tog) a:hover { background: #e6d6b8; }
+    }
+    /* Buscador del estante */
+    .bench-search { margin: 0 0 1rem; max-width: 520px; }
+    .bench-search-l { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+    .bench-q { width: 100%; box-sizing: border-box; padding: 0.6rem 0.8rem 0.6rem 2.2rem; font: inherit; font-size: 0.9rem; color: var(--text); background: #120d09 url(vin-gema.png) 0.6rem center / 16px 16px no-repeat; border: 2px solid #1b120c; border-radius: 4px; box-shadow: inset 0 2px 0 rgba(0,0,0,0.4); }
+    .bench-q::placeholder { color: var(--text-mute); opacity: 1; }
+    .bench-q:focus-visible { outline: 2px solid #df7932; outline-offset: 2px; }
+    html[data-theme="light"] .bench-q { background-color: #fffaf0; border-color: #3a2a1a; box-shadow: inset 0 2px 0 rgba(60,40,20,0.12); }
+    .bench .bench-res { margin: 0.45rem 0 0; min-height: 1.2em; font-size: 0.85rem; color: var(--text-mute); }
+    .bench-res a { color: #df7932; }
+    html[data-theme="light"] .bench-res a { color: #a5521a; }
+    .js-bench.is-search .bench-h { display: block; margin: 1rem 0 0.5rem; font-size: 0.9rem; }
+    .is-search .bench-note { display: none; }
+    .js-bench.is-search .shelf-grid--cap > li:not([hidden]) { display: list-item; }
+    .js-bench.is-search .shelf-more { display: none; }
+    .shelf-grid > li[hidden] { display: none; }
+    /* Ficha en "Quien esta detras" */
+    .ficha { margin: 1.4rem 0 0.4rem; max-width: 460px; border: 2px solid #1b120c; border-radius: 4px; background: var(--surface2); box-shadow: 0 4px 0 rgba(0,0,0,0.38); }
+    .about-copy .ficha-h { margin: 0; padding: 0.4rem 0.8rem; background: #3a2a1d; color: #f6ecd6; font-family: 'Monocraft', ui-monospace, monospace; font-size: 0.74rem; font-weight: 700; letter-spacing: 0.04em; border-bottom: 2px solid #1b120c; line-height: 1.3; max-width: none; }
+    .ficha-dl { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem 1rem; margin: 0; padding: 0.8rem; }
+    .ficha-dl dt { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-mute); }
+    .ficha-dl dd { margin: 0.1rem 0 0; font-family: 'Monocraft', ui-monospace, monospace; font-size: 0.86rem; color: var(--text); }
+    html[data-theme="light"] .ficha { box-shadow: 0 4px 0 rgba(60,40,20,0.16); }
+    html[data-theme="light"] .about-copy .ficha-h { background: #5a4330; color: #fff4e2; }
     /* objetivo tactil de 44 px en movil para los botones pequenos del hero (medido: 37) */
     @media (max-width: 640px) { .hero-team-actions .btn-sm { min-height: 44px; } }
     .bench-tabs { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 0 0 1.2rem; }
@@ -2913,6 +2946,11 @@
       <img class="mw-pose " src="mw-eri2-10.webp" width="180" height="240" alt="" aria-hidden="true" loading="lazy" decoding="async">
       <h3><span data-i18n-en>Everything else I&rsquo;ve worked on</span><span data-i18n-es hidden>Todo lo demás en lo que he trabajado</span></h3>
       <p><span data-i18n-en>Ports, fixes and compatibility work, most of it for my own 600+ mod pack. Where the original is public, the tile takes you to it.</span><span data-i18n-es hidden>Ports, arreglos y compatibilidad, casi todo para mi propio pack de 600+ mods. Si el original es público, el recuadro te lleva a él.</span></p>
+      <div class="bench-search" hidden>
+        <label class="bench-search-l" for="bench-q"><span data-i18n-en>Search the shelf</span><span data-i18n-es hidden>Buscar en el estante</span></label>
+        <input class="bench-q" type="search" id="bench-q" autocomplete="off" spellcheck="false" data-ph-en="Already ported it? Type the mod’s name" data-ph-es="¿Ya lo porteaste? Escribe el nombre del mod" placeholder="Already ported it? Type the mod’s name">
+        <p class="bench-res" id="bench-res" aria-live="polite"></p>
+      </div>
       <div class="bench-tabs" role="tablist" aria-label="Portfolio">
         <button type="button" class="bench-tab" role="tab" id="tab-ports" aria-controls="bench-ports" aria-selected="true"><span data-i18n-en>Ports</span><span data-i18n-es hidden>Ports</span><span class="bench-n">28</span></button>
         <button type="button" class="bench-tab" role="tab" id="tab-fixes" aria-controls="bench-fixes" aria-selected="false"><span data-i18n-en>Fixes</span><span data-i18n-es hidden>Arreglos</span><span class="bench-n">25</span></button>
@@ -3044,6 +3082,39 @@
       b.querySelectorAll('.shelf-more').forEach(function (m) {
         m.addEventListener('click', function () { m.previousElementSibling.classList.add('is-open'); m.hidden = true; });
       });
+      // 2026-10-29: buscador. Con texto se ven todas las listas a la vez, solo con lo que coincide,
+      // y cada pestana dice cuantos hay suyos. Sin texto vuelve todo como estaba.
+      var caja = b.querySelector('.bench-search'), q = b.querySelector('#bench-q'), res = b.querySelector('#bench-res');
+      var panels = tabs.map(function (t) { return document.getElementById(t.getAttribute('aria-controls')); });
+      var activa = tabs[0];
+      function norm(s) { return s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim(); }
+      function buscar() {
+        var t = norm(q.value), es = document.documentElement.getAttribute('data-lang') === 'es', total = 0;
+        b.classList.toggle('is-search', !!t);
+        panels.forEach(function (p, i) {
+          var n = 0;
+          p.querySelectorAll('.shelf-grid > li').forEach(function (li) {
+            var ok = !t || norm(li.textContent).indexOf(t) !== -1;
+            li.hidden = !ok; if (ok) n++;
+          });
+          var cuenta = tabs[i].querySelector('.bench-n');
+          if (!cuenta.dataset.n) cuenta.dataset.n = cuenta.textContent;
+          cuenta.textContent = t ? n : cuenta.dataset.n;
+          if (t) p.hidden = !n;
+          total += n;
+        });
+        if (!t) { sel(activa); res.textContent = ''; return; }
+        tabs.forEach(function (x) { x.setAttribute('aria-selected', 'false'); });
+        var arriba = [].some.call(document.querySelectorAll('.port-card .port-name'), function (h) { return norm(h.textContent).indexOf(t) !== -1; });
+        if (!total && arriba) { res.innerHTML = es ? 'Está más arriba, en <a href="#portfolio">Trabajo real</a>.' : 'It’s further up, in <a href="#portfolio">Real work</a>.'; return; }
+        res.innerHTML = total ? (es ? total + (total === 1 ? ' resultado' : ' resultados') : total + (total === 1 ? ' result' : ' results'))
+          : (es ? 'No est\u00e1 en el estante. Si lo necesitas, <a href="#estimator">p\u00eddeme un presupuesto</a>.' : 'Not on the shelf. If you need it, <a href="#estimator">ask me for a quote</a>.');
+      }
+      q.addEventListener('input', buscar);
+      tabs.forEach(function (t) { t.addEventListener('click', function () { activa = t; if (q.value) { q.value = ''; buscar(); } }); });
+      new MutationObserver(function () { if (q.value) buscar(); }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-lang'] });
+      var fn = document.querySelector('.ficha-n'); if (fn) fn.textContent = b.querySelectorAll('.shelf-grid > li').length;
+      caja.hidden = false;
       b.classList.add('js-bench');
       sel(tabs[0]);
     })();
@@ -3245,6 +3316,15 @@
       <div class="about-copy">
       <p><span data-i18n-en>I started<span translate="no"> porting </span>mods for my own<span translate="no"> modpacks</span>, because I was tired of losing them every time I changed version. Over time I ended up doing the same for other people.</span><span data-i18n-es hidden>Empecé porteando mods para mis propios<span translate="no"> modpacks </span>porque estaba cansado de perderlos cada vez que cambiaba de versión. Con el tiempo terminé haciendo lo mismo para otros.</span></p>
       <p><span data-i18n-en>I work mostly with<span translate="no"> Forge </span>1.20.1, and I keep a big pack where I test compatibility. That's where I run into a lot of the odd problems you'll see in the lab below.</span><span data-i18n-es hidden>Trabajo especialmente con<span translate="no"> Forge </span>1.20.1 y mantengo un pack grande donde pruebo compatibilidad. Ahí termino encontrando muchos de los problemas raros que ves en el laboratorio.</span></p>
+      <div class="ficha">
+        <p class="ficha-h"><span data-i18n-en>Sheet</span><span data-i18n-es hidden>Ficha</span><span translate="no"> danisansietev</span></p>
+        <dl class="ficha-dl">
+          <div><dt><span data-i18n-en>Main loader</span><span data-i18n-es hidden>Loader principal</span></dt><dd translate="no">Forge 1.20.1</dd></div>
+          <div><dt><span data-i18n-en>Test pack</span><span data-i18n-es hidden>Pack de pruebas</span></dt><dd>600+ mods</dd></div>
+          <div><dt><span data-i18n-en>On the shelf</span><span data-i18n-es hidden>En el estante</span></dt><dd><span class="ficha-n">74</span><span data-i18n-en> jobs</span><span data-i18n-es hidden> trabajos</span></dd></div>
+          <div><dt><span data-i18n-en>Languages</span><span data-i18n-es hidden>Idiomas</span></dt><dd><span data-i18n-en>Spanish, English</span><span data-i18n-es hidden>Español, inglés</span></dd></div>
+        </dl>
+      </div>
       <div class="stack">
         <p class="stack-h"><span data-i18n-en>What I work with</span><span data-i18n-es hidden>Con qué trabajo</span></p>
         <ul class="stack-list"><li><img src="loader-forge.webp" width="96" height="96" alt="" loading="lazy" decoding="async"><span translate="no">Forge</span></li><li><img src="loader-neoforge.webp" width="96" height="96" alt="" loading="lazy" decoding="async"><span translate="no">NeoForge</span></li><li><img src="loader-fabric.webp" width="96" height="96" alt="" loading="lazy" decoding="async"><span translate="no">Fabric</span></li><li><img src="logo-java.svg" width="96" height="96" alt="" loading="lazy" decoding="async"><span translate="no">Java</span></li><li><img src="logo-gradle.svg" width="96" height="96" alt="" loading="lazy" decoding="async"><span translate="no">Gradle</span></li><li><img src="logo-mixin.webp" width="96" height="96" alt="" loading="lazy" decoding="async"><span translate="no">Mixin</span></li></ul>
@@ -3674,7 +3754,7 @@
   function render() { if (summaryEl) summaryEl.textContent = buildSummary(); if (copyStatus) copyStatus.textContent = ''; }
   function placeholders() {
     var es = enEspanol();
-    document.querySelectorAll('#estimator [data-ph-en]').forEach(function (el) { el.placeholder = es ? el.dataset.phEs : el.dataset.phEn; });
+    document.querySelectorAll('[data-ph-en]').forEach(function (el) { el.placeholder = es ? el.dataset.phEs : el.dataset.phEn; });
   }
   ['tk-mod', 'tk-from', 'tk-to', 'tk-need'].forEach(function (id) {
     var el = document.getElementById(id); if (el) el.addEventListener('input', render);
