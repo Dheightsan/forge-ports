@@ -2439,6 +2439,12 @@
     .ficha-dl dd { margin: 0.1rem 0 0; font-family: 'Monocraft', ui-monospace, monospace; font-size: 0.86rem; color: var(--text); }
     html[data-theme="light"] .ficha { box-shadow: 0 4px 0 rgba(60,40,20,0.16); }
     html[data-theme="light"] .about-copy .ficha-h { background: #5a4330; color: #fff4e2; }
+    /* Invitaciones a Discord como panel pixel con franja azul Discord */
+    .dc-invita { border: 2px solid #1b120c; border-radius: 4px; box-shadow: 0 4px 0 rgba(0,0,0,0.38), inset 4px 0 0 #5865f2; padding-left: 1.6rem; }
+    html[data-theme="light"] .dc-invita { box-shadow: 0 4px 0 rgba(60,40,20,0.16), inset 4px 0 0 #5865f2; }
+    /* Subtitulos del portafolio con un bloquecito delante */
+    .shelf > h3::before, .private-work > h3::before { content: ""; display: inline-block; width: 12px; height: 12px; margin-right: 0.55rem; vertical-align: 0.05em; background: #df7932; border: 2px solid #1b120c; box-shadow: inset 2px 2px 0 rgba(255,255,255,0.3), inset -2px -2px 0 rgba(0,0,0,0.25); }
+    html[data-theme="light"] .shelf > h3::before, html[data-theme="light"] .private-work > h3::before { background: #a5521a; }
     /* objetivo tactil de 44 px en movil para los botones pequenos del hero (medido: 37) */
     @media (max-width: 640px) { .hero-team-actions .btn-sm { min-height: 44px; } }
     .bench-tabs { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 0 0 1.2rem; }
