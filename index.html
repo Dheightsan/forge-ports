@@ -203,7 +203,7 @@
        ⚠️ Lleva `imagesrcset` e `imagesizes` COPIADOS del <img>, no un `href`
        pelado: si no coinciden, el navegador precarga un tamano y luego pide OTRO
        al encontrar la etiqueta, o sea que se descargan las dos. -->
-  <link rel="preload" as="image" fetchpriority="high" href="comunidad.webp">
+  <link rel="preload" as="image" fetchpriority="high" href="comunidad-centro.webp">
   <!-- Las dos letras que se ven ANTES de nada: la de los titulares y la del
        boton del menu, que ademas ES el titular entero de 700px para abajo.
        El navegador no las descubria hasta terminar de leer la hoja, que son
@@ -1978,6 +1978,9 @@
     .hero-comunidad { margin: 0; text-align: center; }
     .hero-art .hero-comunidad img { width: 100%; max-width: 682px; margin: 0 auto; border: 0; border-radius: 0; filter: drop-shadow(0 18px 24px rgba(0,0,0,0.45)); }
     html[data-theme="light"] .hero-art .hero-comunidad img { filter: drop-shadow(0 10px 16px rgba(0,0,0,0.16)); }
+    /* 2026-10-29: el hero queda solo con la polilla y el bloque de Discord, en grande (josda) */
+    .hero-art .hero-comunidad img { width: auto; max-width: 100%; height: clamp(300px, 34vw, 500px); object-fit: contain; image-rendering: pixelated; }
+    @media (max-width: 700px) { .hero-art .hero-comunidad img { height: auto; width: min(72vw, 300px); } }
     .hc-title { font-family: 'Monocraft', 'Space Grotesk', system-ui, sans-serif; font-weight: 700; font-size: clamp(1.05rem, 2vw, 1.5rem); line-height: 1.25; color: var(--text); margin: 0.9rem 0 0.9rem; }
     .hc-hi { color: #7d8bff; }
     html[data-theme="light"] .hc-hi { color: #4753c8; }
@@ -2767,7 +2770,7 @@
            que traia horneados: el rotulo tiene que traducirse y el boton
            pulsarse, asi que los dos son HTML. Es el LCP en los dos anchos. -->
       <figure class="hero-comunidad">
-        <img src="comunidad.webp" width="1024" height="459" alt="Pixel-art banner of the Modwright community: the guinea pig in work overalls holding a wrench, a flying moth, a grass block shaped like the Discord logo, and the hedgehog in a lab coat holding a book." loading="eager" fetchpriority="high" decoding="async">
+        <img src="comunidad-centro.webp" width="299" height="448" alt="Pixel-art moth flying over a grass block shaped like the Discord logo." loading="eager" fetchpriority="high" decoding="async">
         <figcaption>
           <p class="hc-title"><span data-i18n-en><span class="hc-hi">Modded</span><span translate="no"> Minecraft </span>community</span><span data-i18n-es hidden>Comunidad de<span translate="no"> Minecraft </span><span class="hc-hi">modded</span></span></p>
           <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" class="btn btn-discord"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg><span><span data-i18n-en>Join the<span translate="no"> Discord</span></span><span data-i18n-es hidden>Entra al<span translate="no"> Discord</span></span></span></a>
