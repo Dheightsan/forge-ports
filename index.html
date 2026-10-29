@@ -2399,6 +2399,16 @@
     .tile-t small { color: var(--text-mute); font-size: 0.72rem; line-height: 1.4; }
     .tile-mono--own { background: var(--green-glow); border-color: var(--green-ring); color: var(--green-hi); }
     .tile--row .tile-mono--x { font-size: 1.35rem; font-weight: 400; }
+    /* Cada icono de mod va en una casilla de inventario pixel (borde hundido de
+       2 px, luz abajo a la derecha) y la casilla se aclara al pasar el mouse,
+       como en el juego. Los nombres del equipo van como placa de nombre. */
+    .tile img, .tile .tile-mono { box-sizing: content-box; padding: 6px; border-radius: 0; background: #241b14; border: 2px solid #120c08; box-shadow: inset 2px 2px 0 #0d0906, inset -2px -2px 0 #4a3a2c; }
+    .tile--row img, .tile--row .tile-mono { padding: 5px; }
+    .tile:hover img, .tile:hover .tile-mono { background: #3a2d22; }
+    html[data-theme="light"] .tile img, html[data-theme="light"] .tile .tile-mono { background: #c9b99c; border-color: #3a2a1a; box-shadow: inset 2px 2px 0 #8f7d61, inset -2px -2px 0 #f3e8d2; }
+    html[data-theme="light"] .tile:hover img, html[data-theme="light"] .tile:hover .tile-mono { background: #d9cbb0; }
+    .hero-person-name { font-family: 'Monocraft', 'Space Grotesk', system-ui, sans-serif; font-weight: 700; font-size: 0.72rem; color: #f4efe6; background: rgba(0,0,0,0.55); padding: 0.2rem 0.5rem; letter-spacing: 0.02em; }
+    html[data-theme="light"] .hero-person-name { color: #fff8ee; background: rgba(43,33,23,0.78); }
     @media (prefers-reduced-motion: reduce) { .bench-tab { transition: none; } }
 </style>
   <script>
