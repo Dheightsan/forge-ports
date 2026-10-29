@@ -2445,6 +2445,14 @@
     /* Subtitulos del portafolio con un bloquecito delante */
     .shelf > h3::before, .private-work > h3::before { content: ""; display: inline-block; width: 12px; height: 12px; margin-right: 0.55rem; vertical-align: 0.05em; background: #df7932; border: 2px solid #1b120c; box-shadow: inset 2px 2px 0 rgba(255,255,255,0.3), inset -2px -2px 0 rgba(0,0,0,0.25); }
     html[data-theme="light"] .shelf > h3::before, html[data-theme="light"] .private-work > h3::before { background: #a5521a; }
+    /* Hero y menu: mismos colores, forma pixel. Boton principal, Cotizar y la etiqueta de disponible */
+    .ctas .btn-go, .btn-nav { border: 2px solid #1b120c; border-radius: 4px; box-shadow: 0 3px 0 rgba(0,0,0,0.38), inset 0 2px 0 rgba(255,255,255,0.25); }
+    .ctas .btn-go:hover, .btn-nav:hover { border-color: #1b120c; box-shadow: 0 4px 0 rgba(0,0,0,0.38), inset 0 2px 0 rgba(255,255,255,0.25); }
+    .ctas .btn-go:active, .btn-nav:active { transform: translateY(2px); box-shadow: 0 1px 0 rgba(0,0,0,0.38); }
+    html[data-accent="green"] .ctas .btn-go, html[data-accent="green"] .btn-nav { border-color: #1b120c; box-shadow: 0 3px 0 rgba(0,0,0,0.38), inset 0 2px 0 rgba(255,255,255,0.25); }
+    html[data-theme="light"] .ctas .btn-go, html[data-theme="light"] .btn-nav { box-shadow: 0 3px 0 rgba(60,40,20,0.2), inset 0 2px 0 rgba(255,255,255,0.25); }
+    #hero .badge { border-radius: 4px; border-width: 2px; font-family: 'Monocraft', 'Space Grotesk', system-ui, sans-serif; font-size: 0.72rem; }
+    #hero .badge-dot, #hero .badge-dot::after { border-radius: 0; }
     /* objetivo tactil de 44 px en movil para los botones pequenos del hero (medido: 37) */
     @media (max-width: 640px) { .hero-team-actions .btn-sm { min-height: 44px; } }
     .bench-tabs { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 0 0 1.2rem; }
