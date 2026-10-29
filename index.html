@@ -2380,6 +2380,27 @@
     .bench-tab:hover { border-color: var(--green-ring); color: var(--text); }
     .bench-tab[aria-selected="true"] { background: var(--green-glow); border-color: var(--green-ring); color: var(--text); }
     .bench-tab:focus-visible { outline: 2px solid var(--green-hi); outline-offset: 2px; }
+    /* Laboratorio y servicios con el mismo lenguaje pixel: cada caso lleva su
+       etiqueta numerada, el codigo se lee como consola, los filtros son pestanas
+       de bloque y los iconos de servicio van en casilla de inventario. */
+    .mp-list { counter-reset: caso; }
+    .mp-item { counter-increment: caso; border-width: 2px; border-radius: 4px; box-shadow: 0 4px 0 rgba(0,0,0,0.38); margin-top: 0.6rem; }
+    .mp-item::before { content: "CASE " counter(caso, decimal-leading-zero); position: absolute; top: -13px; left: 18px; padding: 3px 9px; background: #df7932; color: #1b120c; border: 2px solid #1b120c; font-family: 'Monocraft', 'Space Grotesk', system-ui, sans-serif; font-weight: 700; font-size: 0.68rem; letter-spacing: 0.06em; line-height: 1.2; }
+    html[lang="es"] .mp-item::before { content: "CASO " counter(caso, decimal-leading-zero); }
+    .mp-item code { font-family: 'Monocraft', ui-monospace, monospace; font-size: 0.8em; background: #120d09; color: #8fe0a0; border: 1px solid #000; border-radius: 0; padding: 0.1em 0.4em; }
+    html[data-theme="light"] .mp-item { box-shadow: 0 4px 0 rgba(60,40,20,0.16); }
+    html[data-theme="light"] .mp-item::before { background: #a5521a; color: #fff4e2; }
+    html[data-theme="light"] .mp-item code { background: #2b2117; color: #9fe8ae; }
+    .bench-tab { border-radius: 4px; border-width: 2px; box-shadow: 0 3px 0 rgba(0,0,0,0.38); font-family: 'Monocraft', 'Space Grotesk', system-ui, sans-serif; font-size: 0.82rem; }
+    .bench-tab[aria-selected="true"] { background: #df7932; border-color: #1b120c; color: #1b120c; box-shadow: 0 3px 0 rgba(0,0,0,0.38), inset 0 2px 0 rgba(255,255,255,0.25); }
+    .bench-tab[aria-selected="true"] .bench-n.bench-n { color: #1b120c; background: rgba(255,255,255,0.3); }
+    html[data-theme="light"] .bench-tab { box-shadow: 0 3px 0 rgba(60,40,20,0.16); }
+    html[data-theme="light"] .bench-tab[aria-selected="true"] { background: #a5521a; color: #fff4e2; }
+    html[data-theme="light"] .bench-tab[aria-selected="true"] .bench-n.bench-n { color: #fff4e2; }
+    .svc-icon:has(img) { border-radius: 0; background: #241b14; border: 2px solid #120c08; box-shadow: inset 2px 2px 0 #0d0906, inset -2px -2px 0 #4a3a2c; }
+    html[data-theme="light"] .svc-icon:has(img) { background: #c9b99c; border-color: #3a2a1a; box-shadow: inset 2px 2px 0 #8f7d61, inset -2px -2px 0 #f3e8d2; }
+    .svc-row:hover .svc-icon:has(img), .svc-row:focus-within .svc-icon:has(img) { background: #3a2d22; box-shadow: inset 2px 2px 0 #0d0906, inset -2px -2px 0 #4a3a2c; }
+    html[data-theme="light"] .svc-row:hover .svc-icon:has(img), html[data-theme="light"] .svc-row:focus-within .svc-icon:has(img) { background: #d9cbb0; box-shadow: inset 2px 2px 0 #8f7d61, inset -2px -2px 0 #f3e8d2; }
     .bench-n { min-width: 1.6em; padding: 0.2rem 0.45rem; border-radius: 999px; background: var(--surface); color: var(--text-mute); font-size: 0.72rem; text-align: center; font-variant-numeric: tabular-nums; }
     .bench-tab[aria-selected="true"] .bench-n { color: var(--green-hi); }
     .bench-panel + .bench-panel { margin-top: 1.8rem; }
