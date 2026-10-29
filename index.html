@@ -2458,6 +2458,27 @@
     .loomd-tip { stroke-width: 4; stroke-linecap: square; stroke-linejoin: miter; }
     .loomd-t { font-family: 'Monocraft', 'Space Grotesk', system-ui, sans-serif; font-size: 27px; stroke-width: 6px; stroke-linejoin: miter; }
     html[data-theme="light"] .loomd-node { filter: drop-shadow(0 4px 0 rgba(60,40,20,0.18)); }
+    /* Novedades del taller: notas cortas como un registro de chat */
+    .taller { margin-top: 2.4rem; max-width: 720px; }
+    .taller > h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.8rem; }
+    .taller > h3::before { content: ""; display: inline-block; width: 12px; height: 12px; margin-right: 0.55rem; vertical-align: 0.05em; background: #df7932; border: 2px solid #1b120c; box-shadow: inset 2px 2px 0 rgba(255,255,255,0.3), inset -2px -2px 0 rgba(0,0,0,0.25); }
+    .taller-log { border: 2px solid #1b120c; border-radius: 4px; background: #15100c; box-shadow: 0 4px 0 rgba(0,0,0,0.38); overflow: hidden; }
+    .taller .taller-barra { margin: 0; padding: 0.45rem 0.9rem; background: #3a2a1d; color: #f6ecd6; border-bottom: 2px solid #1b120c; font-family: 'Monocraft', ui-monospace, monospace; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.04em; }
+    .taller-lista { list-style: none; margin: 0; padding: 0; }
+    .taller-nota { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 0.7rem; padding: 0.8rem 0.9rem; border-top: 1px solid rgba(255,255,255,0.06); }
+    .taller-nota:first-child { border-top: 0; }
+    .taller-nota > img { width: 34px; height: 34px; object-fit: contain; background: #241b14; border: 2px solid #120c08; image-rendering: pixelated; }
+    .taller .taller-meta { margin: 0 0 0.15rem; display: flex; gap: 0.6rem; align-items: baseline; font-family: 'Monocraft', ui-monospace, monospace; font-size: 0.72rem; }
+    .taller-quien { color: #df7932; font-weight: 700; }
+    .taller-meta time { color: #8d8372; }
+    .taller .taller-txt { margin: 0; color: #e6dccb; font-size: 0.92rem; line-height: 1.55; }
+    html[data-theme="light"] .taller-log { background: #fffaf0; box-shadow: 0 4px 0 rgba(60,40,20,0.16); }
+    html[data-theme="light"] .taller .taller-barra { background: #5a4330; color: #fff4e2; }
+    html[data-theme="light"] .taller-nota { border-top-color: rgba(60,40,20,0.1); }
+    html[data-theme="light"] .taller-quien { color: #a5521a; }
+    html[data-theme="light"] .taller-meta time { color: #6d6355; }
+    html[data-theme="light"] .taller .taller-txt { color: #3a2a1d; }
+    html[data-theme="light"] .taller > h3::before { background: #a5521a; }
     #hero .badge { border-radius: 4px; border-width: 2px; font-family: 'Monocraft', 'Space Grotesk', system-ui, sans-serif; font-size: 0.72rem; }
     #hero .badge-dot, #hero .badge-dot::after { border-radius: 0; }
     /* objetivo tactil de 44 px en movil para los botones pequenos del hero (medido: 37) */
@@ -3359,6 +3380,18 @@
       <img class="px px--girasol" src="deco-girasol.webp" width="88" height="112" alt="" aria-hidden="true" loading="lazy" decoding="async"><img class="px px--gota" src="deco-gota.webp" width="35" height="43" alt="" aria-hidden="true" loading="lazy" decoding="async">
       <h3><span data-i18n-en>Thank you</span><span data-i18n-es hidden>Gracias</span></h3>
       <p><span data-i18n-en><span translate="no">Modwright </span>is growing.<span translate="no"> Nightwhitey </span>helps me with development and technical decisions,<span translate="no"> Criss </span>with content and getting the word out, and there are more people who test what I make and tell me when something isn't right. And before any of them, the authors who wrote these mods and let me near their work.</span><span data-i18n-es hidden><span translate="no">Modwright </span>está creciendo.<span translate="no"> Nightwhitey </span>me ayuda con desarrollo y decisiones técnicas,<span translate="no"> Criss </span>con contenido y difusión, y hay más gente que prueba lo que hago y me señala cuando algo no está bien. Y antes que todos ellos, los autores que escribieron estos mods y me dejaron acercarme a su trabajo.</span></p>
+    </div>
+    <div class="taller" id="novedades">
+      <h3><span data-i18n-en>Workshop log</span><span data-i18n-es hidden>Novedades del taller</span></h3>
+      <div class="taller-log">
+        <p class="taller-barra"><span data-i18n-en>LOG</span><span data-i18n-es hidden>REGISTRO</span><span translate="no"> // danisansietev</span></p>
+      <ul class="taller-lista">
+        <li class="taller-nota"><img src="wave-me-still.webp" width="192" height="190" alt="" aria-hidden="true" loading="lazy" decoding="async"><div><p class="taller-meta"><span class="taller-quien" translate="no">&lt;danisansietev&gt;</span><time datetime="2026-10-29"><span data-i18n-en>29 Oct</span><span data-i18n-es hidden>29 oct</span></time></p><p class="taller-txt"><span data-i18n-en>Gave the site a pass. The shelf has a search box now, and if the mod you want isn’t there, ask me for it.</span><span data-i18n-es hidden>le di una vuelta a la web, ahora el estante tiene buscador. si buscas un mod y no está, pídemelo</span></p></div></li>
+        <li class="taller-nota"><img src="wave-me-still.webp" width="192" height="190" alt="" aria-hidden="true" loading="lazy" decoding="async"><div><p class="taller-meta"><span class="taller-quien" translate="no">&lt;danisansietev&gt;</span><time datetime="2026-10-22"><span data-i18n-en>22 Oct</span><span data-i18n-es hidden>22 oct</span></time></p><p class="taller-txt"><span data-i18n-en>Gipples Galore is on<span translate="no"> Forge </span>1.20.1 now, free and with the code on<span translate="no"> GitHub</span>.</span><span data-i18n-es hidden>Gipples Galore ya está en<span translate="no"> Forge </span>1.20.1, gratis y con el código en<span translate="no"> GitHub</span></span></p></div></li>
+        <li class="taller-nota"><img src="wave-me-still.webp" width="192" height="190" alt="" aria-hidden="true" loading="lazy" decoding="async"><div><p class="taller-meta"><span class="taller-quien" translate="no">&lt;danisansietev&gt;</span><time datetime="2026-10-08"><span data-i18n-en>08 Oct</span><span data-i18n-es hidden>08 oct</span></time></p><p class="taller-txt"><span data-i18n-en>The Discord hit 66 members and there’s a channel to request ports. At 100 I port the winning one for free.</span><span data-i18n-es hidden>en el Discord somos 66 y hay canal para pedir ports. a los 100 porteo gratis el que gane la votación</span></p></div></li>
+        <li class="taller-nota"><img src="wave-me-still.webp" width="192" height="190" alt="" aria-hidden="true" loading="lazy" decoding="async"><div><p class="taller-meta"><span class="taller-quien" translate="no">&lt;danisansietev&gt;</span><time datetime="2026-09-03"><span data-i18n-en>03 Sep</span><span data-i18n-es hidden>03 sep</span></time></p><p class="taller-txt"><span data-i18n-en>Mindful Eating is on<span translate="no"> NeoForge </span>1.21.1. I ported it with camcam_burger’s permission and it’s on the official page.</span><span data-i18n-es hidden>Mindful Eating ya está en<span translate="no"> NeoForge </span>1.21.1, lo porté con permiso de camcam_burger y está en su página oficial</span></p></div></li>
+      </ul>
+      </div>
     </div>
   </div>
 </section>
