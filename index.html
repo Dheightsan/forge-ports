@@ -2386,6 +2386,16 @@
     .discord-big:hover > span { background: #5865f2; color: #fff; }
     html[data-theme="light"] .discord-big > span { color: #fff4e2; background: #5a4330; box-shadow: 0 3px 0 rgba(60,40,20,0.18); }
     html[data-theme="light"] .discord-big:hover > span { background: #4752c4; }
+    /* Documentos legales como paneles pixel, igual que los casos del laboratorio */
+    .legal-doc { border: 2px solid #1b120c; border-radius: 4px; box-shadow: 0 4px 0 rgba(0,0,0,0.38); }
+    .legal-doc[open] { box-shadow: 0 4px 0 rgba(0,0,0,0.38), inset 3px 0 0 #df7932; }
+    html[data-theme="light"] .legal-doc { box-shadow: 0 4px 0 rgba(60,40,20,0.16); }
+    html[data-theme="light"] .legal-doc[open] { box-shadow: 0 4px 0 rgba(60,40,20,0.16), inset 3px 0 0 #a5521a; }
+    /* Flechita de "Mas preguntas" y "Detalle tecnico" dibujada en escalones de 2 px */
+    details.more > summary::after, details.pack-more > summary::after { content: ""; width: 10px; height: 6px; background: currentColor; clip-path: polygon(0 0, 10px 0, 10px 2px, 8px 2px, 8px 4px, 6px 4px, 6px 6px, 4px 6px, 4px 4px, 2px 4px, 2px 2px, 0 2px); font-size: 0; }
+    /* Pregunta abierta en cobre, para no perder cual se esta leyendo */
+    .faq-q[aria-expanded="true"] { color: #df7932; }
+    html[data-theme="light"] .faq-q[aria-expanded="true"] { color: #a5521a; }
     /* objetivo tactil de 44 px en movil para los botones pequenos del hero (medido: 37) */
     @media (max-width: 640px) { .hero-team-actions .btn-sm { min-height: 44px; } }
     .bench-tabs { display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 0 0 1.2rem; }
