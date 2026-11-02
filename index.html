@@ -2110,6 +2110,9 @@
     .xp-bar { position: absolute; left: 0; right: 0; bottom: -6px; height: 6px; background: #101010; border-top: 1px solid #000; border-bottom: 1px solid #000; pointer-events: none; }
     .xp-bar span { position: absolute; inset: 0; background: linear-gradient(#b6ff6a 0 2px, #6fd62a 2px); transform: scaleX(0); transform-origin: left; }
     .xp-bar::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent calc(100% - 2px), #000 0) 0 0 / calc(100% / 18) 100% repeat-x; }
+    @media (min-width: 1001px) {
+      .nav-links li:not(.nav-cta):not(.nav-tog) a.is-here, html[data-theme="light"] .nav-links li:not(.nav-cta):not(.nav-tog) a.is-here { background: var(--green-hi); color: #1b120c; }
+    }
     /* Cartel del Discord: solo la polilla y el bloque, como el hero (josda, 29-oct) */
     .dc-invita .dc-inv-img--banner { width: auto; height: 120px; image-rendering: pixelated; }
     @media (max-width: 600px) { .dc-invita .dc-inv-img--banner { width: auto; height: 150px; } }
@@ -3880,6 +3883,25 @@
   addEventListener('scroll', function () { if (!pend) { pend = true; requestAnimationFrame(pinta); } }, { passive: true });
   addEventListener('resize', pinta);
   pinta();
+})();
+// 2026-11-02: el boton del menu de la seccion que estas leyendo queda encendido.
+(function () {
+  var links = [].slice.call(document.querySelectorAll('.nav-links a[href^="#"]:not(.btn-nav)')), pend = false;
+  var secs = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+  var todas = [].slice.call(document.querySelectorAll('main section[id], body > section[id]'));
+  if (!links.length) return;
+  function marca() {
+    pend = false;
+    var y = (parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 74) + 40, actual = null;
+    todas.forEach(function (s) { if (s.getBoundingClientRect().top <= y) actual = s; });
+    links.forEach(function (a, i) {
+      var si = secs[i] === actual;
+      a.classList.toggle('is-here', si);
+      if (si) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current');
+    });
+  }
+  addEventListener('scroll', function () { if (!pend) { pend = true; requestAnimationFrame(marca); } }, { passive: true });
+  marca();
 })();
 </script>
 <script>
