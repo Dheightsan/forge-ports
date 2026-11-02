@@ -142,6 +142,11 @@ html[data-theme="light"] code { background: #2b2117; color: #9fe8ae; }
 .btn { font-family: 'Monocraft', var(--font); font-weight: 700; color: #1b120c; background: #df7932; border: 2px solid #1b120c; border-radius: 4px; box-shadow: 0 3px 0 rgba(0,0,0,0.38), inset 0 2px 0 rgba(255,255,255,0.25); }
 .btn:hover { filter: none; background: #e88a48; }
 .btn:active { transform: translateY(2px); box-shadow: 0 1px 0 rgba(0,0,0,0.38); }
+
+/* 2026-11-02: barra de experiencia del juego como barra de lectura, fija arriba */
+.xp-bar { position: fixed; left: 0; right: 0; top: 0; z-index: 50; height: 6px; background: #101010; border-bottom: 1px solid #000; pointer-events: none; }
+.xp-bar span { position: absolute; inset: 0; background: linear-gradient(#b6ff6a 0 2px, #6fd62a 2px); transform: scaleX(0); transform-origin: left; }
+.xp-bar::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent calc(100% - 2px), #000 0) 0 0 / calc(100% / 18) 100% repeat-x; }
 </style>
 
   <meta property="og:image:width" content="1200">
@@ -156,6 +161,7 @@ html[data-theme="light"] code { background: #2b2117; color: #9fe8ae; }
 <body>
 <a class="skip" href="#main">Skip to content</a>
 
+<div class="xp-bar" aria-hidden="true"><span></span></div>
 <header class="bar">
   <div class="bar-in">
     <span class="cuy" role="img" aria-label="Modwright logo"></span>
@@ -332,5 +338,20 @@ html[data-theme="light"] code { background: #2b2117; color: #9fe8ae; }
 <footer>
  <span translate="no"> Modwright </span>&middot;<span translate="no"> Forge </span>1.20.1 mod porting &middot; <a href="./">Services and pricing</a> &middot; <a href="fabric-to-forge-1-20-1.html"><span translate="no">Fabric </span>to<span translate="no"> Forge</span>: what breaks</a>
  &middot; <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer">Discord</a></footer>
+<script>
+// Barra de lectura: se llena con lo que llevas del articulo.
+(function () {
+  var bar = document.querySelector('.xp-bar span'), pend = false;
+  if (!bar) return;
+  function pinta() {
+    pend = false;
+    var max = document.documentElement.scrollHeight - innerHeight;
+    bar.style.transform = 'scaleX(' + (max > 0 ? Math.min(1, scrollY / max) : 0) + ')';
+  }
+  addEventListener('scroll', function () { if (!pend) { pend = true; requestAnimationFrame(pinta); } }, { passive: true });
+  addEventListener('resize', pinta);
+  pinta();
+})();
+</script>
 </body>
 </html>
