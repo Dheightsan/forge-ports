@@ -2030,6 +2030,11 @@
     .xp-bar { position: absolute; left: 0; right: 0; bottom: -6px; height: 6px; background: #101010; border-top: 1px solid #000; border-bottom: 1px solid #000; pointer-events: none; }
     .xp-bar span { position: absolute; inset: 0; background: linear-gradient(#b6ff6a 0 2px, #6fd62a 2px); transform: scaleX(0); transform-origin: left; }
     .xp-bar::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent calc(100% - 2px), #000 0) 0 0 / calc(100% / 18) 100% repeat-x; }
+    /* Trueque con autores: lo que recibes (el port en su disco, la llave de tu proyecto) y lo que pido (el libro del portafolio) */
+    .deal-cols .deal-list li { padding-left: 2.6rem; min-height: 32px; }
+    .deal-cols .deal-list li::before { top: -0.1em; width: 32px; height: 32px; background: url(mod-rs-disco.png) center / 32px 32px no-repeat; image-rendering: pixelated; }
+    .deal-cols .deal-col:not(.deal-col--mine) .deal-list li:nth-child(2)::before { background-image: url(mod-sd-llave.png); }
+    .deal-cols .deal-col--mine .deal-list li::before { background-image: url(mod-tic-libro.png); }
     /* Pila de cajas de Farmer's Delight sobre la isla: a la mitad, 2 px por texel como los items sueltos */
     /* La isla de abajo del ticket quedaba a 46 px de las tarjetas: el slime, al saltar,
        se metia detras del resumen y la pila de cajas quedaba pegada al formulario. */
