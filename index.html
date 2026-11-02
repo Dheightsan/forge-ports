@@ -2030,6 +2030,9 @@
     .xp-bar { position: absolute; left: 0; right: 0; bottom: -6px; height: 6px; background: #101010; border-top: 1px solid #000; border-bottom: 1px solid #000; pointer-events: none; }
     .xp-bar span { position: absolute; inset: 0; background: linear-gradient(#b6ff6a 0 2px, #6fd62a 2px); transform: scaleX(0); transform-origin: left; }
     .xp-bar::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent calc(100% - 2px), #000 0) 0 0 / calc(100% / 18) 100% repeat-x; }
+    /* Servicios: items y bloques reales de mods en la casilla (fundidora de Tinkers, Controller de Refined Storage, huevos de fuego y hielo de Ice and Fire, llave inglesa de Refined Storage) */
+    .svc-icon:has(img) { width: 68px; height: 68px; }
+    .svc-icon img { width: 64px; height: 64px; }
     /* Trueque con autores: lo que recibes (el port en su disco, la llave de tu proyecto) y lo que pido (el libro del portafolio) */
     .deal-cols .deal-list li { padding-left: 2.6rem; min-height: 32px; }
     .deal-cols .deal-list li::before { top: -0.1em; width: 32px; height: 32px; background: url(mod-rs-disco.png) center / 32px 32px no-repeat; image-rendering: pixelated; }
@@ -2526,6 +2529,8 @@
     .deal-cols { gap: 2.6rem; align-items: stretch; }
     .deal-col { position: relative; border: 2px solid #1b120c; border-radius: 4px; box-shadow: 0 4px 0 rgba(0,0,0,0.38), inset 0 2px 0 rgba(255,255,255,0.05); padding-top: 1.9rem; }
     .deal-col--mine::before { content: ""; position: absolute; left: calc(-1.3rem - 14px); top: 50%; width: 28px; height: 24px; margin-top: -12px; background: url(flecha-trueque.png) center / 28px 24px no-repeat; image-rendering: pixelated; }
+    /* En una columna la flecha quedaba a la izquierda, cortada por el borde: ahi va entre las dos cajas, apuntando hacia abajo */
+    @media (max-width: 700px) { .deal-col--mine::before { left: 50%; top: calc(-1.3rem - 12px); margin: 0 0 0 -14px; transform: rotate(90deg); } }
     .deal-head { position: absolute; top: -13px; left: 18px; margin: 0; padding: 3px 9px; background: #3a2a1d; color: #f6ecd6; border: 2px solid #1b120c; font-family: 'Monocraft', ui-monospace, monospace; font-size: 0.68rem; letter-spacing: 0.06em; line-height: 1.2; }
     .deal-col--mine .deal-head { background: #df7932; color: #1b120c; }
     html[data-theme="light"] .deal-col { box-shadow: 0 4px 0 rgba(60,40,20,0.16); }
@@ -3217,28 +3222,28 @@
     <p class="sub"><span data-i18n-en>If you want to know how I price a<span translate="no"> port</span>, I explain it in <a href="mod-porting-cost.html">what a<span translate="no"> port </span>costs, and why</a>.</span><span data-i18n-es hidden>Si quieres saber cómo pongo precio a un<span translate="no"> port</span>, lo explico en <a href="mod-porting-cost.html">cuánto cuesta un<span translate="no"> port</span>, y por qué</a>.</span></p>
 <div class="svc-list">
       <div class="svc-row">
-        <div class="svc-icon svc-copper"><img src="svc-ports.png" width="54" height="54" alt="" aria-hidden="true" loading="lazy" decoding="async"></div>
+        <div class="svc-icon svc-copper"><img src="mod-tic-fundidora.webp" width="64" height="64" alt="" aria-hidden="true" loading="lazy" decoding="async"></div>
         <div>
           <h3><span data-i18n-en><span translate="no">Ports</span> and backports</span><span data-i18n-es hidden><span translate="no">Ports</span> y backports</span></h3>
           <p><span data-i18n-en>Moving a mod to another<span translate="no"> Minecraft </span>version, forward or back, keeping it as close as possible to how the original behaves.</span><span data-i18n-es hidden>Mover un mod a otra versión de<span translate="no"> Minecraft</span>, hacia delante o hacia atrás, intentando conservar el comportamiento del original.</span></p>
         </div>
       </div>
       <div class="svc-row">
-        <div class="svc-icon svc-loom"><img src="svc-loader.png" width="54" height="54" alt="" aria-hidden="true" loading="lazy" decoding="async"></div>
+        <div class="svc-icon svc-loom"><img src="mod-rs-controller.webp" width="64" height="64" alt="" aria-hidden="true" loading="lazy" decoding="async"></div>
         <div>
           <h3><span data-i18n-en>Loader changes</span><span data-i18n-es hidden>Cambio de loader</span></h3>
           <p><span data-i18n-en>Adapting a mod between<span translate="no"> Forge</span>,<span translate="no"> Fabric </span>and<span translate="no"> NeoForge </span>when a pack needs a different platform.</span><span data-i18n-es hidden>Adaptar un mod entre<span translate="no"> Forge</span>,<span translate="no"> Fabric </span>y<span translate="no"> NeoForge </span>cuando un pack necesita otra plataforma.</span></p>
         </div>
       </div>
       <div class="svc-row">
-        <div class="svc-icon svc-bridge"><img src="svc-compat.png" width="54" height="54" alt="" aria-hidden="true" loading="lazy" decoding="async"></div>
+        <div class="svc-icon svc-bridge"><img src="mod-iaf-choque.png" width="64" height="64" alt="" aria-hidden="true" loading="lazy" decoding="async"></div>
         <div>
           <h3><span data-i18n-en>Compatibility and crashes</span><span data-i18n-es hidden>Compatibilidad y crashes</span></h3>
           <p><span data-i18n-en>Finding why two mods clash, why something stopped loading, or what is breaking one specific feature.</span><span data-i18n-es hidden>Encontrar por qué dos mods chocan, por qué algo deja de cargar o qué está rompiendo una función concreta.</span></p>
         </div>
       </div>
       <div class="svc-row">
-        <div class="svc-icon svc-steel"><img src="svc-mant.png" width="54" height="54" alt="" aria-hidden="true" loading="lazy" decoding="async"></div>
+        <div class="svc-icon svc-steel"><img src="mod-rs-llave.png" width="64" height="64" alt="" aria-hidden="true" loading="lazy" decoding="async"></div>
         <div>
           <h3><span data-i18n-en>Maintenance and performance</span><span data-i18n-es hidden>Mantenimiento y rendimiento</span></h3>
           <p><span data-i18n-en>Fixing existing<span translate="no"> ports</span>, dependency changes and performance problems when the cause is in the mod or in how it fits into the pack.</span><span data-i18n-es hidden>Arreglar<span translate="no"> ports </span>existentes, cambios de dependencias y problemas de rendimiento cuando el origen está en el mod o en su integración.</span></p>
