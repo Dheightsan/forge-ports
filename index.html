@@ -2060,6 +2060,36 @@
     .px--olla, .px--burger { width: 40px; height: 40px; align-self: flex-end; image-rendering: pixelated; margin-left: 0.3rem; }
     .px--burger { width: 30px; height: 30px; }
     .credito-texturas { font-size: 0.78rem; }
+    /* Ticket como interfaz del juego: panel pixel, campos de texto como los del juego y botones de piedra */
+    .est-form { background: #1d1611; border: 2px solid #1b120c; border-radius: 4px; box-shadow: 0 4px 0 rgba(0,0,0,0.38), inset 2px 2px 0 rgba(255,255,255,0.04); }
+    .est-form .est-label { font-family: 'Monocraft', ui-monospace, monospace; font-size: 0.86rem; color: #e4d9bc; letter-spacing: 0.01em; }
+    .est-form .tk-input { background: #050403; color: #f2f2f2; border: 2px solid #8b8b8b; border-radius: 0; font-family: 'Monocraft', ui-monospace, monospace; font-size: 0.86rem; box-shadow: none; }
+    .est-form .tk-input::placeholder { color: #6d6355; opacity: 1; }
+    .est-form .tk-input:hover { border-color: #b4b4b4; }
+    .est-form .tk-input:focus, .tk-input:focus-visible { border-color: #fff; outline: none; box-shadow: none; }
+    .est-form .est-opt { font-family: 'Monocraft', ui-monospace, monospace; font-size: 0.8rem; font-weight: 700; color: #f2f2f2; text-shadow: 2px 2px 0 #3a3a3a; background: #6f6f6f; border: 2px solid #000; border-radius: 0; min-height: 42px; padding: 0.5rem 0.8rem; box-shadow: inset 2px 2px 0 #a8a8a8, inset -2px -3px 0 #4a4a4a; transition: none; }
+    .est-form .est-opt:not(.active):hover { background: #7b7b7b; border-color: #fff; color: #fff; }
+    .est-form .est-opt:active { transform: translateY(1px); }
+    .est-form .est-opt:focus-visible { outline: 2px solid #df7932; outline-offset: 2px; }
+    .est-form .est-opt .loglyph, .est-form .est-opt .optglyph { filter: drop-shadow(2px 2px 0 rgba(0,0,0,0.35)); }
+    .est-form .est-opt.active { color: #1b120c; text-shadow: none; border-color: #000; box-shadow: inset 2px 2px 0 rgba(255,255,255,0.4), inset -2px -3px 0 rgba(0,0,0,0.3); }
+    .est-form .est-opt.active:not([class*="brand-"]) { background: #5aa83f; }
+    .est-form .est-opt.brand-forge.active { background: #b9bec6; }
+    .est-form .est-opt.active .loglyph, .est-form .est-opt.active .optglyph { filter: none; }
+    #tk-origin { -webkit-appearance: none; appearance: none; width: 18px; height: 18px; margin: 0 0.35rem 0 0; vertical-align: -4px; background: #6f6f6f; border: 2px solid #000; box-shadow: inset 2px 2px 0 #a8a8a8, inset -2px -2px 0 #4a4a4a; cursor: pointer; }
+    #tk-origin:checked { background: #5aa83f; box-shadow: inset 0 0 0 2px #6f6f6f, inset 2px 2px 0 2px #a8a8a8; }
+    #tk-origin:focus-visible { outline: 2px solid #df7932; outline-offset: 2px; }
+    .est-copy { font-family: 'Monocraft', ui-monospace, monospace; color: #f2f2f2; text-shadow: 2px 2px 0 #3a3a3a; background: #6f6f6f; border: 2px solid #000; border-radius: 0; box-shadow: inset 2px 2px 0 #a8a8a8, inset -2px -3px 0 #4a4a4a; }
+    .est-copy:hover { background: #7b7b7b; border-color: #fff; color: #fff; }
+    .est-copy.done { background: #5aa83f; color: #0e1f0a; text-shadow: none; }
+    html[data-theme="light"] .est-form { background: #fffaf0; box-shadow: 0 4px 0 rgba(60,40,20,0.16); }
+    .estimator .est-summary { border: 2px solid #1b120c; border-radius: 4px; box-shadow: 0 4px 0 rgba(0,0,0,0.38), inset 2px 2px 0 rgba(255,255,255,0.04); }
+    html[data-theme="light"] .estimator .est-summary { box-shadow: 0 4px 0 rgba(60,40,20,0.16); }
+    html[data-theme="light"] .est-form .est-label { color: #5a4330; }
+    html[data-theme="light"] .est-form .tk-input { background: #fff; color: #2a1d12; border-color: #3a2a1a; }
+    html[data-theme="light"] .est-form .tk-input::placeholder { color: #8d7f6d; }
+    html[data-theme="light"] .est-form .tk-input:focus, html[data-theme="light"] .est-form .tk-input:focus-visible { border-color: #a5521a; }
+    html[data-theme="light"] .est-copy.done, html[data-accent="green"][data-theme="light"] .est-copy.done { color: #0e1f0a; }
     /* 2026-10-28: insignia de port del portafolio. Origen y destino con el logo
        oficial y el color de loader del titular; los datos son los de .port-stats. */
     .port-path { display: flex; align-items: center; flex-wrap: wrap; gap: 0.45rem; margin: 0.15rem 0 0.95rem; }
