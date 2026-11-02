@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'self'">
+<!-- 2026-11-02: GitHub Pages sirve esta pagina en cualquier ruta que no existe,
+     asi que todo cuelga de <base> para que la letra y las imagenes carguen
+     tambien desde /forge-ports/algo/que/no/existe. Pantalla de muerte del juego. -->
+<base href="/forge-ports/">
+<meta name="robots" content="noindex">
+<title>Page not found | Modwright</title>
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<style>
+@font-face { font-family: 'Monocraft'; font-style: normal; font-weight: 700; font-display: swap; src: url('fonts/monocraft-700-latin.woff2') format('woff2'); }
+html, body { margin: 0; height: 100%; }
+body { display: grid; place-items: center; min-height: 100vh; padding: 24px 16px; box-sizing: border-box; background: linear-gradient(rgba(150, 0, 0, 0.45), rgba(40, 0, 0, 0.7)), #1a1410; color: #fff; font-family: 'Monocraft', ui-monospace, monospace; text-align: center; }
+main { max-width: 520px; }
+h1 { margin: 0 0 1.4rem; font-size: clamp(2rem, 8vw, 3.2rem); line-height: 1.2; color: #fff; text-shadow: 4px 4px 0 #3f3f3f; }
+p { margin: 0 0 0.6rem; font-size: 0.95rem; line-height: 1.6; text-shadow: 2px 2px 0 #3f3f3f; }
+.score { margin-bottom: 1.8rem; }
+.score b { color: #ffff55; }
+.slime { display: block; width: 60px; height: 72px; margin: 0 auto 1rem; image-rendering: pixelated; }
+.btns { display: grid; gap: 0.7rem; max-width: 340px; margin: 0 auto; }
+.btn { display: block; padding: 0.75rem 1rem; font: inherit; font-size: 0.95rem; color: #f2f2f2; text-decoration: none; text-shadow: 2px 2px 0 #3a3a3a; background: #6f6f6f; border: 2px solid #000; box-shadow: inset 2px 2px 0 #a8a8a8, inset -2px -3px 0 #4a4a4a; }
+.btn:hover, .btn:focus-visible { background: #7b7b7b; border-color: #fff; outline: none; }
+[data-es] { display: none; }
+html[lang="es"] [data-en] { display: none; }
+html[lang="es"] [data-es] { display: inline; }
+</style>
+<script>
+(function(){var l=null;try{l=localStorage.getItem('mw-lang');}catch(e){}
+if(!l){l=(navigator.language||'').toLowerCase().indexOf('es')===0?'es':'en';}
+document.documentElement.lang=l==='es'?'es':'en';})();
+</script>
+</head>
+<body>
+<main>
+  <img class="slime" src="mod-tic-slime-ender.webp" width="80" height="96" alt="">
+  <h1><span data-en>You died!</span><span data-es>¡Has muerto!</span></h1>
+  <p><span data-en>This page doesn't exist, or I moved it.</span><span data-es>Esta página no existe, o la moví.</span></p>
+  <p class="score"><span data-en>Score: </span><span data-es>Puntuación: </span><b>404</b></p>
+  <div class="btns">
+    <a class="btn" href="./"><span data-en>Respawn</span><span data-es>Reaparecer</span></a>
+    <a class="btn" href="./#estimator"><span data-en>Get a quote</span><span data-es>Cotizar</span></a>
+  </div>
+</main>
+</body>
+</html>

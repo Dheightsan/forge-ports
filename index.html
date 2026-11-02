@@ -197,6 +197,7 @@
   </script>
   <!-- 2026-09-23: el LCP ya no es la captura sino el banner de la comunidad
        (comunidad.webp, un solo tamano, sin srcset), asi que basta el href.
+       Desde el 29-oct el hero usa comunidad-centro.webp (solo polilla y bloque).
        El LCP (la captura del hero) se descubria en el byte 145.221 del HTML, o
        sea al 46% del flujo: el navegador no sabia que existia hasta leer medio
        documento. Con el precargado empieza a pedirla de inmediato.
@@ -2109,6 +2110,9 @@
     .xp-bar { position: absolute; left: 0; right: 0; bottom: -6px; height: 6px; background: #101010; border-top: 1px solid #000; border-bottom: 1px solid #000; pointer-events: none; }
     .xp-bar span { position: absolute; inset: 0; background: linear-gradient(#b6ff6a 0 2px, #6fd62a 2px); transform: scaleX(0); transform-origin: left; }
     .xp-bar::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent calc(100% - 2px), #000 0) 0 0 / calc(100% / 18) 100% repeat-x; }
+    /* Cartel del Discord: solo la polilla y el bloque, como el hero (josda, 29-oct) */
+    .dc-invita .dc-inv-img--banner { width: auto; height: 120px; image-rendering: pixelated; }
+    @media (max-width: 600px) { .dc-invita .dc-inv-img--banner { width: auto; height: 150px; } }
     html[data-theme="light"] .est-form .est-label { color: #5a4330; }
     html[data-theme="light"] .est-form .tk-input { background: #fff; color: #2a1d12; border-color: #3a2a1a; }
     html[data-theme="light"] .est-form .tk-input::placeholder { color: #8d7f6d; }
@@ -3042,7 +3046,7 @@
     </div>
     <p class="proof-note port-more"><span data-i18n-en>Everything I've published is on my<a href="https://www.curseforge.com/members/danisansietev/projects" target="_blank" rel="noopener noreferrer" translate="no"> CurseForge </a>profile, and part of the code is on<a href="https://github.com/Dheightsan" target="_blank" rel="noopener noreferrer" translate="no"> GitHub</a>.</span><span data-i18n-es hidden>Todo lo que he publicado está en mi perfil de<a href="https://www.curseforge.com/members/danisansietev/projects" target="_blank" rel="noopener noreferrer" translate="no"> CurseForge</a>, y parte del código está en<a href="https://github.com/Dheightsan" target="_blank" rel="noopener noreferrer" translate="no"> GitHub</a>.</span></p>
     <aside class="dc-invita">
-      <img class="dc-inv-img dc-inv-img--banner" src="comunidad.webp" width="1024" height="459" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      <img class="dc-inv-img dc-inv-img--banner" src="comunidad-centro.webp" width="299" height="448" alt="" aria-hidden="true" loading="lazy" decoding="async">
       <div class="dc-inv-txt"><p class="dc-inv-t"><span data-i18n-en>Every new port gets posted on the<span translate="no"> Discord</span></span><span data-i18n-es hidden>Cada port nuevo lo publico en el<span translate="no"> Discord</span></span></p><p><span data-i18n-en>You can also suggest a mod there and vote on the ones others ask for.</span><span data-i18n-es hidden>Ahí también puedes proponer un mod y votar los que piden los demás.</span></p></div>
       <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" class="btn btn-discord"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg><span><span data-i18n-en>Join the<span translate="no"> Discord</span></span><span data-i18n-es hidden>Entra al<span translate="no"> Discord</span></span></span></a>
     </aside>
