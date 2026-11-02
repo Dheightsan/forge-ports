@@ -28,6 +28,7 @@ p { margin: 0 0 0.6rem; font-size: 0.95rem; line-height: 1.6; text-shadow: 2px 2
 [data-es] { display: none; }
 html[lang="es"] [data-en] { display: none; }
 html[lang="es"] [data-es] { display: inline; }
+.aviso { margin: 2rem 0 0; font-size: 0.7rem; color: #c9b8b0; text-shadow: none; }
 </style>
 <script>
 (function(){var l=null;try{l=localStorage.getItem('mw-lang');}catch(e){}
@@ -45,6 +46,7 @@ document.documentElement.lang=l==='es'?'es':'en';})();
     <a class="btn" href="./"><span data-en>Respawn</span><span data-es>Reaparecer</span></a>
     <a class="btn" href="./#estimator"><span data-en>Get a quote</span><span data-es>Cotizar</span></a>
   </div>
+  <p class="aviso" translate="no">NOT AN OFFICIAL MINECRAFT SERVICE. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.</p>
 </main>
 </body>
 </html>
