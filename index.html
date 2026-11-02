@@ -2091,6 +2091,20 @@
     .private-list li::before { left: 0.7rem; top: 0.75rem; width: 34px; height: 34px; box-sizing: border-box; background: #241b14 url(vin-candado.png) center / 24px 24px no-repeat; border: 2px solid #120c08; box-shadow: inset 2px 2px 0 rgba(0,0,0,0.45), inset -2px -2px 0 rgba(255,255,255,0.07); }
     html[data-theme="light"] .private-list li { background: #fffaf0; box-shadow: 0 4px 0 rgba(60,40,20,0.16); }
     html[data-theme="light"] .private-list li::before { background-color: #c9b99c; border-color: #3a2a1a; box-shadow: inset 2px 2px 0 rgba(60,40,20,0.25), inset -2px -2px 0 rgba(255,255,255,0.4); }
+    /* Servicios: separador punteado de pixeles y, al pasar, marco cuadrado del color de cada servicio */
+    .svc-list { border-top: 0; }
+    .svc-list .svc-row { border-bottom: 0; background: repeating-linear-gradient(90deg, #3a2c20 0 8px, transparent 8px 14px) left bottom / 100% 2px no-repeat; }
+    .svc-list .svc-row::before { border-radius: 0; background: var(--svc-soft); border: 2px solid var(--svc); box-shadow: 0 3px 0 rgba(0,0,0,0.3); }
+    html[data-theme="light"] .svc-list .svc-row { background-image: repeating-linear-gradient(90deg, #cdbb9a 0 8px, transparent 8px 14px); }
+    html[data-theme="light"] .svc-list .svc-row::before { box-shadow: 0 3px 0 rgba(60,40,20,0.14); }
+    /* Contacto: el cuadro del Discord con marco duro en vez de esquinas redondas */
+    #contact .discord-big img:not(.mw-peek) { border-radius: 4px; border: 2px solid #1b120c; box-shadow: 0 4px 0 rgba(0,0,0,0.38); }
+    html[data-theme="light"] #contact .discord-big img:not(.mw-peek) { box-shadow: 0 4px 0 rgba(60,40,20,0.16); }
+    #contact .btn-ghost { background: #2a2019; color: var(--text); border: 2px solid #1b120c; border-radius: 4px; box-shadow: 0 3px 0 rgba(0,0,0,0.38), inset 0 2px 0 rgba(255,255,255,0.06); }
+    #contact .btn-ghost:hover { background: #3a2c20; color: #f6ecd6; }
+    #contact .btn-ghost:active { transform: translateY(2px); box-shadow: 0 1px 0 rgba(0,0,0,0.38); }
+    html[data-theme="light"] #contact .btn-ghost { background: #efe3cc; color: #3a2a1d; box-shadow: 0 3px 0 rgba(60,40,20,0.16), inset 0 2px 0 rgba(255,255,255,0.5); }
+    html[data-theme="light"] #contact .btn-ghost:hover { background: #e6d6b8; }
     html[data-theme="light"] .est-form .est-label { color: #5a4330; }
     html[data-theme="light"] .est-form .tk-input { background: #fff; color: #2a1d12; border-color: #3a2a1a; }
     html[data-theme="light"] .est-form .tk-input::placeholder { color: #8d7f6d; }
