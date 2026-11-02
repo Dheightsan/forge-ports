@@ -9,6 +9,7 @@ Farmer's Delight by vectorwing (https://github.com/vectorwing/FarmersDelight), M
   mod-fd-tomate.png, mod-fd-repollo.png, mod-fd-cebolla.png, mod-fd-olla.png,
   mod-fd-hamburguesa.png, mod-fd-estufa.webp,
   mod-fd-estufa-olla.webp (lit stove drawn as a block with its own frames, cooking pot on top)
+  mod-fd-tomatera.webp (the eight growth stages of the tomato crop, one after another)
   mod-fd-cajas.png (tomato, cabbage and onion crates drawn as blocks from their textures)
 
 MIT License
