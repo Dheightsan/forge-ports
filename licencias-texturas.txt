@@ -7,7 +7,8 @@ frames. Nothing here is endorsed by those projects.
 
 Farmer's Delight by vectorwing (https://github.com/vectorwing/FarmersDelight), MIT License
   mod-fd-tomate.png, mod-fd-repollo.png, mod-fd-cebolla.png, mod-fd-olla.png,
-  mod-fd-pie.png, mod-fd-hamburguesa.png, mod-fd-estufa.webp
+  mod-fd-hamburguesa.png, mod-fd-estufa.webp
+  mod-fd-cajas.png (tomato, cabbage and onion crates drawn as blocks from their textures)
 
 MIT License
 
@@ -35,6 +36,7 @@ SOFTWARE.
 
 Tinkers' Construct by SlimeKnights (https://github.com/SlimeKnights/TinkersConstruct), MIT License
   mod-tic-slime-cielo.webp, mod-tic-slime-ender.webp
+  mod-tic-lingote.png, mod-tic-molde.png, mod-tic-pico.png, mod-tic-libro.png
 
 MIT License
 
@@ -234,36 +236,9 @@ Library.
 
 ----
 
-Mystical Agriculture by BlakeBr0 (https://github.com/BlakeBr0/MysticalAgriculture), MIT License
-  mod-ma-inferium.png, mod-ma-prudentium.png, mod-ma-tertium.png, mod-ma-imperium.png,
-  mod-ma-supremium.png, mod-ma-awakened-supremium.png
-
-MIT License
-
-Copyright (c) 2018 BlakeBr0
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
-----
-
 Storage Drawers by jaquadro (https://github.com/jaquadro/StorageDrawers), MIT License
   mod-sd-cajones.png (oak 2x2 drawer block, drawn from its front and side textures)
+  mod-sd-llave.png
 
 The MIT License (MIT)
 
@@ -291,6 +266,7 @@ SOFTWARE.
 
 Refined Storage by Refined Mods (https://github.com/refinedmods/refinedstorage2), MIT License
   mod-rs-controller.webp (Controller block drawn from its base and animated light textures)
+  mod-rs-disco.png, mod-rs-llave.png
 
 # The MIT License (MIT)
 
