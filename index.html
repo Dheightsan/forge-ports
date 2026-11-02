@@ -2030,6 +2030,8 @@
     .xp-bar { position: absolute; left: 0; right: 0; bottom: -6px; height: 6px; background: #101010; border-top: 1px solid #000; border-bottom: 1px solid #000; pointer-events: none; }
     .xp-bar span { position: absolute; inset: 0; background: linear-gradient(#b6ff6a 0 2px, #6fd62a 2px); transform: scaleX(0); transform-origin: left; }
     .xp-bar::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent calc(100% - 2px), #000 0) 0 0 / calc(100% / 18) 100% repeat-x; }
+    /* Casos sin logo: el item a 1 px por pixel de imagen dentro de la misma casilla de 96 px */
+    .mp-logo--item { box-sizing: border-box; padding: 16px; }
     /* Gracias: la tomatera de Farmer's Delight crece etapa por etapa con la gota encima */
     .px--tomatera { position: absolute; bottom: 100%; right: 0.4rem; width: 48px; height: 48px; margin-bottom: -2px; image-rendering: pixelated; }
     .credit .px--gota { right: 1.5rem; bottom: calc(100% + 54px); }
@@ -3460,6 +3462,9 @@
 
       <article class="mp-item">
         <div class="mp-head">
+          <div class="mp-logos">
+            <img class="mp-logo mp-logo--item" src="mod-iaf-huevo-verde.png" width="64" height="64" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          </div>
           <h3><span data-i18n-en>Seven mods with no spawns</span><span data-i18n-es hidden>Siete mods sin spawns</span></h3>
         </div>
         <p class="mp-hook"><span data-i18n-en>Seven mods loaded fine. Their mobs never showed up. All seven had the same misspelled folder: <code>biome_modifier</code> instead of <code>biome_modifiers</code>. <span translate="no">Forge </span>skipped it without a useful error. One letter was keeping seven mods from spawning anything.</span><span data-i18n-es hidden>Siete mods cargaban bien. Sus mobs no aparecían. Los siete tenían la misma carpeta mal escrita: <code>biome_modifier</code> en vez de <code>biome_modifiers</code>. <span translate="no">Forge </span>la ignoraba sin un error útil. Una letra estaba dejando fuera los spawns de siete mods.</span></p>
@@ -3527,6 +3532,9 @@
 
       <article class="mp-item">
         <div class="mp-head">
+          <div class="mp-logos">
+            <img class="mp-logo mp-logo--item" src="mod-rs-disco.png" width="64" height="64" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          </div>
           <h3><span data-i18n-en>I read 414<span translate="no"> jars </span>before letting one of them into my pack</span><span data-i18n-es hidden>Leí 414<span translate="no"> jars </span>antes de dejar entrar uno solo a mi pack</span></h3>
         </div>
         <p class="mp-hook"><span data-i18n-en>Sixty-seven contradicted my own notes. <strong>Eight could never have loaded at all.</strong> I only found out by opening every single one.</span><span data-i18n-es hidden>Sesenta y siete contradecían mis propias notas. <strong>Ocho no podrían haber cargado nunca.</strong> Solo me enteré abriéndolos uno por uno.</span></p>
@@ -3539,6 +3547,9 @@
 
       <article class="mp-item">
         <div class="mp-head">
+          <div class="mp-logos">
+            <img class="mp-logo mp-logo--item" src="mod-iaf-choque.png" width="64" height="64" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          </div>
           <h3><span data-i18n-en>Six mods whose only job was making other mods get along</span><span data-i18n-es hidden>Seis mods cuyo único trabajo era que otros mods se llevaran bien</span></h3>
         </div>
         <p class="mp-hook"><span data-i18n-en>I wrote all six. Then I deleted all six. <strong>Five of their names still live inside the mod that absorbed them</strong>, on purpose.</span><span data-i18n-es hidden>Escribí los seis. Después borré los seis. <strong>Cinco de sus nombres siguen viviendo dentro del mod que se los tragó</strong>, a propósito.</span></p>
