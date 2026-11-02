@@ -7,7 +7,8 @@ frames. Nothing here is endorsed by those projects.
 
 Farmer's Delight by vectorwing (https://github.com/vectorwing/FarmersDelight), MIT License
   mod-fd-tomate.png, mod-fd-repollo.png, mod-fd-cebolla.png, mod-fd-olla.png,
-  mod-fd-hamburguesa.png, mod-fd-estufa.webp
+  mod-fd-hamburguesa.png, mod-fd-estufa.webp,
+  mod-fd-estufa-olla.webp (lit stove drawn as a block with its own frames, cooking pot on top)
   mod-fd-cajas.png (tomato, cabbage and onion crates drawn as blocks from their textures)
 
 MIT License
