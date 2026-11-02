@@ -36,7 +36,8 @@ SOFTWARE.
 
 Tinkers' Construct by SlimeKnights (https://github.com/SlimeKnights/TinkersConstruct), MIT License
   mod-tic-slime-cielo.webp, mod-tic-slime-ender.webp
-  mod-tic-lingote.png, mod-tic-molde.png, mod-tic-pico.png, mod-tic-libro.png
+  mod-tic-lingote.png, mod-tic-molde.png, mod-tic-pico.png, mod-tic-libro.png,
+  mod-tic-fundidora.webp (smeltery controller drawn as a block, with its own animated front)
 
 MIT License
 
@@ -64,7 +65,7 @@ SOFTWARE.
 
 Ice and Fire by Alexthe666 (https://github.com/Alex-the-666/Ice_and_Fire), GNU LGPL 3.0
   mod-iaf-huevo-rojo.png, mod-iaf-huevo-hielo.png, mod-iaf-huevo-verde.png,
-  mod-iaf-huevo-rayo.png, mod-iaf-bestiario.png
+  mod-iaf-huevo-rayo.png, mod-iaf-bestiario.png, mod-iaf-choque.png (fire and ice eggs side by side)
   These files are distributed under the LGPL 3.0, reproduced below. The original
   textures are in the Ice and Fire repository linked above.
 
