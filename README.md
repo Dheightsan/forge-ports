@@ -23,7 +23,7 @@ Every job is **one fixed price for your specific mod**, scoped privately and agr
 
 1. **Message me on [Discord](https://discord.gg/EV8F84fheJ)** (fastest) or email **modwrightstudios@gmail.com** with the mod link and what you need. The [ticket builder](https://dheightsan.github.io/forge-ports/#estimator) writes a summary you can paste.
 2. I reply with a fixed price and a realistic timeline, in writing. No hourly billing, no surprise add-ons.
-3. Pay via Wise, or PayPal (Goods and Services) if you ask for it. Your first job carries no deposit whatever its size; after that, bigger jobs start on a deposit agreed in writing. You watch the build running before final payment.
+3. Pay via Wise. Your first job carries no deposit whatever its size; after that, bigger jobs start on a deposit agreed in writing. You watch the build running before final payment.
 
 ## Legal
 
