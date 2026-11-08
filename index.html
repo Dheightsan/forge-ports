@@ -1900,6 +1900,10 @@
     .port-card--cta { grid-column: 1 / -1; flex-direction: row; align-items: center; justify-content: center; flex-wrap: wrap; gap: 0.6rem 1.4rem; padding-top: 0.9rem; padding-bottom: 0.9rem; }
     .port-card--cta .ch--tarjeta { height: 96px !important; margin: 0; }
     .port-card--cta .port-cta-text strong { margin-bottom: 0; }
+    /* Con cinco fichas (2026-11-08, entran Quartz Elevator y Expanded Delight) queda un hueco al final
+       en tres y en dos columnas: la tarjeta de cotizar vuelve a ser una ficha mas y lo llena. */
+    .port-card--cta { grid-column: auto; flex-direction: column; align-items: center; text-align: center; }
+    .port-card--cta .btn { align-self: center; }
     /* En las fichas del pack propio acompañaban a la ficha por la derecha.
        EN_MODPACK esta vacia ahora mismo, asi que esto no pinta a nadie; se deja
        porque volver a llenar la lista tiene que bastar para recuperarlos. */
@@ -2696,11 +2700,71 @@
         </dl>
         <details class="more more--card">
           <summary><span data-i18n-en>Technical detail</span><span data-i18n-es hidden>Detalle técnico</span></summary>
-          <p><span data-i18n-en>48 classes moved onto<span translate="no"> Forge </span>registry events, with spawns as biome modifiers and the extra loot through<span translate="no"> LootTableLoadEvent</span>. I also fixed a block model that pointed at a missing texture, a bug the<span translate="no"> Fabric </span>original has too. On a dedicated server, natural colonies generate in new chunks and the gelatin shows up in ancient city loot. In the client I checked all 17 jellies and their effects.</span><span data-i18n-es hidden>48 clases pasadas a los eventos de registro de<span translate="no"> Forge</span>, con los spawns como biome modifiers y el botín extra por<span translate="no"> LootTableLoadEvent</span>. También arreglé un modelo de bloque que apuntaba a una textura que no existía, un fallo que también tiene el original de<span translate="no"> Fabric</span>. En un servidor dedicado, las colonias salen solas en chunks nuevos y la gelatina aparece en el botín de las ciudades antiguas. En el cliente revisé las 17 gelatinas y sus efectos.</span></p>
+          <p><span data-i18n-en>48 classes moved onto<span translate="no"> Forge </span>registry events, with spawns as biome modifiers and the extra loot through<span translate="no"> LootTableLoadEvent</span>. I also fixed a block model that pointed at a missing texture, a bug the<span translate="no"> Fabric </span>original has too. On a dedicated server, natural colonies generate in new chunks and the gelatin shows up in ancient city loot. In the client I checked all 17 jellies and their effects. Version 1.0.1 fixes a crash when<span translate="no"> Galosphere </span>is installed too.</span><span data-i18n-es hidden>48 clases pasadas a los eventos de registro de<span translate="no"> Forge</span>, con los spawns como biome modifiers y el botín extra por<span translate="no"> LootTableLoadEvent</span>. También arreglé un modelo de bloque que apuntaba a una textura que no existía, un fallo que también tiene el original de<span translate="no"> Fabric</span>. En un servidor dedicado, las colonias salen solas en chunks nuevos y la gelatina aparece en el botín de las ciudades antiguas. En el cliente revisé las 17 gelatinas y sus efectos. La versión 1.0.1 arregla un crash cuando también está instalado<span translate="no"> Galosphere</span>.</span></p>
         </details>
         <p class="port-link-ph"><span><span data-i18n-en>Original by<span translate="no"> Team Jelly</span>. This is an unofficial<span translate="no"> port</span>, and<span translate="no"> Team Jelly </span>has nothing to do with my paid work.</span><span data-i18n-es hidden>Original de<span translate="no"> Team Jelly</span>. Es un<span translate="no"> port </span>no oficial, y<span translate="no"> Team Jelly </span>no tiene nada que ver con mis encargos de pago.</span></span></span></p>
       </div>
 
+      <!-- Quartz Elevator (2026-11-08). Fuente: ficha de CurseForge publicada el 6-nov, BITACORA_PORTS.md (QA servidor 2-nov, cliente 5-nov), permissions/2026-11-02_quartz_elevator.md (verde, MIT). -->
+      <div class="port-card">
+        <div class="port-card-head">
+          <div class="port-badges">
+           <span class="badge--lic-mit" translate="no"> MIT</span>
+           <span class="badge--loader" translate="no"> Forge 1.20.1</span>
+          </div>
+          <span class="port-status"><span data-i18n-en>Free, code on<span translate="no"> GitHub</span></span><span data-i18n-es hidden>Gratis, código en<span translate="no"> GitHub</span></span></span>
+        </div>
+        <a class="port-title port-title--link" href="https://www.curseforge.com/minecraft/mc-mods/quartz-elevator-forge-port" target="_blank" rel="noopener noreferrer">
+          <img class="port-icon port-icon--cf port-icon--tile" src="mod-quartz-elevator.webp" width="108" height="108" alt="" loading="lazy" decoding="async">
+          <span class="port-title-t">
+            <h3 class="port-name" translate="no">Quartz Elevator</h3>
+            <span class="port-go"><span data-i18n-en>Open on<span translate="no"> CurseForge </span>&rarr;</span><span data-i18n-es hidden>Abrir en<span translate="no"> CurseForge </span>&rarr;</span></span>
+          </span>
+        </a>
+        <p class="port-path"><span class="pp pp--fabric"><img src="loader-fabric.webp" width="96" height="96" alt="" loading="lazy" decoding="async"><span translate="no">Fabric</span> 1.20.4</span><span class="pp-to"><svg class="pp-arrow" viewBox="0 0 9 7" aria-hidden="true" shape-rendering="crispEdges"><path d="M0 3h6v1H0zM5 1h1v5H5zM6 2h1v3H6zM7 3h1v1H7z"/></svg><span class="pp-sr"> &rarr; </span><span class="pp pp--forge"><img src="loader-forge.webp" width="96" height="96" alt="" loading="lazy" decoding="async"><span translate="no">Forge</span> 1.20.1</span></p>
+        <p class="port-desc"><span data-i18n-en><span translate="no">Aton-Kish</span>'s quartz elevators, taken from<span translate="no"> Fabric </span>1.20.4 back to<span translate="no"> Forge </span>1.20.1. Free, credited, and the code is on<span translate="no"> GitHub</span>.</span><span data-i18n-es hidden>Los ascensores de cuarzo de<span translate="no"> Aton-Kish</span>, llevados de<span translate="no"> Fabric </span>1.20.4 a<span translate="no"> Forge </span>1.20.1. Gratis, con crédito y con el código en<span translate="no"> GitHub</span>.</span></p>
+        <dl class="port-stats">
+          <div><dt><span data-i18n-en>Loader</span><span data-i18n-es hidden>Loader</span></dt><dd><span translate="no">Fabric </span>&rarr;<span translate="no"> Forge</span></dd></div>
+          <div><dt><span data-i18n-en>Version</span><span data-i18n-es hidden>Versión</span></dt><dd>1.20.4 &rarr; 1.20.1</dd></div>
+          <div><dt><span data-i18n-en>Source</span><span data-i18n-es hidden>Código</span></dt><dd><a href="https://github.com/Dheightsan/quartz-elevator-forge" target="_blank" rel="noopener noreferrer"><span data-i18n-en>Public on<span translate="no"> GitHub</span></span><span data-i18n-es hidden>Público en<span translate="no"> GitHub</span></span></a></dd></div>
+          <div><dt><span data-i18n-en>Tested</span><span data-i18n-es hidden>Probado</span></dt><dd><span data-i18n-en>Server and client</span><span data-i18n-es hidden>Servidor y cliente</span></dd></div>
+        </dl>
+        <details class="more more--card">
+          <summary><span data-i18n-en>Technical detail</span><span data-i18n-es hidden>Detalle técnico</span></summary>
+          <p><span data-i18n-en>The settings moved from Auto Config to a<span translate="no"> Forge </span>config file, with the same five options. Slimes don't fire<span translate="no"> Forge</span>'s jump event, so I kept the original mixins instead of switching to it. On a dedicated server and in the client I tested going up and down, both elevator types, the four recipes and reopening a saved world.</span><span data-i18n-es hidden>La configuración pasó de Auto Config a un archivo de<span translate="no"> Forge</span>, con las mismas cinco opciones. Los slimes no disparan el evento de salto de<span translate="no"> Forge</span>, así que mantuve los mixins del original en vez de usarlo. En un servidor dedicado y en el cliente probé subir y bajar, los dos tipos de ascensor, las cuatro recetas y reabrir un mundo guardado.</span></p>
+        </details>
+        <p class="port-link-ph"><span><span data-i18n-en>Original by<span translate="no"> Aton-Kish</span>, under the MIT licence. This is an unofficial<span translate="no"> port</span>.</span><span data-i18n-es hidden>Original de<span translate="no"> Aton-Kish</span>, con licencia MIT. Es un<span translate="no"> port </span>no oficial.</span></span></p>
+      </div>
+      <!-- Expanded Delight (2026-11-08). Fuente: ficha de CurseForge publicada el 7-nov, permissions/2026-11-06_expanded_delight.md (publicar gratis amarillo por MIT/CC0, riesgo bajo, con credito y aviso de no oficial). Sin repo publico: no se enlaza codigo. -->
+      <div class="port-card">
+        <div class="port-card-head">
+          <div class="port-badges">
+           <span class="badge--lic-mit" translate="no"> MIT</span>
+           <span class="badge--loader" translate="no"> Forge 1.20.1</span>
+          </div>
+          <span class="port-status"><span data-i18n-en>Free on<span translate="no"> CurseForge</span></span><span data-i18n-es hidden>Gratis en<span translate="no"> CurseForge</span></span></span>
+        </div>
+        <a class="port-title port-title--link" href="https://www.curseforge.com/minecraft/mc-mods/expanded-delight-forge-port" target="_blank" rel="noopener noreferrer">
+          <img class="port-icon port-icon--cf port-icon--tile" src="mod-expanded-delight.webp" width="108" height="108" alt="" loading="lazy" decoding="async">
+          <span class="port-title-t">
+            <h3 class="port-name" translate="no">Expanded Delight</h3>
+            <span class="port-go"><span data-i18n-en>Open on<span translate="no"> CurseForge </span>&rarr;</span><span data-i18n-es hidden>Abrir en<span translate="no"> CurseForge </span>&rarr;</span></span>
+          </span>
+        </a>
+        <p class="port-path"><span class="pp pp--fabric"><img src="loader-fabric.webp" width="96" height="96" alt="" loading="lazy" decoding="async"><span translate="no">Fabric</span> 1.20.1</span><span class="pp-to"><svg class="pp-arrow" viewBox="0 0 9 7" aria-hidden="true" shape-rendering="crispEdges"><path d="M0 3h6v1H0zM5 1h1v5H5zM6 2h1v3H6zM7 3h1v1H7z"/></svg><span class="pp-sr"> &rarr; </span><span class="pp pp--forge"><img src="loader-forge.webp" width="96" height="96" alt="" loading="lazy" decoding="async"><span translate="no">Forge</span> 1.20.1</span></p>
+        <p class="port-desc"><span data-i18n-en><span translate="no">ianm1647</span>'s addon for<span translate="no"> Farmer's Delight</span>, moved from<span translate="no"> Fabric </span>to<span translate="no"> Forge </span>1.20.1. The original never had a<span translate="no"> Forge </span>version there, and people kept asking for one in its comments.</span><span data-i18n-es hidden>El addon de<span translate="no"> ianm1647 </span>para<span translate="no"> Farmer's Delight</span>, pasado de<span translate="no"> Fabric </span>a<span translate="no"> Forge </span>1.20.1. El original nunca tuvo versión para<span translate="no"> Forge </span>ahí, y en sus comentarios la seguían pidiendo.</span></p>
+        <dl class="port-stats">
+          <div><dt><span data-i18n-en>Loader</span><span data-i18n-es hidden>Loader</span></dt><dd><span translate="no">Fabric </span>&rarr;<span translate="no"> Forge</span></dd></div>
+          <div><dt><span data-i18n-en>Version</span><span data-i18n-es hidden>Versión</span></dt><dd><span data-i18n-en>1.20.1, unchanged</span><span data-i18n-es hidden>1.20.1, sin cambio</span></dd></div>
+          <div><dt><span data-i18n-en>Bugs fixed</span><span data-i18n-es hidden>Fallos arreglados</span></dt><dd><span data-i18n-en>3 from the original</span><span data-i18n-es hidden>3 del original</span></dd></div>
+          <div><dt><span data-i18n-en>Tested</span><span data-i18n-es hidden>Probado</span></dt><dd><span data-i18n-en>Server and client</span><span data-i18n-es hidden>Servidor y cliente</span></dd></div>
+        </dl>
+        <details class="more more--card">
+          <summary><span data-i18n-en>Technical detail</span><span data-i18n-es hidden>Detalle técnico</span></summary>
+          <p><span data-i18n-en>I fixed three bugs the original 0.3.2 also has. The cinnamon sapling had no model, neither did the cinnamon log placed sideways, and the sapling never grew. Recipe and loot tags now use the<span translate="no"> Forge </span>ones. In the client I used the mortar and the juicer, grew and harvested asparagus and reopened the world. I still haven't found a cinnamon tree in the jungles I checked.</span><span data-i18n-es hidden>Arreglé tres fallos que también tiene el original 0.3.2. El brote de canela no tenía modelo, el tronco de canela puesto de lado tampoco, y el brote nunca crecía. Las etiquetas de recetas y botín ahora son las de<span translate="no"> Forge</span>. En el cliente usé el mortero y el exprimidor, planté y coseché espárragos y reabrí el mundo. Todavía no encuentro un árbol de canela en las junglas que revisé.</span></p>
+        </details>
+        <p class="port-link-ph"><span><span data-i18n-en>Original by<span translate="no"> ianm1647</span>. This is an unofficial<span translate="no"> port</span>.</span><span data-i18n-es hidden>Original de<span translate="no"> ianm1647</span>. Es un<span translate="no"> port </span>no oficial.</span></span></p>
+      </div>
       <div class="port-card port-card--cta">
     <img class="ch ch--tarjeta" src="h512-33.webp" width="256" height="242" style="height:168px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <div class="port-cta-text">
