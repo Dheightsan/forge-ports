@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; frame-src 'none'">
+<script>
+/* El tema claro de esta pagina existia en el CSS pero era inalcanzable: el
+   <html> traia data-theme="dark" fijo y nada lo cambiaba nunca. Quien elige
+   claro en la portada aterrizaba aqui en oscuro. Se lee la misma clave que
+   guarda la portada y, si no hay eleccion, la preferencia del sistema. Va en
+   el <head> y sin defer para que no haya parpadeo antes de pintar. */
+(function(){try{var r=document.documentElement,s=null;
+try{s=localStorage.getItem('mw-theme');}catch(e){}
+if(!s&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches){s='light';}
+r.setAttribute('data-theme',s==='light'?'light':'dark');}catch(e){}})();
+</script>
+<title>Porting a Forge 1.20.1 mod to NeoForge 1.21.1: what breaks quietly | Modwright</title>
+<meta name="description" content="What changes when you move a Forge 1.20.1 mod to NeoForge 1.21.1: renamed data folders, food read from the stack, removed tags, and the failures that log nothing.">
+<link rel="canonical" href="https://dheightsan.github.io/forge-ports/forge-to-neoforge-1-21-1.html">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon-180.png">
+<meta property="og:title" content="Porting a Forge 1.20.1 mod to NeoForge 1.21.1: what breaks quietly">
+<meta property="og:description" content="What changes when you move a Forge 1.20.1 mod to NeoForge 1.21.1: renamed data folders, food read from the stack, removed tags, and the failures that log nothing.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://dheightsan.github.io/forge-ports/forge-to-neoforge-1-21-1.html">
+<meta property="og:image" content="https://dheightsan.github.io/forge-ports/og-2026-0901b.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Modwright: Minecraft mod porting and backporting">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"TechArticle",
+      "image": "https://dheightsan.github.io/forge-ports/og-2026-0901b.jpg",
+"datePublished":"2026-11-08","dateModified": "2026-11-08",
+"headline":"Porting a Forge 1.20.1 mod to NeoForge 1.21.1: what breaks quietly",
+"description":"A practical account of moving a Forge 1.20.1 mod to NeoForge 1.21.1, from two real ports, including the changes that compile clean and fail without an error.",
+"author":{"@type":"Person","@id":"https://dheightsan.github.io/forge-ports/#danisansietev","name":"danisansietev","url":"https://dheightsan.github.io/forge-ports/"},
+"publisher":{"@type":"Organization","@id":"https://dheightsan.github.io/forge-ports/#modwright","name":"Modwright","url":"https://dheightsan.github.io/forge-ports/",
+        "logo": {"@type": "ImageObject", "url": "https://dheightsan.github.io/forge-ports/logo-cuy-v3.webp"}
+      },
+"inLanguage":"en",
+"about":["Minecraft modding","Forge","NeoForge","mod porting"],
+"mainEntityOfPage":"https://dheightsan.github.io/forge-ports/forge-to-neoforge-1-21-1.html"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Modwright","item":"https://dheightsan.github.io/forge-ports/"},{"@type":"ListItem","position":2,"name":"Porting a Forge 1.20.1 mod to NeoForge 1.21.1","item":"https://dheightsan.github.io/forge-ports/forge-to-neoforge-1-21-1.html"}]}
+</script>
+<style>
+  @font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 400; font-display: swap; src: url('fonts/space-grotesk-400-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  @font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 600; font-display: swap; src: url('fonts/space-grotesk-600-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  @font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 700; font-display: swap; src: url('fonts/space-grotesk-700-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+  :root {
+    --bg: #14100c; --surface: #211812; --surface2: #2a1f15;
+    --border: #2a2823; --border-lt: #3c382f;
+    --copper: #c07e3c; --gold: #cba14a; --brick: #c14a3c;
+    --text: #eae4d6; --text-soft: #b0a896; --text-mute: #8d8372;
+    --radius: 8px; --max: 760px;
+    --font: 'Space Grotesk', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  }
+  html[data-theme="light"] {
+    --bg: #faf7f1; --surface: #fff; --surface2: #f3ede2;
+    --border: #e2dccf; --border-lt: #cfc7b5;
+    --text: #241c14; --text-soft: #4f463a; --text-mute: #6d6355;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { overflow-x: clip; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font); font-size: 1rem; line-height: 1.72; -webkit-font-smoothing: antialiased; }
+  :focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; border-radius: 2px; }
+  a { color: var(--copper); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .skip { position: absolute; left: -9999px; }
+  .skip:focus { left: 1rem; top: 1rem; background: var(--surface2); padding: 0.6rem 1rem; border-radius: var(--radius); z-index: 10; }
+
+  header.bar { border-bottom: 1px solid var(--border); background: var(--bg); }
+  .bar-in { max-width: var(--max); margin: 0 auto; padding: 0.9rem 1.4rem; display: flex; align-items: center; gap: 0.65rem; }
+  .cuy { width: 46px; height: 46px; flex-shrink: 0; background: url('logo-cuy-v2.webp') center/contain no-repeat; }
+  .bar-in strong { font-weight: 600; font-size: 1.1rem; }
+  .bar-in .back { margin-left: auto; font-size: 0.9rem; color: var(--text-soft); }
+
+  main { max-width: var(--max); margin: 0 auto; padding: 3rem 1.4rem 4rem; }
+  .kicker { color: var(--text-mute); font-size: 0.82rem; letter-spacing: 0.09em; text-transform: uppercase; margin-bottom: 0.9rem; }
+  h1 { font-size: clamp(1.9rem, 5.5vw, 2.7rem); font-weight: 700; line-height: 1.14; letter-spacing: -0.01em; overflow-wrap: anywhere; min-width: 0; margin-bottom: 1.1rem; }
+  h2 { font-size: clamp(1.25rem, 3.4vw, 1.55rem); font-weight: 600; line-height: 1.25; margin: 2.9rem 0 0.85rem; overflow-wrap: anywhere; }
+  h3 { font-size: 1.05rem; font-weight: 600; margin: 1.7rem 0 0.5rem; }
+  p { margin-bottom: 1.05rem; color: var(--text-soft); }
+  p.lede { font-size: 1.1rem; color: var(--text); }
+  strong { color: var(--text); font-weight: 600; }
+  ul, ol { margin: 0 0 1.05rem 1.15rem; color: var(--text-soft); }
+  li { margin-bottom: 0.5rem; }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.9em; background: var(--surface2); border: 1px solid var(--border); border-radius: 4px; padding: 0.1em 0.38em; color: var(--text); overflow-wrap: anywhere; }
+  .tablewrap { overflow-x: auto; margin-bottom: 1.3rem; border: 1px solid var(--border); border-radius: var(--radius); }
+  table { border-collapse: collapse; width: 100%; min-width: 420px; font-size: 0.93rem; }
+  th, td { text-align: left; padding: 0.7rem 0.9rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { color: var(--text); font-weight: 600; background: var(--surface2); }
+  tr:last-child td { border-bottom: none; }
+  td { color: var(--text-soft); }
+  .note { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--copper); border-radius: var(--radius); padding: 1.1rem 1.3rem; margin: 1.5rem 0; }
+  .note p:last-child { margin-bottom: 0; }
+  .silent { border-left-color: var(--brick); }
+  .byline { margin-top: 2.2rem; padding-top: 1.2rem; border-top: 1px solid var(--border); font-size: 0.85rem; color: var(--text-mute); line-height: 1.65; }
+  .byline a { color: var(--copper); }
+  .cta { background: var(--surface); border: 1px solid var(--border-lt); border-radius: var(--radius); padding: 1.6rem; margin-top: 3rem; }
+  .cta p:last-child { margin-bottom: 0; }
+  .btn { display: inline-block; background: var(--copper); color: #17110b; font-weight: 600; padding: 0.72rem 1.25rem; border-radius: var(--radius); margin-top: 0.4rem; }
+  .btn:hover { text-decoration: none; filter: brightness(1.08); }
+  footer { border-top: 1px solid var(--border); margin-top: 3.5rem; padding: 1.8rem 1.4rem; text-align: center; color: var(--text-mute); font-size: 0.85rem; }
+  @media (max-width: 480px) { .bar-in strong { display: none; } main { padding-top: 2.2rem; } }
+
+/* Caricaturas al margen (tanda del 19-08). Mismas piezas que la portada, asi
+   que quien viene de alli las tiene ya en cache. `main` mide 760 px centrados
+   y van pegadas por fuera a esa columna, no al borde de la pantalla.
+   El `top` va en PIXELES desde el inicio de main: en porcentaje, un articulo
+   que crece al traducirse las arrastra. Se fija SOLO el alto (`--h`) y el
+   ancho se deduce, que es la unica forma de que no se deformen.
+   Por debajo de 1100 px no hay hueco y se apagan: aqui manda el texto. */
+main { position: relative; }
+.ch { position: absolute; z-index: 1; pointer-events: none; user-select: none;
+      width: auto; height: var(--h); image-rendering: pixelated;
+      filter: drop-shadow(0 6px 14px rgba(0,0,0,0.5)); }
+main > * { position: relative; z-index: 2; }
+@media (max-width: 1100px) { .ch { display: none; } }
+
+/* 2026-10-29: misma marca que la portada. Titulares en Monocraft con relieve,
+   paneles y botones con borde oscuro y sombra dura, y el logo nuevo. */
+@font-face { font-family: 'Monocraft'; font-style: normal; font-weight: 700; font-display: swap; src: url('fonts/monocraft-700-latin.woff2') format('woff2'); }
+.cuy { background-image: url('logo-cuy-v3.webp'); }
+h1, h2 { font-family: 'Monocraft', var(--font); font-weight: 700; letter-spacing: 0.01em; }
+h1 { --rot: #df7932; --rot-d: #8a3f12; font-size: clamp(1.5rem, 4.2vw, 2.15rem); line-height: 1.3; color: var(--rot); padding-bottom: 6px;
+     text-shadow: 2px 0 0 #1b120c, -2px 0 0 #1b120c, 0 2px 0 #1b120c, 0 -2px 0 #1b120c, 2px 2px 0 #1b120c, -2px 2px 0 #1b120c, 2px -2px 0 #1b120c, -2px -2px 0 #1b120c,
+                  0 4px 0 var(--rot-d), 2px 4px 0 var(--rot-d), -2px 4px 0 var(--rot-d), 0 6px 0 #1b120c, 2px 6px 0 #1b120c, -2px 6px 0 #1b120c; }
+h2 { font-size: clamp(1.1rem, 3vw, 1.35rem); line-height: 1.35; color: #e4d9bc; text-shadow: 2px 2px 0 #1b120c; }
+html[data-theme="light"] h2 { color: #5a4330; text-shadow: 2px 2px 0 rgba(60,40,20,0.18); }
+.kicker { display: inline-block; padding: 3px 9px; background: #3a2a1d; color: #f6ecd6; border: 2px solid #1b120c; font-family: 'Monocraft', ui-monospace, monospace; font-weight: 700; font-size: 0.7rem; letter-spacing: 0.06em; }
+html[data-theme="light"] .kicker { background: #5a4330; color: #fff4e2; }
+.tablewrap, .note, .cta { border: 2px solid #1b120c; border-radius: 4px; box-shadow: 0 4px 0 rgba(0,0,0,0.38); }
+.note { box-shadow: 0 4px 0 rgba(0,0,0,0.38), inset 4px 0 0 var(--copper); border-left-width: 2px; }
+.silent { box-shadow: 0 4px 0 rgba(0,0,0,0.38), inset 4px 0 0 var(--brick); }
+html[data-theme="light"] :is(.tablewrap, .cta) { box-shadow: 0 4px 0 rgba(60,40,20,0.16); }
+html[data-theme="light"] .note { box-shadow: 0 4px 0 rgba(60,40,20,0.16), inset 4px 0 0 var(--copper); }
+html[data-theme="light"] .silent { box-shadow: 0 4px 0 rgba(60,40,20,0.16), inset 4px 0 0 var(--brick); }
+th { font-family: 'Monocraft', var(--font); font-size: 0.82rem; }
+code { font-family: 'Monocraft', ui-monospace, monospace; font-size: 0.8em; background: #120d09; color: #8fe0a0; border: 1px solid #000; border-radius: 0; }
+html[data-theme="light"] code { background: #2b2117; color: #9fe8ae; }
+.btn { font-family: 'Monocraft', var(--font); font-weight: 700; color: #1b120c; background: #df7932; border: 2px solid #1b120c; border-radius: 4px; box-shadow: 0 3px 0 rgba(0,0,0,0.38), inset 0 2px 0 rgba(255,255,255,0.25); }
+.btn:hover { filter: none; background: #e88a48; }
+.btn--alt { background: transparent; color: var(--text, #f2e6d6); border-color: #df7932; margin-left: 0.4rem; }
+.btn--alt:hover { background: rgba(223,121,50,0.14); }
+.btn:active { transform: translateY(2px); box-shadow: 0 1px 0 rgba(0,0,0,0.38); }
+
+/* 2026-11-02: barra de experiencia del juego como barra de lectura, fija arriba */
+.xp-bar { position: fixed; left: 0; right: 0; top: 0; z-index: 50; height: 6px; background: #101010; border-bottom: 1px solid #000; pointer-events: none; }
+.xp-bar span { position: absolute; inset: 0; background: linear-gradient(#b6ff6a 0 2px, #6fd62a 2px); transform: scaleX(0); transform-origin: left; }
+.xp-bar::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent calc(100% - 2px), #000 0) 0 0 / calc(100% / 18) 100% repeat-x; }
+footer .aviso-mojang { margin: 0.8rem 0 0; font-size: 0.75rem; }
+</style>
+
+  <meta property="og:site_name" content="Modwright">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Porting a Forge 1.20.1 mod to NeoForge 1.21.1: what breaks quietly">
+  <meta name="twitter:description" content="What changes when you move a Forge 1.20.1 mod to NeoForge 1.21.1: renamed data folders, food read from the stack, removed tags, and the failures that log nothing.">
+  <meta name="twitter:image" content="https://dheightsan.github.io/forge-ports/og-2026-0901b.jpg"></head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="xp-bar" aria-hidden="true"><span></span></div>
+<header class="bar">
+  <div class="bar-in">
+    <span class="cuy" role="img" aria-label="Modwright logo"></span>
+    <strong translate="no">Modwright</strong>
+    <a class="back" href="./">Services and pricing</a>
+  </div>
+</header>
+
+<main id="main">
+  <img class="ch" src="mw-eri2-00.webp" width="161" height="240" style="right:calc(50% + 380px + 18px);top:320px;--h:110px" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch" src="mw-cuy2-10.webp" width="286" height="286" style="left:calc(50% + 380px + 18px);top:1250px;--h:135px" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch" src="mw-eri2-20.webp" width="259" height="316" style="right:calc(50% + 380px + 18px);top:2000px;--h:110px" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch" src="mw-cuy2-21.webp" width="288" height="275" style="left:calc(50% + 380px + 18px);top:2950px;--h:143px" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <div class="kicker">Field notes</div>
+  <h1>Porting a<span translate="no"> Forge </span>1.20.1 mod to<span translate="no"> NeoForge </span>1.21.1: what breaks quietly</h1>
+
+  <p class="lede">Most of the errors in this move show up the moment you compile, and they are the easy part. The ones worth writing down compile clean, start the game without a warning, and only show up when somebody plays. These are the ones I hit.</p>
+
+  <p>Everything below comes from two real ports.<span translate="no"> Mindful Eating</span>, camcam_burger's food-variety mod, which I took from<span translate="no"> Forge </span>1.20.1 to<span translate="no"> NeoForge </span>1.21.1 and handed back to its creator. And the<span translate="no"> NeoForge </span>1.21.1 version of<span translate="no"> Puppy Paws</span>, a dog mod with five breeds on<span translate="no"> GeckoLib </span>that I had already moved to<span translate="no"> Forge </span>from its released jar.</p>
+
+  <h2>1. The part the compiler handles for you</h2>
+  <p><code>mods.toml</code> becomes <code>neoforge.mods.toml</code>, and <code>mandatory=true</code> on a dependency becomes <code>type="required"</code>. Registration moves to the<span translate="no"> NeoForge </span><code>DeferredRegister</code> helpers. The resource <code>pack_format</code> goes from 15 to 34. None of this is hard, and the build tells you where every piece is.</p>
+  <p><span translate="no"> GeckoLib </span>is the one that looks scarier than it is. Version 4.8.3 exists for both, but in 1.21.1 the <code>core</code> package is flattened: <code>core.animation</code> is now <code>animation</code>, <code>core.animatable</code> is now <code>animatable</code>, and <code>CoreGeoBone</code> becomes <code>cache.object.GeoBone</code>. The models, renderers and animation calls keep the same signatures. It is a long list of imports, not a rewrite.</p>
+
+  <h2>2. Data folders were renamed, and a wrong name fails silently</h2>
+  <p>1.21 moved most data folders to singular: <code>recipes</code> to <code>recipe</code>, <code>loot_tables</code> to <code>loot_table</code>, <code>advancements</code> to <code>advancement</code>, <code>tags/items</code> to <code>tags/item</code>, <code>tags/blocks</code> to <code>tags/block</code>. Biome modifiers move from <code>forge/biome_modifier</code> to <code>neoforge/biome_modifier</code>, and <code>"forge:add_spawns"</code> becomes <code>"neoforge:add_spawns"</code>. In a recipe, the result changes from <code>{"item": ...}</code> to <code>{"id": ...}</code>.</p>
+  <p>Miss one and nothing complains. The game skips a folder it does not recognise, so your recipes or your spawns are simply not there. I stopped trusting my memory for these and read the path from the decompiled sources instead: <code>Registries.elementsDirPath</code> gives the exact folder name for any registry.</p>
+
+  <h2>3. Food is read from the stack now</h2>
+  <p>This one cost me a heal that never happened. In 1.20.1 it was normal to shrink the stack first and ask for the food values after, because the values came from the item. In 1.21 they come from the stack. Once the last piece is eaten the stack is empty, the food values come back <code>null</code>, and the last bite does nothing. No error, no log line.</p>
+  <p>Two related changes from the dog mod: <code>Animal#isFood</code> is now abstract, so a base class that never overrode it stops compiling, and <code>FoodProperties#isMeat</code> is gone. The replacement for "meat a dog will eat" is the tag vanilla wolves use, <code>ItemTags.WOLF_FOOD</code>.</p>
+
+  <h2>4. Methods that vanished from the parent stay in your code, dead</h2>
+  <p>If you rebuilt a mod from its jar, as I did with<span translate="no"> Puppy Paws</span>, the decompiled code has almost no <code>@Override</code> annotations. When a method disappears from the parent class, yours keeps compiling and is simply never called. <code>getStandingEyeHeight</code> was removed in 1.20.5 and is the classic one. The fix is boring. Go through every override against the 1.21.1 sources, one by one.</p>
+
+  <h2>5. Some tags you relied on no longer exist</h2>
+  <p><code>minecraft:music_discs</code> was how the jukebox decided what it accepted. In 1.21 that job moved to a component, and vanilla neither defines nor reads that tag any more. A copied <code>music_discs.json</code> just sits there. Other mods ask through the convention tag <code>c:music_discs</code>, which<span translate="no"> NeoForge </span>fills with the vanilla discs.</p>
+  <p>Discs themselves left the code. <code>RecordItem</code> is gone; a disc is a plain item with a <code>jukebox_playable</code> song, and the song is a JSON file with its sound, description and length in seconds. The old seconds-versus-ticks trap of 1.20.1 goes with it. The rule I took from this is that when you port, a tag is not carried over, it is looked up again.</p>
+
+  <h2>6. Per-player data: capabilities become data attachments</h2>
+  <p><span translate="no">Mindful Eating</span> kept per-player state in a capability, through a library. Its creator suggested moving it to<span translate="no"> NeoForge </span>data attachments, which are built in, and that let the port drop the library dependency completely. Before sending the jar I checked it had no references left to the old library, because its licence does not allow bundling it. The food-stat tweaks moved to the 1.21 component system in the same pass.</p>
+
+  <h2>7. How I check it without trusting my eyes</h2>
+  <ul>
+    <li><strong>Recipes, by counting.</strong> The log prints how many recipes loaded. Count vanilla's own recipe files and the difference is yours. If it is short, a folder name is wrong.</li>
+    <li><strong>Entity attributes, at boot.</strong><span translate="no"> NeoForge </span>validates them when the registry freezes and prints <code>has no attributes</code> for every entity missing them. Zero of those lines means they are all there.</li>
+    <li><strong><span translate="no">GeckoLib</span> bones, cold.</strong> Cross every bone the code asks for against the model file before launching anything. I wrote up <a href="geckolib-bone-name-crash.html">why that crash gets past every compiler</a>.</li>
+    <li><strong>Libraries at runtime too.</strong> A library declared only for compiling builds a correct jar, but the development server refuses to start without it. Declare it for runtime as well, or you cannot boot-test.</li>
+  </ul>
+  <p>None of this replaces playing it. A dedicated server never loads a model or a texture, so a server that starts clean says nothing about the client.</p>
+
+  <div class="cta">
+    <p><strong>If you would rather hand it off.</strong></p>
+    <p>I port, backport and revive Minecraft mods, and<span translate="no"> Forge </span>1.20.1 is where I work most. I check the licence before quoting, give a fixed price in writing before any payment, and boot test every build in a real instance before it goes out.</p>
+    <p><a class="btn" href="./#estimator">Get a quote</a> <a class="btn btn--alt" href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer">Price your mod on Discord</a></p>
+  </div>
+<hr>
+<p><strong>What this costs.</strong> A version jump like this one is one of the walls I describe in <a href="mod-porting-cost.html">what a mod port costs, and why</a>. If the mod is on<span translate="no"> Fabric </span>instead, start with <a href="fabric-to-forge-1-20-1.html">what breaks in a<span translate="no"> Fabric </span>to<span translate="no"> Forge </span>port</a>.</p>
+  <p class="byline">Written by <strong translate="no">danisansietev</strong>,<span translate="no"> Forge </span>1.20.1 mod porting. Last updated November 2026. Questions, corrections or a mod you need moved: open a ticket on <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer">my<span translate="no"> Discord</span></a>.</p>
+</main>
+
+<footer>
+ <span translate="no"> Modwright </span>&middot; <a href="./">Services and pricing</a> &middot; <a href="./#legal">Terms</a> &middot; <a href="mod-porting-cost.html">What a port costs</a> &middot; <a href="fabric-to-forge-1-20-1.html"><span translate="no">Fabric </span>to<span translate="no"> Forge</span>: what breaks</a> &middot; <a href="geckolib-bone-name-crash.html"><span translate="no">GeckoLib </span>bone crash</a>
+ &middot; <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer">Discord</a>
+ <p class="aviso-mojang" translate="no">NOT AN OFFICIAL MINECRAFT SERVICE. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.</p></footer>
+<script>
+// Barra de lectura: se llena con lo que llevas del articulo.
+(function () {
+  var bar = document.querySelector('.xp-bar span'), pend = false;
+  if (!bar) return;
+  function pinta() {
+    pend = false;
+    var max = document.documentElement.scrollHeight - innerHeight;
+    bar.style.transform = 'scaleX(' + (max > 0 ? Math.min(1, scrollY / max) : 0) + ')';
+  }
+  addEventListener('scroll', function () { if (!pend) { pend = true; requestAnimationFrame(pinta); } }, { passive: true });
+  addEventListener('resize', pinta);
+  pinta();
+})();
+</script>
+</body>
+</html>
