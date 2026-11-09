@@ -207,7 +207,7 @@ footer .aviso-mojang { margin: 0.8rem 0 0; font-size: 0.75rem; }
   <p>Discs themselves left the code. <code>RecordItem</code> is gone; a disc is a plain item with a <code>jukebox_playable</code> song, and the song is a JSON file with its sound, description and length in seconds. The old seconds-versus-ticks trap of 1.20.1 goes with it. The rule I took from this is that when you port, a tag is not carried over, it is looked up again.</p>
 
   <h2>6. Per-player data: capabilities become data attachments</h2>
-  <p><span translate="no">Mindful Eating</span> kept per-player state in a capability, through a library. Its creator suggested moving it to<span translate="no"> NeoForge </span>data attachments, which are built in, and that let the port drop the library dependency completely. Before sending the jar I checked it had no references left to the old library, because its licence does not allow bundling it. The food-stat tweaks moved to the 1.21 component system in the same pass.</p>
+  <p><span translate="no">Mindful Eating</span> kept per-player state in a capability, through a library. Its creator suggested dropping that library, so I moved the state to<span translate="no"> NeoForge </span>data attachments, which are built in, and the port no longer depends on it. Before sending the jar I checked it had no references left to the old library, because its licence does not allow bundling it. The food-stat tweaks moved to the 1.21 component system in the same pass.</p>
 
   <h2>7. How I check it without trusting my eyes</h2>
   <ul>
@@ -220,7 +220,7 @@ footer .aviso-mojang { margin: 0.8rem 0 0; font-size: 0.75rem; }
 
   <div class="cta">
     <p><strong>If you would rather hand it off.</strong></p>
-    <p>I port, backport and revive Minecraft mods, and<span translate="no"> Forge </span>1.20.1 is where I work most. I check the licence before quoting, give a fixed price in writing before any payment, and boot test every build in a real instance before it goes out.</p>
+    <p>If your mod is on<span translate="no"> Forge </span>1.20.1 and you need it on<span translate="no"> NeoForge </span>1.21.1, send it to me. I check the licence first, tell you a fixed price before you pay anything, and you see it working in game before you pay the rest.</p>
     <p><a class="btn" href="./#estimator">Get a quote</a> <a class="btn btn--alt" href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer">Price your mod on Discord</a></p>
   </div>
 <hr>
