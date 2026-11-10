@@ -1252,6 +1252,9 @@
     .port-desc { color: var(--text-soft); font-size: 0.9rem; line-height: 1.6; margin-bottom: 0.9rem;font-family: var(--font-body); }
                 .port-link-ph { font-size: 0.74rem; color: var(--text-mute); }
     .dc-como { margin-top: 0.4rem; font-size: 0.85rem; }
+    .trabajo-video { margin: 1.1rem 0 0.4rem; }
+    .trabajo-video video { display: block; width: 100%; max-width: 720px; height: auto; aspect-ratio: 16 / 9; background: #000; border: 3px solid #1b120c; }
+    .trabajo-video figcaption { margin-top: 0.5rem; font-size: 0.88rem; color: var(--text-soft); max-width: 720px; }
     .port-notas { display: inline-block; margin: 0.2rem 0 0.4rem; font-size: 0.85rem; }
     .port-card--cta { display: flex; flex-direction: column; gap: 0.8rem; justify-content: center; background: var(--green-glow); border-color: var(--green-ring); }
     .port-cta-text strong { display: block; font-size: 1.04rem; margin-bottom: 0.3rem; }
@@ -2362,6 +2365,9 @@
       });
     })();
   </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"VideoObject","name":"Recrafted Moves poses in third person, compat addon for a Forge 1.20.1 pack","description":"A compatibility addon made for a client's Forge 1.20.1 modpack: Recrafted Moves keeps its poses in third person while climbing, throwing, guarding and gliding, alongside Serious Player Animations and Better Combat.","thumbnailUrl":"https://dheightsan.github.io/forge-ports/trabajo-poses-tercera-persona.webp","uploadDate":"2026-11-10","duration":"PT22S","contentUrl":"https://dheightsan.github.io/forge-ports/trabajo-poses-tercera-persona.mp4","inLanguage":"en"}
+  </script>
 </head>
 <body>
 <a href="#hero" class="skip"><span data-i18n-en hidden>Skip to content</span><span data-i18n-es>Saltar al contenido</span></a>
@@ -2812,6 +2818,12 @@
         <li><span data-i18n-en hidden>A compatibility resource pack between two mods in his pack, keeping the<span translate="no"> GPLv3 </span>licence and credit of the pack it builds on.</span><span data-i18n-es>Un resource pack de compatibilidad entre dos mods de su pack, respetando la licencia<span translate="no"> GPLv3 </span>y el crédito del pack en el que se apoya.</span></li>
         <li><span data-i18n-en hidden>An addon so a movement and combat mod gets along with his stamina and animation mods, with a switch for each move.</span><span data-i18n-es>Un addon para que un mod de movimiento y combate funcione con sus mods de stamina y animaciones, con un interruptor para cada movimiento.</span></li>
       </ul>
+      <figure class="trabajo-video">
+        <video muted loop playsinline preload="none" width="1280" height="720" poster="trabajo-poses-tercera-persona.webp" aria-label="Poses de Recrafted Moves en tercera persona">
+          <source src="trabajo-poses-tercera-persona.mp4" type="video/mp4">
+        </video>
+        <figcaption><span data-i18n-en hidden>Part of that third job, delivered this week: with the addon,<span translate="no"> Recrafted Moves </span>keeps its own poses in third person when you climb, throw, guard or glide, while<span translate="no"> Serious Player Animations </span>and<span translate="no"> Better Combat </span>handle the rest.<span translate="no"> Recrafted Moves </span>is by<span translate="no"> DudGames</span>, and the addon only works alongside it.</span><span data-i18n-es>Parte de ese tercer encargo, entregada esta semana: con el addon,<span translate="no"> Recrafted Moves </span>mantiene sus propias poses en tercera persona al trepar, lanzar, cubrirse o planear, mientras<span translate="no"> Serious Player Animations </span>y<span translate="no"> Better Combat </span>se encargan del resto.<span translate="no"> Recrafted Moves </span>es de<span translate="no"> DudGames</span>, y el addon solo funciona junto a él.</span></figcaption>
+      </figure>
     </div>
 
     <div class="shelf bench">
@@ -3861,5 +3873,16 @@ async function copySummary(text, { clipboard, document: doc, summaryElement }) {
 </script>
 
 <script data-goatcounter="https://modwright.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script>
+// Video del trabajo: no se descarga hasta que se acerca a la pantalla, y se pausa al salir.
+(function () {
+  var v = document.querySelector('.trabajo-video video');
+  if (!v || !('IntersectionObserver' in window)) return;
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) { v.controls = true; return; }
+  new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { v.play().catch(function () { v.controls = true; }); } else { v.pause(); } });
+  }, { rootMargin: '200px 0px' }).observe(v);
+})();
+</script>
 </body>
 </html>
