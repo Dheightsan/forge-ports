@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; frame-src 'none'">
+<script>
+/* El tema claro de esta pagina existia en el CSS pero era inalcanzable: el
+   <html> traia data-theme="dark" fijo y nada lo cambiaba nunca. Quien elige
+   claro en la portada aterrizaba aqui en oscuro. Se lee la misma clave que
+   guarda la portada y, si no hay eleccion, la preferencia del sistema. Va en
+   el <head> y sin defer para que no haya parpadeo antes de pintar. */
+(function(){try{var r=document.documentElement,s=null;
+try{s=localStorage.getItem('mw-theme');}catch(e){}
+if(!s&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches){s='light';}
+r.setAttribute('data-theme',s==='light'?'light':'dark');}catch(e){}})();
+</script>
+<title>Gipples Galore para Forge 1.20.1, porteado desde Fabric | Modwright</title>
+<meta name="description" content="Gipples Galore, el mod de criaturas de cueva de Team Jelly, porteado de Fabric a Forge 1.20.1. Gratis, con crédito, código en GitHub y probado en servidor y cliente.">
+  <link rel="alternate" hreflang="en" href="https://dheightsan.github.io/forge-ports/gipples-galore-forge-1-20-1-es.html">
+  <link rel="alternate" hreflang="es" href="https://dheightsan.github.io/forge-ports/gipples-galore-forge-1-20-1-es.html">
+  <link rel="alternate" hreflang="x-default" href="https://dheightsan.github.io/forge-ports/gipples-galore-forge-1-20-1-es.html">
+<link rel="canonical" href="https://dheightsan.github.io/forge-ports/gipples-galore-forge-1-20-1-es.html">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon-180.png">
+<meta property="og:title" content="Gipples Galore para Forge 1.20.1, porteado desde Fabric">
+<meta property="og:description" content="Gipples Galore, el mod de criaturas de cueva de Team Jelly, porteado de Fabric a Forge 1.20.1. Gratis, con crédito, código en GitHub y probado en servidor y cliente.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://dheightsan.github.io/forge-ports/gipples-galore-forge-1-20-1-es.html">
+<meta property="og:image" content="https://dheightsan.github.io/forge-ports/og-2026-0901b.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Modwright: Minecraft mod porting and backporting">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"TechArticle",
+      "image": "https://dheightsan.github.io/forge-ports/og-2026-0901b.jpg",
+"datePublished":"2026-11-09","dateModified": "2026-11-09",
+"headline":"Gipples Galore para Forge 1.20.1, porteado desde Fabric",
+"description":"Gipples Galore, el mod de criaturas de cueva de Team Jelly, porteado de Fabric a Forge 1.20.1. Gratis, con crédito, código en GitHub y probado en servidor y cliente.",
+"author":{"@type":"Person","@id":"https://dheightsan.github.io/forge-ports/#danisansietev","name":"danisansietev","url":"https://dheightsan.github.io/forge-ports/"},
+"publisher":{"@type":"Organization","@id":"https://dheightsan.github.io/forge-ports/#modwright","name":"Modwright","url":"https://dheightsan.github.io/forge-ports/",
+        "logo": {"@type": "ImageObject", "url": "https://dheightsan.github.io/forge-ports/logo-cuy-v3.webp"}
+      },
+"inLanguage":"es",
+"about":{"@type":"SoftwareApplication","name":"Gipples Galore (Forge 1.20.1)","applicationCategory":"GameApplication","operatingSystem":"Minecraft Java Edition","url":"https://www.curseforge.com/minecraft/mc-mods/gipples-galore-forge-port"},
+"mainEntityOfPage":"https://dheightsan.github.io/forge-ports/gipples-galore-forge-1-20-1-es.html"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Modwright","item":"https://dheightsan.github.io/forge-ports/es.html"},{"@type":"ListItem","position":2,"name":"Gipples Galore para Forge 1.20.1","item":"https://dheightsan.github.io/forge-ports/gipples-galore-forge-1-20-1-es.html"}]}
+</script>
+<style>
+  @font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 400; font-display: swap; src: url('fonts/space-grotesk-400-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  @font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 600; font-display: swap; src: url('fonts/space-grotesk-600-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  @font-face { font-family: 'Space Grotesk'; font-style: normal; font-weight: 700; font-display: swap; src: url('fonts/space-grotesk-700-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+  :root {
+    --bg: #14100c; --surface: #211812; --surface2: #2a1f15;
+    --border: #2a2823; --border-lt: #3c382f;
+    --copper: #c07e3c; --gold: #cba14a; --brick: #c14a3c;
+    --text: #eae4d6; --text-soft: #b0a896; --text-mute: #8d8372;
+    --radius: 8px; --max: 760px;
+    --font: 'Space Grotesk', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  }
+  html[data-theme="light"] {
+    --bg: #faf7f1; --surface: #fff; --surface2: #f3ede2;
+    --border: #e2dccf; --border-lt: #cfc7b5;
+    --text: #241c14; --text-soft: #4f463a; --text-mute: #6d6355;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { overflow-x: clip; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font); font-size: 1rem; line-height: 1.72; -webkit-font-smoothing: antialiased; }
+  :focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; border-radius: 2px; }
+  a { color: var(--copper); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .skip { position: absolute; left: -9999px; }
+  .skip:focus { left: 1rem; top: 1rem; background: var(--surface2); padding: 0.6rem 1rem; border-radius: var(--radius); z-index: 10; }
+
+  header.bar { border-bottom: 1px solid var(--border); background: var(--bg); }
+  .bar-in { max-width: var(--max); margin: 0 auto; padding: 0.9rem 1.4rem; display: flex; align-items: center; gap: 0.65rem; }
+  .cuy { width: 46px; height: 46px; flex-shrink: 0; background: url('logo-cuy-v2.webp') center/contain no-repeat; }
+  .bar-in strong { font-weight: 600; font-size: 1.1rem; }
+  .bar-in .back { margin-left: auto; font-size: 0.9rem; color: var(--text-soft); }
+
+  main { max-width: var(--max); margin: 0 auto; padding: 3rem 1.4rem 4rem; }
+  .kicker { color: var(--text-mute); font-size: 0.82rem; letter-spacing: 0.09em; text-transform: uppercase; margin-bottom: 0.9rem; }
+  h1 { font-size: clamp(1.9rem, 5.5vw, 2.7rem); font-weight: 700; line-height: 1.14; letter-spacing: -0.01em; overflow-wrap: anywhere; min-width: 0; margin-bottom: 1.1rem; }
+  h2 { font-size: clamp(1.25rem, 3.4vw, 1.55rem); font-weight: 600; line-height: 1.25; margin: 2.9rem 0 0.85rem; overflow-wrap: anywhere; }
+  h3 { font-size: 1.05rem; font-weight: 600; margin: 1.7rem 0 0.5rem; }
+  p { margin-bottom: 1.05rem; color: var(--text-soft); }
+  p.lede { font-size: 1.1rem; color: var(--text); }
+  strong { color: var(--text); font-weight: 600; }
+  ul, ol { margin: 0 0 1.05rem 1.15rem; color: var(--text-soft); }
+  li { margin-bottom: 0.5rem; }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.9em; background: var(--surface2); border: 1px solid var(--border); border-radius: 4px; padding: 0.1em 0.38em; color: var(--text); overflow-wrap: anywhere; }
+  .tablewrap { overflow-x: auto; margin-bottom: 1.3rem; border: 1px solid var(--border); border-radius: var(--radius); }
+  table { border-collapse: collapse; width: 100%; min-width: 420px; font-size: 0.93rem; }
+  th, td { text-align: left; padding: 0.7rem 0.9rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { color: var(--text); font-weight: 600; background: var(--surface2); }
+  tr:last-child td { border-bottom: none; }
+  td { color: var(--text-soft); }
+  .note { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--copper); border-radius: var(--radius); padding: 1.1rem 1.3rem; margin: 1.5rem 0; }
+  .note p:last-child { margin-bottom: 0; }
+  .silent { border-left-color: var(--brick); }
+  .byline { margin-top: 2.2rem; padding-top: 1.2rem; border-top: 1px solid var(--border); font-size: 0.85rem; color: var(--text-mute); line-height: 1.65; }
+  .byline a { color: var(--copper); }
+  .cta { background: var(--surface); border: 1px solid var(--border-lt); border-radius: var(--radius); padding: 1.6rem; margin-top: 3rem; }
+  .cta p:last-child { margin-bottom: 0; }
+  .btn { display: inline-block; background: var(--copper); color: #17110b; font-weight: 600; padding: 0.72rem 1.25rem; border-radius: var(--radius); margin-top: 0.4rem; }
+  .btn:hover { text-decoration: none; filter: brightness(1.08); }
+  footer { border-top: 1px solid var(--border); margin-top: 3.5rem; padding: 1.8rem 1.4rem; text-align: center; color: var(--text-mute); font-size: 0.85rem; }
+  @media (max-width: 480px) { .bar-in strong { display: none; } main { padding-top: 2.2rem; } }
+
+/* Caricaturas al margen (tanda del 19-08). Mismas piezas que la portada, asi
+   que quien viene de alli las tiene ya en cache. `main` mide 760 px centrados
+   y van pegadas por fuera a esa columna, no al borde de la pantalla.
+   El `top` va en PIXELES desde el inicio de main: en porcentaje, un articulo
+   que crece al traducirse las arrastra. Se fija SOLO el alto (`--h`) y el
+   ancho se deduce, que es la unica forma de que no se deformen.
+   Por debajo de 1100 px no hay hueco y se apagan: aqui manda el texto. */
+main { position: relative; }
+.ch { position: absolute; z-index: 1; pointer-events: none; user-select: none;
+      width: auto; height: var(--h); image-rendering: pixelated;
+      filter: drop-shadow(0 6px 14px rgba(0,0,0,0.5)); }
+main > * { position: relative; z-index: 2; }
+@media (max-width: 1100px) { .ch { display: none; } }
+
+/* 2026-10-29: misma marca que la portada. Titulares en Monocraft con relieve,
+   paneles y botones con borde oscuro y sombra dura, y el logo nuevo. */
+@font-face { font-family: 'Monocraft'; font-style: normal; font-weight: 700; font-display: swap; src: url('fonts/monocraft-700-latin.woff2') format('woff2'); }
+.cuy { background-image: url('logo-cuy-v3.webp'); }
+h1, h2 { font-family: 'Monocraft', var(--font); font-weight: 700; letter-spacing: 0.01em; }
+h1 { --rot: #df7932; --rot-d: #8a3f12; font-size: clamp(1.5rem, 4.2vw, 2.15rem); line-height: 1.3; color: var(--rot); padding-bottom: 6px;
+     text-shadow: 2px 0 0 #1b120c, -2px 0 0 #1b120c, 0 2px 0 #1b120c, 0 -2px 0 #1b120c, 2px 2px 0 #1b120c, -2px 2px 0 #1b120c, 2px -2px 0 #1b120c, -2px -2px 0 #1b120c,
+                  0 4px 0 var(--rot-d), 2px 4px 0 var(--rot-d), -2px 4px 0 var(--rot-d), 0 6px 0 #1b120c, 2px 6px 0 #1b120c, -2px 6px 0 #1b120c; }
+h2 { font-size: clamp(1.1rem, 3vw, 1.35rem); line-height: 1.35; color: #e4d9bc; text-shadow: 2px 2px 0 #1b120c; }
+html[data-theme="light"] h2 { color: #5a4330; text-shadow: 2px 2px 0 rgba(60,40,20,0.18); }
+.kicker { display: inline-block; padding: 3px 9px; background: #3a2a1d; color: #f6ecd6; border: 2px solid #1b120c; font-family: 'Monocraft', ui-monospace, monospace; font-weight: 700; font-size: 0.7rem; letter-spacing: 0.06em; }
+html[data-theme="light"] .kicker { background: #5a4330; color: #fff4e2; }
+.tablewrap, .note, .cta { border: 2px solid #1b120c; border-radius: 4px; box-shadow: 0 4px 0 rgba(0,0,0,0.38); }
+.note { box-shadow: 0 4px 0 rgba(0,0,0,0.38), inset 4px 0 0 var(--copper); border-left-width: 2px; }
+.silent { box-shadow: 0 4px 0 rgba(0,0,0,0.38), inset 4px 0 0 var(--brick); }
+html[data-theme="light"] :is(.tablewrap, .cta) { box-shadow: 0 4px 0 rgba(60,40,20,0.16); }
+html[data-theme="light"] .note { box-shadow: 0 4px 0 rgba(60,40,20,0.16), inset 4px 0 0 var(--copper); }
+html[data-theme="light"] .silent { box-shadow: 0 4px 0 rgba(60,40,20,0.16), inset 4px 0 0 var(--brick); }
+th { font-family: 'Monocraft', var(--font); font-size: 0.82rem; }
+code { font-family: 'Monocraft', ui-monospace, monospace; font-size: 0.8em; background: #120d09; color: #8fe0a0; border: 1px solid #000; border-radius: 0; }
+html[data-theme="light"] code { background: #2b2117; color: #9fe8ae; }
+.btn { font-family: 'Monocraft', var(--font); font-weight: 700; color: #1b120c; background: #df7932; border: 2px solid #1b120c; border-radius: 4px; box-shadow: 0 3px 0 rgba(0,0,0,0.38), inset 0 2px 0 rgba(255,255,255,0.25); }
+.btn:hover { filter: none; background: #e88a48; }
+.btn--alt { background: transparent; color: var(--text, #f2e6d6); border-color: #df7932; margin-left: 0.4rem; }
+.btn--alt:hover { background: rgba(223,121,50,0.14); }
+.btn:active { transform: translateY(2px); box-shadow: 0 1px 0 rgba(0,0,0,0.38); }
+
+/* 2026-11-02: barra de experiencia del juego como barra de lectura, fija arriba */
+.xp-bar { position: fixed; left: 0; right: 0; top: 0; z-index: 50; height: 6px; background: #101010; border-bottom: 1px solid #000; pointer-events: none; }
+.xp-bar span { position: absolute; inset: 0; background: linear-gradient(#b6ff6a 0 2px, #6fd62a 2px); transform: scaleX(0); transform-origin: left; }
+.xp-bar::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent calc(100% - 2px), #000 0) 0 0 / calc(100% / 18) 100% repeat-x; }
+footer .aviso-mojang { margin: 0.8rem 0 0; font-size: 0.75rem; }
+</style>
+
+  <meta property="og:site_name" content="Modwright">
+  <meta property="og:locale" content="es_ES">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Gipples Galore para Forge 1.20.1, porteado desde Fabric">
+  <meta name="twitter:description" content="Gipples Galore, el mod de criaturas de cueva de Team Jelly, porteado de Fabric a Forge 1.20.1. Gratis, con crédito, código en GitHub y probado en servidor y cliente.">
+  <meta name="twitter:image" content="https://dheightsan.github.io/forge-ports/og-2026-0901b.jpg"></head>
+<body>
+<a class="skip" href="#main">Saltar al contenido</a>
+
+<div class="xp-bar" aria-hidden="true"><span></span></div>
+<header class="bar">
+  <div class="bar-in">
+    <span class="cuy" role="img" aria-label="Logo de Modwright"></span>
+    <strong translate="no">Modwright</strong>
+    <a class="back" href="es.html">Servicios y precios</a>
+  </div>
+</header>
+
+<main id="main">
+  <img class="ch" src="mw-eri2-00.webp" width="161" height="240" style="right:calc(50% + 380px + 18px);top:320px;--h:110px" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <img class="ch" src="mw-cuy2-10.webp" width="286" height="286" style="left:calc(50% + 380px + 18px);top:1250px;--h:135px" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <div class="kicker">Notas del port</div>
+  <h1><span translate="no">Gipples Galore</span> para<span translate="no"> Forge 1.20.1</span></h1>
+
+  <p class="lede">El mod de criaturas de cueva de<span translate="no"> Team Jelly</span>, pasado de<span translate="no"> Fabric </span>a<span translate="no"> Forge </span>1.20.1. Lo publiqué gratis y con crédito, y cualquiera puede leer el código del port.</p>
+  <p><a class="btn" href="https://www.curseforge.com/minecraft/mc-mods/gipples-galore-forge-port" target="_blank" rel="noopener noreferrer">Descargar en<span translate="no"> CurseForge</span></a> <a class="btn btn--alt" href="https://github.com/Dheightsan/gipples-galore-forge" target="_blank" rel="noopener noreferrer">Código en<span translate="no"> GitHub</span></a></p>
+
+  <h2>Versiones</h2>
+  <ul>
+    <li><strong>Desde:</strong> <span translate="no">Fabric 1.20.1</span></li>
+    <li><strong>Hacia:</strong> <span translate="no">Forge 1.20.1</span></li>
+    <li><strong>Licencia:</strong> <span translate="no">CC BY-NC-SA 4.0</span></li>
+    <li><strong>Probado:</strong> Servidor dedicado y cliente</li>
+  </ul>
+
+  <h2>Qué cambió en el port</h2>
+  <p>48 clases pasadas a los eventos de registro de<span translate="no"> Forge</span>, con los spawns como biome modifiers y el botín extra por <code>LootTableLoadEvent</code>. También arreglé un modelo de bloque que apuntaba a una textura que no existía, un fallo que también tiene el original de<span translate="no"> Fabric</span>. En un servidor dedicado, las colonias salen solas en chunks nuevos y la gelatina aparece en el botín de las ciudades antiguas. En el cliente revisé las 17 gelatinas y sus efectos. La versión 1.0.1 arregla un crash cuando también está instalado<span translate="no"> Galosphere</span>.</p>
+  <p>Anoté, en inglés, <a href="fabric-to-forge-1-20-1.html">lo que suele romperse al pasar de<span translate="no"> Fabric </span>a<span translate="no"> Forge</span></a>.</p>
+
+  <h2>Crédito</h2>
+  <p>Original de<span translate="no"> Team Jelly</span>. Es un port no oficial, y<span translate="no"> Team Jelly </span>no tiene nada que ver con mis encargos de pago.</p>
+
+  <div class="cta">
+    <p><strong>¿Te falta un mod en tu versión?</strong></p>
+    <p>Propónlo en mi<span translate="no"> Discord</span>, donde también puedes votar por los que piden otros. Si lo necesitas para tu propio pack o servidor, te lo porteo: primero reviso la licencia y te digo un precio fijo antes de que pagues nada.</p>
+    <p><a class="btn" href="es.html#estimator">Cotizar</a> <a class="btn btn--alt" href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer">Entrar al Discord</a></p>
+  </div>
+<hr>
+<p><strong>Otros ports.</strong> <a href="quartz-elevator-forge-1-20-1-es.html"><span translate="no">Quartz Elevator</span></a>, <a href="expanded-delight-forge-1-20-1-es.html"><span translate="no">Expanded Delight</span></a> y <a href="mindful-eating-neoforge-1-21-1-es.html"><span translate="no">Mindful Eating</span></a>. Todos son gratis y con crédito a sus autores originales.</p>
+  <p class="byline">Escrito por <strong translate="no">danisansietev</strong>, porteo de mods para<span translate="no"> Forge </span>1.20.1. Actualizado en noviembre de 2026.</p>
+</main>
+
+<footer>
+ <span translate="no"> Modwright </span>&middot; <a href="es.html">Servicios y precios</a> &middot; <a href="es.html#legal">Condiciones</a> &middot; <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer">Discord</a>
+ <p class="aviso-mojang" translate="no">NOT AN OFFICIAL MINECRAFT SERVICE. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.</p></footer>
+<script>
+// Barra de lectura: se llena con lo que llevas del articulo.
+(function () {
+  var bar = document.querySelector('.xp-bar span'), pend = false;
+  if (!bar) return;
+  function pinta() {
+    pend = false;
+    var max = document.documentElement.scrollHeight - innerHeight;
+    bar.style.transform = 'scaleX(' + (max > 0 ? Math.min(1, scrollY / max) : 0) + ')';
+  }
+  addEventListener('scroll', function () { if (!pend) { pend = true; requestAnimationFrame(pinta); } }, { passive: true });
+  addEventListener('resize', pinta);
+  pinta();
+})();
+</script>
+</body>
+</html>
