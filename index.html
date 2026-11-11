@@ -114,7 +114,7 @@
 }
   </script>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dheightsan.github.io/forge-ports/#website","url":"https://dheightsan.github.io/forge-ports/","name":"Modwright","inLanguage":["en","es"],"publisher":{"@id":"https://dheightsan.github.io/forge-ports/#modwright"}},{"@type":"Organization","@id":"https://dheightsan.github.io/forge-ports/#modwright","name":"Modwright","url":"https://dheightsan.github.io/forge-ports/","logo":"https://dheightsan.github.io/forge-ports/logo-cuy-v3.webp","founder":{"@id":"https://dheightsan.github.io/forge-ports/#danisansietev"},"sameAs":["https://www.curseforge.com/members/danisansietev/projects","https://github.com/Dheightsan","https://www.linkedin.com/in/jos%C3%A9-daniel-s%C3%A1nchez-pesantes-0a6946441/"]}]}
+  {"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://dheightsan.github.io/forge-ports/#website","url":"https://dheightsan.github.io/forge-ports/","name":"Modwright","inLanguage":["en","es"],"publisher":{"@id":"https://dheightsan.github.io/forge-ports/#modwright"}},{"@type":"Organization","@id":"https://dheightsan.github.io/forge-ports/#modwright","name":"Modwright","url":"https://dheightsan.github.io/forge-ports/","logo":"https://dheightsan.github.io/forge-ports/logo-cuy-pixel.png","founder":{"@id":"https://dheightsan.github.io/forge-ports/#danisansietev"},"sameAs":["https://www.curseforge.com/members/danisansietev/projects","https://github.com/Dheightsan","https://www.linkedin.com/in/jos%C3%A9-daniel-s%C3%A1nchez-pesantes-0a6946441/"]}]}
   </script>
   <script type="application/ld+json">
   {
@@ -793,7 +793,7 @@
       html.translated-ltr[lang|="es"] #hero h1.hero-h1-img img.h1-es,
       html.translated-rtl[lang|="es"] #hero h1.hero-h1-img img.h1-es { display: block; }
     }
-    .brand-cuy { width: 60px; height: 60px; flex-shrink: 0; background-image: url('logo-cuy-v3.webp'); background-repeat: no-repeat; background-size: contain; background-position: center; }
+    .brand-cuy { width: 60px; height: 60px; flex-shrink: 0; background-image: url('logo-cuy-pixel.png'); background-repeat: no-repeat; background-size: contain; background-position: center; }
     .brand .ph { color: var(--text-mute); font-weight: 600; font-size: 0.95rem; }
     .nav-links { display: flex; gap: 1.6rem; list-style: none; align-items: center; margin-left: clamp(0rem, calc((100vw - 880px) * 1), 2rem); }
     /* `nowrap` porque un enlace partido en dos lineas ("Angel / Engine",
@@ -2330,6 +2330,13 @@
     .hero-person-name { font-family: 'Monocraft', 'Space Grotesk', system-ui, sans-serif; font-weight: 700; font-size: 0.72rem; color: #f4efe6; background: rgba(0,0,0,0.55); padding: 0.2rem 0.5rem; letter-spacing: 0.02em; }
     html[data-theme="light"] .hero-person-name { color: #fff8ee; background: rgba(43,33,23,0.78); }
     @media (prefers-reduced-motion: reduce) { .bench-tab { transition: none; } }
+    /* 2026-11-11 anti-IA: un solo estilo, casilla de inventario gris con bisel, como en el juego */
+    .brand-cuy { image-rendering: pixelated; }
+    .tile img, .tile .tile-mono, .svc-icon:has(img) { background: #8b8b8b; border: 2px solid; border-color: #373737 #ffffff #ffffff #373737; border-radius: 0; box-shadow: none; }
+    html[data-theme="light"] .tile img, html[data-theme="light"] .tile .tile-mono, html[data-theme="light"] .svc-icon:has(img) { background: #8b8b8b; border-color: #373737 #ffffff #ffffff #373737; box-shadow: none; }
+    .tile img, .tile .tile-mono { padding: 4px; }
+    .svc-icon:has(img) { width: 72px; height: 72px; }
+    .svc-icon img { width: 64px; height: 64px; }
 </style>
   <script>
     (function(){
@@ -2551,7 +2558,6 @@
 <div class="sep-bloques" aria-hidden="true"><img src="sep-bloques.png" width="560" height="84" alt="" loading="lazy" decoding="async"><img class="sep-slime sep-slime--a" src="mod-tic-slime-cielo.webp" width="80" height="96" alt="" loading="lazy" decoding="async"><img class="sep-item sep-item--h1 sep-item--huevo" src="mod-iaf-huevo-rojo.png" width="64" height="64" alt="" loading="lazy" decoding="async"><img class="sep-item sep-item--h2 sep-item--huevo" src="mod-iaf-huevo-hielo.png" width="64" height="64" alt="" loading="lazy" decoding="async"><img class="sep-item sep-item--h3 sep-item--huevo" src="mod-iaf-huevo-verde.png" width="64" height="64" alt="" loading="lazy" decoding="async"></div>
 <!-- LOADERS -->
 <section id="loaders">
-  <img class="ch ch--borde" src="mw-cuy2-03.webp" width="302" height="302" style="left:calc(50% + 530px + 18px);top:560px;--h:118px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="ch ch--borde" src="h1024-12.webp" width="256" height="236" style="right:calc(50% + 530px + 18px);top:362px;--h:185px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <!-- Caricaturas de pixel art (tanda del 19-08). Se suman al sistema
        `.ch--borde` que ya existe: mismo anclaje en pixeles, mismo
@@ -2560,7 +2566,6 @@
        `top` estan MEDIDOS sobre la pagina renderizada, no estimados:
        cada uno cae en un tramo comprobado libre en ese lado. -->
   <div class="wrap">
-        <img class="mw-pose " src="mw-cuy2-10.webp" width="240" height="240" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <h2><span data-i18n-en>Same mod, your version</span><span data-i18n-es hidden>El mismo mod, en tu versión</span></h2>
     <p class="sub"><span data-i18n-en>Your pack keeps the mod instead of losing it to a version jump.</span><span data-i18n-es hidden>Tu pack se queda con el mod en vez de perderlo por un salto de versión.</span></p>
 
@@ -2588,15 +2593,12 @@
            como parrafo y no como <figcaption>: josda no quiere texto explicando
            imagenes debajo de ellas, y un <figcaption> es exactamente eso. Aqui
            el texto no describe el dibujo, dice lo que el hace. -->
-      <img class="mw-pose mw-pose--center mw-pose--sm" src="mw-eri2-12.webp" width="196" height="240" alt="" aria-hidden="true" loading="lazy" decoding="async">
       <p class="loomd-claim loomd-claim--sub"><span data-i18n-en><span translate="no">Fabric </span>to<span translate="no"> Forge </span>is the longest road, and it's the one I take most.</span><span data-i18n-es hidden>De<span translate="no"> Fabric </span>a<span translate="no"> Forge </span>es el camino más largo, y el que más hago.</span></p>
     </figure>
   </div>
 </section>
 <!-- PORTFOLIO -->
 <section id="portfolio">
-  <img class="ch ch--borde" src="mw-eri2-11.webp" width="230" height="323" style="right:calc(50% + 530px + 18px);top:80px;--h:168px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="mw-cuy2-23.webp" width="339" height="298" style="left:calc(50% + 530px + 18px);top:755px;--h:143px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="ch ch--borde" src="h1024-13.webp" width="256" height="235" style="right:calc(50% + 530px + 18px);top:1150px;--h:215px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="ch ch--borde" src="h512-32.webp" width="256" height="242" style="left:calc(50% + 530px + 18px);top:1107px;--h:215px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="ch ch--borde" src="h512-31.webp" width="256" height="242" style="right:calc(50% + 530px + 18px);top:502px;--h:215px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
@@ -2611,7 +2613,6 @@
        El `top` es relativo a la SECCION, no a la pagina: si pasa del alto
        de la seccion, la caricatura invade la siguiente. -->
   <div class="wrap">
-        <img class="mw-pose " src="mw-eri2-21.webp" width="198" height="240" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <h2><span data-i18n-en>Real work</span><span data-i18n-es hidden>Trabajo real</span><img class="px px--h2 px--capibara" src="deco-capibara.webp" width="144" height="93" alt="" aria-hidden="true" loading="lazy" decoding="async"></h2>
     <p class="sub"><span data-i18n-en>Some of the mods I've already ported. When the work is public, I always link to the original project.</span><span data-i18n-es hidden>Algunos de los mods que ya he porteado. Cuando el trabajo es público, enlazo siempre al proyecto original.</span></p>
 
@@ -2800,7 +2801,6 @@
       <div class="dc-inv-txt"><p class="dc-inv-t"><span data-i18n-en>Every new port gets posted on the<span translate="no"> Discord</span></span><span data-i18n-es hidden>Cada port nuevo lo publico en el<span translate="no"> Discord</span></span></p><p><span data-i18n-en>You can also suggest a mod there and vote on the ones others ask for.</span><span data-i18n-es hidden>Ahí también puedes proponer un mod y votar los que piden los demás.</span></p><p class="dc-como"><a href="request-a-mod-port.html"><span data-i18n-en>How requests and votes work &rarr;</span><span data-i18n-es hidden>Cómo funcionan los pedidos y votos &rarr;</span></a></p></div>
       <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" class="btn btn-discord"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg><span><span data-i18n-en>Join the<span translate="no"> Discord</span></span><span data-i18n-es hidden>Entra al<span translate="no"> Discord</span></span></span></a>
     </aside>
-    <img class="mw-pose mw-pose--sm" src="mw-cuy2-13.webp" width="216" height="240" alt="" aria-hidden="true" loading="lazy" decoding="async">
     <p class="proof-note"><span data-i18n-en>It compiles. That proves nothing. Before I deliver, I test the mod in-game and check the parts that could actually break during the<span translate="no"> port</span>. <a href="geckolib-bone-name-crash.html">One of those checks, in detail</a>.</span><span data-i18n-es hidden>Compila. Eso no prueba nada. Antes de entregar pruebo el mod dentro del juego y reviso las partes que realmente podían romperse durante el<span translate="no"> port</span>. <a href="geckolib-bone-name-crash.html">Una de esas comprobaciones, en detalle</a>.</span></p>
 
     <!-- Encargos privados (2026-10-28, pedido de josda). Fuente: ENCARGO_01_*.md.
@@ -2810,7 +2810,6 @@
          lista (28-oct), 724 errores al empezar, 6 fallos del servidor dedicado (7e),
          fallo post-entrega arreglado gratis (12g, jar del 13-oct). -->
     <div class="shelf private-work">
-      <img class="mw-pose " src="mw-eri2-03.webp" width="172" height="240" alt="" aria-hidden="true" loading="lazy" decoding="async">
       <h3><span data-i18n-en>Private commissions</span><span data-i18n-es hidden>Encargos privados</span></h3>
       <p><span data-i18n-en>Most paid work stays private: the files and the client&rsquo;s name are theirs. What I can tell you is that since September I&rsquo;ve done three jobs for the owner of a<span translate="no"> Forge </span>1.20.1 pack with almost 600 mods.</span><span data-i18n-es hidden>La mayoría de los encargos pagados son privados: los archivos y el nombre del cliente son suyos. Lo que sí puedo contar es que desde septiembre le hice tres trabajos al dueño de un pack de<span translate="no"> Forge </span>1.20.1 con casi 600 mods.</span></p>
       <ul class="private-list">
@@ -2827,7 +2826,6 @@
     </div>
 
     <div class="shelf bench">
-      <img class="mw-pose " src="mw-eri2-10.webp" width="180" height="240" alt="" aria-hidden="true" loading="lazy" decoding="async">
       <h3><span data-i18n-en>Private work for my own pack</span><span data-i18n-es hidden>Trabajo privado para mi propio pack</span><span class="drop drop--quieto drop--bloque" aria-hidden="true"><img src="mod-sd-cajones.png" width="64" height="64" alt="" loading="lazy" decoding="async"></span></h3>
       <p><span data-i18n-en>Ports, fixes and compatibility I made for my own 600+ mod pack. Most of those licences don&rsquo;t let me publish a<span translate="no"> port</span>, so they stay private and you won&rsquo;t find me on the mods&rsquo; pages. Each tile links to the original mod and its author. If you want to see one working, ask me on<span translate="no"> Discord </span>and I&rsquo;ll show you a screenshot from my pack.</span><span data-i18n-es hidden>Ports, arreglos y compatibilidad que hice para mi propio pack de 600+ mods. La mayoría de esas licencias no me deja publicar un<span translate="no"> port</span>, así que quedan privados y no me vas a encontrar en las páginas de esos mods. Cada recuadro lleva al mod original y a su autor. Si quieres ver uno funcionando, pregúntame en<span translate="no"> Discord </span>y te muestro una captura de mi pack.</span></p>
       <div class="bench-search" hidden>
@@ -3009,7 +3007,6 @@
 <div class="sep-bloques sep-bloques--b" aria-hidden="true"><img src="sep-bloques.png" width="560" height="84" alt="" loading="lazy" decoding="async"></div>
 <!-- SERVICES -->
 <section id="services">
-  <img class="ch ch--borde" src="mw-cuy2-02.webp" width="282" height="286" style="left:calc(50% + 530px + 18px);top:754px;--h:108px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="ch ch--borde" src="h1024-22.webp" width="256" height="236" style="right:calc(50% + 530px + 18px);top:754px;--h:195px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="ch ch--borde" src="h512-13.webp" width="256" height="245" style="left:calc(50% + 530px + 18px);top:60px;--h:195px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="ch ch--borde" src="h9478c-23.webp" width="256" height="244" style="right:calc(50% + 530px + 18px);top:60px;--h:195px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
@@ -3020,7 +3017,6 @@
        `top` estan MEDIDOS sobre la pagina renderizada, no estimados:
        cada uno cae en un tramo comprobado libre en ese lado. -->
   <div class="wrap">
-        <img class="mw-pose " src="mw-eri2-21.webp" width="198" height="240" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <h2><span data-i18n-en><span translate="no">Ports</span>, backports and loader changes</span><span data-i18n-es hidden><span translate="no">Ports</span>, backports y cambios de loader</span><span class="drop drop--gira" aria-hidden="true"><img src="mod-tic-pico.png" width="64" height="64" alt="" loading="lazy" decoding="async"></span></h2>
     <!-- El "por que" del 1.20.1 se decia TRES veces, dos de ellas con las mismas
          doce palabras seguidas ("it sits just below every recent version wall").
@@ -3030,14 +3026,14 @@
     <p class="sub"><span data-i18n-en>If you want to know how I price a<span translate="no"> port</span>, I explain it in <a href="mod-porting-cost.html">what a<span translate="no"> port </span>costs, and why</a>.</span><span data-i18n-es hidden>Si quieres saber cómo pongo precio a un<span translate="no"> port</span>, lo explico en <a href="mod-porting-cost.html">cuánto cuesta un<span translate="no"> port</span>, y por qué</a>.</span></p>
 <div class="svc-list">
       <div class="svc-row">
-        <div class="svc-icon svc-copper"><img src="mod-tic-fundidora.webp" width="64" height="64" alt="" aria-hidden="true" loading="lazy" decoding="async"></div>
+        <div class="svc-icon svc-copper"><img src="mod-tic-molde.png" width="64" height="64" alt="" aria-hidden="true" loading="lazy" decoding="async"></div>
         <div>
           <h3><span data-i18n-en><span translate="no">Ports</span> and backports</span><span data-i18n-es hidden><span translate="no">Ports</span> y backports</span></h3>
           <p><span data-i18n-en>Moving a mod to another<span translate="no"> Minecraft </span>version, forward or back, keeping it as close as possible to how the original behaves.</span><span data-i18n-es hidden>Mover un mod a otra versión de<span translate="no"> Minecraft</span>, hacia delante o hacia atrás, intentando conservar el comportamiento del original.</span></p>
         </div>
       </div>
       <div class="svc-row">
-        <div class="svc-icon svc-loom"><img src="mod-rs-controller.webp" width="64" height="64" alt="" aria-hidden="true" loading="lazy" decoding="async"></div>
+        <div class="svc-icon svc-loom"><img src="mod-tic-lingote.png" width="64" height="64" alt="" aria-hidden="true" loading="lazy" decoding="async"></div>
         <div>
           <h3><span data-i18n-en>Loader changes</span><span data-i18n-es hidden>Cambio de loader</span></h3>
           <p><span data-i18n-en>Adapting a mod between<span translate="no"> Forge</span>,<span translate="no"> Fabric </span>and<span translate="no"> NeoForge </span>when a pack needs a different platform.</span><span data-i18n-es hidden>Adaptar un mod entre<span translate="no"> Forge</span>,<span translate="no"> Fabric </span>y<span translate="no"> NeoForge </span>cuando un pack necesita otra plataforma.</span></p>
@@ -3065,7 +3061,7 @@
          querer. Aqui es donde le toca: justo despues de lo que hago. -->
     <div class="softcta">
       <p><span data-i18n-en><strong>Your case doesn't fit any of these?</strong> Send it anyway and I'll tell you if it can be done.</span><span data-i18n-es hidden><strong>¿Tu caso no encaja en ninguno?</strong> Mándamelo igual y te digo si se puede hacer.</span></p>
-      <img class="mw-pose mw-pose--sm" src="mw-cuy2-12.webp" width="209" height="240" alt="" aria-hidden="true" loading="lazy" decoding="async"><a class="dc-logo" href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" aria-label="Discord"><img src="discord-logo-grande.webp" width="312" height="286" alt="" loading="lazy" decoding="async"></a>
+      <a class="dc-logo" href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" aria-label="Discord"><img src="discord-logo-grande.webp" width="312" height="286" alt="" loading="lazy" decoding="async"></a>
       <div class="softcta-row">
         <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" class="btn btn-discord"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg><span><span data-i18n-en>Ask me on<span translate="no"> Discord</span></span><span data-i18n-es hidden>Pregúntame por<span translate="no"> Discord</span></span></span></a>
       </div>
@@ -3084,7 +3080,6 @@
      un canal sin que josda genere un enlace propio desde ESE canal. -->
 <section id="estimator">
   <div class="wrap">
-    <img class="mw-pose " src="mw-cuy2-00.webp" width="203" height="240" alt="" aria-hidden="true" loading="lazy" decoding="async">
     <h2><span data-i18n-en>Set up your ticket</span><span data-i18n-es hidden>Arma tu ticket</span><img class="px px--h2 px--pato" src="deco-pato.webp" width="96" height="91" alt="" aria-hidden="true" loading="lazy" decoding="async"></h2>
     <p class="sub"><span data-i18n-en>Fill in what you know, copy the summary, then open a private ticket from <span translate="no">#pedidos</span> on <span translate="no">Discord</span>. Paste it inside your ticket. Leave blank anything you don't know.</span><span data-i18n-es hidden>Rellena lo que sepas, copia el resumen y abre un ticket privado desde <span translate="no">#pedidos</span> en <span translate="no">Discord</span>. Pégalo dentro de tu ticket. Lo que no sepas, déjalo en blanco.</span></p>
 
@@ -3139,8 +3134,6 @@
 
 <!-- HOW IT WORKS -->
 <section id="how-it-works">
-  <img class="ch ch--borde" src="mw-cuy2-20.webp" width="275" height="288" style="right:calc(50% + 530px + 18px);top:780px;--h:140px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="mw-eri2-20.webp" width="259" height="316" style="left:calc(50% + 530px + 18px);top:560px;--h:107px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="ch ch--borde" src="h9478c-31.webp" width="256" height="236" style="left:calc(50% + 530px + 18px);top:273px;--h:200px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <!-- Caricaturas de pixel art (tanda del 19-08). Se suman al sistema
        `.ch--borde` que ya existe: mismo anclaje en pixeles, mismo
@@ -3149,7 +3142,6 @@
        `top` estan MEDIDOS sobre la pagina renderizada, no estimados:
        cada uno cae en un tramo comprobado libre en ese lado. -->
   <div class="wrap">
-        <img class="mw-pose " src="mw-eri2-00.webp" width="161" height="240" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <h2><span data-i18n-en>How a job works</span><span data-i18n-es hidden>Cómo va un encargo</span><span class="drop drop--quieto" aria-hidden="true"><img class="" src="mod-fd-estufa.webp" width="64" height="64" alt="" loading="lazy" decoding="async"></span></h2>
     <p class="sub"><span data-i18n-en>All in writing. No calls and no meetings.</span><span data-i18n-es hidden>Todo por escrito. Sin llamadas ni reuniones.</span></p>
     <div class="steps">
@@ -3161,7 +3153,6 @@
       <div class="step"><div class="step-n"><img src="mod-rs-llave.png" width="64" height="64" alt="" loading="lazy" decoding="async"></div><div class="step-k"><span data-i18n-en>Step 6</span><span data-i18n-es hidden>Paso 6</span></div><h3><span data-i18n-en>If something of mine breaks, I fix it</span><span data-i18n-es hidden>Si algo mío falla, lo arreglo</span></h3><p><span data-i18n-en>For 30 days I fix, at no cost, any bug I introduced within the agreed scope and setup. If you need something new after that, we handle it separately.</span><span data-i18n-es hidden>Durante 30 días corrijo sin coste los fallos que haya introducido yo dentro del alcance y entorno acordados. Si después necesitas algo nuevo, lo vemos aparte.</span></p></div>
     </div>
     <aside class="dc-invita">
-      <img class="dc-inv-img dc-inv-img--pose" src="mw-cuy2-00.webp" width="255" height="301" alt="" aria-hidden="true" loading="lazy" decoding="async">
       <div class="dc-inv-txt"><p class="dc-inv-t"><span data-i18n-en>Questions before you order?</span><span data-i18n-es hidden>¿Dudas antes de encargar?</span></p><p><span data-i18n-en>Send me the mod link on the<span translate="no"> Discord</span> and I'll take a look.</span><span data-i18n-es hidden>Mándame el link del mod por el<span translate="no"> Discord</span> y lo reviso.</span></p></div>
       <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" class="btn btn-discord"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg><span><span data-i18n-en>Join the<span translate="no"> Discord</span></span><span data-i18n-es hidden>Entra al<span translate="no"> Discord</span></span></span></a>
     </aside>
@@ -3174,8 +3165,6 @@
 
 <!-- ABOUT -->
 <section id="about">
-  <img class="ch ch--borde" src="mw-cuy2-21.webp" width="340" height="325" style="right:calc(50% + 530px + 18px);top:700px;--h:84px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="mw-eri2-03.webp" width="228" height="318" style="left:calc(50% + 530px + 18px);top:355px;--h:97px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="ch ch--borde" src="hsunny-22.webp" width="256" height="245" style="right:calc(50% + 530px + 18px);top:445px;--h:185px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="ch ch--borde" src="hsunny-21.webp" width="256" height="235" style="left:calc(50% + 530px + 18px);top:720px;--h:185px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="ch ch--borde" src="h1024-32.webp" width="256" height="236" style="right:calc(50% + 530px + 18px);top:201px;--h:185px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
@@ -3247,7 +3236,6 @@
      en "Mas del laboratorio". El texto tecnico original de las tres
      visibles sigue entero en su "Detalle tecnico". -->
 <section id="lab">
-  <img class="ch ch--borde" src="mw-cuy2-01.webp" width="257" height="287" style="left:calc(50% + 530px + 18px);top:419px;--h:141px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="ch ch--borde" src="h9478c-22.webp" width="256" height="236" style="left:calc(50% + 530px + 18px);top:777px;--h:215px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="ch ch--borde" src="h512-23.webp" width="256" height="235" style="right:calc(50% + 530px + 18px);top:1136px;--h:215px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="ch ch--borde" src="h1024-21.webp" width="256" height="236" style="left:calc(50% + 530px + 18px);top:1136px;--h:215px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
@@ -3255,7 +3243,6 @@
   <img class="ch ch--borde" src="h9478c-13.webp" width="256" height="235" style="left:calc(50% + 530px + 18px);top:60px;--h:215px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
     <div class="packwork packwork--seccion">
-      <img class="mw-pose " src="mw-eri2-12.webp" width="196" height="240" alt="" aria-hidden="true" loading="lazy" decoding="async">
       <h2><span data-i18n-en>Things that break in a 600+ mod pack</span><span data-i18n-es hidden>Cosas que se rompen en un pack de 600+ mods</span><span class="drop drop--huevo" aria-hidden="true"><img class="" src="mod-iaf-huevo-rayo.png" width="64" height="64" alt="" loading="lazy" decoding="async"></span></h2>
       <p class="packwork-lead"><span data-i18n-en>I keep a huge test pack on my own. It's where I test compatibility, and where I keep running into bugs that almost never show up while a mod lives on its own.</span><span data-i18n-es hidden>Mantengo un pack de pruebas enorme por mi cuenta. Ahí pruebo compatibilidad y termino encontrándome fallos que casi nunca aparecen cuando un mod vive solo.</span></p>
       <div class="mp-list">
@@ -3375,7 +3362,6 @@
        `top` estan MEDIDOS sobre la pagina renderizada, no estimados:
        cada uno cae en un tramo comprobado libre en ese lado. -->
   <div class="wrap">
-        <img class="mw-pose " src="mw-eri2-01.webp" width="177" height="240" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <h2><span data-i18n-en>Did you write the mod?</span><span data-i18n-es hidden>¿Es tu propio mod?</span><span class="drop drop--gira" aria-hidden="true"><img class="" src="mod-iaf-bestiario.png" width="64" height="64" alt="" loading="lazy" decoding="async"></span></h2>
     <p class="sub"><span data-i18n-en>Sometimes I port mods for free for their original authors.</span><span data-i18n-es hidden>A veces hago<span translate="no"> ports </span>sin cobrar para los autores originales.</span></p>
 
@@ -3414,7 +3400,6 @@
   <img class="ch ch--borde" src="hari-21.webp" width="256" height="245" style="right:calc(50% + 530px + 18px);top:60px;--h:165px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="ch ch--borde" src="hsunny-11.webp" width="256" height="246" style="left:calc(50% + 530px + 18px);top:281px;--h:195px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="ch ch--borde" src="hari-23.webp" width="256" height="245" style="right:calc(50% + 530px + 18px);top:391px;--h:195px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
-  <img class="ch ch--borde" src="mw-eri2-13.webp" width="224" height="324" style="left:calc(50% + 530px + 18px);top:501px;--h:117px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="ch ch--borde" src="h512-12.webp" width="256" height="245" style="right:calc(50% + 530px + 18px);top:722px;--h:165px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="ch ch--borde" src="h1024-31.webp" width="256" height="236" style="left:calc(50% + 530px + 18px);top:722px;--h:195px;opacity:1.00" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <!-- Caricaturas de pixel art (tanda del 19-08). Se suman al sistema
@@ -3429,7 +3414,6 @@
        cada ~165 px. OJO: `left:` pinta a la DERECHA (empuja desde el
        centro), es al reves de como se lee. -->
   <div class="wrap">
-        <img class="mw-pose " src="mw-eri2-02.webp" width="184" height="240" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <h2 id="faq"><span data-i18n-en>Before you ask</span><span data-i18n-es hidden>Antes de preguntar</span><span class="drop drop--gira" aria-hidden="true"><img class="" src="mod-tic-libro.png" width="64" height="64" alt="" loading="lazy" decoding="async"></span></h2>
     <div class="faq-list">
       <div class="faq-item"><button type="button" class="faq-q"><span class="faq-txt"><span data-i18n-en>What do you need for a quote?</span><span data-i18n-es hidden>¿Qué necesitas para cotizar?</span></span><span class="faq-icon" aria-hidden="true">+</span></button><div class="faq-a"><div class="faq-body"><span data-i18n-en>The mod (link or file), the version and loader it's on now, and where you want it. If you're the author or have their permission, say so too. With that I can tell you whether it can be done and what it would cost.</span><span data-i18n-es hidden>El mod (enlace o archivo), la versión y el loader en los que está, y dónde lo quieres. Si eres el autor o tienes su permiso, dilo también. Con eso te digo si se puede hacer y cuánto costaría.</span></div></div></div>
@@ -3497,7 +3481,6 @@
       </details>
     </div>
     <aside class="dc-invita">
-      <img class="dc-inv-img dc-inv-img--pose" src="mw-eri2-00.webp" width="161" height="240" alt="" aria-hidden="true" loading="lazy" decoding="async">
       <div class="dc-inv-txt"><p class="dc-inv-t"><span data-i18n-en>Something in the terms not clear?</span><span data-i18n-es hidden>¿Algo de las condiciones no queda claro?</span></p><p><span data-i18n-en>Ask me on the<span translate="no"> Discord</span>, I'd rather explain it before we start.</span><span data-i18n-es hidden>Pregúntame por el<span translate="no"> Discord</span>, prefiero explicarlo antes de empezar.</span></p></div>
       <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" class="btn btn-discord"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg><span><span data-i18n-en>Join the<span translate="no"> Discord</span></span><span data-i18n-es hidden>Entra al<span translate="no"> Discord</span></span></span></a>
     </aside>
@@ -3511,7 +3494,6 @@
   <img class="ch ch--borde" src="hari-11.webp" width="256" height="246" style="left:calc(50% + 530px + 18px);top:333px;--h:190px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <img class="ch ch--borde" src="h512-22.webp" width="256" height="235" style="right:calc(50% + 530px + 18px);top:333px;--h:190px;opacity:0.95" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap">
-    <img class="mw-pose mw-pose--asoma" src="mw-cuy2-22.webp" width="392" height="240" alt="" aria-hidden="true" loading="lazy" decoding="async">
     <div class="pack-shots">
       <!-- La captura con la que abria el hero, y su pie tal cual lo escribio
            josda, viven aqui desde el 2026-09-23. En escritorio van en dos
@@ -3521,7 +3503,7 @@
            rejilla, al hueco que deja pack-05: siguen siendo 50 barajadas. -->
       <figure class="pack-yo">
         <img class="pack-yo-a" src="hero-main.webp" srcset="hero-main-654.webp 654w, hero-main-1000.webp 1000w, hero-main.webp 1400w" sizes="(max-width: 720px) calc(100vw - 48px), (max-width: 1108px) calc(50vw - 30px), 525px" width="1400" height="788" alt="My character standing at the edge of a river inside a towering redwood forest, in a heavily modded world." loading="lazy" decoding="async">
-        <figcaption class="pack-note"><img class="retrato retrato--cuy retrato--pose" src="mw-cuy2-11.webp" width="278" height="304" alt="" aria-hidden="true" loading="lazy" decoding="async"><span><span data-i18n-en>Me taking in the view from the 600+ Mod Compatibility Lab I run for testing. Like you, I know the version problem first-hand, and every other headache that comes with it.</span><span data-i18n-es hidden>Yo, disfrutando la vista en el Laboratorio de Compatibilidad de 600+ mods que uso para hacer pruebas. Como tú, conozco el problema de versiones de primera mano, y todos los otros dolores de cabeza que trae.</span></span></figcaption>
+        <figcaption class="pack-note"><span><span data-i18n-en>Me taking in the view from the 600+ Mod Compatibility Lab I run for testing. Like you, I know the version problem first-hand, and every other headache that comes with it.</span><span data-i18n-es hidden>Yo, disfrutando la vista en el Laboratorio de Compatibilidad de 600+ mods que uso para hacer pruebas. Como tú, conozco el problema de versiones de primera mano, y todos los otros dolores de cabeza que trae.</span></span></figcaption>
         <img class="pack-yo-b" src="pack-05.webp" width="760" height="428" alt="Three bears gathered on a stone platform in a birch and pine forest." loading="lazy" decoding="async">
       </figure>
       <!-- 🚨 LA GALERIA NO SE ABRE ENTERA (peticion de josda 2026-08-30).
@@ -3606,11 +3588,10 @@
   <div class="wrap">
     <div class="contact-split">
     <div class="contact-text">
-        <img class="mw-pose " src="mw-eri2-23.webp" width="190" height="240" alt="" aria-hidden="true" loading="lazy" decoding="async">
         <h2><span data-i18n-en>Got a mod in mind?</span><span data-i18n-es hidden>¿Tienes un mod en mente?</span><img class="px px--paloma" src="deco-paloma.webp" width="90" height="60" alt="" aria-hidden="true" loading="lazy" decoding="async"></h2>
     <p class="sub"><span data-i18n-en>Send me the link, the version you have and where you want to take it. Not sure it's doable? Doesn't matter. That's what I check.</span><span data-i18n-es hidden>Mándame el enlace, la versión que tienes y dónde quieres llevarlo. Si no sabes si es viable, no importa. Eso lo reviso yo.</span></p>
     </div>
-    <a class="discord-big" href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer"><img class="mw-peek" src="mw-eri2-22.webp" width="244" height="191" alt="" aria-hidden="true" loading="lazy" decoding="async"><img src="discord-logo-grande.webp" width="312" height="286" alt="The Modwright Discord server icon: a grass block cut in the shape of the Discord logo, over a Minecraft sunset." loading="lazy" decoding="async"><span><span data-i18n-en>Join the server</span><span data-i18n-es hidden>Únete al servidor</span></span></a>
+    <a class="discord-big" href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer"><img src="discord-logo-grande.webp" width="312" height="286" alt="The Modwright Discord server icon: a grass block cut in the shape of the Discord logo, over a Minecraft sunset." loading="lazy" decoding="async"><span><span data-i18n-en>Join the server</span><span data-i18n-es hidden>Únete al servidor</span></span></a>
     <div class="deal-row contact-row">
       <a href="https://discord.gg/EV8F84fheJ" class="btn btn-discord contact-btn" target="_blank" rel="noopener noreferrer"><svg class="bicon" viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H10l-4 3v-3H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><circle cx="9.5" cy="11" r="1.05" fill="currentColor" stroke="none"/><circle cx="14.5" cy="11" r="1.05" fill="currentColor" stroke="none"/></svg><span><span data-i18n-en>Open a ticket on<span translate="no"> Discord</span></span><span data-i18n-es hidden>Abrir un ticket en<span translate="no"> Discord</span></span></span></a>
       <a href="#estimator" class="btn btn-ghost"><span data-i18n-en>Fill in the summary first</span><span data-i18n-es hidden>Armar el resumen antes</span></a>
@@ -3625,7 +3606,7 @@
   <img src="band-flight.webp" width="1800" height="1012" alt="My character hanging in the air above an open sea, with the sun going down behind him." loading="lazy" decoding="async">
 </figure>
 <footer>
-  <div class="px-fogon" aria-hidden="true"><img class="mw-fogon" src="mw-cuy2-11.webp" width="219" height="240" alt="" loading="lazy" decoding="async"><img class="px px--estufa" src="mod-fd-estufa-olla.webp" width="64" height="88" alt="" loading="lazy" decoding="async"><img class="px px--burger" src="mod-fd-hamburguesa.png" width="64" height="64" alt="" loading="lazy" decoding="async"></div>
+  <div class="px-fogon" aria-hidden="true"><img class="px px--estufa" src="mod-fd-estufa-olla.webp" width="64" height="88" alt="" loading="lazy" decoding="async"><img class="px px--burger" src="mod-fd-hamburguesa.png" width="64" height="64" alt="" loading="lazy" decoding="async"></div>
   <div><strong style="color:var(--text-soft)"><span translate="no">Modwright</span></strong> <span class="sep">·</span><span translate="no"> Forge </span><span data-i18n-en>1.20.1 mod<span translate="no"> porting </span></span><span data-i18n-es hidden><span translate="no">porting </span>de mods en 1.20.1 </span><span class="sep">·</span> <a href="mod-porting-cost.html">What a<span translate="no"> port </span>costs</a> <span class="sep">·</span> <a href="fabric-to-forge-1-20-1.html"><span translate="no">Fabric </span>to<span translate="no"> Forge</span>: what breaks</a> <span class="sep">·</span> <a href="geckolib-bone-name-crash.html">A crash the compiler can't see</a> <span class="sep">·</span> <a href="forge-to-neoforge-1-21-1.html"><span translate="no">Forge </span>to<span translate="no"> NeoForge</span>: what breaks</a> <span class="sep">·</span> <a href="#terms"><span data-i18n-en>Terms</span><span data-i18n-es hidden>Condiciones</span></a> <span class="sep">·</span> <a href="#privacy"><span data-i18n-en>Privacy</span><span data-i18n-es hidden>Privacidad</span></a> <span class="sep">·</span> <a href="#licenses"><span data-i18n-en>Licenses</span><span data-i18n-es hidden>Licencias</span></a> <span class="sep">·</span> <a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer"><span data-i18n-en>Contact</span><span data-i18n-es hidden>Contacto</span></a></div>
   <div class="perfiles"><img class="discord-badge" src="discord-logo-grande.webp" width="312" height="286" alt="" loading="lazy" decoding="async"><span data-i18n-en>Talk to me on </span><span data-i18n-es hidden>Háblame por </span><a href="https://discord.gg/EV8F84fheJ" target="_blank" rel="noopener noreferrer" translate="no">Discord</a> <span class="sep">·</span> <span data-i18n-en>also on </span><span data-i18n-es hidden>también en </span><a href="https://www.curseforge.com/members/danisansietev/projects" target="_blank" rel="noopener noreferrer" translate="no">CurseForge</a> <span class="sep">·</span> <a href="https://github.com/Dheightsan" target="_blank" rel="noopener noreferrer" translate="no">GitHub</a> <span class="sep">·</span> <a href="https://builtbybit.com/members/modwrightstudios.891720/" target="_blank" rel="noopener noreferrer" translate="no">BuiltByBit</a></div>
   <div class="perfiles"><span data-i18n-en>&copy; 2026<span translate="no"> Modwright</span>. An independent service, not affiliated with<span translate="no"> Mojang </span>or with the projects mentioned here.</span><span data-i18n-es hidden>&copy; 2026<span translate="no"> Modwright</span>. Servicio independiente, sin afiliación con<span translate="no"> Mojang </span>ni con los proyectos que se mencionan aquí.</span></div>
